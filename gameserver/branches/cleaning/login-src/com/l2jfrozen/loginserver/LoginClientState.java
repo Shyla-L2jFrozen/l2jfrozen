@@ -16,7 +16,6 @@ package com.l2jfrozen.loginserver;
 
 /**
  * @author navis
- *
  */
 public enum LoginClientState
 {

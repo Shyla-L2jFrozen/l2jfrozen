@@ -38,22 +38,22 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javolution.io.UTF8StreamReader;
-import javolution.util.FastMap;
-import javolution.xml.stream.XMLStreamConstants;
-import javolution.xml.stream.XMLStreamException;
-import javolution.xml.stream.XMLStreamReaderImpl;
-
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.loginserver.LoginConfigFiles;
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.loginserver.GameServerThread;
+import com.l2jfrozen.loginserver.LoginConfigFiles;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.database.DatabaseUtils;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 import com.l2jfrozen.util.random.Rnd;
+
+import javolution.io.UTF8StreamReader;
+import javolution.util.FastMap;
+import javolution.xml.stream.XMLStreamConstants;
+import javolution.xml.stream.XMLStreamException;
+import javolution.xml.stream.XMLStreamReaderImpl;
 
 /**
  * @author KenM
@@ -124,10 +124,10 @@ public class GameServerTable
 		InputStream in = null;
 		try
 		{
-			File conf_file = new File(LoginConfigFiles.SERVER_NAME_FILE);
+			final File conf_file = new File(LoginConfigFiles.SERVER_NAME_FILE);
 			if (!conf_file.exists())
 			{
-				throw new IOException("Configuration file "+LoginConfigFiles.SERVER_NAME_FILE+" is missing");
+				throw new IOException("Configuration file " + LoginConfigFiles.SERVER_NAME_FILE + " is missing");
 			}
 			
 			in = new FileInputStream(conf_file);

@@ -23,8 +23,6 @@ import java.nio.ByteBuffer;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.loginserver.LoginConfig;
-import com.l2jfrozen.loginserver.LoginClientState;
 import com.l2jfrozen.loginserver.network.clientpackets.AuthGameGuard;
 import com.l2jfrozen.loginserver.network.clientpackets.RequestAuthLogin;
 import com.l2jfrozen.loginserver.network.clientpackets.RequestServerList;

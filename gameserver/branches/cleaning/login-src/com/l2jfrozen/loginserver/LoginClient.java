@@ -26,7 +26,6 @@ import java.security.interfaces.RSAPrivateKey;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.loginserver.LoginConfig;
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.crypt.LoginCrypt;
 import com.l2jfrozen.crypt.ScrambledKeyPair;
@@ -49,7 +48,6 @@ import com.l2jfrozen.util.random.Rnd;
 public final class LoginClient extends MMOClient<MMOConnection<LoginClient>>
 {
 	private static Logger LOGGER = Logger.getLogger(LoginClient.class);
-	
 	
 	private LoginClientState _state;
 	
