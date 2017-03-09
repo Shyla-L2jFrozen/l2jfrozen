@@ -452,14 +452,7 @@ goto :Step1
 :additems
 
 echo.
-echo Put in database spawn GmShop, Classmaster and other customs...
-%mysqlPath% -h %gshost% -u %gsuser% --password=%gspass% -D %gsdb% < ../sql/customs/added_custom_etcitem.sql
-%mysqlPath% -h %gshost% -u %gsuser% --password=%gspass% -D %gsdb% < ../sql/customs/DynastyArmor_SQL_OK.sql
-%mysqlPath% -h %gshost% -u %gsuser% --password=%gspass% -D %gsdb% < ../sql/customs/Epic_MaskAndShield_SQL_OK.sql
-%mysqlPath% -h %gshost% -u %gsuser% --password=%gspass% -D %gsdb% < ../sql/customs/Gold_Bar_Item_OK.sql
-%mysqlPath% -h %gshost% -u %gsuser% --password=%gspass% -D %gsdb% < ../sql/customs/Mordor_Weapons_SQL_OK.sql
-%mysqlPath% -h %gshost% -u %gsuser% --password=%gspass% -D %gsdb% < ../sql/customs/Wings_SQL_OK.sql
-echo GmShop and other customs loaded with no-error. Greet!!!
+echo Actually custom item is empty!
 pause
 :end
 echo.
