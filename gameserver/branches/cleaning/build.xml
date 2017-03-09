@@ -197,7 +197,6 @@
 				<fileset dir="dist">
 					<include name="LoginServer_loop.sh" />
 					<include name="startLoginServer.*" />
-					<include name="anti_ddos.*" />
 					<include name="RegisterGameServer.*" />
 				</fileset>
 			</copy>
@@ -363,7 +362,6 @@
 			<fileset dir="dist">
 				<include name="LoginServer_loop.sh" />
 				<include name="startLoginServer.*" />
-				<include name="anti_ddos.*" />
 				<include name="RegisterGameServer.*" />
 			</fileset>
 		</copy>
