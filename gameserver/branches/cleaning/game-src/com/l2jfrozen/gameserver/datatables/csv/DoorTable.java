@@ -87,7 +87,7 @@ public class DoorTable
 		
 		try
 		{
-			final File doorData = new File(Config.DATAPACK_ROOT, "data/door.csv");
+			final File doorData = new File(Config.DATAPACK_ROOT, "data/csv/door.csv");
 			
 			reader = new FileReader(doorData);
 			buff = new BufferedReader(reader);
@@ -127,7 +127,7 @@ public class DoorTable
 				e.printStackTrace();
 			
 			_initialized = false;
-			LOGGER.warn("door.csv is missing in data folder");
+			LOGGER.warn("door.csv is missing in data/csv/ folder");
 		}
 		catch (final IOException e)
 		{
