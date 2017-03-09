@@ -23,7 +23,6 @@ import org.apache.log4j.Logger;
 
 /**
  * @author Shyla
- *
  */
 public class CommonConfigFiles
 {
@@ -35,8 +34,9 @@ public class CommonConfigFiles
 	
 	protected static Properties configFiles = new Properties();
 	
-	//load statically the configuration files
-	static {
+	// load statically the configuration files
+	static
+	{
 		loadConfigurationFilesPaths(MAIN_CONFIGURATION_FILE);
 	}
 	
@@ -45,7 +45,7 @@ public class CommonConfigFiles
 		loadConfigurationFilesPaths(MAIN_CONFIGURATION_FILE);
 	}
 	
-	public static void loadConfigurationFilesPaths(String mainConfigurationFile)
+	public static void loadConfigurationFilesPaths(final String mainConfigurationFile)
 	{
 		try
 		{
@@ -53,7 +53,7 @@ public class CommonConfigFiles
 			configFiles.load(is);
 			is.close();
 			
-			COMMON_CONFIGURATION_FILE = configFiles.getProperty("CommonConfigFilePath","./config/common.properties");
+			COMMON_CONFIGURATION_FILE = configFiles.getProperty("CommonConfigFilePath", "./config/common.properties");
 			
 		}
 		catch (final Exception e)
@@ -61,6 +61,5 @@ public class CommonConfigFiles
 			LOGGER.error("Failed to Load " + mainConfigurationFile + " File.", e);
 		}
 	}
-	
 	
 }
