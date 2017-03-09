@@ -64,7 +64,7 @@ public class SummonItemsData
 		
 		try
 		{
-			s = new Scanner(new File(Config.DATAPACK_ROOT + "/data/summon_items.csv"));
+			s = new Scanner(new File(Config.DATAPACK_ROOT + "/data/csv/summon_items.csv"));
 			
 			int lineCount = 0;
 			
@@ -122,7 +122,7 @@ public class SummonItemsData
 			if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 				e.printStackTrace();
 			
-			LOGGER.info("Summon items data: Can not find './data/summon_items.csv'");
+			LOGGER.info("Summon items data: Can not find './data/csv/summon_items.csv'");
 		}
 		finally
 		{
