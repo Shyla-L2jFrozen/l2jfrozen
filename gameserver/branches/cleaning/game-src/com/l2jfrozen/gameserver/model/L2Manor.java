@@ -362,7 +362,7 @@ public class L2Manor
 		
 		try
 		{
-			final File seedData = new File(Config.DATAPACK_ROOT, "data/seeds.csv");
+			final File seedData = new File(Config.DATAPACK_ROOT, "data/csv/seeds.csv");
 			
 			reader = new FileReader(seedData);
 			buff = new BufferedReader(reader);
@@ -386,7 +386,7 @@ public class L2Manor
 		}
 		catch (final FileNotFoundException e)
 		{
-			LOGGER.info("seeds.csv is missing in data folder");
+			LOGGER.info("seeds.csv is missing in data/csv/ folder");
 		}
 		catch (final Exception e)
 		{

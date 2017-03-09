@@ -85,7 +85,7 @@ public class QuestManager extends ScriptManager<Quest>
 			}
 		}
 		// now load all scripts
-		final File scripts = new File(Config.DATAPACK_ROOT + "/data/scripts.cfg");
+		final File scripts = new File(Config.DATAPACK_ROOT + "/data/scripts/scripts.cfg");
 		L2ScriptEngineManager.getInstance().executeScriptsList(scripts);
 		QuestManager.getInstance().report();
 	}

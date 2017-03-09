@@ -150,7 +150,7 @@ public class L2BoatInstance extends L2Character
 			
 			try
 			{
-				final File boatpath = new File(Config.DATAPACK_ROOT, "data/boatpath.csv");
+				final File boatpath = new File(Config.DATAPACK_ROOT, "data/csv/boatpath.csv");
 				
 				reader = new FileReader(boatpath);
 				buff = new BufferedReader(reader);
@@ -173,7 +173,7 @@ public class L2BoatInstance extends L2Character
 			}
 			catch (final FileNotFoundException e)
 			{
-				LOGGER.error("boatpath.csv is missing in data folder", e);
+				LOGGER.error("boatpath.csv is missing in data/csv/ folder", e);
 			}
 			catch (final Exception e)
 			{
