@@ -37,7 +37,8 @@ public final class ClanWarehouse extends Warehouse
 	@Override
 	public int getOwnerId()
 	{
-		return _clan.getLeader().getObjectId();
+		// return _clan.getLeader().getObjectId();
+		return _clan.getClanId();
 	}
 	
 	@Override
