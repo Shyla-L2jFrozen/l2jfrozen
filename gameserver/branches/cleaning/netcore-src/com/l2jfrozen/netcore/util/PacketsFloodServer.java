@@ -18,11 +18,11 @@ import com.l2jfrozen.netcore.MMOClient;
 
 /**
  * @author Shyla
- *
  */
 public interface PacketsFloodServer
 {
 	public boolean tryPerformAction(final int opcode, final int opcode2, final MMOClient<?> client);
+	
 	public boolean isOpCodeToBeTested(final int opcode, final int opcode2);
 	
 }

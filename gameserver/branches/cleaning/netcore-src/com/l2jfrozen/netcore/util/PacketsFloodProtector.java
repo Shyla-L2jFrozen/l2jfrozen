@@ -31,7 +31,8 @@ public class PacketsFloodProtector
 	
 	private static PacketsFloodServer protected_server = null;
 	
-	public static void setProtectedServer(PacketsFloodServer server){
+	public static void setProtectedServer(final PacketsFloodServer server)
+	{
 		
 		protected_server = server;
 		
@@ -46,14 +47,13 @@ public class PacketsFloodProtector
 	 */
 	public static boolean tryPerformAction(final int opcode, final int opcode2, final MMOClient<?> client)
 	{
-		if (NetcoreConfig.getInstance().DISABLE_FULL_PACKETS_FLOOD_PROTECTOR
-			|| protected_server == null)
+		if (NetcoreConfig.getInstance().DISABLE_FULL_PACKETS_FLOOD_PROTECTOR || protected_server == null)
 			return true;
 		
 		// filter on opcodes
 		if (!protected_server.isOpCodeToBeTested(opcode, opcode2))
 			return true;
-					
+		
 		return protected_server.tryPerformAction(opcode, opcode2, client);
 		
 	}
