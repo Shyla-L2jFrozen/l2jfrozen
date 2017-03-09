@@ -143,11 +143,11 @@ public class AdminGeodata implements IAdminCommandHandler
 				{
 					if (GeoData.getInstance().canSeeTargetDebug(activeChar, activeChar.getTarget()))
 					{
-						activeChar.sendMessage("GeoEngine: Р¦РµР»СЊ РІРёРґРЅР°");
+						activeChar.sendMessage("GeoEngine: ");
 					}
 					else
 					{
-						activeChar.sendMessage("GeoEngine: Р¦РµР»СЊ РЅРµ РІРёРґРЅР°");
+						activeChar.sendMessage("GeoEngine: ");
 					}
 				}
 				else
@@ -157,9 +157,9 @@ public class AdminGeodata implements IAdminCommandHandler
 				break;
 			
 			case admin_geo_position:
-				activeChar.sendMessage("GeoEngine: Р’Р°С€Р° РїРѕР·РёС†РёСЏ: ");
-				activeChar.sendMessage(".... РјРёСЂРѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹: x: " + activeChar.getX() + " y: " + activeChar.getY() + " z: " + activeChar.getZ());
-				activeChar.sendMessage(".... geo РєРѕРѕСЂРґРёРЅР°С‚С‹: " + GeoData.getInstance().geoPosition(activeChar.getX(), activeChar.getY()));
+				activeChar.sendMessage("GeoEngine: ");
+				activeChar.sendMessage(" x: " + activeChar.getX() + " y: " + activeChar.getY() + " z: " + activeChar.getZ());
+				activeChar.sendMessage("" + GeoData.getInstance().geoPosition(activeChar.getX(), activeChar.getY()));
 				break;
 			
 			case admin_geo_load:
@@ -167,7 +167,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				
 				if (v.length != 2)
 				{
-					activeChar.sendMessage("РџСЂРёРјРµСЂ: //admin_geo_load <СЂРµРіРёРѕРЅ_X> <СЂРµРіРёРѕРЅ_Y>");
+					activeChar.sendMessage("//admin_geo_load");
 				}
 				else
 				{
@@ -180,11 +180,11 @@ public class AdminGeodata implements IAdminCommandHandler
 						
 						if (result2)
 						{
-							activeChar.sendMessage("GeoEngine: СЂРµРіРёРѕРЅ [" + rx + "," + ry + "] Р·Р°РіСЂСѓР¶РµРЅ.");
+							activeChar.sendMessage("GeoEngine: [" + rx + "," + ry + "]");
 						}
 						else
 						{
-							activeChar.sendMessage("GeoEngine: СЂРµРіРёРѕРЅ [" + rx + "," + ry + "] РЅРµ СЃРјРѕРі Р·Р°РіСЂСѓР·РёС‚СЃСЏ.");
+							activeChar.sendMessage("GeoEngine: [" + rx + "," + ry + "]");
 						}
 					}
 					catch (final Exception e)
@@ -202,7 +202,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				
 				if (v2.length != 2)
 				{
-					activeChar.sendMessage("РџСЂРёРјРµСЂ: //admin_geo_unload <СЂРµРіРёРѕРЅ_X> <СЂРµРіРёРѕРЅ_Y>");
+					activeChar.sendMessage("//admin_geo_unload ");
 				}
 				else
 				{
@@ -212,7 +212,7 @@ public class AdminGeodata implements IAdminCommandHandler
 						final byte ry = Byte.parseByte(v2[1]);
 						
 						GeoData.getInstance().unloadGeodata(rx, ry);
-						activeChar.sendMessage("GeoEngine: СЂРµРіРёРѕРЅ [" + rx + "," + ry + "] РІС‹РіСЂСѓР¶РµРЅ.");
+						activeChar.sendMessage("GeoEngine: [" + rx + "," + ry + "]");
 					}
 					catch (final Exception e)
 					{
@@ -235,7 +235,7 @@ public class AdminGeodata implements IAdminCommandHandler
 					if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 						e.printStackTrace();
 					
-					activeChar.sendMessage("РџСЂРёРјРµСЂ: //admin_geo_bug РІР°С€ РєРѕРјРјРµРЅС‚Р°СЂРёР№ С‚СѓС‚");
+					activeChar.sendMessage("//admin_geo_bug ");
 				}
 				break;
 		}
