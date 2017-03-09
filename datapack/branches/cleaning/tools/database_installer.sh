@@ -405,14 +405,7 @@ finish
 }
 
 citemsinstall(){
-echo "Put in database custom Items..."
-$MYG < ../sql/customs/added_custom_etcitem.sql &> /dev/null
-$MYG < ../sql/customs/DynastyArmor_SQL_OK.sql &> /dev/null
-$MYG < ../sql/customs/Epic_MaskAndShield_SQL_OK.sql &> /dev/null
-$MYG < ../sql/customs/Gold_Bar_Item_OK.sql &> /dev/null
-$MYG < ../sql/customs/Mordor_Weapons_SQL_OK.sql &> /dev/null
-$MYG < ../sql/customs/Wings_SQL_OK.sql &> /dev/null
-echo "custom Items loaded with no-error. Greet!!!"
+echo "Actually custom item is empty!"
 custom
 }
 
