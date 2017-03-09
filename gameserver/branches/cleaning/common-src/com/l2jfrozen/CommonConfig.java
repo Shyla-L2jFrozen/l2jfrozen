@@ -64,7 +64,7 @@ public class CommonConfig
 		load(CommonConfigFiles.COMMON_CONFIGURATION_FILE);
 	}
 	
-	public static void load(String configurationFile)
+	public static void load(final String configurationFile)
 	{
 		
 		try

@@ -24,7 +24,10 @@ package com.l2jfrozen.util;
 import javolution.text.TextBuilder;
 
 /**
- * String utilities optimized for the best performance. <h1>How to Use It</h1> <h2>concat() or append()</h2> If concatenating strings in single call, use StringUtil.concat(), otherwise use StringUtil.append() and its variants. <h2>Minimum Calls</h2> Bad:
+ * String utilities optimized for the best performance.
+ * <h1>How to Use It</h1>
+ * <h2>concat() or append()</h2> If concatenating strings in single call, use StringUtil.concat(), otherwise use StringUtil.append() and its variants.
+ * <h2>Minimum Calls</h2> Bad:
  * 
  * <pre>
  * final StringBuilder sbString = new StringBuilder();
@@ -40,7 +43,8 @@ import javolution.text.TextBuilder;
  * </pre>
  * 
  * Why?<br/>
- * Because the less calls you do, the less memory re-allocations have to be done so the whole text fits into the memory and less array copy tasks has to be performed. So if using less calls, less memory is used and string concatenation is faster. <h2>Size Hints for Loops</h2> Bad:
+ * Because the less calls you do, the less memory re-allocations have to be done so the whole text fits into the memory and less array copy tasks has to be performed. So if using less calls, less memory is used and string concatenation is faster.
+ * <h2>Size Hints for Loops</h2> Bad:
  * 
  * <pre>
  * final StringBuilder sbString = new StringBuilder();
@@ -66,7 +70,8 @@ import javolution.text.TextBuilder;
  * because new memory has not to be allocated on each cycle. Also it is much faster if no string copy tasks has to be performed. So if concatenating strings in a loop, count approximately the size and set it as the hint for the string builder size. It's better to make the size hint little bit larger
  * rather than smaller.<br/>
  * In case there is no text appended before the cycle, just use <code>new
- * StringBuilder(1300)</code>. <h2>Concatenation and Constants</h2> Bad:
+ * StringBuilder(1300)</code>.
+ * <h2>Concatenation and Constants</h2> Bad:
  * 
  * <pre>
  * StringUtil.concat(&quot;text 1 &quot;, &quot;text 2&quot;, String.valueOf(npcId));
@@ -85,8 +90,8 @@ import javolution.text.TextBuilder;
  * </pre>
  * 
  * Why?<br/>
- * It saves some cycles when determining size of memory that needs to be allocated because less strings are passed to concat() method. But do not use + for concatenation of non-constant strings, that degrades performance and makes extra memory allocations needed. <h2>Concatenation and Constant
- * Variables</h2> Bad:
+ * It saves some cycles when determining size of memory that needs to be allocated because less strings are passed to concat() method. But do not use + for concatenation of non-constant strings, that degrades performance and makes extra memory allocations needed.
+ * <h2>Concatenation and Constant Variables</h2> Bad:
  * 
  * <pre>
  * String glue = &quot;some glue&quot;;
@@ -102,7 +107,8 @@ import javolution.text.TextBuilder;
  * 
  * Why? Because when using <code>final</code> keyword, the <code>glue</code> is marked as constant string and compiler treats it as a constant string so it is able to create string "text1some gluetext2some glue" during the compilation. But this only works in case the value is known at compilation
  * time, so this cannot be used for cases like <code>final String objectIdString =
- * String.valueOf(getObjectId)</code>. <h2>StringBuilder Reuse</h2> Bad:
+ * String.valueOf(getObjectId)</code>.
+ * <h2>StringBuilder Reuse</h2> Bad:
  * 
  * <pre>
  * final StringBuilder sbString1 = new StringBuilder();
@@ -122,10 +128,13 @@ import javolution.text.TextBuilder;
  * StringUtil.append(sbString, &quot;text 3&quot;, String.valueOf(npcId), &quot;text 4&quot;);
  * </pre>
  * 
- * Why?</br> In first case, new memory has to be allocated for the second string. In second case already allocated memory is reused, but only in case the new string is not longer than the previously allocated string. Anyway, the second way is better because the string either fits in the memory and
- * some memory is saved, or it does not fit in the memory, and in that case it works as in the first case. <h2>Primitives to Strings</h2> To convert primitives to string, use String.valueOf(). <h2>How much faster is it?</h2> Here are some results of my tests. Count is number of strings concatenated.
- * Don't take the numbers as 100% true as the numbers are affected by other programs running on my computer at the same time. Anyway, from the results it is obvious that using StringBuilder with predefined size is the fastest (and also most memory efficient) solution. It is about 5 times faster when
- * concatenating 7 strings, compared to TextBuilder. Also, with more strings concatenated, the difference between StringBuilder and TextBuilder gets larger. In code, there are many cases, where there are concatenated 50+ strings so the time saving is even greater.
+ * Why?</br>
+ * In first case, new memory has to be allocated for the second string. In second case already allocated memory is reused, but only in case the new string is not longer than the previously allocated string. Anyway, the second way is better because the string either fits in the memory and some memory
+ * is saved, or it does not fit in the memory, and in that case it works as in the first case.
+ * <h2>Primitives to Strings</h2> To convert primitives to string, use String.valueOf().
+ * <h2>How much faster is it?</h2> Here are some results of my tests. Count is number of strings concatenated. Don't take the numbers as 100% true as the numbers are affected by other programs running on my computer at the same time. Anyway, from the results it is obvious that using StringBuilder
+ * with predefined size is the fastest (and also most memory efficient) solution. It is about 5 times faster when concatenating 7 strings, compared to TextBuilder. Also, with more strings concatenated, the difference between StringBuilder and TextBuilder gets larger. In code, there are many cases,
+ * where there are concatenated 50+ strings so the time saving is even greater.
  * 
  * <pre>
  * Count: 2
@@ -165,6 +174,7 @@ import javolution.text.TextBuilder;
  * StringBuilder: 3081
  * StringBuilder with size: 2139
  * </pre>
+ * 
  * @author fordfrog
  */
 public final class StringUtil
