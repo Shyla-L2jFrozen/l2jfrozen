@@ -69,7 +69,7 @@ public class StaticObjects
 		
 		try
 		{
-			final File doorData = new File(Config.DATAPACK_ROOT, "data/staticobjects.csv");
+			final File doorData = new File(Config.DATAPACK_ROOT, "data/csv/staticobjects.csv");
 			
 			reader = new FileReader(doorData);
 			buff = new BufferedReader(reader);
@@ -93,7 +93,7 @@ public class StaticObjects
 			if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 				e.printStackTrace();
 			
-			LOGGER.warn("staticobjects.csv is missing in data folder");
+			LOGGER.warn("staticobjects.csv is missing in data/csv/ folder");
 		}
 		catch (final Exception e)
 		{
