@@ -25,12 +25,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Map;
 
-import javolution.util.FastMap;
-
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.loginserver.LoginConfig;
+
+import javolution.util.FastMap;
 
 /**
  * @author -Wooden-

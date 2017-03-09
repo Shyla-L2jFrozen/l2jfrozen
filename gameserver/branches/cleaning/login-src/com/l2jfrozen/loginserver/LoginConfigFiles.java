@@ -33,7 +33,7 @@ public class LoginConfigFiles extends CommonConfigFiles
 		loadConfigurationFilesPaths(CommonConfigFiles.MAIN_CONFIGURATION_FILE);
 	}
 	
-	public static void loadConfigurationFilesPaths(String mainConfigurationFile)
+	public static void loadConfigurationFilesPaths(final String mainConfigurationFile)
 	{
 		CommonConfigFiles.loadConfigurationFilesPaths(mainConfigurationFile);
 		

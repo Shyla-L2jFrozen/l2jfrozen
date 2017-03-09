@@ -32,7 +32,6 @@ import java.util.logging.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import com.l2jfrozen.loginserver.LoginConfig;
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.L2Frozen;
 import com.l2jfrozen.ServerType;
@@ -87,10 +86,10 @@ public class LoginServer
 		try
 		{
 			// check for legacy Implementation
-			File log_conf_file = new File(LoginConfigFiles.LOG_CONF_FILE);
+			final File log_conf_file = new File(LoginConfigFiles.LOG_CONF_FILE);
 			if (!log_conf_file.exists())
 			{
-				throw new IOException("Configuration file "+LoginConfigFiles.LOG_CONF_FILE+" is missing");
+				throw new IOException("Configuration file " + LoginConfigFiles.LOG_CONF_FILE + " is missing");
 			}
 			
 			is = new FileInputStream(log_conf_file);
@@ -199,7 +198,7 @@ public class LoginServer
 			System.exit(1);
 		}
 		
-		//Packets flood instance
+		// Packets flood instance
 		PacketsFloodProtector.setProtectedServer(new LoginServerFloodProtectorActions());
 		
 		try
@@ -232,7 +231,7 @@ public class LoginServer
 		{
 			LoginController.loadBanFile();
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			LOGGER.error("Failed to load ban ip file", e);
 			

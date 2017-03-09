@@ -23,12 +23,11 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
 
-import javolution.util.FastList;
-
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.loginserver.LoginConfig;
+
+import javolution.util.FastList;
 
 /**
  * @author KenM
