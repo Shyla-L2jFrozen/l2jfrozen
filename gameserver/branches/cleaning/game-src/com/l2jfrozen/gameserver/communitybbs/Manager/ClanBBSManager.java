@@ -375,7 +375,7 @@ public class ClanBBSManager extends BaseBBSManager
 				html.append("<tr><td height=10></td></tr>");
 				html.append("</table>");
 				// TODO: the BB for clan :)
-				// html.append("<table border=0 cellspacing=0 cellpadding=0 width=610  bgcolor=333333>");
+				// html.append("<table border=0 cellspacing=0 cellpadding=0 width=610 bgcolor=333333>");
 				html.append("<img src=\"L2UI.squareblank\" width=\"1\" height=\"5\">");
 				html.append("<img src=\"L2UI.squaregray\" width=\"610\" height=\"1\">");
 				html.append("<br>");

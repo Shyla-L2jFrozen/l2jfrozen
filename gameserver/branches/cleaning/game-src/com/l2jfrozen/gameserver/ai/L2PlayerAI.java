@@ -253,7 +253,7 @@ public class L2PlayerAI extends L2CharacterAI
 		if (target != null)
 			if (maybeMoveToPawn(target, _actor.getMagicalAttackRange(skill)))
 				return;
-		
+			
 		if (skill.getHitTime() > 50)
 		{
 			clientStopMoving(null);

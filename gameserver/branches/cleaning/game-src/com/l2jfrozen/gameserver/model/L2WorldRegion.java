@@ -277,7 +277,7 @@ public final class L2WorldRegion
 		for (final L2WorldRegion neighbor : _surroundingRegions)
 			if (neighbor.isActive() && neighbor._allPlayable.size() > 0)
 				return false;
-		
+			
 		// in all other cases, return true.
 		return true;
 	}

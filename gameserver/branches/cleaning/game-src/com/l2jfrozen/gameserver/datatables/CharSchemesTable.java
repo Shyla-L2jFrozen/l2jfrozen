@@ -101,7 +101,8 @@ public class CharSchemesTable
 	
 	/**
 	 * Do necessary task when server is shutting down or restarting:<br>
-	 * <li>Clears DataBase</li> <li>Saves new info</li>
+	 * <li>Clears DataBase</li>
+	 * <li>Saves new info</li>
 	 */
 	public void onServerShutdown()
 	{

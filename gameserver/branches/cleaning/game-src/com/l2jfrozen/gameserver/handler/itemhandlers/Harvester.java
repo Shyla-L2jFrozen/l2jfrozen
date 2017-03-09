@@ -41,7 +41,7 @@ public class Harvester implements IItemHandler
 	private static final int[] ITEM_IDS =
 	{
 		5125
-	/* Harvester */
+		/* Harvester */
 	};
 	L2PcInstance _activeChar;
 	L2MonsterInstance _target;

@@ -129,51 +129,51 @@ public class ChristmasManager
 		"May you have the best of Christmas this year and all your dreams come true.",
 		"May the miracle of Christmas fill your heart with warmth and love. Merry Christmas!"
 	},
-	
-	sender =
-	{
-		"Santa Claus",
-		"Papai Noel",
-		"Shengdan Laoren",
-		"Santa",
-		"Viejo Pascuero",
-		"Sinter Klaas",
-		"Father Christmas",
-		"Saint Nicholas",
-		"Joulupukki",
-		"Pere Noel",
-		"Saint Nikolaus",
-		"Kanakaloka",
-		"De Kerstman",
-		"Winter grandfather",
-		"Babbo Natale",
-		"Hoteiosho",
-		"Kaledu Senelis",
-		"Black Peter",
-		"Kerstman",
-		"Julenissen",
-		"Swiety Mikolaj",
-		"Ded Moroz",
-		"Julenisse",
-		"El Nino Jesus",
-		"Jultomten",
-		"Reindeer Dasher",
-		"Reindeer Dancer",
-		"Christmas Spirit",
-		"Reindeer Prancer",
-		"Reindeer Vixen",
-		"Reindeer Comet",
-		"Reindeer Cupid",
-		"Reindeer Donner",
-		"Reindeer Donder",
-		"Reindeer Dunder",
-		"Reindeer Blitzen",
-		"Reindeer Bliksem",
-		"Reindeer Blixem",
-		"Reindeer Rudolf",
-		"Christmas Elf"
-	};
-	
+		
+		sender =
+		{
+			"Santa Claus",
+			"Papai Noel",
+			"Shengdan Laoren",
+			"Santa",
+			"Viejo Pascuero",
+			"Sinter Klaas",
+			"Father Christmas",
+			"Saint Nicholas",
+			"Joulupukki",
+			"Pere Noel",
+			"Saint Nikolaus",
+			"Kanakaloka",
+			"De Kerstman",
+			"Winter grandfather",
+			"Babbo Natale",
+			"Hoteiosho",
+			"Kaledu Senelis",
+			"Black Peter",
+			"Kerstman",
+			"Julenissen",
+			"Swiety Mikolaj",
+			"Ded Moroz",
+			"Julenisse",
+			"El Nino Jesus",
+			"Jultomten",
+			"Reindeer Dasher",
+			"Reindeer Dancer",
+			"Christmas Spirit",
+			"Reindeer Prancer",
+			"Reindeer Vixen",
+			"Reindeer Comet",
+			"Reindeer Cupid",
+			"Reindeer Donner",
+			"Reindeer Donder",
+			"Reindeer Dunder",
+			"Reindeer Blitzen",
+			"Reindeer Bliksem",
+			"Reindeer Blixem",
+			"Reindeer Rudolf",
+			"Christmas Elf"
+		};
+		
 	// Presents List:
 	protected int[] presents =
 	{
@@ -242,7 +242,7 @@ public class ChristmasManager
 		8936, /* Santa's Antlers Hat */
 		6394, /* Red Party Mask */
 		5808
-	/* Black Party Mask */
+		/* Black Party Mask */
 	};
 	
 	// The message task sent at fixed rate

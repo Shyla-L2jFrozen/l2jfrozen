@@ -1115,7 +1115,7 @@ public class Frintezza extends Quest implements Runnable
 	
 	private static L2BossZone _Zone;
 	@SuppressWarnings("unused")
-	private L2GrandBossInstance frintezza, weakScarlet, strongScarlet, activeScarlet;
+	private L2GrandBossInstance frintezza, weakScarlet, strongScarlet;
 	private L2MonsterInstance demon1, demon2, demon3, demon4, portrait1, portrait2, portrait3, portrait4;
 	private L2NpcInstance _frintezzaDummy, _overheadDummy, _portraitDummy1, _portraitDummy3, _scarletDummy;
 	private final List<L2PcInstance> _PlayersInside = new FastList<>();
@@ -1319,7 +1319,6 @@ public class Frintezza extends Quest implements Runnable
 			frintezza = null;
 			weakScarlet = null;
 			strongScarlet = null;
-			activeScarlet = null;
 		}
 		else if (event.equalsIgnoreCase("clean"))
 		{
@@ -1549,8 +1548,6 @@ public class Frintezza extends Quest implements Runnable
 			weakScarlet.setIsImobilised(true);
 			weakScarlet.disableAllSkills();
 			_Zone.updateKnownList(weakScarlet);
-			activeScarlet = weakScarlet;
-			
 			/*
 			 * startQuestTimer("camera_19", 2400, _scarletDummy, null); startQuestTimer("camera_19b", 5000, _scarletDummy, null);
 			 */
@@ -1727,7 +1724,6 @@ public class Frintezza extends Quest implements Runnable
 			_Scarlet_h = weakScarlet.getHeading();
 			weakScarlet.deleteMe();
 			weakScarlet = null;
-			activeScarlet = null;
 			weakScarlet = (L2GrandBossInstance) addSpawn(SCARLET1, _Scarlet_x, _Scarlet_y, _Scarlet_z, _Scarlet_h, false, 0);
 			weakScarlet.setIsInvul(true);
 			weakScarlet.setIsImobilised(true);
@@ -1778,8 +1774,6 @@ public class Frintezza extends Quest implements Runnable
 			strongScarlet.setIsImobilised(true);
 			strongScarlet.disableAllSkills();
 			_Zone.updateKnownList(strongScarlet);
-			activeScarlet = strongScarlet;
-			
 			_Zone.broadcastPacket(new SpecialCamera(strongScarlet.getObjectId(), 450, _Angle, 12, 500, 14000));
 			
 			startQuestTimer("morph_14", 3000, strongScarlet, null);
@@ -2276,7 +2270,7 @@ public class Frintezza extends Quest implements Runnable
 							
 							if (CC != null)
 							{ // teleport all parties into CC
-							
+								
 								for (final L2Party party : CC.getPartys())
 								{
 									if (party == null)
@@ -2313,7 +2307,7 @@ public class Frintezza extends Quest implements Runnable
 							}
 							else
 							{ // teleport just actual party
-							
+								
 								final L2Party party = player.getParty();
 								
 								for (final L2PcInstance member : party.getPartyMembers())
@@ -2346,7 +2340,7 @@ public class Frintezza extends Quest implements Runnable
 						}
 						else
 						{ // teleport just player
-						
+							
 							if (player.isInsideRadius(npc, 700, false, false))
 							{
 								

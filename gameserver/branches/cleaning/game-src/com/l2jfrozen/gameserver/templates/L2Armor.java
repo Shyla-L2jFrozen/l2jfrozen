@@ -49,7 +49,9 @@ public final class L2Armor extends L2Item
 	 * Constructor for Armor.<BR>
 	 * <BR>
 	 * <U><I>Variables filled :</I></U><BR>
-	 * <LI>_avoidModifier</LI> <LI>_pDef & _mDef</LI> <LI>_mpBonus & _hpBonus</LI>
+	 * <LI>_avoidModifier</LI>
+	 * <LI>_pDef & _mDef</LI>
+	 * <LI>_mpBonus & _hpBonus</LI>
 	 * @param type : L2ArmorType designating the type of armor
 	 * @param set : StatsSet designating the set of couples (key,value) caracterizing the armor
 	 * @see L2Item constructor

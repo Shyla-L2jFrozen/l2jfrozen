@@ -86,7 +86,7 @@ public class PartyMatchRoomList
 			for (final L2PcInstance member : _room.getPartyMembers())
 				if (member.equals(player))
 					return _room;
-		
+				
 		return null;
 	}
 	
@@ -96,7 +96,7 @@ public class PartyMatchRoomList
 			for (final L2PcInstance member : _room.getPartyMembers())
 				if (member.equals(player))
 					return _room.getId();
-		
+				
 		return -1;
 	}
 	

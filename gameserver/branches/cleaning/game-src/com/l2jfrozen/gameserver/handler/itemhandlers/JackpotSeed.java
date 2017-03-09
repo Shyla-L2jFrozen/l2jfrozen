@@ -43,14 +43,14 @@ public class JackpotSeed implements IItemHandler
 	{
 		6389, // small seed
 		6390
-	// large seed
+		// large seed
 	};
 	
 	private static int[] _npcIds =
 	{
 		12774, // Young Pumpkin
 		12777
-	// Large Young Pumpkin
+		// Large Young Pumpkin
 	};
 	
 	@Override

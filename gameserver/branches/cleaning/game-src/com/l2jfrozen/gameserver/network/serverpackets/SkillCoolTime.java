@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.gameserver.network.L2GameClient;
 
 public class SkillCoolTime extends L2GameServerPacket
 {
@@ -22,7 +21,7 @@ public class SkillCoolTime extends L2GameServerPacket
 	protected final void writeImpl()
 	{
 		@SuppressWarnings("cast")
-		final L2PcInstance activeChar = ((L2GameClient) getClient()).getActiveChar();
+		final L2PcInstance activeChar = getClient().getActiveChar();
 		if (activeChar == null)
 			return;
 		writeC(193);

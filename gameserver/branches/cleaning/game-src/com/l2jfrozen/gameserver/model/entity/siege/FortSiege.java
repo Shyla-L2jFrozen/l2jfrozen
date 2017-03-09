@@ -1608,7 +1608,7 @@ public class FortSiege
 		for (final L2SiegeClan sc : getAttackerClans())
 			if (sc != null && sc.getClanId() == clanId)
 				return sc;
-		
+			
 		return null;
 	}
 	
@@ -1668,7 +1668,7 @@ public class FortSiege
 		for (final L2SiegeClan sc : getDefenderClans())
 			if (sc != null && sc.getClanId() == clanId)
 				return sc;
-		
+			
 		return null;
 	}
 	
@@ -1707,7 +1707,7 @@ public class FortSiege
 		for (final L2SiegeClan sc : getDefenderWaitingClans())
 			if (sc != null && sc.getClanId() == clanId)
 				return sc;
-		
+			
 		return null;
 	}
 	

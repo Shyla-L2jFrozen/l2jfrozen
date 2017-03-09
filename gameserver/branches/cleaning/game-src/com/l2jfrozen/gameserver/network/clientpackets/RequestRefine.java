@@ -161,7 +161,7 @@ public final class RequestRefine extends L2GameClientPacket
 		// is the refiner Item a life stone?
 		if (lifeStoneId < 8723 || lifeStoneId > 8762)
 			return false;
-		
+			
 		// must be a weapon, must be > d grade
 		// TODO: can do better? : currently: using isdestroyable() as a check for hero / cursed weapons
 		if (itemGrade < L2Item.CRYSTAL_C || itemType != L2Item.TYPE2_WEAPON || !targetItem.isDestroyable())

@@ -72,7 +72,7 @@ public class MobGroupTable
 		for (final MobGroup mobGroup : _groupMap.values())
 			if (mobGroup.isGroupMember(mobInst))
 				return mobGroup;
-		
+			
 		return null;
 	}
 	

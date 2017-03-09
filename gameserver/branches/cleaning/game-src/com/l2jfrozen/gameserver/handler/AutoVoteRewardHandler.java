@@ -24,7 +24,7 @@ import com.l2jfrozen.thread.ThreadPoolManager;
 
 /**
  * @author L2jFrozen <br>
- * <br>
+ *         <br>
  *         Network working with L2jFrozen AutoVoteReward: <br>
  *         Hopzone -> http://l2.hopzone.net/ <br>
  *         Topzone -> http://l2topzone.com/ <br>
@@ -283,35 +283,12 @@ public class AutoVoteRewardHandler
 	}
 	
 	/*
-	protected int getHopZoneVotes1()
-	{
-		int votes = -1;
-		
-		try
-		{
-			
-			final WebClient webClient = new WebClient(BrowserVersion.CHROME);
-			webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
-			webClient.getOptions().setThrowExceptionOnScriptError(false);
-			webClient.getOptions().setPrintContentOnFailingStatusCode(false);
-			final HtmlPage page = webClient.getPage(PowerPakConfig.VOTES_SITE_HOPZONE_URL);
-			final String fullPage = page.asXml();
-			final int constrainA = fullPage.indexOf("rank tooltip") + 24;
-			String voteSection = fullPage.substring(constrainA);
-			final int constrainB = voteSection.indexOf("span") - 2;
-			voteSection = voteSection.substring(0, constrainB).trim();
-			votes = Integer.parseInt(voteSection); // Try to free all the freaking resources page.cleanUp(); webClient.getJavaScriptEngine().shutdown(); webClient.closeAllWindows();
-			
-		}
-		catch (final Exception e)
-		{
-			LOGGER.warn("[VoteReward] Server HOPZONE is offline or something is wrong in link", e);
-			Announcements.getInstance().gameAnnounceToAll("[VoteReward] HOPZONE is offline. We will check reward as it will be online again");
-		}
-		
-		return votes;
-	}
-	*/
+	 * protected int getHopZoneVotes1() { int votes = -1; try { final WebClient webClient = new WebClient(BrowserVersion.CHROME); webClient.getOptions().setThrowExceptionOnFailingStatusCode(false); webClient.getOptions().setThrowExceptionOnScriptError(false);
+	 * webClient.getOptions().setPrintContentOnFailingStatusCode(false); final HtmlPage page = webClient.getPage(PowerPakConfig.VOTES_SITE_HOPZONE_URL); final String fullPage = page.asXml(); final int constrainA = fullPage.indexOf("rank tooltip") + 24; String voteSection =
+	 * fullPage.substring(constrainA); final int constrainB = voteSection.indexOf("span") - 2; voteSection = voteSection.substring(0, constrainB).trim(); votes = Integer.parseInt(voteSection); // Try to free all the freaking resources page.cleanUp(); webClient.getJavaScriptEngine().shutdown();
+	 * webClient.closeAllWindows(); } catch (final Exception e) { LOGGER.warn("[VoteReward] Server HOPZONE is offline or something is wrong in link", e); Announcements.getInstance().gameAnnounceToAll("[VoteReward] HOPZONE is offline. We will check reward as it will be online again"); } return votes;
+	 * }
+	 */
 	
 	protected static int getHopZoneVotes()
 	{
@@ -335,7 +312,7 @@ public class AutoVoteRewardHandler
 					{
 						if (line.contains("Total Votes") || line.contains("rank tooltip") || line.contains("no steal make love") || line.contains("no votes here") || line.contains("bang, you don't have votes") || line.contains("la vita e bella") || line.contains("rank anonymous tooltip"))
 						{
-							String inputLine = line.split(">")[2].replace("</span", "");
+							final String inputLine = line.split(">")[2].replace("</span", "");
 							votes = Integer.parseInt(inputLine);
 							break;
 						}

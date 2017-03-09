@@ -584,7 +584,7 @@ public class BanditStrongholdSiege extends ClanHallSiege
 			{
 				if /*
 					 * (region == MapRegionManager.getInstance().getRegion(player.getX(), player.getY(), player.getZ()) &&
-					 */(player.getInstanceId() == 0/* ) */)
+					 */ (player.getInstanceId() == 0/* ) */)
 				{
 					player.sendPacket(cs);
 				}

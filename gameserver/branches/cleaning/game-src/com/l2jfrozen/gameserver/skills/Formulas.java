@@ -1987,7 +1987,7 @@ public final class Formulas
 			}
 			else
 				return false;
-		
+			
 		return true;
 	}
 	
@@ -2007,7 +2007,7 @@ public final class Formulas
 		{
 			if (((L2PcInstance) target).getForceBuff() != null)
 				return true;
-			
+				
 			// if (target.isCastingNow()&& target.getLastSkillCast() != null)
 			// if (target.getLastSkillCast().isCancelIfHit())
 			// return true;
@@ -2452,9 +2452,9 @@ public final class Formulas
 			
 			mAtkModifier = 14 * Math.sqrt(ssModifier * attacker.getMAtk(target, skill)) / mAtkModifier;
 			
-		}/*
-		 * else{ L2ItemInstance weapon = attacker.getActiveWeaponInstance(); if(weapon!=null){ if(ss){ weapon.setChargedSoulshot(L2ItemInstance.CHARGED_NONE); } } //no soulshots influence over not magic attacks }
-		 */
+		} /*
+			 * else{ L2ItemInstance weapon = attacker.getActiveWeaponInstance(); if(weapon!=null){ if(ss){ weapon.setChargedSoulshot(L2ItemInstance.CHARGED_NONE); } } //no soulshots influence over not magic attacks }
+			 */
 		
 		final SkillType type = skill.getSkillType();
 		
@@ -3021,8 +3021,8 @@ public final class Formulas
 			
 			/*
 			 * //Finally retail like formula double cAtkMultiplied = damage+attacker.calcStat(Stats.CRITICAL_DAMAGE, damage, target, skill); double cAtkVuln = target.calcStat(Stats.CRIT_VULN, 1, target, null); double improvedDamageByCriticalMulAndVuln = cAtkMultiplied * cAtkVuln; double
-			 * improvedDamageByCriticalMulAndAdd = improvedDamageByCriticalMulAndVuln + attacker.calcStat(Stats.CRITICAL_DAMAGE_ADD, 0, target, skill); if(CommonConfig.DEBUG){ LOGGER.info("Attacker '"+attacker.getName()+"' Critical Skill Damage Debug:"); LOGGER.info("	-	Initial Damage:  "+damage);
-			 * LOGGER.info("	-	Damage increased of mult:  "+cAtkMultiplied); LOGGER.info("	-	cAtkVuln Mult:  "+cAtkVuln); LOGGER.info("	-	improvedDamageByCriticalMulAndVuln: "+improvedDamageByCriticalMulAndVuln);
+			 * improvedDamageByCriticalMulAndAdd = improvedDamageByCriticalMulAndVuln + attacker.calcStat(Stats.CRITICAL_DAMAGE_ADD, 0, target, skill); if(CommonConfig.DEBUG){ LOGGER.info("Attacker '"+attacker.getName()+"' Critical Skill Damage Debug:");
+			 * LOGGER.info("	-	Initial Damage:  "+damage); LOGGER.info("	-	Damage increased of mult:  "+cAtkMultiplied); LOGGER.info("	-	cAtkVuln Mult:  "+cAtkVuln); LOGGER.info("	-	improvedDamageByCriticalMulAndVuln: "+improvedDamageByCriticalMulAndVuln);
 			 * LOGGER.info("	-	improvedDamageByCriticalMulAndAdd: "+improvedDamageByCriticalMulAndAdd); } damage = improvedDamageByCriticalMulAndAdd;
 			 */
 			
@@ -3122,7 +3122,7 @@ public final class Formulas
 			damage *= 1.04;
 		}
 		
-		// LOGGER.info("	-	Final damage: "+damage);
+		// LOGGER.info(" - Final damage: "+damage);
 		
 		if (shld && Config.ALT_GAME_SHIELD_BLOCKS)
 		{

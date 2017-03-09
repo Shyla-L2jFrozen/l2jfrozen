@@ -306,22 +306,22 @@ public final class Config
 	
 	// ============================================================
 	public static int PORT_GAME;
-//	public static String GAMESERVER_DB;
-//	public static String LOGINSERVER_DB;
+	// public static String GAMESERVER_DB;
+	// public static String LOGINSERVER_DB;
 	public static String GAMESERVER_HOSTNAME;
-//	public static String DATABASE_POOL_TYPE;
-//	public static String DATABASE_DRIVER;
-//	public static String DATABASE_URL;
-//	public static boolean ENABLE_DDOS_PROTECTION_SYSTEM;
-//	public static boolean ENABLE_DEBUG_DDOS_PROTECTION_SYSTEM;
-//	public static String DDOS_COMMAND_BLOCK;
-//	public static String DATABASE_LOGIN;
-//	public static String DATABASE_PASSWORD;
-//	public static int DATABASE_MAX_CONNECTIONS;
-//	public static int DATABASE_MAX_IDLE_TIME;
-//	public static int DATABASE_TIMEOUT;
-//	public static int DATABASE_CONNECTION_TIMEOUT;
-//	public static int DATABASE_PARTITION_COUNT;
+	// public static String DATABASE_POOL_TYPE;
+	// public static String DATABASE_DRIVER;
+	// public static String DATABASE_URL;
+	// public static boolean ENABLE_DDOS_PROTECTION_SYSTEM;
+	// public static boolean ENABLE_DEBUG_DDOS_PROTECTION_SYSTEM;
+	// public static String DDOS_COMMAND_BLOCK;
+	// public static String DATABASE_LOGIN;
+	// public static String DATABASE_PASSWORD;
+	// public static int DATABASE_MAX_CONNECTIONS;
+	// public static int DATABASE_MAX_IDLE_TIME;
+	// public static int DATABASE_TIMEOUT;
+	// public static int DATABASE_CONNECTION_TIMEOUT;
+	// public static int DATABASE_PARTITION_COUNT;
 	public static boolean RESERVE_HOST_ON_LOGIN = false;
 	public static boolean RWHO_LOG;
 	public static int RWHO_FORCE_INC;
@@ -358,23 +358,23 @@ public final class Config
 			GAME_SERVER_LOGIN_PORT = Integer.parseInt(serverSettings.getProperty("LoginPort", "9014"));
 			GAME_SERVER_LOGIN_HOST = serverSettings.getProperty("LoginHost", "127.0.0.1");
 			
-//			DATABASE_POOL_TYPE = serverSettings.getProperty("DatabasePoolType", "c3p0");
-//			DATABASE_DRIVER = serverSettings.getProperty("Driver", "com.mysql.jdbc.Driver");
+			// DATABASE_POOL_TYPE = serverSettings.getProperty("DatabasePoolType", "c3p0");
+			// DATABASE_DRIVER = serverSettings.getProperty("Driver", "com.mysql.jdbc.Driver");
 			
-//			GAMESERVER_DB = serverSettings.getProperty("GameserverDB", "gameserver_beta");
-//			LOGINSERVER_DB = serverSettings.getProperty("LoginserverDB", "loginserver_beta");
+			// GAMESERVER_DB = serverSettings.getProperty("GameserverDB", "gameserver_beta");
+			// LOGINSERVER_DB = serverSettings.getProperty("LoginserverDB", "loginserver_beta");
 			
-//			final String DATABASE_URL_BASE = serverSettings.getProperty("URL", "jdbc:mysql://localhost/");
-//			DATABASE_URL = DATABASE_URL_BASE + GAMESERVER_DB;
-//			
-//			DATABASE_LOGIN = serverSettings.getProperty("Login", "root");
-//			DATABASE_PASSWORD = serverSettings.getProperty("Password", "");
-//			DATABASE_MAX_CONNECTIONS = Integer.parseInt(serverSettings.getProperty("MaximumDbConnections", "10"));
-//			DATABASE_MAX_IDLE_TIME = Integer.parseInt(serverSettings.getProperty("MaximumDbIdleTime", "0"));
-//			
-//			DATABASE_TIMEOUT = Integer.parseInt(serverSettings.getProperty("TimeOutConDb", "0"));
-//			DATABASE_PARTITION_COUNT = Integer.parseInt(serverSettings.getProperty("PartitionCount", "3"));
-//			DATABASE_CONNECTION_TIMEOUT = Integer.parseInt(serverSettings.getProperty("SingleConnectionTimeOutDb", "150000"));
+			// final String DATABASE_URL_BASE = serverSettings.getProperty("URL", "jdbc:mysql://localhost/");
+			// DATABASE_URL = DATABASE_URL_BASE + GAMESERVER_DB;
+			//
+			// DATABASE_LOGIN = serverSettings.getProperty("Login", "root");
+			// DATABASE_PASSWORD = serverSettings.getProperty("Password", "");
+			// DATABASE_MAX_CONNECTIONS = Integer.parseInt(serverSettings.getProperty("MaximumDbConnections", "10"));
+			// DATABASE_MAX_IDLE_TIME = Integer.parseInt(serverSettings.getProperty("MaximumDbIdleTime", "0"));
+			//
+			// DATABASE_TIMEOUT = Integer.parseInt(serverSettings.getProperty("TimeOutConDb", "0"));
+			// DATABASE_PARTITION_COUNT = Integer.parseInt(serverSettings.getProperty("PartitionCount", "3"));
+			// DATABASE_CONNECTION_TIMEOUT = Integer.parseInt(serverSettings.getProperty("SingleConnectionTimeOutDb", "150000"));
 			
 			DATAPACK_ROOT = new File(serverSettings.getProperty("DatapackRoot", ".")).getCanonicalFile();
 			
@@ -468,43 +468,43 @@ public final class Config
 	}
 	
 	// ============================================================
-//	public static boolean IS_TELNET_ENABLED;
-//	
-//	// ============================================================
-//	public static void loadTelnetConfig()
-//	{
-//		// Load Telnet L2Properties file (if exists)
-//		FileInputStream is = null;
-//		try
-//		{
-//			final L2Properties telnetSettings = new L2Properties();
-//			is = new FileInputStream(new File(FService.TELNET_FILE));
-//			telnetSettings.load(is);
-//			
-//			IS_TELNET_ENABLED = Boolean.parseBoolean(telnetSettings.getProperty("EnableTelnet", "false"));
-//		}
-//		catch (final Exception e)
-//		{
-//			e.printStackTrace();
-//			throw new Error("Failed to Load " + FService.TELNET_FILE + " File.");
-//		}
-//		finally
-//		{
-//			
-//			if (is != null)
-//			{
-//				try
-//				{
-//					is.close();
-//				}
-//				catch (final IOException e)
-//				{
-//					e.printStackTrace();
-//				}
-//			}
-//		}
-//		
-//	}
+	// public static boolean IS_TELNET_ENABLED;
+	//
+	// // ============================================================
+	// public static void loadTelnetConfig()
+	// {
+	// // Load Telnet L2Properties file (if exists)
+	// FileInputStream is = null;
+	// try
+	// {
+	// final L2Properties telnetSettings = new L2Properties();
+	// is = new FileInputStream(new File(FService.TELNET_FILE));
+	// telnetSettings.load(is);
+	//
+	// IS_TELNET_ENABLED = Boolean.parseBoolean(telnetSettings.getProperty("EnableTelnet", "false"));
+	// }
+	// catch (final Exception e)
+	// {
+	// e.printStackTrace();
+	// throw new Error("Failed to Load " + FService.TELNET_FILE + " File.");
+	// }
+	// finally
+	// {
+	//
+	// if (is != null)
+	// {
+	// try
+	// {
+	// is.close();
+	// }
+	// catch (final IOException e)
+	// {
+	// e.printStackTrace();
+	// }
+	// }
+	// }
+	//
+	// }
 	
 	// ============================================================
 	public static IdFactoryType IDFACTORY_TYPE;
@@ -1742,75 +1742,18 @@ public final class Config
 	}
 	
 	/*
-	// ============================================================
-	public static boolean IRC_ENABLED;
-	public static boolean IRC_LOG_CHAT;
-	public static boolean IRC_SSL;
-	public static String IRC_SERVER;
-	public static int IRC_PORT;
-	public static String IRC_PASS;
-	public static String IRC_NICK;
-	public static String IRC_USER;
-	public static String IRC_NAME;
-	public static boolean IRC_NICKSERV;
-	public static String IRC_NICKSERV_NAME;
-	public static String IRC_NICKSERV_COMMAND;
-	public static String IRC_LOGIN_COMMAND;
-	public static String IRC_CHANNEL;
-	public static String IRC_FROM_GAME_TYPE;
-	public static String IRC_TO_GAME_TYPE;
-	public static String IRC_TO_GAME_SPECIAL_CHAR;
-	public static String IRC_TO_GAME_DISPLAY;
-	public static boolean IRC_ANNOUNCE;
-	public static String IRC_NO_GM_MSG;
-	public static String IRC_NO_PLAYER_ONLINE;
-	public static String IRC_PLAYER_ONLINE;
-	public static String IRC_MSG_START;
-	
-	// ============================================================
-	
-	public static void loadIRCConfig()
-	{
-		final String IRC_FILE = FService.IRC_FILE;
-		
-		try
-		{
-			final Properties IRCSettings = new Properties();
-			final InputStream is = new FileInputStream(new File(IRC_FILE));
-			IRCSettings.load(is);
-			is.close();
-			
-			IRC_ENABLED = Boolean.parseBoolean(IRCSettings.getProperty("Enable", "false"));
-			IRC_LOG_CHAT = Boolean.parseBoolean(IRCSettings.getProperty("LogChat", "false"));
-			IRC_SSL = Boolean.parseBoolean(IRCSettings.getProperty("SSL", "false"));
-			IRC_SERVER = IRCSettings.getProperty("Server", "localhost");
-			IRC_PORT = Integer.parseInt(IRCSettings.getProperty("Port", "6667"));
-			IRC_PASS = IRCSettings.getProperty("Pass", "localhost");
-			IRC_NICK = IRCSettings.getProperty("Nick", "L2JFrozenBot");
-			IRC_USER = IRCSettings.getProperty("User", "L2JFrozen");
-			IRC_NAME = IRCSettings.getProperty("Name", "L2JFrozen");
-			IRC_NICKSERV = Boolean.parseBoolean(IRCSettings.getProperty("NickServ", "false"));
-			IRC_NICKSERV_NAME = IRCSettings.getProperty("NickservName", "nickserv");
-			IRC_NICKSERV_COMMAND = IRCSettings.getProperty("NickservCommand", "");
-			IRC_LOGIN_COMMAND = IRCSettings.getProperty("LoginCommand", "");
-			IRC_CHANNEL = IRCSettings.getProperty("Channel", "#mychan");
-			IRC_ANNOUNCE = Boolean.parseBoolean(IRCSettings.getProperty("IrcAnnounces", "false"));
-			IRC_FROM_GAME_TYPE = IRCSettings.getProperty("GameToIrcType", "off");
-			IRC_TO_GAME_TYPE = IRCSettings.getProperty("IrcToGameType", "off");
-			IRC_TO_GAME_SPECIAL_CHAR = IRCSettings.getProperty("IrcToGameSpecialChar", "#");
-			IRC_TO_GAME_DISPLAY = IRCSettings.getProperty("IrcToGameDisplay", "trade");
-			IRC_NO_GM_MSG = IRCSettings.getProperty("IrcNoGmMsg", "There are not any GMs that are providing customer service currently");
-			IRC_NO_PLAYER_ONLINE = IRCSettings.getProperty("IrcNoPlayerOnlineMsg", "No Players currently online");
-			IRC_PLAYER_ONLINE = IRCSettings.getProperty("IrcPlayerOnlineMsg", "Players currently online:");
-			IRC_MSG_START = IRCSettings.getProperty("IrcMsgStart", "L2JFrozen Gameserver started");
-		}
-		catch (final Exception e)
-		{
-			e.printStackTrace();
-			throw new Error("Failed to Load " + IRC_FILE + " File.");
-		}
-	}
-	*/
+	 * // ============================================================ public static boolean IRC_ENABLED; public static boolean IRC_LOG_CHAT; public static boolean IRC_SSL; public static String IRC_SERVER; public static int IRC_PORT; public static String IRC_PASS; public static String IRC_NICK;
+	 * public static String IRC_USER; public static String IRC_NAME; public static boolean IRC_NICKSERV; public static String IRC_NICKSERV_NAME; public static String IRC_NICKSERV_COMMAND; public static String IRC_LOGIN_COMMAND; public static String IRC_CHANNEL; public static String
+	 * IRC_FROM_GAME_TYPE; public static String IRC_TO_GAME_TYPE; public static String IRC_TO_GAME_SPECIAL_CHAR; public static String IRC_TO_GAME_DISPLAY; public static boolean IRC_ANNOUNCE; public static String IRC_NO_GM_MSG; public static String IRC_NO_PLAYER_ONLINE; public static String
+	 * IRC_PLAYER_ONLINE; public static String IRC_MSG_START; // ============================================================ public static void loadIRCConfig() { final String IRC_FILE = FService.IRC_FILE; try { final Properties IRCSettings = new Properties(); final InputStream is = new
+	 * FileInputStream(new File(IRC_FILE)); IRCSettings.load(is); is.close(); IRC_ENABLED = Boolean.parseBoolean(IRCSettings.getProperty("Enable", "false")); IRC_LOG_CHAT = Boolean.parseBoolean(IRCSettings.getProperty("LogChat", "false")); IRC_SSL =
+	 * Boolean.parseBoolean(IRCSettings.getProperty("SSL", "false")); IRC_SERVER = IRCSettings.getProperty("Server", "localhost"); IRC_PORT = Integer.parseInt(IRCSettings.getProperty("Port", "6667")); IRC_PASS = IRCSettings.getProperty("Pass", "localhost"); IRC_NICK = IRCSettings.getProperty("Nick",
+	 * "L2JFrozenBot"); IRC_USER = IRCSettings.getProperty("User", "L2JFrozen"); IRC_NAME = IRCSettings.getProperty("Name", "L2JFrozen"); IRC_NICKSERV = Boolean.parseBoolean(IRCSettings.getProperty("NickServ", "false")); IRC_NICKSERV_NAME = IRCSettings.getProperty("NickservName", "nickserv");
+	 * IRC_NICKSERV_COMMAND = IRCSettings.getProperty("NickservCommand", ""); IRC_LOGIN_COMMAND = IRCSettings.getProperty("LoginCommand", ""); IRC_CHANNEL = IRCSettings.getProperty("Channel", "#mychan"); IRC_ANNOUNCE = Boolean.parseBoolean(IRCSettings.getProperty("IrcAnnounces", "false"));
+	 * IRC_FROM_GAME_TYPE = IRCSettings.getProperty("GameToIrcType", "off"); IRC_TO_GAME_TYPE = IRCSettings.getProperty("IrcToGameType", "off"); IRC_TO_GAME_SPECIAL_CHAR = IRCSettings.getProperty("IrcToGameSpecialChar", "#"); IRC_TO_GAME_DISPLAY = IRCSettings.getProperty("IrcToGameDisplay",
+	 * "trade"); IRC_NO_GM_MSG = IRCSettings.getProperty("IrcNoGmMsg", "There are not any GMs that are providing customer service currently"); IRC_NO_PLAYER_ONLINE = IRCSettings.getProperty("IrcNoPlayerOnlineMsg", "No Players currently online"); IRC_PLAYER_ONLINE =
+	 * IRCSettings.getProperty("IrcPlayerOnlineMsg", "Players currently online:"); IRC_MSG_START = IRCSettings.getProperty("IrcMsgStart", "L2JFrozen Gameserver started"); } catch (final Exception e) { e.printStackTrace(); throw new Error("Failed to Load " + IRC_FILE + " File."); } }
+	 */
 	
 	// ============================================================
 	
@@ -1899,11 +1842,11 @@ public final class Config
 	public static boolean ALT_DEV_NO_AI;
 	public static boolean SKILLSDEBUG;
 	public static boolean ENABLE_OLYMPIAD_DEBUG;
-//	public static boolean DEBUG;
-//	public static boolean ASSERT;
+	// public static boolean DEBUG;
+	// public static boolean ASSERT;
 	public static boolean DEVELOPER;
 	public static boolean ZONE_DEBUG;
-//	public static boolean ENABLE_ALL_EXCEPTIONS = true;
+	// public static boolean ENABLE_ALL_EXCEPTIONS = true;
 	public static boolean SERVER_LIST_TESTSERVER;
 	public static boolean BETASERVER;
 	public static boolean SERVER_LIST_BRACKET;
@@ -1928,13 +1871,8 @@ public final class Config
 	
 	// Threads
 	/*
-	public static int THREAD_P_EFFECTS;
-	public static int THREAD_P_GENERAL;
-	public static int GENERAL_PACKET_THREAD_CORE_SIZE;
-	public static int IO_PACKET_THREAD_CORE_SIZE;
-	public static int GENERAL_THREAD_CORE_SIZE;
-	public static int AI_MAX_THREAD;
-	*/
+	 * public static int THREAD_P_EFFECTS; public static int THREAD_P_GENERAL; public static int GENERAL_PACKET_THREAD_CORE_SIZE; public static int IO_PACKET_THREAD_CORE_SIZE; public static int GENERAL_THREAD_CORE_SIZE; public static int AI_MAX_THREAD;
+	 */
 	
 	public static boolean LAZY_CACHE;
 	public static boolean ENABLE_CACHE_INFO = false;
@@ -1953,11 +1891,11 @@ public final class Config
 			
 			ENABLE_OLYMPIAD_DEBUG = Boolean.parseBoolean(devSettings.getProperty("EnableOlympiadDebug", "false"));
 			SKILLSDEBUG = Boolean.parseBoolean(devSettings.getProperty("SkillsDebug", "false"));
-//			DEBUG = Boolean.parseBoolean(devSettings.getProperty("Debug", "false"));
-//			ASSERT = Boolean.parseBoolean(devSettings.getProperty("Assert", "false"));
+			// DEBUG = Boolean.parseBoolean(devSettings.getProperty("Debug", "false"));
+			// ASSERT = Boolean.parseBoolean(devSettings.getProperty("Assert", "false"));
 			DEVELOPER = Boolean.parseBoolean(devSettings.getProperty("Developer", "false"));
 			ZONE_DEBUG = Boolean.parseBoolean(devSettings.getProperty("ZoneDebug", "false"));
-//			ENABLE_ALL_EXCEPTIONS = Boolean.parseBoolean(devSettings.getProperty("EnableAllExceptionsLog", "false"));
+			// ENABLE_ALL_EXCEPTIONS = Boolean.parseBoolean(devSettings.getProperty("EnableAllExceptionsLog", "false"));
 			SERVER_LIST_TESTSERVER = Boolean.parseBoolean(devSettings.getProperty("TestServer", "false"));
 			BETASERVER = Boolean.parseBoolean(devSettings.getProperty("BetaServer", "false"));
 			SERVER_LIST_BRACKET = Boolean.valueOf(devSettings.getProperty("ServerListBrackets", "false"));
@@ -1997,12 +1935,12 @@ public final class Config
 			
 			GAMEGUARD_L2NET_CHECK = Boolean.valueOf(devSettings.getProperty("GameGuardL2NetCheck", "False"));
 			
-//			THREAD_P_EFFECTS = Integer.parseInt(devSettings.getProperty("ThreadPoolSizeEffects", "6"));
-//			THREAD_P_GENERAL = Integer.parseInt(devSettings.getProperty("ThreadPoolSizeGeneral", "15"));
-//			GENERAL_PACKET_THREAD_CORE_SIZE = Integer.parseInt(devSettings.getProperty("GeneralPacketThreadCoreSize", "4"));
-//			IO_PACKET_THREAD_CORE_SIZE = Integer.parseInt(devSettings.getProperty("UrgentPacketThreadCoreSize", "2"));
-//			AI_MAX_THREAD = Integer.parseInt(devSettings.getProperty("AiMaxThread", "10"));
-//			GENERAL_THREAD_CORE_SIZE = Integer.parseInt(devSettings.getProperty("GeneralThreadCoreSize", "4"));
+			// THREAD_P_EFFECTS = Integer.parseInt(devSettings.getProperty("ThreadPoolSizeEffects", "6"));
+			// THREAD_P_GENERAL = Integer.parseInt(devSettings.getProperty("ThreadPoolSizeGeneral", "15"));
+			// GENERAL_PACKET_THREAD_CORE_SIZE = Integer.parseInt(devSettings.getProperty("GeneralPacketThreadCoreSize", "4"));
+			// IO_PACKET_THREAD_CORE_SIZE = Integer.parseInt(devSettings.getProperty("UrgentPacketThreadCoreSize", "2"));
+			// AI_MAX_THREAD = Integer.parseInt(devSettings.getProperty("AiMaxThread", "10"));
+			// GENERAL_THREAD_CORE_SIZE = Integer.parseInt(devSettings.getProperty("GeneralThreadCoreSize", "4"));
 			
 			LAZY_CACHE = Boolean.valueOf(devSettings.getProperty("LazyCache", "False"));
 		}
@@ -4290,106 +4228,104 @@ public final class Config
 	}
 	
 	// ============================================================
-//	public static int PORT_LOGIN;
-//	public static String LOGIN_BIND_ADDRESS;
-//	public static int LOGIN_TRY_BEFORE_BAN;
-//	public static int LOGIN_BLOCK_AFTER_BAN;
-
-//	public static int GAME_SERVER_LOGIN_PORT;
-//	public static String GAME_SERVER_LOGIN_HOST;
-//	public static String INTERNAL_HOSTNAME;
-//	public static String EXTERNAL_HOSTNAME;
-//	public static int IP_UPDATE_TIME;
+	// public static int PORT_LOGIN;
+	// public static String LOGIN_BIND_ADDRESS;
+	// public static int LOGIN_TRY_BEFORE_BAN;
+	// public static int LOGIN_BLOCK_AFTER_BAN;
 	
-//	public static boolean SHOW_LICENCE;
-//	public static boolean FORCE_GGAUTH;
-//	public static boolean FLOOD_PROTECTION;
-//	public static int FAST_CONNECTION_LIMIT;
-//	public static int NORMAL_CONNECTION_TIME;
-//	public static int FAST_CONNECTION_TIME;
-//	public static int MAX_CONNECTION_PER_IP;
-//	public static boolean ACCEPT_NEW_GAMESERVER;
-//	public static boolean AUTO_CREATE_ACCOUNTS;
-//	public static String NETWORK_IP_LIST;
-//	public static long SESSION_TTL;
-//	public static int MAX_LOGINSESSIONS;
+	// public static int GAME_SERVER_LOGIN_PORT;
+	// public static String GAME_SERVER_LOGIN_HOST;
+	// public static String INTERNAL_HOSTNAME;
+	// public static String EXTERNAL_HOSTNAME;
+	// public static int IP_UPDATE_TIME;
+	
+	// public static boolean SHOW_LICENCE;
+	// public static boolean FORCE_GGAUTH;
+	// public static boolean FLOOD_PROTECTION;
+	// public static int FAST_CONNECTION_LIMIT;
+	// public static int NORMAL_CONNECTION_TIME;
+	// public static int FAST_CONNECTION_TIME;
+	// public static int MAX_CONNECTION_PER_IP;
+	// public static boolean ACCEPT_NEW_GAMESERVER;
+	// public static boolean AUTO_CREATE_ACCOUNTS;
+	// public static String NETWORK_IP_LIST;
+	// public static long SESSION_TTL;
+	// public static int MAX_LOGINSESSIONS;
 	
 	// ============================================================
-//	public static void loadLoginStartConfig()
-//	{
-//		final String LOGIN = FService.LOGIN_CONFIGURATION_FILE;
-//		
-//		try
-//		{
-//			final Properties serverSettings = new Properties();
-//			final InputStream is = new FileInputStream(new File(LOGIN));
-//			serverSettings.load(is);
-//			is.close();
-//			
-//			GAME_SERVER_LOGIN_HOST = serverSettings.getProperty("LoginHostname", "*");
-//			GAME_SERVER_LOGIN_PORT = Integer.parseInt(serverSettings.getProperty("LoginPort", "9013"));
-//			
-//			LOGIN_BIND_ADDRESS = serverSettings.getProperty("LoginserverHostname", "*");
-//			PORT_LOGIN = Integer.parseInt(serverSettings.getProperty("LoginserverPort", "2106"));
-//			
-//			ACCEPT_NEW_GAMESERVER = Boolean.parseBoolean(serverSettings.getProperty("AcceptNewGameServer", "True"));
-//			
-//			LOGIN_TRY_BEFORE_BAN = Integer.parseInt(serverSettings.getProperty("LoginTryBeforeBan", "10"));
-//			LOGIN_BLOCK_AFTER_BAN = Integer.parseInt(serverSettings.getProperty("LoginBlockAfterBan", "600"));
-//			
-//			INTERNAL_HOSTNAME = serverSettings.getProperty("InternalHostname", "localhost");
-//			EXTERNAL_HOSTNAME = serverSettings.getProperty("ExternalHostname", "localhost");
-//			
-//			DATABASE_POOL_TYPE = serverSettings.getProperty("DatabasePoolType", "c3p0");
-//			DATABASE_DRIVER = serverSettings.getProperty("Driver", "com.mysql.jdbc.Driver");
-//			DATABASE_URL = serverSettings.getProperty("URL", "jdbc:mysql://localhost/l2jdb");
-//			DATABASE_LOGIN = serverSettings.getProperty("Login", "root");
-//			DATABASE_PASSWORD = serverSettings.getProperty("Password", "");
-//			DATABASE_MAX_CONNECTIONS = Integer.parseInt(serverSettings.getProperty("MaximumDbConnections", "10"));
-//			DATABASE_MAX_IDLE_TIME = Integer.parseInt(serverSettings.getProperty("MaximumDbIdleTime", "0"));
-//			
-//			ENABLE_DDOS_PROTECTION_SYSTEM = Boolean.parseBoolean(serverSettings.getProperty("EnableDdosProSystem", "false"));
-//			DDOS_COMMAND_BLOCK = serverSettings.getProperty("Deny_noallow_ip_ddos", "/sbin/iptables -I INPUT -p tcp --dport 7777 -s $IP -j ACCEPT");
-//			ENABLE_DEBUG_DDOS_PROTECTION_SYSTEM = Boolean.parseBoolean(serverSettings.getProperty("Fulllog_mode_print", "false"));
-//			
-//			DATABASE_TIMEOUT = Integer.parseInt(serverSettings.getProperty("TimeOutConDb", "0"));
-//			DATABASE_CONNECTION_TIMEOUT = Integer.parseInt(serverSettings.getProperty("SingleConnectionTimeOutDb", "120000"));
-//			DATABASE_PARTITION_COUNT = Integer.parseInt(serverSettings.getProperty("PartitionCount", "4"));
-//			
-//			// Anti Brute force attack on login
-//			BRUT_AVG_TIME = Integer.parseInt(serverSettings.getProperty("BrutAvgTime", "30")); // in Seconds
-//			BRUT_LOGON_ATTEMPTS = Integer.parseInt(serverSettings.getProperty("BrutLogonAttempts", "15"));
-//			BRUT_BAN_IP_TIME = Integer.parseInt(serverSettings.getProperty("BrutBanIpTime", "900")); // in Seconds
-//			
-//			SHOW_LICENCE = Boolean.parseBoolean(serverSettings.getProperty("ShowLicence", "false"));
-//			IP_UPDATE_TIME = Integer.parseInt(serverSettings.getProperty("IpUpdateTime", "15"));
-//			FORCE_GGAUTH = Boolean.parseBoolean(serverSettings.getProperty("ForceGGAuth", "false"));
-//			
-//			AUTO_CREATE_ACCOUNTS = Boolean.parseBoolean(serverSettings.getProperty("AutoCreateAccounts", "True"));
-//			
-//			FLOOD_PROTECTION = Boolean.parseBoolean(serverSettings.getProperty("EnableFloodProtection", "True"));
-//			FAST_CONNECTION_LIMIT = Integer.parseInt(serverSettings.getProperty("FastConnectionLimit", "15"));
-//			NORMAL_CONNECTION_TIME = Integer.parseInt(serverSettings.getProperty("NormalConnectionTime", "700"));
-//			FAST_CONNECTION_TIME = Integer.parseInt(serverSettings.getProperty("FastConnectionTime", "350"));
-//			MAX_CONNECTION_PER_IP = Integer.parseInt(serverSettings.getProperty("MaxConnectionPerIP", "50"));
-//			DEBUG = Boolean.parseBoolean(serverSettings.getProperty("Debug", "false"));
-//			DEVELOPER = Boolean.parseBoolean(serverSettings.getProperty("Developer", "false"));
-//			
-//			NETWORK_IP_LIST = serverSettings.getProperty("NetworkList", "");
-//			SESSION_TTL = Long.parseLong(serverSettings.getProperty("SessionTTL", "25000"));
-//			MAX_LOGINSESSIONS = Integer.parseInt(serverSettings.getProperty("MaxSessions", "200"));
-//			
-//			DEBUG_PACKETS = Boolean.parseBoolean(serverSettings.getProperty("DebugPackets", "false"));
-//			
-//		}
-//		catch (final Exception e)
-//		{
-//			e.printStackTrace();
-//			throw new Error("Failed to Load " + LOGIN + " File.");
-//		}
-//	}
-	
-	
+	// public static void loadLoginStartConfig()
+	// {
+	// final String LOGIN = FService.LOGIN_CONFIGURATION_FILE;
+	//
+	// try
+	// {
+	// final Properties serverSettings = new Properties();
+	// final InputStream is = new FileInputStream(new File(LOGIN));
+	// serverSettings.load(is);
+	// is.close();
+	//
+	// GAME_SERVER_LOGIN_HOST = serverSettings.getProperty("LoginHostname", "*");
+	// GAME_SERVER_LOGIN_PORT = Integer.parseInt(serverSettings.getProperty("LoginPort", "9013"));
+	//
+	// LOGIN_BIND_ADDRESS = serverSettings.getProperty("LoginserverHostname", "*");
+	// PORT_LOGIN = Integer.parseInt(serverSettings.getProperty("LoginserverPort", "2106"));
+	//
+	// ACCEPT_NEW_GAMESERVER = Boolean.parseBoolean(serverSettings.getProperty("AcceptNewGameServer", "True"));
+	//
+	// LOGIN_TRY_BEFORE_BAN = Integer.parseInt(serverSettings.getProperty("LoginTryBeforeBan", "10"));
+	// LOGIN_BLOCK_AFTER_BAN = Integer.parseInt(serverSettings.getProperty("LoginBlockAfterBan", "600"));
+	//
+	// INTERNAL_HOSTNAME = serverSettings.getProperty("InternalHostname", "localhost");
+	// EXTERNAL_HOSTNAME = serverSettings.getProperty("ExternalHostname", "localhost");
+	//
+	// DATABASE_POOL_TYPE = serverSettings.getProperty("DatabasePoolType", "c3p0");
+	// DATABASE_DRIVER = serverSettings.getProperty("Driver", "com.mysql.jdbc.Driver");
+	// DATABASE_URL = serverSettings.getProperty("URL", "jdbc:mysql://localhost/l2jdb");
+	// DATABASE_LOGIN = serverSettings.getProperty("Login", "root");
+	// DATABASE_PASSWORD = serverSettings.getProperty("Password", "");
+	// DATABASE_MAX_CONNECTIONS = Integer.parseInt(serverSettings.getProperty("MaximumDbConnections", "10"));
+	// DATABASE_MAX_IDLE_TIME = Integer.parseInt(serverSettings.getProperty("MaximumDbIdleTime", "0"));
+	//
+	// ENABLE_DDOS_PROTECTION_SYSTEM = Boolean.parseBoolean(serverSettings.getProperty("EnableDdosProSystem", "false"));
+	// DDOS_COMMAND_BLOCK = serverSettings.getProperty("Deny_noallow_ip_ddos", "/sbin/iptables -I INPUT -p tcp --dport 7777 -s $IP -j ACCEPT");
+	// ENABLE_DEBUG_DDOS_PROTECTION_SYSTEM = Boolean.parseBoolean(serverSettings.getProperty("Fulllog_mode_print", "false"));
+	//
+	// DATABASE_TIMEOUT = Integer.parseInt(serverSettings.getProperty("TimeOutConDb", "0"));
+	// DATABASE_CONNECTION_TIMEOUT = Integer.parseInt(serverSettings.getProperty("SingleConnectionTimeOutDb", "120000"));
+	// DATABASE_PARTITION_COUNT = Integer.parseInt(serverSettings.getProperty("PartitionCount", "4"));
+	//
+	// // Anti Brute force attack on login
+	// BRUT_AVG_TIME = Integer.parseInt(serverSettings.getProperty("BrutAvgTime", "30")); // in Seconds
+	// BRUT_LOGON_ATTEMPTS = Integer.parseInt(serverSettings.getProperty("BrutLogonAttempts", "15"));
+	// BRUT_BAN_IP_TIME = Integer.parseInt(serverSettings.getProperty("BrutBanIpTime", "900")); // in Seconds
+	//
+	// SHOW_LICENCE = Boolean.parseBoolean(serverSettings.getProperty("ShowLicence", "false"));
+	// IP_UPDATE_TIME = Integer.parseInt(serverSettings.getProperty("IpUpdateTime", "15"));
+	// FORCE_GGAUTH = Boolean.parseBoolean(serverSettings.getProperty("ForceGGAuth", "false"));
+	//
+	// AUTO_CREATE_ACCOUNTS = Boolean.parseBoolean(serverSettings.getProperty("AutoCreateAccounts", "True"));
+	//
+	// FLOOD_PROTECTION = Boolean.parseBoolean(serverSettings.getProperty("EnableFloodProtection", "True"));
+	// FAST_CONNECTION_LIMIT = Integer.parseInt(serverSettings.getProperty("FastConnectionLimit", "15"));
+	// NORMAL_CONNECTION_TIME = Integer.parseInt(serverSettings.getProperty("NormalConnectionTime", "700"));
+	// FAST_CONNECTION_TIME = Integer.parseInt(serverSettings.getProperty("FastConnectionTime", "350"));
+	// MAX_CONNECTION_PER_IP = Integer.parseInt(serverSettings.getProperty("MaxConnectionPerIP", "50"));
+	// DEBUG = Boolean.parseBoolean(serverSettings.getProperty("Debug", "false"));
+	// DEVELOPER = Boolean.parseBoolean(serverSettings.getProperty("Developer", "false"));
+	//
+	// NETWORK_IP_LIST = serverSettings.getProperty("NetworkList", "");
+	// SESSION_TTL = Long.parseLong(serverSettings.getProperty("SessionTTL", "25000"));
+	// MAX_LOGINSESSIONS = Integer.parseInt(serverSettings.getProperty("MaxSessions", "200"));
+	//
+	// DEBUG_PACKETS = Boolean.parseBoolean(serverSettings.getProperty("DebugPackets", "false"));
+	//
+	// }
+	// catch (final Exception e)
+	// {
+	// e.printStackTrace();
+	// throw new Error("Failed to Load " + LOGIN + " File.");
+	// }
+	// }
 	
 	/** Enumeration for type of ID Factory */
 	public static enum IdFactoryType
@@ -4453,7 +4389,7 @@ public final class Config
 			loadFrozenConfig();
 			loadTVTConfig();
 			loadTWConfig();
-			//loadIRCConfig();
+			// loadIRCConfig();
 			
 			// Protect
 			loadFloodConfig();
@@ -4489,14 +4425,14 @@ public final class Config
 				loadQuestion();
 			}
 			
-//			loadTelnetConfig();
+			// loadTelnetConfig();
 		}
-//		else if (ServerType.serverMode == ServerType.MODE_LOGINSERVER)
-//		{
-//			loadLoginStartConfig();
-//			
-//			loadTelnetConfig();
-//		}
+		// else if (ServerType.serverMode == ServerType.MODE_LOGINSERVER)
+		// {
+		// loadLoginStartConfig();
+		//
+		// loadTelnetConfig();
+		// }
 		else
 		{
 			LOGGER.fatal("Could not Load Config: server mode was not set");
@@ -5439,46 +5375,46 @@ public final class Config
 		return true;
 	}
 	
-//	public static void saveHexid(final int serverId, final String string)
-//	{
-//		Config.saveHexid(serverId, string, HEXID_FILE);
-//	}
-//	
-//	public static void saveHexid(final int serverId, final String hexId, final String fileName)
-//	{
-//		OutputStream out = null;
-//		try
-//		{
-//			final Properties hexSetting = new Properties();
-//			final File file = new File(fileName);
-//			if (file.createNewFile())
-//			{
-//				out = new FileOutputStream(file);
-//				hexSetting.setProperty("ServerID", String.valueOf(serverId));
-//				hexSetting.setProperty("HexID", hexId);
-//				hexSetting.store(out, "the hexID to auth into login");
-//			}
-//		}
-//		catch (final Exception e)
-//		{
-//			LOGGER.warn("Failed to save hex id to " + fileName + " File.");
-//			e.printStackTrace();
-//		}
-//		finally
-//		{
-//			
-//			if (out != null)
-//				try
-//				{
-//					out.close();
-//				}
-//				catch (final Exception e)
-//				{
-//					e.printStackTrace();
-//				}
-//			
-//		}
-//	}
+	// public static void saveHexid(final int serverId, final String string)
+	// {
+	// Config.saveHexid(serverId, string, HEXID_FILE);
+	// }
+	//
+	// public static void saveHexid(final int serverId, final String hexId, final String fileName)
+	// {
+	// OutputStream out = null;
+	// try
+	// {
+	// final Properties hexSetting = new Properties();
+	// final File file = new File(fileName);
+	// if (file.createNewFile())
+	// {
+	// out = new FileOutputStream(file);
+	// hexSetting.setProperty("ServerID", String.valueOf(serverId));
+	// hexSetting.setProperty("HexID", hexId);
+	// hexSetting.store(out, "the hexID to auth into login");
+	// }
+	// }
+	// catch (final Exception e)
+	// {
+	// LOGGER.warn("Failed to save hex id to " + fileName + " File.");
+	// e.printStackTrace();
+	// }
+	// finally
+	// {
+	//
+	// if (out != null)
+	// try
+	// {
+	// out.close();
+	// }
+	// catch (final Exception e)
+	// {
+	// e.printStackTrace();
+	// }
+	//
+	// }
+	// }
 	
 	public static void unallocateFilterBuffer()
 	{

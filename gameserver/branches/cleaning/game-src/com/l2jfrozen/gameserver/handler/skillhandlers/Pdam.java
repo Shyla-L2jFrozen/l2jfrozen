@@ -69,7 +69,7 @@ public class Pdam implements ISkillHandler
 	{
 		SkillType.PDAM,
 		SkillType.FATALCOUNTER
-	/* , SkillType.CHARGEDAM */
+		/* , SkillType.CHARGEDAM */
 	};
 	
 	/*

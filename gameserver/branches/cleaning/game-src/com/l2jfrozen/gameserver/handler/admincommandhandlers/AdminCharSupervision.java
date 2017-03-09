@@ -45,7 +45,7 @@ public class AdminCharSupervision implements IAdminCommandHandler
 		admin_stop_monitor_char,
 		admin_block_char_packet,
 		admin_restore_char_packet
-		
+	
 	}
 	
 	@Override

@@ -93,7 +93,7 @@ public class KnownListUpdateTaskManager
 				object.getKnownList().forgetObjects(); // TODO
 				continue;
 			}
-			if (object instanceof L2PlayableInstance /* || (false && object instanceof L2GuardInstance) */|| fullUpdate)
+			if (object instanceof L2PlayableInstance /* || (false && object instanceof L2GuardInstance) */ || fullUpdate)
 			{
 				for (final L2WorldRegion regi : region.getSurroundingRegions()) // offer members of this and surrounding regions
 				{

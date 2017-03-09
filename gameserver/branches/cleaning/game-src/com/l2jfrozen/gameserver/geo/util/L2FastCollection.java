@@ -88,7 +88,7 @@ public abstract class L2FastCollection<E> implements Collection<E>
 		for (final E e : c)
 			if (add(e))
 				modified = true;
-		
+			
 		return modified;
 	}
 	
@@ -114,7 +114,7 @@ public abstract class L2FastCollection<E> implements Collection<E>
 		for (final E e : c)
 			if (add(e))
 				modified = true;
-		
+			
 		return modified;
 	}
 	
@@ -125,7 +125,7 @@ public abstract class L2FastCollection<E> implements Collection<E>
 		for (Record r = c.head(), end = c.tail(); (r = r.getNext()) != end;)
 			if (add(c.valueOf(r)))
 				modified = true;
-		
+			
 		return modified;
 	}
 	
@@ -136,7 +136,7 @@ public abstract class L2FastCollection<E> implements Collection<E>
 		for (Record r = c.head(), end = c.tail(); (r = r.getNext()) != end;)
 			if (add(c.valueOf(r)))
 				modified = true;
-		
+			
 		return modified;
 	}
 	
@@ -147,7 +147,7 @@ public abstract class L2FastCollection<E> implements Collection<E>
 		for (int i = 0, size = c.size(); i < size;)
 			if (add(c.get(i++)))
 				modified = true;
-		
+			
 		return modified;
 	}
 	
@@ -156,7 +156,7 @@ public abstract class L2FastCollection<E> implements Collection<E>
 		for (final Object obj : c)
 			if (!contains(obj))
 				return false;
-		
+			
 		return true;
 	}
 	
@@ -180,7 +180,7 @@ public abstract class L2FastCollection<E> implements Collection<E>
 		for (final Object obj : c)
 			if (!contains(obj))
 				return false;
-		
+			
 		return true;
 	}
 	
@@ -189,7 +189,7 @@ public abstract class L2FastCollection<E> implements Collection<E>
 		for (Record r = c.head(), end = c.tail(); (r = r.getNext()) != end;)
 			if (!contains(c.valueOf(r)))
 				return false;
-		
+			
 		return true;
 	}
 	
@@ -198,7 +198,7 @@ public abstract class L2FastCollection<E> implements Collection<E>
 		for (Record r = c.head(), end = c.tail(); (r = r.getNext()) != end;)
 			if (!contains(c.valueOf(r)))
 				return false;
-		
+			
 		return true;
 	}
 	
@@ -207,7 +207,7 @@ public abstract class L2FastCollection<E> implements Collection<E>
 		for (int i = 0, size = c.size(); i < size;)
 			if (!contains(c.get(i++)))
 				return false;
-		
+			
 		return true;
 	}
 	

@@ -36,7 +36,10 @@ import javolution.util.FastList;
 
 /**
  * This class contains all informations concerning the item (weapon, armor, etc).<BR>
- * Mother class of : <LI>L2Armor</LI> <LI>L2EtcItem</LI> <LI>L2Weapon</LI>
+ * Mother class of :
+ * <LI>L2Armor</LI>
+ * <LI>L2EtcItem</LI>
+ * <LI>L2Weapon</LI>
  * @version $Revision: 1.7.2.2.2.5 $ $Date: 2005/04/06 18:25:18 $
  */
 public abstract class L2Item
@@ -146,7 +149,18 @@ public abstract class L2Item
 	 * Constructor of the L2Item that fill class variables.<BR>
 	 * <BR>
 	 * <U><I>Variables filled :</I></U><BR>
-	 * <LI>type</LI> <LI>_itemId</LI> <LI>_name</LI> <LI>_type1 & _type2</LI> <LI>_weight</LI> <LI>_crystallizable</LI> <LI>_stackable</LI> <LI>_crystalType & _crystlaCount</LI> <LI>_duration</LI> <LI>_bodypart</LI> <LI>_referencePrice</LI> <LI>_sellable</LI>
+	 * <LI>type</LI>
+	 * <LI>_itemId</LI>
+	 * <LI>_name</LI>
+	 * <LI>_type1 & _type2</LI>
+	 * <LI>_weight</LI>
+	 * <LI>_crystallizable</LI>
+	 * <LI>_stackable</LI>
+	 * <LI>_crystalType & _crystlaCount</LI>
+	 * <LI>_duration</LI>
+	 * <LI>_bodypart</LI>
+	 * <LI>_referencePrice</LI>
+	 * <LI>_sellable</LI>
 	 * @param type : Enum designating the type of the item
 	 * @param set : StatsSet corresponding to a set of couples (key,value) for description of the item
 	 */

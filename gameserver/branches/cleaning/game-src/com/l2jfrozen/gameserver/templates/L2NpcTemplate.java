@@ -42,7 +42,16 @@ import javolution.util.FastMap;
  * <BR>
  * <B><U> Data</U> :</B><BR>
  * <BR>
- * <li>npcId, type, name, sex</li> <li>rewardExp, rewardSp</li> <li>aggroRange, factionId, factionRange</li> <li>rhand, lhand, armor</li> <li>isUndead</li> <li>_drops</li> <li>_minions</li> <li>_teachInfo</li> <li>_skills</li> <li>_questsStart</li><BR>
+ * <li>npcId, type, name, sex</li>
+ * <li>rewardExp, rewardSp</li>
+ * <li>aggroRange, factionId, factionRange</li>
+ * <li>rhand, lhand, armor</li>
+ * <li>isUndead</li>
+ * <li>_drops</li>
+ * <li>_minions</li>
+ * <li>_teachInfo</li>
+ * <li>_skills</li>
+ * <li>_questsStart</li><BR>
  * <BR>
  * @version $Revision: 1.1.2.4 $ $Date: 2005/04/02 15:57:51 $
  */

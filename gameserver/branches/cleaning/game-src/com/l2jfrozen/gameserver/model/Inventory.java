@@ -1168,7 +1168,7 @@ public abstract class Inventory extends ItemContainer
 				break;
 			case L2Item.SLOT_CHEST:
 				pdollSlot = PAPERDOLL_CHEST;
-				break; // TODO: пїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅ"
+				break; // TODO:
 			case L2Item.SLOT_FULL_ARMOR:
 				pdollSlot = PAPERDOLL_CHEST;
 				break;

@@ -245,7 +245,7 @@ public class AutoChatHandler implements SpawnListener
 		for (final AutoChatInstance chatInst : _registeredChats.values())
 			if (chatInst.getChatDefinition(id) != null)
 				return chatInst;
-		
+			
 		return null;
 	}
 	

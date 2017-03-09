@@ -79,10 +79,10 @@ public class AdminCreateItem implements IAdminCommandHandler
 		
 		switch (comm)
 		{
-		
-		/*
-		 * Command //l2jfrozen, it gives useful items to Gm character Crystals, Gemstones, Bss-ss, scrolls, elixirs, etc To be complete...
-		 */
+			
+			/*
+			 * Command //l2jfrozen, it gives useful items to Gm character Crystals, Gemstones, Bss-ss, scrolls, elixirs, etc To be complete...
+			 */
 			case admin_l2jfrozen:
 				
 				// Command usable only by Administrator
@@ -167,12 +167,12 @@ public class AdminCreateItem implements IAdminCommandHandler
 				activeChar.sendMessage("Gm skills added successfully!");
 				
 				return true;
-				
+			
 			case admin_itemcreate:
 				
 				AdminHelpPage.showHelpPage(activeChar, "itemcreation.htm");
 				return true;
-				
+			
 			case admin_create_item:
 				
 				if (st.hasMoreTokens())
@@ -238,7 +238,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 					return true;
 				}
 				return false;
-				
+			
 			case admin_mass_create:
 				
 				if (st.hasMoreTokens())
@@ -296,12 +296,12 @@ public class AdminCreateItem implements IAdminCommandHandler
 					}
 				}
 				return false;
-				
+			
 			case admin_clear_inventory:
 				
 				removeAllItems(activeChar);
 				return true;
-				
+			
 			default:
 				return false;
 		}

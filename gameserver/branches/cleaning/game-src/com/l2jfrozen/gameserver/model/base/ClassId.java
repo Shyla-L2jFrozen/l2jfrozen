@@ -25,7 +25,10 @@ package com.l2jfrozen.gameserver.model.base;
  * <BR>
  * Data :<BR>
  * <BR>
- * <li>id : The Identifier of the class</li> <li>isMage : True if the class is a mage class</li> <li>race : The race of this class</li> <li>parent : The parent ClassId or null if this class is the root</li><BR>
+ * <li>id : The Identifier of the class</li>
+ * <li>isMage : True if the class is a mage class</li>
+ * <li>race : The race of this class</li>
+ * <li>parent : The parent ClassId or null if this class is the root</li><BR>
  * <BR>
  * @version $Revision: 1.4.4.4 $ $Date: 2005/03/27 15:29:33 $
  */

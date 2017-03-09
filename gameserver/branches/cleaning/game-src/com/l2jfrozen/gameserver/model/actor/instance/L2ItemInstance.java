@@ -1243,8 +1243,9 @@ public final class L2ItemInstance extends L2Object
 		}
 		
 		if (inst != null)
-			inst.fireEvent(EventType.LOAD.name, new Object[] {
-			// con
+			inst.fireEvent(EventType.LOAD.name, new Object[]
+			{
+				// con
 			});
 		
 		return inst;
@@ -1255,7 +1256,9 @@ public final class L2ItemInstance extends L2Object
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Set the x,y,z position of the L2ItemInstance dropped and update its _worldregion</li> <li>Add the L2ItemInstance dropped to _visibleObjects of its L2WorldRegion</li> <li>Add the L2ItemInstance dropped in the world as a <B>visible</B> object</li><BR>
+	 * <li>Set the x,y,z position of the L2ItemInstance dropped and update its _worldregion</li>
+	 * <li>Add the L2ItemInstance dropped to _visibleObjects of its L2WorldRegion</li>
+	 * <li>Add the L2ItemInstance dropped in the world as a <B>visible</B> object</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T ADD the object to _allObjects of L2World </B></FONT><BR>
 	 * <BR>
@@ -1265,7 +1268,8 @@ public final class L2ItemInstance extends L2Object
 	 * <BR>
 	 * <B><U> Example of use </U> :</B><BR>
 	 * <BR>
-	 * <li>Drop item</li> <li>Call Pet</li><BR>
+	 * <li>Drop item</li>
+	 * <li>Call Pet</li><BR>
 	 * @param dropper the dropper
 	 * @param x the x
 	 * @param y the y

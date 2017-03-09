@@ -165,7 +165,7 @@ public class L2RaceManagerInstance extends L2NpcInstance
 				{// LOGGER.info("Race Initializing");
 					_state = ACCEPTING_BETS;
 					startRace();
-				}// else{LOGGER.info("Race open");}
+				} // else{LOGGER.info("Race open");}
 				sm.addNumber(_raceNumber);
 				break;
 			case 818: // SystemMessageId.MONSRACE_TICKETS_STOP_IN_S1_MINUTES

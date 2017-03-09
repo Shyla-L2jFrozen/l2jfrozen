@@ -151,7 +151,9 @@ public class L2Spawn
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Set the _template of the L2Spawn</li> <li>Calculate the implementationName used to generate the generic constructor of L2NpcInstance managed by this L2Spawn</li> <li>Create the generic constructor of L2NpcInstance managed by this L2Spawn</li><BR>
+	 * <li>Set the _template of the L2Spawn</li>
+	 * <li>Calculate the implementationName used to generate the generic constructor of L2NpcInstance managed by this L2Spawn</li>
+	 * <li>Create the generic constructor of L2NpcInstance managed by this L2Spawn</li><BR>
 	 * <BR>
 	 * @param mobTemplate The L2NpcTemplate to link to this L2Spawn
 	 * @throws SecurityException
@@ -407,8 +409,10 @@ public class L2Spawn
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Decrease the current number of L2NpcInstance of this L2Spawn</li> <li>Check if respawn is possible to prevent multiple respawning caused by lag</li> <li>Update the current number of SpawnTask in progress or stand by of this L2Spawn</li> <li>Create a new SpawnTask to launch after the
-	 * respawn Delay</li><BR>
+	 * <li>Decrease the current number of L2NpcInstance of this L2Spawn</li>
+	 * <li>Check if respawn is possible to prevent multiple respawning caused by lag</li>
+	 * <li>Update the current number of SpawnTask in progress or stand by of this L2Spawn</li>
+	 * <li>Create a new SpawnTask to launch after the respawn Delay</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : A respawn is possible ONLY if _doRespawn=True and _scheduledCount + _currentCount < _maximumCount</B></FONT><BR>
 	 * <BR>
@@ -481,9 +485,15 @@ public class L2Spawn
 	 * <BR>
 	 * <B><U> Actions for an random spawn into location area</U> : <I>(if Locx=0 and Locy=0)</I></B><BR>
 	 * <BR>
-	 * <li>Get L2NpcInstance Init parameters and its generate an Identifier</li> <li>Call the constructor of the L2NpcInstance</li> <li>Calculate the random position in the location area (if Locx=0 and Locy=0) or get its exact position from the L2Spawn</li> <li>Set the position of the L2NpcInstance</li>
-	 * <li>Set the HP and MP of the L2NpcInstance to the max</li> <li>Set the heading of the L2NpcInstance (random heading if not defined : value=-1)</li> <li>Link the L2NpcInstance to this L2Spawn</li> <li>Init other values of the L2NpcInstance (ex : from its L2CharTemplate for INT, STR, DEX...)
-	 * and add it in the world</li> <li>Lauch the action OnSpawn fo the L2NpcInstance</li><BR>
+	 * <li>Get L2NpcInstance Init parameters and its generate an Identifier</li>
+	 * <li>Call the constructor of the L2NpcInstance</li>
+	 * <li>Calculate the random position in the location area (if Locx=0 and Locy=0) or get its exact position from the L2Spawn</li>
+	 * <li>Set the position of the L2NpcInstance</li>
+	 * <li>Set the HP and MP of the L2NpcInstance to the max</li>
+	 * <li>Set the heading of the L2NpcInstance (random heading if not defined : value=-1)</li>
+	 * <li>Link the L2NpcInstance to this L2Spawn</li>
+	 * <li>Init other values of the L2NpcInstance (ex : from its L2CharTemplate for INT, STR, DEX...) and add it in the world</li>
+	 * <li>Lauch the action OnSpawn fo the L2NpcInstance</li><BR>
 	 * <BR>
 	 * <li>Increase the current number of L2NpcInstance managed by this L2Spawn</li><BR>
 	 * <BR>

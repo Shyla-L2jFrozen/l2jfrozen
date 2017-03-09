@@ -161,7 +161,7 @@ public class Sow implements ISkillHandler
 			basicSuccess -= 5;
 		if (levelTarget > maxlevelSeed)
 			basicSuccess -= 5;
-		
+			
 		// 5% decrease in chance if player level
 		// is more than +/- 5 levels to _target's_ level
 		int diff = (levelPlayer - levelTarget);

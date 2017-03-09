@@ -284,7 +284,7 @@ public class LoginServerThread extends Thread
 							_serverID = aresp.getServerId();
 							_serverName = aresp.getServerName();
 							
-							saveHexid(_serverID, hexToString(_hexID),FService.HEXID_FILE);
+							saveHexid(_serverID, hexToString(_hexID), FService.HEXID_FILE);
 							LOGGER.info("Registered on login as Server " + _serverID + " : " + _serverName);
 							final ServerStatus st = new ServerStatus();
 							if (Config.SERVER_LIST_BRACKET)

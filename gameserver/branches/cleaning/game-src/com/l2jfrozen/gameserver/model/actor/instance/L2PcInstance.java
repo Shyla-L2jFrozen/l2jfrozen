@@ -470,16 +470,18 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * nobless, power_grade, subpledge, last_recom_date, lvl_joined_academy, apprentice, sponsor, varka_ketra_ally,clan_join_expiry_time,clan_create_expiry_time,death_penalty_level,good,evil,gve_kills FROM characters WHERE obj_id=?.
 	 */
 	// private static final String RESTORE_CHARACTER =
-	// "SELECT account_name, obj_Id, char_name, level, maxHp, curHp, maxCp, curCp, maxMp, curMp, acc, crit, evasion, mAtk, mDef, mSpd, pAtk, pDef, pSpd, runSpd, walkSpd, str, con, dex, _int, men, wit, face, hairStyle, hairColor, sex, heading, x, y, z, movement_multiplier, attack_speed_multiplier, colRad, colHeight, exp, expBeforeDeath, sp, karma, pvpkills, pkkills, clanid, maxload, race, classid, deletetime, cancraft, title, rec_have, rec_left, accesslevel, online, char_slot, lastAccess, clan_privs, wantspeace, base_class, onlinetime, isin7sdungeon, in_jail, jail_timer, newbie, nobless, power_grade, subpledge, last_recom_date, lvl_joined_academy, apprentice, sponsor, varka_ketra_ally,clan_join_expiry_time,clan_create_expiry_time,death_penalty_level,pc_point,banchat_time,name_color,title_color,first_log,aio,aio_end FROM characters WHERE obj_id=?";
+	// "SELECT account_name, obj_Id, char_name, level, maxHp, curHp, maxCp, curCp, maxMp, curMp, acc, crit, evasion, mAtk, mDef, mSpd, pAtk, pDef, pSpd, runSpd, walkSpd, str, con, dex, _int, men, wit, face, hairStyle, hairColor, sex, heading, x, y, z, movement_multiplier, attack_speed_multiplier,
+	// colRad, colHeight, exp, expBeforeDeath, sp, karma, pvpkills, pkkills, clanid, maxload, race, classid, deletetime, cancraft, title, rec_have, rec_left, accesslevel, online, char_slot, lastAccess, clan_privs, wantspeace, base_class, onlinetime, isin7sdungeon, in_jail, jail_timer, newbie,
+	// nobless, power_grade, subpledge, last_recom_date, lvl_joined_academy, apprentice, sponsor, varka_ketra_ally,clan_join_expiry_time,clan_create_expiry_time,death_penalty_level,pc_point,banchat_time,name_color,title_color,first_log,aio,aio_end FROM characters WHERE obj_id=?";
 	private static final String RESTORE_CHARACTER = "SELECT account_name, obj_Id, char_name, level, maxHp, curHp, maxCp, curCp, maxMp, curMp, acc, crit, evasion, mAtk, mDef, mSpd, pAtk, pDef, pSpd, runSpd, walkSpd, str, con, dex, _int, men, wit, face, hairStyle, hairColor, sex, heading, x, y, z, movement_multiplier, attack_speed_multiplier, colRad, colHeight, exp, expBeforeDeath, sp, karma, pvpkills, pkkills, clanid, maxload, race, classid, deletetime, cancraft, title, rec_have, rec_left, accesslevel, online, char_slot, lastAccess, clan_privs, wantspeace, base_class, onlinetime, isin7sdungeon,punish_level,punish_timer," + /*
-																																																																																																																																																													 * in_jail
-																																																																																																																																																													 * ,
-																																																																																																																																																													 * jail_timer
-																																																																																																																																																													 * ,
-																																																																																																																																																													 */"newbie, nobless, power_grade, subpledge, last_recom_date, lvl_joined_academy, apprentice, sponsor, varka_ketra_ally,clan_join_expiry_time,clan_create_expiry_time,death_penalty_level,pc_point" + /*
-																																																																																																																																																																																																														 * ,
-																																																																																																																																																																																																														 * banchat_time
-																																																																																																																																																																																																														 */",name_color,title_color,first_log,aio,aio_end FROM characters WHERE obj_id=?";
+																																																																																																																																																														 * in_jail
+																																																																																																																																																														 * ,
+																																																																																																																																																														 * jail_timer
+																																																																																																																																																														 * ,
+																																																																																																																																																														 */"newbie, nobless, power_grade, subpledge, last_recom_date, lvl_joined_academy, apprentice, sponsor, varka_ketra_ally,clan_join_expiry_time,clan_create_expiry_time,death_penalty_level,pc_point" + /*
+																																																																																																																																																																																																															 * ,
+																																																																																																																																																																																																															 * banchat_time
+																																																																																																																																																																																																															 */",name_color,title_color,first_log,aio,aio_end FROM characters WHERE obj_id=?";
 	
 	/** The Constant STATUS_DATA_GET. */
 	private static final String STATUS_DATA_GET = "SELECT hero, noble, donator, hero_end_date FROM characters_custom_data WHERE obj_Id = ?";
@@ -665,7 +667,7 @@ public final class L2PcInstance extends L2PlayableInstance
 			getPlayer().setRecentFakeDeath(false);
 			if (skill == null)
 				return;
-			
+				
 			// Like L2OFF you can use cupid bow skills on peace zone
 			// Like L2OFF players can use TARGET_AURA skills on peace zone, all targets will be ignored.
 			if (skill.isOffensive() && (isInsidePeaceZone(L2PcInstance.this, getTarget()) && skill.getTargetType() != SkillTargetType.TARGET_AURA) && (skill.getId() != 3261 && skill.getId() != 3260 && skill.getId() != 3262)) // check limited to active target
@@ -1572,7 +1574,9 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Create a new L2PcInstance with an account name</li> <li>Set the name, the Hair Style, the Hair Color and the Face type of the L2PcInstance</li> <li>Add the player in the characters table of the database</li><BR>
+	 * <li>Create a new L2PcInstance with an account name</li>
+	 * <li>Set the name, the Hair Style, the Hair Color and the Face type of the L2PcInstance</li>
+	 * <li>Add the player in the characters table of the database</li><BR>
 	 * <BR>
 	 * @param objectId Identifier of the object to initialized
 	 * @param template The L2PcTemplate to apply to the L2PcInstance
@@ -1706,7 +1710,10 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Retrieve the L2PcInstance from the characters table of the database</li> <li>Add the L2PcInstance object in _allObjects</li> <li>Set the x,y,z position of the L2PcInstance and make it invisible</li> <li>Update the overloaded status of the L2PcInstance</li><BR>
+	 * <li>Retrieve the L2PcInstance from the characters table of the database</li>
+	 * <li>Add the L2PcInstance object in _allObjects</li>
+	 * <li>Set the x,y,z position of the L2PcInstance and make it invisible</li>
+	 * <li>Update the overloaded status of the L2PcInstance</li><BR>
 	 * <BR>
 	 * @param objectId Identifier of the object to initialized
 	 * @return The L2PcInstance loaded from the database
@@ -1734,7 +1741,8 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Call the L2Character constructor to create an empty _skills slot and copy basic Calculator set to this L2PcInstance</li> <li>Set the name of the L2PcInstance</li><BR>
+	 * <li>Call the L2Character constructor to create an empty _skills slot and copy basic Calculator set to this L2PcInstance</li>
+	 * <li>Set the name of the L2PcInstance</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method SET the level of the L2PcInstance to 1</B></FONT><BR>
 	 * <BR>
@@ -1948,7 +1956,7 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * Set the _newbie state of the L2PcInstance.<BR>
 	 * <BR>
 	 * @param isNewbie The Identifier of the _newbie state<BR>
-	 * <BR>
+	 *            <BR>
 	 */
 	public void setNewbie(final boolean isNewbie)
 	{
@@ -3332,7 +3340,7 @@ public final class L2PcInstance extends L2PlayableInstance
 					
 					switch (weap_item.getItemType())
 					{
-					
+						
 						case BIGBLUNT:
 						case BIGSWORD:
 						{
@@ -3383,7 +3391,7 @@ public final class L2PcInstance extends L2PlayableInstance
 								newMasteryPenalty++;
 						}
 							break;
-					
+						
 					}
 				}
 			}
@@ -3746,7 +3754,10 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Get the Level of the L2PcInstance</li> <li>If L2PcInstance Level is 5, remove beginner Lucky skill</li> <li>Add the Expertise skill corresponding to its Expertise level</li> <li>Update the overloaded status of the L2PcInstance</li><BR>
+	 * <li>Get the Level of the L2PcInstance</li>
+	 * <li>If L2PcInstance Level is 5, remove beginner Lucky skill</li>
+	 * <li>Add the Expertise skill corresponding to its Expertise level</li>
+	 * <li>Update the overloaded status of the L2PcInstance</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T give other free skills (SP needed = 0)</B></FONT><BR>
 	 * <BR>
@@ -5449,7 +5460,7 @@ public final class L2PcInstance extends L2PlayableInstance
 			
 			if (Config.AUTODESTROY_ITEM_AFTER > 0)
 			{ // autodestroy enabled
-			
+				
 				if (item.isEquipable() && Config.DESTROY_EQUIPABLE_PLAYER_ITEM || !item.isEquipable())
 				{
 					ItemsAutoDestroy.getInstance().addItem(item);
@@ -5791,11 +5802,14 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions on first click on the L2PcInstance (Select it)</U> :</B><BR>
 	 * <BR>
-	 * <li>Set the target of the player</li> <li>Send a Server->Client packet MyTargetSelected to the player (display the select window)</li><BR>
+	 * <li>Set the target of the player</li>
+	 * <li>Send a Server->Client packet MyTargetSelected to the player (display the select window)</li><BR>
 	 * <BR>
 	 * <B><U> Actions on second click on the L2PcInstance (Follow it/Attack it/Intercat with it)</U> :</B><BR>
 	 * <BR>
-	 * <li>Send a Server->Client packet MyTargetSelected to the player (display the select window)</li> <li>If this L2PcInstance has a Private Store, notify the player AI with AI_INTENTION_INTERACT</li> <li>If this L2PcInstance is autoAttackable, notify the player AI with AI_INTENTION_ATTACK</li><BR>
+	 * <li>Send a Server->Client packet MyTargetSelected to the player (display the select window)</li>
+	 * <li>If this L2PcInstance has a Private Store, notify the player AI with AI_INTENTION_INTERACT</li>
+	 * <li>If this L2PcInstance is autoAttackable, notify the player AI with AI_INTENTION_ATTACK</li><BR>
 	 * <BR>
 	 * <li>If this L2PcInstance is NOT autoAttackable, notify the player AI with AI_INTENTION_FOLLOW</li><BR>
 	 * <BR>
@@ -6557,7 +6571,8 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Send a Server->Client packet UserInfo to this L2PcInstance (Public and Private Data)</li> <li>Send a Server->Client packet CharInfo to all L2PcInstance in _KnownPlayers of the L2PcInstance (Public data only)</li><BR>
+	 * <li>Send a Server->Client packet UserInfo to this L2PcInstance (Public and Private Data)</li>
+	 * <li>Send a Server->Client packet CharInfo to all L2PcInstance in _KnownPlayers of the L2PcInstance (Public data only)</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : DON'T SEND UserInfo packet to other players instead of CharInfo packet. Indeed, UserInfo packet contains PRIVATE DATA as MaxHP, STR, DEX...</B></FONT><BR>
 	 * <BR>
@@ -6623,8 +6638,9 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>If the private store is a STORE_PRIVATE_SELL, send a Server->Client PrivateBuyListSell packet to the L2PcInstance</li> <li>If the private store is a STORE_PRIVATE_BUY, send a Server->Client PrivateBuyListBuy packet to the L2PcInstance</li> <li>If the private store is a
-	 * STORE_PRIVATE_MANUFACTURE, send a Server->Client RecipeShopSellList packet to the L2PcInstance</li><BR>
+	 * <li>If the private store is a STORE_PRIVATE_SELL, send a Server->Client PrivateBuyListSell packet to the L2PcInstance</li>
+	 * <li>If the private store is a STORE_PRIVATE_BUY, send a Server->Client PrivateBuyListBuy packet to the L2PcInstance</li>
+	 * <li>If the private store is a STORE_PRIVATE_MANUFACTURE, send a Server->Client RecipeShopSellList packet to the L2PcInstance</li><BR>
 	 * <BR>
 	 * @param target The L2Character targeted
 	 */
@@ -6665,8 +6681,10 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Send a System Message to the L2PcInstance : YOU_PICKED_UP_S1_ADENA or YOU_PICKED_UP_S1_S2</li> <li>Add the Item to the L2PcInstance inventory</li> <li>Send a Server->Client packet InventoryUpdate to this L2PcInstance with NewItem (use a new slot) or ModifiedItem (increase amount)</li> <li>
-	 * Send a Server->Client packet StatusUpdate to this L2PcInstance with current weight</li><BR>
+	 * <li>Send a System Message to the L2PcInstance : YOU_PICKED_UP_S1_ADENA or YOU_PICKED_UP_S1_S2</li>
+	 * <li>Add the Item to the L2PcInstance inventory</li>
+	 * <li>Send a Server->Client packet InventoryUpdate to this L2PcInstance with NewItem (use a new slot) or ModifiedItem (increase amount)</li>
+	 * <li>Send a Server->Client packet StatusUpdate to this L2PcInstance with current weight</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : If a Party is in progress, distribute Items between party members</B></FONT><BR>
 	 * <BR>
@@ -6694,8 +6712,12 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Send a Server->Client packet StopMove to this L2PcInstance</li> <li>Remove the L2ItemInstance from the world and send server->client GetItem packets</li> <li>Send a System Message to the L2PcInstance : YOU_PICKED_UP_S1_ADENA or YOU_PICKED_UP_S1_S2</li> <li>Add the Item to the L2PcInstance
-	 * inventory</li> <li>Send a Server->Client packet InventoryUpdate to this L2PcInstance with NewItem (use a new slot) or ModifiedItem (increase amount)</li> <li>Send a Server->Client packet StatusUpdate to this L2PcInstance with current weight</li> <BR>
+	 * <li>Send a Server->Client packet StopMove to this L2PcInstance</li>
+	 * <li>Remove the L2ItemInstance from the world and send server->client GetItem packets</li>
+	 * <li>Send a System Message to the L2PcInstance : YOU_PICKED_UP_S1_ADENA or YOU_PICKED_UP_S1_S2</li>
+	 * <li>Add the Item to the L2PcInstance inventory</li>
+	 * <li>Send a Server->Client packet InventoryUpdate to this L2PcInstance with NewItem (use a new slot) or ModifiedItem (increase amount)</li>
+	 * <li>Send a Server->Client packet StatusUpdate to this L2PcInstance with current weight</li> <BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : If a Party is in progress, distribute Items between party members</B></FONT><BR>
 	 * <BR>
@@ -6896,8 +6918,9 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Remove the L2PcInstance from the _statusListener of the old target if it was a L2Character</li> <li>Add the L2PcInstance to the _statusListener of the new target if it's a L2Character</li> <li>Target the new L2Object (add the target to the L2PcInstance _target, _knownObject and
-	 * L2PcInstance to _KnownObject of the L2Object)</li><BR>
+	 * <li>Remove the L2PcInstance from the _statusListener of the old target if it was a L2Character</li>
+	 * <li>Add the L2PcInstance to the _statusListener of the new target if it's a L2Character</li>
+	 * <li>Target the new L2Object (add the target to the L2PcInstance _target, _knownObject and L2PcInstance to _KnownObject of the L2Object)</li><BR>
 	 * <BR>
 	 * @param newTarget The L2Object to target
 	 */
@@ -7343,8 +7366,11 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Reduce the Experience of the L2PcInstance in function of the calculated Death Penalty</li> <li>If necessary, unsummon the Pet of the killed L2PcInstance</li> <li>Manage Karma gain for attacker and Karam loss for the killed L2PcInstance</li> <li>If the killed L2PcInstance has Karma, manage
-	 * Drop Item</li> <li>Kill the L2PcInstance</li><BR>
+	 * <li>Reduce the Experience of the L2PcInstance in function of the calculated Death Penalty</li>
+	 * <li>If necessary, unsummon the Pet of the killed L2PcInstance</li>
+	 * <li>Manage Karma gain for attacker and Karam loss for the killed L2PcInstance</li>
+	 * <li>If the killed L2PcInstance has Karma, manage Drop Item</li>
+	 * <li>Kill the L2PcInstance</li><BR>
 	 * <BR>
 	 * @param killer the killer
 	 * @return true, if successful
@@ -7721,12 +7747,12 @@ public final class L2PcInstance extends L2PlayableInstance
 				{
 					// Don't drop
 					if (itemDrop.isAugmented() || // Dont drop augmented items
-					itemDrop.isShadowItem() || // Dont drop Shadow Items
-					itemDrop.getItemId() == 57 || // Adena
-					itemDrop.getItem().getType2() == L2Item.TYPE2_QUEST || // Quest Items
-					nonDroppableList.contains(itemDrop.getItemId()) || // Item listed in the non droppable item list
-					nonDroppableListPet.contains(itemDrop.getItemId()) || // Item listed in the non droppable pet item list
-					getPet() != null && getPet().getControlItemId() == itemDrop.getItemId() // Control Item of active pet
+						itemDrop.isShadowItem() || // Dont drop Shadow Items
+						itemDrop.getItemId() == 57 || // Adena
+						itemDrop.getItem().getType2() == L2Item.TYPE2_QUEST || // Quest Items
+						nonDroppableList.contains(itemDrop.getItemId()) || // Item listed in the non droppable item list
+						nonDroppableListPet.contains(itemDrop.getItemId()) || // Item listed in the non droppable pet item list
+						getPet() != null && getPet().getControlItemId() == itemDrop.getItemId() // Control Item of active pet
 					)
 					{
 						continue;
@@ -8593,7 +8619,10 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Calculate the Experience loss</li> <li>Set the value of _expBeforeDeath</li> <li>Set the new Experience value of the L2PcInstance and Decrease its level if necessary</li> <li>Send a Server->Client StatusUpdate packet with its new Experience</li><BR>
+	 * <li>Calculate the Experience loss</li>
+	 * <li>Set the value of _expBeforeDeath</li>
+	 * <li>Set the new Experience value of the L2PcInstance and Decrease its level if necessary</li>
+	 * <li>Send a Server->Client StatusUpdate packet with its new Experience</li><BR>
 	 * <BR>
 	 * @param atwar the atwar
 	 */
@@ -8672,8 +8701,12 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Send a Server->Client System Message to the L2PcInstance : YOU_INCREASED_YOUR_LEVEL</li> <li>Send a Server->Client packet StatusUpdate to the L2PcInstance with new LEVEL, MAX_HP and MAX_MP</li> <li>Set the current HP and MP of the L2PcInstance, Launch/Stop a HP/MP/CP Regeneration Task and
-	 * send StatusUpdate packet to all other L2PcInstance to inform (exclusive broadcast)</li> <li>Recalculate the party level</li> <li>Recalculate the number of Recommandation that the L2PcInstance can give</li> <li>Give Expertise skill of this level and remove beginner Lucky skill</li><BR>
+	 * <li>Send a Server->Client System Message to the L2PcInstance : YOU_INCREASED_YOUR_LEVEL</li>
+	 * <li>Send a Server->Client packet StatusUpdate to the L2PcInstance with new LEVEL, MAX_HP and MAX_MP</li>
+	 * <li>Set the current HP and MP of the L2PcInstance, Launch/Stop a HP/MP/CP Regeneration Task and send StatusUpdate packet to all other L2PcInstance to inform (exclusive broadcast)</li>
+	 * <li>Recalculate the party level</li>
+	 * <li>Recalculate the number of Recommandation that the L2PcInstance can give</li>
+	 * <li>Give Expertise skill of this level and remove beginner Lucky skill</li><BR>
 	 * <BR>
 	 */
 	public void increaseLevel()
@@ -8688,7 +8721,8 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Set the RegenActive flag to False</li> <li>Stop the HP/MP/CP Regeneration task</li><BR>
+	 * <li>Set the RegenActive flag to False</li>
+	 * <li>Stop the HP/MP/CP Regeneration task</li><BR>
 	 * <BR>
 	 */
 	public void stopAllTimers()
@@ -9006,7 +9040,9 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Values </U> :</B><BR>
 	 * <BR>
-	 * <li>0 : STORE_PRIVATE_NONE</li> <li>1 : STORE_PRIVATE_SELL</li> <li>2 : sellmanage</li><BR>
+	 * <li>0 : STORE_PRIVATE_NONE</li>
+	 * <li>1 : STORE_PRIVATE_SELL</li>
+	 * <li>2 : sellmanage</li><BR>
 	 * <li>3 : STORE_PRIVATE_BUY</li><BR>
 	 * <li>4 : buymanage</li><BR>
 	 * <li>5 : STORE_PRIVATE_MANUFACTURE</li><BR>
@@ -9039,7 +9075,9 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Values </U> :</B><BR>
 	 * <BR>
-	 * <li>0 : STORE_PRIVATE_NONE</li> <li>1 : STORE_PRIVATE_SELL</li> <li>2 : sellmanage</li><BR>
+	 * <li>0 : STORE_PRIVATE_NONE</li>
+	 * <li>1 : STORE_PRIVATE_SELL</li>
+	 * <li>2 : sellmanage</li><BR>
 	 * <li>3 : STORE_PRIVATE_BUY</li><BR>
 	 * <li>4 : buymanage</li><BR>
 	 * <li>5 : STORE_PRIVATE_MANUFACTURE</li><BR>
@@ -9530,7 +9568,9 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Set the Intention of the AI to AI_INTENTION_IDLE</li> <li>Enable all skills (set _allSkillsDisabled to False)</li> <li>Send a Server->Client Packet MagicSkillCanceld to the L2PcInstance and all L2PcInstance in the _KnownPlayers of the L2Character (broadcast)</li><BR>
+	 * <li>Set the Intention of the AI to AI_INTENTION_IDLE</li>
+	 * <li>Enable all skills (set _allSkillsDisabled to False)</li>
+	 * <li>Send a Server->Client Packet MagicSkillCanceld to the L2PcInstance and all L2PcInstance in the _KnownPlayers of the L2Character (broadcast)</li><BR>
 	 * <BR>
 	 */
 	public void cancelCastMagic()
@@ -9861,7 +9901,7 @@ public final class L2PcInstance extends L2PlayableInstance
 																																																																																																																																									 * ,
 																																																																																																																																									 * banchat_time
 																																																																																																																																									 * ,
-																																																																																																																																									 */+ ",name_color,title_color,aio,aio_end) " + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+																																																																																																																																									 */ + ",name_color,title_color,aio,aio_end) " + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			statement.setString(1, _accountName);
 			statement.setInt(2, getObjectId());
 			statement.setString(3, getName());
@@ -9956,7 +9996,10 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Retrieve the L2PcInstance from the characters table of the database</li> <li>Add the L2PcInstance object in _allObjects</li> <li>Set the x,y,z position of the L2PcInstance and make it invisible</li> <li>Update the overloaded status of the L2PcInstance</li><BR>
+	 * <li>Retrieve the L2PcInstance from the characters table of the database</li>
+	 * <li>Add the L2PcInstance object in _allObjects</li>
+	 * <li>Set the x,y,z position of the L2PcInstance and make it invisible</li>
+	 * <li>Update the overloaded status of the L2PcInstance</li><BR>
 	 * <BR>
 	 * @param objectId Identifier of the object to initialized
 	 * @return The L2PcInstance loaded from the database
@@ -10806,7 +10849,9 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Replace oldSkill by newSkill or Add the newSkill</li> <li>If an old skill has been replaced, remove all its Func objects of L2Character calculator set</li> <li>Add Func objects of newSkill to the calculator set of the L2Character</li><BR>
+	 * <li>Replace oldSkill by newSkill or Add the newSkill</li>
+	 * <li>If an old skill has been replaced, remove all its Func objects of L2Character calculator set</li>
+	 * <li>Add Func objects of newSkill to the calculator set of the L2Character</li><BR>
 	 * <BR>
 	 */
 	private boolean _learningSkill = false;
@@ -10865,7 +10910,8 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Remove the skill from the L2Character _skills</li> <li>Remove all its Func objects from the L2Character calculator set</li><BR>
+	 * <li>Remove the skill from the L2Character _skills</li>
+	 * <li>Remove all its Func objects from the L2Character calculator set</li><BR>
 	 * <BR>
 	 * <B><U> Overriden in </U> :</B><BR>
 	 * <BR>
@@ -11735,8 +11781,11 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Check if the attacker isn't the L2PcInstance Pet</li> <li>Check if the attacker is L2MonsterInstance</li> <li>If the attacker is a L2PcInstance, check if it is not in the same party</li> <li>Check if the L2PcInstance has Karma</li> <li>If the attacker is a L2PcInstance, check if it is not
-	 * in the same siege clan (Attacker, Defender)</li> <BR>
+	 * <li>Check if the attacker isn't the L2PcInstance Pet</li>
+	 * <li>Check if the attacker is L2MonsterInstance</li>
+	 * <li>If the attacker is a L2PcInstance, check if it is not in the same party</li>
+	 * <li>Check if the L2PcInstance has Karma</li>
+	 * <li>If the attacker is a L2PcInstance, check if it is not in the same siege clan (Attacker, Defender)</li> <BR>
 	 * <BR>
 	 * @param attacker the attacker
 	 * @return true, if is auto attackable
@@ -11907,8 +11956,12 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Check if the skill isn't toggle and is offensive</li> <li>Check if the target is in the skill cast range</li> <li>Check if the skill is Spoil type and if the target isn't already spoiled</li> <li>Check if the caster owns enought consummed Item, enough HP and MP to cast the skill</li> <li>
-	 * Check if the caster isn't sitting</li> <li>Check if all skills are enabled and this skill is enabled</li><BR>
+	 * <li>Check if the skill isn't toggle and is offensive</li>
+	 * <li>Check if the target is in the skill cast range</li>
+	 * <li>Check if the skill is Spoil type and if the target isn't already spoiled</li>
+	 * <li>Check if the caster owns enought consummed Item, enough HP and MP to cast the skill</li>
+	 * <li>Check if the caster isn't sitting</li>
+	 * <li>Check if all skills are enabled and this skill is enabled</li><BR>
 	 * <BR>
 	 * <li>Check if the caster own the weapon needed</li><BR>
 	 * <BR>
@@ -12102,7 +12155,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		
 		switch (sklTargetType)
 		{
-		// Target the player if skill type is AURA, PARTY, CLAN or SELF
+			// Target the player if skill type is AURA, PARTY, CLAN or SELF
 			case TARGET_AURA:
 				if (isInOlympiadMode() && !isOlympiadStart())
 					setTarget(this);
@@ -12622,11 +12675,11 @@ public final class L2PcInstance extends L2PlayableInstance
 			target = ((L2Summon) target).getOwner();
 		
 		if (target != null && // target not null and
-		target != this && // target is not self and
-		target instanceof L2PcInstance && // target is L2PcInstance and
-		!(isInDuel() && ((L2PcInstance) target).getDuelId() == getDuelId()) && // self is not in a duel and attacking opponent
-		!isInsideZone(ZONE_PVP) && // Pc is not in PvP zone
-		!((L2PcInstance) target).isInsideZone(ZONE_PVP) // target is not in PvP zone
+			target != this && // target is not self and
+			target instanceof L2PcInstance && // target is L2PcInstance and
+			!(isInDuel() && ((L2PcInstance) target).getDuelId() == getDuelId()) && // self is not in a duel and attacking opponent
+			!isInsideZone(ZONE_PVP) && // Pc is not in PvP zone
+			!((L2PcInstance) target).isInsideZone(ZONE_PVP) // target is not in PvP zone
 		)
 		{
 			final SkillDat skilldat = getCurrentSkill();
@@ -12639,7 +12692,7 @@ public final class L2PcInstance extends L2PlayableInstance
 						return true; // in clan war player can attack whites even with sleep etc.
 				}
 				if (((L2PcInstance) target).getPvpFlag() == 0 && // target's pvp flag is not set and
-				((L2PcInstance) target).getKarma() == 0 // target has no karma
+					((L2PcInstance) target).getKarma() == 0 // target has no karma
 				)
 					return false;
 			}
@@ -12652,7 +12705,7 @@ public final class L2PcInstance extends L2PlayableInstance
 						return true; // in clan war player can attack whites even without ctrl
 				}
 				if (((L2PcInstance) target).getPvpFlag() == 0 && // target's pvp flag is not set and
-				((L2PcInstance) target).getKarma() == 0 // target has no karma
+					((L2PcInstance) target).getKarma() == 0 // target has no karma
 				)
 					return false;
 			}
@@ -12773,7 +12826,8 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Send a Server->Client packet UserInfo to this L2PcInstance (Public and Private Data)</li> <li>Send a Server->Client packet CharInfo to all L2PcInstance in _KnownPlayers of the L2PcInstance (Public data only)</li><BR>
+	 * <li>Send a Server->Client packet UserInfo to this L2PcInstance (Public and Private Data)</li>
+	 * <li>Send a Server->Client packet CharInfo to all L2PcInstance in _KnownPlayers of the L2PcInstance (Public data only)</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : DON'T SEND UserInfo packet to other players instead of CharInfo packet. Indeed, UserInfo packet contains PRIVATE DATA as MaxHP, STR, DEX...</B></FONT><BR>
 	 * <BR>
@@ -15100,7 +15154,7 @@ public final class L2PcInstance extends L2PlayableInstance
 			}
 			else
 			{
-				LOGGER.warn("ATTENTION: Bot Checker is bad configured because "+FService.QUESTION_FILE+" has 0 words of 6 to 15 keys");
+				LOGGER.warn("ATTENTION: Bot Checker is bad configured because " + FService.QUESTION_FILE + " has 0 words of 6 to 15 keys");
 			}
 		}
 	}
@@ -16322,9 +16376,15 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>If the L2PcInstance is in observer mode, set its position to its position before entering in observer mode</li> <li>Set the online Flag to True or False and update the characters table of the database with online status and lastAccess</li> <li>Stop the HP/MP/CP Regeneration task</li> <li>
-	 * Cancel Crafting, Attak or Cast</li> <li>Remove the L2PcInstance from the world</li> <li>Stop Party and Unsummon Pet</li> <li>Update database with items in its inventory and remove them from the world</li> <li>Remove all L2Object from _knownObjects and _knownPlayer of the L2Character then
-	 * cancel Attak or Cast and notify AI</li> <li>Close the connection with the client</li><BR>
+	 * <li>If the L2PcInstance is in observer mode, set its position to its position before entering in observer mode</li>
+	 * <li>Set the online Flag to True or False and update the characters table of the database with online status and lastAccess</li>
+	 * <li>Stop the HP/MP/CP Regeneration task</li>
+	 * <li>Cancel Crafting, Attak or Cast</li>
+	 * <li>Remove the L2PcInstance from the world</li>
+	 * <li>Stop Party and Unsummon Pet</li>
+	 * <li>Update database with items in its inventory and remove them from the world</li>
+	 * <li>Remove all L2Object from _knownObjects and _knownPlayer of the L2Character then cancel Attak or Cast and notify AI</li>
+	 * <li>Close the connection with the client</li><BR>
 	 * <BR>
 	 */
 	public synchronized void deleteMe()
@@ -16493,7 +16553,7 @@ public final class L2PcInstance extends L2PlayableInstance
 					t.printStackTrace();
 				
 				LOGGER.error("deleteMe()", t);
-			}// returns pet to control item
+			} // returns pet to control item
 		}
 		
 		if (getClanId() != 0 && getClan() != null)
@@ -16766,8 +16826,8 @@ public final class L2PcInstance extends L2PlayableInstance
 	/*
 	 * private void notifyFriends2(L2PcInstance cha) { Connection con = null; try { con = L2DatabaseFactory.getInstance().getConnection(false); PreparedStatement statement; statement = con.prepareStatement("SELECT friend_name FROM character_friends WHERE char_id=?"); statement.setInt(1,
 	 * cha.getObjectId()); ResultSet rset = statement.executeQuery(); while(rset.next()) { String friendName = rset.getString("friend_name"); L2PcInstance friend = L2World.getInstance().getPlayer(friendName); if(friend != null) //friend logged in. { friend.sendPacket(new FriendList(friend));
-	 * friend.sendMessage("Friend: " + cha.getName() + " has logged off."); } } DatabaseUtils.close(rset); DatabaseUtils.close(statement); } catch(Exception e) { if(CommonConfig.ENABLE_ALL_EXCEPTIONS) e.printStackTrace(); LOGGER.warn("could not restore friend data:" + e); } finally { CloseUtil.close(con);
-	 * con = null; } }
+	 * friend.sendMessage("Friend: " + cha.getName() + " has logged off."); } } DatabaseUtils.close(rset); DatabaseUtils.close(statement); } catch(Exception e) { if(CommonConfig.ENABLE_ALL_EXCEPTIONS) e.printStackTrace(); LOGGER.warn("could not restore friend data:" + e); } finally {
+	 * CloseUtil.close(con); con = null; } }
 	 */
 	
 	/** The _fish. */

@@ -114,14 +114,14 @@ public final class CharacterCreate extends L2GameClientPacket
 				sendPacket(new CharCreateFail(CharCreateFail.REASON_NAME_ALREADY_EXISTS));
 				return;
 			}
-//			else if (CharNameTable.getInstance().ipCharNumber(getClient().getConnection().getInetAddress().getHostName()) >= Config.MAX_CHARACTERS_NUMBER_PER_IP && Config.MAX_CHARACTERS_NUMBER_PER_IP != 0)
-//			{
-//				if (CommonConfig.DEBUG)
-//					LOGGER.debug("DEBUG " + getType() + ": Max number of characters reached for IP. Creation failed.");
-//				
-//				sendPacket(new CharCreateFail(CharCreateFail.REASON_TOO_MANY_CHARACTERS));
-//				return;
-//			}
+			// else if (CharNameTable.getInstance().ipCharNumber(getClient().getConnection().getInetAddress().getHostName()) >= Config.MAX_CHARACTERS_NUMBER_PER_IP && Config.MAX_CHARACTERS_NUMBER_PER_IP != 0)
+			// {
+			// if (CommonConfig.DEBUG)
+			// LOGGER.debug("DEBUG " + getType() + ": Max number of characters reached for IP. Creation failed.");
+			//
+			// sendPacket(new CharCreateFail(CharCreateFail.REASON_TOO_MANY_CHARACTERS));
+			// return;
+			// }
 			
 			template = CharTemplateTable.getInstance().getTemplate(_classId);
 			
@@ -237,7 +237,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		newChar.registerShortCut(new L2ShortCut(3, 0, 3, 5, -1, 1)); // Take
 		newChar.registerShortCut(new L2ShortCut(10, 0, 3, 0, -1, 1)); // Sit
 		
-		final ItemTable itemTable = ItemTable.getInstance();
+		ItemTable.getInstance();
 		final L2Item[] items = template.getItems();
 		
 		for (final L2Item item2 : items)

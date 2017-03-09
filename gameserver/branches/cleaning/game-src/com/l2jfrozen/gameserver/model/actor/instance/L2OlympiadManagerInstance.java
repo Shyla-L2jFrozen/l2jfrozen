@@ -153,7 +153,7 @@ public class L2OlympiadManagerInstance extends L2FolkInstance
 				default:
 					LOGGER.warn("Olympiad System: Couldnt send packet for request " + val);
 					break;
-			
+				
 			}
 		}
 		else if (command.startsWith("Olympiad"))

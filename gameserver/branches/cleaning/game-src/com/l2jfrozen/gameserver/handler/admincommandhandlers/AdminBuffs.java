@@ -119,7 +119,7 @@ public class AdminBuffs implements IAdminCommandHandler
 				}
 				activeChar.sendMessage("Usage: //stopbuff <playername> [skillId]");
 				return false;
-				
+			
 			case admin_stopallbuffs:
 				
 				if (st.hasMoreTokens())

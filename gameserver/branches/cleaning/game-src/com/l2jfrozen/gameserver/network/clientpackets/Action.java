@@ -72,7 +72,7 @@ public final class Action extends L2GameClientPacket
 			obj = activeChar.getTarget();
 		else
 			obj = L2World.getInstance().findObject(_objectId);
-		
+			
 		// If object requested does not exist
 		// pressing e.g. pickup many times quickly would get you here
 		if (obj == null)

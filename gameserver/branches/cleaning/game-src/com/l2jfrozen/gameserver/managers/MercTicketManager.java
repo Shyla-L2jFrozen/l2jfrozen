@@ -254,7 +254,7 @@ public class MercTicketManager
 		20,
 		20,
 		20
-	// Schuttgart
+		// Schuttgart
 	};
 	private static final int[] MERCS_MAX_PER_CASTLE =
 	{
@@ -267,7 +267,7 @@ public class MercTicketManager
 		400, // Goddard
 		400, // Rune
 		400
-	// Schuttgart
+		// Schuttgart
 	};
 	
 	private static final int[] ITEM_IDS =
@@ -452,7 +452,7 @@ public class MercTicketManager
 		7938,
 		7939,
 		7940
-	// Schuttgart
+		// Schuttgart
 	};
 	
 	private static final int[] NPC_IDS =
@@ -637,7 +637,7 @@ public class MercTicketManager
 		35037,
 		35038,
 		35039
-	// Schuttgart
+		// Schuttgart
 	};
 	
 	// =========================================================

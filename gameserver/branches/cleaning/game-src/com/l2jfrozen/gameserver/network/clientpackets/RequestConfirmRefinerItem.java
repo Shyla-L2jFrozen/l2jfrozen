@@ -68,8 +68,7 @@ public class RequestConfirmRefinerItem extends L2GameClientPacket
 		
 		int gemstoneCount = 0;
 		int gemstoneItemId = 0;
-		@SuppressWarnings("unused")
-		final int lifeStoneLevel = getLifeStoneLevel(refinerItemId);
+		getLifeStoneLevel(refinerItemId);
 		final SystemMessage sm = new SystemMessage(SystemMessageId.REQUIRES_S1_S2);
 		
 		switch (itemGrade)
