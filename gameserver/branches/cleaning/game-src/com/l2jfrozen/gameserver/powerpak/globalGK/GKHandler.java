@@ -150,7 +150,7 @@ public class GKHandler implements IVoicedCommandHandler, ICustomByPassHandler, I
 			if (!player.isInsideRadius(gknpc, L2NpcInstance.INTERACTION_DISTANCE, false, false))
 				return;
 			
-		}// else (voice and bbs)
+		} // else (voice and bbs)
 		
 		String htm = "70023";
 		if (parameters.startsWith("goto"))

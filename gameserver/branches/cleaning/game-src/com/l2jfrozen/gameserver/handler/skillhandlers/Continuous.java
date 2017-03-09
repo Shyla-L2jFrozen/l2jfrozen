@@ -234,7 +234,7 @@ public class Continuous implements ISkillHandler
 			// If target is not in game anymore...
 			if ((target instanceof L2PcInstance) && ((L2PcInstance) target).isOnline() == 0)
 				continue;
-			
+				
 			// if this is a debuff let the duel manager know about it
 			// so the debuff can be removed after the duel
 			// (player & target must be in the same duel)

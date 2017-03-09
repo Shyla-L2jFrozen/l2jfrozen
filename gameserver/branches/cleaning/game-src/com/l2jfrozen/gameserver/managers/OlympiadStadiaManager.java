@@ -71,7 +71,7 @@ public class OlympiadStadiaManager
 		for (final L2OlympiadStadiumZone temp : _olympiadStadias)
 			if (temp.isCharacterInZone(character))
 				return temp;
-		
+			
 		return null;
 	}
 	

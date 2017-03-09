@@ -156,7 +156,7 @@ public class GMShop implements IVoicedCommandHandler, ICustomByPassHandler, IBBS
 			if (!player.isInsideRadius(gmshopnpc, L2NpcInstance.INTERACTION_DISTANCE, false, false))
 				return;
 			
-		}// else (voice and bbs)
+		} // else (voice and bbs)
 		
 		if (parameters.startsWith("multisell"))
 		{

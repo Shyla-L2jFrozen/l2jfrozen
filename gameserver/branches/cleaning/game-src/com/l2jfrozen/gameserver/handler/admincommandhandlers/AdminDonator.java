@@ -144,7 +144,7 @@ public class AdminDonator implements IAdminCommandHandler
 			// ----------------
 			if (player == null)
 				return;
-			
+				
 			// Database Connection
 			// --------------------------------
 			con = L2DatabaseFactory.getInstance().getConnection(false);

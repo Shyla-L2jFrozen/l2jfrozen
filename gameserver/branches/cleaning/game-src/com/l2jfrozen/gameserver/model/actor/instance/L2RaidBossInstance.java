@@ -50,8 +50,9 @@ public final class L2RaidBossInstance extends L2MonsterInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Call the L2Character constructor to set the _template of the L2RaidBossInstance (copy skills from template to object and link _calculators to NPC_STD_CALCULATOR)</li> <li>Set the name of the L2RaidBossInstance</li> <li>Create a RandomAnimation Task that will be launched after the
-	 * calculated delay if the server allow it</li><BR>
+	 * <li>Call the L2Character constructor to set the _template of the L2RaidBossInstance (copy skills from template to object and link _calculators to NPC_STD_CALCULATOR)</li>
+	 * <li>Set the name of the L2RaidBossInstance</li>
+	 * <li>Create a RandomAnimation Task that will be launched after the calculated delay if the server allow it</li><BR>
 	 * <BR>
 	 * @param objectId Identifier of the object to initialized
 	 * @param template the template

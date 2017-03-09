@@ -45,7 +45,9 @@ import com.l2jfrozen.gameserver.network.serverpackets.GetItem;
  * <BR>
  * L2Object :<BR>
  * <BR>
- * <li>L2Character</li> <li>L2ItemInstance</li> <li>L2Potion</li>
+ * <li>L2Character</li>
+ * <li>L2ItemInstance</li>
+ * <li>L2Potion</li>
  */
 
 public abstract class L2Object
@@ -185,7 +187,8 @@ public abstract class L2Object
 	 * <BR>
 	 * <B><U> Overridden in </U> :</B><BR>
 	 * <BR>
-	 * <li>L2GuardInstance : Set the home location of its L2GuardInstance</li> <li>L2Attackable : Reset the Spoiled flag</li><BR>
+	 * <li>L2GuardInstance : Set the home location of its L2GuardInstance</li>
+	 * <li>L2Attackable : Reset the Spoiled flag</li><BR>
 	 * <BR>
 	 */
 	public void onSpawn()
@@ -291,13 +294,15 @@ public abstract class L2Object
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Send a Server->Client Packet GetItem to player that pick up and its _knowPlayers member</li> <li>Remove the L2Object from the world</li><BR>
+	 * <li>Send a Server->Client Packet GetItem to player that pick up and its _knowPlayers member</li>
+	 * <li>Remove the L2Object from the world</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T REMOVE the object from _allObjects of L2World </B></FONT><BR>
 	 * <BR>
 	 * <B><U> Assert </U> :</B><BR>
 	 * <BR>
-	 * <li>this instanceof L2ItemInstance</li> <li>_worldRegion != null <I>(L2Object is visible at the beginning)</I></li> <BR>
+	 * <li>this instanceof L2ItemInstance</li>
+	 * <li>_worldRegion != null <I>(L2Object is visible at the beginning)</I></li> <BR>
 	 * <BR>
 	 * <B><U> Example of use </U> :</B><BR>
 	 * <BR>
@@ -361,7 +366,10 @@ public abstract class L2Object
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Set the x,y,z position of the L2Object spawn and update its _worldregion</li> <li>Add the L2Object spawn in the _allobjects of L2World</li> <li>Add the L2Object spawn to _visibleObjects of its L2WorldRegion</li> <li>Add the L2Object spawn in the world as a <B>visible</B> object</li><BR>
+	 * <li>Set the x,y,z position of the L2Object spawn and update its _worldregion</li>
+	 * <li>Add the L2Object spawn in the _allobjects of L2World</li>
+	 * <li>Add the L2Object spawn to _visibleObjects of its L2WorldRegion</li>
+	 * <li>Add the L2Object spawn in the world as a <B>visible</B> object</li><BR>
 	 * <BR>
 	 * <B><U> Assert </U> :</B><BR>
 	 * <BR>
@@ -369,7 +377,8 @@ public abstract class L2Object
 	 * <BR>
 	 * <B><U> Example of use </U> :</B><BR>
 	 * <BR>
-	 * <li>Create Door</li> <li>Spawn : Monster, Minion, CTs, Summon...</li><BR>
+	 * <li>Create Door</li>
+	 * <li>Spawn : Monster, Minion, CTs, Summon...</li><BR>
 	 */
 	public final void spawnMe()
 	{

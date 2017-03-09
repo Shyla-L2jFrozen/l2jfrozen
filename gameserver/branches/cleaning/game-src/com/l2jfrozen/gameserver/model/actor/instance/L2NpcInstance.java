@@ -107,7 +107,9 @@ import javolution.util.FastList;
  * <BR>
  * L2Character :<BR>
  * <BR>
- * <li>L2Attackable</li> <li>L2BoxInstance</li> <li>L2FolkInstance</li>
+ * <li>L2Attackable</li>
+ * <li>L2BoxInstance</li>
+ * <li>L2FolkInstance</li>
  * @version $Revision: 1.32.2.7.2.24 $ $Date: 2009/04/13 09:17:09 $
  * @author programmos, scoria dev
  */
@@ -339,8 +341,9 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Call the L2Character constructor to set the _template of the L2Character (copy skills from template to object and link _calculators to NPC_STD_CALCULATOR)</li> <li>Set the name of the L2Character</li> <li>Create a RandomAnimation Task that will be launched after the calculated delay if
-	 * the server allow it</li><BR>
+	 * <li>Call the L2Character constructor to set the _template of the L2Character (copy skills from template to object and link _calculators to NPC_STD_CALCULATOR)</li>
+	 * <li>Set the name of the L2Character</li>
+	 * <li>Create a RandomAnimation Task that will be launched after the calculated delay if the server allow it</li><BR>
 	 * <BR>
 	 * @param objectId Identifier of the object to initialized
 	 * @param template The L2NpcTemplate to apply to the NPC
@@ -534,7 +537,10 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Values </U> :</B><BR>
 	 * <BR>
-	 * <li>object is a L2FolkInstance : 0 (don't remember it)</li> <li>object is a L2Character : 0 (don't remember it)</li> <li>object is a L2PlayableInstance : 1500</li> <li>others : 500</li><BR>
+	 * <li>object is a L2FolkInstance : 0 (don't remember it)</li>
+	 * <li>object is a L2Character : 0 (don't remember it)</li>
+	 * <li>object is a L2PlayableInstance : 1500</li>
+	 * <li>others : 500</li><BR>
 	 * <BR>
 	 * <B><U> Overriden in </U> :</B><BR>
 	 * <BR>
@@ -562,7 +568,10 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Values </U> :</B><BR>
 	 * <BR>
-	 * <li>object is not a L2Character : 0 (don't remember it)</li> <li>object is a L2FolkInstance : 0 (don't remember it)</li> <li>object is a L2PlayableInstance : 3000</li> <li>others : 1000</li><BR>
+	 * <li>object is not a L2Character : 0 (don't remember it)</li>
+	 * <li>object is a L2FolkInstance : 0 (don't remember it)</li>
+	 * <li>object is a L2PlayableInstance : 3000</li>
+	 * <li>others : 1000</li><BR>
 	 * <BR>
 	 * <B><U> Overriden in </U> :</B><BR>
 	 * <BR>
@@ -581,7 +590,8 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Overriden in </U> :</B><BR>
 	 * <BR>
-	 * <li>L2MonsterInstance : Check if the attacker is not another L2MonsterInstance</li> <li>L2PcInstance</li><BR>
+	 * <li>L2MonsterInstance : Check if the attacker is not another L2MonsterInstance</li>
+	 * <li>L2PcInstance</li><BR>
 	 * <BR>
 	 * @param attacker the attacker
 	 * @return true, if is auto attackable
@@ -730,13 +740,16 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Actions on first click on the L2NpcInstance (Select it)</U> :</B><BR>
 	 * <BR>
-	 * <li>Set the L2NpcInstance as target of the L2PcInstance player (if necessary)</li> <li>Send a Server->Client packet MyTargetSelected to the L2PcInstance player (display the select window)</li> <li>If L2NpcInstance is autoAttackable, send a Server->Client packet StatusUpdate to the
-	 * L2PcInstance in order to update L2NpcInstance HP bar</li> <li>Send a Server->Client packet ValidateLocation to correct the L2NpcInstance position and heading on the client</li><BR>
+	 * <li>Set the L2NpcInstance as target of the L2PcInstance player (if necessary)</li>
+	 * <li>Send a Server->Client packet MyTargetSelected to the L2PcInstance player (display the select window)</li>
+	 * <li>If L2NpcInstance is autoAttackable, send a Server->Client packet StatusUpdate to the L2PcInstance in order to update L2NpcInstance HP bar</li>
+	 * <li>Send a Server->Client packet ValidateLocation to correct the L2NpcInstance position and heading on the client</li><BR>
 	 * <BR>
 	 * <B><U> Actions on second click on the L2NpcInstance (Attack it/Intercat with it)</U> :</B><BR>
 	 * <BR>
-	 * <li>Send a Server->Client packet MyTargetSelected to the L2PcInstance player (display the select window)</li> <li>If L2NpcInstance is autoAttackable, notify the L2PcInstance AI with AI_INTENTION_ATTACK (after a height verification)</li> <li>If L2NpcInstance is NOT autoAttackable, notify the
-	 * L2PcInstance AI with AI_INTENTION_INTERACT (after a distance verification) and show message</li><BR>
+	 * <li>Send a Server->Client packet MyTargetSelected to the L2PcInstance player (display the select window)</li>
+	 * <li>If L2NpcInstance is autoAttackable, notify the L2PcInstance AI with AI_INTENTION_ATTACK (after a height verification)</li>
+	 * <li>If L2NpcInstance is NOT autoAttackable, notify the L2PcInstance AI with AI_INTENTION_INTERACT (after a distance verification) and show message</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : Each group of Server->Client packet must be terminated by a ActionFailed packet in order to avoid that client wait an other packet</B></FONT><BR>
 	 * <BR>
@@ -907,8 +920,10 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Actions (If the L2PcInstance is a GM only)</U> :</B><BR>
 	 * <BR>
-	 * <li>Set the L2NpcInstance as target of the L2PcInstance player (if necessary)</li> <li>Send a Server->Client packet MyTargetSelected to the L2PcInstance player (display the select window)</li> <li>If L2NpcInstance is autoAttackable, send a Server->Client packet StatusUpdate to the
-	 * L2PcInstance in order to update L2NpcInstance HP bar</li> <li>Send a Server->Client NpcHtmlMessage() containing the GM console about this L2NpcInstance</li><BR>
+	 * <li>Set the L2NpcInstance as target of the L2PcInstance player (if necessary)</li>
+	 * <li>Send a Server->Client packet MyTargetSelected to the L2PcInstance player (display the select window)</li>
+	 * <li>If L2NpcInstance is autoAttackable, send a Server->Client packet StatusUpdate to the L2PcInstance in order to update L2NpcInstance HP bar</li>
+	 * <li>Send a Server->Client NpcHtmlMessage() containing the GM console about this L2NpcInstance</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : Each group of Server->Client packet must be terminated by a ActionFailed packet in order to avoid that client wait an other packet</B></FONT><BR>
 	 * <BR>
@@ -1791,7 +1806,7 @@ public class L2NpcInstance extends L2Character
 	{
 		if (player == null)
 			return;
-		
+			
 		// Blessing of protection - author eX1steam.
 		// Prevent a cursed weapon weilder of being buffed - I think no need of that becouse karma check > 0
 		if (player.isCursedWeaponEquiped())
@@ -1869,8 +1884,9 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Format of the pathfile </U> :</B><BR>
 	 * <BR>
-	 * <li>if the file exists on the server (page number = 0) : <B>data/html/default/12006.htm</B> (npcId-page number)</li> <li>if the file exists on the server (page number > 0) : <B>data/html/default/12006-1.htm</B> (npcId-page number)</li> <li>if the file doesn't exist on the server :
-	 * <B>data/html/npcdefault.htm</B> (message : "I have nothing to say to you")</li><BR>
+	 * <li>if the file exists on the server (page number = 0) : <B>data/html/default/12006.htm</B> (npcId-page number)</li>
+	 * <li>if the file exists on the server (page number > 0) : <B>data/html/default/12006-1.htm</B> (npcId-page number)</li>
+	 * <li>if the file doesn't exist on the server : <B>data/html/npcdefault.htm</B> (message : "I have nothing to say to you")</li><BR>
 	 * <BR>
 	 * <B><U> Overriden in </U> :</B><BR>
 	 * <BR>
@@ -1970,8 +1986,9 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Get the text of the quest state in the folder data/scripts/quests/questId/stateId.htm</li> <li>Send a Server->Client NpcHtmlMessage containing the text of the L2NpcInstance to the L2PcInstance</li> <li>Send a Server->Client ActionFailed to the L2PcInstance in order to avoid that the
-	 * client wait another packet</li><BR>
+	 * <li>Get the text of the quest state in the folder data/scripts/quests/questId/stateId.htm</li>
+	 * <li>Send a Server->Client NpcHtmlMessage containing the text of the L2NpcInstance to the L2PcInstance</li>
+	 * <li>Send a Server->Client ActionFailed to the L2PcInstance in order to avoid that the client wait another packet</li><BR>
 	 * <BR>
 	 * @param player The L2PcInstance that talk with the L2NpcInstance
 	 * @param questId The Identifier of the quest to display the message
@@ -1993,8 +2010,9 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Get the text of the quest state in the folder data/scripts/quests/questId/stateId.htm</li> <li>Send a Server->Client NpcHtmlMessage containing the text of the L2Npc to the L2PcInstance</li> <li>Send a Server->Client ActionFailed to the L2PcInstance in order to avoid that the client wait
-	 * another packet</li><BR>
+	 * <li>Get the text of the quest state in the folder data/scripts/quests/questId/stateId.htm</li>
+	 * <li>Send a Server->Client NpcHtmlMessage containing the text of the L2Npc to the L2PcInstance</li>
+	 * <li>Send a Server->Client ActionFailed to the L2PcInstance in order to avoid that the client wait another packet</li><BR>
 	 * <BR>
 	 * @param player The L2PcInstance that talk with the L2Npc
 	 * @param questId The Identifier of the quest to display the message
@@ -2135,8 +2153,9 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Get the text of the selected HTML file in function of the npcId and of the page number</li> <li>Send a Server->Client NpcHtmlMessage containing the text of the L2NpcInstance to the L2PcInstance</li> <li>Send a Server->Client ActionFailed to the L2PcInstance in order to avoid that the
-	 * client wait another packet</li><BR>
+	 * <li>Get the text of the selected HTML file in function of the npcId and of the page number</li>
+	 * <li>Send a Server->Client NpcHtmlMessage containing the text of the L2NpcInstance to the L2PcInstance</li>
+	 * <li>Send a Server->Client ActionFailed to the L2PcInstance in order to avoid that the client wait another packet</li><BR>
 	 * @param player The L2PcInstance that talk with the L2NpcInstance
 	 * @param val The number of the page of the L2NpcInstance to display
 	 */
@@ -2430,7 +2449,9 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Get the range level in wich player must be to obtain buff</li> <li>If player level is out of range, display a message and return</li> <li>According to player level cast buff</li><BR>
+	 * <li>Get the range level in wich player must be to obtain buff</li>
+	 * <li>If player level is out of range, display a message and return</li>
+	 * <li>According to player level cast buff</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> Newbie Helper Buff list is define in sql table helper_buff_list</B></FONT><BR>
 	 * <BR>
@@ -2551,8 +2572,9 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Get the text of the selected HTML file in function of the npcId and of the page number</li> <li>Send a Server->Client NpcHtmlMessage containing the text of the L2NpcInstance to the L2PcInstance</li> <li>Send a Server->Client ActionFailed to the L2PcInstance in order to avoid that the
-	 * client wait another packet</li><BR>
+	 * <li>Get the text of the selected HTML file in function of the npcId and of the page number</li>
+	 * <li>Send a Server->Client NpcHtmlMessage containing the text of the L2NpcInstance to the L2PcInstance</li>
+	 * <li>Send a Server->Client ActionFailed to the L2PcInstance in order to avoid that the client wait another packet</li><BR>
 	 * @param player The L2PcInstance that talk with the L2NpcInstance
 	 * @param val The number of the page of the L2NpcInstance to display
 	 */
@@ -3043,8 +3065,13 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Create a DecayTask to remove the corpse of the L2NpcInstance after 7 seconds</li> <li>Set target to null and cancel Attack or Cast</li> <li>Stop movement</li> <li>Stop HP/MP/CP Regeneration task</li> <li>Stop all active skills effects in progress on the L2Character</li> <li>Send the
-	 * Server->Client packet StatusUpdate with current HP and MP to all other L2PcInstance to inform</li> <li>Notify L2Character AI</li><BR>
+	 * <li>Create a DecayTask to remove the corpse of the L2NpcInstance after 7 seconds</li>
+	 * <li>Set target to null and cancel Attack or Cast</li>
+	 * <li>Stop movement</li>
+	 * <li>Stop HP/MP/CP Regeneration task</li>
+	 * <li>Stop all active skills effects in progress on the L2Character</li>
+	 * <li>Send the Server->Client packet StatusUpdate with current HP and MP to all other L2PcInstance to inform</li>
+	 * <li>Notify L2Character AI</li><BR>
 	 * <BR>
 	 * <B><U> Overriden in </U> :</B><BR>
 	 * <BR>
@@ -3058,7 +3085,7 @@ public class L2NpcInstance extends L2Character
 	{
 		if (!super.doDie(killer))
 			return false;
-		
+			
 		// normally this wouldn't really be needed, but for those few exceptions,
 		// we do need to reset the weapons back to the initial templated weapon.
 		_currentLHandId = getTemplate().lhand;
@@ -3092,7 +3119,9 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Remove the L2NpcInstance from the world when the decay task is launched</li> <li>Decrease its spawn counter</li> <li>Manage Siege task (killFlag, killCT)</li><BR>
+	 * <li>Remove the L2NpcInstance from the world when the decay task is launched</li>
+	 * <li>Decrease its spawn counter</li>
+	 * <li>Manage Siege task (killFlag, killCT)</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T REMOVE the object from _allObjects of L2World </B></FONT><BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T SEND Server->Client packets to players</B></FONT><BR>
@@ -3126,7 +3155,9 @@ public class L2NpcInstance extends L2Character
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Remove the L2NpcInstance from the world and update its spawn object</li> <li>Remove all L2Object from _knownObjects and _knownPlayer of the L2NpcInstance then cancel Attak or Cast and notify AI</li> <li>Remove L2Object object from _allObjects of L2World</li><BR>
+	 * <li>Remove the L2NpcInstance from the world and update its spawn object</li>
+	 * <li>Remove all L2Object from _knownObjects and _knownPlayer of the L2NpcInstance then cancel Attak or Cast and notify AI</li>
+	 * <li>Remove L2Object object from _allObjects of L2World</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T SEND Server->Client packets to players</B></FONT><BR>
 	 * <BR>

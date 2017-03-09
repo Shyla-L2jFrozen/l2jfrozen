@@ -89,17 +89,9 @@ public class L2BossZone extends L2ZoneType
 	
 	@Override
 	/**
-	 * Boss zones have special behaviors for player characters. Players are
-	 * automatically teleported out when the attempt to enter these zones,
-	 * except if the time at which they enter the zone is prior to the entry
-	 * expiration time set for that player. Entry expiration times are set by
-	 * any one of the following: 1) A player logs out while in a zone
-	 * (Expiration gets set to logoutTime + _timeInvade) 2) An external source
-	 * (such as a quest or AI of NPC) set up the player for entry.
-	 * 
-	 * There exists one more case in which the player will be allowed to enter.
-	 * That is if the server recently rebooted (boot-up time more recent than
-	 * currentTime - _timeInvade) AND the player was in the zone prior to reboot.
+	 * Boss zones have special behaviors for player characters. Players are automatically teleported out when the attempt to enter these zones, except if the time at which they enter the zone is prior to the entry expiration time set for that player. Entry expiration times are set by any one of the
+	 * following: 1) A player logs out while in a zone (Expiration gets set to logoutTime + _timeInvade) 2) An external source (such as a quest or AI of NPC) set up the player for entry. There exists one more case in which the player will be allowed to enter. That is if the server recently rebooted
+	 * (boot-up time more recent than currentTime - _timeInvade) AND the player was in the zone prior to reboot.
 	 */
 	protected void onEnter(final L2Character character)
 	{

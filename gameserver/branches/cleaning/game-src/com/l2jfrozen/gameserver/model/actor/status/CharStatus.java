@@ -339,7 +339,8 @@ public class CharStatus
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Calculate the regen task period</li> <li>Launch the HP/MP/CP Regeneration task with Medium priority</li><BR>
+	 * <li>Calculate the regen task period</li>
+	 * <li>Launch the HP/MP/CP Regeneration task with Medium priority</li><BR>
 	 * <BR>
 	 */
 	public synchronized final void startHpMpRegeneration()
@@ -364,7 +365,8 @@ public class CharStatus
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Set the RegenActive flag to False</li> <li>Stop the HP/MP/CP Regeneration task</li><BR>
+	 * <li>Set the RegenActive flag to False</li>
+	 * <li>Stop the HP/MP/CP Regeneration task</li><BR>
 	 * <BR>
 	 */
 	public synchronized final void stopHpMpRegeneration()

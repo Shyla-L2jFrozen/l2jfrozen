@@ -137,7 +137,7 @@ public class AdminNoble implements IAdminCommandHandler
 			// ----------------
 			if (player == null)
 				return;
-			
+				
 			// Database Connection
 			// --------------------------------
 			con = L2DatabaseFactory.getInstance().getConnection(false);

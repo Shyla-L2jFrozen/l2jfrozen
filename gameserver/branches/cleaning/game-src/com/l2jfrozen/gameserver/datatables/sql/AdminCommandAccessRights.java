@@ -37,13 +37,19 @@ import javolution.util.FastMap;
  */
 public class AdminCommandAccessRights
 {
-	/** The logger<br> */
+	/**
+	 * The logger<br>
+	 */
 	protected static final Logger LOGGER = Logger.getLogger(AdminCommandAccessRights.class);
 	
-	/** The one and only instance of this class, retriveable by getInstance()<br> */
+	/**
+	 * The one and only instance of this class, retriveable by getInstance()<br>
+	 */
 	private static AdminCommandAccessRights _instance = null;
 	
-	/** The access rights<br> */
+	/**
+	 * The access rights<br>
+	 */
 	private final Map<String, Integer> adminCommandAccessRights = new FastMap<>();
 	
 	/**

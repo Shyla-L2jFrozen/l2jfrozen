@@ -83,7 +83,7 @@ public class Manadam implements ISkillHandler
 				if (damage > 0)
 					if (target.isSleeping())
 						target.stopSleeping(null);
-				
+					
 				StatusUpdate sump = new StatusUpdate(target.getObjectId());
 				sump.addAttribute(StatusUpdate.CUR_MP, (int) target.getCurrentMp());
 				target.sendPacket(sump);

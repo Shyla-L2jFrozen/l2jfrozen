@@ -38,18 +38,26 @@ import javolution.util.FastMap;
 public class AccessLevels
 {
 	private static final Logger LOGGER = Logger.getLogger(AccessLevels.class);
-	/** The one and only instance of this class, retriveable by getInstance()<br> */
+	/**
+	 * The one and only instance of this class, retriveable by getInstance()<br>
+	 */
 	private static AccessLevels _instance = null;
-	/** Reserved master access level<br> */
+	/**
+	 * Reserved master access level<br>
+	 */
 	// public static final int _masterAccessLevelNum = Config.MASTERACCESS_LEVEL;
-	/** The master access level which can use everything<br> */
+	/**
+	 * The master access level which can use everything<br>
+	 */
 	
 	// L2EMU_EDIT - Rayan -
 	public AccessLevel _masterAccessLevel;/*
-										 * = new AccessLevel(_masterAccessLevelNum, "Master Access", Config.MASTERACCESS_NAME_COLOR, Config.MASTERACCESS_TITLE_COLOR, true, true, true, true, true, true, true, true, true, true, true); //L2EMU_EDIT /** Reserved user access level<br>
-										 */
+											 * = new AccessLevel(_masterAccessLevelNum, "Master Access", Config.MASTERACCESS_NAME_COLOR, Config.MASTERACCESS_TITLE_COLOR, true, true, true, true, true, true, true, true, true, true, true); //L2EMU_EDIT /** Reserved user access level<br>
+											 */
 	// public static final int _userAccessLevelNum = 0;
-	/** The user access level which can do no administrative tasks<br> */
+	/**
+	 * The user access level which can do no administrative tasks<br>
+	 */
 	
 	// L2EMU_EDIT - Rayan -
 	public AccessLevel _userAccessLevel;/*
@@ -204,7 +212,7 @@ public class AccessLevels
 	 * Returns the access level by characterAccessLevel<br>
 	 * <br>
 	 * @param accessLevelNum as int<br>
-	 * <br>
+	 *            <br>
 	 * @return AccessLevel: AccessLevel instance by char access level<br>
 	 */
 	public AccessLevel getAccessLevel(final int accessLevelNum)

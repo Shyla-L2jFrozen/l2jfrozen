@@ -666,7 +666,7 @@ public class L2Party
 		// Avoid null exceptions, if any
 		if (ToReward.isEmpty())
 			return;
-		
+			
 		// Now we can actually distribute the adena reward
 		// (Total adena split by the number of party members that are in range and must be rewarded)
 		final int count = adena / ToReward.size();
@@ -683,7 +683,9 @@ public class L2Party
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Get the L2PcInstance owner of the L2SummonInstance (if necessary)</li> <li>Calculate the Experience and SP reward distribution rate</li> <li>Add Experience and SP to the L2PcInstance</li><BR>
+	 * <li>Get the L2PcInstance owner of the L2SummonInstance (if necessary)</li>
+	 * <li>Calculate the Experience and SP reward distribution rate</li>
+	 * <li>Add Experience and SP to the L2PcInstance</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T GIVE rewards to L2PetInstance</B></FONT><BR>
 	 * <BR>

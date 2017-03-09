@@ -111,7 +111,7 @@ public class PcFreight extends ItemContainer
 		for (final L2ItemInstance item : _items)
 			if (item.getItemId() == itemId && (item.getEquipSlot() == 0 || _activeLocationId == 0 || item.getEquipSlot() == _activeLocationId))
 				return item;
-		
+			
 		return null;
 	}
 	

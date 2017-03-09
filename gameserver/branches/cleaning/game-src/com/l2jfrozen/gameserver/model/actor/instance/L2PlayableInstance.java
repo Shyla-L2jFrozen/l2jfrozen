@@ -33,7 +33,8 @@ import com.l2jfrozen.gameserver.templates.L2CharTemplate;
  * <BR>
  * L2PlayableInstance :<BR>
  * <BR>
- * <li>L2PcInstance</li> <li>L2Summon</li><BR>
+ * <li>L2PcInstance</li>
+ * <li>L2Summon</li><BR>
  */
 public abstract class L2PlayableInstance extends L2Character
 {

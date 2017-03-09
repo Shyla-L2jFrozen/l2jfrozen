@@ -134,7 +134,8 @@ public class ObjectPosition
 	 * <BR>
 	 * <B><U> Example of use </U> :</B><BR>
 	 * <BR>
-	 * <li>Create a Door</li> <li>Restore L2PcInstance</li><BR>
+	 * <li>Create a Door</li>
+	 * <li>Restore L2PcInstance</li><BR>
 	 * @param x the x
 	 * @param y the y
 	 * @param z the z

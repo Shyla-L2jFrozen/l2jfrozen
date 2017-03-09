@@ -1447,8 +1447,17 @@ public abstract class L2Skill
 	 * <BR>
 	 * <B><U> Values of skill type</U> :</B><BR>
 	 * <BR>
-	 * <li>ONE : The skill can only be used on the L2PcInstance targeted, or on the caster if it's a L2PcInstance and no L2PcInstance targeted</li> <li>SELF</li> <li>HOLY, UNDEAD</li> <li>PET</li> <li>AURA, AURA_CLOSE</li> <li>AREA</li> <li>MULTIFACE</li> <li>PARTY, CLAN</li> <li>CORPSE_PLAYER,
-	 * CORPSE_MOB, CORPSE_CLAN</li> <li>UNLOCKABLE</li> <li>ITEM</li><BR>
+	 * <li>ONE : The skill can only be used on the L2PcInstance targeted, or on the caster if it's a L2PcInstance and no L2PcInstance targeted</li>
+	 * <li>SELF</li>
+	 * <li>HOLY, UNDEAD</li>
+	 * <li>PET</li>
+	 * <li>AURA, AURA_CLOSE</li>
+	 * <li>AREA</li>
+	 * <li>MULTIFACE</li>
+	 * <li>PARTY, CLAN</li>
+	 * <li>CORPSE_PLAYER, CORPSE_MOB, CORPSE_CLAN</li>
+	 * <li>UNLOCKABLE</li>
+	 * <li>ITEM</li><BR>
 	 * <BR>
 	 * @param activeChar The L2Character who use the skill
 	 * @param onlyFirst
@@ -1459,7 +1468,7 @@ public abstract class L2Skill
 	{
 		if (activeChar instanceof L2PcInstance)
 		{ // to avoid attacks during oly start period
-		
+			
 			if (isOffensive() && (((L2PcInstance) activeChar).isInOlympiadMode() && !((L2PcInstance) activeChar).isOlympiadStart()))
 			{
 				activeChar.sendPacket(new SystemMessage(SystemMessageId.TARGET_IS_INCORRECT));
@@ -1490,7 +1499,7 @@ public abstract class L2Skill
 		
 		switch (targetType)
 		{
-		// The skill can only be used on the L2Character targeted, or on the caster itself
+			// The skill can only be used on the L2Character targeted, or on the caster itself
 			case TARGET_ONE:
 			{
 				boolean canTargetSelf = false;
@@ -1798,7 +1807,7 @@ public abstract class L2Skill
 			{
 				// Like L2OFF players can use TARGET_AREA skills on NPC in peacezone
 				if (!(target instanceof L2Attackable || target instanceof L2PlayableInstance || target instanceof L2NpcInstance) || // Target is not L2Attackable or L2PlayableInstance or L2NpcInstance
-				getCastRange() >= 0 && (target == activeChar || target.isAlikeDead())) // target is null or self or dead/faking
+					getCastRange() >= 0 && (target == activeChar || target.isAlikeDead())) // target is null or self or dead/faking
 				{
 					activeChar.sendPacket(new SystemMessage(SystemMessageId.TARGET_IS_INCORRECT));
 					return null;
@@ -2003,7 +2012,7 @@ public abstract class L2Skill
 						// Skill user is not L2PlayableInstance
 						{
 							if (effectOriginIsL2PlayableInstance && // If effect starts at L2PlayableInstance and
-							!(obj instanceof L2PlayableInstance))
+								!(obj instanceof L2PlayableInstance))
 							{
 								continue;
 							}
@@ -2314,7 +2323,7 @@ public abstract class L2Skill
 							}
 							else
 							{ // check if clan is not the same --> continue
-							
+								
 								if (player.getClanId() != playerTarget.getClanId())
 									continue;
 								
@@ -3311,7 +3320,7 @@ public abstract class L2Skill
 			
 			if (activeCh.isInDuel() && targetChar.isInDuel() && activeCh.getDuelId() == targetChar.getDuelId())
 				return false;
-			
+				
 			// if src is in event and trg not OR viceversa, the target must be not attackable
 			// to be fixed for mixed events status (in TvT joining phase, someone can attack a partecipating CTF player with area attack)
 			if (((activeCh._inEvent || activeCh._inEventCTF || activeCh._inEventDM || activeCh._inEventTvT || activeCh._inEventVIP) && (!targetChar._inEvent && !targetChar._inEventCTF && !targetChar._inEventDM && !targetChar._inEventTvT && !targetChar._inEventVIP)) || ((targetChar._inEvent || targetChar._inEventCTF || targetChar._inEventDM || targetChar._inEventTvT || targetChar._inEventVIP) && (!activeCh._inEvent && !activeCh._inEventCTF && !activeCh._inEventDM && !activeCh._inEventTvT && !activeCh._inEventVIP)))
@@ -3326,10 +3335,10 @@ public abstract class L2Skill
 			}
 			
 			if (activeCh.getParty() != null && targetChar.getParty() != null && // Is in the same party???
-			activeCh.getParty().getPartyLeaderOID() == targetChar.getParty().getPartyLeaderOID())
+				activeCh.getParty().getPartyLeaderOID() == targetChar.getParty().getPartyLeaderOID())
 				return true;
 			if (activeCh.getClan() != null && targetChar.getClan() != null && // Is in the same clan???
-			activeCh.getClan().getClanId() == targetChar.getClan().getClanId())
+				activeCh.getClan().getClanId() == targetChar.getClan().getClanId())
 				return true;
 			targetChar = null;
 			activeCh = null;

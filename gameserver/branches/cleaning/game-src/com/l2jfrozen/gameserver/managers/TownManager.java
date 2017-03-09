@@ -237,7 +237,7 @@ public class TownManager
 		for (final L2TownZone temp : _towns)
 			if (temp.getTownId() == townId)
 				return temp;
-		
+			
 		return null;
 	}
 	
@@ -253,7 +253,7 @@ public class TownManager
 		for (final L2TownZone temp : _towns)
 			if (temp.isInsideZone(x, y, z))
 				return temp;
-		
+			
 		return null;
 	}
 }

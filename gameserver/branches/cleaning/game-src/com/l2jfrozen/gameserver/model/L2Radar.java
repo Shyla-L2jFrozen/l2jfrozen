@@ -80,15 +80,6 @@ public final class L2Radar
 		// Simple class to model radar points.
 		public int _type, _x, _y, _z;
 		
-		@SuppressWarnings("unused")
-		public RadarMarker(final int type, final int x, final int y, final int z)
-		{
-			_type = type;
-			_x = x;
-			_y = y;
-			_z = z;
-		}
-		
 		public RadarMarker(final int x, final int y, final int z)
 		{
 			_type = 1;

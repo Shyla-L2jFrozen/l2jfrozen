@@ -30,7 +30,7 @@ public class CharacterSelected extends L2GameClientPacket
 	private static Logger LOGGER = Logger.getLogger(CharacterSelected.class);
 	private int _charSlot;
 	private int _unk1, _unk2, _unk3, _unk4; // new in C4
-		
+	
 	@Override
 	protected void readImpl()
 	{

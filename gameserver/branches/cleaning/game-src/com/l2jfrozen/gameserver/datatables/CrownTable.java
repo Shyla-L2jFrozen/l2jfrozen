@@ -56,7 +56,7 @@ public class CrownTable
 		int CrownId = 0;
 		switch (CastleId)
 		{
-		// Gludio
+			// Gludio
 			case 1:
 				CrownId = 6838;
 				break;

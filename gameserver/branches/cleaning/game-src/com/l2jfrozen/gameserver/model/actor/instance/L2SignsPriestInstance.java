@@ -618,7 +618,7 @@ public class L2SignsPriestInstance extends L2FolkInstance
 					
 					showChatWindow(player, val, null, false);
 					break;
-			
+				
 			}
 			sm = null;
 			iu = null;
@@ -639,7 +639,7 @@ public class L2SignsPriestInstance extends L2FolkInstance
 		// The player is not in a clan, so return false.
 		if (playerClan == null)
 			return false;
-		
+			
 		// If castle ownage check is clan-based rather than ally-based,
 		// check if the player's clan has a castle and return the result.
 		if (!Config.ALT_GAME_REQUIRE_CLAN_CASTLE)
@@ -656,7 +656,7 @@ public class L2SignsPriestInstance extends L2FolkInstance
 				for (final L2Clan clan : clanList)
 					if (clan.getAllyId() == allyId && clan.getHasCastle() > 0)
 						return true;
-				
+					
 				clanList = null;
 			}
 		}

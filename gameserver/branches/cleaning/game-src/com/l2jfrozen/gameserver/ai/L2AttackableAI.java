@@ -108,21 +108,33 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 	 * <BR>
 	 * <B><U> Actor is a L2GuardInstance</U> :</B><BR>
 	 * <BR>
-	 * <li>The target isn't a Folk or a Door</li> <li>The target isn't dead, isn't invulnerable, isn't in silent moving mode AND too far (>100)</li> <li>The target is in the actor Aggro range and is at the same height</li> <li>The L2PcInstance target has karma (=PK)</li> <li>The L2MonsterInstance
-	 * target is aggressive</li><BR>
+	 * <li>The target isn't a Folk or a Door</li>
+	 * <li>The target isn't dead, isn't invulnerable, isn't in silent moving mode AND too far (>100)</li>
+	 * <li>The target is in the actor Aggro range and is at the same height</li>
+	 * <li>The L2PcInstance target has karma (=PK)</li>
+	 * <li>The L2MonsterInstance target is aggressive</li><BR>
 	 * <BR>
 	 * <B><U> Actor is a L2SiegeGuardInstance</U> :</B><BR>
 	 * <BR>
-	 * <li>The target isn't a Folk or a Door</li> <li>The target isn't dead, isn't invulnerable, isn't in silent moving mode AND too far (>100)</li> <li>The target is in the actor Aggro range and is at the same height</li> <li>A siege is in progress</li> <li>The L2PcInstance target isn't a Defender</li>
-	 * <BR>
+	 * <li>The target isn't a Folk or a Door</li>
+	 * <li>The target isn't dead, isn't invulnerable, isn't in silent moving mode AND too far (>100)</li>
+	 * <li>The target is in the actor Aggro range and is at the same height</li>
+	 * <li>A siege is in progress</li>
+	 * <li>The L2PcInstance target isn't a Defender</li> <BR>
 	 * <BR>
 	 * <B><U> Actor is a L2FriendlyMobInstance</U> :</B><BR>
 	 * <BR>
-	 * <li>The target isn't a Folk, a Door or another L2NpcInstance</li> <li>The target isn't dead, isn't invulnerable, isn't in silent moving mode AND too far (>100)</li> <li>The target is in the actor Aggro range and is at the same height</li> <li>The L2PcInstance target has karma (=PK)</li><BR>
+	 * <li>The target isn't a Folk, a Door or another L2NpcInstance</li>
+	 * <li>The target isn't dead, isn't invulnerable, isn't in silent moving mode AND too far (>100)</li>
+	 * <li>The target is in the actor Aggro range and is at the same height</li>
+	 * <li>The L2PcInstance target has karma (=PK)</li><BR>
 	 * <BR>
 	 * <B><U> Actor is a L2MonsterInstance</U> :</B><BR>
 	 * <BR>
-	 * <li>The target isn't a Folk, a Door or another L2NpcInstance</li> <li>The target isn't dead, isn't invulnerable, isn't in silent moving mode AND too far (>100)</li> <li>The target is in the actor Aggro range and is at the same height</li> <li>The actor is Aggressive</li><BR>
+	 * <li>The target isn't a Folk, a Door or another L2NpcInstance</li>
+	 * <li>The target isn't dead, isn't invulnerable, isn't in silent moving mode AND too far (>100)</li>
+	 * <li>The target is in the actor Aggro range and is at the same height</li>
+	 * <li>The actor is Aggressive</li><BR>
 	 * <BR>
 	 * @param target The targeted L2Object
 	 * @return
@@ -167,7 +179,7 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 			// if in offline mode
 			if (((L2PcInstance) target).isInOfflineMode())
 				return false;
-			
+				
 			// Check if player is an ally //TODO! [Nemesiss] it should be rather boolean or smth like that
 			// Comparing String isnt good idea!
 			if (me.getFactionId() != null && me.getFactionId().equals("varka") && ((L2PcInstance) target).isAlliedWithVarka())
@@ -219,7 +231,7 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 			if (target instanceof L2PcInstance && ((L2PcInstance) target).getKarma() > 0)
 				// Los Check
 				return GeoData.getInstance().canSeeTarget(me, target);
-			
+				
 			// if (target instanceof L2Summon)
 			// return ((L2Summon)target).getKarma() > 0;
 			// Check if the L2MonsterInstance target is aggressive
@@ -249,7 +261,7 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 			// Check if the target isn't another L2NpcInstance
 			if (target instanceof L2NpcInstance)
 				return false;
-			
+				
 			// depending on config, do not allow mobs to attack _new_ players in peacezones,
 			// unless they are already following those players from outside the peacezone.
 			if (L2Character.isInsidePeaceZone(me, target))
@@ -359,8 +371,10 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Update every 1s the _globalAggro counter to come close to 0</li> <li>If the actor is Aggressive and can attack, add all autoAttackable L2Character in its Aggro Range to its _aggroList, chose a target and order to attack it</li> <li>If the actor is a L2GuardInstance that can't attack,
-	 * order to it to return to its home location</li> <li>If the actor is a L2MonsterInstance that can't attack, order to it to random walk (1/100)</li><BR>
+	 * <li>Update every 1s the _globalAggro counter to come close to 0</li>
+	 * <li>If the actor is Aggressive and can attack, add all autoAttackable L2Character in its Aggro Range to its _aggroList, chose a target and order to attack it</li>
+	 * <li>If the actor is a L2GuardInstance that can't attack, order to it to return to its home location</li>
+	 * <li>If the actor is a L2MonsterInstance that can't attack, order to it to random walk (1/100)</li><BR>
 	 * <BR>
 	 */
 	private void thinkActive()
@@ -588,8 +602,10 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Update the attack timeout if actor is running</li> <li>If target is dead or timeout is expired, stop this attack and set the Intention to AI_INTENTION_ACTIVE</li> <li>Call all L2Object of its Faction inside the Faction Range</li> <li>Chose a target and order to attack it with magic skill
-	 * or physical attack</li><BR>
+	 * <li>Update the attack timeout if actor is running</li>
+	 * <li>If target is dead or timeout is expired, stop this attack and set the Intention to AI_INTENTION_ACTIVE</li>
+	 * <li>Call all L2Object of its Faction inside the Faction Range</li>
+	 * <li>Chose a target and order to attack it with magic skill or physical attack</li><BR>
 	 * <BR>
 	 * TODO: Manage casting rules to healer mobs (like Ant Nurses)
 	 */
@@ -1018,8 +1034,9 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Init the attack : Calculate the attack timeout, Set the _globalAggro to 0, Add the attacker to the actor _aggroList</li> <li>Set the L2Character movement type to run and send Server->Client packet ChangeMoveType to all others L2PcInstance</li> <li>Set the Intention to AI_INTENTION_ATTACK</li>
-	 * <BR>
+	 * <li>Init the attack : Calculate the attack timeout, Set the _globalAggro to 0, Add the attacker to the actor _aggroList</li>
+	 * <li>Set the L2Character movement type to run and send Server->Client packet ChangeMoveType to all others L2PcInstance</li>
+	 * <li>Set the Intention to AI_INTENTION_ATTACK</li> <BR>
 	 * <BR>
 	 * @param attacker The L2Character that attacks the actor
 	 */
@@ -1066,7 +1083,8 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Add the target to the actor _aggroList or update hate if already present</li> <li>Set the actor Intention to AI_INTENTION_ATTACK (if actor is L2GuardInstance check if it isn't too far from its home location)</li><BR>
+	 * <li>Add the target to the actor _aggroList or update hate if already present</li>
+	 * <li>Set the actor Intention to AI_INTENTION_ATTACK (if actor is L2GuardInstance check if it isn't too far from its home location)</li><BR>
 	 * <BR>
 	 * @param target the L2Character that attacks
 	 * @param aggro The value of hate to add to the actor against the target

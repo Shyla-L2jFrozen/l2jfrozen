@@ -98,8 +98,8 @@ public final class ValidatePosition extends L2GameClientPacket
 		 * { final int geoZ = GeoData.getInstance().getHeight(realX, realY, realZ); if((_z - geoZ) > 0) { activeChar.setXYZ(realX, realY, _z); } if(Config.FALL_DAMAGE) { activeChar.isFalling((int)dz); } } else if(activeChar.isMoving() && diffSq > activeChar.getStat().getMoveSpeed()) {
 		 * activeChar.broadcastPacket(new CharMoveToLocation(activeChar)); } } activeChar.broadcastPacket(new ValidateLocation(activeChar)); } } activeChar.setLastClientPosition(_x, _y, _z); activeChar.setLastServerPosition(activeChar.getX(), activeChar.getY(), activeChar.getZ()); } else
 		 * if(Config.COORD_SYNCHRONIZE == -1) { if(diffSq < 250000){ if(MathLib.abs(dz) < 500){ activeChar.setXYZ(realX, realY, realZ); }else{ int geoZ = GeoData.getInstance().getHeight(realX, realY, realZ); if(MathLib.abs(_z - geoZ) > 0) //client Z is higher then GeoZ --> falling? {
-		 * activeChar.setXYZ(realX, realY, _z); } } //activeChar.setXYZ(realX, realY, _z); } if(CommonConfig.DEBUG) { int realHeading = activeChar.getHeading(); LOGGER.fine("client pos: " + _x + " " + _y + " " + _z + " head " + _heading); LOGGER.fine("server pos: " + realX + " " + realY + " " + realZ +
-		 * " head " + realHeading); } }
+		 * activeChar.setXYZ(realX, realY, _z); } } //activeChar.setXYZ(realX, realY, _z); } if(CommonConfig.DEBUG) { int realHeading = activeChar.getHeading(); LOGGER.fine("client pos: " + _x + " " + _y + " " + _z + " head " + _heading); LOGGER.fine("server pos: " + realX + " " + realY + " " +
+		 * realZ + " head " + realHeading); } }
 		 */
 		
 		if (CommonConfig.DEBUG)
@@ -115,7 +115,7 @@ public final class ValidatePosition extends L2GameClientPacket
 		// COORD Client<-->Server synchronization
 		switch (Config.COORD_SYNCHRONIZE)
 		{
-		
+			
 			case 1:
 			{ // full synchronization Client --> Server
 				// only * using this option it is difficult
@@ -146,7 +146,7 @@ public final class ValidatePosition extends L2GameClientPacket
 				break;
 			case 2:
 			{ // full synchronization Server --> Client (bounces for validation)
-			
+				
 				if (Config.GEODATA > 0 && (diffSq > 250000 || Math.abs(dz) > 200))
 				{
 					if (Math.abs(dz) > 200)
@@ -181,7 +181,7 @@ public final class ValidatePosition extends L2GameClientPacket
 				break;
 			case -1:
 			{ // just (client-->server) Z coordination
-			
+				
 				if (Math.abs(dz) > 200)
 				{
 					
@@ -201,7 +201,7 @@ public final class ValidatePosition extends L2GameClientPacket
 				finalZ = realZ;
 			}
 				break;
-		
+			
 		}
 		
 		// check water

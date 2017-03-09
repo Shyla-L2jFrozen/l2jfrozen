@@ -100,7 +100,7 @@ public abstract class ItemContainer
 		for (final L2ItemInstance item : _items)
 			if (item != null && item.getItemId() == itemId)
 				return item;
-		
+			
 		return null;
 	}
 	
@@ -116,7 +116,7 @@ public abstract class ItemContainer
 		for (final L2ItemInstance item : _items)
 			if (item != null && item.getItemId() == itemId && !item.equals(itemToIgnore))
 				return item;
-		
+			
 		return null;
 	}
 	
@@ -162,7 +162,7 @@ public abstract class ItemContainer
 				{
 					count++;
 				}
-		
+			
 		return count;
 	}
 	
@@ -320,7 +320,7 @@ public abstract class ItemContainer
 		// There is such item already in inventory
 		if (item != null)
 			return item;
-		
+			
 		// Create and Init the L2ItemInstance corresponding to the Item Identifier and quantity
 		// Add the L2ItemInstance object to _allObjects of L2world
 		item = ItemTable.getInstance().createItem(process, itemId, 1, actor, reference);

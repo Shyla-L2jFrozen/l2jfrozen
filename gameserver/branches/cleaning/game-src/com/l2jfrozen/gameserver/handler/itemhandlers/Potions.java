@@ -273,7 +273,7 @@ public class Potions implements IItemHandler
 			final int itemId = item.getItemId();
 			switch (itemId)
 			{
-			// MANA POTIONS
+				// MANA POTIONS
 				case 726: // mana drug, xml: 2003
 					if (!isEffectReplaceable(playable, L2Effect.EffectType.MANA_HEAL_OVER_TIME, itemId))
 						return;
@@ -598,7 +598,7 @@ public class Potions implements IItemHandler
 			final int itemId = item.getItemId();
 			switch (itemId)
 			{
-			// MANA POTIONS
+				// MANA POTIONS
 				case 728: // mana_potion, xml: 2005
 					usePotion(activeChar, 2005, 1);
 					break;

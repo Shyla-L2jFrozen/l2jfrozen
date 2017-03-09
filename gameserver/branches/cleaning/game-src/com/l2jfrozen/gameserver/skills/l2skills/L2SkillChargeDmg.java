@@ -100,7 +100,7 @@ public class L2SkillChargeDmg extends L2Skill
 			
 			if (target.isAlikeDead())
 				continue;
-			
+				
 			// TODO: should we use dual or not?
 			// because if so, damage are lowered but we dont do anything special with dual then
 			// like in doAttackHitByDual which in fact does the calcPhysDam call twice

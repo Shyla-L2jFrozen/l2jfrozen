@@ -425,7 +425,7 @@ public class ZoneData
 								}
 								else
 								{ // use file one
-								
+									
 									// Create this zone. Parsing for cuboids is a
 									// bit different than for other polygons
 									// cuboids need exactly 2 points to be defined.

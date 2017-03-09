@@ -501,7 +501,7 @@ public class Siege
 			}
 			
 			if (getDefenderClans().size() == 0 && // If defender doesn't exist (Pc vs Npc)
-			getAttackerClans().size() == 1) // Only 1 attacker
+				getAttackerClans().size() == 1) // Only 1 attacker
 			{
 				L2SiegeClan sc_newowner = getAttackerClan(getCastle().getOwnerId());
 				removeAttacker(sc_newowner);
@@ -1833,7 +1833,7 @@ public class Siege
 		for (final L2SiegeClan sc : getAttackerClans())
 			if (sc != null && sc.getClanId() == clanId)
 				return sc;
-		
+			
 		return null;
 	}
 	
@@ -1893,7 +1893,7 @@ public class Siege
 		for (final L2SiegeClan sc : getDefenderClans())
 			if (sc != null && sc.getClanId() == clanId)
 				return sc;
-		
+			
 		return null;
 	}
 	
@@ -1932,7 +1932,7 @@ public class Siege
 		for (final L2SiegeClan sc : getDefenderWaitingClans())
 			if (sc != null && sc.getClanId() == clanId)
 				return sc;
-		
+			
 		return null;
 	}
 	

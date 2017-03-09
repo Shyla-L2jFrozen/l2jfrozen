@@ -133,7 +133,8 @@ public final class L2World
 	 * <BR>
 	 * <B><U> Example of use </U> :</B><BR>
 	 * <BR>
-	 * <li>Withdraw an item from the warehouse, create an item</li> <li>Spawn a L2Character (PC, NPC, Pet)</li><BR>
+	 * <li>Withdraw an item from the warehouse, create an item</li>
+	 * <li>Spawn a L2Character (PC, NPC, Pet)</li><BR>
 	 * @param object the object
 	 */
 	public void storeObject(final L2Object object)
@@ -170,7 +171,9 @@ public final class L2World
 	 * <BR>
 	 * <B><U> Example of use </U> :</B><BR>
 	 * <BR>
-	 * <li>Delete item from inventory, tranfer Item from inventory to warehouse</li> <li>Crystallize item</li> <li>Remove NPC/PC/Pet from the world</li><BR>
+	 * <li>Delete item from inventory, tranfer Item from inventory to warehouse</li>
+	 * <li>Crystallize item</li>
+	 * <li>Remove NPC/PC/Pet from the world</li><BR>
 	 * @param object L2Object to remove from _allObjects of L2World
 	 */
 	public void removeObject(final L2Object object)
@@ -390,7 +393,9 @@ public final class L2World
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Add the L2Object object in _allPlayers* of L2World</li> <li>Add the L2Object object in _gmList** of GmListTable</li> <li>Add object in _knownObjects and _knownPlayer* of all surrounding L2WorldRegion L2Characters</li> <BR>
+	 * <li>Add the L2Object object in _allPlayers* of L2World</li>
+	 * <li>Add the L2Object object in _gmList** of GmListTable</li>
+	 * <li>Add object in _knownObjects and _knownPlayer* of all surrounding L2WorldRegion L2Characters</li> <BR>
 	 * <li>If object is a L2Character, add all surrounding L2Object in its _knownObjects and all surrounding L2PcInstance in its _knownPlayer</li><BR>
 	 * <I>* only if object is a L2PcInstance</I><BR>
 	 * <I>** only if object is a GM L2PcInstance</I><BR>
@@ -400,7 +405,9 @@ public final class L2World
 	 * <BR>
 	 * <B><U> Example of use </U> :</B><BR>
 	 * <BR>
-	 * <li>Drop an Item</li> <li>Spawn a L2Character</li> <li>Apply Death Penalty of a L2PcInstance</li><BR>
+	 * <li>Drop an Item</li>
+	 * <li>Spawn a L2Character</li>
+	 * <li>Apply Death Penalty of a L2PcInstance</li><BR>
 	 * <BR>
 	 * @param object L2object to add in the world
 	 * @param newRegion the new region
@@ -440,14 +447,14 @@ public final class L2World
 			final List<L2Object> visibles = getVisibleObjects(object, 2000);
 			if (CommonConfig.DEBUG)
 				LOGGER.debug("objects in range:" + visibles.size());
-			
+				
 			// tell the player about the surroundings
 			// Go through the visible objects contained in the circular area
 			for (final L2Object visible : visibles)
 			{
 				if (visible == null)
 					continue;
-				
+					
 				// Add the object in L2ObjectHashSet(L2Object) _knownObjects of the visible L2Character according to conditions :
 				// - L2Character is visible
 				// - object is not already known
@@ -548,8 +555,10 @@ public final class L2World
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Remove the L2Object object from _allPlayers* of L2World</li> <li>Remove the L2Object object from _visibleObjects and _allPlayers* of L2WorldRegion</li> <li>Remove the L2Object object from _gmList** of GmListTable</li> <li>Remove object from _knownObjects and _knownPlayer* of all
-	 * surrounding L2WorldRegion L2Characters</li><BR>
+	 * <li>Remove the L2Object object from _allPlayers* of L2World</li>
+	 * <li>Remove the L2Object object from _visibleObjects and _allPlayers* of L2WorldRegion</li>
+	 * <li>Remove the L2Object object from _gmList** of GmListTable</li>
+	 * <li>Remove object from _knownObjects and _knownPlayer* of all surrounding L2WorldRegion L2Characters</li><BR>
 	 * <li>If object is a L2Character, remove all L2Object from its _knownObjects and all L2PcInstance from its _knownPlayer</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T REMOVE the object from _allObjects of L2World</B></FONT><BR>
@@ -559,7 +568,8 @@ public final class L2World
 	 * <BR>
 	 * <B><U> Example of use </U> :</B><BR>
 	 * <BR>
-	 * <li>Pickup an Item</li> <li>Decay a L2Character</li><BR>
+	 * <li>Pickup an Item</li>
+	 * <li>Decay a L2Character</li><BR>
 	 * <BR>
 	 * @param object L2object to remove from the world
 	 * @param oldRegion the old region
@@ -696,7 +706,9 @@ public final class L2World
 	 * <BR>
 	 * <B><U> Example of use </U> :</B><BR>
 	 * <BR>
-	 * <li>Define the aggrolist of monster</li> <li>Define visible objects of a L2Object</li> <li>Skill : Confusion...</li> <BR>
+	 * <li>Define the aggrolist of monster</li>
+	 * <li>Define visible objects of a L2Object</li>
+	 * <li>Skill : Confusion...</li> <BR>
 	 * @param object L2object that determine the center of the circular area
 	 * @param radius Radius of the circular area
 	 * @return the visible objects
@@ -771,7 +783,8 @@ public final class L2World
 	 * <BR>
 	 * <B><U> Example of use </U> :</B><BR>
 	 * <BR>
-	 * <li>Define the target list of a skill</li> <li>Define the target list of a polearme attack</li><BR>
+	 * <li>Define the target list of a skill</li>
+	 * <li>Define the target list of a polearme attack</li><BR>
 	 * <BR>
 	 * @param object L2object that determine the center of the circular area
 	 * @param radius Radius of the spheric area
@@ -904,7 +917,8 @@ public final class L2World
 	 * <BR>
 	 * <B><U> Example of use </U> :</B><BR>
 	 * <BR>
-	 * <li>Set position of a new L2Object (drop, spawn...)</li> <li>Update position of a L2Object after a mouvement</li><BR>
+	 * <li>Set position of a new L2Object (drop, spawn...)</li>
+	 * <li>Update position of a L2Object after a mouvement</li><BR>
 	 * @param point the point
 	 * @return the region
 	 */

@@ -61,7 +61,7 @@ public class VIP
 											// Dark = 3
 											// Orc = 4
 											// Dwarf = 5
-		
+	
 	public static boolean _started = false, _joining = false, _inProgress = true, _sitForced = false;
 	
 	public static L2Spawn _endSpawn, _joinSpawn;

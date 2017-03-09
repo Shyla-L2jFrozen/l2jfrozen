@@ -67,10 +67,10 @@ public class SellList extends L2GameServerPacket
 			for (final L2ItemInstance item : _activeChar.getInventory().getItems())
 			{
 				if (item != null && !item.isEquipped() && // Not equipped
-				item.getItem().isSellable() && // Item is sellable
-				item.getItem().getItemId() != 57 && // Adena is not sellable
-				(_activeChar.getPet() == null || // Pet not summoned or
-				item.getObjectId() != _activeChar.getPet().getControlItemId())) // Pet is summoned and not the item that summoned the pet
+					item.getItem().isSellable() && // Item is sellable
+					item.getItem().getItemId() != 57 && // Adena is not sellable
+					(_activeChar.getPet() == null || // Pet not summoned or
+						item.getObjectId() != _activeChar.getPet().getControlItemId())) // Pet is summoned and not the item that summoned the pet
 				{
 					_selllist.add(item);
 					if (CommonConfig.DEBUG)

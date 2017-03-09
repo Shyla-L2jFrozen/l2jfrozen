@@ -54,7 +54,7 @@ public class ScriptEngine
 			{
 				if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 					e.printStackTrace();
-				
+					
 				// We'll throw an exception to indicate that
 				// the shape could not be created
 				throw new ParserNotCreatedException();

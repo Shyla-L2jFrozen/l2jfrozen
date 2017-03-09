@@ -79,10 +79,10 @@ public final class RequestMagicSkillUse extends L2GameClientPacket
 		if (skill != null)
 		{
 			
-			// LOGGER.fine(" [FINE] 	skill:"+skill.getName() + " level:"+skill.getLevel() + " passive:"+skill.isPassive());
-			// LOGGER.fine(" [FINE] 	range:"+skill.getCastRange()+" targettype:"+skill.getTargetType()+" optype:"+skill.getOperateType()+" power:"+skill.getPower());
-			// LOGGER.fine(" [FINE] 	reusedelay:"+skill.getReuseDelay()+" hittime:"+skill.getHitTime());
-			// LOGGER.fine(" [FINE] 	currentState:"+activeChar.getCurrentState()); //for debug
+			// LOGGER.fine(" [FINE] skill:"+skill.getName() + " level:"+skill.getLevel() + " passive:"+skill.isPassive());
+			// LOGGER.fine(" [FINE] range:"+skill.getCastRange()+" targettype:"+skill.getTargetType()+" optype:"+skill.getOperateType()+" power:"+skill.getPower());
+			// LOGGER.fine(" [FINE] reusedelay:"+skill.getReuseDelay()+" hittime:"+skill.getHitTime());
+			// LOGGER.fine(" [FINE] currentState:"+activeChar.getCurrentState()); //for debug
 			
 			// If Alternate rule Karma punishment is set to true, forbid skill Return to player with Karma
 			if (skill.getSkillType() == SkillType.RECALL && !Config.ALT_GAME_KARMA_PLAYER_CAN_TELEPORT && activeChar.getKarma() > 0)

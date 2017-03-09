@@ -123,8 +123,9 @@ public class GameTimeController
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Update the position of each L2Character</li> <li>If movement is finished, the L2Character is removed from movingObjects</li> <li>Create a task to update the _knownObject and _knowPlayers of each L2Character that finished its movement and of their already known L2Object then notify AI with
-	 * EVT_ARRIVED</li><BR>
+	 * <li>Update the position of each L2Character</li>
+	 * <li>If movement is finished, the L2Character is removed from movingObjects</li>
+	 * <li>Create a task to update the _knownObject and _knowPlayers of each L2Character that finished its movement and of their already known L2Object then notify AI with EVT_ARRIVED</li><BR>
 	 * <BR>
 	 */
 	protected synchronized void moveObjects()

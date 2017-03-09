@@ -88,25 +88,25 @@ public final class RequestPetUseItem extends L2GameClientPacket
 		if (item.isEquipable())
 		{
 			if (L2PetDataTable.isWolf(pet.getNpcId()) && // wolf
-			item.getItem().isForWolf())
+				item.getItem().isForWolf())
 			{
 				useItem(pet, item, activeChar);
 				return;
 			}
 			else if (L2PetDataTable.isHatchling(pet.getNpcId()) && // hatchlings
-			item.getItem().isForHatchling())
+				item.getItem().isForHatchling())
 			{
 				useItem(pet, item, activeChar);
 				return;
 			}
 			else if (L2PetDataTable.isStrider(pet.getNpcId()) && // striders
-			item.getItem().isForStrider())
+				item.getItem().isForStrider())
 			{
 				useItem(pet, item, activeChar);
 				return;
 			}
 			else if (L2PetDataTable.isBaby(pet.getNpcId()) && // baby pets (buffalo, cougar, kookaboora)
-			item.getItem().isForBabyPet())
+				item.getItem().isForBabyPet())
 			{
 				useItem(pet, item, activeChar);
 				return;

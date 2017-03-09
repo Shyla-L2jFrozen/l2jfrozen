@@ -98,7 +98,7 @@ public class UserInfo extends L2GameServerPacket
 		}
 		else
 		{ // critical values
-		
+			
 			writeD(-999999999);
 			writeD(-999999999);
 			writeD(-999999999);

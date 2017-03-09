@@ -348,8 +348,8 @@ public class Disablers implements ISkillHandler
 				case ERASE:
 				{
 					if (Formulas.getInstance().calcSkillSuccess(activeChar, target, skill, ss, sps, bss)
-					// Doesn't affect siege golem, wild hog cannon and Pets
-					&& !(target instanceof L2SiegeSummonInstance) && !(target instanceof L2PetInstance))
+						// Doesn't affect siege golem, wild hog cannon and Pets
+						&& !(target instanceof L2SiegeSummonInstance) && !(target instanceof L2PetInstance))
 					{
 						L2PcInstance summonOwner = null;
 						L2Summon summonPet = null;
@@ -674,7 +674,7 @@ public class Disablers implements ISkillHandler
 								}
 								Healhandler = null;
 							}
-						}// end for
+						} // end for
 						
 						for (final String stat : _negateEffectTypes)
 						{
@@ -718,12 +718,12 @@ public class Disablers implements ISkillHandler
 								}
 							}
 							
-						}// end for
-					}// end else
-				}// end case
+						} // end for
+					} // end else
+				} // end case
 			}// end switch
 			target = null;
-		}// end for
+		} // end for
 		
 		if (skill.isMagic())
 		{

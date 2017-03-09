@@ -21,17 +21,29 @@ package com.l2jfrozen.gameserver.datatables;
  */
 public class AccessLevel
 {
-	/** The logger<br> */
+	/**
+	 * The logger<br>
+	 */
 	// private final static Log LOGGER = LogFactory.getLog(AccessLevel.class);
-	/** The access level<br> */
+	/**
+	 * The access level<br>
+	 */
 	private int _accessLevel = 0;
-	/** The access level name<br> */
+	/**
+	 * The access level name<br>
+	 */
 	private String _name = null;
-	/** The name color for the access level<br> */
+	/**
+	 * The name color for the access level<br>
+	 */
 	private int _nameColor = 0;
-	/** The title color for the access level<br> */
+	/**
+	 * The title color for the access level<br>
+	 */
 	private int _titleColor = 0;
-	/** Flag to determine if the access level has gm access<br> */
+	/**
+	 * Flag to determine if the access level has gm access<br>
+	 */
 	private boolean _isGm = false;
 	/** Flag for peace zone attack */
 	private boolean _allowPeaceAttack = false;
