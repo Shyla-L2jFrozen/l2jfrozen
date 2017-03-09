@@ -21,11 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javolution.util.FastSet;
-
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.util.Util;
+
+import javolution.util.FastSet;
 
 /**
  * @author ProGramMoS
@@ -97,7 +97,7 @@ public final class DeadlockDetector implements Runnable
 		for (final Thread thread : Thread.getAllStackTraces().keySet())
 			if (thread.getId() == id)
 				return thread;
-		
+			
 		throw new IllegalStateException("Deadlocked Thread not found!");
 		
 	}

@@ -29,7 +29,7 @@ public final class RunnableStatsManager
 			for (int i = 0; i < _methodNames.length; i++)
 				if (_methodNames[i].equals(methodName))
 					return _methodStats[i];
-			
+				
 			if (!synchronizedAlready)
 			{
 				synchronized (this)
