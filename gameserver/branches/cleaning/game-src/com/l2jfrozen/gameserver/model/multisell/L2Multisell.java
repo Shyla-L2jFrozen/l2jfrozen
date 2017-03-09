@@ -425,6 +425,13 @@ public class L2Multisell
 			{
 				Node attribute;
 				
+				// enable enchant level on multisell ingredient using attribue "enchantmentLevel" or "enchant"
+				int enchantmentLevel = 0;
+				if (n.getAttributes().getNamedItem("enchantmentLevel") != null)
+					enchantmentLevel = Integer.parseInt(n.getAttributes().getNamedItem("enchantmentLevel").getNodeValue());
+				else if (n.getAttributes().getNamedItem("enchant") != null)
+					enchantmentLevel = Integer.parseInt(n.getAttributes().getNamedItem("enchant").getNodeValue());
+				
 				final int id = Integer.parseInt(n.getAttributes().getNamedItem("id").getNodeValue());
 				final int count = Integer.parseInt(n.getAttributes().getNamedItem("count").getNodeValue());
 				
@@ -444,22 +451,24 @@ public class L2Multisell
 					mantainIngredient = Boolean.parseBoolean(attribute.getNodeValue());
 				}
 				
-				MultiSellIngredient e = new MultiSellIngredient(id, count, isTaxIngredient, mantainIngredient);
+				MultiSellIngredient e = new MultiSellIngredient(id, count, enchantmentLevel, isTaxIngredient, mantainIngredient);
 				entry.addIngredient(e);
 				e = null;
 				attribute = null;
 			}
 			else if ("production".equalsIgnoreCase(n.getNodeName()))
 			{
+				// enable enchant level on multisell production using attribue "enchantmentLevel" or "enchant"
+				int enchantmentLevel = 0;
+				if (n.getAttributes().getNamedItem("enchantmentLevel") != null)
+					enchantmentLevel = Integer.parseInt(n.getAttributes().getNamedItem("enchantmentLevel").getNodeValue());
+				else if (n.getAttributes().getNamedItem("enchant") != null)
+					enchantmentLevel = Integer.parseInt(n.getAttributes().getNamedItem("enchant").getNodeValue());
+				
 				final int id = Integer.parseInt(n.getAttributes().getNamedItem("id").getNodeValue());
 				final int count = Integer.parseInt(n.getAttributes().getNamedItem("count").getNodeValue());
-				int enchant = 0;
-				// By Azagthtot support enchantment in multisell
-				if (n.getAttributes().getNamedItem("enchant") != null)
-				{
-					enchant = Integer.parseInt(n.getAttributes().getNamedItem("enchant").getNodeValue());
-				}
-				MultiSellIngredient e = new MultiSellIngredient(id, count, enchant, false, false);
+				
+				MultiSellIngredient e = new MultiSellIngredient(id, count, enchantmentLevel, false, false);
 				entry.addProduct(e);
 				e = null;
 			}
