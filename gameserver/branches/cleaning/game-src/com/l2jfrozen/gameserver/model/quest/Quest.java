@@ -186,16 +186,16 @@ public class Quest extends ManagedScript
 		/** a person came within the Npc/Mob's range */
 		ON_AGGRO_RANGE_ENTER(true),
 		
-		/** OnSpawn РґРµР№СЃС‚РІРёРµ РїСЂРё СЃРїР°СѓРЅРµ РјРѕР±Р° */
+		/** OnSpawn */
 		ON_SPAWN(true),
 		
-		/** OnSkillUse РґРµР№СЃС‚РІРёРµ РїСЂРё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРё СЃРєРёР»Р»Р° (MOB_TARGETED_BY_SKILL) */
+		/** OnSkillUse */
 		ON_SKILL_USE(true),
 		
-		/** OnKill РґРµР№СЃС‚РІРёРµ РїСЂРё СѓР±РёР№СЃС‚РІРµ (MOBKILLED) */
+		/** OnKill (MOBKILLED) */
 		ON_KILL(true),
 		
-		/** OnAttack РґРµР№СЃС‚РІРёРµ РїСЂРё Р°С‚Р°РєРµ (MOBGOTATTACKED) */
+		/** OnAttack (MOBGOTATTACKED) */
 		ON_ATTACK(true);
 		
 		// control whether this event type is allowed for the same npc template in multiple quests
@@ -709,7 +709,7 @@ public class Quest extends ManagedScript
 	{
 		if (player == null)
 			return null;
-		
+			
 		// if not overriden by a subclass, then default to the returned value of the simpler (and older) onEvent override
 		// if the player has a state, use it as parameter in the next call, else return null
 		final QuestState qs = player.getQuestState(getName());
@@ -832,7 +832,9 @@ public class Quest extends ManagedScript
 	 * <BR>
 	 * <U><I>Concept : </I></U><BR>
 	 * 3 cases are managed according to the value of the parameter "res" :<BR>
-	 * <LI><U>"res" ends with string ".html" :</U> an HTML is opened in order to be shown in a dialog box</LI> <LI><U>"res" starts with "<html>" :</U> the message hold in "res" is shown in a dialog box</LI> <LI><U>otherwise :</U> the message hold in "res" is shown in chat box</LI>
+	 * <LI><U>"res" ends with string ".html" :</U> an HTML is opened in order to be shown in a dialog box</LI>
+	 * <LI><U>"res" starts with "<html>" :</U> the message hold in "res" is shown in a dialog box</LI>
+	 * <LI><U>otherwise :</U> the message hold in "res" is shown in chat box</LI>
 	 * @param object
 	 * @param res : String pointing out the message to show at the player
 	 * @return boolean
@@ -1340,9 +1342,13 @@ public class Quest extends ManagedScript
 	 * Update the value of the variable "var" for the quest.<BR>
 	 * <BR>
 	 * <U><I>Actions :</I></U><BR>
-	 * The selection of the right record is made with : <LI>char_id = qs.getPlayer().getObjectID()</LI> <LI>name = qs.getQuest().getName()</LI> <LI>var = var</LI> <BR>
+	 * The selection of the right record is made with :
+	 * <LI>char_id = qs.getPlayer().getObjectID()</LI>
+	 * <LI>name = qs.getQuest().getName()</LI>
+	 * <LI>var = var</LI> <BR>
 	 * <BR>
-	 * The modification made is : <LI>value = parameter value</LI>
+	 * The modification made is :
+	 * <LI>value = parameter value</LI>
 	 * @param qs : Quest State
 	 * @param var : String designating the name of the variable for quest
 	 * @param value : String designating the value of the variable for quest
@@ -1452,7 +1458,9 @@ public class Quest extends ManagedScript
 	 * <LI>char_id : ID of the player</LI>
 	 * <LI>name : name of the quest</LI>
 	 * </UL>
-	 * </LI> <LI>var : string "&lt;state&gt;" as the name of the variable for the quest</LI> <LI>val : string corresponding at the ID of the state (in fact, initial state)</LI>
+	 * </LI>
+	 * <LI>var : string "&lt;state&gt;" as the name of the variable for the quest</LI>
+	 * <LI>val : string corresponding at the ID of the state (in fact, initial state)</LI>
 	 * @param qs : QuestState
 	 */
 	public static void createQuestInDb(final QuestState qs)
@@ -1463,7 +1471,9 @@ public class Quest extends ManagedScript
 	/**
 	 * Update informations regarding quest in database.<BR>
 	 * <U><I>Actions :</I></U><BR>
-	 * <LI>Get ID state of the quest recorded in object qs</LI> <LI>Test if quest is completed. If true, add a star (*) before the ID state</LI> <LI>Save in database the ID state (with or without the star) for the variable called "&lt;state&gt;" of the quest</LI>
+	 * <LI>Get ID state of the quest recorded in object qs</LI>
+	 * <LI>Test if quest is completed. If true, add a star (*) before the ID state</LI>
+	 * <LI>Save in database the ID state (with or without the star) for the variable called "&lt;state&gt;" of the quest</LI>
 	 * @param qs : QuestState
 	 */
 	public static void updateQuestInDb(final QuestState qs)
