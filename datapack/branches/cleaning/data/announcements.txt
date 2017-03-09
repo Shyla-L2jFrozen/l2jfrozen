@@ -1,2 +1,3 @@
-﻿Thank you for using L2jFrozen!
-Site: www.l2jfrozen.com
+﻿You are using L2jFrozen 2.0 private source!
+Forum: www.l2jfrozen.com/forum
+File /data/announcements.txt
