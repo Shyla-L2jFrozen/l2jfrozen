@@ -462,7 +462,7 @@ public class GameServer
 		}
 		catch (final NullPointerException e)
 		{
-			LOGGER.info("There is errors in your Door.csv file. Update door.csv");
+			LOGGER.info("There is errors in your Door.csv file. Update data/csv/door.csv");
 			if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 				e.printStackTrace();
 		}
@@ -480,7 +480,7 @@ public class GameServer
 		Util.printSection("Scripts");
 		if (!Config.ALT_DEV_NO_SCRIPT)
 		{
-			final File scripts = new File(Config.DATAPACK_ROOT, "data/scripts.cfg");
+			final File scripts = new File(Config.DATAPACK_ROOT, "data/scripts/scripts.cfg");
 			L2ScriptEngineManager.getInstance().executeScriptsList(scripts);
 			
 			final CompiledScriptCache compiledScriptCache = L2ScriptEngineManager.getInstance().getCompiledScriptCache();

@@ -63,7 +63,7 @@ public class ExtractableItemsData
 		Scanner s = null;
 		try
 		{
-			s = new Scanner(new File(Config.DATAPACK_ROOT + "/data/extractable_items.csv"));
+			s = new Scanner(new File(Config.DATAPACK_ROOT + "/data/csv/extractable_items.csv"));
 			
 			int lineCount = 0;
 			while (s.hasNextLine())
@@ -153,7 +153,7 @@ public class ExtractableItemsData
 			// if(CommonConfig.ENABLE_ALL_EXCEPTIONS)
 			e.printStackTrace();
 			
-			LOGGER.info("Extractable items data: Can not find './data/extractable_items.csv'");
+			LOGGER.info("Extractable items data: Can not find './data/csv/extractable_items.csv'");
 			
 		}
 		finally

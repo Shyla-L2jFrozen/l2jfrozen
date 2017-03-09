@@ -75,7 +75,7 @@ public class BoatManager
 		
 		try
 		{
-			final File boatData = new File(Config.DATAPACK_ROOT, "data/boat.csv");
+			final File boatData = new File(Config.DATAPACK_ROOT, "data/csv/boat.csv");
 			
 			reader = new FileReader(boatData);
 			buff = new BufferedReader(reader);
@@ -107,7 +107,7 @@ public class BoatManager
 			if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 				e.printStackTrace();
 			
-			LOGGER.warn("boat.csv is missing in data folder");
+			LOGGER.warn("boat.csv is missing in data/csv/ folder");
 		}
 		catch (final Exception e)
 		{
