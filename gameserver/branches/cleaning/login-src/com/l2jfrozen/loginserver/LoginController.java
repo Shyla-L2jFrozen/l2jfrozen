@@ -41,13 +41,8 @@ import java.util.Map;
 
 import javax.crypto.Cipher;
 
-import javolution.util.FastCollection.Record;
-import javolution.util.FastList;
-import javolution.util.FastMap;
-
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.loginserver.LoginConfig;
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.crypt.Base64;
 import com.l2jfrozen.crypt.ScrambledKeyPair;
@@ -62,6 +57,10 @@ import com.l2jfrozen.util.Util;
 import com.l2jfrozen.util.database.DatabaseUtils;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 import com.l2jfrozen.util.random.Rnd;
+
+import javolution.util.FastCollection.Record;
+import javolution.util.FastList;
+import javolution.util.FastMap;
 
 /**
  * This class ...
@@ -985,10 +984,10 @@ public class LoginController
 	// ============================================================
 	public static void loadBanFile() throws IOException
 	{
-		File conf_file = new File(LoginConfigFiles.BANNED_IP);
+		final File conf_file = new File(LoginConfigFiles.BANNED_IP);
 		if (!conf_file.exists())
 		{
-			throw new IOException("Configuration file "+LoginConfigFiles.BANNED_IP+" is missing");
+			throw new IOException("Configuration file " + LoginConfigFiles.BANNED_IP + " is missing");
 		}
 		
 		if (conf_file.exists() && conf_file.isFile())

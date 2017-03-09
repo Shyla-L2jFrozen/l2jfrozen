@@ -31,11 +31,10 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import com.l2jfrozen.loginserver.LoginConfig;
-import com.l2jfrozen.loginserver.LoginConfigFiles;
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.ServerType;
-
+import com.l2jfrozen.loginserver.LoginConfig;
+import com.l2jfrozen.loginserver.LoginConfigFiles;
 import com.l2jfrozen.loginserver.datatables.GameServerTable;
 import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.database.DatabaseUtils;

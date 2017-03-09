@@ -28,22 +28,21 @@ import com.l2jfrozen.netcore.util.PacketsFloodServer;
 
 /**
  * @author Shyla
- *
  */
 public class LoginServerFloodProtectorActions implements PacketsFloodServer
 {
-
+	
 	private final Logger LOGGER = Logger.getLogger(LoginServerFloodProtectorActions.class);
 	
 	private final int MAX_CONCURRENT_ACTIONS_PER_PLAYER = 10;
 	
-	private Hashtable<String, AtomicInteger> clients_concurrent_actions = new Hashtable<>();
+	private final Hashtable<String, AtomicInteger> clients_concurrent_actions = new Hashtable<>();
 	
-	private Hashtable<String, Hashtable<Integer, AtomicInteger>> clients_actions = new Hashtable<>();
+	private final Hashtable<String, Hashtable<Integer, AtomicInteger>> clients_actions = new Hashtable<>();
 	
-	private Hashtable<String, Hashtable<Integer, Integer>> clients_nextGameTick = new Hashtable<>();
+	private final Hashtable<String, Hashtable<Integer, Integer>> clients_nextGameTick = new Hashtable<>();
 	
-	private Hashtable<String, Boolean> punishes_in_progress = new Hashtable<>();
+	private final Hashtable<String, Boolean> punishes_in_progress = new Hashtable<>();
 	
 	/**
 	 * Checks whether the request is flood protected or not.
@@ -57,13 +56,12 @@ public class LoginServerFloodProtectorActions implements PacketsFloodServer
 	{
 		
 		String account = null;
-
+		
 		final LoginClient login_cl = (LoginClient) client;
 		account = login_cl.getAccount();
 		
 		if (account == null)
 			return true;
-		
 		
 		// get actual concurrent actions number for account
 		AtomicInteger actions_per_account = clients_concurrent_actions.get(account);
@@ -85,9 +83,9 @@ public class LoginServerFloodProtectorActions implements PacketsFloodServer
 		else
 			return false;
 		
-		//get time in seconds
-		final int curTick = (int) (System.currentTimeMillis()/1000);
-		//final int curTick = GameTimeController.getGameTicks();
+		// get time in seconds
+		final int curTick = (int) (System.currentTimeMillis() / 1000);
+		// final int curTick = GameTimeController.getGameTicks();
 		
 		Hashtable<Integer, Integer> account_nextGameTicks = clients_nextGameTick.get(account);
 		if (account_nextGameTicks == null)
@@ -136,7 +134,7 @@ public class LoginServerFloodProtectorActions implements PacketsFloodServer
 			
 			if (NetcoreConfig.getInstance().ENABLE_MMOCORE_DEBUG)
 			{
-				LOGGER.info("-- called OpCode " + Integer.toHexString(opcode) + " ~" + String.valueOf((NetcoreConfig.getInstance().FLOOD_PACKET_PROTECTION_INTERVAL - (_nextGameTick - curTick))*1000) + " ms after first command...");
+				LOGGER.info("-- called OpCode " + Integer.toHexString(opcode) + " ~" + String.valueOf((NetcoreConfig.getInstance().FLOOD_PACKET_PROTECTION_INTERVAL - (_nextGameTick - curTick)) * 1000) + " ms after first command...");
 				LOGGER.info("   total received packets with OpCode " + Integer.toHexString(opcode) + " into the Interval: " + command_count.get());
 			}
 			
@@ -193,7 +191,6 @@ public class LoginServerFloodProtectorActions implements PacketsFloodServer
 		
 		return true;
 		
-		
 	}
 	
 	@Override
@@ -202,26 +199,24 @@ public class LoginServerFloodProtectorActions implements PacketsFloodServer
 		return !NetcoreConfig.getInstance().LS_LIST_PROTECTED_OPCODES.contains(opcode);
 	}
 	
-	
 	private void kickPlayer(final MMOClient<?> _client, final int opcode)
 	{
-			final LoginClient login_cl = (LoginClient) _client;
-			login_cl.close(LoginFailReason.REASON_SYSTEM_ERROR);
-			
-			LOGGER.warn("Player with account " + login_cl.getAccount() + " kicked for flooding with packet " + Integer.toHexString(opcode));
+		final LoginClient login_cl = (LoginClient) _client;
+		login_cl.close(LoginFailReason.REASON_SYSTEM_ERROR);
+		
+		LOGGER.warn("Player with account " + login_cl.getAccount() + " kicked for flooding with packet " + Integer.toHexString(opcode));
 		
 	}
 	
 	private void banAccount(final MMOClient<?> _client, final int opcode)
 	{
 		
-			final LoginClient login_cl = (LoginClient) _client;
-			LoginController.getInstance().setAccountAccessLevel(login_cl.getAccount(), -100);
-			login_cl.close(LoginFailReason.REASON_SYSTEM_ERROR);
-			
-			LOGGER.warn("Player with account " + login_cl.getAccount() + " banned for flooding forever with packet " + Integer.toHexString(opcode));
+		final LoginClient login_cl = (LoginClient) _client;
+		LoginController.getInstance().setAccountAccessLevel(login_cl.getAccount(), -100);
+		login_cl.close(LoginFailReason.REASON_SYSTEM_ERROR);
+		
+		LOGGER.warn("Player with account " + login_cl.getAccount() + " banned for flooding forever with packet " + Integer.toHexString(opcode));
 		
 	}
-	
 	
 }

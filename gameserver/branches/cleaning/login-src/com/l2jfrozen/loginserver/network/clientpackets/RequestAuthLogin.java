@@ -28,9 +28,9 @@ import javax.crypto.Cipher;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.loginserver.LoginConfig;
 import com.l2jfrozen.loginserver.LoginClient;
 import com.l2jfrozen.loginserver.LoginClientState;
+import com.l2jfrozen.loginserver.LoginConfig;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.LoginController.AuthLoginResult;
 import com.l2jfrozen.loginserver.datatables.GameServerTable.GameServerInfo;
