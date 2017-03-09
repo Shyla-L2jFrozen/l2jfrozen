@@ -581,7 +581,10 @@ public abstract class L2Summon extends L2PlayableInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Check if the target is correct</li> <li>Check if the target is in the skill cast range</li> <li>Check if the summon owns enough HP and MP to cast the skill</li> <li>Check if all skills are enabled and this skill is enabled</li><BR>
+	 * <li>Check if the target is correct</li>
+	 * <li>Check if the target is in the skill cast range</li>
+	 * <li>Check if the summon owns enough HP and MP to cast the skill</li>
+	 * <li>Check if all skills are enabled and this skill is enabled</li><BR>
 	 * <BR>
 	 * <li>Check if the skill is active</li><BR>
 	 * <BR>
@@ -617,7 +620,7 @@ public abstract class L2Summon extends L2PlayableInstance
 		
 		switch (skill.getTargetType())
 		{
-		// OWNER_PET should be cast even if no target has been found
+			// OWNER_PET should be cast even if no target has been found
 			case TARGET_OWNER_PET:
 				target = getOwner();
 				break;
@@ -646,7 +649,7 @@ public abstract class L2Summon extends L2PlayableInstance
 		// ************************************* Check skill availability *******************************************
 		
 		// Check if this skill is enabled (ex : reuse time)
-		if (isSkillDisabled(skill) && getOwner() != null && getOwner().getAccessLevel().allowPeaceAttack())
+		if (isSkillDisabled(skill))
 		{
 			SystemMessage sm = new SystemMessage(SystemMessageId.SKILL_NOT_AVAILABLE);
 			sm.addString(skill.getName());
