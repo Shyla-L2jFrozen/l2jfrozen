@@ -687,7 +687,9 @@ public class ItemTable
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Create and Init the L2ItemInstance corresponding to the Item Identifier and quantity</li> <li>Add the L2ItemInstance object to _allObjects of L2world</li> <li>Logs Item creation according to LOGGER settings</li><BR>
+	 * <li>Create and Init the L2ItemInstance corresponding to the Item Identifier and quantity</li>
+	 * <li>Add the L2ItemInstance object to _allObjects of L2world</li>
+	 * <li>Logs Item creation according to LOGGER settings</li><BR>
 	 * <BR>
 	 * @param process : String Identifier of process triggering this action
 	 * @param itemId : int Item Identifier of the item to be created
@@ -803,7 +805,9 @@ public class ItemTable
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Sets L2ItemInstance parameters to be unusable</li> <li>Removes the L2ItemInstance object to _allObjects of L2world</li> <li>Logs Item delettion according to LOGGER settings</li><BR>
+	 * <li>Sets L2ItemInstance parameters to be unusable</li>
+	 * <li>Removes the L2ItemInstance object to _allObjects of L2world</li>
+	 * <li>Logs Item delettion according to LOGGER settings</li><BR>
 	 * <BR>
 	 * @param process : String Identifier of process triggering this action
 	 * @param item

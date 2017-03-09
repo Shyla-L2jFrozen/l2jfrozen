@@ -246,12 +246,12 @@ public final class CustomNpcInstanceManager
 		for (final customInfo ci : spawns.values())
 			if (ci != null && ci.integerData[26] == spwnId)
 				return ci;
-		
+			
 		// Now check if templates contains the morph npc template
 		for (final customInfo ci : templates.values())
 			if (ci != null && ci.integerData[25] == npcId)
 				return ci;
-		
+			
 		return null;
 	}
 	

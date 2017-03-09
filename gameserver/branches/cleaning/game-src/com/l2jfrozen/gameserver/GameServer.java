@@ -182,10 +182,10 @@ public class GameServer
 		// Create input stream for LOGGER file -- or store file data into memory
 		
 		// check for legacy Implementation
-		File log_conf_file = new File(FService.LOG_CONF_FILE);
+		final File log_conf_file = new File(FService.LOG_CONF_FILE);
 		if (!log_conf_file.exists())
 		{
-			throw new IOException("Configuration file "+FService.LOG_CONF_FILE+" is missing");
+			throw new IOException("Configuration file " + FService.LOG_CONF_FILE + " is missing");
 		}
 		
 		InputStream is = new FileInputStream(log_conf_file);
@@ -206,7 +206,7 @@ public class GameServer
 		CommonConfig.load();
 		Config.load();
 		
-		//Packets Flood Instance
+		// Packets Flood Instance
 		PacketsFloodProtector.setProtectedServer(new GameServerFloodProtectorActions());
 		
 		Util.printSection("Database");
@@ -623,7 +623,6 @@ public class GameServer
 		System.gc();
 		LOGGER.info("Server Loaded in " + (System.currentTimeMillis() - serverLoadStart) / 1000 + " seconds");
 		ServerStatus.getInstance();
-		
 		
 		Util.printSection("Login");
 		_loginThread = LoginServerThread.getInstance();

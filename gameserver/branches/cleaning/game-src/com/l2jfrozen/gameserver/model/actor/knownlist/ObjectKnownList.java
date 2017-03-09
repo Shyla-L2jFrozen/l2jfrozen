@@ -103,8 +103,9 @@ public class ObjectKnownList
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Remove invisible and too far L2Object from _knowObject and if necessary from _knownPlayers of the L2Character</li> <li>Add visible L2Object near the L2Character to _knowObject and if necessary to _knownPlayers of the L2Character</li> <li>Add L2Character to _knowObject and if necessary to
-	 * _knownPlayers of L2Object alreday known by the L2Character</li><BR>
+	 * <li>Remove invisible and too far L2Object from _knowObject and if necessary from _knownPlayers of the L2Character</li>
+	 * <li>Add visible L2Object near the L2Character to _knowObject and if necessary to _knownPlayers of the L2Character</li>
+	 * <li>Add L2Character to _knowObject and if necessary to _knownPlayers of L2Object alreday known by the L2Character</li><BR>
 	 * <BR>
 	 */
 	public final synchronized void updateKnownObjects()

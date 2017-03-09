@@ -188,7 +188,7 @@ public class BuffHandler implements IVoicedCommandHandler, ICustomByPassHandler,
 			if (!player.isInsideRadius(buffer, L2NpcInstance.INTERACTION_DISTANCE, false, false))
 				return;
 			
-		}// if buffer is null means that buffer will be applied directly (voice and bbs)
+		} // if buffer is null means that buffer will be applied directly (voice and bbs)
 		
 		if (parameters.contains("Pet"))
 		{

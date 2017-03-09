@@ -136,7 +136,9 @@ public class L2PetInstance extends L2Summon
 	 * Manage Feeding Task.<BR>
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
-	 * <li>Feed or kill the pet depending on hunger level</li> <li>If pet has food in inventory and feed level drops below 55% then consume food from inventory</li> <li>Send a broadcastStatusUpdate packet for this L2PetInstance</li> <BR>
+	 * <li>Feed or kill the pet depending on hunger level</li>
+	 * <li>If pet has food in inventory and feed level drops below 55% then consume food from inventory</li>
+	 * <li>Send a broadcastStatusUpdate packet for this L2PetInstance</li> <BR>
 	 * <BR>
 	 */
 	
@@ -414,7 +416,7 @@ public class L2PetInstance extends L2Summon
 		for (final L2ItemInstance item : getInventory().getItems())
 			if (item.getLocation() == L2ItemInstance.ItemLocation.PET_EQUIP && item.getItem().getBodyPart() == L2Item.SLOT_R_HAND)
 				return item;
-		
+			
 		return null;
 	}
 	

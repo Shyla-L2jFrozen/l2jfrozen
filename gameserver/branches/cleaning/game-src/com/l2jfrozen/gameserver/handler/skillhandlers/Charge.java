@@ -43,8 +43,9 @@ public class Charge implements ISkillHandler
 	 * (non-Javadoc)
 	 * @see com.l2jfrozen.gameserver.handler.IItemHandler#useItem(com.l2jfrozen.gameserver.model.L2PcInstance, com.l2jfrozen.gameserver.model.L2ItemInstance)
 	 */
-	private static final SkillType[] SKILL_IDS = {
-	/* SkillType.CHARGE */
+	private static final SkillType[] SKILL_IDS =
+	{
+		/* SkillType.CHARGE */
 	};
 	
 	@Override

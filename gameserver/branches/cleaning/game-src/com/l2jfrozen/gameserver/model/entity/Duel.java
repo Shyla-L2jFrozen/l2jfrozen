@@ -693,7 +693,7 @@ public class Duel
 		// if it is an abnormal DuelEnd do not restore hp, mp, cp
 		if (abnormalDuelEnd)
 			return;
-		
+			
 		// restore player conditions
 		// for (FastList.Node<PlayerCondition> e = _playerConditions.head(), end = _playerConditions.tail(); (e = e.getNext()) != end;)
 		for (final Integer playerObjId : _playerConditions.keySet())
@@ -1215,7 +1215,7 @@ public class Duel
 		// if it isnt a party duel ignore this
 		if (!_partyDuel)
 			return;
-		
+			
 		// this player is leaving his party during party duel
 		// if hes either playerA or playerB cancel the duel and port the players back
 		if (player == _playerA || player == _playerB)

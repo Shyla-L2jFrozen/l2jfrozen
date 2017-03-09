@@ -87,8 +87,9 @@ public final class L2GuardInstance extends L2Attackable
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Call the L2Character constructor to set the _template of the L2GuardInstance (copy skills from template to object and link _calculators to NPC_STD_CALCULATOR)</li> <li>Set the name of the L2GuardInstance</li> <li>Create a RandomAnimation Task that will be launched after the calculated
-	 * delay if the server allow it</li><BR>
+	 * <li>Call the L2Character constructor to set the _template of the L2GuardInstance (copy skills from template to object and link _calculators to NPC_STD_CALCULATOR)</li>
+	 * <li>Set the name of the L2GuardInstance</li>
+	 * <li>Create a RandomAnimation Task that will be launched after the calculated delay if the server allow it</li><BR>
 	 * <BR>
 	 * @param objectId Identifier of the object to initialized
 	 * @param template the template
@@ -205,7 +206,8 @@ public final class L2GuardInstance extends L2Attackable
 	 * <BR>
 	 * <B><U> Format of the pathfile </U> :</B><BR>
 	 * <BR>
-	 * <li>if page number = 0 : <B>data/html/guard/12006.htm</B> (npcId-page number)</li> <li>if page number > 0 : <B>data/html/guard/12006-1.htm</B> (npcId-page number)</li><BR>
+	 * <li>if page number = 0 : <B>data/html/guard/12006.htm</B> (npcId-page number)</li>
+	 * <li>if page number > 0 : <B>data/html/guard/12006-1.htm</B> (npcId-page number)</li><BR>
 	 * <BR>
 	 * @param npcId The Identifier of the L2NpcInstance whose text must be display
 	 * @param val The number of the page to display
@@ -231,13 +233,15 @@ public final class L2GuardInstance extends L2Attackable
 	 * <BR>
 	 * <B><U> Actions on first click on the L2GuardInstance (Select it)</U> :</B><BR>
 	 * <BR>
-	 * <li>Set the L2GuardInstance as target of the L2PcInstance player (if necessary)</li> <li>Send a Server->Client packet MyTargetSelected to the L2PcInstance player (display the select window)</li> <li>Set the L2PcInstance Intention to AI_INTENTION_IDLE</li> <li>Send a Server->Client packet
-	 * ValidateLocation to correct the L2GuardInstance position and heading on the client</li><BR>
+	 * <li>Set the L2GuardInstance as target of the L2PcInstance player (if necessary)</li>
+	 * <li>Send a Server->Client packet MyTargetSelected to the L2PcInstance player (display the select window)</li>
+	 * <li>Set the L2PcInstance Intention to AI_INTENTION_IDLE</li>
+	 * <li>Send a Server->Client packet ValidateLocation to correct the L2GuardInstance position and heading on the client</li><BR>
 	 * <BR>
 	 * <B><U> Actions on second click on the L2GuardInstance (Attack it/Interact with it)</U> :</B><BR>
 	 * <BR>
-	 * <li>If L2PcInstance is in the _aggroList of the L2GuardInstance, set the L2PcInstance Intention to AI_INTENTION_ATTACK</li> <li>If L2PcInstance is NOT in the _aggroList of the L2GuardInstance, set the L2PcInstance Intention to AI_INTENTION_INTERACT (after a distance verification) and show
-	 * message</li><BR>
+	 * <li>If L2PcInstance is in the _aggroList of the L2GuardInstance, set the L2PcInstance Intention to AI_INTENTION_ATTACK</li>
+	 * <li>If L2PcInstance is NOT in the _aggroList of the L2GuardInstance, set the L2PcInstance Intention to AI_INTENTION_INTERACT (after a distance verification) and show message</li><BR>
 	 * <BR>
 	 * <B><U> Example of use </U> :</B><BR>
 	 * <BR>

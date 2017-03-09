@@ -130,7 +130,7 @@ public class Server
 		for (final L2PcInstance p : L2World.getInstance().getAllPlayers())
 		{
 			if (p != null)
-				result += "<player id=\"" + p.getObjectId() + "\" name=\"" + p.getName() + "\" level=\"" + p.getLevel() + "\" class=\"" + p.getActiveClass()/* + "\" clan=\"" + p.getClan() == null ? "" : p.getClan().getName() */+ "\" />";
+				result += "<player id=\"" + p.getObjectId() + "\" name=\"" + p.getName() + "\" level=\"" + p.getLevel() + "\" class=\"" + p.getActiveClass()/* + "\" clan=\"" + p.getClan() == null ? "" : p.getClan().getName() */ + "\" />";
 		}
 		return result;
 	}

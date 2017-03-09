@@ -29,8 +29,6 @@ import javolution.util.FastList;
 public class ExListPartyMatchingWaitingRoom extends L2GameServerPacket
 {
 	private final L2PcInstance _activeChar;
-	@SuppressWarnings("unused")
-	private final int _page;
 	private final int _minlvl;
 	private final int _maxlvl;
 	private final int _mode;
@@ -39,7 +37,6 @@ public class ExListPartyMatchingWaitingRoom extends L2GameServerPacket
 	public ExListPartyMatchingWaitingRoom(final L2PcInstance player, final int page, final int minlvl, final int maxlvl, final int mode)
 	{
 		_activeChar = player;
-		_page = page;
 		_minlvl = minlvl;
 		_maxlvl = maxlvl;
 		_mode = mode;

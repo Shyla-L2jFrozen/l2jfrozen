@@ -601,7 +601,8 @@ public class L2DoorInstance extends L2Character
 	 * <BR>
 	 * <B><U> Values </U> :</B><BR>
 	 * <BR>
-	 * <li>object is a L2PcInstance : 4000</li> <li>object is not a L2PcInstance : 0</li><BR>
+	 * <li>object is a L2PcInstance : 4000</li>
+	 * <li>object is not a L2PcInstance : 0</li><BR>
 	 * <BR>
 	 * @param object the object
 	 * @return the distance to forget object

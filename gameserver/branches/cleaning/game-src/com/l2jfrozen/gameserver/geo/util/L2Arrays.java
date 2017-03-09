@@ -45,7 +45,7 @@ public final class L2Arrays
 		for (final Object obj : array)
 			if (obj == null)
 				nullCount++;
-		
+			
 		return nullCount;
 	}
 	
@@ -74,7 +74,7 @@ public final class L2Arrays
 		for (final T t : array)
 			if (t != null)
 				result[index++] = t;
-		
+			
 		return result;
 	}
 	
@@ -109,7 +109,7 @@ public final class L2Arrays
 		for (final T t : array)
 			if (t != null)
 				result.add(t);
-		
+			
 		return result;
 	}
 	

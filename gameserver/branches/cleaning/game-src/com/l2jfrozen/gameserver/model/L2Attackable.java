@@ -73,7 +73,10 @@ import javolution.util.FastMap;
  * <BR>
  * L2Attackable :<BR>
  * <BR>
- * <li>L2ArtefactInstance</li> <li>L2FriendlyMobInstance</li> <li>L2MonsterInstance</li> <li>L2SiegeGuardInstance</li>
+ * <li>L2ArtefactInstance</li>
+ * <li>L2FriendlyMobInstance</li>
+ * <li>L2MonsterInstance</li>
+ * <li>L2SiegeGuardInstance</li>
  * @version $Revision: 1.24.2.3.2.16 $ $Date: 2009/04/13 02:11:03 $
  * @author scoria dev
  */
@@ -86,7 +89,9 @@ public class L2Attackable extends L2NpcInstance
 	 * <BR>
 	 * <B><U> Data</U> :</B><BR>
 	 * <BR>
-	 * <li>attacker : The attaker L2Character concerned by this AggroInfo of this L2Attackable</li> <li>hate : Hate level of this L2Attackable against the attaker L2Character (hate = damage)</li> <li>damage : Number of damages that the attaker L2Character gave to this L2Attackable</li><BR>
+	 * <li>attacker : The attaker L2Character concerned by this AggroInfo of this L2Attackable</li>
+	 * <li>hate : Hate level of this L2Attackable against the attaker L2Character (hate = damage)</li>
+	 * <li>damage : Number of damages that the attaker L2Character gave to this L2Attackable</li><BR>
 	 * <BR>
 	 */
 	public final class AggroInfo
@@ -143,7 +148,8 @@ public class L2Attackable extends L2NpcInstance
 	 * <BR>
 	 * <B><U> Data</U> :</B><BR>
 	 * <BR>
-	 * <li>attacker : The attacker L2Character concerned by this RewardInfo of this L2Attackable</li> <li>dmg : Total amount of damage done by the attacker to this L2Attackable (summon + own)</li>
+	 * <li>attacker : The attacker L2Character concerned by this RewardInfo of this L2Attackable</li>
+	 * <li>dmg : Total amount of damage done by the attacker to this L2Attackable (summon + own)</li>
 	 */
 	protected final class RewardInfo
 	{
@@ -347,8 +353,9 @@ public class L2Attackable extends L2NpcInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Call the L2Character constructor to set the _template of the L2Attackable (copy skills from template to object and link _calculators to NPC_STD_CALCULATOR)</li> <li>Set the name of the L2Attackable</li> <li>Create a RandomAnimation Task that will be launched after the calculated delay if
-	 * the server allow it</li><BR>
+	 * <li>Call the L2Character constructor to set the _template of the L2Attackable (copy skills from template to object and link _calculators to NPC_STD_CALCULATOR)</li>
+	 * <li>Set the name of the L2Attackable</li>
+	 * <li>Create a RandomAnimation Task that will be launched after the calculated delay if the server allow it</li><BR>
 	 * <BR>
 	 * @param objectId Identifier of the object to initialized
 	 * @param template
@@ -517,7 +524,9 @@ public class L2Attackable extends L2NpcInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Distribute Exp and SP rewards to L2PcInstance (including Summon owner) that hit the L2Attackable and to their Party members</li> <li>Notify the Quest Engine of the L2Attackable death if necessary</li> <li>Kill the L2NpcInstance (the corpse disappeared after 7 seconds)</li><BR>
+	 * <li>Distribute Exp and SP rewards to L2PcInstance (including Summon owner) that hit the L2Attackable and to their Party members</li>
+	 * <li>Notify the Quest Engine of the L2Attackable death if necessary</li>
+	 * <li>Kill the L2NpcInstance (the corpse disappeared after 7 seconds)</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T GIVE rewards to L2PetInstance</B></FONT><BR>
 	 * <BR>
@@ -568,7 +577,7 @@ public class L2Attackable extends L2NpcInstance
 		{
 			// Set champion on next spawn
 			if (!(this instanceof L2GrandBossInstance) && !(this instanceof L2RaidBossInstance) && this instanceof L2MonsterInstance
-			/* && !getTemplate().isQuestMonster */&& Config.L2JMOD_CHAMPION_FREQUENCY > 0 && getLevel() >= Config.L2JMOD_CHAMP_MIN_LVL && getLevel() <= Config.L2JMOD_CHAMP_MAX_LVL)
+			/* && !getTemplate().isQuestMonster */ && Config.L2JMOD_CHAMPION_FREQUENCY > 0 && getLevel() >= Config.L2JMOD_CHAMP_MIN_LVL && getLevel() <= Config.L2JMOD_CHAMP_MAX_LVL)
 			{
 				final int random = Rnd.get(100);
 				if (random < Config.L2JMOD_CHAMPION_FREQUENCY)
@@ -608,8 +617,9 @@ public class L2Attackable extends L2NpcInstance
 	 * <BR>
 	 * <B><U> Actions</U> :</B><BR>
 	 * <BR>
-	 * <li>Get the L2PcInstance owner of the L2SummonInstance (if necessary) and L2Party in progress</li> <li>Calculate the Experience and SP rewards in function of the level difference</li> <li>Add Exp and SP rewards to L2PcInstance (including Summon penalty) and to Party members in the known area
-	 * of the last attacker</li><BR>
+	 * <li>Get the L2PcInstance owner of the L2SummonInstance (if necessary) and L2Party in progress</li>
+	 * <li>Calculate the Experience and SP rewards in function of the level difference</li>
+	 * <li>Add Exp and SP rewards to L2PcInstance (including Summon penalty) and to Party members in the known area of the last attacker</li><BR>
 	 * <BR>
 	 * <FONT COLOR=#FF0000><B> <U>Caution</U> : This method DOESN'T GIVE rewards to L2PetInstance</B></FONT><BR>
 	 * <BR>
@@ -1236,7 +1246,7 @@ public class L2Attackable extends L2NpcInstance
 		// Get default drop chance
 		if ((Config.HIGH_RATE_SERVER_DROPS && !drop.isQuestDrop() && drop.getItemId() != 57))
 		{ // it's not adena-->check if drop has an epic jewel
-		
+			
 			// ant queen,orfen,core,frintezza,baium,antharas,valakas,zaken,stones
 			if (drop.getItemId() == 6660 || drop.getItemId() == 6661 || drop.getItemId() == 6662 || drop.getItemId() == 8191 || drop.getItemId() == 6658 || drop.getItemId() == 6656 || drop.getItemId() == 6657 || drop.getItemId() == 6659 || (drop.getItemId() >= 6360 && drop.getItemId() <= 6362) || (drop.getItemId() >= 8723 && drop.getItemId() <= 8762))
 			{
@@ -1494,7 +1504,7 @@ public class L2Attackable extends L2NpcInstance
 		
 		if ((Config.HIGH_RATE_SERVER_DROPS && categoryDrops.getCategoryType() != 0))
 		{ // it's not adena-->check if drop is quest or is an epic jewel
-		
+			
 			boolean to_drop = false;
 			
 			for (final L2DropData dd : categoryDrops.getAllDrops())
@@ -1581,7 +1591,7 @@ public class L2Attackable extends L2NpcInstance
 			
 			if (drop == null)
 				return null;
-			
+				
 			// Now decide the quantity to drop based on the rates and penalties. To get this value
 			// simply divide the modified categoryDropChance by the base category chance. This
 			// results in a chance that will dictate the drops amounts: for each amount over 100
@@ -1811,9 +1821,13 @@ public class L2Attackable extends L2NpcInstance
 	 * <BR>
 	 * <B><U> Actions</U> : </B><BR>
 	 * <BR>
-	 * <li>Manage drop of Special Events created by GM for a defined period</li> <li>Get all possible drops of this L2Attackable from L2NpcTemplate and add it Quest drops</li> <li>For each possible drops (base + quests), calculate which one must be dropped (random)</li> <li>Get each Item quantity
-	 * dropped (random)</li> <li>Create this or these L2ItemInstance corresponding to each Item Identifier dropped</li> <li>If the autoLoot mode is actif and if the L2Character that has killed the L2Attackable is a L2PcInstance, give this or these Item(s) to the L2PcInstance that has killed the
-	 * L2Attackable</li> <li>If the autoLoot mode isn't actif or if the L2Character that has killed the L2Attackable is not a L2PcInstance, add this or these Item(s) in the world as a visible object at the position where mob was last</li><BR>
+	 * <li>Manage drop of Special Events created by GM for a defined period</li>
+	 * <li>Get all possible drops of this L2Attackable from L2NpcTemplate and add it Quest drops</li>
+	 * <li>For each possible drops (base + quests), calculate which one must be dropped (random)</li>
+	 * <li>Get each Item quantity dropped (random)</li>
+	 * <li>Create this or these L2ItemInstance corresponding to each Item Identifier dropped</li>
+	 * <li>If the autoLoot mode is actif and if the L2Character that has killed the L2Attackable is a L2PcInstance, give this or these Item(s) to the L2PcInstance that has killed the L2Attackable</li>
+	 * <li>If the autoLoot mode isn't actif or if the L2Character that has killed the L2Attackable is not a L2PcInstance, add this or these Item(s) in the world as a visible object at the position where mob was last</li><BR>
 	 * <BR>
 	 * @param npcTemplate
 	 * @param lastAttacker The L2Character that has killed the L2Attackable
@@ -2336,9 +2350,11 @@ public class L2Attackable extends L2NpcInstance
 	 * <BR>
 	 * <B><U> Actions</U> : <I>If an extra drop must be generated</I></B><BR>
 	 * <BR>
-	 * <li>Get an Item Identifier (random) from the DateDrop Item table of this Event</li> <li>Get the Item quantity dropped (random)</li> <li>Create this or these L2ItemInstance corresponding to this Item Identifier</li> <li>If the autoLoot mode is actif and if the L2Character that has killed the
-	 * L2Attackable is a L2PcInstance, give this or these Item(s) to the L2PcInstance that has killed the L2Attackable</li> <li>If the autoLoot mode isn't actif or if the L2Character that has killed the L2Attackable is not a L2PcInstance, add this or these Item(s) in the world as a visible object at
-	 * the position where mob was last</li><BR>
+	 * <li>Get an Item Identifier (random) from the DateDrop Item table of this Event</li>
+	 * <li>Get the Item quantity dropped (random)</li>
+	 * <li>Create this or these L2ItemInstance corresponding to this Item Identifier</li>
+	 * <li>If the autoLoot mode is actif and if the L2Character that has killed the L2Attackable is a L2PcInstance, give this or these Item(s) to the L2PcInstance that has killed the L2Attackable</li>
+	 * <li>If the autoLoot mode isn't actif or if the L2Character that has killed the L2Attackable is not a L2PcInstance, add this or these Item(s) in the world as a visible object at the position where mob was last</li><BR>
 	 * <BR>
 	 * @param lastAttacker The L2Character that has killed the L2Attackable
 	 */
@@ -2619,7 +2635,7 @@ public class L2Attackable extends L2NpcInstance
 		// The attacker must not be null
 		if (attacker == null)
 			return;
-		
+			
 		// This L2Attackable must be of one type in the _absorbingMOBS_levelXX tables.
 		// OBS: This is done so to avoid triggering the absorbed conditions for mobs that can't be absorbed.
 		if (getAbsorbLevel() == 0)

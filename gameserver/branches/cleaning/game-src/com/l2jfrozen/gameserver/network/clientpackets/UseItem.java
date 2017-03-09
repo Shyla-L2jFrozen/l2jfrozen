@@ -425,7 +425,7 @@ public final class UseItem extends L2GameClientPacket
 			
 			if (item.getItem().getType2() == L2Item.TYPE2_WEAPON)
 			{ // if used item is a weapon
-			
+				
 				L2ItemInstance wep = activeChar.getInventory().getPaperdollItem(Inventory.PAPERDOLL_LRHAND);
 				if (wep == null)
 				{

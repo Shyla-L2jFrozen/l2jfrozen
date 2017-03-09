@@ -1091,7 +1091,7 @@ public class FourSepulchersManager extends GrandBossManager
 		final int npcId = npc.getNpcId();
 		switch (npcId)
 		{
-		// ID ok
+			// ID ok
 			case 31921:
 			case 31922:
 			case 31923:

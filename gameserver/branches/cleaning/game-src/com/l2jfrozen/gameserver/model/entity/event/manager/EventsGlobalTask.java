@@ -295,7 +295,7 @@ public class EventsGlobalTask implements Runnable
 		
 		while (!destroy)
 		{// start time checker
-		
+			
 			checkRegisteredEvents();
 			
 			try

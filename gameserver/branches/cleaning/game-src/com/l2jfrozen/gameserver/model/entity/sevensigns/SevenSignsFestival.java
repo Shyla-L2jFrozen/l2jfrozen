@@ -168,7 +168,7 @@ public class SevenSignsFestival implements SpawnListener
 			-4895,
 			0
 		}
-	// No level limit
+		// No level limit
 	};
 	
 	/** The Constant FESTIVAL_DUSK_PLAYER_SPAWNS. */
@@ -204,7 +204,7 @@ public class SevenSignsFestival implements SpawnListener
 			-5151,
 			0
 		}
-	// No level limit
+		// No level limit
 	};
 	
 	/** The Constant FESTIVAL_DAWN_WITCH_SPAWNS. */
@@ -245,7 +245,7 @@ public class SevenSignsFestival implements SpawnListener
 			0,
 			31136
 		}
-	// No level limit
+		// No level limit
 	};
 	
 	/** The Constant FESTIVAL_DUSK_WITCH_SPAWNS. */
@@ -286,7 +286,7 @@ public class SevenSignsFestival implements SpawnListener
 			0,
 			31146
 		}
-	// No level limit
+		// No level limit
 	};
 	
 	/** The Constant FESTIVAL_DAWN_PRIMARY_SPAWNS. */
@@ -3952,11 +3952,11 @@ public class SevenSignsFestival implements SpawnListener
 		for (final List<L2PcInstance> participants : _dawnFestivalParticipants.values())
 			if (participants.contains(player))
 				return true;
-		
+			
 		for (final List<L2PcInstance> participants : _duskFestivalParticipants.values())
 			if (participants.contains(player))
 				return true;
-		
+			
 		return false;
 	}
 	
@@ -4453,7 +4453,7 @@ public class SevenSignsFestival implements SpawnListener
 			// The manager shouldn't be running if Seal Validation is in effect.
 			if (SevenSigns.getInstance().isSealValidationPeriod())
 				return;
-			
+				
 			// If the next period is due to start before the end of this
 			// festival cycle, then don't run it.
 			if (SevenSigns.getInstance().getMilliToPeriodChange() < Config.ALT_FESTIVAL_CYCLE_LENGTH)

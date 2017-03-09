@@ -491,7 +491,7 @@ public class NpcTable
 					break;
 				case 29022:
 				{ // zaken
-				
+					
 					if (Config.ZAKEN_LEVEL > 0)
 					{
 						diff = Config.ZAKEN_LEVEL - NpcData.getInt("level");
@@ -587,7 +587,7 @@ public class NpcTable
 				{
 					case 29001:
 					{// queenAnt
-					
+						
 						if (Config.QA_POWER_MULTIPLIER > 0)
 						{
 							multi_value = multi_value * Config.QA_POWER_MULTIPLIER;
@@ -597,7 +597,7 @@ public class NpcTable
 						break;
 					case 29022:
 					{ // zaken
-					
+						
 						if (Config.ZAKEN_POWER_MULTIPLIER > 0)
 						{
 							multi_value = multi_value * Config.ZAKEN_POWER_MULTIPLIER;
@@ -607,7 +607,7 @@ public class NpcTable
 						break;
 					case 29014:
 					{// orfen
-					
+						
 						if (Config.ORFEN_POWER_MULTIPLIER > 0)
 						{
 							multi_value = multi_value * Config.ORFEN_POWER_MULTIPLIER;
@@ -617,7 +617,7 @@ public class NpcTable
 						break;
 					case 29006:
 					{ // core
-					
+						
 						if (Config.CORE_POWER_MULTIPLIER > 0)
 						{
 							multi_value = multi_value * Config.CORE_POWER_MULTIPLIER;
@@ -627,7 +627,7 @@ public class NpcTable
 						break;
 					case 29019:
 					{ // antharas
-					
+						
 						if (Config.ANTHARAS_POWER_MULTIPLIER > 0)
 						{
 							multi_value = multi_value * Config.ANTHARAS_POWER_MULTIPLIER;
@@ -637,7 +637,7 @@ public class NpcTable
 						break;
 					case 29028:
 					{ // valakas
-					
+						
 						if (Config.VALAKAS_POWER_MULTIPLIER > 0)
 						{
 							multi_value = multi_value * Config.VALAKAS_POWER_MULTIPLIER;
@@ -647,7 +647,7 @@ public class NpcTable
 						break;
 					case 29020:
 					{ // baium
-					
+						
 						if (Config.BAIUM_POWER_MULTIPLIER > 0)
 						{
 							multi_value = multi_value * Config.BAIUM_POWER_MULTIPLIER;
@@ -657,7 +657,7 @@ public class NpcTable
 						break;
 					case 29045:
 					{ // frintezza
-					
+						
 						if (Config.FRINTEZZA_POWER_MULTIPLIER > 0)
 						{
 							multi_value = multi_value * Config.FRINTEZZA_POWER_MULTIPLIER;
@@ -974,7 +974,7 @@ public class NpcTable
 		for (final L2NpcTemplate npcTemplate : npcs.values())
 			if (npcTemplate.name.equalsIgnoreCase(name))
 				return npcTemplate;
-		
+			
 		return null;
 	}
 	

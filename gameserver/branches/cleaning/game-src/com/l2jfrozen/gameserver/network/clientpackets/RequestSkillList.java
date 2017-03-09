@@ -24,15 +24,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 
 public final class RequestSkillList extends L2GameClientPacket
 {
-	@SuppressWarnings("unused")
-	private int _unk1;
-	
-	@SuppressWarnings("unused")
-	private int _unk2;
-	
-	@SuppressWarnings("unused")
-	private int _unk3;
-	
 	@Override
 	protected void readImpl()
 	{

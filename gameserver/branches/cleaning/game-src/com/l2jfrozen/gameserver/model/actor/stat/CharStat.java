@@ -826,7 +826,7 @@ public class CharStat
 	{
 		if (_activeChar == null)
 			return 1;
-		
+			
 		// err we should be adding TO the persons run speed
 		// not making it a constant
 		int val = (int) calcStat(Stats.RUN_SPEED, _activeChar.getTemplate().baseRunSpd, null, null) + Config.RUN_SPD_BOOST;

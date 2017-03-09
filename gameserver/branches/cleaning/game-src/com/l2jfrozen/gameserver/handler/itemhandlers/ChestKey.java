@@ -46,7 +46,7 @@ public class ChestKey implements IItemHandler
 		6670,
 		6671,
 		6672
-	// deluxe key
+		// deluxe key
 	};
 	
 	@Override

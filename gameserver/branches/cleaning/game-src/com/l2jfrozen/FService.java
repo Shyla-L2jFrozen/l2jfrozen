@@ -33,7 +33,7 @@ public class FService
 	public static final String FILTER_FILE = "./config/chatfilter.txt";
 	public static final String QUESTION_FILE = "./config/questionwords.txt";
 	public static final String HEXID_FILE = "./config/hexid.txt";
-//	public static final String TELNET_FILE = "./config/telnet.properties";
+	// public static final String TELNET_FILE = "./config/telnet.properties";
 	
 	// head
 	public static final String ALT_SETTINGS_FILE = "./config/head/altsettings.properties";
@@ -71,7 +71,7 @@ public class FService
 	public static final String EVENT_DM_FILE = "./config/frozen/dm.properties";
 	public static final String EVENT_TVT_FILE = "./config/frozen/tvt.properties";
 	public static final String EVENT_TW_FILE = "./config/frozen/tw.properties";
-//	public static final String IRC_FILE = "./config/frozen/irc.properties";
+	// public static final String IRC_FILE = "./config/frozen/irc.properties";
 	
 	// fun -- events
 	public static final String AWAY_FILE = "./config/fun/away.properties";
@@ -84,32 +84,30 @@ public class FService
 	
 	// network
 	public static final String CONFIGURATION_FILE = "./config/network/gameserver.properties";
-//	public static final String LOGIN_CONFIGURATION_FILE = "./config/network/loginserver.properties";
+	// public static final String LOGIN_CONFIGURATION_FILE = "./config/network/loginserver.properties";
 	
 	// version
 	public static final String SERVER_VERSION_FILE = "./config/version/l2jfrozen-server.properties";
 	public static final String DATAPACK_VERSION_FILE = "./config/version/l2jfrozen-datapack.properties";
 	
-//	// others
+	// // others
 	public static final String LOG_CONF_FILE = "./config/others/logger.properties";
-//	public static final String BANNED_IP = "./config/others/banned_ip.cfg";
-//	public static final String SERVER_NAME_FILE = "./config/others/servername.xml";
-//	
-//	// Legacy others position
-//	public static final String LEGACY_LOG_CONF_FILE = "./LOGGER.cfg";
-//	public static final String LEGACY_BANNED_IP = "./config/banned_ip.cfg";
-//	public static final String LEGACY_SERVER_NAME_FILE = "./servername.xml";
+	// public static final String BANNED_IP = "./config/others/banned_ip.cfg";
+	// public static final String SERVER_NAME_FILE = "./config/others/servername.xml";
+	//
+	// // Legacy others position
+	// public static final String LEGACY_LOG_CONF_FILE = "./LOGGER.cfg";
+	// public static final String LEGACY_BANNED_IP = "./config/banned_ip.cfg";
+	// public static final String LEGACY_SERVER_NAME_FILE = "./servername.xml";
 	
 	public static final String EVENT_MANAGER_CONFIGURATION_FILE = "./config/frozen/eventmanager.properties";
 	public static final String OLYMPIAD_DATA_FILE = "./config/olympiad.cfg";
 	
 	public static final String XML_RPC_SERVER_SERVICES = "./config/powerpak/xmlrpc.service";
-	public static final String POWERPACK_CONFIG_FILE="./config/powerpak/powerpak.properties";
+	public static final String POWERPACK_CONFIG_FILE = "./config/powerpak/powerpak.properties";
 	public static final String EXTENSIONS_CONFIG = "config/extensions.properties";
 	
-	
-	
 	/** The Constant SEVEN_SIGNS_DATA_FILE. */
-	//public static final String SEVEN_SIGNS_DATA_FILE = "./config/signs.properties";
+	// public static final String SEVEN_SIGNS_DATA_FILE = "./config/signs.properties";
 	
 }

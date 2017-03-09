@@ -69,7 +69,7 @@ public class RequestBuyProcure extends L2GameClientPacket
 		_items = new int[_count * 2];
 		for (int i = 0; i < _count; i++)
 		{
-			final long servise = readD();
+			readD();
 			final int itemId = readD();
 			_items[i * 2 + 0] = itemId;
 			final long cnt = readD();
@@ -105,9 +105,6 @@ public class RequestBuyProcure extends L2GameClientPacket
 			return;
 		}
 		
-		final long subTotal = 0;
-		final int tax = 0;
-		
 		// Check for buylist validity and calculates summary values
 		int slots = 0;
 		int weight = 0;
@@ -122,8 +119,6 @@ public class RequestBuyProcure extends L2GameClientPacket
 		{
 			final int itemId = _items[i * 2 + 0];
 			final int count = _items[i * 2 + 1];
-			final int price = 0;
-			
 			if (count > Integer.MAX_VALUE)
 			{
 				Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried to purchase over " + Integer.MAX_VALUE + " items at the same time.", Config.DEFAULT_PUNISH);

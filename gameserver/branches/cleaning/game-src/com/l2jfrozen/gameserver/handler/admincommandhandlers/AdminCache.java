@@ -79,7 +79,7 @@ public class AdminCache implements IAdminCommandHandler
 				HtmCache.getInstance().reload(Config.DATAPACK_ROOT);
 				activeChar.sendMessage("Cache[HTML]: " + HtmCache.getInstance().getMemoryUsage() + " MB on " + HtmCache.getInstance().getLoadedFiles() + " file(s) loaded.");
 				return true;
-				
+			
 			case admin_cache_reload_path:
 				if (st.hasMoreTokens())
 				{
@@ -110,13 +110,13 @@ public class AdminCache implements IAdminCommandHandler
 				}
 				activeChar.sendMessage("Usage: //cache_reload_file <relative_path/file>");
 				return false;
-				
+			
 			case admin_cache_crest_rebuild:
 			case admin_cache_crest_reload:
 				CrestCache.getInstance().reload();
 				activeChar.sendMessage("Cache[Crest]: " + String.format("%.3f", CrestCache.getInstance().getMemoryUsage()) + " megabytes on " + CrestCache.getInstance().getLoadedFiles() + " files loaded");
 				return true;
-				
+			
 			case admin_cache_crest_fix:
 				CrestCache.getInstance().convertOldPedgeFiles();
 				activeChar.sendMessage("Cache[Crest]: crests fixed");

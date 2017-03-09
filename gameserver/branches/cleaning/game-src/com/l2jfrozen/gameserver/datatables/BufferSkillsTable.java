@@ -35,7 +35,13 @@ import javolution.util.FastMap;
  * This class builds a list of skills that L2BufferInstance will be able to cast. Info is directly taken from SQL (table buffer_skills) which should contain at least 4 fields: id (primary key), level, type, adena. "type" will allow administrators to separate and skills in different groups, specially
  * useful to restrict the access to some groups to determined kind of players. Example: <br>
  * <br>
- * <li>Prophet and similar</li> <li>Songs</li> <li>Dances</li> <li>Newbie buffs</li> <li>Advanced buffs</li> <li>Vip buffs</li> <li>...</li> <br>
+ * <li>Prophet and similar</li>
+ * <li>Songs</li>
+ * <li>Dances</li>
+ * <li>Newbie buffs</li>
+ * <li>Advanced buffs</li>
+ * <li>Vip buffs</li>
+ * <li>...</li> <br>
  * <font color="red"><b>IMPORTANT: type must not contain spaces</b></font> <br>
  * <br>
  * The whole info is stored in different FastList objects, one per each group. These lists contain a collection of L2Skills. Finally, these objects are stored in a new FastMap which has group as key and previous maps as values.<br>

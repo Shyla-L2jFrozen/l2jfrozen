@@ -1383,7 +1383,7 @@ public class L2Clan
 		if (_atWarWith != null && _atWarWith.size() > 0)
 			if (_atWarWith.contains(id))
 				return true;
-		
+			
 		return false;
 	}
 	
@@ -1392,7 +1392,7 @@ public class L2Clan
 		if (_atWarAttackers != null && _atWarAttackers.size() > 0)
 			if (_atWarAttackers.contains(id))
 				return true;
-		
+			
 		return false;
 	}
 	

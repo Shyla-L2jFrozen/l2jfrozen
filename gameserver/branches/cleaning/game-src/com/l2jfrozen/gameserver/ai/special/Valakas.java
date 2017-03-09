@@ -156,7 +156,7 @@ public class Valakas extends Quest implements Runnable
 			// Start timer to lock entry after 30 minutes and spawn valakas
 			startQuestTimer("lock_entry_and_spawn_valakas", (Config.VALAKAS_WAIT_TIME * 60000), null, null);
 			
-		}// if it was dormant, just leave it as it was:
+		} // if it was dormant, just leave it as it was:
 			// the valakas NPC is not spawned yet and his instance is not loaded
 		
 	}

@@ -605,7 +605,7 @@ public class Shutdown extends Thread
 			case TELL_RESTART:
 				LOGGER.info("Telnet restart received. Restarting NOW!");
 				break;
-		
+			
 		}
 		try
 		{

@@ -98,7 +98,7 @@ public final class RequestSellItem extends L2GameClientPacket
 		final L2Object target = player.getTarget();
 		if (!player.isGM() && (target == null // No target (ie GM Shop)
 			|| !(target instanceof L2MerchantInstance) // Target not a merchant and not mercmanager
-		|| !player.isInsideRadius(target, L2NpcInstance.INTERACTION_DISTANCE, false, false)))
+			|| !player.isInsideRadius(target, L2NpcInstance.INTERACTION_DISTANCE, false, false)))
 			return; // Distance is too far
 			
 		String htmlFolder = "";
@@ -132,8 +132,6 @@ public final class RequestSellItem extends L2GameClientPacket
 		for (int i = 0; i < _count; i++)
 		{
 			final int objectId = _items[i * 3 + 0];
-			@SuppressWarnings("unused")
-			final int itemId = _items[i * 3 + 1];
 			final int count = _items[i * 3 + 2];
 			
 			// Check count

@@ -42,7 +42,8 @@ import com.l2jfrozen.util.Util;
 /**
  * Stateful Packet Handler<BR>
  * The Stateful approach prevents the server from handling inconsistent packets, examples:<BR>
- * <li>Clients sends a MoveToLocation packet without having a character attached. (Potential errors handling the packet).</li> <li>Clients sends a RequestAuthLogin being already authed. (Potential exploit).</li> <BR>
+ * <li>Clients sends a MoveToLocation packet without having a character attached. (Potential errors handling the packet).</li>
+ * <li>Clients sends a RequestAuthLogin being already authed. (Potential exploit).</li> <BR>
  * <BR>
  * Note: If for a given exception a packet needs to be handled on more then one state, then it should be added to all these states.
  * @author L2JFrozen
@@ -80,7 +81,7 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 		
 		if (client.getActiveChar() != null)
 		{// already done EnterWorld
-		
+			
 			final String character = client.getActiveChar().getName();
 			String packet = "" + opcode;
 			if (opcode2 != -1)

@@ -631,9 +631,9 @@ public class AdminTeleport implements IAdminCommandHandler
 		if (target != null && target instanceof L2PcInstance)
 		{
 			player = (L2PcInstance) target;
-		}/*
-		 * else if(target != null && target instanceof L2NpcInstance){ npc = (L2NpcInstance) target; }
-		 */
+		} /*
+			 * else if(target != null && target instanceof L2NpcInstance){ npc = (L2NpcInstance) target; }
+			 */
 		else
 		{
 			activeChar.sendPacket(new SystemMessage(SystemMessageId.INCORRECT_TARGET));
@@ -654,9 +654,9 @@ public class AdminTeleport implements IAdminCommandHandler
 			activeChar.teleToLocation(x, y, z, true);
 			
 			activeChar.sendMessage("You have teleported to character " + player.getName() + ".");
-		}/*
-		 * else if(npc!=null) { int x = npc.getX(); int y = npc.getY(); int z = npc.getZ(); activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE); activeChar.teleToLocation(x, y, z, true); activeChar.sendMessage("You have teleported to npc " + npc.getName() + "."); }
-		 */
+		} /*
+			 * else if(npc!=null) { int x = npc.getX(); int y = npc.getY(); int z = npc.getZ(); activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE); activeChar.teleToLocation(x, y, z, true); activeChar.sendMessage("You have teleported to npc " + npc.getName() + "."); }
+			 */
 	}
 	
 	private void recallNPC(final L2PcInstance activeChar)

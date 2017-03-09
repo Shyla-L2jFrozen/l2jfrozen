@@ -25,7 +25,8 @@ import com.l2jfrozen.util.random.Rnd;
 /**
  * This class defines the spawn data of a Minion type In a group mob, there are one master called RaidBoss and several slaves called Minions. <B><U> Data</U> :</B><BR>
  * <BR>
- * <li>_minionId : The Identifier of the L2Minion to spawn</li> <li>_minionAmount : The number of this Minion Type to spawn</li><BR>
+ * <li>_minionId : The Identifier of the L2Minion to spawn</li>
+ * <li>_minionAmount : The number of this Minion Type to spawn</li><BR>
  * <BR>
  */
 public class L2MinionData

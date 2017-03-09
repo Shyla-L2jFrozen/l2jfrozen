@@ -62,7 +62,7 @@ public class EnchantScrolls implements IItemHandler
 		962,
 		6577,
 		6578
-	// s grade
+		// s grade
 	};
 	
 	@Override

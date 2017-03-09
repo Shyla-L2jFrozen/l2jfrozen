@@ -83,7 +83,9 @@ public final class QuestState
 	 * Constructor of the QuestState : save the quest in the list of quests of the player.<BR/>
 	 * <BR/>
 	 * <U><I>Actions :</U></I><BR/>
-	 * <LI>Save informations in the object QuestState created (Quest, Player, Completion, State)</LI> <LI>Add the QuestState in the player's list of quests by using setQuestState()</LI> <LI>Add drops gotten by the quest</LI> <BR/>
+	 * <LI>Save informations in the object QuestState created (Quest, Player, Completion, State)</LI>
+	 * <LI>Add the QuestState in the player's list of quests by using setQuestState()</LI>
+	 * <LI>Add drops gotten by the quest</LI> <BR/>
 	 * @param quest : quest associated with the QuestState
 	 * @param player : L2PcInstance pointing out the player
 	 * @param state : state of the quest
@@ -155,7 +157,12 @@ public final class QuestState
 	/**
 	 * Return state of the quest after its initialization.<BR>
 	 * <BR>
-	 * <U><I>Actions :</I></U> <LI>Remove drops from previous state</LI> <LI>Set new state of the quest</LI> <LI>Add drop for new state</LI> <LI>Update information in database</LI> <LI>Send packet QuestList to client</LI>
+	 * <U><I>Actions :</I></U>
+	 * <LI>Remove drops from previous state</LI>
+	 * <LI>Set new state of the quest</LI>
+	 * <LI>Add drop for new state</LI>
+	 * <LI>Update information in database</LI>
+	 * <LI>Send packet QuestList to client</LI>
 	 * @param state
 	 * @return object
 	 */
@@ -213,8 +220,10 @@ public final class QuestState
 	 * Return value of parameter "val" after adding the couple (var,val) in class variable "vars".<BR>
 	 * <BR>
 	 * <U><I>Actions :</I></U><BR>
-	 * <LI>Initialize class variable "vars" if is null</LI> <LI>Initialize parameter "val" if is null</LI> <LI>Add/Update couple (var,val) in class variable FastMap "vars"</LI> <LI>If the key represented by "var" exists in FastMap "vars", the couple (var,val) is updated in the database. The key is
-	 * known as existing if the preceding value of the key (given as result of function put()) is not null.<BR>
+	 * <LI>Initialize class variable "vars" if is null</LI>
+	 * <LI>Initialize parameter "val" if is null</LI>
+	 * <LI>Add/Update couple (var,val) in class variable FastMap "vars"</LI>
+	 * <LI>If the key represented by "var" exists in FastMap "vars", the couple (var,val) is updated in the database. The key is known as existing if the preceding value of the key (given as result of function put()) is not null.<BR>
 	 * If the key doesn't exist, the couple is added/created in the database</LI>
 	 * @param var : String indicating the name of the variable for quest
 	 * @param val : String indicating the value of the variable for quest
@@ -248,7 +257,7 @@ public final class QuestState
 				if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 					e.printStackTrace();
 				
-				// LOGGER.info(getPlayer().getName() + ", " + getQuestName() + " cond [" + val + "] is not an integer.  Value stored, but no packet was sent: " + e);
+				// LOGGER.info(getPlayer().getName() + ", " + getQuestName() + " cond [" + val + "] is not an integer. Value stored, but no packet was sent: " + e);
 				
 			}
 			
@@ -295,8 +304,11 @@ public final class QuestState
 	 * Internally handles the progression of the quest so that it is ready for sending appropriate packets to the client<BR>
 	 * <BR>
 	 * <U><I>Actions :</I></U><BR>
-	 * <LI>Check if the new progress number resets the quest to a previous (smaller) step</LI> <LI>If not, check if quest progress steps have been skipped</LI> <LI>If skipped, prepare the variable completedStateFlags appropriately to be ready for sending to clients</LI> <LI>If no steps were skipped,
-	 * flags do not need to be prepared...</LI> <LI>If the passed step resets the quest to a previous step, reset such that steps after the parameter are not considered, while skipped steps before the parameter, if any, maintain their info</LI>
+	 * <LI>Check if the new progress number resets the quest to a previous (smaller) step</LI>
+	 * <LI>If not, check if quest progress steps have been skipped</LI>
+	 * <LI>If skipped, prepare the variable completedStateFlags appropriately to be ready for sending to clients</LI>
+	 * <LI>If no steps were skipped, flags do not need to be prepared...</LI>
+	 * <LI>If the passed step resets the quest to a previous step, reset such that steps after the parameter are not considered, while skipped steps before the parameter, if any, maintain their info</LI>
 	 * @param cond : int indicating the step number for the current quest progress (as will be shown to the client)
 	 * @param old : int indicating the previously noted step For more info on the variable communicating the progress steps to the client, please see
 	 */
@@ -307,7 +319,7 @@ public final class QuestState
 		// if there is no change since last setting, there is nothing to do here
 		if (cond == old)
 			return;
-		
+			
 		// cond 0 and 1 do not need completedStateFlags. Also, if cond > 1, the 1st step must
 		// always exist (i.e. it can never be skipped). So if cond is 2, we can still safely
 		// assume no steps have been skipped.
@@ -688,7 +700,9 @@ public final class QuestState
 	/**
 	 * Remove items from player's inventory when talking to NPC in order to have rewards.<BR>
 	 * <BR>
-	 * <U><I>Actions :</I></U> <LI>Destroy quantity of items wanted</LI> <LI>Send new inventory list to player</LI>
+	 * <U><I>Actions :</I></U>
+	 * <LI>Destroy quantity of items wanted</LI>
+	 * <LI>Send new inventory list to player</LI>
 	 * @param itemId : Identifier of the item
 	 * @param count : Quantity of items to destroy
 	 */
