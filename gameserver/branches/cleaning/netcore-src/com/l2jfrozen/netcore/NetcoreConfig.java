@@ -151,7 +151,7 @@ public class NetcoreConfig
 					
 					if (server.equalsIgnoreCase("g"))
 					{ // gameserver opcode
-					
+						
 						final String opcode1 = token_splitted[1].substring(2);
 						String opcode2 = "";
 						
@@ -173,7 +173,7 @@ public class NetcoreConfig
 					}
 					else if (server.equalsIgnoreCase("l"))
 					{ // login opcode
-					
+						
 						LS_LIST_PROTECTED_OPCODES.add(Integer.parseInt(token_splitted[1].substring(2), 16));
 						
 					}

@@ -23,7 +23,6 @@ import org.apache.log4j.Logger;
 
 /**
  * @author Shyla
- *
  */
 public class NetcoreConfigFiles
 {
@@ -35,8 +34,9 @@ public class NetcoreConfigFiles
 	
 	protected static Properties configFiles = new Properties();
 	
-	//load statically the configuration files
-	static {
+	// load statically the configuration files
+	static
+	{
 		loadConfigurationFilesPaths(MAIN_CONFIGURATION_FILE);
 	}
 	
@@ -45,7 +45,7 @@ public class NetcoreConfigFiles
 		loadConfigurationFilesPaths(MAIN_CONFIGURATION_FILE);
 	}
 	
-	public static void loadConfigurationFilesPaths(String mainConfigurationFile)
+	public static void loadConfigurationFilesPaths(final String mainConfigurationFile)
 	{
 		try
 		{
@@ -53,7 +53,7 @@ public class NetcoreConfigFiles
 			configFiles.load(is);
 			is.close();
 			
-			NETCORE_CONFIGURATION_FILE = configFiles.getProperty("NetcoreConfigFilePath","./config/protected/mmocore.properties");
+			NETCORE_CONFIGURATION_FILE = configFiles.getProperty("NetcoreConfigFilePath", "./config/protected/mmocore.properties");
 			
 		}
 		catch (final Exception e)
@@ -61,6 +61,5 @@ public class NetcoreConfigFiles
 			LOGGER.error("Failed to Load " + mainConfigurationFile + " File.", e);
 		}
 	}
-	
 	
 }
