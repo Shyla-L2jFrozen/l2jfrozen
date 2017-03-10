@@ -1898,6 +1898,20 @@ public class L2NpcInstance extends L2Character
 	 */
 	public String getHtmlPath(final int npcId, final int val)
 	{
+		/* Restriction for default l2jfrozen npc */
+		// TODO
+		// 50007 Wedding
+		// 50017 PVP/PK
+		// 50018 Engraver
+		// 55555 Rebirth
+		// 66666 Noblesse
+		// 66667 Clan manager
+		// 57    GM SHOP
+		// 7077  Global teleport
+		// 50019 Buffer
+		// 93000 Boss manager
+		// 50020 Augmenter
+		
 		String pom = "";
 		
 		if (val == 0)
