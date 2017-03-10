@@ -281,7 +281,7 @@ public class GameServerThread extends Thread
 			{
 				_accountsOnGameServer.add(account);
 				
-				if (CommonConfig.DEBUG)
+				if (CommonConfig.ASSERT)
 				{
 					LOGGER.info("Account " + account + " logged in GameServer: [" + getServerId() + "] " + GameServerTable.getInstance().getServerNameById(getServerId()));
 				}
@@ -304,9 +304,9 @@ public class GameServerThread extends Thread
 			PlayerLogout plo = new PlayerLogout(data);
 			_accountsOnGameServer.remove(plo.getAccount());
 			
-			if (CommonConfig.DEBUG)
+			if (CommonConfig.ASSERT)
 			{
-				LOGGER.info("Player " + plo.getAccount() + " logged out from gameserver [" + getServerId() + "] " + GameServerTable.getInstance().getServerNameById(getServerId()));
+				LOGGER.info("Account " + plo.getAccount() + " logged out from GameServer: [" + getServerId() + "] " + GameServerTable.getInstance().getServerNameById(getServerId()));
 			}
 			plo = null;
 		}
