@@ -272,8 +272,9 @@
 			<mkdir dir="${build.dist.game}/config/powerpak" />
 			<mkdir dir="${build.dist.game}/config/powerpak/webservices" />
 			<mkdir dir="${build.dist.game}/config/network" />
-			<mkdir dir="${build.dist.game}/config/fun" />
+			<mkdir dir="${build.dist.game}/config/mods" />
 			<mkdir dir="${build.dist.game}/config/others" />
+		    <mkdir dir="${build.dist.game}/config/events" />
 
 			<copy todir="${build.dist.game}/config">
 				<fileset dir="config">
@@ -397,9 +398,9 @@
 		<mkdir dir="${build.dist.game}/config/powerpak" />
 		<mkdir dir="${build.dist.game}/config/powerpak/webservices" />
 		<mkdir dir="${build.dist.game}/config/network" />
-		<mkdir dir="${build.dist.game}/config/fun" />
-
+		<mkdir dir="${build.dist.game}/config/mods" />
 		<mkdir dir="${build.dist.game}/config/others" />
+		<mkdir dir="${build.dist.game}/config/events" />
 
 		<!-- game server -->
 		<copy todir="${build.dist.game}/config">
@@ -436,14 +437,14 @@
 			</fileset>
 		</copy>
 
-		<copy todir="${build.dist.game}/config/frozen">
-			<fileset dir="config/frozen">
+		<copy todir="${build.dist.game}/config/events">
+			<fileset dir="config/events">
 				<include name="*.properties" />
 			</fileset>
 		</copy>
 
-		<copy todir="${build.dist.game}/config/fun">
-			<fileset dir="config/fun">
+		<copy todir="${build.dist.game}/config/mods">
+			<fileset dir="config/mods">
 				<include name="*.properties" />
 			</fileset>
 		</copy>
