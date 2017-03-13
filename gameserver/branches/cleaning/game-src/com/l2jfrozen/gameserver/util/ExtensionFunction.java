@@ -35,6 +35,8 @@ package com.l2jfrozen.gameserver.util;
 public interface ExtensionFunction
 {
 	
+	public void init();
+	
 	/**
 	 * get an object identified with a name (should have a human readable output with toString())
 	 * @param name the name of an object or a result of a function

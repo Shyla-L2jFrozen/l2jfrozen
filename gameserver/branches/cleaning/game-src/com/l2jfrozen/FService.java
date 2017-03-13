@@ -25,13 +25,13 @@ public class FService
 	// Config Files Paths
 	// =======================================================================================================================
 	// Standard
-	public static final String ID_CONFIG_FILE = "./config/idfactory.properties";
-	public static final String EXTENDER_FILE = "./config/extender.properties";
-	public static final String SCRIPT_FILE = "./config/script.properties";
-	public static final String DAEMONS_FILE = "./config/daemons.properties";
-	public static final String PROTECT_KEY_FILE = "./config/key.cfg";
-	public static final String FILTER_FILE = "./config/chatfilter.txt";
-	public static final String QUESTION_FILE = "./config/questionwords.txt";
+	public static final String ID_CONFIG_FILE = "./config/others/idfactory.properties";
+	public static final String EXTENDER_FILE = "./config/others/extensions.properties";
+	public static final String SCRIPT_FILE = "./config/others/script.properties";
+	public static final String DAEMONS_FILE = "./config/others/daemons.properties";
+	public static final String PROTECT_KEY_FILE = "./config/others/key.cfg";
+	public static final String FILTER_FILE = "./config/others/chatfilter.txt";
+	public static final String QUESTION_FILE = "./config/others/questionwords.txt";
 	public static final String HEXID_FILE = "./config/hexid.txt";
 	// public static final String TELNET_FILE = "./config/telnet.properties";
 	
@@ -91,7 +91,7 @@ public class FService
 	public static final String DATAPACK_VERSION_FILE = "./config/version/l2jfrozen-datapack.properties";
 	
 	// // others
-	public static final String LOG_CONF_FILE = "./config/others/logger.properties";
+	//	public static final String LOG_CONF_FILE = "./config/others/logger.properties";
 	// public static final String BANNED_IP = "./config/others/banned_ip.cfg";
 	// public static final String SERVER_NAME_FILE = "./config/others/servername.xml";
 	//
@@ -103,9 +103,9 @@ public class FService
 	public static final String EVENT_MANAGER_CONFIGURATION_FILE = "./config/frozen/eventmanager.properties";
 	public static final String OLYMPIAD_DATA_FILE = "./config/olympiad.cfg";
 	
-	public static final String XML_RPC_SERVER_SERVICES = "./config/powerpak/xmlrpc.service";
+//	public static final String XML_RPC_SERVER_SERVICES = "./config/powerpak/xmlrpc.service";
 	public static final String POWERPACK_CONFIG_FILE = "./config/powerpak/powerpak.properties";
-	public static final String EXTENSIONS_CONFIG = "config/extensions.properties";
+//	public static final String EXTENSIONS_CONFIG = "config/extensions.properties";
 	
 	/** The Constant SEVEN_SIGNS_DATA_FILE. */
 	// public static final String SEVEN_SIGNS_DATA_FILE = "./config/signs.properties";

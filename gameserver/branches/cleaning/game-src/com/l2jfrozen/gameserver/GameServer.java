@@ -33,6 +33,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.CommonConfigFiles;
 import com.l2jfrozen.Config;
 import com.l2jfrozen.FService;
 import com.l2jfrozen.L2Frozen;
@@ -165,12 +166,12 @@ public class GameServer
 	
 	public static void main(final String[] args) throws Exception
 	{
-		PropertyConfigurator.configure(FService.LOG_CONF_FILE);
-		ServerType.serverMode = ServerType.MODE_GAMESERVER;
-		
-		final String LOG_FOLDER_BASE = "log"; // Name of folder for LOGGER base file
-		final File logFolderBase = new File(LOG_FOLDER_BASE);
-		logFolderBase.mkdir();
+		// Create Loggers
+		final File log_conf_file = new File(CommonConfigFiles.LOG_CONF_FILE);
+		if (!log_conf_file.exists())
+		{
+			throw new IOException("Configuration file " + CommonConfigFiles.LOG_CONF_FILE + " is missing");
+		}
 		
 		// Local Constants
 		final String LOG_FOLDER = "log/game";
@@ -179,20 +180,24 @@ public class GameServer
 		File logFolder = new File(LOG_FOLDER);
 		logFolder.mkdir();
 		
-		// Create input stream for LOGGER file -- or store file data into memory
-		
-		// check for legacy Implementation
-		final File log_conf_file = new File(FService.LOG_CONF_FILE);
-		if (!log_conf_file.exists())
-		{
-			throw new IOException("Configuration file " + FService.LOG_CONF_FILE + " is missing");
-		}
-		
 		InputStream is = new FileInputStream(log_conf_file);
 		LogManager.getLogManager().readConfiguration(is);
 		is.close();
 		is = null;
 		logFolder = null;
+		
+//		final String LOG_FOLDER_BASE = "log"; // Name of folder for LOGGER base file
+//		final File logFolderBase = new File(LOG_FOLDER_BASE);
+//		logFolderBase.mkdir();
+		
+		final File log4j_conf_file = new File(CommonConfigFiles.LOG4J_CONF_FILE);
+		if (!log4j_conf_file.exists())
+		{
+			throw new IOException("Configuration file " + CommonConfigFiles.LOG4J_CONF_FILE + " is missing");
+		}
+		
+		PropertyConfigurator.configure(CommonConfigFiles.LOG4J_CONF_FILE);
+		ServerType.serverMode = ServerType.MODE_GAMESERVER;
 		
 		final long serverLoadStart = System.currentTimeMillis();
 		

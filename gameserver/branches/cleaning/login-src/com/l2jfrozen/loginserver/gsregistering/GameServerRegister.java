@@ -17,8 +17,10 @@
 package com.l2jfrozen.loginserver.gsregistering;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
@@ -27,14 +29,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.LogManager;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.CommonConfigFiles;
 import com.l2jfrozen.ServerType;
 import com.l2jfrozen.loginserver.LoginConfig;
-import com.l2jfrozen.loginserver.LoginConfigFiles;
 import com.l2jfrozen.loginserver.datatables.GameServerTable;
 import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.database.DatabaseUtils;
@@ -49,7 +52,38 @@ public class GameServerRegister
 	
 	public static void main(final String[] args) throws IOException
 	{
-		PropertyConfigurator.configure(LoginConfigFiles.LOG_CONF_FILE);
+		// Create Loggers
+		final File log_conf_file = new File(CommonConfigFiles.LOG_CONF_FILE);
+		if (!log_conf_file.exists())
+		{
+			throw new IOException("Configuration file " + CommonConfigFiles.LOG_CONF_FILE + " is missing");
+		}
+		
+		// Local Constants
+		final String LOG_FOLDER = "log/gsregister";
+		
+		// Create LOGGER folder
+		File logFolder = new File(LOG_FOLDER);
+		logFolder.mkdir();
+		
+		InputStream is = new FileInputStream(log_conf_file);
+		LogManager.getLogManager().readConfiguration(is);
+		is.close();
+		is = null;
+		logFolder = null;
+		
+//		final String LOG_FOLDER_BASE = "log"; // Name of folder for LOGGER base file
+//		final File logFolderBase = new File(LOG_FOLDER_BASE);
+//		logFolderBase.mkdir();
+		
+		final File log4j_conf_file = new File(CommonConfigFiles.LOG4J_CONF_FILE);
+		if (!log4j_conf_file.exists())
+		{
+			throw new IOException("Configuration file " + CommonConfigFiles.LOG4J_CONF_FILE + " is missing");
+		}
+		
+		PropertyConfigurator.configure(CommonConfigFiles.LOG4J_CONF_FILE);
+		
 		ServerType.serverMode = ServerType.MODE_LOGINSERVER;
 		LoginConfig.load();
 		final LineNumberReader _in = new LineNumberReader(new InputStreamReader(System.in));

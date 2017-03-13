@@ -33,6 +33,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.CommonConfigFiles;
 import com.l2jfrozen.L2Frozen;
 import com.l2jfrozen.ServerType;
 import com.l2jfrozen.loginserver.datatables.GameServerTable;
@@ -54,9 +55,8 @@ public class LoginServer
 	private GameServerListener _gameServerListener;
 	private SelectorThread<LoginClient> _selectorThread;
 	
-	public static void main(final String[] args)
+	public static void main(final String[] args) throws Exception
 	{
-		PropertyConfigurator.configure(LoginConfigFiles.LOG_CONF_FILE);
 		_instance = new LoginServer();
 	}
 	
@@ -65,57 +65,41 @@ public class LoginServer
 		return _instance;
 	}
 	
-	public LoginServer()
+	public LoginServer() throws Exception
 	{
-		ServerType.serverMode = ServerType.MODE_LOGINSERVER;
+		
+		// Create Loggers
+		final File log_conf_file = new File(CommonConfigFiles.LOG_CONF_FILE);
+		if (!log_conf_file.exists())
+		{
+			throw new IOException("Configuration file " + CommonConfigFiles.LOG_CONF_FILE + " is missing");
+		}
 		
 		// Local Constants
-		final String LOG_FOLDER_BASE = "log"; // Name of folder for LOGGER base file
-		final File logFolderBase = new File(LOG_FOLDER_BASE);
-		logFolderBase.mkdir();
+		final String LOG_FOLDER = "log/login";
 		
-		final String LOG_FOLDER = "log/login"; // Name of folder for LOGGER file
-		
-		/*** Main ***/
 		// Create LOGGER folder
 		File logFolder = new File(LOG_FOLDER);
 		logFolder.mkdir();
 		
-		// Create input stream for LOGGER file -- or store file data into memory
-		InputStream is = null;
-		try
+		InputStream is = new FileInputStream(log_conf_file);
+		LogManager.getLogManager().readConfiguration(is);
+		is.close();
+		is = null;
+		logFolder = null;
+		
+//		final String LOG_FOLDER_BASE = "log"; // Name of folder for LOGGER base file
+//		final File logFolderBase = new File(LOG_FOLDER_BASE);
+//		logFolderBase.mkdir();
+		
+		final File log4j_conf_file = new File(CommonConfigFiles.LOG4J_CONF_FILE);
+		if (!log4j_conf_file.exists())
 		{
-			// check for legacy Implementation
-			final File log_conf_file = new File(LoginConfigFiles.LOG_CONF_FILE);
-			if (!log_conf_file.exists())
-			{
-				throw new IOException("Configuration file " + LoginConfigFiles.LOG_CONF_FILE + " is missing");
-			}
-			
-			is = new FileInputStream(log_conf_file);
-			LogManager.getLogManager().readConfiguration(is);
-			
+			throw new IOException("Configuration file " + CommonConfigFiles.LOG4J_CONF_FILE + " is missing");
 		}
-		catch (final IOException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			if (is != null)
-			{
-				try
-				{
-					
-					is.close();
-				}
-				catch (final IOException e)
-				{
-					e.printStackTrace();
-				}
-			}
-			
-		}
+		
+		PropertyConfigurator.configure(CommonConfigFiles.LOG4J_CONF_FILE);
+		ServerType.serverMode = ServerType.MODE_LOGINSERVER;
 		
 		// Team info
 		Util.printSection("Team");
@@ -237,7 +221,6 @@ public class LoginServer
 			
 		}
 		
-		logFolder = null;
 		bindAddress = null;
 	}
 	
