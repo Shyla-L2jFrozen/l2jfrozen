@@ -23,7 +23,6 @@ public class LoginConfigFiles extends CommonConfigFiles
 {
 	
 	public static String LOGIN_CONFIGURATION_FILE;
-	public static String LOG_CONF_FILE;
 	public static String BANNED_IP;
 	public static String SERVER_NAME_FILE;
 	
@@ -38,7 +37,6 @@ public class LoginConfigFiles extends CommonConfigFiles
 		CommonConfigFiles.loadConfigurationFilesPaths(mainConfigurationFile);
 		
 		LOGIN_CONFIGURATION_FILE = configFiles.getProperty("LoginConfigFilePath", "./config/loginserver.properties");
-		LOG_CONF_FILE = configFiles.getProperty("LogConfigFilePath", "./config/others/logger.properties");
 		BANNED_IP = configFiles.getProperty("BannedIpsConfigFilePath", "./config/others/banned_ip.cfg");
 		SERVER_NAME_FILE = configFiles.getProperty("ServersNameConfigFilePath", "./config/others/servername.xml");
 		

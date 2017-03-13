@@ -98,7 +98,7 @@ public class DynamicExtension
 		
 		try
 		{
-			fis = new FileInputStream(FService.EXTENSIONS_CONFIG);
+			fis = new FileInputStream(FService.EXTENDER_FILE);
 			_prop.load(fis);
 		}
 		catch (final FileNotFoundException ex)

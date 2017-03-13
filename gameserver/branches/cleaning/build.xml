@@ -11,7 +11,7 @@
 	<property name="game-src" location="game-src" />
 	<property name="login-src" location="login-src" />
 	<property name="netcore-src" location="netcore-src" />
-	<property name="common-src" location="head-src" />
+	<property name="common-src" location="common-src" />
 	<property name="target" location="target" />
 	<property name="src-lib" location="lib" />
 
@@ -179,17 +179,12 @@
 
 			<copy todir="${build.dist.login.lib}">
 				<fileset dir="${src-lib}">
-					<include name="bone*.jar" />
 					<include name="c3p0*.jar" />
 					<include name="commons-lang3*.jar" />
-					<include name="guava*.jar" />
 					<include name="javolution*.jar" />
 					<include name="log4j*.jar" />
 					<include name="mchange*.jar" />
 					<include name="mysql*.jar" />
-					<include name="slf4j*.jar" />
-																																			
-					<include name="*.txt" />
 				</fileset>
 			</copy>
 
@@ -249,7 +244,6 @@
 			<copy todir="${build.dist.game.lib}">
 				<fileset dir="${src-lib}">
 					<include name="**/*.jar" />
-					<include name="*.txt" />
 				</fileset>
 			</copy>
 

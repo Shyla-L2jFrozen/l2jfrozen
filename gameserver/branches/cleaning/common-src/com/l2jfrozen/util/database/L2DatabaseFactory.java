@@ -25,7 +25,6 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
 
 public abstract class L2DatabaseFactory
 {
@@ -50,14 +49,8 @@ public abstract class L2DatabaseFactory
 	{
 		if (_instance == null)
 		{
-			if (CommonConfig.DATABASE_POOL_TYPE.equals("BoneCP"))
-			{
-				_instance = new L2DatabaseFactory_BoneCP();
-			}
-			else
-			{
+			
 				_instance = new L2DatabaseFactory_c3p0();
-			}
 			
 		}
 		return _instance;

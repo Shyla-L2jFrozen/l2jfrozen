@@ -4004,6 +4004,7 @@ public final class Config
 	public static Map<String, List<String>> EXTENDERS;
 	
 	// ============================================================
+	/*
 	public static void loadExtendersConfig()
 	{
 		final String EXTENDER_FILE = FService.EXTENDER_FILE;
@@ -4069,6 +4070,7 @@ public final class Config
 			}
 		}
 	}
+	*/
 	
 	// ============================================================
 	public static long AUTOSAVE_INITIAL_TIME;
@@ -4413,7 +4415,7 @@ public final class Config
 			loadKeyOptions();
 			loadDPVersionConfig();
 			loadServerVersionConfig();
-			loadExtendersConfig();
+//			loadExtendersConfig();
 			loadDaemonsConf();
 			
 			if (Config.USE_SAY_FILTER)
