@@ -1896,8 +1896,6 @@ public final class Config
 			SAVE_GMSPAWN_ON_CUSTOM = Boolean.valueOf(devSettings.getProperty("SaveGmSpawnOnCustom", "True"));
 			DELETE_GMSPAWN_ON_CUSTOM = Boolean.valueOf(devSettings.getProperty("DeleteGmSpawnOnCustom", "True"));
 			
-			
-			ENABLE_OLYMPIAD_DEBUG = Boolean.parseBoolean(devSettings.getProperty("EnableOlympiadDebug", "false"));
 			SKILLSDEBUG = Boolean.parseBoolean(devSettings.getProperty("SkillsDebug", "false"));
 			DEVELOPER = Boolean.parseBoolean(devSettings.getProperty("Developer", "false"));
 			ZONE_DEBUG = Boolean.parseBoolean(devSettings.getProperty("ZoneDebug", "false"));
@@ -1911,7 +1909,6 @@ public final class Config
 			ALT_DEV_NO_SCRIPT = Boolean.parseBoolean(devSettings.getProperty("AltDevNoScript", "False"));
 			ALT_DEV_NO_AI = Boolean.parseBoolean(devSettings.getProperty("AltDevNoAI", "False"));
 			ALT_DEV_NO_RB = Boolean.parseBoolean(devSettings.getProperty("AltDevNoRB", "False"));
-			ENABLE_OLYMPIAD_DISCONNECTION_DEBUG = Boolean.parseBoolean(devSettings.getProperty("EnableOlympiadDisconnectionDebug"));
 			
 			REQUEST_ID = Integer.parseInt(devSettings.getProperty("RequestServerID", "0"));
 			ACCEPT_ALTERNATE_ID = Boolean.parseBoolean(devSettings.getProperty("AcceptAlternateID", "True"));
@@ -2734,6 +2731,11 @@ public final class Config
 			final InputStream is = new FileInputStream(new File(OLYMPC));
 			OLYMPSetting.load(is);
 			is.close();
+			
+			ENABLE_OLYMPIAD_DISCONNECTION_DEBUG = Boolean.parseBoolean(OLYMPSetting.getProperty("EnableOlympiadDisconnectionDebug"));
+			ENABLE_OLYMPIAD_DEBUG = Boolean.parseBoolean(OLYMPSetting.getProperty("EnableOlympiadDebug", "false"));
+
+			ALT_OLY_ENCHANT_LIMIT = Integer.parseInt(OLYMPSetting.getProperty("AltOlyMaxEnchant", "-1"));
 			ALT_OLY_START_TIME = Integer.parseInt(OLYMPSetting.getProperty("AltOlyStartTime", "18"));
 			ALT_OLY_MIN = Integer.parseInt(OLYMPSetting.getProperty("AltOlyMin", "00"));
 			ALT_OLY_CPERIOD = Long.parseLong(OLYMPSetting.getProperty("AltOlyCPeriod", "21600000"));
@@ -3139,7 +3141,6 @@ public final class Config
 			
 			/** count enchant **/
 			CUSTOM_ENCHANT_VALUE = Integer.parseInt(ENCHANTSetting.getProperty("CustomEnchantValue", "1"));
-			ALT_OLY_ENCHANT_LIMIT = Integer.parseInt(ENCHANTSetting.getProperty("AltOlyMaxEnchant", "-1"));
 			BREAK_ENCHANT = Integer.valueOf(ENCHANTSetting.getProperty("BreakEnchant", "0"));
 			
 			MAX_ITEM_ENCHANT_KICK = Integer.parseInt(ENCHANTSetting.getProperty("EnchantKick", "0"));

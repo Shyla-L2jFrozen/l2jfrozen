@@ -62,7 +62,7 @@ public class FService
 	
 	// protected
 	public static final String PROTECT_FLOOD_CONFIG_FILE = "./config/protected/flood.properties";
-	public static final String PROTECT_OTHER_CONFIG_FILE = "./config/protected/other.properties";
+	public static final String PROTECT_OTHER_CONFIG_FILE = "./config/protected/gameprotection.properties";
 	public static final String PROTECT_PACKET_CONFIG_FILE = "./config/protected/packets.properties";
 	
 	// Event's config file
