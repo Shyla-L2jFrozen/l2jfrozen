@@ -94,6 +94,8 @@ public final class Config
 			MASTERACCESS_NAME_COLOR = Integer.decode("0x" + AccessSettings.getProperty("MasterNameColor", "00FF00"));
 			MASTERACCESS_TITLE_COLOR = Integer.decode("0x" + AccessSettings.getProperty("MasterTitleColor", "00FF00"));
 			USERACCESS_LEVEL = Integer.parseInt(AccessSettings.getProperty("UserAccessLevel", "0"));
+			GM_TRADE_RESTRICTED_ITEMS = Boolean.parseBoolean(AccessSettings.getProperty("GMTradeRestrictedItems", "False"));
+			GM_RESTART_FIGHTING = Boolean.parseBoolean(AccessSettings.getProperty("GMRestartFighting", "False"));
 		}
 		catch (final Exception e)
 		{
@@ -1889,13 +1891,16 @@ public final class Config
 			devSettings.load(is);
 			is.close();
 			
+			/** Custom Tables **/
+			CUSTOM_SPAWNLIST_TABLE = Boolean.valueOf(devSettings.getProperty("CustomSpawnlistTable", "True"));
+			SAVE_GMSPAWN_ON_CUSTOM = Boolean.valueOf(devSettings.getProperty("SaveGmSpawnOnCustom", "True"));
+			DELETE_GMSPAWN_ON_CUSTOM = Boolean.valueOf(devSettings.getProperty("DeleteGmSpawnOnCustom", "True"));
+			
+			
 			ENABLE_OLYMPIAD_DEBUG = Boolean.parseBoolean(devSettings.getProperty("EnableOlympiadDebug", "false"));
 			SKILLSDEBUG = Boolean.parseBoolean(devSettings.getProperty("SkillsDebug", "false"));
-			// DEBUG = Boolean.parseBoolean(devSettings.getProperty("Debug", "false"));
-			// ASSERT = Boolean.parseBoolean(devSettings.getProperty("Assert", "false"));
 			DEVELOPER = Boolean.parseBoolean(devSettings.getProperty("Developer", "false"));
 			ZONE_DEBUG = Boolean.parseBoolean(devSettings.getProperty("ZoneDebug", "false"));
-			// ENABLE_ALL_EXCEPTIONS = Boolean.parseBoolean(devSettings.getProperty("EnableAllExceptionsLog", "false"));
 			SERVER_LIST_TESTSERVER = Boolean.parseBoolean(devSettings.getProperty("TestServer", "false"));
 			BETASERVER = Boolean.parseBoolean(devSettings.getProperty("BetaServer", "false"));
 			SERVER_LIST_BRACKET = Boolean.valueOf(devSettings.getProperty("ServerListBrackets", "false"));
@@ -2104,46 +2109,6 @@ public final class Config
 	}
 	
 	// ============================================================
-	public static boolean GM_TRADE_RESTRICTED_ITEMS;
-	public static boolean GM_CRITANNOUNCER_NAME;
-	public static boolean GM_RESTART_FIGHTING;
-	public static boolean PM_MESSAGE_ON_START;
-	public static boolean SERVER_TIME_ON_START;
-	public static String PM_SERVER_NAME;
-	public static String PM_TEXT1;
-	public static String PM_TEXT2;
-	public static boolean NEW_PLAYER_EFFECT;
-	
-	// ============================================================
-	public static void loadFrozenConfig()
-	{
-		final String Frozen = FService.L2FROZEN_CONFIG_FILE;
-		
-		try
-		{
-			final Properties frozenSettings = new Properties();
-			final InputStream is = new FileInputStream(new File(Frozen));
-			frozenSettings.load(is);
-			is.close();
-			
-			GM_TRADE_RESTRICTED_ITEMS = Boolean.parseBoolean(frozenSettings.getProperty("GMTradeRestrictedItems", "False"));
-			GM_RESTART_FIGHTING = Boolean.parseBoolean(frozenSettings.getProperty("GMRestartFighting", "False"));
-			PM_MESSAGE_ON_START = Boolean.parseBoolean(frozenSettings.getProperty("PMWelcomeShow", "False"));
-			SERVER_TIME_ON_START = Boolean.parseBoolean(frozenSettings.getProperty("ShowServerTimeOnStart", "False"));
-			PM_SERVER_NAME = frozenSettings.getProperty("PMServerName", "L2-Frozen");
-			PM_TEXT1 = frozenSettings.getProperty("PMText1", "Have Fun and Nice Stay on");
-			PM_TEXT2 = frozenSettings.getProperty("PMText2", "Vote for us every 24h");
-			NEW_PLAYER_EFFECT = Boolean.parseBoolean(frozenSettings.getProperty("NewPlayerEffect", "True"));
-			
-		}
-		catch (final Exception e)
-		{
-			e.printStackTrace();
-			throw new Error("Failed to Load " + Frozen + " File.");
-		}
-	}
-	
-	// ============================================================
 	public static boolean DM_ALLOW_INTERFERENCE;
 	public static boolean DM_ALLOW_POTIONS;
 	public static boolean DM_ALLOW_SUMMON;
@@ -2267,6 +2232,15 @@ public final class Config
 	}
 	
 	// ============================================================
+	public static boolean GM_TRADE_RESTRICTED_ITEMS;
+	public static boolean GM_CRITANNOUNCER_NAME;
+	public static boolean GM_RESTART_FIGHTING;
+	public static boolean PM_MESSAGE_ON_START;
+	public static boolean SERVER_TIME_ON_START;
+	public static String PM_SERVER_NAME;
+	public static String PM_TEXT1;
+	public static String PM_TEXT2;
+	public static boolean NEW_PLAYER_EFFECT;
 	public static boolean ONLINE_PLAYERS_ON_LOGIN;
 	public static boolean SHOW_SERVER_VERSION;
 	public static boolean SUBSTUCK_SKILLS;
@@ -2384,10 +2358,12 @@ public final class Config
 			L2JFrozenSettings.load(is);
 			is.close();
 			
-			/** Custom Tables **/
-			CUSTOM_SPAWNLIST_TABLE = Boolean.valueOf(L2JFrozenSettings.getProperty("CustomSpawnlistTable", "True"));
-			SAVE_GMSPAWN_ON_CUSTOM = Boolean.valueOf(L2JFrozenSettings.getProperty("SaveGmSpawnOnCustom", "True"));
-			DELETE_GMSPAWN_ON_CUSTOM = Boolean.valueOf(L2JFrozenSettings.getProperty("DeleteGmSpawnOnCustom", "True"));
+			PM_MESSAGE_ON_START = Boolean.parseBoolean(L2JFrozenSettings.getProperty("PMWelcomeShow", "False"));
+			SERVER_TIME_ON_START = Boolean.parseBoolean(L2JFrozenSettings.getProperty("ShowServerTimeOnStart", "False"));
+			PM_SERVER_NAME = L2JFrozenSettings.getProperty("PMServerName", "L2-Frozen");
+			PM_TEXT1 = L2JFrozenSettings.getProperty("PMText1", "Have Fun and Nice Stay on");
+			PM_TEXT2 = L2JFrozenSettings.getProperty("PMText2", "Vote for us every 24h");
+			NEW_PLAYER_EFFECT = Boolean.parseBoolean(L2JFrozenSettings.getProperty("NewPlayerEffect", "True"));
 			
 			ONLINE_PLAYERS_ON_LOGIN = Boolean.valueOf(L2JFrozenSettings.getProperty("OnlineOnLogin", "False"));
 			SHOW_SERVER_VERSION = Boolean.valueOf(L2JFrozenSettings.getProperty("ShowServerVersion", "False"));
@@ -4388,7 +4364,6 @@ public final class Config
 			// Frozen config
 			loadCTFConfig();
 			loadDMConfig();
-			loadFrozenConfig();
 			loadTVTConfig();
 			loadTWConfig();
 			// loadIRCConfig();
