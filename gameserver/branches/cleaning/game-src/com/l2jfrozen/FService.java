@@ -65,22 +65,21 @@ public class FService
 	public static final String PROTECT_OTHER_CONFIG_FILE = "./config/protected/other.properties";
 	public static final String PROTECT_PACKET_CONFIG_FILE = "./config/protected/packets.properties";
 	
-	// Gates of File configs
-	public static final String L2FROZEN_CONFIG_FILE = "./config/frozen/frozen.properties";
-	public static final String EVENT_CTF_FILE = "./config/frozen/ctf.properties";
-	public static final String EVENT_DM_FILE = "./config/frozen/dm.properties";
-	public static final String EVENT_TVT_FILE = "./config/frozen/tvt.properties";
-	public static final String EVENT_TW_FILE = "./config/frozen/tw.properties";
-	// public static final String IRC_FILE = "./config/frozen/irc.properties";
-	
-	// fun -- events
-	public static final String AWAY_FILE = "./config/fun/away.properties";
-	public static final String BANK_FILE = "./config/fun/bank.properties";
-	public static final String EVENT_CHAMPION_FILE = "./config/fun/champion.properties";
-	public static final String EVENT_REBIRTH_FILE = "./config/fun/rebirth.properties";
-	public static final String EVENT_WEDDING_FILE = "./config/fun/wedding.properties";
-	public static final String EVENT_PC_BANG_POINT_FILE = "./config/fun/pcBang.properties";
-	public static final String OFFLINE_FILE = "./config/fun/offline.properties";
+	// Event's config file
+	public static final String EVENT_CTF_FILE = "./config/events/ctf.properties";
+	public static final String EVENT_DM_FILE = "./config/events/dm.properties";
+	public static final String EVENT_TVT_FILE = "./config/events/tvt.properties";
+	public static final String EVENT_TW_FILE = "./config/events/tw.properties";
+	public static final String EVENT_MANAGER_CONFIGURATION_FILE = "./config/events/eventmanager.properties";
+
+	// Mod's config file
+	public static final String AWAY_FILE = "./config/mods/away.properties";
+	public static final String BANK_FILE = "./config/mods/bank.properties";
+	public static final String EVENT_CHAMPION_FILE = "./config/mods/champion.properties";
+	public static final String EVENT_REBIRTH_FILE = "./config/mods/rebirth.properties";
+	public static final String EVENT_WEDDING_FILE = "./config/mods/wedding.properties";
+	public static final String EVENT_PC_BANG_POINT_FILE = "./config/mods/pcBang.properties";
+	public static final String OFFLINE_FILE = "./config/mods/offline.properties";
 	
 	// network
 	public static final String CONFIGURATION_FILE = "./config/network/gameserver.properties";
@@ -100,7 +99,6 @@ public class FService
 	// public static final String LEGACY_BANNED_IP = "./config/banned_ip.cfg";
 	// public static final String LEGACY_SERVER_NAME_FILE = "./servername.xml";
 	
-	public static final String EVENT_MANAGER_CONFIGURATION_FILE = "./config/frozen/eventmanager.properties";
 	public static final String OLYMPIAD_DATA_FILE = "./config/olympiad.cfg";
 	
 //	public static final String XML_RPC_SERVER_SERVICES = "./config/powerpak/xmlrpc.service";
