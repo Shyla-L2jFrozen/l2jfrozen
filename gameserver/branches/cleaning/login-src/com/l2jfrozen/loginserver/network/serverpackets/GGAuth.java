@@ -40,7 +40,12 @@ public final class GGAuth extends L2LoginServerPacket
 		
 		if (CommonConfig.DEBUG)
 		{
-			LOGGER.warn("Reason Hex: " + Integer.toHexString(response));
+			LOGGER.info("Reason Hex: " + Integer.toHexString(response));
+		}
+		
+		if (CommonConfig.ASSERT)
+		{
+			LOGGER.info("GGAuth response ok to session (after id & pass click)");
 		}
 	}
 	

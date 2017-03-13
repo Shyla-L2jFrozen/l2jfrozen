@@ -309,14 +309,14 @@
 				</fileset>
 			</copy>
 
-			<copy todir="${build.dist.game}/config/frozen">
-				<fileset dir="config/frozen">
+			<copy todir="${build.dist.game}/config/events">
+				<fileset dir="config/events">
 					<include name="*.properties" />
 				</fileset>
 			</copy>
 
-			<copy todir="${build.dist.game}/config/fun">
-				<fileset dir="config/fun">
+			<copy todir="${build.dist.game}/config/mods">
+				<fileset dir="config/mods">
 					<include name="*.properties" />
 				</fileset>
 			</copy>

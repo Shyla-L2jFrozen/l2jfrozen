@@ -271,8 +271,7 @@ public final class LoginClient extends MMOClient<MMOConnection<LoginClient>>
 	@Override
 	public void onDisconnection()
 	{
-		// Closer.getInstance().close(this);
-		if (CommonConfig.DEBUG)
+		if (CommonConfig.ASSERT)
 		{
 			LOGGER.info("DISCONNECTED: " + toString());
 		}
