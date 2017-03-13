@@ -125,6 +125,10 @@ public final class RequestEnchantItem extends L2GameClientPacket
 		if (activeChar == null || _objectId == 0)
 			return;
 		
+		// Flood protect to enchant script
+		if (!getClient().getFloodProtectors().getEnchantItem().tryPerformAction("enchant"))
+			return;
+		
 		if (activeChar.getActiveTradeList() != null)
 		{
 			activeChar.cancelActiveTrade();

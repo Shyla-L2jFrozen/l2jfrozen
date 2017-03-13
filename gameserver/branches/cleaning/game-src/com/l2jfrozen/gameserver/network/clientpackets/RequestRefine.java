@@ -59,6 +59,10 @@ public final class RequestRefine extends L2GameClientPacket
 		if (activeChar == null)
 			return;
 		
+		// Flood protect to augment script
+		if (!getClient().getFloodProtectors().getAugmentItem().tryPerformAction("augment"))
+			return;
+		
 		final L2ItemInstance targetItem = (L2ItemInstance) L2World.getInstance().findObject(_targetItemObjId);
 		final L2ItemInstance refinerItem = (L2ItemInstance) L2World.getInstance().findObject(_refinerItemObjId);
 		final L2ItemInstance gemstoneItem = (L2ItemInstance) L2World.getInstance().findObject(_gemstoneItemObjId);
