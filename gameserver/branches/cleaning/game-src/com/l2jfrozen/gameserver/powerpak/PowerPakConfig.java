@@ -69,10 +69,6 @@ public class PowerPakConfig
 	public static boolean NPCBUFFER_STORE_SCHEMES;
 	public static int NPCBUFFER_STATIC_BUFF_COST;
 	
-	public static boolean XMLRPC_ENABLED;
-	public static int XMLRPC_PORT;
-	public static String XMLRPC_HOST;
-	
 	public static List<String> GLOBALGK_EXCLUDE_ON;
 	public static boolean GLOBALGK_ENABDLED;
 	public static boolean GLOBALGK_USEBBS;
@@ -305,10 +301,6 @@ public class PowerPakConfig
 			{
 				GMSHOP_EXCLUDE_ON.add(st.nextToken().toUpperCase());
 			}
-			
-			XMLRPC_ENABLED = Boolean.parseBoolean(p.getProperty("XMLRPCEnabled", "true"));
-			XMLRPC_HOST = p.getProperty("XMLRPCHost", "localhost");
-			XMLRPC_PORT = Integer.parseInt(p.getProperty("XMLRPCPort", "7000"));
 			
 			L2TOPDEMON_ENABLED = Boolean.parseBoolean(p.getProperty("L2TopDeamonEnabled", "false"));
 			L2TOPDEMON_URL = p.getProperty("L2TopDeamonURL", "");

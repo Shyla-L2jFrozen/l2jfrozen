@@ -41,7 +41,6 @@ import com.l2jfrozen.gameserver.powerpak.engrave.EngraveManager;
 import com.l2jfrozen.gameserver.powerpak.globalGK.GKHandler;
 import com.l2jfrozen.gameserver.powerpak.gmshop.GMShop;
 import com.l2jfrozen.gameserver.powerpak.vote.L2TopDeamon;
-import com.l2jfrozen.gameserver.powerpak.xmlrpc.XMLRPCServer;
 
 public class PowerPak
 {
@@ -129,12 +128,6 @@ public class PowerPak
 			{
 				L2TopDeamon.getInstance();
 				LOGGER.info("L2TOPDEMON is Enabled.");
-			}
-			
-			if (PowerPakConfig.XMLRPC_ENABLED)
-			{
-				XMLRPCServer.getInstance();
-				LOGGER.info("XMLRPC is Enabled.");
 			}
 			
 			final RaidInfoHandler handler = new RaidInfoHandler();

@@ -31,6 +31,9 @@ public class CommonConfigFiles
 	protected static String MAIN_CONFIGURATION_FILE = "./config/configFilesPaths.properties";
 	
 	public static String COMMON_CONFIGURATION_FILE;
+	public static String LOG4J_CONF_FILE;
+	public static String LOG_CONF_FILE;
+	
 	
 	protected static Properties configFiles = new Properties();
 	
@@ -54,6 +57,8 @@ public class CommonConfigFiles
 			is.close();
 			
 			COMMON_CONFIGURATION_FILE = configFiles.getProperty("CommonConfigFilePath", "./config/common.properties");
+			LOG_CONF_FILE = configFiles.getProperty("LogConfigFilePath", "./config/others/log.cfg");
+			LOG4J_CONF_FILE = configFiles.getProperty("Log4jConfigFilePath", "./config/others/logger.properties");
 			
 		}
 		catch (final Exception e)
