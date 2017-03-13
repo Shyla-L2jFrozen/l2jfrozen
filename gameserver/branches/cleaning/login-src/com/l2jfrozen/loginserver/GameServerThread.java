@@ -163,7 +163,7 @@ public class GameServerThread extends Thread
 				
 				if (CommonConfig.DEBUG)
 				{
-					LOGGER.warn("[C]\n" + Util.printData(data));
+					// LOGGER.warn("[C]\n" + Util.printData(data));
 				}
 				
 				final int packetType = data[0] & 0xff;
@@ -340,7 +340,7 @@ public class GameServerThread extends Thread
 			
 			if (CommonConfig.DEBUG)
 			{
-				LOGGER.info("auth request received for Player " + par.getAccount());
+				LOGGER.info("Id/Paswrd correct, auth request received for Account: " + par.getAccount());
 			}
 			
 			SessionKey key = LoginController.getInstance().getKeyForAccount(par.getAccount());
@@ -383,9 +383,9 @@ public class GameServerThread extends Thread
 		{
 			if (CommonConfig.DEBUG)
 			{
-				LOGGER.info("ServerStatus received");
+				LOGGER.info("ServerStatus received.");
 			}
-			/* ServerStatus ss = */new ServerStatus(data, getServerId()); // server status
+			new ServerStatus(data, getServerId()); // server status
 		}
 		else
 		{
