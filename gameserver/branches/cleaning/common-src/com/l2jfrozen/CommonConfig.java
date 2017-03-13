@@ -48,7 +48,6 @@ public class CommonConfig
 	public static int DATABASE_MAX_CONNECTIONS;
 	public static String DATABASE_LOGIN;
 	public static String DATABASE_PASSWORD;
-	public static int DATABASE_PARTITION_COUNT;
 	public static long DATABASE_CONNECTION_TIMEOUT;
 	public static long DATABASE_TIMEOUT;
 	public static int DATABASE_MAX_IDLE_TIME;
@@ -88,7 +87,6 @@ public class CommonConfig
 			
 			DATABASE_TIMEOUT = Integer.parseInt(serverSettings.getProperty("TimeOutConDb", "0"));
 			DATABASE_CONNECTION_TIMEOUT = Integer.parseInt(serverSettings.getProperty("SingleConnectionTimeOutDb", "120000"));
-			DATABASE_PARTITION_COUNT = Integer.parseInt(serverSettings.getProperty("PartitionCount", "4"));
 			
 			THREAD_P_EFFECTS = Integer.parseInt(serverSettings.getProperty("ThreadPoolSizeEffects", "6"));
 			THREAD_P_GENERAL = Integer.parseInt(serverSettings.getProperty("ThreadPoolSizeGeneral", "15"));
