@@ -57,6 +57,14 @@ public final class FloodProtectors
 	 */
 	private final FloodProtectorAction _dropItem;
 	/**
+	 * Augmentscript flood protector.
+	 */
+	private final FloodProtectorAction _augmentScript;
+	/**
+	 * enchantItem flood protector.
+	 */
+	private final FloodProtectorAction _enchantItem;
+	/**
 	 * Server-bypass flood protector.
 	 */
 	private final FloodProtectorAction _serverBypass;
@@ -124,6 +132,8 @@ public final class FloodProtectors
 		_globalChat = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_GLOBAL_CHAT);
 		_subclass = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_SUBCLASS);
 		_dropItem = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_DROP_ITEM);
+		_augmentScript = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_AUGMENT_SCRIPT);
+		_enchantItem = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_ENCHANT_ITEM);
 		_serverBypass = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_SERVER_BYPASS);
 		_multiSell = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_MULTISELL);
 		_transaction = new FloodProtectorAction(client, Config.FLOOD_PROTECTOR_TRANSACTION);
@@ -210,6 +220,16 @@ public final class FloodProtectors
 	public FloodProtectorAction getDropItem()
 	{
 		return _dropItem;
+	}
+	
+	public FloodProtectorAction getAugmentItem()
+	{
+		return _augmentScript;
+	}
+	
+	public FloodProtectorAction getEnchantItem()
+	{
+		return _enchantItem;
 	}
 	
 	/**
