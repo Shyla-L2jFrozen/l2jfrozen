@@ -88,9 +88,9 @@ public class LoginServer
 		is = null;
 		logFolder = null;
 		
-//		final String LOG_FOLDER_BASE = "log"; // Name of folder for LOGGER base file
-//		final File logFolderBase = new File(LOG_FOLDER_BASE);
-//		logFolderBase.mkdir();
+		// final String LOG_FOLDER_BASE = "log"; // Name of folder for LOGGER base file
+		// final File logFolderBase = new File(LOG_FOLDER_BASE);
+		// logFolderBase.mkdir();
 		
 		final File log4j_conf_file = new File(CommonConfigFiles.LOG4J_CONF_FILE);
 		if (!log4j_conf_file.exists())

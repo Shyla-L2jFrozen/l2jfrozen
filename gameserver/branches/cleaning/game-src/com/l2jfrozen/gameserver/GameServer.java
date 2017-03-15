@@ -35,7 +35,6 @@ import org.apache.log4j.PropertyConfigurator;
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.CommonConfigFiles;
 import com.l2jfrozen.Config;
-import com.l2jfrozen.FService;
 import com.l2jfrozen.L2Frozen;
 import com.l2jfrozen.ServerType;
 import com.l2jfrozen.gameserver.ai.special.manager.AILoader;
@@ -185,9 +184,9 @@ public class GameServer
 		is = null;
 		logFolder = null;
 		
-//		final String LOG_FOLDER_BASE = "log"; // Name of folder for LOGGER base file
-//		final File logFolderBase = new File(LOG_FOLDER_BASE);
-//		logFolderBase.mkdir();
+		// final String LOG_FOLDER_BASE = "log"; // Name of folder for LOGGER base file
+		// final File logFolderBase = new File(LOG_FOLDER_BASE);
+		// logFolderBase.mkdir();
 		
 		final File log4j_conf_file = new File(CommonConfigFiles.LOG4J_CONF_FILE);
 		if (!log4j_conf_file.exists())

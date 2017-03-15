@@ -591,7 +591,6 @@ public final class RequestEnchantItem extends L2GameClientPacket
 				rndValue -= Config.DWARF_ENCHANT_BONUS;
 			}
 		
-		
 		synchronized (item)
 		{
 			if (rndValue < chance)

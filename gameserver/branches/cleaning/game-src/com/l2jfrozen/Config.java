@@ -2734,7 +2734,7 @@ public final class Config
 			
 			ENABLE_OLYMPIAD_DISCONNECTION_DEBUG = Boolean.parseBoolean(OLYMPSetting.getProperty("EnableOlympiadDisconnectionDebug"));
 			ENABLE_OLYMPIAD_DEBUG = Boolean.parseBoolean(OLYMPSetting.getProperty("EnableOlympiadDebug", "false"));
-
+			
 			ALT_OLY_ENCHANT_LIMIT = Integer.parseInt(OLYMPSetting.getProperty("AltOlyMaxEnchant", "-1"));
 			ALT_OLY_START_TIME = Integer.parseInt(OLYMPSetting.getProperty("AltOlyStartTime", "18"));
 			ALT_OLY_MIN = Integer.parseInt(OLYMPSetting.getProperty("AltOlyMin", "00"));
@@ -3988,72 +3988,11 @@ public final class Config
 	
 	// ============================================================
 	/*
-	public static void loadExtendersConfig()
-	{
-		final String EXTENDER_FILE = FService.EXTENDER_FILE;
-		
-		EXTENDERS = new FastMap<>();
-		final File f = new File(EXTENDER_FILE);
-		if (f.exists())
-		{
-			LineNumberReader lineReader = null;
-			try
-			{
-				lineReader = new LineNumberReader(new BufferedReader(new FileReader(f)));
-				String line;
-				while ((line = lineReader.readLine()) != null)
-				{
-					int iPos = line.indexOf("#");
-					
-					if (iPos != -1)
-					{
-						line = line.substring(0, iPos);
-					}
-					
-					if (line.trim().length() == 0)
-					{
-						continue;
-					}
-					
-					iPos = line.indexOf("=");
-					if (iPos != -1)
-					{
-						final String baseName = line.substring(0, iPos).trim();
-						final String className = line.substring(iPos + 1).trim();
-						
-						if (EXTENDERS.get(baseName) == null)
-						{
-							EXTENDERS.put(baseName, new FastList<String>());
-						}
-						
-						EXTENDERS.get(baseName).add(className);
-					}
-				}
-			}
-			catch (final Exception e)
-			{
-				if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
-					e.printStackTrace();
-				
-				LOGGER.warn("Failed to Load " + EXTENDER_FILE + " File.");
-			}
-			finally
-			{
-				if (lineReader != null)
-				{
-					try
-					{
-						lineReader.close();
-					}
-					catch (final IOException e)
-					{
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-	}
-	*/
+	 * public static void loadExtendersConfig() { final String EXTENDER_FILE = FService.EXTENDER_FILE; EXTENDERS = new FastMap<>(); final File f = new File(EXTENDER_FILE); if (f.exists()) { LineNumberReader lineReader = null; try { lineReader = new LineNumberReader(new BufferedReader(new
+	 * FileReader(f))); String line; while ((line = lineReader.readLine()) != null) { int iPos = line.indexOf("#"); if (iPos != -1) { line = line.substring(0, iPos); } if (line.trim().length() == 0) { continue; } iPos = line.indexOf("="); if (iPos != -1) { final String baseName = line.substring(0,
+	 * iPos).trim(); final String className = line.substring(iPos + 1).trim(); if (EXTENDERS.get(baseName) == null) { EXTENDERS.put(baseName, new FastList<String>()); } EXTENDERS.get(baseName).add(className); } } } catch (final Exception e) { if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
+	 * e.printStackTrace(); LOGGER.warn("Failed to Load " + EXTENDER_FILE + " File."); } finally { if (lineReader != null) { try { lineReader.close(); } catch (final IOException e) { e.printStackTrace(); } } } } }
+	 */
 	
 	// ============================================================
 	public static long AUTOSAVE_INITIAL_TIME;
@@ -4397,7 +4336,7 @@ public final class Config
 			loadKeyOptions();
 			loadDPVersionConfig();
 			loadServerVersionConfig();
-//			loadExtendersConfig();
+			// loadExtendersConfig();
 			loadDaemonsConf();
 			
 			if (Config.USE_SAY_FILTER)

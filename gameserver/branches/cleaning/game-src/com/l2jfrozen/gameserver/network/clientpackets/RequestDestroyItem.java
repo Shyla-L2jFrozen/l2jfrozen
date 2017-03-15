@@ -91,7 +91,6 @@ public final class RequestDestroyItem extends L2GameClientPacket
 		if (itemToRemove == null)
 			return;
 		
-		
 		// Cannot discard item that the skill is consumming
 		if (activeChar.isCastingNow())
 		{
