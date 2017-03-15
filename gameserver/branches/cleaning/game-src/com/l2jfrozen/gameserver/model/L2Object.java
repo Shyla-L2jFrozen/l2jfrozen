@@ -20,8 +20,6 @@
  */
 package com.l2jfrozen.gameserver.model;
 
-import java.lang.reflect.Constructor;
-
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
@@ -71,7 +69,6 @@ public abstract class L2Object
 		_objectId = objectId;
 		
 	}
-	
 	
 	// =========================================================
 	// Event - Public

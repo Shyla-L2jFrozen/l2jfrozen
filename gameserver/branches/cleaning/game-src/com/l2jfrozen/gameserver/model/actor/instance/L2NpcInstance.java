@@ -1905,8 +1905,8 @@ public class L2NpcInstance extends L2Character
 		// 55555 Rebirth
 		// 66666 Noblesse
 		// 66667 Clan manager
-		// 57    GM SHOP
-		// 7077  Global teleport
+		// 57 GM SHOP
+		// 7077 Global teleport
 		// 50019 Buffer
 		// 93000 Boss manager
 		// 50020 Augmenter

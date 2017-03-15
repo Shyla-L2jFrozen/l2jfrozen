@@ -25,7 +25,6 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-
 public abstract class L2DatabaseFactory
 {
 	private static final Logger LOGGER = Logger.getLogger(L2DatabaseFactory.class);
@@ -50,7 +49,7 @@ public abstract class L2DatabaseFactory
 		if (_instance == null)
 		{
 			
-				_instance = new L2DatabaseFactory_c3p0();
+			_instance = new L2DatabaseFactory_c3p0();
 			
 		}
 		return _instance;

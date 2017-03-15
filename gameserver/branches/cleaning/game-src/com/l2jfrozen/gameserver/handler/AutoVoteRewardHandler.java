@@ -1,12 +1,9 @@
 package com.l2jfrozen.gameserver.handler;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -100,8 +97,8 @@ public class AutoVoteRewardHandler
 				
 				if (hopzone_votes != -1)
 				{
-					LOGGER.info("[VoteReward] Server HOPZONE Votes: " + hopzone_votes);
-					Announcements.getInstance().gameAnnounceToAll("[VoteReward] Actual HOPZONE Votes are " + hopzone_votes + "...");
+					LOGGER.info("[Vote] Server HOPZONE Votes: " + hopzone_votes);
+					Announcements.getInstance().gameAnnounceToAll("[Vote] Actual HOPZONE Votes are " + hopzone_votes + "...");
 					
 					if (hopzone_votes != 0 && hopzone_votes >= getHopZoneVoteCount() + PowerPakConfig.VOTES_FOR_REWARD)
 					{
@@ -109,7 +106,7 @@ public class AutoVoteRewardHandler
 						
 						final Collection<L2PcInstance> pls = L2World.getInstance().getAllPlayers();
 						
-						Announcements.getInstance().gameAnnounceToAll("[VoteReward] Great Work! Check your inventory for Reward!!");
+						Announcements.getInstance().gameAnnounceToAll("[Vote] Great Work! Check your inventory for Reward!!");
 						
 						// L2ItemInstance item;
 						for (final L2PcInstance player : pls)
@@ -134,7 +131,7 @@ public class AutoVoteRewardHandler
 						}
 						setHopZoneVoteCount(hopzone_votes);
 					}
-					Announcements.getInstance().gameAnnounceToAll("[VoteReward] Next HOPZONE Reward in " + minutes + " minutes at " + (getHopZoneVoteCount() + PowerPakConfig.VOTES_FOR_REWARD) + " Votes!!");
+					Announcements.getInstance().gameAnnounceToAll("[Vote] Next HOPZONE Reward in " + minutes + " minutes at " + (getHopZoneVoteCount() + PowerPakConfig.VOTES_FOR_REWARD) + " Votes!!");
 					// site web
 					Announcements.getInstance().gameAnnounceToAll("[SiteWeb] " + PowerPakConfig.SERVER_WEB_SITE);
 					
@@ -161,8 +158,8 @@ public class AutoVoteRewardHandler
 				
 				if (topzone_votes != -1)
 				{
-					LOGGER.info("[VoteReward] Server TOPZONE Votes: " + topzone_votes);
-					Announcements.getInstance().gameAnnounceToAll("[VoteReward] Actual TOPZONE Votes are " + topzone_votes + "...");
+					LOGGER.info("[Vote] Server TOPZONE Votes: " + topzone_votes);
+					Announcements.getInstance().gameAnnounceToAll("[Vote] Actual TOPZONE Votes are " + topzone_votes + "...");
 					
 					if (topzone_votes != 0 && topzone_votes >= getTopZoneVoteCount() + PowerPakConfig.VOTES_FOR_REWARD)
 					{
@@ -170,7 +167,7 @@ public class AutoVoteRewardHandler
 						
 						final Collection<L2PcInstance> pls = L2World.getInstance().getAllPlayers();
 						
-						Announcements.getInstance().gameAnnounceToAll("[VoteReward] Great Work! Check your inventory for Reward!!");
+						Announcements.getInstance().gameAnnounceToAll("[Vote] Great Work! Check your inventory for Reward!!");
 						
 						// L2ItemInstance item;
 						for (final L2PcInstance player : pls)
@@ -193,7 +190,7 @@ public class AutoVoteRewardHandler
 						setTopZoneVoteCount(topzone_votes);
 					}
 					
-					Announcements.getInstance().gameAnnounceToAll("[VoteReward] Next TOPZONE Reward in " + minutes + " minutes at " + (getTopZoneVoteCount() + PowerPakConfig.VOTES_FOR_REWARD) + " Votes!!");
+					Announcements.getInstance().gameAnnounceToAll("[Vote] Next TOPZONE Reward in " + minutes + " minutes at " + (getTopZoneVoteCount() + PowerPakConfig.VOTES_FOR_REWARD) + " Votes!!");
 					// site web
 					Announcements.getInstance().gameAnnounceToAll("[SiteWeb] " + PowerPakConfig.SERVER_WEB_SITE);
 				}
@@ -218,8 +215,8 @@ public class AutoVoteRewardHandler
 				
 				if (l2network_votes != -1)
 				{
-					LOGGER.info("[VoteReward] Server L2NETWORK Votes: " + l2network_votes);
-					Announcements.getInstance().gameAnnounceToAll("[VoteReward] Actual L2Network Votes are " + l2network_votes + "...");
+					LOGGER.info("[Vote] Server L2NETWORK Votes: " + l2network_votes);
+					Announcements.getInstance().gameAnnounceToAll("[Vote] Actual L2Network Votes are " + l2network_votes + "...");
 					
 					if (l2network_votes != 0 && l2network_votes >= getL2NetworkVoteCount() + PowerPakConfig.VOTES_FOR_REWARD)
 					{
@@ -227,7 +224,7 @@ public class AutoVoteRewardHandler
 						
 						final Collection<L2PcInstance> pls = L2World.getInstance().getAllPlayers();
 						
-						Announcements.getInstance().gameAnnounceToAll("[VoteReward] Great Work! Check your inventory for Reward!!");
+						Announcements.getInstance().gameAnnounceToAll("[Vote] Great Work! Check your inventory for Reward!!");
 						
 						// L2ItemInstance item;
 						for (final L2PcInstance player : pls)
@@ -249,7 +246,7 @@ public class AutoVoteRewardHandler
 						}
 						setL2NetworkVoteCount(l2network_votes);
 					}
-					Announcements.getInstance().gameAnnounceToAll("[VoteReward] Next L2Network Reward in " + minutes + " minutes at " + (getL2NetworkVoteCount() + PowerPakConfig.VOTES_FOR_REWARD) + " Votes!!");
+					Announcements.getInstance().gameAnnounceToAll("[Vote] Next L2Network Reward in " + minutes + " minutes at " + (getL2NetworkVoteCount() + PowerPakConfig.VOTES_FOR_REWARD) + " Votes!!");
 					// site web
 					Announcements.getInstance().gameAnnounceToAll("[SiteWeb] " + PowerPakConfig.SERVER_WEB_SITE);
 				}
@@ -281,14 +278,6 @@ public class AutoVoteRewardHandler
 		// if no connection (maybe offline shop) dnt reward
 		return false;
 	}
-	
-	/*
-	 * protected int getHopZoneVotes1() { int votes = -1; try { final WebClient webClient = new WebClient(BrowserVersion.CHROME); webClient.getOptions().setThrowExceptionOnFailingStatusCode(false); webClient.getOptions().setThrowExceptionOnScriptError(false);
-	 * webClient.getOptions().setPrintContentOnFailingStatusCode(false); final HtmlPage page = webClient.getPage(PowerPakConfig.VOTES_SITE_HOPZONE_URL); final String fullPage = page.asXml(); final int constrainA = fullPage.indexOf("rank tooltip") + 24; String voteSection =
-	 * fullPage.substring(constrainA); final int constrainB = voteSection.indexOf("span") - 2; voteSection = voteSection.substring(0, constrainB).trim(); votes = Integer.parseInt(voteSection); // Try to free all the freaking resources page.cleanUp(); webClient.getJavaScriptEngine().shutdown();
-	 * webClient.closeAllWindows(); } catch (final Exception e) { LOGGER.warn("[VoteReward] Server HOPZONE is offline or something is wrong in link", e); Announcements.getInstance().gameAnnounceToAll("[VoteReward] HOPZONE is offline. We will check reward as it will be online again"); } return votes;
-	 * }
-	 */
 	
 	protected static int getHopZoneVotes()
 	{
@@ -322,8 +311,8 @@ public class AutoVoteRewardHandler
 		}
 		catch (final Exception e)
 		{
-			LOGGER.warn("[AutoVoteReward] Server HOPZONE is offline or something is wrong in link", e);
-			Announcements.getInstance().gameAnnounceToAll("[AutoVoteReward] HOPZONE is offline. We will check reward as it will be online again");
+			LOGGER.warn("[Vote] Server HOPZONE is offline or something is wrong in link");
+			Announcements.getInstance().gameAnnounceToAll("[Vote] HOPZONE is offline. We will check reward as it will be online again");
 		}
 		
 		return votes;
@@ -361,77 +350,10 @@ public class AutoVoteRewardHandler
 		}
 		catch (final Exception e)
 		{
-			LOGGER.warn("[VoteReward] Server TOPZONE is offline or something is wrong in link", e);
-			Announcements.getInstance().gameAnnounceToAll("[VoteReward] TOPZONE is offline. We will check reward as it will be online again");
+			LOGGER.warn("[Vote] Server TOPZONE is offline or something is wrong in link");
+			Announcements.getInstance().gameAnnounceToAll("[Vote] TOPZONE is offline. We will check reward as it will be online again");
 		}
 		
-		return votes;
-	}
-	
-	protected int getTopZoneVotes1()
-	{
-		int votes = -1;
-		URL url = null;
-		URLConnection con = null;
-		InputStream is = null;
-		InputStreamReader isr = null;
-		BufferedReader in = null;
-		
-		try
-		{
-			url = new URL(PowerPakConfig.VOTES_SITE_TOPZONE_URL);
-			con = url.openConnection();
-			con.addRequestProperty("User-Agent", "L2TopZone");
-			is = con.getInputStream();
-			isr = new InputStreamReader(is);
-			in = new BufferedReader(isr);
-			String inputLine;
-			while ((inputLine = in.readLine()) != null)
-			{
-				if (inputLine.contains("fa fa-fw fa-lg fa-thumbs-up"))
-				{
-					// [3] means after the third ">"
-					votes = Integer.valueOf(inputLine.split(">")[3].replace("</span", ""));
-					break;
-				}
-			}
-		}
-		catch (final Exception e)
-		{
-			LOGGER.warn("[VoteReward] Server TOPZONE is offline or something is wrong in link");
-			Announcements.getInstance().gameAnnounceToAll("[VoteReward] TOPZONE is offline. We will check reward as it will be online again");
-			// e.printStackTrace();
-		}
-		finally
-		{
-			if (in != null)
-				try
-				{
-					in.close();
-				}
-				catch (final IOException e1)
-				{
-					e1.printStackTrace();
-				}
-			if (isr != null)
-				try
-				{
-					isr.close();
-				}
-				catch (final IOException e1)
-				{
-					e1.printStackTrace();
-				}
-			if (is != null)
-				try
-				{
-					is.close();
-				}
-				catch (final IOException e1)
-				{
-					e1.printStackTrace();
-				}
-		}
 		return votes;
 	}
 	
@@ -467,77 +389,10 @@ public class AutoVoteRewardHandler
 		}
 		catch (final Exception e)
 		{
-			LOGGER.warn("[VoteReward] Server L2NETWORK is offline or something is wrong in link", e);
-			Announcements.getInstance().gameAnnounceToAll("[VoteReward] L2Network is offline. We will check reward as it will be online again");
+			LOGGER.warn("[Vote] Server L2NETWORK is offline or something is wrong in link");
+			Announcements.getInstance().gameAnnounceToAll("[Vote] L2Network is offline. We will check reward as it will be online again");
 		}
 		
-		return votes;
-	}
-	
-	protected int getL2NetworkVotes1()
-	{
-		int votes = -1;
-		URL url = null;
-		URLConnection con = null;
-		InputStream is = null;
-		InputStreamReader isr = null;
-		BufferedReader in = null;
-		
-		try
-		{
-			url = new URL(PowerPakConfig.VOTES_SITE_L2NETWORK_URL);
-			con = url.openConnection();
-			con.addRequestProperty("User-Agent", "L2Network");
-			is = con.getInputStream();
-			isr = new InputStreamReader(is);
-			in = new BufferedReader(isr);
-			String inputLine;
-			while ((inputLine = in.readLine()) != null)
-			{
-				if (inputLine.contains("color:#e7ebf2"))
-				{
-					// [2] means after the second ">"
-					votes = Integer.valueOf(inputLine.split(">")[2].replace("</b", ""));
-					break;
-				}
-			}
-		}
-		catch (final Exception e)
-		{
-			LOGGER.warn("[VoteReward] Server L2NETWORK is offline or something is wrong in link");
-			Announcements.getInstance().gameAnnounceToAll("[VoteReward] L2Network is offline. We will check reward as it will be online again");
-			// e.printStackTrace();
-		}
-		finally
-		{
-			if (in != null)
-				try
-				{
-					in.close();
-				}
-				catch (final IOException e1)
-				{
-					e1.printStackTrace();
-				}
-			if (isr != null)
-				try
-				{
-					isr.close();
-				}
-				catch (final IOException e1)
-				{
-					e1.printStackTrace();
-				}
-			if (is != null)
-				try
-				{
-					is.close();
-				}
-				catch (final IOException e1)
-				{
-					e1.printStackTrace();
-				}
-		}
 		return votes;
 	}
 	
