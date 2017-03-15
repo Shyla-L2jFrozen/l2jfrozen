@@ -34,8 +34,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.actor.knownlist.ObjectKnownList;
 import com.l2jfrozen.gameserver.model.actor.poly.ObjectPoly;
 import com.l2jfrozen.gameserver.model.actor.position.ObjectPosition;
-import com.l2jfrozen.gameserver.model.extender.BaseExtender;
-import com.l2jfrozen.gameserver.model.extender.BaseExtender.EventType;
 import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.network.serverpackets.GetItem;
@@ -67,94 +65,13 @@ public abstract class L2Object
 	
 	// =========================================================
 	// Constructor
-	// by Azagthtot
-	private BaseExtender _extender = null;
-	
-	// =========================================================
-	// Constructor
 	
 	public L2Object(final int objectId)
 	{
 		_objectId = objectId;
-		if (Config.EXTENDERS.get(this.getClass().getName()) != null)
-		{
-			for (final String className : Config.EXTENDERS.get(this.getClass().getName()))
-			{
-				try
-				{
-					final Class<?> clazz = Class.forName(className);
-					if (clazz == null)
-					{
-						continue;
-					}
-					if (!BaseExtender.class.isAssignableFrom(clazz))
-					{
-						continue;
-					}
-					if (!(Boolean) clazz.getMethod("canCreateFor", L2Object.class).invoke(null, this))
-					{
-						continue;
-					}
-					final Constructor<?> construct = clazz.getConstructor(L2Object.class);
-					if (construct != null)
-					{
-						addExtender((BaseExtender) construct.newInstance(this));
-					}
-				}
-				catch (final Exception e)
-				{
-					continue;
-				}
-			}
-		}
+		
 	}
 	
-	/**
-	 * @param newExtender as BaseExtender
-	 */
-	public void addExtender(final BaseExtender newExtender)
-	{
-		if (_extender == null)
-		{
-			_extender = newExtender;
-		}
-		else
-		{
-			_extender.addExtender(newExtender);
-		}
-	}
-	
-	/**
-	 * @param simpleName as String<br>
-	 * @return as BaseExtender - null<br>
-	 */
-	public BaseExtender getExtender(final String simpleName)
-	{
-		if (_extender == null)
-			return null;
-		return _extender.getExtender(simpleName);
-	}
-	
-	/**
-	 * @param event as String<br>
-	 * @param params
-	 * @return as Object
-	 */
-	public Object fireEvent(final String event, final Object... params)
-	{
-		if (_extender == null)
-			return null;
-		return _extender.onEvent(event, params);
-	}
-	
-	public void removeExtender(final BaseExtender ext)
-	{
-		if (_extender != null)
-			if (_extender == ext)
-				_extender = _extender.getNextExtender();
-			else
-				_extender.removeExtender(ext);
-	}
 	
 	// =========================================================
 	// Event - Public
@@ -193,7 +110,7 @@ public abstract class L2Object
 	 */
 	public void onSpawn()
 	{
-		fireEvent(EventType.SPAWN.name, (Object[]) null);
+		
 	}
 	
 	// =========================================================
@@ -286,7 +203,6 @@ public abstract class L2Object
 		}
 		
 		reg = null;
-		fireEvent(EventType.DELETE.name, (Object[]) null);
 	}
 	
 	/**

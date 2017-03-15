@@ -591,11 +591,7 @@ public final class RequestEnchantItem extends L2GameClientPacket
 				rndValue -= Config.DWARF_ENCHANT_BONUS;
 			}
 		
-		final Object aChance = item.fireEvent("calcEnchantChance", new Object[chance]);
-		if (aChance != null)
-		{
-			chance = (Integer) aChance;
-		}
+		
 		synchronized (item)
 		{
 			if (rndValue < chance)
@@ -699,8 +695,6 @@ public final class RequestEnchantItem extends L2GameClientPacket
 						count = 1;
 					}
 					
-					if (item.fireEvent("enchantFail", new Object[] {}) != null)
-						return;
 					final L2ItemInstance destroyItem = activeChar.getInventory().destroyItem("Enchant", item, activeChar, null);
 					if (destroyItem == null)
 						return;
