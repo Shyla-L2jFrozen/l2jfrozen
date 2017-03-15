@@ -70,7 +70,7 @@ public class FService
 	public static final String EVENT_TVT_FILE = "./config/events/tvt.properties";
 	public static final String EVENT_TW_FILE = "./config/events/tw.properties";
 	public static final String EVENT_MANAGER_CONFIGURATION_FILE = "./config/events/eventmanager.properties";
-
+	
 	// Mod's config file
 	public static final String AWAY_FILE = "./config/mods/away.properties";
 	public static final String BANK_FILE = "./config/mods/bank.properties";
@@ -89,5 +89,5 @@ public class FService
 	
 	public static final String OLYMPIAD_DATA_FILE = "./config/olympiad.cfg";
 	public static final String POWERPACK_CONFIG_FILE = "./config/powerpak/powerpak.properties";
-
+	
 }

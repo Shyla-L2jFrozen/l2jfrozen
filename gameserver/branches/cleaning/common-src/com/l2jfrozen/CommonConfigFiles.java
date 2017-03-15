@@ -34,7 +34,6 @@ public class CommonConfigFiles
 	public static String LOG4J_CONF_FILE;
 	public static String LOG_CONF_FILE;
 	
-	
 	protected static Properties configFiles = new Properties();
 	
 	// load statically the configuration files

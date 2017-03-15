@@ -119,7 +119,6 @@ public class PowerPakConfig
 		{
 			final L2Properties p = new L2Properties(FService.POWERPACK_CONFIG_FILE);
 			
-			
 			BUFFER_ENABLED = Boolean.parseBoolean(p.getProperty("BufferEnabled", "false"));
 			StringTokenizer st = new StringTokenizer(p.getProperty("BufferExcludeOn", ""), " ");
 			while (st.hasMoreTokens())
