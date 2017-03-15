@@ -90,11 +90,7 @@ public final class RequestDestroyItem extends L2GameClientPacket
 		// if we cant find requested item, its actualy a cheat!
 		if (itemToRemove == null)
 			return;
-		if (itemToRemove.fireEvent("DESTROY", (Object[]) null) != null)
-		{
-			activeChar.sendPacket(new SystemMessage(SystemMessageId.CANNOT_DISCARD_THIS_ITEM));
-			return;
-		}
+		
 		
 		// Cannot discard item that the skill is consumming
 		if (activeChar.isCastingNow())

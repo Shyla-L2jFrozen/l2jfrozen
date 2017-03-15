@@ -43,7 +43,6 @@ import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.Location;
 import com.l2jfrozen.gameserver.model.actor.knownlist.NullKnownList;
-import com.l2jfrozen.gameserver.model.extender.BaseExtender.EventType;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.network.serverpackets.InventoryUpdate;
@@ -265,17 +264,8 @@ public final class L2ItemInstance extends L2Object
 	 */
 	public void setOwnerId(final String process, final int owner_id, final L2PcInstance creator, final L2Object reference)
 	{
-		final int oldOwner = _ownerId;
-		setOwnerId(owner_id);
+		setOwnerId(_ownerId);
 		
-		/*
-		 * if(Config.LOG_ITEMS) { LogRecord record = new LogRecord(Level.INFO, "CHANGE:" + process); record.setLoggerName("item"); record.setParameters(new Object[] { this, creator, reference }); _logItems.LOGGER(record); record = null; }
-		 */
-		fireEvent(EventType.SETOWNER.name, new Object[]
-		{
-			process,
-			oldOwner
-		});
 	}
 	
 	/**
@@ -1242,12 +1232,6 @@ public final class L2ItemInstance extends L2Object
 			
 		}
 		
-		if (inst != null)
-			inst.fireEvent(EventType.LOAD.name, new Object[]
-			{
-				// con
-			});
-		
 		return inst;
 	}
 	
@@ -1370,8 +1354,6 @@ public final class L2ItemInstance extends L2Object
 			
 		}
 		
-		if (_existsInDb)
-			fireEvent(EventType.STORE.name, (Object[]) null);
 	}
 	
 	/**
@@ -1468,8 +1450,6 @@ public final class L2ItemInstance extends L2Object
 			CloseUtil.close(con);
 		}
 		
-		if (!_existsInDb)
-			fireEvent(EventType.DELETE.name, (Object[]) null);
 	}
 	
 	/**

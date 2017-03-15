@@ -89,7 +89,6 @@ import com.l2jfrozen.gameserver.model.entity.event.L2Event;
 import com.l2jfrozen.gameserver.model.entity.event.TvT;
 import com.l2jfrozen.gameserver.model.entity.event.VIP;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
-import com.l2jfrozen.gameserver.model.extender.BaseExtender.EventType;
 import com.l2jfrozen.gameserver.model.quest.Quest;
 import com.l2jfrozen.gameserver.model.quest.QuestState;
 import com.l2jfrozen.gameserver.model.zone.type.L2BossZone;
@@ -1401,10 +1400,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 		if (attack.hasHits())
 		{
 			broadcastPacket(attack);
-			fireEvent(EventType.ATTACK.name, new Object[]
-			{
-				getTarget()
-			});
+			
 		}
 		
 		// Like L2OFF mobs id 27181 can teleport players near cabrio
@@ -2155,12 +2151,6 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 		{
 			onMagicLaunchedTimer(targets, skill, coolTime, true);
 		}
-		fireEvent(EventType.CAST.name, new Object[]
-		{
-			skill,
-			target,
-			targets
-		});
 		
 	}
 	
@@ -2343,10 +2333,6 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 		{
 			((L2PcInstance) this).reviveRequest(((L2PcInstance) this), null, false);
 		}
-		fireEvent(EventType.DIE.name, new Object[]
-		{
-			killer
-		});
 		
 		// Update active skills in progress (In Use and Not In Use because stacked) icones on client
 		updateEffectIcons();
@@ -2404,7 +2390,6 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 		{
 			setIsPendingRevive(true);
 		}
-		fireEvent(EventType.REVIVE.name, (Object[]) null);
 	}
 	
 	/**

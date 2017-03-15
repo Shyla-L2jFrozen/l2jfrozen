@@ -39,7 +39,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jfrozen.gameserver.model.actor.position.L2CharPosition;
-import com.l2jfrozen.gameserver.model.extender.BaseExtender.EventType;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.network.serverpackets.AutoAttackStart;
 import com.l2jfrozen.gameserver.network.serverpackets.AutoAttackStop;
@@ -281,10 +280,7 @@ abstract class AbstractAI implements Ctrl
 				onIntentionInteract((L2Object) arg0);
 				break;
 		}
-		_actor.fireEvent(EventType.SETINTENTION.name, new Object[]
-		{
-			intention
-		});
+		
 	}
 	
 	/**

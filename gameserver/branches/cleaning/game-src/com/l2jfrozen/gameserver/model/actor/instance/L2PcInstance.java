@@ -153,7 +153,6 @@ import com.l2jfrozen.gameserver.model.entity.siege.Castle;
 import com.l2jfrozen.gameserver.model.entity.siege.FortSiege;
 import com.l2jfrozen.gameserver.model.entity.siege.Siege;
 import com.l2jfrozen.gameserver.model.entity.siege.clanhalls.DevastatedCastle;
-import com.l2jfrozen.gameserver.model.extender.BaseExtender.EventType;
 import com.l2jfrozen.gameserver.model.quest.Quest;
 import com.l2jfrozen.gameserver.model.quest.QuestState;
 import com.l2jfrozen.gameserver.model.zone.type.L2TownZone;
@@ -10251,8 +10250,6 @@ public final class L2PcInstance extends L2PlayableInstance
 		
 		if (player != null)
 		{
-			player.fireEvent(EventType.LOAD.name, (Object[]) null);
-			
 			try
 			{
 				Thread.sleep(100);
@@ -10534,7 +10531,6 @@ public final class L2PcInstance extends L2PlayableInstance
 			storeEffect();
 		
 		storeRecipeBook();
-		fireEvent(EventType.STORE.name, (Object[]) null);
 		
 		// If char is in Offline trade, setStored must be true
 		if (this.isInOfflineMode())

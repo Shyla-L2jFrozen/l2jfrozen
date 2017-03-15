@@ -118,11 +118,6 @@ public final class RequestCrystallizeItem extends L2GameClientPacket
 		
 		if (itemToRemove == null || itemToRemove.isWear())
 			return;
-		if (itemToRemove.fireEvent("CRYSTALLIZE", (Object[]) null) != null)
-		{
-			activeChar.sendPacket(new SystemMessage(SystemMessageId.CANNOT_DISCARD_THIS_ITEM));
-			return;
-		}
 		
 		if (!itemToRemove.getItem().isCrystallizable() || itemToRemove.getItem().getCrystalCount() <= 0 || itemToRemove.getItem().getCrystalType() == L2Item.CRYSTAL_NONE)
 		{

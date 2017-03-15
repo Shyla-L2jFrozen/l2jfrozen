@@ -141,7 +141,6 @@ import com.l2jfrozen.gameserver.scripting.L2ScriptEngineManager;
 import com.l2jfrozen.gameserver.taskmanager.TaskManager;
 import com.l2jfrozen.gameserver.thread.daemons.ItemsAutoDestroy;
 import com.l2jfrozen.gameserver.thread.daemons.PcPoint;
-import com.l2jfrozen.gameserver.util.DynamicExtension;
 import com.l2jfrozen.gameserver.util.sql.SQLQueue;
 import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.SelectorConfig;
@@ -528,17 +527,6 @@ public class GameServer
 		Util.printSection("Game Server");
 		
 		LOGGER.info("IdFactory: Free ObjectID's remaining: " + IdFactory.getInstance().size());
-		try
-		{
-			DynamicExtension.getInstance();
-		}
-		catch (final Exception ex)
-		{
-			if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
-				ex.printStackTrace();
-			
-			LOGGER.info("DynamicExtension could not be loaded and initialized" + ex);
-		}
 		
 		Util.printSection("Custom Mods");
 		

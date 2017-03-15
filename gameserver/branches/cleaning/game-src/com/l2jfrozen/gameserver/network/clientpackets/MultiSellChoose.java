@@ -269,8 +269,6 @@ public class MultiSellChoose extends L2GameClientPacket
 					LOGGER.warn("Character: " + player.getName() + " is trying to cheat in multisell, merchatnt id:" + (merchant != null ? merchant.getNpcId() : 0));
 					return;
 				}
-				if (itemToTake.fireEvent("MULTISELL", (Object[]) null) != null)
-					return;
 				
 				if (itemToTake.isWear())
 				{

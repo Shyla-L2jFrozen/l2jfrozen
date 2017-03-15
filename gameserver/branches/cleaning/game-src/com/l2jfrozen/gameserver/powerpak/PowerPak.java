@@ -37,7 +37,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.powerpak.Buffer.BuffHandler;
 import com.l2jfrozen.gameserver.powerpak.Buffer.BuffTable;
 import com.l2jfrozen.gameserver.powerpak.RaidInfo.RaidInfoHandler;
-import com.l2jfrozen.gameserver.powerpak.engrave.EngraveManager;
 import com.l2jfrozen.gameserver.powerpak.globalGK.GKHandler;
 import com.l2jfrozen.gameserver.powerpak.gmshop.GMShop;
 import com.l2jfrozen.gameserver.powerpak.vote.L2TopDeamon;
@@ -116,12 +115,6 @@ public class PowerPak
 					CommunityBoard.getInstance().registerBBSHandler(gs);
 				}
 				LOGGER.info("GM Shop is Enabled.");
-			}
-			
-			if (PowerPakConfig.ENGRAVER_ENABLED)
-			{
-				EngraveManager.getInstance();
-				LOGGER.info("Engrave System is Enabled.");
 			}
 			
 			if (PowerPakConfig.L2TOPDEMON_ENABLED)
