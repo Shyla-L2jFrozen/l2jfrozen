@@ -3,6 +3,7 @@
 	<name>L2jFrozen_DataPack</name>
 	<comment></comment>
 	<projects>
+		<project>L2jFrozen_GameServer</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

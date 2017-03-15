@@ -20,7 +20,6 @@
  */
 package com.l2jfrozen.gameserver.powerpak;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -30,7 +29,6 @@ import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.FService;
 import com.l2jfrozen.L2Properties;
 import com.l2jfrozen.gameserver.datatables.sql.ItemTable;
-import com.l2jfrozen.gameserver.templates.L2Item;
 
 import javolution.util.FastList;
 import javolution.util.FastMap;
@@ -41,17 +39,6 @@ import javolution.util.FastMap;
 public class PowerPakConfig
 {
 	private static final Logger LOGGER = Logger.getLogger(PowerPakConfig.class);
-	public static boolean ENGRAVER_ENABLED;
-	public static int ENGRAVE_PRICE = 0;
-	public static int ENGRAVE_PRICE_ITEM = 57;
-	public static int ENGRAVER_X = 82270;
-	public static int ENGRAVER_Y = 149660;
-	public static int ENGRAVER_Z = -3495;
-	public static int MAX_ENGRAVED_ITEMS_PER_CHAR;
-	public static boolean SPAWN_ENGRAVER = true;
-	public static boolean ENGRAVE_ALLOW_DESTROY;
-	public static ArrayList<Integer> ENGRAVE_EXCLUDED_ITEMS = new ArrayList<>();
-	public static ArrayList<Integer> ENGRAVE_ALLOW_GRADE = new ArrayList<>();
 	
 	public static int BUFFER_NPC;
 	public static boolean BUFFER_ENABLED;
@@ -131,68 +118,7 @@ public class PowerPakConfig
 		try
 		{
 			final L2Properties p = new L2Properties(FService.POWERPACK_CONFIG_FILE);
-			ENGRAVER_ENABLED = Boolean.parseBoolean(p.getProperty("EngraveEnabled", "true"));
-			ENGRAVE_PRICE = Integer.parseInt(p.getProperty("EngravePrice", "0"));
-			ENGRAVE_PRICE_ITEM = Integer.parseInt(p.getProperty("EngravePriceItem", "57"));
-			SPAWN_ENGRAVER = Boolean.parseBoolean(p.getProperty("EngraveSpawnNpc", "true"));
-			ENGRAVE_ALLOW_DESTROY = Boolean.parseBoolean(p.getProperty("EngraveAllowDestroy", "false"));
-			MAX_ENGRAVED_ITEMS_PER_CHAR = Integer.parseInt(p.getProperty("EngraveMaxItemsPerChar", "0"));
-			String str = p.getProperty("EngraveNpcLocation", "").trim();
-			if (str.length() > 0)
-			{
-				final StringTokenizer st = new StringTokenizer(str, " ");
-				if (st.hasMoreTokens())
-				{
-					ENGRAVER_X = Integer.parseInt(st.nextToken());
-				}
-				if (st.hasMoreTokens())
-				{
-					ENGRAVER_Y = Integer.parseInt(st.nextToken());
-				}
-				if (st.hasMoreTokens())
-				{
-					ENGRAVER_Z = Integer.parseInt(st.nextToken());
-				}
-			}
-			str = p.getProperty("EngraveExcludeItems", "").trim();
-			if (str.length() > 0)
-			{
-				final StringTokenizer st = new StringTokenizer(str, ",");
-				while (st.hasMoreTokens())
-				{
-					ENGRAVE_EXCLUDED_ITEMS.add(Integer.parseInt(st.nextToken().trim()));
-				}
-			}
-			str = p.getProperty("EngraveAllowGrades", "all").toLowerCase();
-			if (str.indexOf("none") != -1 || str.indexOf("all") != -1)
-			{
-				ENGRAVE_ALLOW_GRADE.add(L2Item.CRYSTAL_NONE);
-			}
 			
-			if (str.indexOf("a") != -1 || str.indexOf("all") != -1)
-			{
-				ENGRAVE_ALLOW_GRADE.add(L2Item.CRYSTAL_A);
-			}
-			
-			if (str.indexOf("b") != -1 || str.indexOf("all") != -1)
-			{
-				ENGRAVE_ALLOW_GRADE.add(L2Item.CRYSTAL_B);
-			}
-			
-			if (str.indexOf("c") != -1 || str.indexOf("all") != -1)
-			{
-				ENGRAVE_ALLOW_GRADE.add(L2Item.CRYSTAL_C);
-			}
-			
-			if (str.indexOf("d") != -1 || str.indexOf("all") != -1)
-			{
-				ENGRAVE_ALLOW_GRADE.add(L2Item.CRYSTAL_D);
-			}
-			
-			if (str.indexOf("s") != -1 || str.indexOf("all") != -1)
-			{
-				ENGRAVE_ALLOW_GRADE.add(L2Item.CRYSTAL_S);
-			}
 			
 			BUFFER_ENABLED = Boolean.parseBoolean(p.getProperty("BufferEnabled", "false"));
 			StringTokenizer st = new StringTokenizer(p.getProperty("BufferExcludeOn", ""), " ");

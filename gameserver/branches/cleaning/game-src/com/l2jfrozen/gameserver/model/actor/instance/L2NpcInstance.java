@@ -1902,7 +1902,6 @@ public class L2NpcInstance extends L2Character
 		// TODO
 		// 50007 Wedding
 		// 50017 PVP/PK
-		// 50018 Engraver
 		// 55555 Rebirth
 		// 66666 Noblesse
 		// 66667 Clan manager

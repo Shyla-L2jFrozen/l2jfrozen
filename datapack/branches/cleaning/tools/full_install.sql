@@ -59,8 +59,6 @@ DROP TABLE IF EXISTS custom_weapon;
 DROP TABLE IF EXISTS dimensional_rift;
 DROP TABLE IF EXISTS droplist;
 DROP TABLE IF EXISTS enchant_skill_trees;
-DROP TABLE IF EXISTS engraved_items;
-DROP TABLE IF EXISTS engraved_log;
 DROP TABLE IF EXISTS etcitem;
 DROP TABLE IF EXISTS fish;
 DROP TABLE IF EXISTS fishing_skill_trees;
