@@ -273,7 +273,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		newChar.deleteMe(); // Release the world of this character and it's inventory
 		
 		// Before the char selection, check shutdown status
-		if (GameServer.getSelectorThread().isShutdown())
+		if (client.getConnection().getSelectorThread().isShutdown())
 		{
 			client.closeNow();
 			return;

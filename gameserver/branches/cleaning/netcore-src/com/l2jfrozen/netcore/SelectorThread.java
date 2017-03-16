@@ -29,6 +29,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import org.apache.log4j.Logger;
@@ -73,6 +74,15 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 	
 	private boolean _shutdown;
 	
+	private static HashMap<String, SelectorThread<MMOClient<?>>> selector_threads = new HashMap<>();
+	
+	public static SelectorThread getSelectorThread(String name)
+	{
+		
+		return selector_threads.get(name);
+		
+	}
+	
 	public SelectorThread(final SelectorConfig sc, final IMMOExecutor<T> executor, final IPacketHandler<T> packetHandler, final IClientFactory<T> clientFactory, final IAcceptFilter acceptFilter) throws IOException
 	{
 		super.setName("SelectorThread-" + super.getId());
@@ -103,6 +113,11 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		_clientFactory = clientFactory;
 		_executor = executor;
 		_selector = Selector.open();
+		
+		SelectorThread<MMOClient<?>> old = selector_threads.put(getName(), (SelectorThread<MMOClient<?>>) this);
+		if (old != null)
+			old.shutdown();
+		
 	}
 	
 	public final void openServerSocket(final InetAddress address, final int tcpPort) throws IOException
@@ -477,11 +492,11 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 				
 				if (cp.read())
 				{
+					cp._buf = null;
+					cp._sbuf = null;
 					_executor.execute(cp);
 				}
 				
-				cp._buf = null;
-				cp._sbuf = null;
 			}
 			
 			buf.limit(limit);
@@ -743,5 +758,15 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 			LOGGER.warn("", e);
 			
 		}
+	}
+	
+	/**
+	 * 
+	 */
+	public static void shutdownSelectorThreads()
+	{
+		for (SelectorThread current : selector_threads.values())
+			current.shutdown();
+		
 	}
 }

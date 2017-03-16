@@ -27,7 +27,9 @@ package com.l2jfrozen.gameserver.datatables;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -59,6 +61,140 @@ public class OfflineTradeTable
 	private static final String CLEAR_OFFLINE_TABLE_ITEMS = "DELETE FROM character_offline_trade_items";
 	private static final String LOAD_OFFLINE_STATUS = "SELECT * FROM character_offline_trade";
 	private static final String LOAD_OFFLINE_ITEMS = "SELECT * FROM character_offline_trade_items WHERE charId = ?";
+	
+	public static class OfflineTraderInfo
+	{
+		
+		private Integer charId;
+		private long time;
+		private int type;
+		private String title;
+		private List<OfflineTraderItem> items = new ArrayList<>();
+		
+		/**
+		 * @param charId
+		 * @param time
+		 * @param i
+		 * @param title
+		 */
+		public OfflineTraderInfo(Integer charId, long time, int i, String title)
+		{
+			super();
+			this.charId = charId;
+			this.time = time;
+			this.type = i;
+			this.title = title;
+		}
+		
+		/**
+		 * @return the charId
+		 */
+		public Integer getCharId()
+		{
+			return charId;
+		}
+		
+		/**
+		 * @return the time
+		 */
+		public long getTime()
+		{
+			return time;
+		}
+		
+		/**
+		 * @return the type
+		 */
+		public int getType()
+		{
+			return type;
+		}
+		
+		/**
+		 * @return the title
+		 */
+		public String getTitle()
+		{
+			return title;
+		}
+		
+		/**
+		 * @return the items
+		 */
+		public List<OfflineTraderItem> getItems()
+		{
+			return items;
+		}
+		
+	}
+	
+	public static class OfflineTraderItem
+	{
+		
+		private Integer charId;
+		private Integer item;
+		private Integer count;
+		private Integer price;
+		private Integer enchant;
+		
+		/**
+		 * @param charId
+		 * @param item
+		 * @param count
+		 * @param price
+		 * @param enchant
+		 */
+		public OfflineTraderItem(Integer charId, Integer item, Integer count, Integer price, Integer enchant)
+		{
+			super();
+			this.charId = charId;
+			this.item = item;
+			this.count = count;
+			this.price = price;
+			this.enchant = enchant;
+		}
+		
+		/**
+		 * @return the charId
+		 */
+		public Integer getCharId()
+		{
+			return charId;
+		}
+		
+		/**
+		 * @return the item
+		 */
+		public Integer getItem()
+		{
+			return item;
+		}
+		
+		/**
+		 * @return the count
+		 */
+		public Integer getCount()
+		{
+			return count;
+		}
+		
+		/**
+		 * @return the price
+		 */
+		public Integer getPrice()
+		{
+			return price;
+		}
+		
+		/**
+		 * @return the enchant
+		 */
+		public Integer getEnchant()
+		{
+			return enchant;
+		}
+		
+	}
 	
 	// called when server will go off, different from storeOffliner because
 	// of store of normal sellers/buyers also if not in offline mode
@@ -180,85 +316,178 @@ public class OfflineTradeTable
 	public static void restoreOfflineTraders()
 	{
 		LOGGER.info("Loading offline traders...");
+		
+		final long LoadStart = System.currentTimeMillis();
+		
 		Connection con = null;
+		
 		int nTraders = 0;
+		
 		try
 		{
 			con = L2DatabaseFactory.getInstance().getConnection(false);
-			final PreparedStatement stm = con.prepareStatement(LOAD_OFFLINE_STATUS);
-			final ResultSet rs = stm.executeQuery();
-			while (rs.next())
+			
+			List<OfflineTraderInfo> offline_traders = new ArrayList<>();
+			
+			PreparedStatement stm = null;
+			ResultSet rs = null;
+			
+			try
 			{
-				final long time = rs.getLong("time");
-				if (Config.OFFLINE_MAX_DAYS > 0)
+				stm = con.prepareStatement(LOAD_OFFLINE_STATUS);
+				rs = stm.executeQuery();
+				while (rs.next())
 				{
-					final Calendar cal = Calendar.getInstance();
-					cal.setTimeInMillis(time);
-					cal.add(Calendar.DAY_OF_YEAR, Config.OFFLINE_MAX_DAYS);
-					if (cal.getTimeInMillis() <= System.currentTimeMillis())
+					
+					final long time = rs.getLong("time");
+					if (Config.OFFLINE_MAX_DAYS > 0)
 					{
-						LOGGER.info("Offline trader with id " + rs.getInt("charId") + " reached OfflineMaxDays, kicked.");
-						continue;
+						final Calendar cal = Calendar.getInstance();
+						cal.setTimeInMillis(time);
+						cal.add(Calendar.DAY_OF_YEAR, Config.OFFLINE_MAX_DAYS);
+						if (cal.getTimeInMillis() <= System.currentTimeMillis())
+						{
+							LOGGER.info("Offline trader with id " + rs.getInt("charId") + " reached OfflineMaxDays, kicked.");
+							continue;
+						}
 					}
+					
+					final int type = rs.getInt("type");
+					if (type == L2PcInstance.STORE_PRIVATE_NONE)
+						continue;
+					
+					OfflineTraderInfo trader = new OfflineTraderInfo(rs.getInt("charId"), time, type, rs.getString("title"));
+					offline_traders.add(trader);
+					
 				}
 				
-				final int type = rs.getInt("type");
-				if (type == L2PcInstance.STORE_PRIVATE_NONE)
-					continue;
+			}
+			catch (final Exception e)
+			{
+				if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
+					e.printStackTrace();
 				
+				LOGGER.warn("OfflineTradersTable[loadOffliners()]: Error loading trader: ", e);
+				
+			}
+			finally
+			{
+				
+				try
+				{
+					rs.close();
+					stm.close();
+				}
+				catch (final Exception e)
+				{
+					if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
+						e.printStackTrace();
+					
+					LOGGER.warn("OfflineTradersTable[loadOffliners()]: Error closing db connection: ", e);
+					
+				}
+				
+			}
+			
+			for (OfflineTraderInfo trader : offline_traders)
+			{
+				
+				PreparedStatement stm_items = null;
+				ResultSet items = null;
+				
+				try
+				{
+					
+					stm_items = con.prepareStatement(LOAD_OFFLINE_ITEMS);
+					stm_items.setInt(1, trader.getCharId());
+					items = stm_items.executeQuery();
+					
+					while (items.next())
+					{
+						OfflineTraderItem item = new OfflineTraderItem(trader.getCharId(), items.getInt(2), items.getInt(3), items.getInt(4), items.getInt(5));
+						trader.getItems().add(item);
+					}
+					
+				}
+				catch (final Exception e)
+				{
+					if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
+						e.printStackTrace();
+					
+					LOGGER.warn("OfflineTradersTable[loadOffliners()]: Error loading trader items: ", e);
+					
+				}
+				finally
+				{
+					
+					try
+					{
+						
+						items.close();
+						stm_items.close();
+						
+					}
+					catch (final Exception e)
+					{
+						if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
+							e.printStackTrace();
+						
+						LOGGER.warn("OfflineTradersTable[loadOffliners()]: Error closing db connection: ", e);
+						
+					}
+					
+				}
+				
+			}
+			
+			for (OfflineTraderInfo trader : offline_traders)
+			{
 				L2PcInstance player = null;
 				
 				try
 				{
 					final L2GameClient client = new L2GameClient(null);
-					player = L2PcInstance.load(rs.getInt("charId"));
+					player = L2PcInstance.load(trader.getCharId());
 					client.setActiveChar(player);
 					client.setAccountName(player.getAccountName());
 					client.setState(GameClientState.IN_GAME);
+					client.setDetached(true);
 					player.setClient(client);
 					player.setOfflineMode(true);
 					player.setOnlineStatus(false);
-					player.setOfflineStartTime(time);
+					player.setOfflineStartTime(trader.getTime());
 					if (Config.OFFLINE_SLEEP_EFFECT)
 						player.startAbnormalEffect(L2Character.ABNORMAL_EFFECT_SLEEP);
 					player.spawnMe(player.getX(), player.getY(), player.getZ());
 					LoginServerThread.getInstance().addGameServerLogin(player.getAccountName(), client);
-					final PreparedStatement stm_items = con.prepareStatement(LOAD_OFFLINE_ITEMS);
-					stm_items.setInt(1, player.getObjectId());
-					final ResultSet items = stm_items.executeQuery();
 					
-					switch (type)
+					for (OfflineTraderItem item : trader.getItems())
 					{
-						case L2PcInstance.STORE_PRIVATE_BUY:
-							while (items.next())
-							{
-								player.getBuyList().addItemByItemId(items.getInt(2), items.getInt(3), items.getInt(4), items.getInt(5));
-							}
-							player.getBuyList().setTitle(rs.getString("title"));
-							break;
-						case L2PcInstance.STORE_PRIVATE_SELL:
-						case L2PcInstance.STORE_PRIVATE_PACKAGE_SELL:
-							while (items.next())
-							{
-								player.getSellList().addItem(items.getInt(2), items.getInt(3), items.getInt(4));
-							}
-							player.getSellList().setTitle(rs.getString("title"));
-							player.getSellList().setPackaged(type == L2PcInstance.STORE_PRIVATE_PACKAGE_SELL);
-							break;
-						case L2PcInstance.STORE_PRIVATE_MANUFACTURE:
-							final L2ManufactureList createList = new L2ManufactureList();
-							while (items.next())
-							{
-								createList.add(new L2ManufactureItem(items.getInt(2), items.getInt(4)));
-							}
-							player.setCreateList(createList);
-							player.getCreateList().setStoreName(rs.getString("title"));
-							break;
-						default:
-							LOGGER.info("Offline trader " + player.getName() + " finished to sell his items");
+						
+						switch (trader.getType())
+						{
+							case L2PcInstance.STORE_PRIVATE_BUY:
+								
+								player.getBuyList().addItemByItemId(item.getItem(), item.getCount(), item.getPrice(), item.getEnchant());
+								player.getBuyList().setTitle(trader.getTitle());
+								break;
+							case L2PcInstance.STORE_PRIVATE_SELL:
+							case L2PcInstance.STORE_PRIVATE_PACKAGE_SELL:
+								player.getSellList().addItem(item.getItem(), item.getCount(), item.getPrice());
+								player.getSellList().setTitle(trader.getTitle());
+								player.getSellList().setPackaged(trader.getType() == L2PcInstance.STORE_PRIVATE_PACKAGE_SELL);
+								break;
+							case L2PcInstance.STORE_PRIVATE_MANUFACTURE:
+								final L2ManufactureList createList = new L2ManufactureList();
+								createList.add(new L2ManufactureItem(item.getItem(), item.getPrice()));
+								player.setCreateList(createList);
+								player.getCreateList().setStoreName(trader.getTitle());
+								break;
+							default:
+								LOGGER.info("Offline trader " + player.getName() + " finished to sell his items");
+						}
+						
 					}
-					items.close();
-					stm_items.close();
 					
 					player.sitDown();
 					if (Config.OFFLINE_SET_NAME_COLOR)
@@ -266,7 +495,8 @@ public class OfflineTradeTable
 						player._originalNameColorOffline = player.getAppearance().getNameColor();
 						player.getAppearance().setNameColor(Config.OFFLINE_NAME_COLOR);
 					}
-					player.setPrivateStoreType(type);
+					
+					player.setPrivateStoreType(trader.getType());
 					player.setOnlineStatus(true);
 					player.restoreEffects();
 					player.broadcastUserInfo();
@@ -281,10 +511,10 @@ public class OfflineTradeTable
 					if (player != null)
 						player.logout();
 				}
+				
 			}
-			rs.close();
-			stm.close();
-			LOGGER.info("Loaded: " + nTraders + " offline trader(s)");
+			
+			LOGGER.info("Loaded: " + nTraders + " offline trader(s) in " + (System.currentTimeMillis() - LoadStart) / 1000 + " seconds");
 			
 		}
 		catch (final Exception e)
