@@ -2008,6 +2008,7 @@ public class TvT implements EventTask
 		
 		player._inEventTvT = true;
 		player._countTvTkills = 0;
+		player._countTvTdies = 0;
 		player.sendMessage(_eventName + ": You successfully registered for the event.");
 	}
 	
@@ -2038,6 +2039,7 @@ public class TvT implements EventTask
 			player._originalKarmaTvT = 0;
 			player._teamNameTvT = new String();
 			player._countTvTkills = 0;
+			player._countTvTdies = 0;
 			player._inEventTvT = false;
 			
 			synchronized (_players)
@@ -2156,6 +2158,7 @@ public class TvT implements EventTask
 						player._originalKarmaTvT = player.getKarma();
 						player._inEventTvT = true;
 						player._countTvTkills = p._countTvTkills;
+						player._countTvTdies = p._countTvTdies;
 						_players.remove(p); // removing old object id from vector
 						_players.add(player); // adding new objectId to vector
 						break;
@@ -2542,6 +2545,7 @@ public class TvT implements EventTask
 				{
 					eventPlayer._inEventTvT = true;
 					eventPlayer._countTvTkills = 0;
+					eventPlayer._countTvTdies = 0;
 					return true;
 				}
 				
@@ -2681,6 +2685,7 @@ public class TvT implements EventTask
 				playerToKick._inEventTvT = false;
 				playerToKick._teamNameTvT = "";
 				playerToKick._countTvTkills = 0;
+				playerToKick._countTvTdies = 0;
 			}
 		}
 		

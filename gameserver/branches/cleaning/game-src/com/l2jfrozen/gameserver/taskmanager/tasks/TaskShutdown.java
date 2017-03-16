@@ -52,7 +52,7 @@ public class TaskShutdown extends Task
 	{
 		LOGGER.info("[GlobalTask] Server Shutdown launched.");
 		
-		final Shutdown handler = new Shutdown(Integer.valueOf(task.getParams()[2]), false, true, false);
+		final Shutdown handler = new Shutdown(Integer.valueOf(task.getParams()[2]), false, true);
 		handler.start();
 	}
 }

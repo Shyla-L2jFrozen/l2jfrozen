@@ -118,60 +118,7 @@ public class Shutdown extends Thread
 		"restarting", // task
 		"shutting down",
 		"restarting"
-	}; // telnet
-	
-	/**
-	 * This function starts a shutdown count down from Telnet (Copied from Function startShutdown())
-	 * @param IP Which Issued shutdown command
-	 * @param seconds seconds until shutdown
-	 * @param restart true if the server will restart after shutdown
-	 */
-	
-	public void startTelnetShutdown(final String IP, final int seconds, final boolean restart)
-	{
-		final Announcements _an = Announcements.getInstance();
-		LOGGER.warn("IP: " + IP + " issued shutdown command. " + MODE_TEXT[_shutdownMode] + " in " + seconds + " seconds!");
-		_an.announceToAll("Server is " + MODE_TEXT[_shutdownMode] + " in " + seconds + " seconds!");
-		
-		if (restart)
-		{
-			_shutdownMode = TELL_RESTART;
-		}
-		else
-		{
-			_shutdownMode = TELL_SHUTDOWN;
-		}
-		
-		if (_shutdownMode > 0)
-		{
-			_an.announceToAll("Server is " + MODE_TEXT[_shutdownMode] + " in " + seconds + " seconds!");
-			_an.announceToAll("Please exit game now!!");
-		}
-		
-		if (_counterInstance != null)
-		{
-			_counterInstance._abort();
-		}
-		_counterInstance = new Shutdown(seconds, restart, false, true);
-		_counterInstance.start();
-	}
-	
-	/**
-	 * This function aborts a running countdown
-	 * @param IP IP Which Issued shutdown command
-	 */
-	public void telnetAbort(final String IP)
-	{
-		Announcements _an = Announcements.getInstance();
-		LOGGER.warn("IP: " + IP + " issued shutdown ABORT. " + MODE_TEXT[_shutdownMode] + " has been stopped!");
-		_an.announceToAll("Server aborts " + MODE_TEXT[_shutdownMode] + " and continues normal operation!");
-		_an = null;
-		
-		if (_counterInstance != null)
-		{
-			_counterInstance._abort();
-		}
-	}
+	};
 	
 	/**
 	 * Default constructor is only used internal to create the shutdown-hook instance
@@ -190,7 +137,7 @@ public class Shutdown extends Thread
 	 * @param task
 	 * @param telnet
 	 */
-	public Shutdown(int seconds, final boolean restart, final boolean task, final boolean telnet)
+	public Shutdown(int seconds, final boolean restart, final boolean task)
 	{
 		if (seconds < 0)
 		{
@@ -203,10 +150,6 @@ public class Shutdown extends Thread
 			{
 				_shutdownMode = GM_RESTART;
 			}
-			else if (telnet)
-			{
-				_shutdownMode = TELL_RESTART;
-			}
 			else
 			{
 				_shutdownMode = TASK_RESTART;
@@ -218,10 +161,6 @@ public class Shutdown extends Thread
 			{
 				_shutdownMode = GM_SHUTDOWN;
 			}
-			else if (telnet)
-			{
-				_shutdownMode = TELL_SHUTDOWN;
-			}
 			else
 			{
 				_shutdownMode = TASK_SHUTDOWN;
@@ -229,7 +168,6 @@ public class Shutdown extends Thread
 		}
 		
 		_shutdownStarted = false;
-		
 	}
 	
 	/**
@@ -327,7 +265,7 @@ public class Shutdown extends Thread
 		}
 		
 		// the main instance should only run for shutdown hook, so we start a new instance
-		_counterInstance = new Shutdown(seconds, restart, false, false);
+		_counterInstance = new Shutdown(seconds, restart, false);
 		_counterInstance.start();
 	}
 	
