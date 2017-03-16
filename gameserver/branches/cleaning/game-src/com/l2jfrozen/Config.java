@@ -39,6 +39,7 @@ import org.apache.log4j.Logger;
 
 import com.l2jfrozen.gameserver.model.entity.olympiad.OlympiadPeriod;
 import com.l2jfrozen.util.StringUtil;
+import com.l2jfrozen.util.Util;
 
 import javolution.text.TypeFormat;
 import javolution.util.FastList;
@@ -4099,6 +4100,7 @@ public final class Config
 	{
 		try
 		{
+			LOGGER.info("Loading Hexid file...");
 			final Properties Settings = new Properties();
 			final InputStream is = new FileInputStream(new File(HEXID_FILE));
 			Settings.load(is);
@@ -4238,7 +4240,10 @@ public final class Config
 	{
 		if (ServerType.serverMode == ServerType.MODE_GAMESERVER)
 		{
+			Util.printSection("Configs");
 			loadHexed();
+			
+			LOGGER.info("Loading Configs file...");
 			
 			// Load network
 			loadServerConfig();

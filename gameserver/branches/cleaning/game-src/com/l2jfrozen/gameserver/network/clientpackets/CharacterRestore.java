@@ -47,7 +47,7 @@ public final class CharacterRestore extends L2GameClientPacket
 		}
 		
 		// Before the char selection, check shutdown status
-		if (GameServer.getSelectorThread().isShutdown())
+		if (getClient().getConnection().getSelectorThread().isShutdown())
 		{
 			getClient().closeNow();
 			return;

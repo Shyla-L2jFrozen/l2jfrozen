@@ -198,7 +198,7 @@ public final class RequestRestart extends L2GameClientPacket
 		client.setState(GameClientState.AUTHED);
 		
 		// before the char selection, check shutdown status
-		if (GameServer.getSelectorThread().isShutdown())
+		if (getClient().getConnection().getSelectorThread().isShutdown())
 		{
 			getClient().closeNow();
 			return;
