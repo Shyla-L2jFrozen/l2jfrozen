@@ -52,7 +52,7 @@ public final class TaskRestart extends Task
 	{
 		LOGGER.info("[GlobalTask] Server Restart launched.");
 		
-		final Shutdown handler = new Shutdown(Integer.valueOf(task.getParams()[2]), true, true, false);
+		final Shutdown handler = new Shutdown(Integer.valueOf(task.getParams()[2]), true, true);
 		handler.start();
 	}
 }

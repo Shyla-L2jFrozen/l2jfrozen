@@ -470,45 +470,6 @@ public final class Config
 	}
 	
 	// ============================================================
-	// public static boolean IS_TELNET_ENABLED;
-	//
-	// // ============================================================
-	// public static void loadTelnetConfig()
-	// {
-	// // Load Telnet L2Properties file (if exists)
-	// FileInputStream is = null;
-	// try
-	// {
-	// final L2Properties telnetSettings = new L2Properties();
-	// is = new FileInputStream(new File(FService.TELNET_FILE));
-	// telnetSettings.load(is);
-	//
-	// IS_TELNET_ENABLED = Boolean.parseBoolean(telnetSettings.getProperty("EnableTelnet", "false"));
-	// }
-	// catch (final Exception e)
-	// {
-	// e.printStackTrace();
-	// throw new Error("Failed to Load " + FService.TELNET_FILE + " File.");
-	// }
-	// finally
-	// {
-	//
-	// if (is != null)
-	// {
-	// try
-	// {
-	// is.close();
-	// }
-	// catch (final IOException e)
-	// {
-	// e.printStackTrace();
-	// }
-	// }
-	// }
-	//
-	// }
-	
-	// ============================================================
 	public static IdFactoryType IDFACTORY_TYPE;
 	public static boolean BAD_ID_CHECKING;
 	public static ObjectMapType MAP_TYPE;
@@ -4347,15 +4308,7 @@ public final class Config
 			{
 				loadQuestion();
 			}
-			
-			// loadTelnetConfig();
 		}
-		// else if (ServerType.serverMode == ServerType.MODE_LOGINSERVER)
-		// {
-		// loadLoginStartConfig();
-		//
-		// loadTelnetConfig();
-		// }
 		else
 		{
 			LOGGER.fatal("Could not Load Config: server mode was not set");

@@ -93,6 +93,8 @@ public class AutoSaveManager
 		{
 			int playerscount = 0;
 			
+			final long LoadStart = System.currentTimeMillis();
+			
 			final Collection<L2PcInstance> players = L2World.getInstance().getAllPlayers();
 			
 			for (final L2PcInstance player : players)
@@ -113,7 +115,9 @@ public class AutoSaveManager
 					}
 				}
 			}
-			LOGGER.info("[AutoSaveManager] AutoSaveTask, " + playerscount + " players data saved.");
+			LOGGER.info("[AutoSaveManager] AutoSaveTask, " + playerscount + " players data saved. ("+ (System.currentTimeMillis() - LoadStart) / 1000+" seconds)");
+			
+
 		}
 	}
 	
@@ -124,6 +128,8 @@ public class AutoSaveManager
 		{
 			final Collection<L2PcInstance> players = L2World.getInstance().getAllPlayers();
 			
+			final long LoadStart = System.currentTimeMillis();
+
 			for (final L2PcInstance player : players)
 			{
 				if (player != null && !player.isInOfflineMode())
@@ -160,7 +166,7 @@ public class AutoSaveManager
 					}
 				}
 			}
-			LOGGER.info("[AutoSaveManager] ConnectionCheckTask, players connections checked.");
+			LOGGER.info("[AutoSaveManager] ConnectionCheckTask, players connections checked. ("+ (System.currentTimeMillis() - LoadStart) / 1000+" seconds)");
 		}
 	}
 	
@@ -172,6 +178,8 @@ public class AutoSaveManager
 		{
 			int erased = 0;
 			
+			final long LoadStart = System.currentTimeMillis();
+
 			/*
 			 * Perform the clean here instead of every time that the skills are saved in order to do it in once step because if skill have 0 reuse delay doesn't affect the game, just makes the table grows bigger
 			 */
@@ -196,7 +204,7 @@ public class AutoSaveManager
 				CloseUtil.close(con);
 			}
 			
-			LOGGER.info("[AutoSaveManager] AutoCleanDBTask, " + erased + " entries cleaned from db.");
+			LOGGER.info("[AutoSaveManager] AutoCleanDBTask, " + erased + " entries cleaned from db. ("+ (System.currentTimeMillis() - LoadStart) / 1000+" seconds)");
 		}
 	}
 	
