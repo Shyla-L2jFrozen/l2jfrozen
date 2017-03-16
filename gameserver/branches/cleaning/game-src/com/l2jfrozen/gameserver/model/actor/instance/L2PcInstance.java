@@ -10250,15 +10250,6 @@ public final class L2PcInstance extends L2PlayableInstance
 		
 		if (player != null)
 		{
-			try
-			{
-				Thread.sleep(100);
-			}
-			catch (final InterruptedException e)
-			{
-				e.printStackTrace();
-			}
-			
 			// once restored all the skill status, update current CP, MP and HP
 			player.setCurrentHpDirect(curHp);
 			player.setCurrentCpDirect(curCp);
@@ -10266,6 +10257,7 @@ public final class L2PcInstance extends L2PlayableInstance
 			// player.setCurrentCp(curCp);
 			// player.setCurrentMp(curMp);
 		}
+		
 		return player;
 	}
 	

@@ -38,7 +38,8 @@ import org.apache.log4j.Logger;
 public class MMOConnection<T extends MMOClient<?>>
 {
 	private static final Logger LOGGER = Logger.getLogger(MMOConnection.class);
-	private final SelectorThread<T> _selectorThread;
+//	private final SelectorThread<T> _selectorThread;
+	private final String _selectorThreadName;
 	
 	private final Socket _socket;
 	
@@ -70,7 +71,8 @@ public class MMOConnection<T extends MMOClient<?>>
 	
 	public MMOConnection(final SelectorThread<T> selectorThread, final Socket socket, final SelectionKey key) throws IOException
 	{
-		_selectorThread = selectorThread;
+//		_selectorThread = selectorThread;
+		_selectorThreadName = selectorThread.getName();
 		_socket = socket;
 		_address = socket.getInetAddress();
 		_readableByteChannel = socket.getChannel();
@@ -167,12 +169,12 @@ public class MMOConnection<T extends MMOClient<?>>
 	{
 		if (_primaryWriteBuffer == null)
 		{
-			_primaryWriteBuffer = _selectorThread.getPooledBuffer();
+			_primaryWriteBuffer = SelectorThread.getSelectorThread(_selectorThreadName).getPooledBuffer();
 			_primaryWriteBuffer.put(buf);
 		}
 		else
 		{
-			final ByteBuffer temp = _selectorThread.getPooledBuffer();
+			final ByteBuffer temp = SelectorThread.getSelectorThread(_selectorThreadName).getPooledBuffer();
 			temp.put(buf);
 			
 			final int remaining = temp.remaining();
@@ -182,7 +184,7 @@ public class MMOConnection<T extends MMOClient<?>>
 			if (remaining >= _primaryWriteBuffer.remaining())
 			{
 				temp.put(_primaryWriteBuffer);
-				_selectorThread.recycleBuffer(_primaryWriteBuffer);
+				SelectorThread.getSelectorThread(_selectorThreadName).recycleBuffer(_primaryWriteBuffer);
 				_primaryWriteBuffer = temp;
 			}
 			else
@@ -206,7 +208,7 @@ public class MMOConnection<T extends MMOClient<?>>
 	{
 		_primaryWriteBuffer.flip();
 		dest.put(_primaryWriteBuffer);
-		_selectorThread.recycleBuffer(_primaryWriteBuffer);
+		SelectorThread.getSelectorThread(_selectorThreadName).recycleBuffer(_primaryWriteBuffer);
 		_primaryWriteBuffer = _secondaryWriteBuffer;
 		_secondaryWriteBuffer = null;
 	}
@@ -311,27 +313,34 @@ public class MMOConnection<T extends MMOClient<?>>
 			Thread.dumpStack();
 		}
 		// _closePacket = sp;
-		_selectorThread.closeConnection(this);
+		SelectorThread.getSelectorThread(_selectorThreadName).closeConnection(this);
 	}
 	
 	final void releaseBuffers()
 	{
 		if (_primaryWriteBuffer != null)
 		{
-			_selectorThread.recycleBuffer(_primaryWriteBuffer);
+			SelectorThread.getSelectorThread(_selectorThreadName).recycleBuffer(_primaryWriteBuffer);
 			_primaryWriteBuffer = null;
 			
 			if (_secondaryWriteBuffer != null)
 			{
-				_selectorThread.recycleBuffer(_secondaryWriteBuffer);
+				SelectorThread.getSelectorThread(_selectorThreadName).recycleBuffer(_secondaryWriteBuffer);
 				_secondaryWriteBuffer = null;
 			}
 		}
 		
 		if (_readBuffer != null)
 		{
-			_selectorThread.recycleBuffer(_readBuffer);
+			SelectorThread.getSelectorThread(_selectorThreadName).recycleBuffer(_readBuffer);
 			_readBuffer = null;
 		}
 	}
+	
+	public SelectorThread<T> getSelectorThread(){
+		
+		return (SelectorThread<T>) SelectorThread.getSelectorThread(_selectorThreadName);
+		
+	}
+	
 }

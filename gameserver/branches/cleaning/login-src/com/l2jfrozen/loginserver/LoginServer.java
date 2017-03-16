@@ -53,7 +53,7 @@ public class LoginServer
 	private static LoginServer _instance;
 	private final Logger LOGGER = Logger.getLogger(LoginServer.class);
 	private GameServerListener _gameServerListener;
-	private SelectorThread<LoginClient> _selectorThread;
+	//public static SelectorThread<LoginClient> _selectorThread;
 	
 	public static void main(final String[] args) throws Exception
 	{
@@ -172,6 +172,7 @@ public class LoginServer
 		
 		final LoginPacketHandler lph = new LoginPacketHandler();
 		final SelectorHelper sh = new SelectorHelper();
+		SelectorThread<LoginClient> _selectorThread = null;
 		try
 		{
 			_selectorThread = new SelectorThread<>(sc, sh, lph, sh, sh);

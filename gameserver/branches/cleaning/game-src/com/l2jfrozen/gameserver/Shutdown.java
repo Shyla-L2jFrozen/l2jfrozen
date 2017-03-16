@@ -46,6 +46,7 @@ import com.l2jfrozen.gameserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.gameserver.network.serverpackets.ServerClose;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.util.sql.SQLQueue;
+import com.l2jfrozen.netcore.SelectorThread;
 import com.l2jfrozen.thread.ThreadPoolManager;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 import com.l2jfrozen.util.database.SqlUtils;
@@ -413,8 +414,8 @@ public class Shutdown extends Thread
 		try
 		{
 			// GameServer.getSelectorThread().setDaemon(true);
-			GameServer.getSelectorThread().shutdown();
-			
+			//GameServer.getSelectorThread().shutdown();
+			SelectorThread.shutdownSelectorThreads();
 		}
 		catch (final Throwable t)
 		{

@@ -361,7 +361,7 @@ public class LoginServerThread extends Thread
 									wcToRemove.gameClient.setSessionId(wcToRemove.session);
 									
 									// before the char selection, check shutdown status
-									if (GameServer.getSelectorThread().isShutdown())
+									if (wcToRemove.gameClient.getConnection().getSelectorThread().isShutdown())
 									{
 										wcToRemove.gameClient.getConnection().sendPacket(new AuthLoginFail(1));
 										wcToRemove.gameClient.closeNow();

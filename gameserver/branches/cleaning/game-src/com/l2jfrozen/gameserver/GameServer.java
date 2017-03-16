@@ -141,6 +141,7 @@ import com.l2jfrozen.gameserver.taskmanager.TaskManager;
 import com.l2jfrozen.gameserver.thread.daemons.ItemsAutoDestroy;
 import com.l2jfrozen.gameserver.thread.daemons.PcPoint;
 import com.l2jfrozen.gameserver.util.sql.SQLQueue;
+//import com.l2jfrozen.loginserver.LoginClient;
 import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.SelectorConfig;
 import com.l2jfrozen.netcore.SelectorThread;
@@ -156,7 +157,7 @@ import com.l2jfrozen.util.database.L2DatabaseFactory;
 public class GameServer
 {
 	private static Logger LOGGER = Logger.getLogger("Loader");
-	private static SelectorThread<L2GameClient> _selectorThread;
+	// public static SelectorThread<L2GameClient> _selectorThread;
 	private static LoginServerThread _loginThread;
 	private static L2GamePacketHandler _gamePacketHandler;
 	
@@ -628,7 +629,7 @@ public class GameServer
 		
 		_gamePacketHandler = new L2GamePacketHandler();
 		
-		_selectorThread = new SelectorThread<>(sc, _gamePacketHandler, _gamePacketHandler, _gamePacketHandler, new IPv4Filter());
+		SelectorThread<L2GameClient> _selectorThread = new SelectorThread<>(sc, _gamePacketHandler, _gamePacketHandler, _gamePacketHandler, new IPv4Filter());
 		
 		InetAddress bindAddress = null;
 		if (!Config.GAMESERVER_HOSTNAME.equals("*"))
@@ -661,8 +662,4 @@ public class GameServer
 		_selectorThread.start();
 	}
 	
-	public static SelectorThread<L2GameClient> getSelectorThread()
-	{
-		return _selectorThread;
-	}
 }

@@ -695,7 +695,6 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	 */
 	public void close(final int delay)
 	{
-		
 		close(ServerClose.STATIC_PACKET);
 		synchronized (this)
 		{
