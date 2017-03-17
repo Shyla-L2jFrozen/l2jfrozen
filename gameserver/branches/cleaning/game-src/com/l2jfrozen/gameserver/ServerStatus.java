@@ -54,6 +54,8 @@ public class ServerStatus
 		@Override
 		public void run()
 		{
+			final long LoadStart = System.currentTimeMillis();
+			
 			int ActivePlayers = 0;
 			int OfflinePlayers = 0;
 			
@@ -65,14 +67,17 @@ public class ServerStatus
 					ActivePlayers++;
 			}
 			
+			int TotalOnline = ActivePlayers +OfflinePlayers;
+			
 			Util.printSection("Server Status");
 			LOGGER.info("Server Time: " + fmt.format(new Date(System.currentTimeMillis())));
-			LOGGER.info("Active Players Online: " + ActivePlayers);
-			LOGGER.info("Offline Players Online: " + OfflinePlayers);
-			LOGGER.info("Threads: " + Thread.activeCount());
-			LOGGER.info("Free Memory: " + Memory.getFreeMemory() + " MB");
-			LOGGER.info("Used memory: " + Memory.getUsedMemory() + " MB");
-			Util.printSection("Server Status");
+			LOGGER.info("Players Online: " + TotalOnline);
+			LOGGER.info("Active: " + ActivePlayers+", Offline shop: " + OfflinePlayers);
+			LOGGER.info("Free Memory: " + Memory.getFreeMemory() + " MB, Used memory: " + Memory.getUsedMemory() + " MB.");
+			
+			long loadtime = ((System.currentTimeMillis() - LoadStart) / 1000);
+
+			Util.printSection("Loaded in "+loadtime+" seconds");
 		}
 	}
 	
