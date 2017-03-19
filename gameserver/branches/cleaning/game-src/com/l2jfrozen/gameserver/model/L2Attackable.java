@@ -1156,12 +1156,9 @@ public class L2Attackable extends L2NpcInstance
 			for (final AggroInfo ai : getAggroListRP().values())
 			{
 				if (ai == null)
-				{
 					continue;
-				}
 				
-				if (ai._attacker.isAlikeDead() || !getKnownList().knowsObject(ai._attacker) || !ai._attacker.isVisible() || ai._attacker instanceof L2PcInstance && ((L2PcInstance) ai._attacker).isOnline() == 0 && !((L2PcInstance) ai._attacker).isInOfflineMode()) // if player go in offline mode, he
-																																																																		// must be hated however
+				if (ai._attacker.isAlikeDead() || !getKnownList().knowsObject(ai._attacker) || !ai._attacker.isVisible() || ai._attacker instanceof L2PcInstance && ((L2PcInstance) ai._attacker).isOnline() == 0 && !((L2PcInstance) ai._attacker).isInOfflineMode())
 				{
 					ai._hate = 0;
 				}

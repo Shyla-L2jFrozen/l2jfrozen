@@ -25,6 +25,7 @@ import java.util.Arrays;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.datatables.sql.AdminCommandAccessRights;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminAdmin;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminAio;
@@ -49,6 +50,7 @@ import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminEffects;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminEnchant;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminEventEngine;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminExpSp;
+import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminFakePlayerOnline;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminFightCalculator;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminFortSiege;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminGeodata;
@@ -188,6 +190,10 @@ public class AdminCommandHandler
 		registerAdminCommandHandler(new AdminAio());
 		registerAdminCommandHandler(new AdminCharSupervision());
 		registerAdminCommandHandler(new AdminWho()); // L2OFF command
+		
+		if (Config.ALLOW_FAKE_PLAYERS)
+			registerAdminCommandHandler(new AdminFakePlayerOnline());
+			
 		// ATTENTION: adding new command handlers, you have to change the
 		// sql file containing the access levels rights
 		

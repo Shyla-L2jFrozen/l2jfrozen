@@ -175,10 +175,6 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 			// Check if the AI isn't a Raid Boss and the target isn't in silent move mode
 			if (!(me instanceof L2RaidBossInstance) && ((L2PcInstance) target).isSilentMoving())
 				return false;
-			
-			// if in offline mode
-			if (((L2PcInstance) target).isInOfflineMode())
-				return false;
 				
 			// Check if player is an ally //TODO! [Nemesiss] it should be rather boolean or smth like that
 			// Comparing String isnt good idea!
@@ -630,7 +626,7 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 		
 		final L2Character originalAttackTarget = getAttackTarget();
 		// Check if target is dead or if timeout is expired to stop this attack
-		if (originalAttackTarget == null || originalAttackTarget.isAlikeDead() || (originalAttackTarget instanceof L2PcInstance && (((L2PcInstance) originalAttackTarget).isInOfflineMode() || ((L2PcInstance) originalAttackTarget).isOnline() == 0)) || _attackTimeout < GameTimeController.getGameTicks())
+		if (originalAttackTarget == null || originalAttackTarget.isAlikeDead() || _attackTimeout < GameTimeController.getGameTicks())
 		{
 			// Stop hating this target after the attack timeout or if target is dead
 			if (originalAttackTarget != null)

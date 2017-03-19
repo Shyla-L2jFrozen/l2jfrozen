@@ -1415,7 +1415,7 @@ public class CTF implements EventTask
 				{
 					if (player == null)
 						_playersShuffle.remove(player);
-					else if (player.isOnline() == 0 || player.isInJail() || player.isInOfflineMode())
+					else if (player.isOnline() == 0 || player.isInJail() || player.isInOfflineMode() || player.isFakeOfflinePlayer())
 						removePlayer(player);
 					if (_playersShuffle.size() == 0 || _playersShuffle.isEmpty())
 						break;

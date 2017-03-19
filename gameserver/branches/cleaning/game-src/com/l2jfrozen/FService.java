@@ -79,6 +79,7 @@ public class FService
 	public static final String EVENT_WEDDING_FILE = "./config/mods/wedding.properties";
 	public static final String EVENT_PC_BANG_POINT_FILE = "./config/mods/pcBang.properties";
 	public static final String OFFLINE_FILE = "./config/mods/offline.properties";
+	public static final String FAKE_PLAYERS_FILE = "./config/mods/fakeplayers.properties";
 	
 	// network
 	public static final String CONFIGURATION_FILE = "./config/network/gameserver.properties";
