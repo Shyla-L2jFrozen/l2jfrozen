@@ -15347,7 +15347,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		
 		// Fix against exploit on anti-target on login
 		decayMe();
-		spawnMe();
+		spawnMe(getX(), getY(), getZ());
 		broadcastUserInfo();
 		
 	}
