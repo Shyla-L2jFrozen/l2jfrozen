@@ -24,7 +24,6 @@ import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.Config;
-import com.l2jfrozen.gameserver.GameServer;
 import com.l2jfrozen.gameserver.communitybbs.Manager.RegionBBSManager;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.model.Inventory;

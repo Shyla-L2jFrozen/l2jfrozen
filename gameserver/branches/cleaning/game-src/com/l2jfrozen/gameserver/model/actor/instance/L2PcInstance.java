@@ -9785,6 +9785,9 @@ public final class L2PcInstance extends L2PlayableInstance
 		if (isInOfflineMode()) // database online status must not change on offline mode
 			return;
 		
+		if (isFakeOfflinePlayer())
+			return;
+		
 		Connection con = null;
 		
 		try
@@ -10003,7 +10006,7 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * @param objectId Identifier of the object to initialized
 	 * @return The L2PcInstance loaded from the database
 	 */
-	private static L2PcInstance restore(final int objectId)
+	public static L2PcInstance restore(final int objectId)
 	{
 		L2PcInstance player = null;
 		double curHp = 0;
@@ -19688,4 +19691,16 @@ public final class L2PcInstance extends L2PlayableInstance
 		_currentPetSkill = new SkillDat(currentSkill, ctrlPressed, shiftPressed);
 	}
 	
+	/** fake players **/
+	public boolean fakeplayer = false;
+	
+	public boolean isFakeOfflinePlayer()
+	{
+		return fakeplayer;
+	}
+	
+	public void setfakeplayer(final boolean fake)
+	{
+		fakeplayer = fake;
+	}
 }

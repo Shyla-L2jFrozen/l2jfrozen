@@ -111,7 +111,7 @@ public class AutoVoteRewardHandler
 						// L2ItemInstance item;
 						for (final L2PcInstance player : pls)
 						{
-							if (player != null && !player.isInOfflineMode() && player.isOnline() == 1)
+							if (player != null && !player.isInOfflineMode() && player.isOnline() == 1 && !player.isFakeOfflinePlayer())
 							{
 								if (player._active_boxes <= 1 || (player._active_boxes > 1 && checkSingleBox(player)))
 								{
@@ -172,7 +172,7 @@ public class AutoVoteRewardHandler
 						// L2ItemInstance item;
 						for (final L2PcInstance player : pls)
 						{
-							if (player != null && !player.isInOfflineMode() && player.isOnline() == 1)
+							if (player != null && !player.isInOfflineMode() && player.isOnline() == 1 && !player.isFakeOfflinePlayer())
 							{
 								if (player._active_boxes <= 1 || (player._active_boxes > 1 && checkSingleBox(player)))
 								{
@@ -229,7 +229,7 @@ public class AutoVoteRewardHandler
 						// L2ItemInstance item;
 						for (final L2PcInstance player : pls)
 						{
-							if (player != null && !player.isInOfflineMode() && player.isOnline() == 1)
+							if (player != null && !player.isInOfflineMode() && player.isOnline() == 1 && !player.isFakeOfflinePlayer())
 							{
 								if (player._active_boxes <= 1 || (player._active_boxes > 1 && checkSingleBox(player)))
 								{
@@ -260,7 +260,7 @@ public class AutoVoteRewardHandler
 		if (player == null)
 			return false;
 		
-		if (player.getClient() != null && player.getClient().getConnection() != null && !player.getClient().getConnection().isClosed() && player.isOnline() == 1 && !player.isInOfflineMode())
+		if (player.getClient() != null && player.getClient().getConnection() != null && !player.getClient().getConnection().isClosed() && player.isOnline() == 1 && !player.isInOfflineMode() && !player.isFakeOfflinePlayer())
 		{
 			final String playerip = player.getClient().getConnection().getInetAddress().getHostAddress();
 			

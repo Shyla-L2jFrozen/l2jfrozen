@@ -72,7 +72,7 @@ public class ObjectKnownList
 		// TODO: Ridondantes? commented
 		// Check if object is not inside distance to watch object
 		// if (!Util.checkIfInRange(getDistanceToWatchObject(object), getActiveObject(), object, true))
-		// 	return false;
+		// return false;
 		
 		return getKnownObjects().put(object.getObjectId(), object) == null;
 	}

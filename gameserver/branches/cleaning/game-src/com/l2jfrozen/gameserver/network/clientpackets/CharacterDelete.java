@@ -19,7 +19,6 @@ package com.l2jfrozen.gameserver.network.clientpackets;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.gameserver.GameServer;
 import com.l2jfrozen.gameserver.network.serverpackets.CharDeleteFail;
 import com.l2jfrozen.gameserver.network.serverpackets.CharDeleteOk;
 import com.l2jfrozen.gameserver.network.serverpackets.CharSelectInfo;

@@ -58,26 +58,29 @@ public class ServerStatus
 			
 			int ActivePlayers = 0;
 			int OfflinePlayers = 0;
+			int FakePlayers = 0;
 			
 			for (final L2PcInstance player : L2World.getInstance().getAllPlayers())
 			{
 				if (player.isInOfflineMode())
 					OfflinePlayers++;
+				else if (player.isFakeOfflinePlayer())
+					FakePlayers++;
 				else
 					ActivePlayers++;
 			}
 			
-			int TotalOnline = ActivePlayers +OfflinePlayers;
+			final int TotalOnline = ActivePlayers + OfflinePlayers + FakePlayers;
 			
 			Util.printSection("Server Status");
 			LOGGER.info("Server Time: " + fmt.format(new Date(System.currentTimeMillis())));
 			LOGGER.info("Players Online: " + TotalOnline);
-			LOGGER.info("Active: " + ActivePlayers+", Offline shop: " + OfflinePlayers);
+			LOGGER.info("Active: " + ActivePlayers + ", Offline shop: " + OfflinePlayers + ", Fake player: " + FakePlayers);
 			LOGGER.info("Free Memory: " + Memory.getFreeMemory() + " MB, Used memory: " + Memory.getUsedMemory() + " MB.");
 			
-			long loadtime = ((System.currentTimeMillis() - LoadStart) / 1000);
-
-			Util.printSection("Loaded in "+loadtime+" seconds");
+			final long loadtime = ((System.currentTimeMillis() - LoadStart) / 1000);
+			
+			Util.printSection("Loaded in " + loadtime + " seconds");
 		}
 	}
 	

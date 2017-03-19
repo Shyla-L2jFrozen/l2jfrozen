@@ -16,7 +16,7 @@ public class NetcoreConfig
 	
 	/** MMO settings */
 	public int MMO_SELECTOR_SLEEP_TIME = 20; // default 20
-	public int MMO_MAX_SEND_PER_PASS = 12; // default 12
+	public int MMO_MAX_SEND_PER_PASS = 90; // default 12
 	public int MMO_MAX_READ_PER_PASS = 12; // default 12
 	public int MMO_HELPER_BUFFER_COUNT = 20; // default 20
 	

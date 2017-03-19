@@ -76,7 +76,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 	
 	private static HashMap<String, SelectorThread<MMOClient<?>>> selector_threads = new HashMap<>();
 	
-	public static SelectorThread getSelectorThread(String name)
+	public static SelectorThread getSelectorThread(final String name)
 	{
 		
 		return selector_threads.get(name);
@@ -114,7 +114,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		_executor = executor;
 		_selector = Selector.open();
 		
-		SelectorThread<MMOClient<?>> old = selector_threads.put(getName(), (SelectorThread<MMOClient<?>>) this);
+		final SelectorThread<MMOClient<?>> old = selector_threads.put(getName(), (SelectorThread<MMOClient<?>>) this);
 		if (old != null)
 			old.shutdown();
 		
@@ -765,7 +765,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 	 */
 	public static void shutdownSelectorThreads()
 	{
-		for (SelectorThread current : selector_threads.values())
+		for (final SelectorThread current : selector_threads.values())
 			current.shutdown();
 		
 	}
