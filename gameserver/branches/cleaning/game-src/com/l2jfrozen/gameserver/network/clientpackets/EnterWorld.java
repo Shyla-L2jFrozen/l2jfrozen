@@ -138,11 +138,7 @@ public class EnterWorld extends L2GameClientPacket
 		
 		if (L2World.getInstance().findObject(activeChar.getObjectId()) != null)
 		{
-			if (CommonConfig.DEBUG)
-			{
-				LOGGER.warn("DEBUG " + getType() + ": User already exist in OID map! User " + activeChar.getName() + " is character clone");
-				// activeChar.closeNetConnection(); // Do nothing?
-			}
+			LOGGER.warn("DEBUG " + getType() + ": User already exist in OID map! User " + activeChar.getName() + " is character clone");
 		}
 		
 		if (!activeChar.isGM() && !activeChar.isDonator() && Config.CHECK_NAME_ON_LOGIN)
@@ -157,11 +153,12 @@ public class EnterWorld extends L2GameClientPacket
 		
 		// Set online status
 		activeChar.setOnlineStatus(true);
-		
-		activeChar.setRunning(); // running is default
-		activeChar.standUp(); // standing is default
-		
-		activeChar.broadcastKarma(); // include UserInfo
+		// running is default
+		activeChar.setRunning();
+		// standing is default
+		activeChar.standUp();
+		// include UserInfo
+		activeChar.broadcastKarma();
 		
 		// Engage and notify Partner
 		if (Config.L2JMOD_ALLOW_WEDDING)
@@ -177,8 +174,6 @@ public class EnterWorld extends L2GameClientPacket
 		
 		if (Config.PLAYER_SPAWN_PROTECTION > 0)
 			activeChar.setProtection(true);
-		
-		activeChar.spawnMe(activeChar.getX(), activeChar.getY(), activeChar.getZ());
 		
 		if (SevenSigns.getInstance().isSealValidationPeriod())
 			sendPacket(new SignsSky());
@@ -264,9 +259,9 @@ public class EnterWorld extends L2GameClientPacket
 		
 		activeChar.getMacroses().sendUpdate();
 		
-		// Send packets info
-		sendPacket(new ClientSetTime()); // SetClientTime
-		sendPacket(new UserInfo(activeChar)); //
+		// Send packets info to the player
+		sendPacket(new ClientSetTime());
+		sendPacket(new UserInfo(activeChar));
 		sendPacket(new HennaInfo(activeChar));
 		sendPacket(new FriendList(activeChar));
 		sendPacket(new ItemList(activeChar, false));
@@ -296,9 +291,6 @@ public class EnterWorld extends L2GameClientPacket
 		
 		PetitionManager.getInstance().checkPetitionMessages(activeChar);
 		
-		// Send user info again .. just like the real client
-		// sendPacket(ui);
-		
 		if (activeChar.getClanId() != 0 && activeChar.getClan() != null)
 		{
 			sendPacket(new PledgeShowMemberListAll(activeChar.getClan(), activeChar));
@@ -316,11 +308,12 @@ public class EnterWorld extends L2GameClientPacket
 		
 		setPledgeClass(activeChar);
 		
+		// friend logged in
 		for (final String name : activeChar.getFriendList())
 		{
 			final L2PcInstance friend = L2World.getInstance().getPlayer(name);
 			
-			if (friend != null) // friend logged in.
+			if (friend != null)
 				friend.sendPacket(new SystemMessage(SystemMessageId.FRIEND_S1_HAS_LOGGED_IN).addString(activeChar.getName()));
 		}
 		
@@ -329,6 +322,7 @@ public class EnterWorld extends L2GameClientPacket
 		
 		activeChar.setTarget(activeChar);
 		
+		// spawnme
 		activeChar.onPlayerEnter();
 		
 		if (Config.PCB_ENABLE)
