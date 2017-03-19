@@ -22,26 +22,27 @@ package com.l2jfrozen.gameserver.network.serverpackets;
 
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 
-/**
- * This class ...
- * @version $Revision: 1.1.2.1.2.3 $ $Date: 2005/03/27 15:29:57 $
- */
 public class RecipeShopMsg extends L2GameServerPacket
 {
 	private static final String _S__DB_RecipeShopMsg = "[S] db RecipeShopMsg";
-	private final L2PcInstance _activeChar;
+	
+	private int _chaObjectId;
+	private String _chaStoreName;
 	
 	public RecipeShopMsg(final L2PcInstance player)
 	{
-		_activeChar = player;
+		if (player.getCreateList() == null || player.getCreateList().getStoreName() == null)
+			return;
+		_chaObjectId = player.getObjectId();
+		_chaStoreName = player.getCreateList().getStoreName();
 	}
 	
 	@Override
 	protected final void writeImpl()
 	{
 		writeC(0xdb);
-		writeD(_activeChar.getObjectId());
-		writeS(_activeChar.getCreateList().getStoreName());// _activeChar.getTradeList().getSellStoreName());
+		writeD(_chaObjectId);
+		writeS(_chaStoreName);
 	}
 	
 	/*

@@ -233,7 +233,7 @@ abstract class AbstractAI implements Ctrl
 	@Override
 	public final void setIntention(final CtrlIntention intention, final Object arg0, final Object arg1)
 	{
-		if (!_actor.isVisible() || !_actor.hasAI())
+		if (_actor == null || !_actor.isVisible() || !_actor.hasAI())
 			return;
 		
 		/*
@@ -322,12 +322,8 @@ abstract class AbstractAI implements Ctrl
 	@Override
 	public final void notifyEvent(final CtrlEvent evt, final Object arg0, final Object arg1)
 	{
-		if (!_actor.isVisible() || !_actor.hasAI() || (_actor instanceof L2PcInstance && ((L2PcInstance) _actor).isOnline() == 0) || (_actor instanceof L2PcInstance && ((L2PcInstance) _actor).isInOfflineMode()))
+		if (_actor == null || !_actor.isVisible() || !_actor.hasAI())
 			return;
-		
-		/*
-		 * if (CommonConfig.DEBUG) LOGGER.warn("AbstractAI: notifyEvent -> " + evt + " " + arg0 + " " + arg1);
-		 */
 		
 		switch (evt)
 		{

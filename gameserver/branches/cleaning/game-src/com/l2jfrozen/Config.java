@@ -1990,6 +1990,34 @@ public final class Config
 	}
 	
 	// ============================================================
+	public static boolean ALLOW_FAKE_PLAYERS;
+	public static boolean FAKEPLAYER_SET_NAME_COLOR;
+	public static Integer FAKEPLAYER_NAME_COLOR;
+	
+	// ============================================================
+	public static void loadFakePlayerConfig()
+	{
+		final String FAKE_PLAYERS_SYSTEM = FService.FAKE_PLAYERS_FILE;
+		
+		try
+		{
+			final Properties FakePlayersSettings = new Properties();
+			final InputStream is = new FileInputStream(new File(FAKE_PLAYERS_SYSTEM));
+			FakePlayersSettings.load(is);
+			is.close();
+			
+			ALLOW_FAKE_PLAYERS = Boolean.parseBoolean(FakePlayersSettings.getProperty("AllowFakePlayers", "False"));
+			FAKEPLAYER_SET_NAME_COLOR = Boolean.parseBoolean(FakePlayersSettings.getProperty("FakeNameColorEnable", "False"));
+			FAKEPLAYER_NAME_COLOR = Integer.decode("0x" + FakePlayersSettings.getProperty("FakeNameColor", "ff00ff"));
+		}
+		catch (final Exception e)
+		{
+			e.printStackTrace();
+			throw new Error("Failed to Load " + FAKE_PLAYERS_SYSTEM + " File.");
+		}
+	}
+	
+	// ============================================================
 	public static boolean BANKING_SYSTEM_ENABLED;
 	public static int BANKING_SYSTEM_GOLDBARS;
 	public static int BANKING_SYSTEM_ADENA;
@@ -4304,6 +4332,8 @@ public final class Config
 			loadServerVersionConfig();
 			// loadExtendersConfig();
 			loadDaemonsConf();
+			
+			loadFakePlayerConfig();
 			
 			if (Config.USE_SAY_FILTER)
 			{

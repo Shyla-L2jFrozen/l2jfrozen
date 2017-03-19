@@ -119,6 +119,7 @@ import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.PartyMatchRoomList;
 import com.l2jfrozen.gameserver.model.PartyMatchWaitingList;
 import com.l2jfrozen.gameserver.model.entity.Announcements;
+import com.l2jfrozen.gameserver.model.entity.FakeOnline;
 import com.l2jfrozen.gameserver.model.entity.Hero;
 import com.l2jfrozen.gameserver.model.entity.MonsterRace;
 import com.l2jfrozen.gameserver.model.entity.event.manager.EventManager;
@@ -547,6 +548,9 @@ public class GameServer
 		else
 			LOGGER.info("All custom mods are Disabled.");
 		
+		if (Config.ALLOW_FAKE_PLAYERS)
+			FakeOnline.restoreFakePlayers();
+		
 		Util.printSection("EventManager");
 		EventManager.getInstance().startEventRegistration();
 		
@@ -629,7 +633,7 @@ public class GameServer
 		
 		_gamePacketHandler = new L2GamePacketHandler();
 		
-		SelectorThread<L2GameClient> _selectorThread = new SelectorThread<>(sc, _gamePacketHandler, _gamePacketHandler, _gamePacketHandler, new IPv4Filter());
+		final SelectorThread<L2GameClient> _selectorThread = new SelectorThread<>(sc, _gamePacketHandler, _gamePacketHandler, _gamePacketHandler, new IPv4Filter());
 		
 		InetAddress bindAddress = null;
 		if (!Config.GAMESERVER_HOSTNAME.equals("*"))

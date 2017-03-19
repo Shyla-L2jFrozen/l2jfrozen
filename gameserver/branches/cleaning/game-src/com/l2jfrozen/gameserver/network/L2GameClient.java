@@ -686,6 +686,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	 */
 	public void closeNow()
 	{
+		_isDetached = true; // prevents more packets execution
+		close(ServerClose.STATIC_PACKET);
 		close(0);
 	}
 	
@@ -899,7 +901,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 				// _autoSaveInDB.cancel(true);
 				
 				L2PcInstance player = L2GameClient.this.getActiveChar();
-				if (player != null) // this should only happen on connection loss
+				if (player != null && !isDetached()) // this should only happen on connection loss
 				{
 					// Olympiad crash DEBUG
 					if (Config.ENABLE_OLYMPIAD_DISCONNECTION_DEBUG)
@@ -1237,5 +1239,4 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 		
 		return true;
 	}
-	
 }

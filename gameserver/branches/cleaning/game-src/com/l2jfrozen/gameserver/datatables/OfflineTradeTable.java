@@ -65,11 +65,11 @@ public class OfflineTradeTable
 	public static class OfflineTraderInfo
 	{
 		
-		private Integer charId;
-		private long time;
-		private int type;
-		private String title;
-		private List<OfflineTraderItem> items = new ArrayList<>();
+		private final Integer charId;
+		private final long time;
+		private final int type;
+		private final String title;
+		private final List<OfflineTraderItem> items = new ArrayList<>();
 		
 		/**
 		 * @param charId
@@ -77,7 +77,7 @@ public class OfflineTradeTable
 		 * @param i
 		 * @param title
 		 */
-		public OfflineTraderInfo(Integer charId, long time, int i, String title)
+		public OfflineTraderInfo(final Integer charId, final long time, final int i, final String title)
 		{
 			super();
 			this.charId = charId;
@@ -131,11 +131,11 @@ public class OfflineTradeTable
 	public static class OfflineTraderItem
 	{
 		
-		private Integer charId;
-		private Integer item;
-		private Integer count;
-		private Integer price;
-		private Integer enchant;
+		private final Integer charId;
+		private final Integer item;
+		private final Integer count;
+		private final Integer price;
+		private final Integer enchant;
 		
 		/**
 		 * @param charId
@@ -144,7 +144,7 @@ public class OfflineTradeTable
 		 * @param price
 		 * @param enchant
 		 */
-		public OfflineTraderItem(Integer charId, Integer item, Integer count, Integer price, Integer enchant)
+		public OfflineTraderItem(final Integer charId, final Integer item, final Integer count, final Integer price, final Integer enchant)
 		{
 			super();
 			this.charId = charId;
@@ -327,7 +327,7 @@ public class OfflineTradeTable
 		{
 			con = L2DatabaseFactory.getInstance().getConnection(false);
 			
-			List<OfflineTraderInfo> offline_traders = new ArrayList<>();
+			final List<OfflineTraderInfo> offline_traders = new ArrayList<>();
 			
 			PreparedStatement stm = null;
 			ResultSet rs = null;
@@ -356,7 +356,7 @@ public class OfflineTradeTable
 					if (type == L2PcInstance.STORE_PRIVATE_NONE)
 						continue;
 					
-					OfflineTraderInfo trader = new OfflineTraderInfo(rs.getInt("charId"), time, type, rs.getString("title"));
+					final OfflineTraderInfo trader = new OfflineTraderInfo(rs.getInt("charId"), time, type, rs.getString("title"));
 					offline_traders.add(trader);
 					
 				}
@@ -389,7 +389,7 @@ public class OfflineTradeTable
 				
 			}
 			
-			for (OfflineTraderInfo trader : offline_traders)
+			for (final OfflineTraderInfo trader : offline_traders)
 			{
 				
 				PreparedStatement stm_items = null;
@@ -404,7 +404,7 @@ public class OfflineTradeTable
 					
 					while (items.next())
 					{
-						OfflineTraderItem item = new OfflineTraderItem(trader.getCharId(), items.getInt(2), items.getInt(3), items.getInt(4), items.getInt(5));
+						final OfflineTraderItem item = new OfflineTraderItem(trader.getCharId(), items.getInt(2), items.getInt(3), items.getInt(4), items.getInt(5));
 						trader.getItems().add(item);
 					}
 					
@@ -440,7 +440,7 @@ public class OfflineTradeTable
 				
 			}
 			
-			for (OfflineTraderInfo trader : offline_traders)
+			for (final OfflineTraderInfo trader : offline_traders)
 			{
 				L2PcInstance player = null;
 				
@@ -461,7 +461,7 @@ public class OfflineTradeTable
 					player.spawnMe(player.getX(), player.getY(), player.getZ());
 					LoginServerThread.getInstance().addGameServerLogin(player.getAccountName(), client);
 					
-					for (OfflineTraderItem item : trader.getItems())
+					for (final OfflineTraderItem item : trader.getItems())
 					{
 						
 						switch (trader.getType())
