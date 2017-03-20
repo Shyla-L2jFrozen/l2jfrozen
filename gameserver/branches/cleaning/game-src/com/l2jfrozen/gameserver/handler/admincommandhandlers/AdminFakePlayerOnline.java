@@ -12,13 +12,13 @@ public class AdminFakePlayerOnline implements IAdminCommandHandler
 {
 	private static final String[] ADMIN_COMMANDS =
 	{
-		"fakeplayer"
+		"admin_fakeplayer"
 	};
 	
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{
-		if (command.equalsIgnoreCase("fakeplayer"))
+		if (command.equalsIgnoreCase("admin_fakeplayer"))
 		{
 			final L2Object obj = activeChar.getTarget();
 			
@@ -37,6 +37,12 @@ public class AdminFakePlayerOnline implements IAdminCommandHandler
 			if (((L2PcInstance) obj).isInOfflineMode())
 			{
 				activeChar.sendMessage("Your target is in offline shop!");
+				return false;
+			}
+			
+			if (((L2PcInstance) obj).isFakeOfflinePlayer())
+			{
+				activeChar.sendMessage("Your target is already a fake player!");
 				return false;
 			}
 			
