@@ -23,11 +23,12 @@ package com.l2jfrozen.gameserver.model.entity;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.LoginServerThread;
+import com.l2jfrozen.gameserver.datatables.OfflineTradeTable;
 import com.l2jfrozen.gameserver.model.ItemContainer;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.L2GameClient;
@@ -39,7 +40,8 @@ import com.l2jfrozen.util.database.L2DatabaseFactory;
  */
 public class FakeOnline
 {
-	private static Logger _log = Logger.getLogger(FakeOnline.class.getName());
+	// private static Logger _log = Logger.getLogger(FakeOnline.class.getName());
+	private static Logger LOGGER = Logger.getLogger(OfflineTradeTable.class);
 	
 	// select fake player
 	private static final String LOAD_OFFLINE_STATUS = "SELECT * FROM fakeplayer";
@@ -48,7 +50,7 @@ public class FakeOnline
 	
 	public static void restoreFakePlayers()
 	{
-		_log.info("Loading Fake player(s)...");
+		LOGGER.info("Loading Fake player(s)...");
 		
 		final long LoadStart = System.currentTimeMillis();
 		
@@ -65,7 +67,7 @@ public class FakeOnline
 				try
 				{
 					if (nfakeplayer != 0 && nfakeplayer % 200 == 0)
-						_log.log(Level.INFO, "Loaded " + nfakeplayer + " fake players.");
+						LOGGER.info("Loaded " + nfakeplayer + " fake players.");
 					
 					final L2GameClient client = new L2GameClient(null);
 					player = L2PcInstance.restore(rs.getInt("charId"));
@@ -98,7 +100,7 @@ public class FakeOnline
 				}
 				catch (final Exception e)
 				{
-					_log.log(Level.WARNING, "FakePlayer: Error loading trader: " + player, e);
+					LOGGER.warn("FakePlayer: Error loading trader: " + player, e);
 					if (player != null)
 					{
 						player.deleteMe();
@@ -108,11 +110,11 @@ public class FakeOnline
 			rs.close();
 			stm.close();
 			
-			_log.info("Loaded: " + nfakeplayer + " Fake player(s) in " + (System.currentTimeMillis() - LoadStart) / 1000 + " seconds");
+			LOGGER.info("Loaded: " + nfakeplayer + " Fake player(s) in " + (System.currentTimeMillis() - LoadStart) / 1000 + " seconds");
 		}
 		catch (final Exception e)
 		{
-			_log.log(Level.WARNING, "FakePlayer: Error while loading FakePlayer: ", e);
+			LOGGER.warn("FakePlayer: Error while loading FakePlayer: ", e);
 		}
 	}
 	
