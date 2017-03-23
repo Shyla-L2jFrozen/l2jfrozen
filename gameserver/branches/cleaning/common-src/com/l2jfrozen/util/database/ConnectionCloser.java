@@ -52,15 +52,12 @@ public class ConnectionCloser implements Runnable
 		{
 			if (c != null && !c.isClosed())
 			{
-				LOGGER.warn("Unclosed connection! Trace: " + exp);
-				// c.close();
-				
+				LOGGER.warn("Unclosed connection! Trace: " + exp.getStackTrace()[1], exp);
 			}
 		}
 		catch (final SQLException e)
 		{
-			// the close operation could generate exception, but there is not any problem
-			// e.printStackTrace();
+			LOGGER.warn("", e);
 		}
 		
 	}

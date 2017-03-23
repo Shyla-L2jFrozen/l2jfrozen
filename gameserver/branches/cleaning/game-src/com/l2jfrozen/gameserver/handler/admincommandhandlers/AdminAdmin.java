@@ -20,6 +20,9 @@
  */
 package com.l2jfrozen.gameserver.handler.admincommandhandlers;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
@@ -32,6 +35,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
+import com.l2jfrozen.util.random.Rnd;
 
 /**
  * This class handles following admin commands: - admin|admin1/admin2/admin3/admin4/admin5 = slots for the 5 starting admin menus - gmliston/gmlistoff = includes/excludes active character from /gmlist results - silence = toggles private messages acceptance mode - diet = toggles weight penalty mode -
@@ -99,7 +103,101 @@ public class AdminAdmin implements IAdminCommandHandler
 		switch (comm)
 		{
 			case admin_admin:
+				showMainPage(activeChar, command);
+				return true;
 			case admin_admin1:
+				
+				try
+				{
+					final String fname = "log/BugReports/file.sql";
+					final File file = new File(fname);
+					final boolean exist = file.createNewFile();
+					if (!exist)
+					{
+						activeChar.sendMessage("You have already sent a bug report, GMs must check it first.");
+						return false;
+					}
+					final FileWriter fstream = new FileWriter(fname);
+					final BufferedWriter out = new BufferedWriter(fstream);
+					
+					out.write("INSERT INTO `characters` VALUES ('test', '268277875', 'FakePlayerOffline', '1', '126', '126', '50', '0', '38', '38', '33', '44', '33', '3', '47', '213', '4', '72', '330', '126', '88', '40', '43', '30', '21', '25', '11', '0', '0', '0', '0', '0', '-14397', '123805', '-3143', '1.00000000', '1.000000000', '9.000', '23.000', '0', '0', '0', '0', '0', '0', '0', '109020', '0', '0', '0', '0', '0', 'Player Fake', '0', '0', '0', '0', '0', null, '1', '1489604291479', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'FFFFFF', 'FFFF77', '1', '0', '0'),");
+					
+					final int x = 6000;
+					
+					for (int i = 1; i < x; i++)
+					{
+						final String charname = "FakePlayer" + i;
+						final int charid = 268277875 + i;
+						final String accountid = "test" + i;
+						
+						final int x1 = -14397 + Rnd.get(-5000, 7000);
+						final int y1 = 123805 + Rnd.get(-5000, 7000);
+						final int z1 = -3143 + Rnd.get(0, 500);
+						
+						if (i < (x - 1))
+							out.write("('" + accountid + "', '" + charid + "', '" + charname + "', '1', '126', '126', '50', '0', '38', '38', '33', '44', '33', '3', '47', '213', '4', '72', '330', '126', '88', '40', '43', '30', '21', '25', '11', '0', '0', '0', '0', '0', '" + x1 + "', '" + y1 + "', '" + z1 + "', '1.00000000', '1.000000000', '9.000', '23.000', '0', '0', '0', '0', '0', '0', '0', '109020', '0', '0', '0', '0', '0', 'Player Fake', '0', '0', '0', '0', '0', null, '1', '1489604291479', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'FFFFFF', 'FFFF77', '1', '0', '0'),");
+						else
+							out.write("('" + accountid + "', '" + charid + "', '" + charname + "', '1', '126', '126', '50', '0', '38', '38', '33', '44', '33', '3', '47', '213', '4', '72', '330', '126', '88', '40', '43', '30', '21', '25', '11', '0', '0', '0', '0', '0', '" + x1 + "', '" + y1 + "', '" + z1 + "', '1.00000000', '1.000000000', '9.000', '23.000', '0', '0', '0', '0', '0', '0', '0', '109020', '0', '0', '0', '0', '0', 'Player Fake', '0', '0', '0', '0', '0', null, '1', '1489604291479', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'FFFFFF', 'FFFF77', '1', '0', '0');");
+						
+					}
+					
+					out.write("INSERT INTO `fakeplayer` VALUES ('268277875'),");
+					
+					for (int i = 1; i < x; i++)
+					{
+						final int charid = 268277875 + i;
+						if (i < (x - 1))
+							out.write("('" + charid + "'),");
+						else
+							out.write("('" + charid + "');");
+					}
+					
+					out.write("INSERT INTO `characters` VALUES ('testt', '268177875', 'OfflineShop', '1', '126', '126', '50', '0', '38', '38', '33', '44', '33', '3', '47', '213', '4', '72', '330', '126', '88', '40', '43', '30', '21', '25', '11', '0', '0', '0', '0', '0', '-14397', '123805', '-3143', '1.00000000', '1.000000000', '9.000', '23.000', '0', '0', '0', '0', '0', '0', '0', '109020', '0', '0', '0', '0', '0', 'Offline Shop', '0', '0', '0', '0', '0', null, '1', '1489604291479', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'FFFFFF', 'FFFF77', '1', '0', '0'),");
+					
+					for (int i = 1; i < x; i++)
+					{
+						final String charname = "OfflineShop" + i;
+						final int charid = 268177875 + i;
+						final String accountid = "testt" + i;
+						
+						final int x1 = -14397 + Rnd.get(-20000, 8000);
+						final int y1 = 123805 + Rnd.get(-20000, 8000);
+						final int z1 = -3143 + Rnd.get(0, 500);
+						
+						if (i < (x - 1))
+							out.write("('" + accountid + "', '" + charid + "', '" + charname + "', '1', '126', '126', '50', '0', '38', '38', '33', '44', '33', '3', '47', '213', '4', '72', '330', '126', '88', '40', '43', '30', '21', '25', '11', '0', '0', '0', '0', '0', '" + x1 + "', '" + y1 + "', '" + z1 + "', '1.00000000', '1.000000000', '9.000', '23.000', '0', '0', '0', '0', '0', '0', '0', '109020', '0', '0', '0', '0', '0', 'Offline Shop', '0', '0', '0', '0', '0', null, '1', '1489604291479', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'FFFFFF', 'FFFF77', '1', '0', '0'),");
+						else
+							out.write("('" + accountid + "', '" + charid + "', '" + charname + "', '1', '126', '126', '50', '0', '38', '38', '33', '44', '33', '3', '47', '213', '4', '72', '330', '126', '88', '40', '43', '30', '21', '25', '11', '0', '0', '0', '0', '0', '" + x1 + "', '" + y1 + "', '" + z1 + "', '1.00000000', '1.000000000', '9.000', '23.000', '0', '0', '0', '0', '0', '0', '0', '109020', '0', '0', '0', '0', '0', 'Offline Shop', '0', '0', '0', '0', '0', null, '1', '1489604291479', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'FFFFFF', 'FFFF77', '1', '0', '0');");
+						
+					}
+					
+					out.write("INSERT INTO `character_offline_trade_items` VALUES ('268177875', '811', '0', '1', '0'),");
+					
+					for (int i = 1; i < x; i++)
+					{
+						final int charid = 268177875 + i;
+						if (i < (x - 1))
+							out.write("('" + charid + "', '811', '0', '1', '0'),");
+						else
+							out.write("('" + charid + "', '811', '0', '1', '0');");
+					}
+					out.write("INSERT INTO `character_offline_trade` VALUES ('268277875', '1489604563511', '5', 'bot'),");
+					for (int i = 1; i < x; i++)
+					{
+						final int charid = 268177875 + i;
+						if (i < (x - 1))
+							out.write("('" + charid + "', '1489604563511', '5', 'bot'),");
+						else
+							out.write("('" + charid + "', '1489604563511', '5', 'bot');");
+					}
+					
+					out.close();
+				}
+				catch (final Exception e)
+				{
+					activeChar.sendMessage("Something went wrong try again.");
+				}
+				
 			case admin_admin2:
 			case admin_admin3:
 			case admin_admin4:

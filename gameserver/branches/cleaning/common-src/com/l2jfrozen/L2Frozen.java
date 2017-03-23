@@ -32,12 +32,10 @@ public class L2Frozen
 	public static void info()
 	
 	{
-		LOGGER.info("                                                                            ");
-		LOGGER.info("         #     #####          ##### ##### ##### ##### ##### ##    #         ");
-		LOGGER.info("         #         #          #     #   # #   #     # #     # #   #         ");
-		LOGGER.info("         #      ###    ####   ###   #   # #   #   #   ###   #  #  #         ");
-		LOGGER.info("         #     #              #     ###   #   # #     #     #   # #         ");
-		LOGGER.info("         ##### #####          #     #  ## ##### ##### ##### #    ##         ");
-		LOGGER.info("                                                                            ");
+		LOGGER.info("ALPHA VERSION");
+		LOGGER.info("L2jFrozen 2.0 private source");
+		LOGGER.info("Website: www.l2jfrozen.com");
+		LOGGER.info("Forum: www.l2jfrozen.com/forum");
+		LOGGER.info("BugReport: www.server.l2jfrozen.com/bugreport");
 	}
 }
