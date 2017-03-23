@@ -53,7 +53,7 @@ public class LoginServer
 	private static LoginServer _instance;
 	private final Logger LOGGER = Logger.getLogger(LoginServer.class);
 	private GameServerListener _gameServerListener;
-	//public static SelectorThread<LoginClient> _selectorThread;
+	// public static SelectorThread<LoginClient> _selectorThread;
 	
 	public static void main(final String[] args) throws Exception
 	{

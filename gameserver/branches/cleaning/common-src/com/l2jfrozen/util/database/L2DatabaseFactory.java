@@ -55,6 +55,11 @@ public abstract class L2DatabaseFactory
 		return _instance;
 	}
 	
+	public L2DatabaseFactory()
+	{
+		LOGGER.info("L2DatabaseFactory: loaded.");
+	}
+	
 	public final String prepQuerySelect(final String[] fields, final String tableName, final String whereClause, final boolean returnOnlyTopRecord)
 	{
 		String msSqlTop1 = "";

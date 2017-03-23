@@ -131,7 +131,7 @@ public class TeleportLocationTable
 				
 				if (_cTeleCount > 0)
 				{
-					LOGGER.info("TeleportLocationTable: Loaded {} Custom Teleport Location Templates. " + _cTeleCount);
+					LOGGER.info("TeleportLocationTable: Loaded " + _cTeleCount + " Custom Teleport Location Templates.");
 				}
 				
 			}

@@ -444,6 +444,9 @@ public class OfflineTradeTable
 			{
 				L2PcInstance player = null;
 				
+				if (nTraders != 0 && nTraders % 200 == 0)
+					LOGGER.info("Loaded " + nTraders + " offline trade players.");
+				
 				try
 				{
 					final L2GameClient client = new L2GameClient(null);

@@ -134,6 +134,8 @@ public class ThreadPoolManager
 		_aiScheduledThreadPool = new ScheduledThreadPoolExecutor(CommonConfig.AI_MAX_THREAD, new PriorityThreadFactory("AISTPool", Thread.NORM_PRIORITY));
 		
 		scheduleGeneralAtFixedRate(new PurgeTask(), 10 * 60 * 1000L, 5 * 60 * 1000L);
+		
+		LOGGER.info("ThreadPoolManager: loaded.");
 	}
 	
 	public static long validateDelay(long delay)
