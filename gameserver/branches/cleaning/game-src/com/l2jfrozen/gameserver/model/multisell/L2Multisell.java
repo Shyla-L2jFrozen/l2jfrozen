@@ -68,6 +68,8 @@ public class L2Multisell
 	private L2Multisell()
 	{
 		parseData();
+		
+		LOGGER.info("L2Multisell: loaded.");
 	}
 	
 	public void reload()

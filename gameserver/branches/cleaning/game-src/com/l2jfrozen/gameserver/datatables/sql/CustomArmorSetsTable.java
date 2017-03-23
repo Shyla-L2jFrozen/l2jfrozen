@@ -56,6 +56,9 @@ public final class CustomArmorSetsTable
 			final PreparedStatement statement = con.prepareStatement("SELECT chest, legs, head, gloves, feet, skill_id, shield, shield_skill_id, enchant6skill FROM custom_armorsets");
 			final ResultSet rset = statement.executeQuery();
 			
+			// custom armor count
+			int cCount = 0;
+			
 			while (rset.next())
 			{
 				final int chest = rset.getInt("chest");
@@ -68,8 +71,11 @@ public final class CustomArmorSetsTable
 				final int shield_skill_id = rset.getInt("shield_skill_id");
 				final int enchant6skill = rset.getInt("enchant6skill");
 				ArmorSetsTable.getInstance().addObj(chest, new L2ArmorSet(chest, legs, head, gloves, feet, skill_id, shield, shield_skill_id, enchant6skill));
+				
+				cCount++;
 			}
-			LOGGER.info("ArmorSetsTable: Loaded custom armor sets.");
+			
+			LOGGER.info("ArmorSetsTable: Loaded " + cCount + " custom armor sets.");
 			
 			DatabaseUtils.close(statement);
 			DatabaseUtils.close(rset);

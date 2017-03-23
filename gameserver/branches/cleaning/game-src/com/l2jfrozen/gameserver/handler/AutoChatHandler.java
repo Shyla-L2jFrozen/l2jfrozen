@@ -66,6 +66,9 @@ public class AutoChatHandler implements SpawnListener
 		_registeredChats = new FastMap<>();
 		restoreChatData();
 		L2Spawn.addSpawnListener(this);
+		
+		LOGGER.info("AutoChatHandler : loaded.");
+		
 	}
 	
 	private void restoreChatData()

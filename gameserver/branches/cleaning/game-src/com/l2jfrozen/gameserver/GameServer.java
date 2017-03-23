@@ -216,7 +216,6 @@ public class GameServer
 		
 		Util.printSection("Database");
 		L2DatabaseFactory.getInstance();
-		LOGGER.info("L2DatabaseFactory: loaded.");
 		
 		Util.printSection("Threads");
 		ThreadPoolManager.getInstance();
@@ -224,14 +223,6 @@ public class GameServer
 		{
 			ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(DeadlockDetector.getInstance(), Config.DEADLOCKCHECK_INTIAL_TIME, Config.DEADLOCKCHECK_DELAY_TIME);
 		}
-		new File(Config.DATAPACK_ROOT, "data/clans").mkdirs();
-		new File(Config.DATAPACK_ROOT, "data/crests").mkdirs();
-		new File(Config.DATAPACK_ROOT, "data/pathnode").mkdirs();
-		new File(Config.DATAPACK_ROOT, "data/geodata").mkdirs();
-		
-		HtmCache.getInstance();
-		CrestCache.getInstance();
-		L2ScriptEngineManager.getInstance();
 		
 		Util.printSection("World");
 		L2World.getInstance();
@@ -260,6 +251,15 @@ public class GameServer
 			AutoSaveManager.getInstance().startAutoSaveManager();
 		}
 		
+		new File(Config.DATAPACK_ROOT, "data/clans").mkdirs();
+		new File(Config.DATAPACK_ROOT, "data/crests").mkdirs();
+		new File(Config.DATAPACK_ROOT, "data/pathnode").mkdirs();
+		new File(Config.DATAPACK_ROOT, "data/geodata").mkdirs();
+		
+		HtmCache.getInstance();
+		CrestCache.getInstance();
+		L2ScriptEngineManager.getInstance();
+		
 		Util.printSection("Skills");
 		if (!SkillTable.getInstance().isInitialized())
 		{
@@ -270,7 +270,6 @@ public class GameServer
 		SkillSpellbookTable.getInstance();
 		NobleSkillTable.getInstance();
 		HeroSkillTable.getInstance();
-		LOGGER.info("Skills: All skills loaded.");
 		
 		Util.printSection("Items");
 		if (!ItemTable.getInstance().isInitialized())
@@ -330,7 +329,6 @@ public class GameServer
 		Util.printSection("Economy");
 		TradeController.getInstance();
 		L2Multisell.getInstance();
-		LOGGER.info("Multisell: loaded.");
 		
 		Util.printSection("Clan Halls");
 		ClanHallManager.getInstance();
@@ -432,9 +430,6 @@ public class GameServer
 		AdminCommandHandler.getInstance();
 		UserCommandHandler.getInstance();
 		VoicedCommandHandler.getInstance();
-		
-		LOGGER.info("AutoChatHandler : Loaded " + AutoChatHandler.getInstance().size() + " handlers in total.");
-		LOGGER.info("AutoSpawnHandler : Loaded " + AutoSpawn.getInstance().size() + " handlers in total.");
 		
 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
 		

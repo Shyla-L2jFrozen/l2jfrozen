@@ -19,6 +19,8 @@
  */
 package com.l2jfrozen.gameserver.datatables;
 
+import org.apache.log4j.Logger;
+
 import com.l2jfrozen.gameserver.model.L2Skill;
 
 /**
@@ -26,6 +28,7 @@ import com.l2jfrozen.gameserver.model.L2Skill;
  */
 public class NobleSkillTable
 {
+	private final static Logger LOGGER = Logger.getLogger(NobleSkillTable.class);
 	private static NobleSkillTable _instance;
 	private static L2Skill[] _nobleSkills;
 	
@@ -40,6 +43,9 @@ public class NobleSkillTable
 		_nobleSkills[5] = SkillTable.getInstance().getInfo(1325, 1);
 		_nobleSkills[6] = SkillTable.getInstance().getInfo(1326, 1);
 		_nobleSkills[7] = SkillTable.getInstance().getInfo(1327, 1);
+		
+		LOGGER.info("NobleSkillTable: loaded 8 skills.");
+		
 	}
 	
 	public static NobleSkillTable getInstance()

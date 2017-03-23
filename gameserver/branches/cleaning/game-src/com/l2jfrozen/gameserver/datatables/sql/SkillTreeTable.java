@@ -128,7 +128,7 @@ public class SkillTreeTable
 			LOGGER.error("Error while creating skill tree (Class ID {}): " + classId + " " + e);
 		}
 		
-		LOGGER.debug("SkillTreeTable: Loaded {} skills." + " " + count);
+		LOGGER.info("SkillTreeTable: Loaded " + count + " skills.");
 		
 		// Skill tree for fishing skill (from Fisherman)
 		int count2 = 0;
@@ -276,10 +276,10 @@ public class SkillTreeTable
 			CloseUtil.close(con);
 		}
 		
-		LOGGER.debug("FishingSkillTreeTable: Loaded {} general skills." + " " + count2);
-		LOGGER.debug("FishingSkillTreeTable: Loaded {} dwarven skills." + " " + count3);
-		LOGGER.debug("EnchantSkillTreeTable: Loaded {} enchant skills." + " " + count4);
-		LOGGER.debug("PledgeSkillTreeTable: Loaded {} pledge skills" + " " + count5);
+		LOGGER.info("FishingSkillTreeTable: Loaded " + count2 + " general skills.");
+		LOGGER.info("DwarfCraftSkillTrees: Loaded " + count3 + " dwarven skills.");
+		LOGGER.info("EnchantSkillTreeTable: Loaded " + count4 + " enchant skills.");
+		LOGGER.info("PledgeSkillTreeTable: Loaded " + count5 + " pledge skills.");
 	}
 	
 	public static SkillTreeTable getInstance()
