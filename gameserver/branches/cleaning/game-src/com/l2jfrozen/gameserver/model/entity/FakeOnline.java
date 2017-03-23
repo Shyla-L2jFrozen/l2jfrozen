@@ -32,7 +32,6 @@ import com.l2jfrozen.gameserver.model.ItemContainer;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.gameserver.network.L2GameClient.GameClientState;
-import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 
 /**
@@ -41,6 +40,7 @@ import com.l2jfrozen.util.database.L2DatabaseFactory;
 public class FakeOnline
 {
 	private static Logger _log = Logger.getLogger(FakeOnline.class.getName());
+	
 	// select fake player
 	private static final String LOAD_OFFLINE_STATUS = "SELECT * FROM fakeplayer";
 	// insert fake player
@@ -58,11 +58,15 @@ public class FakeOnline
 		{
 			final PreparedStatement stm = con.prepareStatement(LOAD_OFFLINE_STATUS);
 			final ResultSet rs = stm.executeQuery();
+			
 			while (rs.next())
 			{
 				L2PcInstance player = null;
 				try
 				{
+					if (nfakeplayer != 0 && nfakeplayer % 200 == 0)
+						_log.log(Level.INFO, "Loaded " + nfakeplayer + " fake players.");
+					
 					final L2GameClient client = new L2GameClient(null);
 					player = L2PcInstance.restore(rs.getInt("charId"));
 					client.setActiveChar(player);

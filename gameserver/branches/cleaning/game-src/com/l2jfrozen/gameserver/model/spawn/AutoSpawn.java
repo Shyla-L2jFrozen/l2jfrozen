@@ -76,6 +76,8 @@ public class AutoSpawn
 		_runningSpawns = new FastMap<>();
 		
 		restoreSpawnData();
+		
+		LOGGER.info("AutoSpawnHandler : loaded.");
 	}
 	
 	public static AutoSpawn getInstance()
