@@ -265,7 +265,19 @@ public class OfflineTradeTable
 								
 								if (!Config.OFFLINE_CRAFT_ENABLE)
 									continue;
-								title = pc.getCreateList().getStoreName();
+								
+								if (pc.getCreateList() == null)
+									continue;
+								
+								if (pc.getCreateList() != null && pc.getCreateList() != null)
+								{
+									title = pc.getCreateList().getStoreName();
+								}
+								else
+								{
+									title = "";
+								}
+								
 								for (final L2ManufactureItem i : pc.getCreateList().getList())
 								{
 									stm_items.setInt(1, pc.getObjectId());
