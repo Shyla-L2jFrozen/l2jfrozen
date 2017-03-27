@@ -61,7 +61,12 @@ public final class RequestDropItem extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
+		// Flood protect drop to avoid packet lag
+		if (!getClient().getFloodProtectors().getDropItem().tryPerformAction("drop item"))
+			return;
+		
 		final L2PcInstance activeChar = getClient().getActiveChar();
+		
 		if (activeChar == null || activeChar.isDead())
 			return;
 		
@@ -77,10 +82,6 @@ public final class RequestDropItem extends L2GameClientPacket
 			sendPacket(SystemMessage.sendString("You can't discard items during enchant."));
 			return;
 		}
-		
-		// Flood protect drop to avoid packet lag
-		if (!getClient().getFloodProtectors().getDropItem().tryPerformAction("drop item"))
-			return;
 		
 		final L2ItemInstance item = activeChar.getInventory().getItemByObjectId(_objectId);
 		
@@ -112,6 +113,10 @@ public final class RequestDropItem extends L2GameClientPacket
 			activeChar.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
+		
+		// Don't allow if it's flying
+		if (activeChar.isFlying())
+			return;
 		
 		final int itemId = item.getItemId();
 		

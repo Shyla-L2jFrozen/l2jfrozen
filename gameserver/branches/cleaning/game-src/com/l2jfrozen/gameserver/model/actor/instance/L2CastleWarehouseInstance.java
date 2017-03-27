@@ -125,10 +125,17 @@ public class L2CastleWarehouseInstance extends L2FolkInstance
 	@Override
 	public void onBypassFeedback(final L2PcInstance player, final String command)
 	{
-		if (player.getActiveEnchantItem() != null)
+		if (player.getActiveEnchantItem() != null || player.getActiveTradeList() != null)
 		{
 			LOGGER.info("Player " + player.getName() + " trying to use enchant exploit, ban this player!");
 			player.closeNetConnection();
+			return;
+		}
+		
+		if (player.getPrivateStoreType() != 0 || player.isInStoreMode())
+		{
+			player.sendPacket(SystemMessageId.CANNOT_TRADE_DISCARD_DROP_ITEM_WHILE_IN_SHOPMODE);
+			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
