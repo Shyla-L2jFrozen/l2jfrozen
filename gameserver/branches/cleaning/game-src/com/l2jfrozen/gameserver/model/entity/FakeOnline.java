@@ -28,7 +28,6 @@ import org.apache.log4j.Logger;
 
 import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.LoginServerThread;
-import com.l2jfrozen.gameserver.datatables.OfflineTradeTable;
 import com.l2jfrozen.gameserver.model.ItemContainer;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.L2GameClient;
@@ -40,8 +39,7 @@ import com.l2jfrozen.util.database.L2DatabaseFactory;
  */
 public class FakeOnline
 {
-	// private static Logger _log = Logger.getLogger(FakeOnline.class.getName());
-	private static Logger LOGGER = Logger.getLogger(OfflineTradeTable.class);
+	private static Logger LOGGER = Logger.getLogger(FakeOnline.class);
 	
 	// select fake player
 	private static final String LOAD_OFFLINE_STATUS = "SELECT * FROM fakeplayer";
