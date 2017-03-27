@@ -10222,24 +10222,28 @@ public final class L2PcInstance extends L2PlayableInstance
 				return null;
 			}
 			
-			// Retrieve from the database all secondary data of this L2PcInstance
-			// and reward expertise/lucky skills if necessary.
-			// Note that Clan, Noblesse and Hero skills are given separately and not here.
-			player.restoreCharData();
-			// reward skill restore mode in order to avoid duplicate storage of already stored skills
-			player.rewardSkills(true);
-			
-			// Restore pet if exists in the world
-			player.setPet(L2World.getInstance().getPet(player.getObjectId()));
-			if (player.getPet() != null)
+			// Optimize server start up for offliner and fakeofflineplayer
+			if (!player.isInOfflineMode() && !player.isFakeOfflinePlayer())
 			{
-				player.getPet().setOwner(player);
+				// Retrieve from the database all secondary data of this L2PcInstance
+				// and reward expertise/lucky skills if necessary.
+				// Note that Clan, Noblesse and Hero skills are given separately and not here.
+				player.restoreCharData();
+				// reward skill restore mode in order to avoid duplicate storage of already stored skills
+				player.rewardSkills(true);
+				
+				// Restore pet if exists in the world
+				player.setPet(L2World.getInstance().getPet(player.getObjectId()));
+				if (player.getPet() != null)
+				{
+					player.getPet().setOwner(player);
+				}
+				
+				// Update the overloaded status of the L2PcInstance
+				player.refreshOverloaded();
+				
+				player.restoreFriendList();
 			}
-			
-			// Update the overloaded status of the L2PcInstance
-			player.refreshOverloaded();
-			
-			player.restoreFriendList();
 		}
 		catch (final Exception e)
 		{
