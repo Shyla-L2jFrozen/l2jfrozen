@@ -206,12 +206,6 @@ public class Wedding implements IVoicedCommandHandler
 		}
 		
 		// check if target has player on friendlist
-		/*
-		 * boolean FoundOnFriendList = false; int objectId; Connection con = null; try { con = L2DatabaseFactory.getInstance().getConnection(false); PreparedStatement statement; statement = con.prepareStatement("SELECT friend_id FROM character_friends WHERE char_id=?"); statement.setInt(1,
-		 * ptarget.getObjectId()); ResultSet rset = statement.executeQuery(); while(rset.next()) { objectId = rset.getInt("friend_id"); if(objectId == activeChar.getObjectId()) { FoundOnFriendList = true; } } } catch(Exception e) { if(CommonConfig.ENABLE_ALL_EXCEPTIONS) e.printStackTrace();
-		 * LOGGER.warn( "could not read friend data:" + e); } finally { CloseUtil.close(con); con = null; }
-		 */
-		
 		if (!activeChar.getFriendList().contains(ptarget.getName()))
 		{
 			activeChar.sendMessage("The player you want to ask is not on your friends list, you must first be on each others friends list before you choose to engage.");
@@ -219,7 +213,6 @@ public class Wedding implements IVoicedCommandHandler
 		}
 		
 		ptarget.setEngageRequest(true, activeChar.getObjectId());
-		// ptarget.sendMessage("Player "+activeChar.getName()+" wants to engage with you.");
 		ConfirmDlg dlg = new ConfirmDlg(614);
 		dlg.addString(activeChar.getName() + " asking you to engage. Do you want to start a new relationship?");
 		ptarget.sendPacket(dlg);
@@ -233,14 +226,20 @@ public class Wedding implements IVoicedCommandHandler
 	{
 		if (!activeChar.isMarried())
 		{
-			activeChar.sendMessage("You're not married.");
+			activeChar.sendMessage("You can't do it. You're not married.");
 			return false;
 		}
 		
 		// Check to see if the current player is in fun event.
 		if (activeChar.isInFunEvent())
 		{
-			activeChar.sendMessage("You're partener is in a Fun Event.");
+			activeChar.sendMessage("You can't do it. You are in a Fun Event.");
+			return false;
+		}
+		
+		if (activeChar.isDead())
+		{
+			activeChar.sendMessage("You can't do it. You are dead.");
 			return false;
 		}
 		
@@ -253,7 +252,7 @@ public class Wedding implements IVoicedCommandHandler
 		
 		if (GrandBossManager.getInstance().getZone(activeChar) != null)
 		{
-			activeChar.sendMessage("You're partener is in a Grand boss zone.");
+			activeChar.sendMessage("You can't do it. You are in a Grand boss zone.");
 			return false;
 		}
 		
@@ -261,122 +260,122 @@ public class Wedding implements IVoicedCommandHandler
 		partner = (L2PcInstance) L2World.getInstance().findObject(activeChar.getPartnerId());
 		if (partner == null)
 		{
-			activeChar.sendMessage("Your partner is not online.");
+			activeChar.sendMessage("You can't do it. Your partner is not online.");
 			return false;
 		}
 		else if (partner.isInJail())
 		{
-			activeChar.sendMessage("Your partner is in Jail.");
+			activeChar.sendMessage("You can't do it. Your partner is in Jail.");
 			return false;
 		}
 		else if (partner.isInOlympiadMode())
 		{
-			activeChar.sendMessage("Your partner is in the Olympiad now.");
+			activeChar.sendMessage("You can't do it. Your partner is in the Olympiad now.");
 			return false;
 		}
 		else if (partner.atEvent)
 		{
-			activeChar.sendMessage("Your partner is in an event.");
+			activeChar.sendMessage("You can't do it. Your partner is in an event.");
 			return false;
 		}
 		else if (partner.isInDuel())
 		{
-			activeChar.sendMessage("Your partner is in a duel.");
+			activeChar.sendMessage("You can't do it. Your partner is in a duel.");
 			return false;
 		}
 		else if (partner.isFestivalParticipant())
 		{
-			activeChar.sendMessage("Your partner is in a festival.");
+			activeChar.sendMessage("You can't do it. Your partner is in a festival.");
 			return false;
 		}
 		else if (GrandBossManager.getInstance().getZone(partner) != null)
 		{
-			activeChar.sendMessage("Your partner is inside a Boss Zone.");
+			activeChar.sendMessage("You can't do it. Your partner is inside a Boss Zone.");
 			return false;
 		}
 		else if (partner.isInParty() && partner.getParty().isInDimensionalRift())
 		{
-			activeChar.sendMessage("Your partner is in dimensional rift.");
+			activeChar.sendMessage("You can't do it. Your partner is in dimensional rift.");
 			return false;
 		}
 		else if (partner.inObserverMode())
 		{
-			activeChar.sendMessage("Your partner is in the observation.");
+			activeChar.sendMessage("You can't do it. Your partner is in the observation.");
 			return false;
 		}
 		else if (partner.getClan() != null && CastleManager.getInstance().getCastleByOwner(partner.getClan()) != null && CastleManager.getInstance().getCastleByOwner(partner.getClan()).getSiege().getIsInProgress())
 		{
-			activeChar.sendMessage("Your partner is in siege, you can't go to your partner.");
+			activeChar.sendMessage("You can't do it. Your partner is in siege, you can't go to your partner.");
 			return false;
 		}
 		else if (activeChar.isInJail())
 		{
-			activeChar.sendMessage("You are in Jail!");
+			activeChar.sendMessage("You can't do it. You are in Jail!");
 			return false;
 		}
 		else if (activeChar.isInOlympiadMode())
 		{
-			activeChar.sendMessage("You are in the Olympiad now.");
+			activeChar.sendMessage("You can't do it. You are in the Olympiad now.");
 			return false;
 		}
 		else if (activeChar.atEvent)
 		{
-			activeChar.sendMessage("You are in an event.");
+			activeChar.sendMessage("You can't do it. You are in an event.");
 			return false;
 		}
 		if (activeChar._inEventTvT && TvT.is_started())
 		{
-			activeChar.sendMessage("You may not use go to love in TvT.");
+			activeChar.sendMessage("You can't do it. You may not use go to love in TvT.");
 			return false;
 		}
 		if (activeChar._inEventCTF && CTF.is_started())
 		{
-			activeChar.sendMessage("You may not use go to love in CTF.");
+			activeChar.sendMessage("You can't do it. You may not use go to love in CTF.");
 			return false;
 		}
 		if (activeChar._inEventDM && DM.is_started())
 		{
-			activeChar.sendMessage("You may not use go to love in DM.");
+			activeChar.sendMessage("You can't do it. You may not use go to love in DM.");
 			return false;
 		}
 		if (activeChar._inEventVIP && VIP._started)
 		{
-			activeChar.sendMessage("You may not use go to love in VIP.");
+			activeChar.sendMessage("You can't do it. You may not use go to love in VIP.");
 			return false;
 		}
 		else if (activeChar.isInDuel())
 		{
-			activeChar.sendMessage("You are in a duel!");
+			activeChar.sendMessage("You can't do it. You are in a duel!");
 			return false;
 		}
 		else if (activeChar.inObserverMode())
 		{
-			activeChar.sendMessage("You are in the observation.");
+			activeChar.sendMessage("You can't do it. You are in the observation.");
 			return false;
 		}
 		else if (activeChar.getClan() != null && CastleManager.getInstance().getCastleByOwner(activeChar.getClan()) != null && CastleManager.getInstance().getCastleByOwner(activeChar.getClan()).getSiege().getIsInProgress())
 		{
-			activeChar.sendMessage("You are in siege, you can't go to your partner.");
+			activeChar.sendMessage("You can't do it. You are in siege, you can't go to your partner.");
 			return false;
 		}
 		else if (activeChar.isFestivalParticipant())
 		{
-			activeChar.sendMessage("You are in a festival.");
+			activeChar.sendMessage("You can't do it. You are in a festival.");
 			return false;
 		}
 		else if (activeChar.isInParty() && activeChar.getParty().isInDimensionalRift())
 		{
-			activeChar.sendMessage("You are in the dimensional rift.");
+			activeChar.sendMessage("You can't do it. You are in the dimensional rift.");
 			return false;
 		}
 		else if (activeChar.isCursedWeaponEquiped())
 		{
-			activeChar.sendMessage("You have a cursed weapon, you can't go to your partner.");
+			activeChar.sendMessage("You can't do it. You have a cursed weapon, you can't go to your partner.");
 			return false;
 		}
 		else if (activeChar.isInsideZone(L2Character.ZONE_NOSUMMONFRIEND))
 		{
-			activeChar.sendMessage("You are in area which blocks summoning.");
+			activeChar.sendMessage("You can't do it. You are in area which blocks summoning.");
 			return false;
 		}
 		
