@@ -413,17 +413,8 @@ public class GameServer
 		FourSepulchersManager.getInstance();
 		
 		Util.printSection("Seven Signs");
-		if (Config.ENABLE_SEVENSIGNS)
-		{
-			SevenSigns.getInstance();
-			SevenSignsFestival.getInstance();
-		}
-		else
-		{
-			LOGGER.info("SevenSigns disabled.");
-			LOGGER.info("SevenSignsFestival disabled.");
-		}
-		
+		SevenSigns.getInstance();
+		SevenSignsFestival.getInstance();
 		AutoSpawn.getInstance();
 		AutoChatHandler.getInstance();
 		
