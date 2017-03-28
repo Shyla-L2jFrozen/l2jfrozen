@@ -49,8 +49,6 @@ public class CharStatus
 	/** The Constant LOGGER. */
 	protected static final Logger LOGGER = Logger.getLogger(CharStatus.class);
 	
-	// =========================================================
-	// Data Field
 	/** The _active char. */
 	private final L2Character _activeChar;
 	
@@ -81,8 +79,6 @@ public class CharStatus
 	/** The Constant REGEN_FLAG_MP. */
 	private static final byte REGEN_FLAG_MP = 2;
 	
-	// =========================================================
-	// Constructor
 	/**
 	 * Instantiates a new char status.
 	 * @param activeChar the active char
@@ -387,11 +383,6 @@ public class CharStatus
 		}
 	}
 	
-	// =========================================================
-	// Method - Private
-	
-	// =========================================================
-	// Property - Public
 	/**
 	 * Gets the active char.
 	 * @return the active char
@@ -684,58 +675,15 @@ public class CharStatus
 		return _StatusListener;
 	}
 	
-	// =========================================================
-	// Runnable
-	/**
-	 * Task of HP/MP/CP regeneration.
-	 */
+	/** Task of HP/MP regeneration */
 	class RegenTask implements Runnable
 	{
-		
-		/*
-		 * (non-Javadoc)
-		 * @see java.lang.Runnable#run()
-		 */
 		@Override
 		public void run()
 		{
 			try
 			{
-				final CharStat charstat = getActiveChar().getStat();
-				
-				// Modify the current CP of the L2Character and broadcast Server->Client packet StatusUpdate
-				if (getCurrentCp() < charstat.getMaxCp())
-				{
-					setCurrentCp(getCurrentCp() + Formulas.calcCpRegen(getActiveChar()), false);
-				}
-				
-				// Modify the current HP of the L2Character and broadcast Server->Client packet StatusUpdate
-				if (getCurrentHp() < charstat.getMaxHp())
-				{
-					setCurrentHp(getCurrentHp() + Formulas.calcHpRegen(getActiveChar()), false);
-				}
-				
-				// Modify the current MP of the L2Character and broadcast Server->Client packet StatusUpdate
-				if (getCurrentMp() < charstat.getMaxMp())
-				{
-					setCurrentMp(getCurrentMp() + Formulas.calcMpRegen(getActiveChar()), false);
-				}
-				
-				if (!getActiveChar().isInActiveRegion())
-				{
-					// no broadcast necessary for characters that are in inactive regions.
-					// stop regeneration for characters who are filled up and in an inactive region.
-					if (getCurrentCp() == charstat.getMaxCp() && getCurrentHp() == charstat.getMaxHp() && getCurrentMp() == charstat.getMaxMp())
-					{
-						stopHpMpRegeneration();
-					}
-				}
-				else
-				{
-					getActiveChar().broadcastStatusUpdate(); // send the StatusUpdate packet
-				}
-				
-				// charstat = null;
+				doRegeneration();
 			}
 			catch (final Throwable e)
 			{
@@ -744,6 +692,43 @@ public class CharStatus
 				
 				LOGGER.error("RegenTask failed for " + getActiveChar().getName(), e);
 			}
+		}
+	}
+	
+	protected void doRegeneration()
+	{
+		final CharStat charstat = getActiveChar().getStat();
+		
+		// Modify the current CP of the L2Character and broadcast Server->Client packet StatusUpdate
+		if (getCurrentCp() < charstat.getMaxCp())
+		{
+			setCurrentCp(getCurrentCp() + Formulas.calcCpRegen(getActiveChar()), false);
+		}
+		
+		// Modify the current HP of the L2Character and broadcast Server->Client packet StatusUpdate
+		if (getCurrentHp() < charstat.getMaxHp())
+		{
+			setCurrentHp(getCurrentHp() + Formulas.calcHpRegen(getActiveChar()), false);
+		}
+		
+		// Modify the current MP of the L2Character and broadcast Server->Client packet StatusUpdate
+		if (getCurrentMp() < charstat.getMaxMp())
+		{
+			setCurrentMp(getCurrentMp() + Formulas.calcMpRegen(getActiveChar()), false);
+		}
+		
+		if (!getActiveChar().isInActiveRegion())
+		{
+			// no broadcast necessary for characters that are in inactive regions.
+			// stop regeneration for characters who are filled up and in an inactive region.
+			if (getCurrentCp() == charstat.getMaxCp() && getCurrentHp() == charstat.getMaxHp() && getCurrentMp() == charstat.getMaxMp())
+			{
+				stopHpMpRegeneration();
+			}
+		}
+		else
+		{
+			getActiveChar().broadcastStatusUpdate(); // send the StatusUpdate packet
 		}
 	}
 }
