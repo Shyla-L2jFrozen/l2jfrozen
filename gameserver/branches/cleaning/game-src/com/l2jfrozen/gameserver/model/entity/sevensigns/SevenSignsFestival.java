@@ -4450,6 +4450,13 @@ public class SevenSignsFestival implements SpawnListener
 		@Override
 		public synchronized void run()
 		{
+			// If disabled return
+			if (!Config.ENABLE_SEVENSIGNS)
+			{
+				LOGGER.info("SevenSignsFestival: Ignored. Disabled by config.");
+				return;
+			}
+			
 			// The manager shouldn't be running if Seal Validation is in effect.
 			if (SevenSigns.getInstance().isSealValidationPeriod())
 				return;
