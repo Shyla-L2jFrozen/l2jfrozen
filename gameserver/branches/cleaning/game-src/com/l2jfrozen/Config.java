@@ -1295,7 +1295,6 @@ public final class Config
 	}
 	
 	// ============================================================
-	public static boolean ENABLE_SEVENSIGNS;
 	public static boolean ALT_GAME_REQUIRE_CASTLE_DAWN;
 	public static boolean ALT_GAME_REQUIRE_CLAN_CASTLE;
 	public static boolean ALT_REQUIRE_WIN_7S;
@@ -1322,7 +1321,6 @@ public final class Config
 			SevenSettings.load(is);
 			is.close();
 			
-			ENABLE_SEVENSIGNS = Boolean.parseBoolean(SevenSettings.getProperty("EnableSevenSigns", "True"));
 			ALT_GAME_REQUIRE_CASTLE_DAWN = Boolean.parseBoolean(SevenSettings.getProperty("AltRequireCastleForDawn", "False"));
 			ALT_GAME_REQUIRE_CLAN_CASTLE = Boolean.parseBoolean(SevenSettings.getProperty("AltRequireClanCastle", "False"));
 			ALT_REQUIRE_WIN_7S = Boolean.parseBoolean(SevenSettings.getProperty("AltRequireWin7s", "True"));

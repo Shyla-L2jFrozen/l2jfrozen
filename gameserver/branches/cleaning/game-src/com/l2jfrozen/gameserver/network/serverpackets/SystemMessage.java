@@ -18,7 +18,6 @@ package com.l2jfrozen.gameserver.network.serverpackets;
 
 import java.util.Vector;
 
-import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 
@@ -38,10 +37,6 @@ public final class SystemMessage extends L2GameServerPacket
 	
 	public SystemMessage(final SystemMessageId messageId)
 	{
-		if (CommonConfig.DEBUG && messageId == SystemMessageId.TARGET_IS_INCORRECT)
-		{
-			Thread.dumpStack();
-		}
 		_messageId = messageId.getId();
 	}
 	
