@@ -83,7 +83,7 @@ public class CharStat
 	 */
 	public final double calcStat(final Stats stat, final double init, final L2Character target, final L2Skill skill)
 	{
-		if (_activeChar == null)
+		if (_activeChar == null || stat == null)
 			return init;
 		
 		final int id = stat.ordinal();
@@ -104,8 +104,7 @@ public class CharStat
 		
 		// Launch the calculation
 		c.calc(env);
-		// avoid some troubles with negative stats (some stats should never be
-		// negative)
+		// avoid some troubles with negative stats (some stats should never be negative)
 		if (env.value <= 0)
 		{
 			switch (stat)
@@ -127,12 +126,11 @@ public class CharStat
 				case STAT_STR:
 				case STAT_WIT:
 					env.value = 1;
+					break;
 			}
-			
 		}
 		
 		c = null;
-		
 		return env.value;
 	}
 	
