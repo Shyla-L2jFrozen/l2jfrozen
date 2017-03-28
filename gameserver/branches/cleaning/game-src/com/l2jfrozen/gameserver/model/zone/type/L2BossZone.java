@@ -99,7 +99,6 @@ public class L2BossZone extends L2ZoneType
 		{
 			if (character instanceof L2PcInstance)
 			{
-				// Thread.dumpStack();
 				L2PcInstance player = (L2PcInstance) character;
 				
 				if (player.isGM() || Config.ALLOW_DIRECT_TP_TO_BOSS_ROOM)
@@ -192,7 +191,6 @@ public class L2BossZone extends L2ZoneType
 		{
 			if (character instanceof L2PcInstance)
 			{
-				// Thread.dumpStack();
 				L2PcInstance player = (L2PcInstance) character;
 				
 				if (player.isGM())
