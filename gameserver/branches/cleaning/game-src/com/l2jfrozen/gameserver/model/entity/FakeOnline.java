@@ -73,6 +73,7 @@ public class FakeOnline
 					player.setOnlineStatus(true);
 					client.setAccountName(player.getAccountName());
 					client.setState(GameClientState.IN_GAME);
+					client.setDetached(true); // set client detached
 					player.setClient(client);
 					player.spawnMe(player.getX(), player.getY(), player.getZ());
 					LoginServerThread.getInstance().addGameServerLogin(player.getAccountName(), client);
@@ -82,9 +83,6 @@ public class FakeOnline
 					// clan.checkCrests();
 					player.setfakeplayer(true);
 					player.setOnlineStatus(true);
-					
-					// set client detached
-					client.setDetached(true);
 					
 					if (Config.FAKEPLAYER_SET_NAME_COLOR)
 					{

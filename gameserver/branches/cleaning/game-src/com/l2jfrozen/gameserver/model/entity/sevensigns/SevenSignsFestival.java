@@ -3384,6 +3384,13 @@ public class SevenSignsFestival implements SpawnListener
 	 */
 	protected void startFestivalManager()
 	{
+		if (!Config.ENABLE_FESTIVAL)
+		{
+			if (Config.DEVELOPER)
+				LOGGER.info("SevenSignsFestival: disabled by config.");
+			
+			return;
+		}
 		// Start the Festival Manager for the first time after the server has started
 		// at the specified time, then invoke it automatically after every cycle.
 		FestivalManager fm = new FestivalManager();

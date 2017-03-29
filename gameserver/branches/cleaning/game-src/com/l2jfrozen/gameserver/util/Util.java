@@ -151,11 +151,12 @@ public final class Util
 		return result;
 	}
 	
-	// Micht: Removed this because UNUSED
-	/*
-	 * public static boolean checkIfInRange(int range, int x1, int y1, int x2, int y2) { return checkIfInRange(range, x1, y1, 0, x2, y2, 0, false); } public static boolean checkIfInRange(int range, int x1, int y1, int z1, int x2, int y2, int z2, boolean includeZAxis) { if (includeZAxis) { return
-	 * ((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2) + (z1 - z2)*(z1 - z2)) <= range * range; } else { return ((x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2)) <= range * range; } } public static boolean checkIfInRange(int range, L2Object obj1, L2Object obj2, boolean includeZAxis) { if (obj1 == null || obj2
-	 * == null) return false; return checkIfInRange(range, obj1.getPosition().getX(), obj1.getPosition().getY(), obj1.getPosition().getZ(), obj2.getPosition().getX(), obj2.getPosition().getY(), obj2.getPosition().getZ(), includeZAxis); }
+	/**
+	 * @param range
+	 * @param obj1
+	 * @param obj2
+	 * @param includeZAxis
+	 * @return {@code true} if the two objects are within specified range between each other, {@code false} otherwise
 	 */
 	public static boolean checkIfInRange(final int range, final L2Object obj1, final L2Object obj2, final boolean includeZAxis)
 	{
@@ -166,27 +167,21 @@ public final class Util
 			
 		int rad = 0;
 		if (obj1 instanceof L2Character)
-		{
 			rad += ((L2Character) obj1).getTemplate().collisionRadius;
-		}
-		if (obj2 instanceof L2Character)
-		{
-			rad += ((L2Character) obj2).getTemplate().collisionRadius;
-		}
 		
-		final double dx = obj1.getX() - obj2.getX();
-		final double dy = obj1.getY() - obj2.getY();
+		if (obj2 instanceof L2Character)
+			rad += ((L2Character) obj2).getTemplate().collisionRadius;
+		
+		double dx = obj1.getX() - obj2.getX();
+		double dy = obj1.getY() - obj2.getY();
+		double d = (dx * dx) + (dy * dy);
 		
 		if (includeZAxis)
 		{
-			final double dz = obj1.getZ() - obj2.getZ();
-			final double d = dx * dx + dy * dy + dz * dz;
-			
-			return d <= range * range + 2 * range * rad + rad * rad;
+			double dz = obj1.getZ() - obj2.getZ();
+			d += (dz * dz);
 		}
-		final double d = dx * dx + dy * dy;
-		
-		return d <= range * range + 2 * range * rad + rad * rad;
+		return d <= ((range * range) + (2 * range * rad) + (rad * rad));
 	}
 	
 	public static double convertHeadingToDegree(final int heading)
