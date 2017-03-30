@@ -7377,7 +7377,7 @@ public final class L2PcInstance extends L2PlayableInstance
 	@Override
 	public boolean doDie(final L2Character killer)
 	{
-		if (Config.TW_RESS_ON_DIE)
+		if (isinTownWar() && Config.TW_RESS_ON_DIE)
 		{
 			int x1, y1, z1;
 			x1 = getX();

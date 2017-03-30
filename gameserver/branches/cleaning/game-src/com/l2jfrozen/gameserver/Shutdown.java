@@ -136,7 +136,6 @@ public class Shutdown extends Thread
 	 * @param seconds how many seconds until shutdown
 	 * @param restart true is the server shall restart after shutdown
 	 * @param task
-	 * @param telnet
 	 */
 	public Shutdown(int seconds, final boolean restart, final boolean task)
 	{
