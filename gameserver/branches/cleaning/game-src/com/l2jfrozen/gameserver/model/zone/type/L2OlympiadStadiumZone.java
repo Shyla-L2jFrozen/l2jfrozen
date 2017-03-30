@@ -54,7 +54,9 @@ public class L2OlympiadStadiumZone extends L2ZoneType
 	public void onEnter(final L2Character character)
 	{
 		character.setInsideZone(L2Character.ZONE_PVP, true);
-		
+        character.setInsideZone(L2Character.ZONE_NOSUMMONFRIEND, true);
+        character.setInsideZone(L2Character.ZONE_NOLANDING, true);
+
 		if (character instanceof L2PcInstance)
 		{
 			if ((((L2PcInstance) character).getOlympiadGameId() + 1) == getStadiumId())
@@ -68,7 +70,9 @@ public class L2OlympiadStadiumZone extends L2ZoneType
 	public void onExit(final L2Character character)
 	{
 		character.setInsideZone(L2Character.ZONE_PVP, false);
-		
+        character.setInsideZone(L2Character.ZONE_NOSUMMONFRIEND, false);
+        character.setInsideZone(L2Character.ZONE_NOLANDING, false);
+        
 		if (character instanceof L2PcInstance)
 		{
 			((L2PcInstance) character).sendPacket(new SystemMessage(SystemMessageId.LEFT_COMBAT_ZONE));

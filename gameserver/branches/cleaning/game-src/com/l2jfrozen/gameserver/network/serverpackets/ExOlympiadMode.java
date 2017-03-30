@@ -34,7 +34,7 @@ public class ExOlympiadMode extends L2GameServerPacket
 	private final L2PcInstance _activeChar;
 	
 	/**
-	 * @param mode (0 = return, 3 = spectate)
+	 * @param mode (0 = return, 1 = side 1, 2 = side 2, 3 = spectate)
 	 * @param player
 	 */
 	public ExOlympiadMode(final int mode, final L2PcInstance player)
