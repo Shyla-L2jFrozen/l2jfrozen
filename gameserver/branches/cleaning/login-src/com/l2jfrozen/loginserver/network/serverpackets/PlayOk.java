@@ -1,35 +1,33 @@
 /*
- * L2jFrozen Project - www.l2jfrozen.com 
+ * Copyright (C) 2004-2016 L2J Server
  * 
- * This program is free software; you can redistribute it and/or modify
+ * This file is part of L2J Server.
+ * 
+ * L2J Server is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * L2J Server is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * http://www.gnu.org/copyleft/gpl.html
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.l2jfrozen.loginserver.network.serverpackets;
 
 import com.l2jfrozen.netcore.SessionKey;
 
 /**
- * L2JFrozen
+ *
  */
 public final class PlayOk extends L2LoginServerPacket
 {
 	private final int _playOk1, _playOk2;
 	
-	public PlayOk(final SessionKey sessionKey)
+	public PlayOk(SessionKey sessionKey)
 	{
 		_playOk1 = sessionKey.playOkID1;
 		_playOk2 = sessionKey.playOkID2;
@@ -41,15 +39,5 @@ public final class PlayOk extends L2LoginServerPacket
 		writeC(0x07);
 		writeD(_playOk1);
 		writeD(_playOk2);
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.l2jfrozen.loginserver.network.serverpackets.L2LoginServerPacket#getType()
-	 */
-	@Override
-	public String getType()
-	{
-		return "PlayOk";
 	}
 }

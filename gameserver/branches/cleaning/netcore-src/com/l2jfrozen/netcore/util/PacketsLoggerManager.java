@@ -18,26 +18,43 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.gameserver.managers;
+package com.l2jfrozen.netcore.util;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.l2jfrozen.logs.Log;
+import com.l2jfrozen.netcore.MMOClient;
+import com.l2jfrozen.netcore.ReceivablePacket;
+import com.thoughtworks.xstream.XStream;
 
 /**
  * @author Shyla
+ * @param <T> 
  */
-public class PacketsLoggerManager
+public class PacketsLoggerManager<T extends MMOClient<?>>
 {
+	private static Logger LOGGER = Logger.getLogger(PacketsLoggerManager.class);
+	
 	private final List<String> _monitored_characters = new ArrayList<>();
 	private final Hashtable<String, List<String>> _character_blocked_packets = new Hashtable<>();
+	private final XStream xstream;
 	
 	protected PacketsLoggerManager()
 	{
 		_character_blocked_packets.clear();
 		_monitored_characters.clear();
+		
+		xstream = new XStream();
+		
 	}
 	
 	public void startCharacterPacketsMonitoring(final String character)
@@ -121,13 +138,56 @@ public class PacketsLoggerManager
 		
 	}
 	
-	public static PacketsLoggerManager getInstance()
+	public void logReceivedPacket(ReceivablePacket<?> cp)
+	{
+		
+		String packet_content = xstream.toXML(cp);
+		
+		
+		Log.add(packet_content, "netcore/"+cp.getClient().getClass().getName(), cp.getClass().getSimpleName());
+		
+	}
+	
+	public static PacketsLoggerManager<MMOClient<?>> getInstance()
 	{
 		return SingletonHolder._instance;
 	}
 	
 	private static class SingletonHolder
 	{
-		public static final PacketsLoggerManager _instance = new PacketsLoggerManager();
+		public static final PacketsLoggerManager<MMOClient<?>> _instance = new PacketsLoggerManager<>();
+	}
+	
+	public static final void add(final String text, final String cat, final String ref)
+	{
+		String date = new SimpleDateFormat("yy.MM.dd-H_mm_ss").format(new Date());
+		
+		new File("log/"+cat).mkdirs();
+		final File file = new File("log/"+cat+"/" + (ref != null ? ref : "_all")+"_"+date+ ".xml");
+		FileWriter save = null;
+		try
+		{
+			save = new FileWriter(file, true);
+			save.write(text);
+			save.flush();
+		}
+		catch (final IOException e)
+		{
+			LOGGER.warn("Error storing packets info ",e);
+		}
+		finally
+		{
+			
+			if (save != null)
+				try
+				{
+					save.close();
+				}
+				catch (final IOException e)
+				{
+					e.printStackTrace();
+				}
+		}
+		
 	}
 }

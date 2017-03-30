@@ -234,6 +234,7 @@
 					<include name="banned_ip.cfg" />
 					<include name="logger.properties" />
 					<include name="servername.xml" />
+					<include name="log.cfg" />
 				</fileset>
 			</copy>
 

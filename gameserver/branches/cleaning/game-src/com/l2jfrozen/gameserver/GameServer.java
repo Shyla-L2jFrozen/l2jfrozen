@@ -145,7 +145,6 @@ import com.l2jfrozen.gameserver.taskmanager.TaskManager;
 import com.l2jfrozen.gameserver.thread.daemons.ItemsAutoDestroy;
 import com.l2jfrozen.gameserver.thread.daemons.PcPoint;
 import com.l2jfrozen.gameserver.util.sql.SQLQueue;
-//import com.l2jfrozen.loginserver.LoginClient;
 import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.SelectorConfig;
 import com.l2jfrozen.netcore.SelectorThread;
@@ -161,7 +160,6 @@ import com.l2jfrozen.util.database.L2DatabaseFactory;
 public class GameServer
 {
 	private static Logger LOGGER = Logger.getLogger("Loader");
-	// public static SelectorThread<L2GameClient> _selectorThread;
 	private static LoginServerThread _loginThread;
 	private static L2GamePacketHandler _gamePacketHandler;
 	
@@ -590,7 +588,7 @@ public class GameServer
 		if (!NetcoreConfig.getInstance().DISABLE_FULL_PACKETS_FLOOD_PROTECTOR)
 			LOGGER.info("Full packets flood protector actived.");
 		
-		if (NetcoreConfig.ENABLE_CLIENT_FLOOD_PROTECTION)
+		if (NetcoreConfig.getInstance().ENABLE_CLIENT_FLOOD_PROTECTION)
 			LOGGER.info("Client flood protection actived.");
 		
 		Util.printSection("Info");

@@ -18,7 +18,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.loginserver.network.serverpackets;
+package com.l2jfrozen.util.network;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -27,11 +27,11 @@ import java.io.IOException;
  * This class ...
  * @version $Revision: 1.2.4.1 $ $Date: 2005/03/27 15:30:11 $
  */
-public abstract class ServerBasePacket
+public abstract class BaseSendablePacket
 {
 	ByteArrayOutputStream _bao;
 	
-	protected ServerBasePacket()
+	protected BaseSendablePacket()
 	{
 		_bao = new ByteArrayOutputStream();
 	}

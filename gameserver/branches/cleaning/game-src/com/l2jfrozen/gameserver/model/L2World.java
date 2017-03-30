@@ -86,10 +86,10 @@ public final class L2World
 	// private FastMap<String, L2PcInstance> _allGms;
 	
 	/** HashMap(String Player name, L2PcInstance) containing all the players in game. */
-	private static Map<String, L2PcInstance> _allPlayers = new FastMap<String, L2PcInstance>().shared();
+	private final Map<String, L2PcInstance> _allPlayers = new FastMap<String, L2PcInstance>().shared();
 	
 	/** L2ObjectHashMap(L2Object) containing all visible objects. */
-	private static L2ObjectMap<L2Object> _allObjects;
+	private final L2ObjectMap<L2Object> _allObjects;
 	
 	/** List with the pets instances and their owner id. */
 	private final FastMap<Integer, L2PetInstance> _petsInstance;
@@ -288,7 +288,11 @@ public final class L2World
 	 */
 	public Collection<L2PcInstance> getAllPlayers()
 	{
-		return _allPlayers.values();
+		synchronized(_allPlayers)
+		{
+			return _allPlayers.values();
+		}
+		
 	}
 	
 	/**
@@ -296,9 +300,13 @@ public final class L2World
 	 * <BR>
 	 * @return number of online players.
 	 */
-	public static Integer getAllPlayersCount()
+	public Integer getAllPlayersCount()
 	{
-		return _allPlayers.size();
+		synchronized(_allPlayers)
+		{
+			return _allPlayers.size();
+		}
+		
 	}
 	
 	/**
@@ -308,7 +316,11 @@ public final class L2World
 	 */
 	public L2PcInstance getPlayer(final String name)
 	{
-		return _allPlayers.get(name.toLowerCase());
+		synchronized(_allPlayers)
+		{
+			return _allPlayers.get(name.toLowerCase());
+		}
+		
 	}
 	
 	/**
@@ -318,13 +330,17 @@ public final class L2World
 	 */
 	public L2PcInstance getPlayer(final int playerObjId)
 	{
-		for (final L2PcInstance actual : _allPlayers.values())
+		synchronized(_allPlayers)
 		{
-			if (actual.getObjectId() == playerObjId)
+			for (final L2PcInstance actual : _allPlayers.values())
 			{
-				return actual;
+				if (actual.getObjectId() == playerObjId)
+				{
+					return actual;
+				}
 			}
 		}
+		
 		return null;
 	}
 	
@@ -420,28 +436,40 @@ public final class L2World
 		if (object instanceof L2PcInstance)
 		{
 			L2PcInstance player = (L2PcInstance) object;
-			L2PcInstance tmp = _allPlayers.get(player.getName().toLowerCase());
-			if (tmp != null && tmp != player) // just kick the player previous instance
+			
+			synchronized(_allPlayers)
 			{
-				tmp.store(); // Store character and items
-				tmp.logout();
+				L2PcInstance tmp = _allPlayers.put(player.getName().toLowerCase(), player);
 				
-				if (tmp.getClient() != null)
+				if (tmp != null)
 				{
-					tmp.getClient().setActiveChar(null); // prevent deleteMe from being called a second time on disconnection
+					
+					if(tmp != player)  // just kick the player previous instance
+					{
+						tmp.store(); // Store character and items
+						tmp.logout();
+						
+						if (tmp.getClient() != null)
+						{
+							tmp.getClient().setActiveChar(null); // prevent deleteMe from being called a second time on disconnection
+						}
+						
+					}else if (!player.isTeleporting()) // if player is equal to old tmp and is not teleporting --> duplicate
+					{
+						LOGGER.warn("Teleporting: Duplicate character!? Closing both characters (" + player.getName() + ")");
+						player.closeNetConnection();
+						tmp.closeNetConnection();
+						_allPlayers.remove(player.getName().toLowerCase());
+						return;
+					}
+					
 				}
 				
-				tmp = null;
-				/*
-				 * if ((Config.OFFLINE_TRADE_ENABLE || Config.OFFLINE_CRAFT_ENABLE) && tmp.isOffline()) { LOGGER.warn("Offline: Duplicate character!? Closing offline character (" + tmp.getName() + ")"); tmp.store(); // Store character and items tmp.logout(); if(tmp.getClient() != null) {
-				 * tmp.getClient().setActiveChar(null); // prevent deleteMe from being called a second time on disconnection } tmp = null; } else { LOGGER.warn("EnterWorld: Duplicate character!? Closing both characters (" + player.getName() + ")"); L2GameClient client = player.getClient();
-				 * player.store(); // Store character player.deleteMe(); client.setActiveChar(null); // prevent deleteMe from being called a second time on disconnection client = tmp.getClient(); tmp.store(); // Store character and items tmp.deleteMe(); if(client != null) {
-				 * client.setActiveChar(null); // prevent deleteMe from being called a second time on disconnection } tmp = null; return; }
-				 */
 			}
 			
 			if (!newRegion.isActive())
 				return;
+			
 			// Get all visible objects contained in the _visibleObjects of L2WorldRegions
 			// in a circular area of 2000 units
 			final List<L2Object> visibles = getVisibleObjects(object, 2000);
@@ -465,25 +493,6 @@ public final class L2World
 				// Add the visible L2Object in L2ObjectHashSet(L2Object) _knownObjects of the object according to conditions
 				// If visible L2Object is a L2PcInstance, add visible L2Object in L2ObjectHashSet(L2PcInstance) _knownPlayer of the object
 				object.getKnownList().addKnownObject(visible);
-			}
-			
-			if (!player.isTeleporting())
-			{
-				// L2PcInstance tmp = _allPlayers.get(player.getName().toLowerCase());
-				if (tmp != null)
-				{
-					LOGGER.warn("Teleporting: Duplicate character!? Closing both characters (" + player.getName() + ")");
-					player.closeNetConnection();
-					tmp.closeNetConnection();
-					return;
-				}
-				
-			}
-			
-			synchronized (_allPlayers)
-			{
-				_allPlayers.put(player.getName().toLowerCase(), player);
-				
 			}
 			
 			player = null;
@@ -522,7 +531,11 @@ public final class L2World
 	 */
 	public void addToAllPlayers(final L2PcInstance cha)
 	{
-		_allPlayers.put(cha.getName().toLowerCase(), cha);
+		synchronized(_allPlayers)
+		{
+			_allPlayers.put(cha.getName().toLowerCase(), cha);
+		}
+		
 	}
 	
 	/**
@@ -541,7 +554,12 @@ public final class L2World
 			{
 				LOGGER.info("Removed player: " + cha.getName().toLowerCase());
 			}
-			_allPlayers.remove(cha.getName().toLowerCase());
+			
+			synchronized(_allPlayers)
+			{
+				_allPlayers.remove(cha.getName().toLowerCase());
+			}
+			
 		}
 	}
 	
@@ -1031,12 +1049,17 @@ public final class L2World
 	public FastList<L2PcInstance> getAccountPlayers(final String account_name)
 	{
 		
-		final FastList<L2PcInstance> players_for_account = new FastList<>();
-		for (final L2PcInstance actual : _allPlayers.values())
-		{
-			if (actual.getAccountName().equals(account_name))
-				players_for_account.add(actual);
+		synchronized(_allPlayers){
+			
+			final FastList<L2PcInstance> players_for_account = new FastList<>();
+			for (final L2PcInstance actual : _allPlayers.values())
+			{
+				if (actual.getAccountName().equals(account_name))
+					players_for_account.add(actual);
+			}
+			return players_for_account;
+			
 		}
-		return players_for_account;
+		
 	}
 }

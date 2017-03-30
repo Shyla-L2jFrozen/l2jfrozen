@@ -19,6 +19,7 @@
  */
 package com.l2jfrozen.gameserver.network.clientpackets;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -39,15 +40,13 @@ import com.l2jfrozen.gameserver.network.serverpackets.StatusUpdate;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.templates.L2EtcItemType;
 
-import javolution.util.FastList;
-
 /**
  * @author -Wooden-
  */
 public final class RequestPackageSend extends L2GameClientPacket
 {
 	private static Logger LOGGER = Logger.getLogger(RequestPackageSend.class);
-	private final List<Item> _items = new FastList<>();
+	private final List<Item> _items = new ArrayList<>();
 	private int _objectID;
 	private int _count;
 	

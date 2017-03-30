@@ -23,9 +23,10 @@ public class NetcoreConfig
 	public boolean ENABLE_MMOCORE_EXCEPTIONS = false;
 	public boolean ENABLE_MMOCORE_DEBUG = false;
 	public boolean ENABLE_MMOCORE_DEVELOP = false;
+	public boolean ENABLE_MMOCORE_PACKETS_LOG = false;
 	
 	/** Client Packets Queue settings */
-	public static boolean ENABLE_CLIENT_FLOOD_PROTECTION;
+	public boolean ENABLE_CLIENT_FLOOD_PROTECTION;
 	public int CLIENT_PACKET_QUEUE_SIZE; // default MMO_MAX_READ_PER_PASS + 2
 	public int CLIENT_PACKET_QUEUE_MAX_BURST_SIZE; // default MMO_MAX_READ_PER_PASS + 1
 	public int CLIENT_PACKET_QUEUE_MAX_PACKETS_PER_SECOND; // default 80
@@ -91,6 +92,7 @@ public class NetcoreConfig
 			ENABLE_MMOCORE_EXCEPTIONS = Boolean.parseBoolean(mmoSetting.getProperty("EnableMMOCoreExceptions", "False"));
 			ENABLE_MMOCORE_DEBUG = Boolean.parseBoolean(mmoSetting.getProperty("EnableMMOCoreDebug", "False"));
 			ENABLE_MMOCORE_DEVELOP = Boolean.parseBoolean(mmoSetting.getProperty("EnableMMOCoreDevelop", "False"));
+			ENABLE_MMOCORE_PACKETS_LOG = Boolean.parseBoolean(mmoSetting.getProperty("EnableMMOCorePacketsLog", "False"));
 			PACKET_HANDLER_DEBUG = Boolean.parseBoolean(mmoSetting.getProperty("PacketHandlerDebug", "False"));
 			
 			// flooding protection
