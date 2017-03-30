@@ -1,29 +1,31 @@
-/* L2jFrozen Project - www.l2jfrozen.com 
+/*
+ * Copyright (C) 2004-2016 L2J Server
  * 
- * This program is free software; you can redistribute it and/or modify
+ * This file is part of L2J Server.
+ * 
+ * L2J Server is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * L2J Server is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * http://www.gnu.org/copyleft/gpl.html
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.l2jfrozen.loginserver;
 
+import java.net.UnknownHostException;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
+import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.serverpackets.Init;
 import com.l2jfrozen.netcore.IAcceptFilter;
 import com.l2jfrozen.netcore.IClientFactory;
@@ -33,10 +35,11 @@ import com.l2jfrozen.netcore.ReceivablePacket;
 import com.l2jfrozen.netcore.util.IPv4Filter;
 
 /**
- * @author ProGramMoS
+ * @author KenM
  */
-public class SelectorHelper implements IMMOExecutor<LoginClient>, IClientFactory<LoginClient>, IAcceptFilter
+public class SelectorHelper implements IMMOExecutor<L2LoginClient>, IClientFactory<L2LoginClient>, IAcceptFilter
 {
+	private static final Logger LOG = Logger.getLogger(LoginController.class.getName());
 	private final ThreadPoolExecutor _generalPacketsThreadPool;
 	private final IPv4Filter _ipv4filter;
 	
@@ -47,25 +50,30 @@ public class SelectorHelper implements IMMOExecutor<LoginClient>, IClientFactory
 	}
 	
 	@Override
-	public void execute(final ReceivablePacket<LoginClient> packet)
+	public void execute(ReceivablePacket<L2LoginClient> packet)
 	{
 		_generalPacketsThreadPool.execute(packet);
 	}
 	
 	@Override
-	public LoginClient create(final MMOConnection<LoginClient> con)
+	public L2LoginClient create(MMOConnection<L2LoginClient> con)
 	{
-		final LoginClient client = new LoginClient(con);
+		L2LoginClient client = new L2LoginClient(con);
 		client.sendPacket(new Init(client));
-		
 		return client;
 	}
 	
 	@Override
-	public boolean accept(final SocketChannel sc)
+	public boolean accept(SocketChannel sc)
 	{
-		// return !LoginController.getInstance().isBannedAddress(sc.socket().getInetAddress());
-		
-		return _ipv4filter.accept(sc) && !LoginController.getInstance().isBannedAddress(sc.socket().getInetAddress());
+		try
+		{
+			return _ipv4filter.accept(sc) && !LoginController.getInstance().isBannedAddress(sc.socket().getInetAddress());
+		}
+		catch (UnknownHostException e)
+		{
+			LOG.severe(SelectorHelper.class.getSimpleName() + ": Invalid address: " + sc.socket().getInetAddress() + "; " + e.getMessage());
+		}
+		return false;
 	}
 }

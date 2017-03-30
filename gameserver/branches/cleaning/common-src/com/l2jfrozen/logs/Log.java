@@ -39,6 +39,88 @@ public class Log
 {
 	private static final Logger LOGGER = Logger.getLogger(Log.class);
 	
+	public static final void add(final String text, final String cat, final String ref)
+	{
+		String date = new SimpleDateFormat("yy.MM.dd-H_mm_ss").format(new Date());
+		
+		new File("log/"+cat).mkdirs();
+		final File file = new File("log/"+cat+"/" + (ref != null ? ref : "_all")+"_"+date+ ".xml");
+		FileWriter save = null;
+		try
+		{
+			save = new FileWriter(file, true);
+			//final String out = "[" + date + "] '---': \n" + text + "\n"; // "+char_name()+"
+			save.write(text);
+			save.flush();
+		}
+		catch (final IOException e)
+		{
+			LOGGER.warn("saving chat LOGGER failed: " + e);
+			e.printStackTrace();
+		}
+		finally
+		{
+			
+			if (save != null)
+				try
+				{
+					save.close();
+				}
+				catch (final IOException e)
+				{
+					e.printStackTrace();
+				}
+		}
+		
+		if (cat != null)
+		{
+			add(text, null);
+		}
+		
+		date = null;
+	}
+	
+	public static final void append(final String text, final String cat, final String ref)
+	{
+		String date = new SimpleDateFormat("yy.MM.dd H:mm:ss").format(new Date());
+		
+		new File("log/"+cat).mkdirs();
+		final File file = new File("log/"+cat+"/" + (ref != null ? ref : "_all") + ".txt");
+		FileWriter save = null;
+		try
+		{
+			save = new FileWriter(file, true);
+			final String out = "[" + date + "] '---': \n" + text + "\n"; // "+char_name()+"
+			save.write(out);
+			save.flush();
+		}
+		catch (final IOException e)
+		{
+			LOGGER.warn("saving chat LOGGER failed: " + e);
+			e.printStackTrace();
+		}
+		finally
+		{
+			
+			if (save != null)
+				try
+				{
+					save.close();
+				}
+				catch (final IOException e)
+				{
+					e.printStackTrace();
+				}
+		}
+		
+		if (cat != null)
+		{
+			add(text, null);
+		}
+		
+		date = null;
+	}
+	
 	public static final void add(final String text, final String cat)
 	{
 		String date = new SimpleDateFormat("yy.MM.dd H:mm:ss").format(new Date());

@@ -47,12 +47,19 @@ public final class AuthLogin extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final SessionKey key = new SessionKey(_loginKey1, _loginKey2, _playKey1, _playKey2);
-		
-		if (CommonConfig.DEBUG)
-			LOGGER.info("DEBUG " + getType() + ": user: " + _loginName + " key:" + key);
-		
 		final L2GameClient client = getClient();
+		if (_loginName.isEmpty())
+		{
+			client.closeNow();
+			return;
+		}
+		
+		SessionKey key = new SessionKey(_loginKey1, _loginKey2, _playKey1, _playKey2);
+		if (CommonConfig.DEBUG)
+		{
+			LOGGER.info("user:" + _loginName);
+			LOGGER.info("key:" + key);
+		}
 		
 		// avoid potential exploits
 		if (client.getAccountName() == null)

@@ -1,65 +1,60 @@
 /*
- * L2jFrozen Project - www.l2jfrozen.com 
+ * Copyright (C) 2004-2016 L2J Server
  * 
- * This program is free software; you can redistribute it and/or modify
+ * This file is part of L2J Server.
+ * 
+ * L2J Server is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * L2J Server is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * http://www.gnu.org/copyleft/gpl.html
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.l2jfrozen.loginserver.network.gameserverpackets;
 
 import java.security.GeneralSecurityException;
-import java.security.interfaces.RSAPrivateKey;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.crypto.Cipher;
 
-import org.apache.log4j.Logger;
-
-import com.l2jfrozen.loginserver.network.clientpackets.ClientBasePacket;
+import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.loginserver.GameServerThread;
+import com.l2jfrozen.loginserver.network.L2JGameServerPacketHandler.GameServerState;
+import com.l2jfrozen.util.crypt.NewCrypt;
+import com.l2jfrozen.util.network.BaseRecievePacket;
 
 /**
  * @author -Wooden-
  */
-public class BlowFishKey extends ClientBasePacket
+public class BlowFishKey extends BaseRecievePacket
 {
-	byte[] _key;
-	protected static final Logger LOGGER = Logger.getLogger(BlowFishKey.class);
+	protected static final Logger _log = Logger.getLogger(BlowFishKey.class.getName());
 	
 	/**
 	 * @param decrypt
-	 * @param privateKey
+	 * @param server
 	 */
-	public BlowFishKey(final byte[] decrypt, final RSAPrivateKey privateKey)
+	public BlowFishKey(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
-		final int size = readD();
-		
+		int size = readD();
 		byte[] tempKey = readB(size);
-		
 		try
 		{
 			byte[] tempDecryptKey;
-			
 			Cipher rsaCipher = Cipher.getInstance("RSA/ECB/nopadding");
-			rsaCipher.init(Cipher.DECRYPT_MODE, privateKey);
+			rsaCipher.init(Cipher.DECRYPT_MODE, server.getPrivateKey());
 			tempDecryptKey = rsaCipher.doFinal(tempKey);
-			
 			// there are nulls before the key we must remove them
 			int i = 0;
-			final int len = tempDecryptKey.length;
-			
+			int len = tempDecryptKey.length;
 			for (; i < len; i++)
 			{
 				if (tempDecryptKey[i] != 0)
@@ -67,27 +62,19 @@ public class BlowFishKey extends ClientBasePacket
 					break;
 				}
 			}
+			byte[] key = new byte[len - i];
+			System.arraycopy(tempDecryptKey, i, key, 0, len - i);
 			
-			_key = new byte[len - i];
-			System.arraycopy(tempDecryptKey, i, _key, 0, len - i);
-			
-			rsaCipher = null;
+			server.SetBlowFish(new NewCrypt(key));
+			if (CommonConfig.DEBUG)
+			{
+				_log.info("New BlowFish key received, Blowfih Engine initialized:");
+			}
+			server.setLoginConnectionState(GameServerState.BF_CONNECTED);
 		}
-		catch (final GeneralSecurityException e)
+		catch (GeneralSecurityException e)
 		{
-			LOGGER.error("Error While decrypting blowfish key (RSA)", e);
-			e.printStackTrace();
+			_log.log(Level.SEVERE, "Error While decrypting blowfish key (RSA): " + e.getMessage(), e);
 		}
-		/*
-		 * catch(IOException ioe) { //TODO: manage }
-		 */
-		
-		tempKey = null;
 	}
-	
-	public byte[] getKey()
-	{
-		return _key;
-	}
-	
 }

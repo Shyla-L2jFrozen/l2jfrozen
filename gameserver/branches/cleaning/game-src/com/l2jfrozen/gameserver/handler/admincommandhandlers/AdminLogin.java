@@ -113,13 +113,13 @@ public class AdminLogin implements IAdminCommandHandler
 				switch (mode)
 				{
 					case "on":
-						LoginServerThread.getInstance().sendServerStatus(ServerStatus.SERVER_LIST_CLOCK, ServerStatus.ON);
+						LoginServerThread.getInstance().sendServerStatus(ServerStatus.SERVER_TYPE, ServerStatus.ON);
 						activeChar.sendMessage("A clock will now be displayed next to the server name");
 						Config.SERVER_LIST_CLOCK = true;
 						showMainPage(activeChar);
 						break;
 					case "off":
-						LoginServerThread.getInstance().sendServerStatus(ServerStatus.SERVER_LIST_CLOCK, ServerStatus.OFF);
+						LoginServerThread.getInstance().sendServerStatus(ServerStatus.SERVER_TYPE, ServerStatus.OFF);
 						Config.SERVER_LIST_CLOCK = false;
 						activeChar.sendMessage("The clock will not be displayed");
 						showMainPage(activeChar);

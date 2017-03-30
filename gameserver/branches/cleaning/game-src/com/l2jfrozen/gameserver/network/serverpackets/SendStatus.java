@@ -39,7 +39,7 @@ public final class SendStatus extends L2GameServerPacket
 	protected final void writeImpl()
 	{
 		final Random ppc = new Random();
-		online_players = L2World.getAllPlayersCount() + Config.RWHO_ONLINE_INCREMENT;
+		online_players = L2World.getInstance().getAllPlayersCount() + Config.RWHO_ONLINE_INCREMENT;
 		
 		if (online_players > Config.RWHO_MAX_ONLINE)
 		{
@@ -49,7 +49,7 @@ public final class SendStatus extends L2GameServerPacket
 		max_online = Config.RWHO_MAX_ONLINE;
 		priv_store_factor = Config.RWHO_PRIV_STORE_FACTOR;
 		
-		online_players = L2World.getAllPlayersCount() + L2World.getAllPlayersCount() * Config.RWHO_ONLINE_INCREMENT / 100 + Config.RWHO_FORCE_INC;
+		online_players = L2World.getInstance().getAllPlayersCount() + L2World.getInstance().getAllPlayersCount() * Config.RWHO_ONLINE_INCREMENT / 100 + Config.RWHO_FORCE_INC;
 		online_priv_store = (int) (online_players * priv_store_factor / 100);
 		
 		writeC(0x00); // Packet ID

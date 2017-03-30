@@ -37,8 +37,8 @@ import org.apache.log4j.PropertyConfigurator;
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.CommonConfigFiles;
 import com.l2jfrozen.ServerType;
+import com.l2jfrozen.loginserver.GameServerTable;
 import com.l2jfrozen.loginserver.LoginConfig;
-import com.l2jfrozen.loginserver.datatables.GameServerTable;
 import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.database.DatabaseUtils;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
@@ -87,16 +87,7 @@ public class GameServerRegister
 		ServerType.serverMode = ServerType.MODE_LOGINSERVER;
 		LoginConfig.load();
 		final LineNumberReader _in = new LineNumberReader(new InputStreamReader(System.in));
-		try
-		{
-			GameServerTable.load();
-		}
-		catch (final Exception e)
-		{
-			LOGGER.info("FATAL: Failed loading GameServerTable. Reason: " + e.getMessage());
-			e.printStackTrace();
-			System.exit(1);
-		}
+		
 		final GameServerTable gameServerTable = GameServerTable.getInstance();
 		LOGGER.info("Welcome to L2JFrozen GameServer Regitering");
 		LOGGER.info("Enter The id of the server you want to register");

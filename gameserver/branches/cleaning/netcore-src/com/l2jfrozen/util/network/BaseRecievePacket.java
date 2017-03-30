@@ -18,18 +18,18 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.loginserver.network.clientpackets;
+package com.l2jfrozen.util.network;
 
 /**
  * This class ...
  * @version $Revision: 1.2.4.1 $ $Date: 2005/03/27 15:30:12 $
  */
-public abstract class ClientBasePacket
+public abstract class BaseRecievePacket
 {
 	private final byte[] _decrypt;
 	private int _off;
 	
-	public ClientBasePacket(final byte[] decrypt)
+	public BaseRecievePacket(final byte[] decrypt)
 	{
 		_decrypt = decrypt;
 		_off = 1; // skip packet type id

@@ -151,7 +151,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	public byte[] enableCrypt()
 	{
 		final byte[] key = BlowFishKeygen.getRandomKey();
-		GameCrypt.setKey(key, crypt);
+		crypt.setKey(key);
 		return key;
 	}
 	
@@ -183,14 +183,14 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	public boolean decrypt(final ByteBuffer buf, final int size)
 	{
 		_closenow = false;
-		GameCrypt.decrypt(buf.array(), buf.position(), size, crypt);
+		crypt.decrypt(buf.array(), buf.position(), size);
 		return true;
 	}
 	
 	@Override
 	public boolean encrypt(final ByteBuffer buf, final int size)
 	{
-		GameCrypt.encrypt(buf.array(), buf.position(), size, crypt);
+		crypt.encrypt(buf.array(), buf.position(), size);
 		buf.position(buf.position() + size);
 		return true;
 	}
@@ -1072,7 +1072,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	 */
 	public boolean dropPacket()
 	{
-		if (NetcoreConfig.ENABLE_CLIENT_FLOOD_PROTECTION)
+		if (NetcoreConfig.getInstance().ENABLE_CLIENT_FLOOD_PROTECTION)
 		{
 			// detached clients can't receive any packets
 			if (_isDetached)

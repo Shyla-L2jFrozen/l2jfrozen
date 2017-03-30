@@ -19,8 +19,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.loginserver.LoginClient;
 import com.l2jfrozen.loginserver.LoginController;
+import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFail.LoginFailReason;
 import com.l2jfrozen.netcore.MMOClient;
 import com.l2jfrozen.netcore.NetcoreConfig;
@@ -57,7 +57,7 @@ public class LoginServerFloodProtectorActions implements PacketsFloodServer
 		
 		String account = null;
 		
-		final LoginClient login_cl = (LoginClient) client;
+		final L2LoginClient login_cl = (L2LoginClient) client;
 		account = login_cl.getAccount();
 		
 		if (account == null)
@@ -201,7 +201,7 @@ public class LoginServerFloodProtectorActions implements PacketsFloodServer
 	
 	private void kickPlayer(final MMOClient<?> _client, final int opcode)
 	{
-		final LoginClient login_cl = (LoginClient) _client;
+		final L2LoginClient login_cl = (L2LoginClient) _client;
 		login_cl.close(LoginFailReason.REASON_SYSTEM_ERROR);
 		
 		LOGGER.warn("Player with account " + login_cl.getAccount() + " kicked for flooding with packet " + Integer.toHexString(opcode));
@@ -211,7 +211,7 @@ public class LoginServerFloodProtectorActions implements PacketsFloodServer
 	private void banAccount(final MMOClient<?> _client, final int opcode)
 	{
 		
-		final LoginClient login_cl = (LoginClient) _client;
+		final L2LoginClient login_cl = (L2LoginClient) _client;
 		LoginController.getInstance().setAccountAccessLevel(login_cl.getAccount(), -100);
 		login_cl.close(LoginFailReason.REASON_SYSTEM_ERROR);
 		

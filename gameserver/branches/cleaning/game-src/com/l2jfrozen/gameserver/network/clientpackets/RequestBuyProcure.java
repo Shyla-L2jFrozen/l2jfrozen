@@ -20,6 +20,7 @@
  */
 package com.l2jfrozen.gameserver.network.clientpackets;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.l2jfrozen.Config;
@@ -38,15 +39,13 @@ import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.templates.L2Item;
 import com.l2jfrozen.gameserver.util.Util;
 
-import javolution.util.FastList;
-
 @SuppressWarnings("unused")
 public class RequestBuyProcure extends L2GameClientPacket
 {
 	private int _listId;
 	private int _count;
 	private int[] _items;
-	private List<CropProcure> _procureList = new FastList<>();
+	private List<CropProcure> _procureList = new ArrayList<>();
 	
 	@Override
 	protected void readImpl()
