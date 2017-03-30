@@ -823,15 +823,6 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 		_inTownWar = value;
 	}
 	
-	/*
-	 * public void teleToLocation(int x, int y, int z, boolean allowRandomOffset) { if(Config.TW_DISABLE_GK) { int x1,y1,z1; x1 = getX(); y1 = getY(); z1 = getZ(); L2TownZone Town; Town = TownManager.getInstance().getTown(x1,y1,z1); if(Town != null && isinTownWar() ) { if(Town.getTownId() ==
-	 * Config.TW_TOWN_ID && !Config.TW_ALL_TOWNS) { return; } else if(Config.TW_ALL_TOWNS) { return; } } } // Stop movement stopMove(null, false); abortAttack(); abortCast(); setIsTeleporting(true); setTarget(null); // Remove from world regions zones if(getWorldRegion() != null) {
-	 * getWorldRegion().removeFromZones(this); } getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE); if(Config.RESPAWN_RANDOM_ENABLED && allowRandomOffset) { x += Rnd.get(-Config.RESPAWN_RANDOM_MAX_OFFSET, Config.RESPAWN_RANDOM_MAX_OFFSET); y += Rnd.get(-Config.RESPAWN_RANDOM_MAX_OFFSET,
-	 * Config.RESPAWN_RANDOM_MAX_OFFSET); } //z = GeoData.getInstance().getHeight(x, y, z); z += 5; if(CommonConfig.DEBUG) { LOGGER.fine("Teleporting to: " + x + ", " + y + ", " + z); } // Send a Server->Client packet TeleportToLocationt to the L2Character AND to all L2PcInstance in the
-	 * _KnownPlayers of the L2Character broadcastPacket(new TeleportToLocation(this, x, y, z)); // Set the x,y,z position of the L2Object and if necessary modify its _worldRegion getPosition().setXYZ(x, y, z); decayMe(); // Set the x, y, z coords of the object, but do not update it's world region
-	 * yet - onTeleported() will do it getPosition().setWorldPosition(x, y, z); if(!(this instanceof L2PcInstance)) { onTeleported(); } }
-	 */
-	
 	/**
 	 * Teleport a L2Character and its pet if necessary.<BR>
 	 * <BR>
@@ -849,7 +840,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	 */
 	public void teleToLocation(int x, int y, int z, final boolean allowRandomOffset)
 	{
-		if (Config.TW_DISABLE_GK)
+		if (isinTownWar() && Config.TW_DISABLE_GK)
 		{
 			int x1, y1, z1;
 			x1 = getX();
@@ -857,14 +848,18 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 			z1 = getZ();
 			L2TownZone Town;
 			Town = TownManager.getInstance().getTown(x1, y1, z1);
-			if (Town != null && isinTownWar())
+			if (Town != null)
 			{
 				if (Town.getTownId() == Config.TW_TOWN_ID && !Config.TW_ALL_TOWNS)
 				{
+					if (this instanceof L2PcInstance)
+						 ((L2PcInstance)this).sendMessage("You can't teleport during Townwar event!");
 					return;
 				}
 				else if (Config.TW_ALL_TOWNS)
 				{
+					if (this instanceof L2PcInstance)
+						 ((L2PcInstance)this).sendMessage("You can't teleport during Townwar event!");
 					return;
 				}
 			}
