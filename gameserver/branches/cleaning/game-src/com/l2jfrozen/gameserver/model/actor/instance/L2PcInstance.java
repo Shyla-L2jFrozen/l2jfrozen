@@ -7452,6 +7452,12 @@ public final class L2PcInstance extends L2PlayableInstance
 							@Override
 							public void run()
 							{
+								// if ressed or got skill to revive
+								if (!isDead())
+								{
+									sendMessage("Teleport aborted! You are alive! FIGHT!");
+									return;
+								}
 								teleToLocation(TvT._teamsX.get(TvT._teams.indexOf(_teamNameTvT)) + Rnd.get(201) - 100, TvT._teamsY.get(TvT._teams.indexOf(_teamNameTvT)) + Rnd.get(201) - 100, TvT._teamsZ.get(TvT._teams.indexOf(_teamNameTvT)), false);
 								doRevive();
 							}
@@ -7468,6 +7474,12 @@ public final class L2PcInstance extends L2PlayableInstance
 							@Override
 							public void run()
 							{
+								// if ressed or got skill to revive
+								if (!isDead())
+								{
+									sendMessage("Teleport aborted! You are alive! FIGHT!");
+									return;
+								}
 								teleToLocation(TvT._teamsX.get(TvT._teams.indexOf(_teamNameTvT)), TvT._teamsY.get(TvT._teams.indexOf(_teamNameTvT)), TvT._teamsZ.get(TvT._teams.indexOf(_teamNameTvT)), false);
 								doRevive();
 								broadcastPacket(new SocialAction(getObjectId(), 15));
@@ -7487,6 +7499,13 @@ public final class L2PcInstance extends L2PlayableInstance
 							@Override
 							public void run()
 							{
+								// if ressed or got skill to revive
+								if (!isDead())
+								{
+									sendMessage("Teleport aborted! You are alive! FIGHT!");
+									return;
+								}
+								
 								teleToLocation(CTF._teamsX.get(CTF._teams.indexOf(_teamNameCTF)), CTF._teamsY.get(CTF._teams.indexOf(_teamNameCTF)), CTF._teamsZ.get(CTF._teams.indexOf(_teamNameCTF)), false);
 								doRevive();
 							}
