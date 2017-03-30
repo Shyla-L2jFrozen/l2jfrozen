@@ -38,7 +38,7 @@ import org.apache.log4j.Logger;
 public class MMOConnection<T extends MMOClient<?>>
 {
 	private static final Logger LOGGER = Logger.getLogger(MMOConnection.class);
-	// private final SelectorThread<T> _selectorThread;
+	
 	private final String _selectorThreadName;
 	
 	private final Socket _socket;
@@ -71,7 +71,6 @@ public class MMOConnection<T extends MMOClient<?>>
 	
 	public MMOConnection(final SelectorThread<T> selectorThread, final Socket socket, final SelectionKey key) throws IOException
 	{
-		// _selectorThread = selectorThread;
 		_selectorThreadName = selectorThread.getName();
 		_socket = socket;
 		_address = socket.getInetAddress();
@@ -340,7 +339,7 @@ public class MMOConnection<T extends MMOClient<?>>
 	public SelectorThread<T> getSelectorThread()
 	{
 		
-		return SelectorThread.getSelectorThread(_selectorThreadName);
+		return (SelectorThread<T>) SelectorThread.getSelectorThread(_selectorThreadName);
 		
 	}
 	

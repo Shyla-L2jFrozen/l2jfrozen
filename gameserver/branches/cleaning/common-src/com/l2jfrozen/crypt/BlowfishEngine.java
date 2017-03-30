@@ -22,16 +22,29 @@ package com.l2jfrozen.crypt;
 
 import java.io.IOException;
 
-/**
- * This file is based on the Blowfish Engine that is part of the BouncyCastle JCE Copyright (c) 2000 The Legion Of The Bouncy Castle (http://www.bouncycastle.org) Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following
- * conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+/*
+ * This file is based on the Blowfish Engine that is part of the BouncyCastle JCE.
+ * Copyright (c) 2000 The Legion Of The Bouncy Castle (http://www.bouncycastle.org)
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ * and associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all copies
+ * or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+ * FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-public class BlowfishEngine
+
+import java.io.IOException;
+
+public final class BlowfishEngine
 {
-	private final static int[] KP =
+	private static final int[] KP =
 	{
 		0x243F6A88,
 		0x85A308D3,
@@ -52,7 +65,7 @@ public class BlowfishEngine
 		0x9216D5D9,
 		0x8979FB1B
 	};
-	private final static int[] KS0 =
+	private static final int[] KS0 =
 	{
 		0xD1310BA6,
 		0x98DFB5AC,
@@ -311,7 +324,7 @@ public class BlowfishEngine
 		0x08BA4799,
 		0x6E85076A
 	};
-	private final static int[] KS1 =
+	private static final int[] KS1 =
 	{
 		0x4B7A70E9,
 		0xB5B32944,
@@ -570,7 +583,7 @@ public class BlowfishEngine
 		0xE6E39F2B,
 		0xDB83ADF7
 	};
-	private final static int[] KS2 =
+	private static final int[] KS2 =
 	{
 		0xE93D5A68,
 		0x948140F7,
@@ -829,7 +842,7 @@ public class BlowfishEngine
 		0x670EFA8E,
 		0x406000E0
 	};
-	private final static int[] KS3 =
+	private static final int[] KS3 =
 	{
 		0x3A39CE37,
 		0xD3FAF5CF,
@@ -1088,16 +1101,13 @@ public class BlowfishEngine
 		0x578FDFE3,
 		0x3AC372E6
 	};
-	// ====================================
-	// Useful constants
-	// ====================================
+	
 	private static final int ROUNDS = 16;
 	private static final int BLOCK_SIZE = 8; // bytes = 64 bits
 	private static final int SBOX_SK = 256;
 	private static final int P_SZ = ROUNDS + 2;
 	private final int[] S0, S1, S2, S3; // the s-boxes
 	private final int[] P; // the p-array
-	private boolean encrypting = false;
 	private byte[] workingKey = null;
 	
 	public BlowfishEngine()
@@ -1111,16 +1121,12 @@ public class BlowfishEngine
 	
 	/**
 	 * Initialize a Blowfish cipher.
-	 * @param pEncrypting whether or not we are for encryption.
-	 * @param key the key used to set up the cipher.
-	 * @exception IllegalArgumentException if the params argument is inappropriate.
+	 * @param key the key used to set up the cipher
 	 */
-	public void init(final boolean pEncrypting, final byte[] key)
+	public void init(byte[] key)
 	{
-		encrypting = pEncrypting;
 		workingKey = key;
 		setKey(workingKey);
-		return;
 	}
 	
 	public String getAlgorithmName()
@@ -1128,44 +1134,14 @@ public class BlowfishEngine
 		return "Blowfish";
 	}
 	
-	public final int processBlock(final byte[] in, final int inOff, final byte[] out, final int outOff) throws IOException
-	{
-		if (workingKey == null)
-			throw new IllegalStateException("Blowfish not initialised");
-		
-		if (inOff + BLOCK_SIZE > in.length)
-			throw new IOException("input buffer too short");
-		
-		if (outOff + BLOCK_SIZE > out.length)
-			throw new IOException("output buffer too short");
-		
-		if (encrypting)
-		{
-			encryptBlock(in, inOff, out, outOff);
-		}
-		else
-		{
-			decryptBlock(in, inOff, out, outOff);
-		}
-		
-		return BLOCK_SIZE;
-	}
-	
-	public void reset()
-	{
-	}
-	
 	public int getBlockSize()
 	{
 		return BLOCK_SIZE;
 	}
 	
-	// ==================================
-	// Private Implementation
-	// ==================================
-	private int func(final int x)
+	private int func(int x)
 	{
-		return (S0[(x >>> 24)] + S1[x >>> 16 & 0xff] ^ S2[x >>> 8 & 0xff]) + S3[x & 0xff];
+		return (((S0[(x >>> 24)] + S1[(x >>> 16) & 0xff]) ^ S2[(x >>> 8) & 0xff]) + S3[x & 0xff]);
 	}
 	
 	/**
@@ -1174,20 +1150,30 @@ public class BlowfishEngine
 	 * @param xr
 	 * @param table
 	 */
-	private void processTable(int xl, int xr, final int[] table)
+	private void processTable(int xl, int xr, int[] table)
 	{
-		final int size = table.length;
+		int size = table.length;
 		for (int s = 0; s < size; s += 2)
 		{
 			xl ^= P[0];
+			xr ^= func(xl) ^ P[1];
+			xl ^= func(xr) ^ P[2];
+			xr ^= func(xl) ^ P[3];
+			xl ^= func(xr) ^ P[4];
+			xr ^= func(xl) ^ P[5];
+			xl ^= func(xr) ^ P[6];
+			xr ^= func(xl) ^ P[7];
+			xl ^= func(xr) ^ P[8];
+			xr ^= func(xl) ^ P[9];
+			xl ^= func(xr) ^ P[10];
+			xr ^= func(xl) ^ P[11];
+			xl ^= func(xr) ^ P[12];
+			xr ^= func(xl) ^ P[13];
+			xl ^= func(xr) ^ P[14];
+			xr ^= func(xl) ^ P[15];
+			xl ^= func(xr) ^ P[16];
+			xr ^= P[17];
 			
-			for (int i = 1; i < ROUNDS; i += 2)
-			{
-				xr ^= func(xl) ^ P[i];
-				xl ^= func(xr) ^ P[i + 1];
-			}
-			
-			xr ^= P[ROUNDS + 1];
 			table[s] = xr;
 			table[s + 1] = xl;
 			xr = xl; // end of cycle swap
@@ -1195,20 +1181,23 @@ public class BlowfishEngine
 		}
 	}
 	
-	private void setKey(final byte[] key)
+	private void setKey(byte[] key)
 	{
-		/*
-		 * - comments are from _Applied Crypto_, Schneier, p338 please be careful comparing the two, AC numbers the arrays from 1, the enclosed code from 0. (1) Initialise the S-boxes and the P-array, with a fixed string This string contains the hexadecimal digits of pi (3.141...)
+		/**
+		 * - comments are from _Applied Crypto_, Schneier, p338.<br>
+		 * Please be careful comparing the two, AC numbers the arrays from 1, the enclosed code from 0.<br>
+		 * (1) Initialize the S-boxes and the P-array, with a fixed string This string contains the hexadecimal digits of pi (3.141...)
 		 */
 		System.arraycopy(KS0, 0, S0, 0, SBOX_SK);
 		System.arraycopy(KS1, 0, S1, 0, SBOX_SK);
 		System.arraycopy(KS2, 0, S2, 0, SBOX_SK);
 		System.arraycopy(KS3, 0, S3, 0, SBOX_SK);
 		System.arraycopy(KP, 0, P, 0, P_SZ);
-		/*
-		 * (2) Now, XOR P[0] with the first 32 bits of the key, XOR P[1] with the second 32-bits of the key, and so on for all bits of the key (up to P[17]). Repeatedly cycle through the key bits until the entire P-array has been XOR-ed with the key bits
+		/**
+		 * (2) Now, XOR P[0] with the first 32 bits of the key, XOR P[1] with the second 32-bits of the key, and so on for all bits of the key (up to P[17]).<br>
+		 * Repeatedly cycle through the key bits until the entire P-array has been XOR-ed with the key bits
 		 */
-		final int keyLength = key.length;
+		int keyLength = key.length;
 		int keyIndex = 0;
 		for (int i = 0; i < P_SZ; i++)
 		{
@@ -1217,7 +1206,7 @@ public class BlowfishEngine
 			for (int j = 0; j < 4; j++)
 			{
 				// create a 32 bit block
-				data = data << 8 | key[keyIndex++] & 0xff;
+				data = (data << 8) | (key[keyIndex++] & 0xff);
 				// wrap when we get to the end of the key
 				if (keyIndex >= keyLength)
 				{
@@ -1227,9 +1216,12 @@ public class BlowfishEngine
 			// XOR the newly created 32 bit chunk onto the P-array
 			P[i] ^= data;
 		}
-		/*
-		 * (3) Encrypt the all-zero string with the Blowfish algorithm, using the subkeys described in (1) and (2) (4) Replace P1 and P2 with the output of step (3) (5) Encrypt the output of step(3) using the Blowfish algorithm, with the modified subkeys. (6) Replace P3 and P4 with the output of
-		 * step (5) (7) Continue the process, replacing all elements of the P-array and then all four S-boxes in order, with the output of the continuously changing Blowfish algorithm
+		/**
+		 * (3) Encrypt the all-zero string with the Blowfish algorithm, using the subkeys described in (1) and (2)<br>
+		 * (4) Replace P1 and P2 with the output of step (3)<br>
+		 * (5) Encrypt the output of step(3) using the Blowfish algorithm, with the modified subkeys.<br>
+		 * (6) Replace P3 and P4 with the output of step (5)<br>
+		 * (7) Continue the process, replacing all elements of the P-array and then all four S-boxes in order, with the output of the continuously changing Blowfish algorithm
 		 */
 		processTable(0, 0, P);
 		processTable(P[P_SZ - 2], P[P_SZ - 1], S0);
@@ -1239,63 +1231,251 @@ public class BlowfishEngine
 	}
 	
 	/**
-	 * Encrypt the given input starting at the given offset and place the result in the provided buffer starting at the given offset. The input will be an exact multiple of our blocksize.
-	 * @param src
-	 * @param srcIndex
-	 * @param dst
-	 * @param dstIndex
+	 * Method to encrypt the block at the given index.<br>
+	 * The encrypted block goes directly to the source array at the given index.
+	 * @param src source array with the plain data
+	 * @param srcIndex index where the block to encrypt is located
+	 * @throws IllegalStateException The cipher was not yet initialized
+	 * @throws IOException The source array is too small to hold a block at the given index
 	 */
-	private void encryptBlock(final byte[] src, final int srcIndex, final byte[] dst, final int dstIndex)
+	public void tryEncryptBlock(byte[] src, final int srcIndex) throws IOException
+	{
+		if (workingKey == null)
+		{
+			throw new IllegalStateException("Blowfish not initialized");
+		}
+		if ((srcIndex + BLOCK_SIZE) > src.length)
+		{
+			throw new IOException("input buffer too short");
+		}
+		encryptBlock(src, srcIndex);
+	}
+	
+	/**
+	 * Method to encrypt the block at the given index.<br>
+	 * The encrypted block goes to the destination array at the given index.<br>
+	 * <br>
+	 * @param src source array with the plain data
+	 * @param srcIndex index where the block to encrypt is located
+	 * @param dst destination array the encryption will go to
+	 * @param dstIndex index where the encrypted block is to be stored
+	 * @throws IllegalStateException The cipher was not yet initialized
+	 * @throws IOException The source or destination array is too small to hold a block at the given index
+	 */
+	public void tryEncryptBlock(final byte[] src, final int srcIndex, byte[] dst, final int dstIndex) throws IOException
+	{
+		if (workingKey == null)
+		{
+			throw new IllegalStateException("Blowfish not initialized");
+		}
+		if ((srcIndex + BLOCK_SIZE) > src.length)
+		{
+			throw new IOException("input buffer too short");
+		}
+		if ((dstIndex + BLOCK_SIZE) > dst.length)
+		{
+			throw new IOException("output buffer too short");
+		}
+		encryptBlock(src, srcIndex, dst, dstIndex);
+	}
+	
+	/**
+	 * Method to encrypt the block at the given index.<br>
+	 * The encrypted block goes directly to the source array at the given<br>
+	 * index.<br>
+	 * <br>
+	 * This method does not perform any error checking. This could be<br>
+	 * usefull when code calling this method performs size checks already or<br>
+	 * perfroming steps to ensure nothing can go wrong.<br>
+	 * <br>
+	 * If you want error checking use {@link #tryEncryptBlock(byte[], int)}.
+	 * @param src source array with the plain data
+	 * @param srcIndex index where the block to encrypt is located
+	 */
+	public void encryptBlock(byte[] src, final int srcIndex)
+	{
+		encryptBlock(src, srcIndex, src, srcIndex);
+	}
+	
+	/**
+	 * Method to encrypt the block at the given index.<br>
+	 * The encrypted block goes to the destination array at the given index.<br>
+	 * <br>
+	 * This method does not perform any error checking. This could be<br>
+	 * usefull when code calling this method performs size checks already or<br>
+	 * perfroming steps to ensure nothing can go wrong.<br>
+	 * <br>
+	 * If you want error checking use {@link #tryEncryptBlock(byte[], int, byte[], int)}.
+	 * @param src source array with the plain data
+	 * @param srcIndex index where the block to encrypt is located
+	 * @param dst destination array the encryption will go to
+	 * @param dstIndex index where the encrypted block is to be stored
+	 */
+	public void encryptBlock(final byte[] src, final int srcIndex, byte[] dst, final int dstIndex)
 	{
 		int xl = bytesTo32bits(src, srcIndex);
 		int xr = bytesTo32bits(src, srcIndex + 4);
+		
 		xl ^= P[0];
+		xr ^= func(xl) ^ P[1];
+		xl ^= func(xr) ^ P[2];
+		xr ^= func(xl) ^ P[3];
+		xl ^= func(xr) ^ P[4];
+		xr ^= func(xl) ^ P[5];
+		xl ^= func(xr) ^ P[6];
+		xr ^= func(xl) ^ P[7];
+		xl ^= func(xr) ^ P[8];
+		xr ^= func(xl) ^ P[9];
+		xl ^= func(xr) ^ P[10];
+		xr ^= func(xl) ^ P[11];
+		xl ^= func(xr) ^ P[12];
+		xr ^= func(xl) ^ P[13];
+		xl ^= func(xr) ^ P[14];
+		xr ^= func(xl) ^ P[15];
+		xl ^= func(xr) ^ P[16];
+		xr ^= P[17];
 		
-		for (int i = 1; i < ROUNDS; i += 2)
-		{
-			xr ^= func(xl) ^ P[i];
-			xl ^= func(xr) ^ P[i + 1];
-		}
-		
-		xr ^= P[ROUNDS + 1];
 		bits32ToBytes(xr, dst, dstIndex);
 		bits32ToBytes(xl, dst, dstIndex + 4);
 	}
 	
 	/**
-	 * Decrypt the given input starting at the given offset and place the result in the provided buffer starting at the given offset. The input will be an exact multiple of our blocksize.
-	 * @param src
-	 * @param srcIndex
-	 * @param dst
-	 * @param dstIndex
+	 * Method to decrypt the block at the given index.<br>
+	 * The decrypted block goes directly to the source array at the given<br>
+	 * index.
+	 * @param src source array with the encrypted data
+	 * @param srcIndex index where the block to decrypt is located
+	 * @throws IllegalStateException The cipher was not yet initialized
+	 * @throws IOException The source array is too small to hold a block at the given index
 	 */
-	private void decryptBlock(final byte[] src, final int srcIndex, final byte[] dst, final int dstIndex)
+	public void tryDecryptBlock(byte[] src, final int srcIndex) throws IOException
+	{
+		if (workingKey == null)
+		{
+			throw new IllegalStateException("Blowfish not initialized");
+		}
+		if ((srcIndex + BLOCK_SIZE) > src.length)
+		{
+			throw new IOException("input buffer too short");
+		}
+		decryptBlock(src, srcIndex);
+	}
+	
+	/**
+	 * Method to decrypt the block at the given index.<br>
+	 * The decrypted block goes to the destination array at the given index.<br>
+	 * @param src source array with the plain data
+	 * @param srcIndex index where the block to decrypt is located
+	 * @param dst destination array the decryption will go to
+	 * @param dstIndex index where the decrypted block is to be stored
+	 * @throws IllegalStateException The cipher was not yet initialized
+	 * @throws IOException The source or destination array is too small to hold a block at the given index
+	 */
+	public void tryDecryptBlock(final byte[] src, final int srcIndex, byte[] dst, final int dstIndex) throws IOException
+	{
+		if (workingKey == null)
+		{
+			throw new IllegalStateException("Blowfish not initialized");
+		}
+		if ((srcIndex + BLOCK_SIZE) > src.length)
+		{
+			throw new IOException("input buffer too short");
+		}
+		if ((dstIndex + BLOCK_SIZE) > src.length)
+		{
+			throw new IOException("output buffer too short");
+		}
+		decryptBlock(src, srcIndex, dst, dstIndex);
+	}
+	
+	/**
+	 * Method to decrypt the block at the given index.<br>
+	 * The decrypted block goes directly to the source array at the given<br>
+	 * index.<br>
+	 * <br>
+	 * This method does not perform any error checking. This could be<br>
+	 * usefull when code calling this method performs size checks already or<br>
+	 * perfroming steps to ensure nothing can go wrong.<br>
+	 * <br>
+	 * If you want error checking use {@link #tryDecryptBlock(byte[], int)}.
+	 * @param src source array with the encrypted data
+	 * @param srcIndex index where the block to decrypt is located
+	 */
+	public void decryptBlock(byte[] src, final int srcIndex)
+	{
+		decryptBlock(src, srcIndex, src, srcIndex);
+	}
+	
+	/**
+	 * Method to decrypt the block at the given index.<br>
+	 * The decrypted block goes to the destination array at the given index.<br>
+	 * <br>
+	 * This method does not perform any error checking. This could be<br>
+	 * usefull when code calling this method performs size checks already or<br>
+	 * perfroming steps to ensure nothing can go wrong.<br>
+	 * <br>
+	 * If you want error checking use {@link #tryDecryptBlock(byte[], int, byte[], int)}.
+	 * @param src source array with the plain data
+	 * @param srcIndex index where the block to decrypt is located
+	 * @param dst destination array the decryption will go to
+	 * @param dstIndex index where the decrypted block is to be stored
+	 * @throws IllegalStateException The cipher was not yet initialized
+	 */
+	public void decryptBlock(final byte[] src, final int srcIndex, byte[] dst, final int dstIndex)
 	{
 		int xl = bytesTo32bits(src, srcIndex);
 		int xr = bytesTo32bits(src, srcIndex + 4);
-		xl ^= P[ROUNDS + 1];
 		
-		for (int i = ROUNDS; i > 0; i -= 2)
-		{
-			xr ^= func(xl) ^ P[i];
-			xl ^= func(xr) ^ P[i - 1];
-		}
-		
+		xl ^= P[17];
+		xr ^= func(xl) ^ P[16];
+		xl ^= func(xr) ^ P[15];
+		xr ^= func(xl) ^ P[14];
+		xl ^= func(xr) ^ P[13];
+		xr ^= func(xl) ^ P[12];
+		xl ^= func(xr) ^ P[11];
+		xr ^= func(xl) ^ P[10];
+		xl ^= func(xr) ^ P[9];
+		xr ^= func(xl) ^ P[8];
+		xl ^= func(xr) ^ P[7];
+		xr ^= func(xl) ^ P[6];
+		xl ^= func(xr) ^ P[5];
+		xr ^= func(xl) ^ P[4];
+		xl ^= func(xr) ^ P[3];
+		xr ^= func(xl) ^ P[2];
+		xl ^= func(xr) ^ P[1];
 		xr ^= P[0];
+		
 		bits32ToBytes(xr, dst, dstIndex);
 		bits32ToBytes(xl, dst, dstIndex + 4);
 	}
 	
-	private int bytesTo32bits(final byte[] b, final int i)
+	/**
+	 * Method to construct an int from the source array.<br>
+	 * 4 bytes are used from the given index.<br>
+	 * <br>
+	 * This method does not do any error checking.
+	 * @param src source array with the bytes
+	 * @param srcIndex the index to extract the int from
+	 * @return the extracted integer
+	 */
+	private int bytesTo32bits(byte[] src, int srcIndex)
 	{
-		return (b[i + 3] & 0xff) << 24 | (b[i + 2] & 0xff) << 16 | (b[i + 1] & 0xff) << 8 | b[i] & 0xff;
+		return ((src[srcIndex + 3] & 0xff) << 24) | ((src[srcIndex + 2] & 0xff) << 16) | ((src[srcIndex + 1] & 0xff) << 8) | ((src[srcIndex] & 0xff));
 	}
 	
-	private void bits32ToBytes(final int in, final byte[] b, final int offset)
+	/**
+	 * Method to decompose an int into a byte array.<br>
+	 * <br>
+	 * This method does not do any error checking.
+	 * @param in the integer to decompose into bytes
+	 * @param dst the destination array the decomposed int goes to
+	 * @param dstIndex the index in the destination array the decomposed int will be stored at
+	 */
+	private void bits32ToBytes(int in, byte[] dst, int dstIndex)
 	{
-		b[offset] = (byte) in;
-		b[offset + 1] = (byte) (in >> 8);
-		b[offset + 2] = (byte) (in >> 16);
-		b[offset + 3] = (byte) (in >> 24);
+		dst[dstIndex] = (byte) in;
+		dst[dstIndex + 1] = (byte) (in >> 8);
+		dst[dstIndex + 2] = (byte) (in >> 16);
+		dst[dstIndex + 3] = (byte) (in >> 24);
 	}
 }

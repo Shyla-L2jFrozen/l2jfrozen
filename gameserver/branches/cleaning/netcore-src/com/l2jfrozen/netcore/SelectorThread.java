@@ -34,6 +34,8 @@ import java.util.Iterator;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.netcore.util.PacketsLoggerManager;
+
 import javolution.util.FastList;
 
 /**
@@ -494,6 +496,9 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 				{
 					cp._buf = null;
 					cp._sbuf = null;
+
+					PacketsLoggerManager.getInstance().logReceivedPacket(cp);
+
 					_executor.execute(cp);
 				}
 				

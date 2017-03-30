@@ -1,36 +1,35 @@
-/* L2jFrozen Project - www.l2jfrozen.com 
+/*
+ * Copyright (C) 2004-2016 L2J Server
  * 
- * This program is free software; you can redistribute it and/or modify
+ * This file is part of L2J Server.
+ * 
+ * L2J Server is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * L2J Server is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * http://www.gnu.org/copyleft/gpl.html
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.l2jfrozen.loginserver.network.clientpackets;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import com.l2jfrozen.loginserver.LoginClient;
+import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.netcore.ReceivablePacket;
 
 /**
- * @author ProGramMoS
+ * @author KenM
  */
-
-public abstract class L2LoginClientPacket extends ReceivablePacket<LoginClient>
+public abstract class L2LoginClientPacket extends ReceivablePacket<L2LoginClient>
 {
-	private static Logger LOGGER = Logger.getLogger(L2LoginClientPacket.class);
+	private static Logger _log = Logger.getLogger(L2LoginClientPacket.class.getName());
 	
 	@Override
 	protected final boolean read()
@@ -39,9 +38,9 @@ public abstract class L2LoginClientPacket extends ReceivablePacket<LoginClient>
 		{
 			return readImpl();
 		}
-		catch (final Exception e)
+		catch (Exception e)
 		{
-			LOGGER.error("ERROR READING: " + this.getClass().getSimpleName(), e);
+			_log.log(Level.SEVERE, "ERROR READING: " + this.getClass().getSimpleName() + ": " + e.getMessage(), e);
 			return false;
 		}
 	}

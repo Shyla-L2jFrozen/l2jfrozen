@@ -224,7 +224,7 @@ public final class Broadcast
 	{
 		if (CommonConfig.DEBUG)
 		{
-			LOGGER.debug("Players to notify: " + L2World.getAllPlayersCount() + " (with packet " + mov.getType() + ")");
+			LOGGER.debug("Players to notify: " + L2World.getInstance().getAllPlayersCount() + " (with packet " + mov.getType() + ")");
 		}
 		
 		for (final L2PcInstance onlinePlayer : L2World.getInstance().getAllPlayers())

@@ -56,6 +56,9 @@ public class LoginConfig
 	public static boolean ENABLE_DDOS_PROTECTION_SYSTEM;
 	public static String DDOS_COMMAND_BLOCK;
 	public static boolean ENABLE_DEBUG_DDOS_PROTECTION_SYSTEM;
+
+	public static long LOGIN_SERVER_SCHEDULE_RESTART_TIME;
+	public static boolean LOGIN_SERVER_SCHEDULE_RESTART;
 	
 	public static void load()
 	{
@@ -104,6 +107,9 @@ public class LoginConfig
 			MAX_LOGINSESSIONS = Integer.parseInt(serverSettings.getProperty("MaxSessions", "200"));
 			
 			DEBUG_PACKETS = Boolean.parseBoolean(serverSettings.getProperty("DebugPackets", "false"));
+			
+			LOGIN_SERVER_SCHEDULE_RESTART = Boolean.parseBoolean(serverSettings.getProperty("LoginRestartSchedule", "false"));
+			LOGIN_SERVER_SCHEDULE_RESTART_TIME = Long.parseLong(serverSettings.getProperty("LoginRestartTime", "24"));
 			
 		}
 		catch (final Exception e)

@@ -341,6 +341,9 @@ public final class Config
 	public static int GAME_SERVER_LOGIN_PORT;
 	public static String GAME_SERVER_LOGIN_HOST;
 	
+	public static int SERVER_LIST_TYPE;
+	public static int SERVER_LIST_AGE;
+	
 	// ============================================================
 	public static void loadServerConfig()
 	{
@@ -381,6 +384,9 @@ public final class Config
 			
 			DATAPACK_ROOT = new File(serverSettings.getProperty("DatapackRoot", ".")).getCanonicalFile();
 			
+			SERVER_LIST_TYPE = getServerTypeId(serverSettings.getProperty("ServerListType", "Normal").split(","));
+			SERVER_LIST_AGE = Integer.parseInt(serverSettings.getProperty("ServerListAge", "0"));
+			
 			final Random ppc = new Random();
 			int z = ppc.nextInt(6);
 			if (z == 0)
@@ -418,6 +424,42 @@ public final class Config
 			throw new Error("Failed to Load " + GAMESERVER + " File.");
 		}
 	}
+	
+	public static int getServerTypeId(String[] serverTypes)
+	{
+		int tType = 0;
+		for (String cType : serverTypes)
+		{
+			switch (cType.trim().toLowerCase())
+			{
+				case "normal":
+					tType |= 0x01;
+					break;
+				case "relax":
+					tType |= 0x02;
+					break;
+				case "test":
+					tType |= 0x04;
+					break;
+				case "nolabel":
+					tType |= 0x08;
+					break;
+				case "restricted":
+					tType |= 0x10;
+					break;
+				case "event":
+					tType |= 0x20;
+					break;
+				case "free":
+					tType |= 0x40;
+					break;
+				default:
+					break;
+			}
+		}
+		return tType;
+	}
+	
 	
 	// ============================================================
 	public static String SERVER_REVISION;

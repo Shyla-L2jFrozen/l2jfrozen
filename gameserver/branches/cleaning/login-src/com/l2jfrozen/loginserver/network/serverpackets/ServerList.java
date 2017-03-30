@@ -1,102 +1,125 @@
 /*
- * L2jFrozen Project - www.l2jfrozen.com 
+ * Copyright (C) 2004-2016 L2J Server
  * 
- * This program is free software; you can redistribute it and/or modify
+ * This file is part of L2J Server.
+ * 
+ * L2J Server is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * L2J Server is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * http://www.gnu.org/copyleft/gpl.html
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.l2jfrozen.loginserver.network.serverpackets;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
 
-import com.l2jfrozen.loginserver.LoginClient;
-import com.l2jfrozen.loginserver.datatables.GameServerTable;
-import com.l2jfrozen.loginserver.datatables.GameServerTable.GameServerInfo;
+import com.l2jfrozen.loginserver.GameServerTable;
+import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
+import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 
-import javolution.util.FastList;
-
 /**
- * ServerList Format: cc [cddcchhcdc] c: server list size (number of servers) c: ? [ (repeat for each servers) c: server id (ignored by client?) d: server ip d: server port c: age limit (used by client?) c: pvp or not (used by client?) h: current number of players h: max number of players c: 0 if
- * server is down d: 2nd bit: clock 3rd bit: wont dsiplay server name 4th bit: test server (used by client?) c: 0 if you dont want to display brackets in front of sever name ] Server will be considered as Good when the number of online players is less than half the maximum. as Normal between half
- * and 4/5 and Full when there's more than 4/5 of the maximum number of players
+ * ServerList
+ * 
+ * <pre>
+ * Format: cc [cddcchhcdc]
+ * 
+ * c: server list size (number of servers)
+ * c: ?
+ * [ (repeat for each servers)
+ * c: server id (ignored by client?)
+ * d: server ip
+ * d: server port
+ * c: age limit (used by client?)
+ * c: pvp or not (used by client?)
+ * h: current number of players
+ * h: max number of players
+ * c: 0 if server is down
+ * d: 2nd bit: clock
+ *    3rd bit: won't display server name
+ *    4th bit: test server (used by client?)
+ * c: 0 if you don't want to display brackets in front of sever name
+ * ]
+ * </pre>
+ * 
+ * Server will be considered as Good when the number of online players<br>
+ * is less than half the maximum. as Normal between half and 4/5<br>
+ * and Full when there's more than 4/5 of the maximum number of players.
  */
 public final class ServerList extends L2LoginServerPacket
 {
+	protected static final Logger _log = Logger.getLogger(ServerList.class.getName());
+	
 	private final List<ServerData> _servers;
 	private final int _lastServer;
+	private final Map<Integer, Integer> _charsOnServers;
+	private final Map<Integer, long[]> _charsToDelete;
 	
 	class ServerData
 	{
-		protected String _ip;
+		protected byte[] _ip;
 		protected int _port;
+		protected int _ageLimit;
 		protected boolean _pvp;
 		protected int _currentPlayers;
 		protected int _maxPlayers;
-		protected boolean _testServer;
 		protected boolean _brackets;
 		protected boolean _clock;
 		protected int _status;
 		protected int _serverId;
+		protected int _serverType;
 		
-		ServerData(final String pIp, final int pPort, final boolean pPvp, final boolean pTestServer, final int pCurrentPlayers, final int pMaxPlayers, final boolean pBrackets, final boolean pClock, final int pStatus, final int pServer_id)
+		ServerData(L2LoginClient client, GameServerInfo gsi)
 		{
-			_ip = pIp;
-			_port = pPort;
-			_pvp = pPvp;
-			_testServer = pTestServer;
-			_currentPlayers = pCurrentPlayers;
-			_maxPlayers = pMaxPlayers;
-			_brackets = pBrackets;
-			_clock = pClock;
-			_status = pStatus;
-			_serverId = pServer_id;
+			try
+			{
+				_ip = InetAddress.getByName(gsi.getServerAddress(client.getConnection().getInetAddress())).getAddress();
+			}
+			catch (UnknownHostException e)
+			{
+				_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
+				_ip = new byte[4];
+				_ip[0] = 127;
+				_ip[1] = 0;
+				_ip[2] = 0;
+				_ip[3] = 1;
+			}
+			
+			_port = gsi.getPort();
+			_pvp = gsi.isPvp();
+			_serverType = gsi.getServerType();
+			_currentPlayers = gsi.getCurrentPlayerCount();
+			_maxPlayers = gsi.getMaxPlayers();
+			_ageLimit = 0;
+			_brackets = gsi.isShowingBrackets();
+			// If server GM-only - show status only to GMs
+			_status = gsi.getStatus() != ServerStatus.STATUS_GM_ONLY ? gsi.getStatus() : client.getAccessLevel() > 0 ? gsi.getStatus() : ServerStatus.STATUS_DOWN;
+			_serverId = gsi.getId();
 		}
 	}
 	
-	public ServerList(final LoginClient client)
+	public ServerList(L2LoginClient client)
 	{
-		_servers = new FastList<>();
+		_servers = new ArrayList<>(GameServerTable.getInstance().getRegisteredGameServers().size());
 		_lastServer = client.getLastServer();
-		
-		for (final GameServerInfo gsi : GameServerTable.getInstance().getRegisteredGameServers().values())
+		for (GameServerInfo gsi : GameServerTable.getInstance().getRegisteredGameServers().values())
 		{
-			if (gsi.getStatus() == ServerStatus.STATUS_GM_ONLY && client.getAccessLevel() >= 100)
-			{
-				// Server is GM-Only but you've got GM Status
-				addServer(client.usesInternalIP() ? gsi.getInternalHost() : gsi.getExternalHost(), gsi.getPort(), gsi.isPvp(), gsi.isTestServer(), gsi.getCurrentPlayerCount(), gsi.getMaxPlayers(), gsi.isShowingBrackets(), gsi.isShowingClock(), gsi.getStatus(), gsi.getId());
-			}
-			else if (gsi.getStatus() != ServerStatus.STATUS_GM_ONLY)
-			{
-				// Server is not GM-Only
-				addServer(client.usesInternalIP() ? gsi.getInternalHost() : gsi.getExternalHost(), gsi.getPort(), gsi.isPvp(), gsi.isTestServer(), gsi.getCurrentPlayerCount(), gsi.getMaxPlayers(), gsi.isShowingBrackets(), gsi.isShowingClock(), gsi.getStatus(), gsi.getId());
-			}
-			else
-			{
-				// Server's GM-Only and you've got no GM-Status
-				addServer(client.usesInternalIP() ? gsi.getInternalHost() : gsi.getExternalHost(), gsi.getPort(), gsi.isPvp(), gsi.isTestServer(), gsi.getCurrentPlayerCount(), gsi.getMaxPlayers(), gsi.isShowingBrackets(), gsi.isShowingClock(), ServerStatus.STATUS_DOWN, gsi.getId());
-			}
+			_servers.add(new ServerData(client, gsi));
 		}
-	}
-	
-	public void addServer(final String ip, final int port, final boolean pvp, final boolean testServer, final int currentPlayer, final int maxPlayer, final boolean brackets, final boolean clock, final int status, final int server_id)
-	{
-		_servers.add(new ServerData(ip, port, pvp, testServer, currentPlayer, maxPlayer, brackets, clock, status, server_id));
+		_charsOnServers = client.getCharsOnServ();
+		_charsToDelete = client.getCharsWaitingDelOnServ();
 	}
 	
 	@Override
@@ -105,63 +128,49 @@ public final class ServerList extends L2LoginServerPacket
 		writeC(0x04);
 		writeC(_servers.size());
 		writeC(_lastServer);
-		
-		for (final ServerData server : _servers)
+		for (ServerData server : _servers)
 		{
 			writeC(server._serverId); // server id
 			
-			try
-			{
-				final InetAddress i4 = InetAddress.getByName(server._ip);
-				
-				byte[] raw = i4.getAddress();
-				
-				writeC(raw[0] & 0xff);
-				writeC(raw[1] & 0xff);
-				writeC(raw[2] & 0xff);
-				writeC(raw[3] & 0xff);
-				raw = null;
-			}
-			catch (final UnknownHostException e)
-			{
-				e.printStackTrace();
-				writeC(127);
-				writeC(0);
-				writeC(0);
-				writeC(1);
-			}
+			writeC(server._ip[0] & 0xff);
+			writeC(server._ip[1] & 0xff);
+			writeC(server._ip[2] & 0xff);
+			writeC(server._ip[3] & 0xff);
 			
 			writeD(server._port);
-			writeC(0x00); // age limit
+			writeC(server._ageLimit); // Age Limit 0, 15, 18
 			writeC(server._pvp ? 0x01 : 0x00);
 			writeH(server._currentPlayers);
 			writeH(server._maxPlayers);
 			writeC(server._status == ServerStatus.STATUS_DOWN ? 0x00 : 0x01);
-			
-			int bits = 0;
-			
-			if (server._testServer)
-			{
-				bits |= 0x04;
-			}
-			
-			if (server._clock)
-			{
-				bits |= 0x02;
-			}
-			
-			writeD(bits);
+			writeD(server._serverType); // 1: Normal, 2: Relax, 4: Public Test, 8: No Label, 16: Character Creation Restricted, 32: Event, 64: Free
 			writeC(server._brackets ? 0x01 : 0x00);
 		}
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see com.l2jfrozen.loginserver.network.serverpackets.L2LoginServerPacket#getType()
-	 */
-	@Override
-	public String getType()
-	{
-		return "ServerList";
+		writeH(0x00); // unknown
+		if (_charsOnServers != null)
+		{
+			writeC(_charsOnServers.size());
+			for (int servId : _charsOnServers.keySet())
+			{
+				writeC(servId);
+				writeC(_charsOnServers.get(servId));
+				if ((_charsToDelete == null) || !_charsToDelete.containsKey(servId))
+				{
+					writeC(0x00);
+				}
+				else
+				{
+					writeC(_charsToDelete.get(servId).length);
+					for (long deleteTime : _charsToDelete.get(servId))
+					{
+						writeD((int) ((deleteTime - System.currentTimeMillis()) / 1000));
+					}
+				}
+			}
+		}
+		else
+		{
+			writeC(0x00);
+		}
 	}
 }

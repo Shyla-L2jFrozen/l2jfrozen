@@ -1,39 +1,36 @@
 /*
- * L2jFrozen Project - www.l2jfrozen.com 
+ * Copyright (C) 2004-2016 L2J Server
  * 
- * This program is free software; you can redistribute it and/or modify
+ * This file is part of L2J Server.
+ * 
+ * L2J Server is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * L2J Server is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * http://www.gnu.org/copyleft/gpl.html
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.l2jfrozen.loginserver.network.clientpackets;
 
-import java.io.IOException;
 import java.net.InetAddress;
 import java.security.GeneralSecurityException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.crypto.Cipher;
 
-import org.apache.log4j.Logger;
-
-import com.l2jfrozen.loginserver.LoginClient;
-import com.l2jfrozen.loginserver.LoginClientState;
-import com.l2jfrozen.loginserver.LoginConfig;
+import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.LoginController.AuthLoginResult;
-import com.l2jfrozen.loginserver.datatables.GameServerTable.GameServerInfo;
+import com.l2jfrozen.loginserver.model.data.AccountInfo;
+import com.l2jfrozen.loginserver.network.L2LoginClient;
+import com.l2jfrozen.loginserver.network.L2LoginClient.LoginClientState;
 import com.l2jfrozen.loginserver.network.serverpackets.AccountKicked;
 import com.l2jfrozen.loginserver.network.serverpackets.AccountKicked.AccountKickedReason;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFail.LoginFailReason;
@@ -42,11 +39,16 @@ import com.l2jfrozen.loginserver.network.serverpackets.ServerList;
 import com.l2jfrozen.netcore.NetcoreConfig;
 
 /**
- * Format: x 0 (a leading null) x: the rsa encrypted block with the login an password
+ * <pre>
+ * Format: x
+ * 0 (a leading null)
+ * x: the rsa encrypted block with the login an password.
+ * 
+ * <pre>
  */
 public class RequestAuthLogin extends L2LoginClientPacket
 {
-	private static Logger LOGGER = Logger.getLogger(RequestAuthLogin.class);
+	private static Logger _log = Logger.getLogger(RequestAuthLogin.class.getName());
 	
 	private final byte[] _raw = new byte[128];
 	
@@ -90,45 +92,52 @@ public class RequestAuthLogin extends L2LoginClientPacket
 	public void run()
 	{
 		byte[] decrypted = null;
+		final L2LoginClient client = getClient();
 		try
 		{
-			Cipher rsaCipher = Cipher.getInstance("RSA/ECB/nopadding");
-			rsaCipher.init(Cipher.DECRYPT_MODE, getClient().getRSAPrivateKey());
+			final Cipher rsaCipher = Cipher.getInstance("RSA/ECB/nopadding");
+			rsaCipher.init(Cipher.DECRYPT_MODE, client.getRSAPrivateKey());
 			decrypted = rsaCipher.doFinal(_raw, 0x00, 0x80);
-			rsaCipher = null;
 		}
-		catch (final GeneralSecurityException e)
+		catch (GeneralSecurityException e)
 		{
-			e.printStackTrace();
+			_log.log(Level.INFO, "", e);
 			return;
 		}
 		
-		_user = new String(decrypted, 0x5E, 14).trim();
-		_user = _user.toLowerCase();
-		_password = new String(decrypted, 0x6C, 16).trim();
-		_ncotp = decrypted[0x7c];
-		_ncotp |= decrypted[0x7d] << 8;
-		_ncotp |= decrypted[0x7e] << 16;
-		_ncotp |= decrypted[0x7f] << 24;
-		
-		LoginController lc = LoginController.getInstance();
-		LoginClient client = getClient();
-		final InetAddress address = getClient().getConnection().getInetAddress();
-		if (address == null)
+		try
 		{
-			LOGGER.warn("Socket is not connected: " + client.getAccount());
-			client.close(LoginFailReason.REASON_SYSTEM_ERROR);
+			_user = new String(decrypted, 0x5E, 14).trim().toLowerCase();
+			_password = new String(decrypted, 0x6C, 16).trim();
+			_ncotp = decrypted[0x7c];
+			_ncotp |= decrypted[0x7d] << 8;
+			_ncotp |= decrypted[0x7e] << 16;
+			_ncotp |= decrypted[0x7f] << 24;
+		}
+		catch (Exception e)
+		{
+			_log.log(Level.WARNING, "", e);
 			return;
 		}
-		final String addhost = address.getHostAddress();
-		AuthLoginResult result = lc.tryAuthLogin(_user, _password, getClient());
 		
+		InetAddress clientAddr = getClient().getConnection().getInetAddress();
+		
+		final LoginController lc = LoginController.getInstance();
+		AccountInfo info = lc.retriveAccountInfo(clientAddr, _user, _password);
+		if (info == null)
+		{
+			// user or pass wrong
+			client.close(LoginFailReason.REASON_USER_OR_PASS_WRONG);
+			return;
+		}
+		
+		AuthLoginResult result = lc.tryCheckinAccount(client, clientAddr, info);
 		switch (result)
 		{
 			case AUTH_SUCCESS:
-				client.setAccount(_user);
+				client.setAccount(info.getLogin());
 				client.setState(LoginClientState.AUTHED_LOGIN);
-				client.setSessionKey(lc.assignSessionKeyToClient(_user, client));
+				client.setSessionKey(lc.assignSessionKeyToClient(info.getLogin(), client));
 				if (NetcoreConfig.getInstance().SHOW_LICENCE)
 				{
 					client.sendPacket(new LoginOk(getClient().getSessionKey()));
@@ -137,66 +146,37 @@ public class RequestAuthLogin extends L2LoginClientPacket
 				{
 					getClient().sendPacket(new ServerList(getClient()));
 				}
-				if (LoginConfig.ENABLE_DDOS_PROTECTION_SYSTEM)
-				{
-					String deny_comms = LoginConfig.DDOS_COMMAND_BLOCK;
-					deny_comms = deny_comms.replace("$IP", addhost);
-					
-					try
-					{
-						Runtime.getRuntime().exec(deny_comms);
-						if (LoginConfig.ENABLE_DEBUG_DDOS_PROTECTION_SYSTEM)
-						{
-							LOGGER.info("Accepted IP access GS by " + addhost);
-							LOGGER.info("Command is" + deny_comms);
-						}
-						
-					}
-					catch (final IOException e1)
-					{
-						LOGGER.info("Accepts by ip " + addhost + " no allowed");
-						LOGGER.info("Command is" + deny_comms);
-					}
-					
-				}
-				
 				break;
 			case INVALID_PASSWORD:
 				client.close(LoginFailReason.REASON_USER_OR_PASS_WRONG);
 				break;
 			case ACCOUNT_BANNED:
 				client.close(new AccountKicked(AccountKickedReason.REASON_PERMANENTLY_BANNED));
-				break;
+				return;
 			case ALREADY_ON_LS:
-				LoginClient oldClient;
-				if ((oldClient = lc.getAuthedClient(_user)) != null)
+				L2LoginClient oldClient = lc.getAuthedClient(info.getLogin());
+				if (oldClient != null)
 				{
 					// kick the other client
 					oldClient.close(LoginFailReason.REASON_ACCOUNT_IN_USE);
-					lc.removeAuthedLoginClient(_user);
+					lc.removeAuthedLoginClient(info.getLogin());
 				}
-				oldClient = null;
+				// kick also current client
+				client.close(LoginFailReason.REASON_ACCOUNT_IN_USE);
 				break;
 			case ALREADY_ON_GS:
-				GameServerInfo gsi;
-				if ((gsi = lc.getAccountOnGameServer(_user)) != null)
+				GameServerInfo gsi = lc.getAccountOnGameServer(info.getLogin());
+				if (gsi != null)
 				{
 					client.close(LoginFailReason.REASON_ACCOUNT_IN_USE);
 					
 					// kick from there
 					if (gsi.isAuthed())
 					{
-						gsi.getGameServerThread().kickPlayer(_user);
+						gsi.getGameServerThread().kickPlayer(info.getLogin());
 					}
 				}
-				gsi = null;
 				break;
 		}
-		
-		result = null;
-		
-		decrypted = null;
-		lc = null;
-		client = null;
 	}
 }

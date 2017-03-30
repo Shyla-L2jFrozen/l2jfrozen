@@ -1,33 +1,33 @@
 /*
- * L2jFrozen Project - www.l2jfrozen.com 
+ * Copyright (C) 2004-2016 L2J Server
  * 
- * This program is free software; you can redistribute it and/or modify
+ * This file is part of L2J Server.
+ * 
+ * L2J Server is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * L2J Server is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * http://www.gnu.org/copyleft/gpl.html
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.l2jfrozen.gameserver.network.gameserverpackets;
 
-import java.util.Vector;
+import java.util.ArrayList;
+
+import com.l2jfrozen.util.network.BaseSendablePacket;
 
 /**
  * @author -Wooden-
  */
-public class ServerStatus extends GameServerBasePacket
+public class ServerStatus extends BaseSendablePacket
 {
-	private final Vector<Attribute> _attributes;
+	private final ArrayList<Attribute> _attributes;
 	
 	public static final String[] STATUS_STRING =
 	{
@@ -40,11 +40,12 @@ public class ServerStatus extends GameServerBasePacket
 	};
 	
 	public static final int SERVER_LIST_STATUS = 0x01;
-	public static final int SERVER_LIST_CLOCK = 0x02;
+	public static final int SERVER_TYPE = 0x02;
 	public static final int SERVER_LIST_SQUARE_BRACKET = 0x03;
 	public static final int MAX_PLAYERS = 0x04;
-	public static final int TEST_SERVER = 0x05;
+	public static final int SERVER_AGE = 0x05;
 	
+	// Server Status
 	public static final int STATUS_AUTO = 0x00;
 	public static final int STATUS_GOOD = 0x01;
 	public static final int STATUS_NORMAL = 0x02;
@@ -52,15 +53,29 @@ public class ServerStatus extends GameServerBasePacket
 	public static final int STATUS_DOWN = 0x04;
 	public static final int STATUS_GM_ONLY = 0x05;
 	
+	// Server Types
+	public static final int SERVER_NORMAL = 0x01;
+	public static final int SERVER_RELAX = 0x02;
+	public static final int SERVER_TEST = 0x04;
+	public static final int SERVER_NOLABEL = 0x08;
+	public static final int SERVER_CREATION_RESTRICTED = 0x10;
+	public static final int SERVER_EVENT = 0x20;
+	public static final int SERVER_FREE = 0x40;
+	
+	// Server Ages
+	public static final int SERVER_AGE_ALL = 0x00;
+	public static final int SERVER_AGE_15 = 0x0F;
+	public static final int SERVER_AGE_18 = 0x12;
+	
 	public static final int ON = 0x01;
 	public static final int OFF = 0x00;
 	
-	class Attribute
+	static class Attribute
 	{
 		public int id;
 		public int value;
 		
-		Attribute(final int pId, final int pValue)
+		Attribute(int pId, int pValue)
 		{
 			id = pId;
 			value = pValue;
@@ -69,30 +84,25 @@ public class ServerStatus extends GameServerBasePacket
 	
 	public ServerStatus()
 	{
-		_attributes = new Vector<>();
+		_attributes = new ArrayList<>();
 	}
 	
-	public void addAttribute(final int id, final int value)
+	public void addAttribute(int id, int value)
 	{
 		_attributes.add(new Attribute(id, value));
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see com.l2jfrozen.gameserver.gameserverpackets.GameServerBasePacket#getContent()
-	 */
 	@Override
 	public byte[] getContent()
 	{
 		writeC(0x06);
 		writeD(_attributes.size());
-		for (int i = 0; i < _attributes.size(); i++)
+		for (Attribute temp : _attributes)
 		{
-			final Attribute temp = _attributes.get(i);
-			
 			writeD(temp.id);
 			writeD(temp.value);
 		}
+		
 		return getBytes();
 	}
 }
