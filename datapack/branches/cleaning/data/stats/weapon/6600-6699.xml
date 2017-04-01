@@ -286,7 +286,6 @@
     <set val='325' order='0x08' stat='pAtkSpd'/>
     <enchant val='0' order='0x0C' stat='pAtk'/>
     <enchant val='0' order='0x0C' stat='mAtk'/>
-	<skill onCrit='1' id='3592' lvl='1' chance='10'/> <!--10% chance to cancel each buff from target on a critical hit -->
   </for>
 </item>
 <item id='6678' name="sealed_imperial_crusader_shield">
