@@ -250,7 +250,7 @@ public class TradeController
 						if (!rset1.getString("npc_id").equals("gm") && price < (item.getReferencePrice() / 2))
 						{
 							
-							LOGGER.warn("L2TradeList " + buy1.getListId() + " itemId  " + itemId + " has an ADENA sell price lower then reference price.. Automatically Updating it..");
+							LOGGER.warn("L2TradeList.1 " + buy1.getListId() + " itemId  " + itemId + " has an ADENA sell price lower then reference price.. Automatically Updating it..");
 							price = item.getReferencePrice();
 						}
 						
@@ -297,7 +297,7 @@ public class TradeController
 								if (!rset1.getString("npc_id").equals("gm") && price < item2.getReferencePrice() / 2)
 								{
 									
-									LOGGER.warn("L2TradeList " + buy1.getListId() + " itemId  " + itemId + " has an ADENA sell price lower then reference price.. Automatically Updating it..");
+									LOGGER.warn("L2TradeList.2 " + buy1.getListId() + " itemId  " + itemId + " has an ADENA sell price lower then reference price.. Automatically Updating it..");
 									price = item2.getReferencePrice();
 								}
 								
@@ -470,7 +470,7 @@ public class TradeController
 							if (!rset1.getString("npc_id").equals("gm") && price < (item.getReferencePrice() / 2))
 							{
 								
-								LOGGER.warn("L2TradeList " + buy1.getListId() + " itemId  " + itemId + " has an ADENA sell price lower then reference price.. Automatically Updating it..");
+								LOGGER.warn("L2TradeList.3 " + buy1.getListId() + " itemId  " + itemId + " has an ADENA sell price lower then reference price.. Automatically Updating it..");
 								price = item.getReferencePrice();
 							}
 							
@@ -515,7 +515,7 @@ public class TradeController
 									if (!rset1.getString("npc_id").equals("gm") && price < item2.getReferencePrice() / 2)
 									{
 										
-										LOGGER.warn("L2TradeList " + buy1.getListId() + " itemId  " + itemId + " has an ADENA sell price lower then reference price.. Automatically Updating it..");
+										LOGGER.warn("L2TradeList.4 " + buy1.getListId() + " itemId  " + itemId + " has an ADENA sell price lower then reference price.. Automatically Updating it..");
 										price = item2.getReferencePrice();
 									}
 									
@@ -643,7 +643,7 @@ public class TradeController
 			if (price < (item.getReferencePrice() / 2))
 			{
 				
-				LOGGER.warn("L2TradeList " + listId + " itemId  " + itemId + " has an ADENA sell price lower then reference price.. Automatically Updating it..");
+				LOGGER.warn("L2TradeList.5 " + listId + " itemId  " + itemId + " has an ADENA sell price lower then reference price.. Automatically Updating it..");
 				price = item.getReferencePrice();
 			}
 			

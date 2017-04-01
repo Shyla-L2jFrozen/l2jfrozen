@@ -24,6 +24,8 @@ import java.security.interfaces.RSAPublicKey;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.CommonConfig;
+
 /**
  *
  */
@@ -71,7 +73,9 @@ public class ScrambledKeyPair
 		{
 			scrambledMod[0x40 + i] = (byte) (scrambledMod[0x40 + i] ^ scrambledMod[i]);
 		}
-		LOGGER.info("Modulus was scrambled");
+		
+		if (CommonConfig.DEBUG)
+			LOGGER.info("Modulus was scrambled");
 		
 		return scrambledMod;
 	}

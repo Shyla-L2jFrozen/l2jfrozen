@@ -514,11 +514,21 @@ public class ItemTable
 		{
 			case "none":
 				item.type = L2EtcItemType.OTHER; // only for default
-				
+				break;
+			case "material":
+				item.type = L2EtcItemType.OTHER;
+				break;
+			case "dye":
+				item.type = L2EtcItemType.OTHER;
+				break;
+			case "lotto":
+				item.type = L2EtcItemType.OTHER;
+				break;
+			case "race_ticket":
+				item.type = L2EtcItemType.OTHER;
 				break;
 			case "castle_guard":
 				item.type = L2EtcItemType.SCROLL; // dummy
-				
 				break;
 			case "pet_collar":
 				item.type = L2EtcItemType.PET_COLLAR;
@@ -540,7 +550,6 @@ public class ItemTable
 				break;
 			case "spellbook":
 				item.type = L2EtcItemType.SPELLBOOK; // Spellbook, Amulet, Blueprint
-				
 				break;
 			case "herb":
 				item.type = L2EtcItemType.HERB;
