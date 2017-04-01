@@ -20,7 +20,6 @@ package com.l2jfrozen.gameserver.network;
 
 import com.l2jfrozen.netcore.NetcoreConfig;
 
-
 public class ClientStats
 {
 	public int processedPackets = 0;
@@ -79,7 +78,7 @@ public class ClientStats
 	 * @param queueSize
 	 * @return true if flood detected first and ActionFailed packet need to be sent.
 	 */
-	protected final boolean countPacket(int queueSize)
+	protected final boolean countPacket(final int queueSize)
 	{
 		processedPackets++;
 		totalQueueSize += queueSize;
@@ -118,7 +117,7 @@ public class ClientStats
 	 * @param count - current number of processed packets in burst
 	 * @return burst length and return true if execution of the queue need to be aborted.
 	 */
-	protected final boolean countBurst(int count)
+	protected final boolean countBurst(final int count)
 	{
 		if (count > maxBurstSize)
 		{

@@ -41,12 +41,12 @@ public final class Init extends L2LoginServerPacket
 	private final byte[] _publicKey;
 	private final byte[] _blowfishKey;
 	
-	public Init(L2LoginClient client)
+	public Init(final L2LoginClient client)
 	{
 		this(client.getScrambledModulus(), client.getBlowfishKey(), client.getSessionId());
 	}
 	
-	public Init(byte[] publickey, byte[] blowfishkey, int sessionId)
+	public Init(final byte[] publickey, final byte[] blowfishkey, final int sessionId)
 	{
 		_sessionId = sessionId;
 		_publicKey = publickey;

@@ -55,7 +55,7 @@ public class LoginCrypt
 	 * Method to initialize the the blowfish cipher with dynamic key.
 	 * @param key the blowfish key to initialize the dynamic blowfish cipher with
 	 */
-	public void setKey(byte[] key)
+	public void setKey(final byte[] key)
 	{
 		_crypt = new NewCrypt(key);
 	}
@@ -68,7 +68,7 @@ public class LoginCrypt
 	 * @return true when checksum could be verified, false otherwise
 	 * @throws IOException the size is not multiple of blowfishs block size or the raw array can't hold size bytes starting at offset due to it's size
 	 */
-	public boolean decrypt(byte[] raw, final int offset, final int size) throws IOException
+	public boolean decrypt(final byte[] raw, final int offset, final int size) throws IOException
 	{
 		if ((size % 8) != 0)
 		{
@@ -92,7 +92,7 @@ public class LoginCrypt
 	 * @return the new array size
 	 * @throws IOException packet is too long to make padding and add verification data
 	 */
-	public int encrypt(byte[] raw, final int offset, int size) throws IOException
+	public int encrypt(final byte[] raw, final int offset, int size) throws IOException
 	{
 		// reserve checksum
 		size += 4;

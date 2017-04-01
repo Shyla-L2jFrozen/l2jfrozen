@@ -37,11 +37,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javolution.io.UTF8StreamReader;
-import javolution.xml.stream.XMLStreamConstants;
-import javolution.xml.stream.XMLStreamException;
-import javolution.xml.stream.XMLStreamReaderImpl;
-
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
@@ -49,6 +44,11 @@ import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.netcore.util.IPSubnet;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 import com.l2jfrozen.util.random.Rnd;
+
+import javolution.io.UTF8StreamReader;
+import javolution.xml.stream.XMLStreamConstants;
+import javolution.xml.stream.XMLStreamException;
+import javolution.xml.stream.XMLStreamReaderImpl;
 
 /**
  * The Class GameServerTable loads the game server names and initialize the game server tables.
@@ -72,19 +72,21 @@ public final class GameServerTable
 	 */
 	public GameServerTable()
 	{
-		try {
+		try
+		{
 			loadServerNames();
-		} catch (IOException e) {
-			LOGGER.error("Error loading Game Servers names from file",e);
+		}
+		catch (final IOException e)
+		{
+			LOGGER.error("Error loading Game Servers names from file", e);
 		}
 		
 		loadRegisteredGameServers();
-		LOGGER.info("{}: Loaded {} registered Game Servers." + getClass().getSimpleName()+" "+ GAME_SERVER_TABLE.size());
+		LOGGER.info("{" + getClass().getSimpleName() + "}: Loaded {" + GAME_SERVER_TABLE.size() + "} registered Game Servers.");
 		
 		initRSAKeys();
-		LOGGER.info("{}: Cached {} RSA keys for Game Server communication."+ getClass().getSimpleName()+" "+ _keyPairs.length);
+		LOGGER.info("{" + getClass().getSimpleName() + "}: Cached {" + _keyPairs.length + "} RSA keys for Game Server communication.");
 	}
-	
 	
 	private void loadServerNames() throws IOException
 	{
@@ -185,7 +187,7 @@ public final class GameServerTable
 				_keyPairs[i] = keyGen.genKeyPair();
 			}
 		}
-		catch (Exception e)
+		catch (final Exception e)
 		{
 			LOGGER.error("{}: Error loading RSA keys for Game Server communication!", e);
 		}
@@ -196,7 +198,8 @@ public final class GameServerTable
 	 */
 	private void loadRegisteredGameServers()
 	{
-		try (Connection con = L2DatabaseFactory.getInstance().getConnection();
+		try (
+			Connection con = L2DatabaseFactory.getInstance().getConnection();
 			Statement ps = con.createStatement();
 			ResultSet rs = ps.executeQuery("SELECT * FROM gameservers"))
 		{
@@ -207,7 +210,7 @@ public final class GameServerTable
 				GAME_SERVER_TABLE.put(id, new GameServerInfo(id, stringToHex(rs.getString("hexid"))));
 			}
 		}
-		catch (Exception e)
+		catch (final Exception e)
 		{
 			LOGGER.error("{}: Error loading registered game servers!", e);
 		}
@@ -227,7 +230,7 @@ public final class GameServerTable
 	 * @param id the game server Id
 	 * @return the registered game server by id
 	 */
-	public GameServerInfo getRegisteredGameServerById(int id)
+	public GameServerInfo getRegisteredGameServerById(final int id)
 	{
 		return GAME_SERVER_TABLE.get(id);
 	}
@@ -237,7 +240,7 @@ public final class GameServerTable
 	 * @param id the id
 	 * @return true, if successful
 	 */
-	public boolean hasRegisteredGameServerOnId(int id)
+	public boolean hasRegisteredGameServerOnId(final int id)
 	{
 		return GAME_SERVER_TABLE.containsKey(id);
 	}
@@ -247,12 +250,12 @@ public final class GameServerTable
 	 * @param gsi the game server information DTO
 	 * @return true, if successful
 	 */
-	public boolean registerWithFirstAvailableId(GameServerInfo gsi)
+	public boolean registerWithFirstAvailableId(final GameServerInfo gsi)
 	{
 		// avoid two servers registering with the same "free" id
 		synchronized (GAME_SERVER_TABLE)
 		{
-			for (Integer serverId : SERVER_NAMES.keySet())
+			for (final Integer serverId : SERVER_NAMES.keySet())
 			{
 				if (!GAME_SERVER_TABLE.containsKey(serverId))
 				{
@@ -271,7 +274,7 @@ public final class GameServerTable
 	 * @param gsi the gsi
 	 * @return true, if successful
 	 */
-	public boolean register(int id, GameServerInfo gsi)
+	public boolean register(final int id, final GameServerInfo gsi)
 	{
 		// avoid two servers registering with the same id
 		synchronized (GAME_SERVER_TABLE)
@@ -289,7 +292,7 @@ public final class GameServerTable
 	 * Wrapper method.
 	 * @param gsi the game server info DTO.
 	 */
-	public void registerServerOnDB(GameServerInfo gsi)
+	public void registerServerOnDB(final GameServerInfo gsi)
 	{
 		registerServerOnDB(gsi.getHexId(), gsi.getId(), gsi.getExternalHost());
 	}
@@ -300,10 +303,11 @@ public final class GameServerTable
 	 * @param id the id
 	 * @param externalHost the external host
 	 */
-	public void registerServerOnDB(byte[] hexId, int id, String externalHost)
+	public void registerServerOnDB(final byte[] hexId, final int id, final String externalHost)
 	{
 		register(id, new GameServerInfo(id, hexId));
-		try (Connection con = L2DatabaseFactory.getInstance().getConnection();
+		try (
+			Connection con = L2DatabaseFactory.getInstance().getConnection();
 			PreparedStatement ps = con.prepareStatement("INSERT INTO gameservers (hexid,server_id,host) values (?,?,?)"))
 		{
 			ps.setString(1, hexToString(hexId));
@@ -311,7 +315,7 @@ public final class GameServerTable
 			ps.setString(3, externalHost);
 			ps.executeUpdate();
 		}
-		catch (Exception e)
+		catch (final Exception e)
 		{
 			LOGGER.error("{}: Error while saving gameserver!", e);
 		}
@@ -322,7 +326,7 @@ public final class GameServerTable
 	 * @param id the id
 	 * @return the server name by id
 	 */
-	public String getServerNameById(int id)
+	public String getServerNameById(final int id)
 	{
 		return SERVER_NAMES.get(id);
 	}
@@ -350,7 +354,7 @@ public final class GameServerTable
 	 * @param string the string to convert.
 	 * @return return the hex representation.
 	 */
-	private byte[] stringToHex(String string)
+	private byte[] stringToHex(final String string)
 	{
 		return new BigInteger(string, 16).toByteArray();
 	}
@@ -360,7 +364,7 @@ public final class GameServerTable
 	 * @param hex the hex value to convert.
 	 * @return the string representation.
 	 */
-	private String hexToString(byte[] hex)
+	private String hexToString(final byte[] hex)
 	{
 		if (hex == null)
 		{
@@ -397,7 +401,7 @@ public final class GameServerTable
 		 * @param hexId the hex id
 		 * @param gst the gst
 		 */
-		public GameServerInfo(int id, byte[] hexId, GameServerThread gst)
+		public GameServerInfo(final int id, final byte[] hexId, final GameServerThread gst)
 		{
 			_id = id;
 			_hexId = hexId;
@@ -410,7 +414,7 @@ public final class GameServerTable
 		 * @param id the id
 		 * @param hexId the hex id
 		 */
-		public GameServerInfo(int id, byte[] hexId)
+		public GameServerInfo(final int id, final byte[] hexId)
 		{
 			this(id, hexId, null);
 		}
@@ -419,7 +423,7 @@ public final class GameServerTable
 		 * Sets the id.
 		 * @param id the new id
 		 */
-		public void setId(int id)
+		public void setId(final int id)
 		{
 			_id = id;
 		}
@@ -452,7 +456,7 @@ public final class GameServerTable
 		 * Sets the authed.
 		 * @param isAuthed the new authed
 		 */
-		public void setAuthed(boolean isAuthed)
+		public void setAuthed(final boolean isAuthed)
 		{
 			_isAuthed = isAuthed;
 		}
@@ -470,7 +474,7 @@ public final class GameServerTable
 		 * Sets the game server thread.
 		 * @param gst the new game server thread
 		 */
-		public void setGameServerThread(GameServerThread gst)
+		public void setGameServerThread(final GameServerThread gst)
 		{
 			_gst = gst;
 		}
@@ -488,7 +492,7 @@ public final class GameServerTable
 		 * Sets the status.
 		 * @param status the new status
 		 */
-		public void setStatus(int status)
+		public void setStatus(final int status)
 		{
 			_status = status;
 		}
@@ -546,7 +550,7 @@ public final class GameServerTable
 			{
 				return getServerAddress(InetAddress.getByName("0.0.0.0"));
 			}
-			catch (Exception e)
+			catch (final Exception e)
 			{
 				
 			}
@@ -566,7 +570,7 @@ public final class GameServerTable
 		 * Sets the port.
 		 * @param port the new port
 		 */
-		public void setPort(int port)
+		public void setPort(final int port)
 		{
 			_port = port;
 		}
@@ -575,7 +579,7 @@ public final class GameServerTable
 		 * Sets the max players.
 		 * @param maxPlayers the new max players
 		 */
-		public void setMaxPlayers(int maxPlayers)
+		public void setMaxPlayers(final int maxPlayers)
 		{
 			_maxPlayers = maxPlayers;
 		}
@@ -602,7 +606,7 @@ public final class GameServerTable
 		 * Sets the age limit.
 		 * @param val the new age limit
 		 */
-		public void setAgeLimit(int val)
+		public void setAgeLimit(final int val)
 		{
 			_ageLimit = val;
 		}
@@ -620,7 +624,7 @@ public final class GameServerTable
 		 * Sets the server type.
 		 * @param val the new server type
 		 */
-		public void setServerType(int val)
+		public void setServerType(final int val)
 		{
 			_serverType = val;
 		}
@@ -638,7 +642,7 @@ public final class GameServerTable
 		 * Sets the showing brackets.
 		 * @param val the new showing brackets
 		 */
-		public void setShowingBrackets(boolean val)
+		public void setShowingBrackets(final boolean val)
 		{
 			_isShowingBrackets = val;
 		}
@@ -669,7 +673,7 @@ public final class GameServerTable
 		 * @param addr the addr
 		 * @throws UnknownHostException the unknown host exception
 		 */
-		public void addServerAddress(String subnet, String addr) throws UnknownHostException
+		public void addServerAddress(final String subnet, final String addr) throws UnknownHostException
 		{
 			_addrs.add(new GameServerAddress(subnet, addr));
 		}
@@ -679,9 +683,9 @@ public final class GameServerTable
 		 * @param addr the addr
 		 * @return the server address
 		 */
-		public String getServerAddress(InetAddress addr)
+		public String getServerAddress(final InetAddress addr)
 		{
-			for (GameServerAddress a : _addrs)
+			for (final GameServerAddress a : _addrs)
 			{
 				if (a.equals(addr))
 				{
@@ -697,7 +701,7 @@ public final class GameServerTable
 		 */
 		public String[] getServerAddresses()
 		{
-			String[] result = new String[_addrs.size()];
+			final String[] result = new String[_addrs.size()];
 			for (int i = 0; i < result.length; i++)
 			{
 				result[i] = _addrs.get(i).toString();
@@ -727,7 +731,7 @@ public final class GameServerTable
 			 * @param address the address
 			 * @throws UnknownHostException the unknown host exception
 			 */
-			public GameServerAddress(String subnet, String address) throws UnknownHostException
+			public GameServerAddress(final String subnet, final String address) throws UnknownHostException
 			{
 				super(subnet);
 				_serverAddress = address;

@@ -20,7 +20,6 @@ package com.l2jfrozen.gameserver.network.loginserverpackets;
 
 import com.l2jfrozen.util.network.BaseRecievePacket;
 
-
 public class KickPlayer extends BaseRecievePacket
 {
 	
@@ -29,7 +28,7 @@ public class KickPlayer extends BaseRecievePacket
 	/**
 	 * @param decrypt
 	 */
-	public KickPlayer(byte[] decrypt)
+	public KickPlayer(final byte[] decrypt)
 	{
 		super(decrypt);
 		_account = readS();

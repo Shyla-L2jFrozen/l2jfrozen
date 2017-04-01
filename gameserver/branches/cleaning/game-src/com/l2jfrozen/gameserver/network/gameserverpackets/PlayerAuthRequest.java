@@ -26,7 +26,7 @@ import com.l2jfrozen.util.network.BaseSendablePacket;
  */
 public class PlayerAuthRequest extends BaseSendablePacket
 {
-	public PlayerAuthRequest(String account, SessionKey key)
+	public PlayerAuthRequest(final String account, final SessionKey key)
 	{
 		writeC(0x05);
 		writeS(account);

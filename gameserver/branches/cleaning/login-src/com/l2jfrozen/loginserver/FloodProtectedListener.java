@@ -36,7 +36,7 @@ public abstract class FloodProtectedListener extends Thread
 	private final Map<String, ForeignConnection> _floodProtection = new ConcurrentHashMap<>();
 	private ServerSocket _serverSocket;
 	
-	public FloodProtectedListener(String listenIp, int port) throws IOException
+	public FloodProtectedListener(final String listenIp, final int port) throws IOException
 	{
 		if (listenIp.equals("*"))
 		{
@@ -91,7 +91,7 @@ public abstract class FloodProtectedListener extends Thread
 				
 				addClient(connection);
 			}
-			catch (Exception e)
+			catch (final Exception e)
 			{
 				if (isInterrupted())
 				{
@@ -100,7 +100,7 @@ public abstract class FloodProtectedListener extends Thread
 					{
 						_serverSocket.close();
 					}
-					catch (IOException io)
+					catch (final IOException io)
 					{
 						_log.log(Level.INFO, "", io);
 					}
@@ -119,7 +119,7 @@ public abstract class FloodProtectedListener extends Thread
 		/**
 		 * @param time
 		 */
-		public ForeignConnection(long time)
+		public ForeignConnection(final long time)
 		{
 			lastConnection = time;
 			connectionNumber = 1;
@@ -128,13 +128,13 @@ public abstract class FloodProtectedListener extends Thread
 	
 	public abstract void addClient(Socket s);
 	
-	public void removeFloodProtection(String ip)
+	public void removeFloodProtection(final String ip)
 	{
 		if (!LoginConfig.FLOOD_PROTECTION)
 		{
 			return;
 		}
-		ForeignConnection fConnection = _floodProtection.get(ip);
+		final ForeignConnection fConnection = _floodProtection.get(ip);
 		if (fConnection != null)
 		{
 			fConnection.connectionNumber -= 1;
@@ -155,7 +155,7 @@ public abstract class FloodProtectedListener extends Thread
 		{
 			_serverSocket.close();
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
 		}

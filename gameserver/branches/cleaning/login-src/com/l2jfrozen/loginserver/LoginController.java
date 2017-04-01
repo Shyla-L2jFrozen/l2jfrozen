@@ -90,7 +90,7 @@ public class LoginController
 		KeyPairGenerator keygen = null;
 		
 		keygen = KeyPairGenerator.getInstance("RSA");
-		RSAKeyGenParameterSpec spec = new RSAKeyGenParameterSpec(1024, RSAKeyGenParameterSpec.F4);
+		final RSAKeyGenParameterSpec spec = new RSAKeyGenParameterSpec(1024, RSAKeyGenParameterSpec.F4);
 		keygen.initialize(spec);
 		
 		// generate the initial set of keys
@@ -105,7 +105,7 @@ public class LoginController
 		// Store keys for blowfish communication
 		generateBlowFishKeys();
 		
-		Thread purge = new PurgeThread();
+		final Thread purge = new PurgeThread();
 		purge.setDaemon(true);
 		purge.start();
 	}
@@ -116,10 +116,10 @@ public class LoginController
 	 * @param key Any private RSA Key just for testing purposes.
 	 * @throws GeneralSecurityException if a underlying exception was thrown by the Cipher
 	 */
-	private void testCipher(RSAPrivateKey key) throws GeneralSecurityException
+	private void testCipher(final RSAPrivateKey key) throws GeneralSecurityException
 	{
 		// avoid worst-case execution, KenM
-		Cipher rsaCipher = Cipher.getInstance("RSA/ECB/nopadding");
+		final Cipher rsaCipher = Cipher.getInstance("RSA/ECB/nopadding");
 		rsaCipher.init(Cipher.DECRYPT_MODE, key);
 	}
 	
@@ -145,7 +145,7 @@ public class LoginController
 		return _blowfishKeys[(int) (Math.random() * BLOWFISH_KEYS)];
 	}
 	
-	public SessionKey assignSessionKeyToClient(String account, L2LoginClient client)
+	public SessionKey assignSessionKeyToClient(final String account, final L2LoginClient client)
 	{
 		SessionKey key;
 		
@@ -154,7 +154,7 @@ public class LoginController
 		return key;
 	}
 	
-	public void removeAuthedLoginClient(String account)
+	public void removeAuthedLoginClient(final String account)
 	{
 		if (account == null)
 		{
@@ -163,17 +163,17 @@ public class LoginController
 		_loginServerClients.remove(account);
 	}
 	
-	public L2LoginClient getAuthedClient(String account)
+	public L2LoginClient getAuthedClient(final String account)
 	{
 		return _loginServerClients.get(account);
 	}
 	
-	public AccountInfo retriveAccountInfo(InetAddress clientAddr, String login, String password)
+	public AccountInfo retriveAccountInfo(final InetAddress clientAddr, final String login, final String password)
 	{
 		return retriveAccountInfo(clientAddr, login, password, true);
 	}
 	
-	private void recordFailedLoginAttemp(InetAddress addr)
+	private void recordFailedLoginAttemp(final InetAddress addr)
 	{
 		// We need to synchronize this!
 		// When multiple connections from the same address fail to login at the
@@ -203,7 +203,7 @@ public class LoginController
 		}
 	}
 	
-	private void clearFailedLoginAttemps(InetAddress addr)
+	private void clearFailedLoginAttemps(final InetAddress addr)
 	{
 		synchronized (_failedLoginAttemps)
 		{
@@ -211,20 +211,22 @@ public class LoginController
 		}
 	}
 	
-	private AccountInfo retriveAccountInfo(InetAddress addr, String login, String password, boolean autoCreateIfEnabled)
+	private AccountInfo retriveAccountInfo(final InetAddress addr, final String login, final String password, final boolean autoCreateIfEnabled)
 	{
 		try
 		{
-			MessageDigest md = MessageDigest.getInstance("SHA");
-			byte[] raw = password.getBytes(StandardCharsets.UTF_8);
-			String hashBase64 = Base64.getEncoder().encodeToString(md.digest(raw));
+			final MessageDigest md = MessageDigest.getInstance("SHA");
+			final byte[] raw = password.getBytes(StandardCharsets.UTF_8);
+			final String hashBase64 = Base64.getEncoder().encodeToString(md.digest(raw));
 			
-			try (Connection con = L2DatabaseFactory.getInstance().getConnection();
+			try (
+				Connection con = L2DatabaseFactory.getInstance().getConnection();
 				PreparedStatement ps = con.prepareStatement(USER_INFO_SELECT))
 			{
 				ps.setString(1, Long.toString(System.currentTimeMillis()));
 				ps.setString(2, login);
-				try (ResultSet rset = ps.executeQuery())
+				try (
+					ResultSet rset = ps.executeQuery())
 				{
 					if (rset.next())
 					{
@@ -233,7 +235,7 @@ public class LoginController
 							_log.fine("Account '" + login + "' exists.");
 						}
 						
-						AccountInfo info = new AccountInfo(rset.getString("login"), rset.getString("password"), rset.getInt("accessLevel"), rset.getInt("lastServer"));
+						final AccountInfo info = new AccountInfo(rset.getString("login"), rset.getString("password"), rset.getInt("accessLevel"), rset.getInt("lastServer"));
 						if (!info.checkPassHash(hashBase64))
 						{
 							// wrong password
@@ -254,7 +256,8 @@ public class LoginController
 				return null;
 			}
 			
-			try (Connection con = L2DatabaseFactory.getInstance().getConnection();
+			try (
+				Connection con = L2DatabaseFactory.getInstance().getConnection();
 				PreparedStatement ps = con.prepareStatement(AUTOCREATE_ACCOUNTS_INSERT))
 			{
 				ps.setString(1, login);
@@ -264,7 +267,7 @@ public class LoginController
 				ps.setString(5, addr.getHostAddress());
 				ps.execute();
 			}
-			catch (Exception e)
+			catch (final Exception e)
 			{
 				_log.log(Level.WARNING, "Exception while auto creating account for '" + login + "'!", e);
 				return null;
@@ -273,14 +276,14 @@ public class LoginController
 			_log.info("Auto created account '" + login + "'.");
 			return retriveAccountInfo(addr, login, password, false);
 		}
-		catch (Exception e)
+		catch (final Exception e)
 		{
 			_log.log(Level.WARNING, "Exception while retriving account info for '" + login + "'!", e);
 			return null;
 		}
 	}
 	
-	public AuthLoginResult tryCheckinAccount(L2LoginClient client, InetAddress address, AccountInfo info)
+	public AuthLoginResult tryCheckinAccount(final L2LoginClient client, final InetAddress address, final AccountInfo info)
 	{
 		if (info.getAccessLevel() < 0)
 		{
@@ -313,7 +316,7 @@ public class LoginController
 	 * @param expiration Timestamp in milliseconds when this ban expires
 	 * @throws UnknownHostException if the address is invalid.
 	 */
-	public void addBanForAddress(String address, long expiration) throws UnknownHostException
+	public void addBanForAddress(final String address, final long expiration) throws UnknownHostException
 	{
 		_bannedIps.putIfAbsent(InetAddress.getByName(address), expiration);
 	}
@@ -323,14 +326,14 @@ public class LoginController
 	 * @param address The Address to be banned.
 	 * @param duration is milliseconds
 	 */
-	public void addBanForAddress(InetAddress address, long duration)
+	public void addBanForAddress(final InetAddress address, final long duration)
 	{
 		_bannedIps.putIfAbsent(address, System.currentTimeMillis() + duration);
 	}
 	
-	public boolean isBannedAddress(InetAddress address) throws UnknownHostException
+	public boolean isBannedAddress(final InetAddress address) throws UnknownHostException
 	{
-		String[] parts = address.getHostAddress().split("\\.");
+		final String[] parts = address.getHostAddress().split("\\.");
 		Long bi = _bannedIps.get(address);
 		if (bi == null)
 		{
@@ -367,7 +370,7 @@ public class LoginController
 	 * @param address The address to be removed from the ban list
 	 * @return true if the ban was removed, false if there was no ban for this ip
 	 */
-	public boolean removeBanForAddress(InetAddress address)
+	public boolean removeBanForAddress(final InetAddress address)
 	{
 		return _bannedIps.remove(address) != null;
 	}
@@ -377,21 +380,21 @@ public class LoginController
 	 * @param address The address to be removed from the ban list
 	 * @return true if the ban was removed, false if there was no ban for this ip or the address was invalid.
 	 */
-	public boolean removeBanForAddress(String address)
+	public boolean removeBanForAddress(final String address)
 	{
 		try
 		{
 			return this.removeBanForAddress(InetAddress.getByName(address));
 		}
-		catch (UnknownHostException e)
+		catch (final UnknownHostException e)
 		{
 			return false;
 		}
 	}
 	
-	public SessionKey getKeyForAccount(String account)
+	public SessionKey getKeyForAccount(final String account)
 	{
-		L2LoginClient client = _loginServerClients.get(account);
+		final L2LoginClient client = _loginServerClients.get(account);
 		if (client != null)
 		{
 			return client.getSessionKey();
@@ -399,12 +402,12 @@ public class LoginController
 		return null;
 	}
 	
-	public boolean isAccountInAnyGameServer(String account)
+	public boolean isAccountInAnyGameServer(final String account)
 	{
-		Collection<GameServerInfo> serverList = GameServerTable.getInstance().getRegisteredGameServers().values();
-		for (GameServerInfo gsi : serverList)
+		final Collection<GameServerInfo> serverList = GameServerTable.getInstance().getRegisteredGameServers().values();
+		for (final GameServerInfo gsi : serverList)
 		{
-			GameServerThread gst = gsi.getGameServerThread();
+			final GameServerThread gst = gsi.getGameServerThread();
 			if ((gst != null) && gst.hasAccountOnGameServer(account))
 			{
 				return true;
@@ -413,12 +416,12 @@ public class LoginController
 		return false;
 	}
 	
-	public GameServerInfo getAccountOnGameServer(String account)
+	public GameServerInfo getAccountOnGameServer(final String account)
 	{
-		Collection<GameServerInfo> serverList = GameServerTable.getInstance().getRegisteredGameServers().values();
-		for (GameServerInfo gsi : serverList)
+		final Collection<GameServerInfo> serverList = GameServerTable.getInstance().getRegisteredGameServers().values();
+		for (final GameServerInfo gsi : serverList)
 		{
-			GameServerThread gst = gsi.getGameServerThread();
+			final GameServerThread gst = gsi.getGameServerThread();
 			if ((gst != null) && gst.hasAccountOnGameServer(account))
 			{
 				return gsi;
@@ -427,30 +430,30 @@ public class LoginController
 		return null;
 	}
 	
-	
 	/**
 	 * @param client
 	 * @param serverId
 	 * @return
 	 */
-	public boolean isLoginPossible(L2LoginClient client, int serverId)
+	public boolean isLoginPossible(final L2LoginClient client, final int serverId)
 	{
-		GameServerInfo gsi = GameServerTable.getInstance().getRegisteredGameServerById(serverId);
-		int access = client.getAccessLevel();
+		final GameServerInfo gsi = GameServerTable.getInstance().getRegisteredGameServerById(serverId);
+		final int access = client.getAccessLevel();
 		if ((gsi != null) && gsi.isAuthed())
 		{
-			boolean loginOk = ((gsi.getCurrentPlayerCount() < gsi.getMaxPlayers()) && (gsi.getStatus() != ServerStatus.STATUS_GM_ONLY)) || (access > 0);
+			final boolean loginOk = ((gsi.getCurrentPlayerCount() < gsi.getMaxPlayers()) && (gsi.getStatus() != ServerStatus.STATUS_GM_ONLY)) || (access > 0);
 			
 			if (loginOk && (client.getLastServer() != serverId))
 			{
-				try (Connection con = L2DatabaseFactory.getInstance().getConnection();
+				try (
+					Connection con = L2DatabaseFactory.getInstance().getConnection();
 					PreparedStatement ps = con.prepareStatement(ACCOUNT_LAST_SERVER_UPDATE))
 				{
 					ps.setInt(1, serverId);
 					ps.setString(2, client.getAccount());
 					ps.executeUpdate();
 				}
-				catch (Exception e)
+				catch (final Exception e)
 				{
 					_log.log(Level.WARNING, "Could not set lastServer: " + e.getMessage(), e);
 				}
@@ -460,24 +463,26 @@ public class LoginController
 		return false;
 	}
 	
-	public void setAccountAccessLevel(String account, int banLevel)
+	public void setAccountAccessLevel(final String account, final int banLevel)
 	{
-		try (Connection con = L2DatabaseFactory.getInstance().getConnection();
+		try (
+			Connection con = L2DatabaseFactory.getInstance().getConnection();
 			PreparedStatement ps = con.prepareStatement(ACCOUNT_ACCESS_LEVEL_UPDATE))
 		{
 			ps.setInt(1, banLevel);
 			ps.setString(2, account);
 			ps.executeUpdate();
 		}
-		catch (Exception e)
+		catch (final Exception e)
 		{
 			_log.log(Level.WARNING, "Could not set accessLevel: " + e.getMessage(), e);
 		}
 	}
 	
-	public void setAccountLastTracert(String account, String pcIp, String hop1, String hop2, String hop3, String hop4)
+	public void setAccountLastTracert(final String account, final String pcIp, final String hop1, final String hop2, final String hop3, final String hop4)
 	{
-		try (Connection con = L2DatabaseFactory.getInstance().getConnection();
+		try (
+			Connection con = L2DatabaseFactory.getInstance().getConnection();
 			PreparedStatement ps = con.prepareStatement(ACCOUNT_IPS_UPDATE))
 		{
 			ps.setString(1, pcIp);
@@ -488,31 +493,31 @@ public class LoginController
 			ps.setString(6, account);
 			ps.executeUpdate();
 		}
-		catch (Exception e)
+		catch (final Exception e)
 		{
 			_log.log(Level.WARNING, "Could not set last tracert: " + e.getMessage(), e);
 		}
 	}
-//	
-//	public void setCharactersOnServer(String account, int charsNum, long[] timeToDel, int serverId)
-//	{
-//		L2LoginClient client = _loginServerClients.get(account);
-//		
-//		if (client == null)
-//		{
-//			return;
-//		}
-//		
-//		if (charsNum > 0)
-//		{
-//			client.setCharsOnServ(serverId, charsNum);
-//		}
-//		
-//		if (timeToDel.length > 0)
-//		{
-//			client.serCharsWaitingDelOnServ(serverId, timeToDel);
-//		}
-//	}
+	//
+	// public void setCharactersOnServer(String account, int charsNum, long[] timeToDel, int serverId)
+	// {
+	// L2LoginClient client = _loginServerClients.get(account);
+	//
+	// if (client == null)
+	// {
+	// return;
+	// }
+	//
+	// if (charsNum > 0)
+	// {
+	// client.setCharsOnServ(serverId, charsNum);
+	// }
+	//
+	// if (timeToDel.length > 0)
+	// {
+	// client.serCharsWaitingDelOnServ(serverId, timeToDel);
+	// }
+	// }
 	
 	/**
 	 * <p>
@@ -531,17 +536,19 @@ public class LoginController
 	 * @param info the account info to checkin
 	 * @return true when ok to checkin, false otherwise
 	 */
-	public boolean canCheckin(L2LoginClient client, InetAddress address, AccountInfo info)
+	public boolean canCheckin(final L2LoginClient client, final InetAddress address, final AccountInfo info)
 	{
 		try
 		{
-			List<InetAddress> ipWhiteList = new ArrayList<>();
-			List<InetAddress> ipBlackList = new ArrayList<>();
-			try (Connection con = L2DatabaseFactory.getInstance().getConnection();
+			final List<InetAddress> ipWhiteList = new ArrayList<>();
+			final List<InetAddress> ipBlackList = new ArrayList<>();
+			try (
+				Connection con = L2DatabaseFactory.getInstance().getConnection();
 				PreparedStatement ps = con.prepareStatement(ACCOUNT_IPAUTH_SELECT))
 			{
 				ps.setString(1, info.getLogin());
-				try (ResultSet rset = ps.executeQuery())
+				try (
+					ResultSet rset = ps.executeQuery())
 				{
 					String ip, type;
 					while (rset.next())
@@ -583,7 +590,8 @@ public class LoginController
 			
 			client.setAccessLevel(info.getAccessLevel());
 			client.setLastServer(info.getLastServer());
-			try (Connection con = L2DatabaseFactory.getInstance().getConnection();
+			try (
+				Connection con = L2DatabaseFactory.getInstance().getConnection();
 				PreparedStatement ps = con.prepareStatement(ACCOUNT_INFO_UPDATE))
 			{
 				ps.setLong(1, System.currentTimeMillis());
@@ -594,24 +602,24 @@ public class LoginController
 			
 			return true;
 		}
-		catch (Exception e)
+		catch (final Exception e)
 		{
 			_log.log(Level.WARNING, "Could not finish login process!", e);
 			return false;
 		}
 	}
 	
-	public boolean isValidIPAddress(String ipAddress)
+	public boolean isValidIPAddress(final String ipAddress)
 	{
-		String[] parts = ipAddress.split("\\.");
+		final String[] parts = ipAddress.split("\\.");
 		if (parts.length != 4)
 		{
 			return false;
 		}
 		
-		for (String s : parts)
+		for (final String s : parts)
 		{
-			int i = Integer.parseInt(s);
+			final int i = Integer.parseInt(s);
 			if ((i < 0) || (i > 255))
 			{
 				return false;
@@ -652,7 +660,7 @@ public class LoginController
 		{
 			while (!isInterrupted())
 			{
-				for (L2LoginClient client : _loginServerClients.values())
+				for (final L2LoginClient client : _loginServerClients.values())
 				{
 					if (client == null)
 					{
@@ -668,7 +676,7 @@ public class LoginController
 				{
 					Thread.sleep(LOGIN_TIMEOUT / 2);
 				}
-				catch (InterruptedException e)
+				catch (final InterruptedException e)
 				{
 					return;
 				}

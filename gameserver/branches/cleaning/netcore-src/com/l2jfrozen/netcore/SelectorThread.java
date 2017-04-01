@@ -496,9 +496,9 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 				{
 					cp._buf = null;
 					cp._sbuf = null;
-
+					
 					PacketsLoggerManager.getInstance().logReceivedPacket(cp);
-
+					
 					_executor.execute(cp);
 				}
 				

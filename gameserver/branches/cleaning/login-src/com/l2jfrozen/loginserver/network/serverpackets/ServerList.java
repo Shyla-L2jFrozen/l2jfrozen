@@ -81,13 +81,13 @@ public final class ServerList extends L2LoginServerPacket
 		protected int _serverId;
 		protected int _serverType;
 		
-		ServerData(L2LoginClient client, GameServerInfo gsi)
+		ServerData(final L2LoginClient client, final GameServerInfo gsi)
 		{
 			try
 			{
 				_ip = InetAddress.getByName(gsi.getServerAddress(client.getConnection().getInetAddress())).getAddress();
 			}
-			catch (UnknownHostException e)
+			catch (final UnknownHostException e)
 			{
 				_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
 				_ip = new byte[4];
@@ -110,11 +110,11 @@ public final class ServerList extends L2LoginServerPacket
 		}
 	}
 	
-	public ServerList(L2LoginClient client)
+	public ServerList(final L2LoginClient client)
 	{
 		_servers = new ArrayList<>(GameServerTable.getInstance().getRegisteredGameServers().size());
 		_lastServer = client.getLastServer();
-		for (GameServerInfo gsi : GameServerTable.getInstance().getRegisteredGameServers().values())
+		for (final GameServerInfo gsi : GameServerTable.getInstance().getRegisteredGameServers().values())
 		{
 			_servers.add(new ServerData(client, gsi));
 		}
@@ -128,7 +128,7 @@ public final class ServerList extends L2LoginServerPacket
 		writeC(0x04);
 		writeC(_servers.size());
 		writeC(_lastServer);
-		for (ServerData server : _servers)
+		for (final ServerData server : _servers)
 		{
 			writeC(server._serverId); // server id
 			
@@ -150,7 +150,7 @@ public final class ServerList extends L2LoginServerPacket
 		if (_charsOnServers != null)
 		{
 			writeC(_charsOnServers.size());
-			for (int servId : _charsOnServers.keySet())
+			for (final int servId : _charsOnServers.keySet())
 			{
 				writeC(servId);
 				writeC(_charsOnServers.get(servId));
@@ -161,7 +161,7 @@ public final class ServerList extends L2LoginServerPacket
 				else
 				{
 					writeC(_charsToDelete.get(servId).length);
-					for (long deleteTime : _charsToDelete.get(servId))
+					for (final long deleteTime : _charsToDelete.get(servId))
 					{
 						writeD((int) ((deleteTime - System.currentTimeMillis()) / 1000));
 					}

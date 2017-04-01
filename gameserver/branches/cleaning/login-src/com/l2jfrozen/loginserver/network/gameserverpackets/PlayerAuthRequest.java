@@ -38,22 +38,22 @@ public class PlayerAuthRequest extends BaseRecievePacket
 	 * @param decrypt
 	 * @param server
 	 */
-	public PlayerAuthRequest(byte[] decrypt, GameServerThread server)
+	public PlayerAuthRequest(final byte[] decrypt, final GameServerThread server)
 	{
 		super(decrypt);
-		String account = readS();
-		int playKey1 = readD();
-		int playKey2 = readD();
-		int loginKey1 = readD();
-		int loginKey2 = readD();
-		SessionKey sessionKey = new SessionKey(loginKey1, loginKey2, playKey1, playKey2);
+		final String account = readS();
+		final int playKey1 = readD();
+		final int playKey2 = readD();
+		final int loginKey1 = readD();
+		final int loginKey2 = readD();
+		final SessionKey sessionKey = new SessionKey(loginKey1, loginKey2, playKey1, playKey2);
 		
 		PlayerAuthResponse authResponse;
 		if (CommonConfig.DEBUG)
 		{
 			_log.info("auth request received for Player " + account);
 		}
-		SessionKey key = LoginController.getInstance().getKeyForAccount(account);
+		final SessionKey key = LoginController.getInstance().getKeyForAccount(account);
 		if ((key != null) && key.equals(sessionKey))
 		{
 			if (CommonConfig.DEBUG)

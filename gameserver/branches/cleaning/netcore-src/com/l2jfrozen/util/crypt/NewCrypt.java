@@ -33,13 +33,13 @@ public final class NewCrypt
 	/**
 	 * @param blowfishKey
 	 */
-	public NewCrypt(byte[] blowfishKey)
+	public NewCrypt(final byte[] blowfishKey)
 	{
 		_cipher = new BlowfishEngine();
 		_cipher.init(blowfishKey);
 	}
 	
-	public NewCrypt(String key)
+	public NewCrypt(final String key)
 	{
 		this(key.getBytes());
 	}
@@ -71,7 +71,7 @@ public final class NewCrypt
 		}
 		
 		long chksum = 0;
-		int count = size - 4;
+		final int count = size - 4;
 		long check = -1;
 		int i;
 		
@@ -111,7 +111,7 @@ public final class NewCrypt
 	public static void appendChecksum(final byte[] raw, final int offset, final int size)
 	{
 		long chksum = 0;
-		int count = size - 4;
+		final int count = size - 4;
 		long ecx;
 		int i;
 		
@@ -142,7 +142,7 @@ public final class NewCrypt
 	 * @param raw The raw bytes to be encrypted
 	 * @param key The 4 bytes (int) XOR key
 	 */
-	public static void encXORPass(byte[] raw, int key)
+	public static void encXORPass(final byte[] raw, final int key)
 	{
 		NewCrypt.encXORPass(raw, 0, raw.length, key);
 	}
@@ -155,9 +155,9 @@ public final class NewCrypt
 	 * @param size Length of the data to be encrypted
 	 * @param key The 4 bytes (int) XOR key
 	 */
-	static void encXORPass(byte[] raw, final int offset, final int size, int key)
+	static void encXORPass(final byte[] raw, final int offset, final int size, final int key)
 	{
-		int stop = size - 8;
+		final int stop = size - 8;
 		int pos = 4 + offset;
 		int edx;
 		int ecx = key; // Initial xor key
@@ -194,7 +194,7 @@ public final class NewCrypt
 	 * @param offset the offset at which to start decrypting
 	 * @param size the number of bytes to be decrypted
 	 */
-	public void decrypt(byte[] raw, final int offset, final int size)
+	public void decrypt(final byte[] raw, final int offset, final int size)
 	{
 		for (int i = offset; i < (offset + size); i += 8)
 		{
@@ -210,7 +210,7 @@ public final class NewCrypt
 	 * @param offset the offset at which to start decrypting
 	 * @param size the number of bytes to be decrypted
 	 */
-	public void crypt(byte[] raw, final int offset, final int size)
+	public void crypt(final byte[] raw, final int offset, final int size)
 	{
 		for (int i = offset; i < (offset + size); i += 8)
 		{

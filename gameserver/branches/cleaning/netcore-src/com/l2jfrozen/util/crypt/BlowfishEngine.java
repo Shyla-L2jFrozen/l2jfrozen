@@ -1100,7 +1100,7 @@ public final class BlowfishEngine
 	 * Initialize a Blowfish cipher.
 	 * @param key the key used to set up the cipher
 	 */
-	public void init(byte[] key)
+	public void init(final byte[] key)
 	{
 		workingKey = key;
 		setKey(workingKey);
@@ -1116,7 +1116,7 @@ public final class BlowfishEngine
 		return BLOCK_SIZE;
 	}
 	
-	private int func(int x)
+	private int func(final int x)
 	{
 		return (((S0[(x >>> 24)] + S1[(x >>> 16) & 0xff]) ^ S2[(x >>> 8) & 0xff]) + S3[x & 0xff]);
 	}
@@ -1127,9 +1127,9 @@ public final class BlowfishEngine
 	 * @param xr
 	 * @param table
 	 */
-	private void processTable(int xl, int xr, int[] table)
+	private void processTable(int xl, int xr, final int[] table)
 	{
-		int size = table.length;
+		final int size = table.length;
 		for (int s = 0; s < size; s += 2)
 		{
 			xl ^= P[0];
@@ -1158,7 +1158,7 @@ public final class BlowfishEngine
 		}
 	}
 	
-	private void setKey(byte[] key)
+	private void setKey(final byte[] key)
 	{
 		/**
 		 * - comments are from _Applied Crypto_, Schneier, p338.<br>
@@ -1174,7 +1174,7 @@ public final class BlowfishEngine
 		 * (2) Now, XOR P[0] with the first 32 bits of the key, XOR P[1] with the second 32-bits of the key, and so on for all bits of the key (up to P[17]).<br>
 		 * Repeatedly cycle through the key bits until the entire P-array has been XOR-ed with the key bits
 		 */
-		int keyLength = key.length;
+		final int keyLength = key.length;
 		int keyIndex = 0;
 		for (int i = 0; i < P_SZ; i++)
 		{
@@ -1215,7 +1215,7 @@ public final class BlowfishEngine
 	 * @throws IllegalStateException The cipher was not yet initialized
 	 * @throws IOException The source array is too small to hold a block at the given index
 	 */
-	public void tryEncryptBlock(byte[] src, final int srcIndex) throws IOException
+	public void tryEncryptBlock(final byte[] src, final int srcIndex) throws IOException
 	{
 		if (workingKey == null)
 		{
@@ -1239,7 +1239,7 @@ public final class BlowfishEngine
 	 * @throws IllegalStateException The cipher was not yet initialized
 	 * @throws IOException The source or destination array is too small to hold a block at the given index
 	 */
-	public void tryEncryptBlock(final byte[] src, final int srcIndex, byte[] dst, final int dstIndex) throws IOException
+	public void tryEncryptBlock(final byte[] src, final int srcIndex, final byte[] dst, final int dstIndex) throws IOException
 	{
 		if (workingKey == null)
 		{
@@ -1269,7 +1269,7 @@ public final class BlowfishEngine
 	 * @param src source array with the plain data
 	 * @param srcIndex index where the block to encrypt is located
 	 */
-	public void encryptBlock(byte[] src, final int srcIndex)
+	public void encryptBlock(final byte[] src, final int srcIndex)
 	{
 		encryptBlock(src, srcIndex, src, srcIndex);
 	}
@@ -1288,7 +1288,7 @@ public final class BlowfishEngine
 	 * @param dst destination array the encryption will go to
 	 * @param dstIndex index where the encrypted block is to be stored
 	 */
-	public void encryptBlock(final byte[] src, final int srcIndex, byte[] dst, final int dstIndex)
+	public void encryptBlock(final byte[] src, final int srcIndex, final byte[] dst, final int dstIndex)
 	{
 		int xl = bytesTo32bits(src, srcIndex);
 		int xr = bytesTo32bits(src, srcIndex + 4);
@@ -1325,7 +1325,7 @@ public final class BlowfishEngine
 	 * @throws IllegalStateException The cipher was not yet initialized
 	 * @throws IOException The source array is too small to hold a block at the given index
 	 */
-	public void tryDecryptBlock(byte[] src, final int srcIndex) throws IOException
+	public void tryDecryptBlock(final byte[] src, final int srcIndex) throws IOException
 	{
 		if (workingKey == null)
 		{
@@ -1348,7 +1348,7 @@ public final class BlowfishEngine
 	 * @throws IllegalStateException The cipher was not yet initialized
 	 * @throws IOException The source or destination array is too small to hold a block at the given index
 	 */
-	public void tryDecryptBlock(final byte[] src, final int srcIndex, byte[] dst, final int dstIndex) throws IOException
+	public void tryDecryptBlock(final byte[] src, final int srcIndex, final byte[] dst, final int dstIndex) throws IOException
 	{
 		if (workingKey == null)
 		{
@@ -1378,7 +1378,7 @@ public final class BlowfishEngine
 	 * @param src source array with the encrypted data
 	 * @param srcIndex index where the block to decrypt is located
 	 */
-	public void decryptBlock(byte[] src, final int srcIndex)
+	public void decryptBlock(final byte[] src, final int srcIndex)
 	{
 		decryptBlock(src, srcIndex, src, srcIndex);
 	}
@@ -1398,7 +1398,7 @@ public final class BlowfishEngine
 	 * @param dstIndex index where the decrypted block is to be stored
 	 * @throws IllegalStateException The cipher was not yet initialized
 	 */
-	public void decryptBlock(final byte[] src, final int srcIndex, byte[] dst, final int dstIndex)
+	public void decryptBlock(final byte[] src, final int srcIndex, final byte[] dst, final int dstIndex)
 	{
 		int xl = bytesTo32bits(src, srcIndex);
 		int xr = bytesTo32bits(src, srcIndex + 4);
@@ -1435,7 +1435,7 @@ public final class BlowfishEngine
 	 * @param srcIndex the index to extract the int from
 	 * @return the extracted integer
 	 */
-	private int bytesTo32bits(byte[] src, int srcIndex)
+	private int bytesTo32bits(final byte[] src, final int srcIndex)
 	{
 		return ((src[srcIndex + 3] & 0xff) << 24) | ((src[srcIndex + 2] & 0xff) << 16) | ((src[srcIndex + 1] & 0xff) << 8) | ((src[srcIndex] & 0xff));
 	}
@@ -1448,7 +1448,7 @@ public final class BlowfishEngine
 	 * @param dst the destination array the decomposed int goes to
 	 * @param dstIndex the index in the destination array the decomposed int will be stored at
 	 */
-	private void bits32ToBytes(int in, byte[] dst, int dstIndex)
+	private void bits32ToBytes(final int in, final byte[] dst, final int dstIndex)
 	{
 		dst[dstIndex] = (byte) in;
 		dst[dstIndex + 1] = (byte) (in >> 8);

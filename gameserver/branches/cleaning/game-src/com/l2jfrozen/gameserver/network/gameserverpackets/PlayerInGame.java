@@ -22,24 +22,23 @@ import java.util.List;
 
 import com.l2jfrozen.util.network.BaseSendablePacket;
 
-
 /**
  * @author -Wooden-
  */
 public class PlayerInGame extends BaseSendablePacket
 {
-	public PlayerInGame(String player)
+	public PlayerInGame(final String player)
 	{
 		writeC(0x02);
 		writeH(1);
 		writeS(player);
 	}
 	
-	public PlayerInGame(List<String> players)
+	public PlayerInGame(final List<String> players)
 	{
 		writeC(0x02);
 		writeH(players.size());
-		for (String pc : players)
+		for (final String pc : players)
 		{
 			writeS(pc);
 		}

@@ -339,7 +339,7 @@ public class MMOConnection<T extends MMOClient<?>>
 	public SelectorThread<T> getSelectorThread()
 	{
 		
-		return (SelectorThread<T>) SelectorThread.getSelectorThread(_selectorThreadName);
+		return SelectorThread.getSelectorThread(_selectorThreadName);
 		
 	}
 	

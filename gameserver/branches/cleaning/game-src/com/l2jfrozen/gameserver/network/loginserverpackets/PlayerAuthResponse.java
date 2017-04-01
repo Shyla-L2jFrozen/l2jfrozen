@@ -20,7 +20,6 @@ package com.l2jfrozen.gameserver.network.loginserverpackets;
 
 import com.l2jfrozen.util.network.BaseRecievePacket;
 
-
 /**
  * @author -Wooden-
  */
@@ -33,7 +32,7 @@ public class PlayerAuthResponse extends BaseRecievePacket
 	/**
 	 * @param decrypt
 	 */
-	public PlayerAuthResponse(byte[] decrypt)
+	public PlayerAuthResponse(final byte[] decrypt)
 	{
 		super(decrypt);
 		
