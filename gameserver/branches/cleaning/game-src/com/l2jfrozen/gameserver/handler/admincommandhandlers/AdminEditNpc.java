@@ -718,7 +718,7 @@ public class AdminEditNpc implements IAdminCommandHandler
 			if (price < newItem.getReferencePrice())
 			{
 				
-				LOGGER.warn("L2TradeList " + tradeList.getListId() + " itemId  " + itemID + " has an ADENA sell price lower then reference price.. Automatically Updating it..");
+				LOGGER.warn("L2TradeList.6 " + tradeList.getListId() + " itemId  " + itemID + " has an ADENA sell price lower then reference price.. Automatically Updating it..");
 				price = newItem.getReferencePrice();
 			}
 			newItem.setPriceToSell(price);
