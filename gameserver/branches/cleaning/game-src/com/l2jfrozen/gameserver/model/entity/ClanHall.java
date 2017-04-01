@@ -404,7 +404,7 @@ public class ClanHall
 		
 		if (CommonConfig.DEBUG)
 		{
-			LOGGER.warn("Init Owner : " + _ownerId);
+			LOGGER.info("Init Owner : " + _ownerId);
 		}
 		
 		_lease = lease;
