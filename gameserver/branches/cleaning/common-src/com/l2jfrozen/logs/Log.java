@@ -43,13 +43,13 @@ public class Log
 	{
 		String date = new SimpleDateFormat("yy.MM.dd-H_mm_ss").format(new Date());
 		
-		new File("log/"+cat).mkdirs();
-		final File file = new File("log/"+cat+"/" + (ref != null ? ref : "_all")+"_"+date+ ".xml");
+		new File("log/" + cat).mkdirs();
+		final File file = new File("log/" + cat + "/" + (ref != null ? ref : "_all") + "_" + date + ".xml");
 		FileWriter save = null;
 		try
 		{
 			save = new FileWriter(file, true);
-			//final String out = "[" + date + "] '---': \n" + text + "\n"; // "+char_name()+"
+			// final String out = "[" + date + "] '---': \n" + text + "\n"; // "+char_name()+"
 			save.write(text);
 			save.flush();
 		}
@@ -84,8 +84,8 @@ public class Log
 	{
 		String date = new SimpleDateFormat("yy.MM.dd H:mm:ss").format(new Date());
 		
-		new File("log/"+cat).mkdirs();
-		final File file = new File("log/"+cat+"/" + (ref != null ? ref : "_all") + ".txt");
+		new File("log/" + cat).mkdirs();
+		final File file = new File("log/" + cat + "/" + (ref != null ? ref : "_all") + ".txt");
 		FileWriter save = null;
 		try
 		{

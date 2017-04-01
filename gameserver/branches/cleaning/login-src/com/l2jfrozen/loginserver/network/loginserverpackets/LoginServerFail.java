@@ -29,7 +29,7 @@ public class LoginServerFail extends BaseSendablePacket
 	/**
 	 * @param reason
 	 */
-	public LoginServerFail(int reason)
+	public LoginServerFail(final int reason)
 	{
 		writeC(0x01);
 		writeC(reason);

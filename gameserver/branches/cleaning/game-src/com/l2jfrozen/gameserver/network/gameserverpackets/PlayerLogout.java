@@ -20,13 +20,12 @@ package com.l2jfrozen.gameserver.network.gameserverpackets;
 
 import com.l2jfrozen.util.network.BaseSendablePacket;
 
-
 /**
  * @author -Wooden-
  */
 public class PlayerLogout extends BaseSendablePacket
 {
-	public PlayerLogout(String player)
+	public PlayerLogout(final String player)
 	{
 		writeC(0x03);
 		writeS(player);

@@ -78,18 +78,18 @@ public class ServerStatus extends BaseRecievePacket
 	 * @param decrypt
 	 * @param server
 	 */
-	public ServerStatus(byte[] decrypt, GameServerThread server)
+	public ServerStatus(final byte[] decrypt, final GameServerThread server)
 	{
 		super(decrypt);
 		
-		GameServerInfo gsi = GameServerTable.getInstance().getRegisteredGameServerById(server.getServerId());
+		final GameServerInfo gsi = GameServerTable.getInstance().getRegisteredGameServerById(server.getServerId());
 		if (gsi != null)
 		{
-			int size = readD();
+			final int size = readD();
 			for (int i = 0; i < size; i++)
 			{
-				int type = readD();
-				int value = readD();
+				final int type = readD();
+				final int value = readD();
 				switch (type)
 				{
 					case SERVER_LIST_STATUS:

@@ -22,7 +22,7 @@ package com.l2jfrozen.gameserver.network.gameserverpackets;
 
 import com.l2jfrozen.util.network.BaseSendablePacket;
 
-public class AuthRequest  extends BaseSendablePacket
+public class AuthRequest extends BaseSendablePacket
 {
 	/**
 	 * Format: cccSddb c desired ID c accept alternative ID c reserve Host s ExternalHostName s InetranlHostName d max players d hexid size b hexid

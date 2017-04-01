@@ -25,7 +25,7 @@ import com.l2jfrozen.util.network.BaseSendablePacket;
  */
 public class KickPlayer extends BaseSendablePacket
 {
-	public KickPlayer(String account)
+	public KickPlayer(final String account)
 	{
 		writeC(0x04);
 		writeS(account);

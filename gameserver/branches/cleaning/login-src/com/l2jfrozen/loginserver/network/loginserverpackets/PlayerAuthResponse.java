@@ -25,7 +25,7 @@ import com.l2jfrozen.util.network.BaseSendablePacket;
  */
 public class PlayerAuthResponse extends BaseSendablePacket
 {
-	public PlayerAuthResponse(String account, boolean response)
+	public PlayerAuthResponse(final String account, final boolean response)
 	{
 		writeC(0x03);
 		writeS(account);

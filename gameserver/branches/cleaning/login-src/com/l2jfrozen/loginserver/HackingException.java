@@ -32,7 +32,7 @@ public class HackingException extends Exception
 	String _ip;
 	private final int _connects;
 	
-	public HackingException(String ip, int connects)
+	public HackingException(final String ip, final int connects)
 	{
 		_ip = ip;
 		_connects = connects;

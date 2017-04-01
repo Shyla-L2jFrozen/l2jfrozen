@@ -37,12 +37,12 @@ public class GameServerListener extends FloodProtectedListener
 	}
 	
 	@Override
-	public void addClient(Socket s)
+	public void addClient(final Socket s)
 	{
 		_gameServers.add(new GameServerThread(s));
 	}
 	
-	public void removeGameServer(GameServerThread gst)
+	public void removeGameServer(final GameServerThread gst)
 	{
 		_gameServers.remove(gst);
 	}

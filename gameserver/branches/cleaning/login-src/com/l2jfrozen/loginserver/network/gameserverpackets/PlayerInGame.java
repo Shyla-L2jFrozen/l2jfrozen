@@ -36,13 +36,13 @@ public class PlayerInGame extends BaseRecievePacket
 	 * @param decrypt
 	 * @param server
 	 */
-	public PlayerInGame(byte[] decrypt, GameServerThread server)
+	public PlayerInGame(final byte[] decrypt, final GameServerThread server)
 	{
 		super(decrypt);
-		int size = readH();
+		final int size = readH();
 		for (int i = 0; i < size; i++)
 		{
-			String account = readS();
+			final String account = readS();
 			server.addAccountOnGameServer(account);
 			if (CommonConfig.DEBUG)
 			{

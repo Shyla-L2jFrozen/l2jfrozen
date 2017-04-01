@@ -67,7 +67,7 @@ public final class LoginFail extends L2LoginServerPacket
 		
 		private final int _code;
 		
-		LoginFailReason(int code)
+		LoginFailReason(final int code)
 		{
 			_code = code;
 		}
@@ -80,7 +80,7 @@ public final class LoginFail extends L2LoginServerPacket
 	
 	private final LoginFailReason _reason;
 	
-	public LoginFail(LoginFailReason reason)
+	public LoginFail(final LoginFailReason reason)
 	{
 		_reason = reason;
 	}

@@ -32,7 +32,7 @@ public final class GGAuth extends L2LoginServerPacket
 	
 	private final int _response;
 	
-	public GGAuth(int response)
+	public GGAuth(final int response)
 	{
 		_response = response;
 		if (CommonConfig.DEBUG)

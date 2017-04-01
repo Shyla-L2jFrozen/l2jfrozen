@@ -56,7 +56,7 @@ public class LoginConfig
 	public static boolean ENABLE_DDOS_PROTECTION_SYSTEM;
 	public static String DDOS_COMMAND_BLOCK;
 	public static boolean ENABLE_DEBUG_DDOS_PROTECTION_SYSTEM;
-
+	
 	public static long LOGIN_SERVER_SCHEDULE_RESTART_TIME;
 	public static boolean LOGIN_SERVER_SCHEDULE_RESTART;
 	

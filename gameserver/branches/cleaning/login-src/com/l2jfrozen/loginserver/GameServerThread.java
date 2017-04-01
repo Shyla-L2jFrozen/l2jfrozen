@@ -77,7 +77,7 @@ public class GameServerThread extends Thread
 			return;
 		}
 		
-		InitLS startPacket = new InitLS(_publicKey.getModulus().toByteArray());
+		final InitLS startPacket = new InitLS(_publicKey.getModulus().toByteArray());
 		try
 		{
 			sendPacket(startPacket);
@@ -98,7 +98,7 @@ public class GameServerThread extends Thread
 					break;
 				}
 				
-				byte[] data = new byte[length - 2];
+				final byte[] data = new byte[length - 2];
 				
 				int receivedBytes = 0;
 				int newBytes = 0;
@@ -133,10 +133,10 @@ public class GameServerThread extends Thread
 				L2JGameServerPacketHandler.handlePacket(data, this);
 			}
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
-			String serverName = (getServerId() != -1 ? "[" + getServerId() + "] " + GameServerTable.getInstance().getServerNameById(getServerId()) : "(" + _connectionIPAddress + ")");
-			String msg = "GameServer " + serverName + ": Connection lost: " + e.getMessage();
+			final String serverName = (getServerId() != -1 ? "[" + getServerId() + "] " + GameServerTable.getInstance().getServerNameById(getServerId()) : "(" + _connectionIPAddress + ")");
+			final String msg = "GameServer " + serverName + ": Connection lost: " + e.getMessage();
 			_log.info(msg);
 		}
 		finally
@@ -151,7 +151,7 @@ public class GameServerThread extends Thread
 		}
 	}
 	
-	public boolean hasAccountOnGameServer(String account)
+	public boolean hasAccountOnGameServer(final String account)
 	{
 		return _accountsOnGameServer.contains(account);
 	}
@@ -172,7 +172,7 @@ public class GameServerThread extends Thread
 	 * @param hosts
 	 * @param maxPlayers
 	 */
-	public void attachGameServerInfo(GameServerInfo gsi, int port, String[] hosts, int maxPlayers)
+	public void attachGameServerInfo(final GameServerInfo gsi, final int port, final String[] hosts, final int maxPlayers)
 	{
 		setGameServerInfo(gsi);
 		gsi.setGameServerThread(this);
@@ -182,7 +182,7 @@ public class GameServerThread extends Thread
 		gsi.setAuthed(true);
 	}
 	
-	public void forceClose(int reason)
+	public void forceClose(final int reason)
 	{
 		sendPacket(new LoginServerFail(reason));
 		
@@ -190,7 +190,7 @@ public class GameServerThread extends Thread
 		{
 			_connection.close();
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			_log.finer("GameServerThread: Failed disconnecting banned server, server already disconnected.");
 		}
@@ -200,12 +200,12 @@ public class GameServerThread extends Thread
 	 * @param ipAddress
 	 * @return
 	 */
-	public static boolean isBannedGameserverIP(String ipAddress)
+	public static boolean isBannedGameserverIP(final String ipAddress)
 	{
 		return false;
 	}
 	
-	public GameServerThread(Socket con)
+	public GameServerThread(final Socket con)
 	{
 		_connection = con;
 		_connectionIp = con.getInetAddress().getHostAddress();
@@ -214,11 +214,11 @@ public class GameServerThread extends Thread
 			_in = _connection.getInputStream();
 			_out = new BufferedOutputStream(_connection.getOutputStream());
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
 		}
-		KeyPair pair = GameServerTable.getInstance().getKeyPair();
+		final KeyPair pair = GameServerTable.getInstance().getKeyPair();
 		_privateKey = (RSAPrivateKey) pair.getPrivate();
 		_publicKey = (RSAPublicKey) pair.getPublic();
 		_blowfish = new NewCrypt("_;v.]05-31!|+-%xT!^[$\00");
@@ -229,11 +229,11 @@ public class GameServerThread extends Thread
 	/**
 	 * @param sl
 	 */
-	public void sendPacket(BaseSendablePacket sl)
+	public void sendPacket(final BaseSendablePacket sl)
 	{
 		try
 		{
-			byte[] data = sl.getContent();
+			final byte[] data = sl.getContent();
 			NewCrypt.appendChecksum(data);
 			if (CommonConfig.DEBUG)
 			{
@@ -241,7 +241,7 @@ public class GameServerThread extends Thread
 			}
 			_blowfish.crypt(data, 0, data.length);
 			
-			int len = data.length + 2;
+			final int len = data.length + 2;
 			synchronized (_out)
 			{
 				_out.write(len & 0xff);
@@ -250,14 +250,13 @@ public class GameServerThread extends Thread
 				_out.flush();
 			}
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			_log.severe("IOException while sending packet " + sl.getClass().getSimpleName());
 		}
 	}
 	
-	
-	public void kickPlayer(String account)
+	public void kickPlayer(final String account)
 	{
 		sendPacket(new KickPlayer(account));
 	}
@@ -265,7 +264,7 @@ public class GameServerThread extends Thread
 	/**
 	 * @param hosts The gameHost to set.
 	 */
-	public void setGameHosts(String[] hosts)
+	public void setGameHosts(final String[] hosts)
 	{
 		_log.info("Updated Gameserver [" + getServerId() + "] " + GameServerTable.getInstance().getServerNameById(getServerId()) + " IP's:");
 		
@@ -276,13 +275,13 @@ public class GameServerThread extends Thread
 			{
 				_gsi.addServerAddress(hosts[i], hosts[i + 1]);
 			}
-			catch (Exception e)
+			catch (final Exception e)
 			{
 				_log.warning("Couldn't resolve hostname \"" + e + "\"");
 			}
 		}
 		
-		for (String s : _gsi.getServerAddresses())
+		for (final String s : _gsi.getServerAddresses())
 		{
 			_log.info(s);
 		}
@@ -300,7 +299,7 @@ public class GameServerThread extends Thread
 		return getGameServerInfo().isAuthed();
 	}
 	
-	public void setGameServerInfo(GameServerInfo gsi)
+	public void setGameServerInfo(final GameServerInfo gsi)
 	{
 		_gsi = gsi;
 	}
@@ -332,17 +331,17 @@ public class GameServerThread extends Thread
 		return _privateKey;
 	}
 	
-	public void SetBlowFish(NewCrypt blowfish)
+	public void SetBlowFish(final NewCrypt blowfish)
 	{
 		_blowfish = blowfish;
 	}
 	
-	public void addAccountOnGameServer(String account)
+	public void addAccountOnGameServer(final String account)
 	{
 		_accountsOnGameServer.add(account);
 	}
 	
-	public void removeAccountOnGameServer(String account)
+	public void removeAccountOnGameServer(final String account)
 	{
 		_accountsOnGameServer.remove(account);
 	}
@@ -352,7 +351,7 @@ public class GameServerThread extends Thread
 		return _loginConnectionState;
 	}
 	
-	public void setLoginConnectionState(GameServerState state)
+	public void setLoginConnectionState(final GameServerState state)
 	{
 		_loginConnectionState = state;
 	}

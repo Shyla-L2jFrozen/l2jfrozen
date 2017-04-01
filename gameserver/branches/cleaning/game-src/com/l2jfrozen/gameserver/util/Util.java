@@ -172,13 +172,13 @@ public final class Util
 		if (obj2 instanceof L2Character)
 			rad += ((L2Character) obj2).getTemplate().collisionRadius;
 		
-		double dx = obj1.getX() - obj2.getX();
-		double dy = obj1.getY() - obj2.getY();
+		final double dx = obj1.getX() - obj2.getX();
+		final double dy = obj1.getY() - obj2.getY();
 		double d = (dx * dx) + (dy * dy);
 		
 		if (includeZAxis)
 		{
-			double dz = obj1.getZ() - obj2.getZ();
+			final double dz = obj1.getZ() - obj2.getZ();
 			d += (dz * dz);
 		}
 		return d <= ((range * range) + (2 * range * rad) + (rad * rad));

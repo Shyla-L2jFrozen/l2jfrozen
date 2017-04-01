@@ -38,7 +38,7 @@ import com.thoughtworks.xstream.XStream;
 
 /**
  * @author Shyla
- * @param <T> 
+ * @param <T>
  */
 public class PacketsLoggerManager<T extends MMOClient<?>>
 {
@@ -138,13 +138,12 @@ public class PacketsLoggerManager<T extends MMOClient<?>>
 		
 	}
 	
-	public void logReceivedPacket(ReceivablePacket<?> cp)
+	public void logReceivedPacket(final ReceivablePacket<?> cp)
 	{
 		
-		String packet_content = xstream.toXML(cp);
+		final String packet_content = xstream.toXML(cp);
 		
-		
-		Log.add(packet_content, "netcore/"+cp.getClient().getClass().getName(), cp.getClass().getSimpleName());
+		Log.add(packet_content, "netcore/" + cp.getClient().getClass().getName(), cp.getClass().getSimpleName());
 		
 	}
 	
@@ -160,10 +159,10 @@ public class PacketsLoggerManager<T extends MMOClient<?>>
 	
 	public static final void add(final String text, final String cat, final String ref)
 	{
-		String date = new SimpleDateFormat("yy.MM.dd-H_mm_ss").format(new Date());
+		final String date = new SimpleDateFormat("yy.MM.dd-H_mm_ss").format(new Date());
 		
-		new File("log/"+cat).mkdirs();
-		final File file = new File("log/"+cat+"/" + (ref != null ? ref : "_all")+"_"+date+ ".xml");
+		new File("log/" + cat).mkdirs();
+		final File file = new File("log/" + cat + "/" + (ref != null ? ref : "_all") + "_" + date + ".xml");
 		FileWriter save = null;
 		try
 		{
@@ -173,7 +172,7 @@ public class PacketsLoggerManager<T extends MMOClient<?>>
 		}
 		catch (final IOException e)
 		{
-			LOGGER.warn("Error storing packets info ",e);
+			LOGGER.warn("Error storing packets info ", e);
 		}
 		finally
 		{

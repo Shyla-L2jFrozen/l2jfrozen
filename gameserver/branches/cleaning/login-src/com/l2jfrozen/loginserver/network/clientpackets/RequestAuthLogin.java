@@ -40,9 +40,7 @@ import com.l2jfrozen.netcore.NetcoreConfig;
 
 /**
  * <pre>
- * Format: x
- * 0 (a leading null)
- * x: the rsa encrypted block with the login an password.
+ * Format: x 0 (a leading null) x: the rsa encrypted block with the login an password.
  * 
  * <pre>
  */
@@ -99,7 +97,7 @@ public class RequestAuthLogin extends L2LoginClientPacket
 			rsaCipher.init(Cipher.DECRYPT_MODE, client.getRSAPrivateKey());
 			decrypted = rsaCipher.doFinal(_raw, 0x00, 0x80);
 		}
-		catch (GeneralSecurityException e)
+		catch (final GeneralSecurityException e)
 		{
 			_log.log(Level.INFO, "", e);
 			return;
@@ -114,16 +112,16 @@ public class RequestAuthLogin extends L2LoginClientPacket
 			_ncotp |= decrypted[0x7e] << 16;
 			_ncotp |= decrypted[0x7f] << 24;
 		}
-		catch (Exception e)
+		catch (final Exception e)
 		{
 			_log.log(Level.WARNING, "", e);
 			return;
 		}
 		
-		InetAddress clientAddr = getClient().getConnection().getInetAddress();
+		final InetAddress clientAddr = getClient().getConnection().getInetAddress();
 		
 		final LoginController lc = LoginController.getInstance();
-		AccountInfo info = lc.retriveAccountInfo(clientAddr, _user, _password);
+		final AccountInfo info = lc.retriveAccountInfo(clientAddr, _user, _password);
 		if (info == null)
 		{
 			// user or pass wrong
@@ -131,7 +129,7 @@ public class RequestAuthLogin extends L2LoginClientPacket
 			return;
 		}
 		
-		AuthLoginResult result = lc.tryCheckinAccount(client, clientAddr, info);
+		final AuthLoginResult result = lc.tryCheckinAccount(client, clientAddr, info);
 		switch (result)
 		{
 			case AUTH_SUCCESS:
@@ -154,7 +152,7 @@ public class RequestAuthLogin extends L2LoginClientPacket
 				client.close(new AccountKicked(AccountKickedReason.REASON_PERMANENTLY_BANNED));
 				return;
 			case ALREADY_ON_LS:
-				L2LoginClient oldClient = lc.getAuthedClient(info.getLogin());
+				final L2LoginClient oldClient = lc.getAuthedClient(info.getLogin());
 				if (oldClient != null)
 				{
 					// kick the other client
@@ -165,7 +163,7 @@ public class RequestAuthLogin extends L2LoginClientPacket
 				client.close(LoginFailReason.REASON_ACCOUNT_IN_USE);
 				break;
 			case ALREADY_ON_GS:
-				GameServerInfo gsi = lc.getAccountOnGameServer(info.getLogin());
+				final GameServerInfo gsi = lc.getAccountOnGameServer(info.getLogin());
 				if (gsi != null)
 				{
 					client.close(LoginFailReason.REASON_ACCOUNT_IN_USE);

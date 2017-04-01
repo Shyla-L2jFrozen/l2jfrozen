@@ -38,12 +38,12 @@ public final class L2LoginPacketHandler implements IPacketHandler<L2LoginClient>
 	protected static final Logger _log = Logger.getLogger(L2LoginPacketHandler.class.getName());
 	
 	@Override
-	public ReceivablePacket<L2LoginClient> handlePacket(ByteBuffer buf, L2LoginClient client)
+	public ReceivablePacket<L2LoginClient> handlePacket(final ByteBuffer buf, final L2LoginClient client)
 	{
-		int opcode = buf.get() & 0xFF;
+		final int opcode = buf.get() & 0xFF;
 		
 		ReceivablePacket<L2LoginClient> packet = null;
-		LoginClientState state = client.getState();
+		final LoginClientState state = client.getState();
 		
 		switch (state)
 		{
@@ -87,7 +87,7 @@ public final class L2LoginPacketHandler implements IPacketHandler<L2LoginClient>
 		return packet;
 	}
 	
-	private void debugOpcode(int opcode, LoginClientState state)
+	private void debugOpcode(final int opcode, final LoginClientState state)
 	{
 		_log.info("Unknown Opcode: " + opcode + " for state: " + state.name());
 	}

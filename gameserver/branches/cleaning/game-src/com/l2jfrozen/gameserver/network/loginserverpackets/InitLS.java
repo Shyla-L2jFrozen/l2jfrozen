@@ -20,7 +20,6 @@ package com.l2jfrozen.gameserver.network.loginserverpackets;
 
 import com.l2jfrozen.util.network.BaseRecievePacket;
 
-
 public class InitLS extends BaseRecievePacket
 {
 	private final int _rev;
@@ -39,11 +38,11 @@ public class InitLS extends BaseRecievePacket
 	/**
 	 * @param decrypt
 	 */
-	public InitLS(byte[] decrypt)
+	public InitLS(final byte[] decrypt)
 	{
 		super(decrypt);
 		_rev = readD();
-		int size = readD();
+		final int size = readD();
 		_key = readB(size);
 	}
 	
