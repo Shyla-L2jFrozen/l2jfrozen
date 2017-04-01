@@ -27,15 +27,15 @@ import java.io.LineNumberReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.GeneralSecurityException;
-import java.util.logging.Level;
 import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.CommonConfigFiles;
 import com.l2jfrozen.ServerType;
+import com.l2jfrozen.loginserver.gsregistering.GameServerRegister;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.L2LoginPacketHandler;
 import com.l2jfrozen.loginserver.util.LoginServerFloodProtectorActions;
@@ -48,149 +48,155 @@ import com.l2jfrozen.util.database.L2DatabaseFactory;
 /**
  * @author KenM
  */
-public final class LoginServer {
-	private final Logger _log = Logger.getLogger(LoginServer.class.getName());
-
+public final class LoginServer
+{
+	private static final Logger LOGGER = Logger.getLogger(GameServerRegister.class);
+	
 	public static final int PROTOCOL_REV = 0x0102;
 	private static LoginServer _instance;
 	private GameServerListener _gameServerListener;
 	private SelectorThread<L2LoginClient> _selectorThread;
 	private Thread _restartLoginServer;
-
-	public static void main(String[] args) throws Exception {
+	
+	public static void main(final String[] args) throws Exception
+	{
 		new LoginServer();
 	}
-
-	public static LoginServer getInstance() {
+	
+	public static LoginServer getInstance()
+	{
 		return _instance;
 	}
-
-	private LoginServer() throws Exception {
+	
+	private LoginServer() throws Exception
+	{
 		_instance = this;
 		ServerType.serverMode = ServerType.MODE_LOGINSERVER;
 		// Create Loggers
 		final File log_conf_file = new File(CommonConfigFiles.LOG_CONF_FILE);
-		if (!log_conf_file.exists()) {
-			throw new IOException("Configuration file "
-					+ CommonConfigFiles.LOG_CONF_FILE + " is missing");
+		if (!log_conf_file.exists())
+		{
+			throw new IOException("Configuration file " + CommonConfigFiles.LOG_CONF_FILE + " is missing");
 		}
-
+		
 		// Local Constants
 		final String LOG_FOLDER = "log/login";
-
+		
 		// Create LOGGER folder
 		File logFolder = new File(LOG_FOLDER);
 		logFolder.mkdir();
-
+		
 		InputStream is = new FileInputStream(log_conf_file);
 		LogManager.getLogManager().readConfiguration(is);
 		is.close();
 		is = null;
 		logFolder = null;
-
+		
 		final File log4j_conf_file = new File(CommonConfigFiles.LOG4J_CONF_FILE);
-		if (!log4j_conf_file.exists()) {
-			throw new IOException("Configuration file "
-					+ CommonConfigFiles.LOG4J_CONF_FILE + " is missing");
+		if (!log4j_conf_file.exists())
+		{
+			throw new IOException("Configuration file " + CommonConfigFiles.LOG4J_CONF_FILE + " is missing");
 		}
-
+		
 		PropertyConfigurator.configure(CommonConfigFiles.LOG4J_CONF_FILE);
-
+		
 		// Load Config
 		NetcoreConfig.getInstance();
 		CommonConfig.load();
 		LoginConfig.load();
-
+		
 		// Prepare Database
 		L2DatabaseFactory.getInstance();
-
-		try {
+		
+		try
+		{
 			LoginController.load();
-		} catch (GeneralSecurityException e) {
-			_log.log(
-					Level.SEVERE,
-					"FATAL: Failed initializing LoginController. Reason: "
-							+ e.getMessage(), e);
+		}
+		catch (final GeneralSecurityException e)
+		{
+			LOGGER.error("FATAL: Failed initializing LoginController. Reason: " + e.getMessage(), e);
 			System.exit(1);
 		}
-
+		
 		GameServerTable.getInstance();
-
+		
 		loadBanFile();
-
+		
 		InetAddress bindAddress = null;
-		if (!LoginConfig.LOGIN_BIND_ADDRESS.equals("*")) {
-			try {
-				bindAddress = InetAddress
-						.getByName(LoginConfig.LOGIN_BIND_ADDRESS);
-			} catch (UnknownHostException e) {
-				_log.log(
-						Level.WARNING,
-						"WARNING: The LoginServer bind address is invalid, using all avaliable IPs. Reason: "
-								+ e.getMessage(), e);
+		if (!LoginConfig.LOGIN_BIND_ADDRESS.equals("*"))
+		{
+			try
+			{
+				bindAddress = InetAddress.getByName(LoginConfig.LOGIN_BIND_ADDRESS);
+			}
+			catch (final UnknownHostException e)
+			{
+				LOGGER.warn("WARNING: The LoginServer bind address is invalid, using all avaliable IPs. Reason: " + e.getMessage(), e);
 			}
 		}
-
+		
 		final SelectorConfig sc = new SelectorConfig();
 		sc.setMaxReadPerPass(NetcoreConfig.getInstance().MMO_MAX_READ_PER_PASS);
 		sc.setMaxSendPerPass(NetcoreConfig.getInstance().MMO_MAX_SEND_PER_PASS);
 		sc.setSleepTime(NetcoreConfig.getInstance().MMO_SELECTOR_SLEEP_TIME);
 		sc.setHelperBufferCount(NetcoreConfig.getInstance().MMO_HELPER_BUFFER_COUNT);
-
+		
 		final L2LoginPacketHandler lph = new L2LoginPacketHandler();
 		final SelectorHelper sh = new SelectorHelper();
-		try {
+		try
+		{
 			_selectorThread = new SelectorThread<>(sc, sh, lph, sh, sh);
-		} catch (IOException e) {
-			_log.log(Level.SEVERE, "FATAL: Failed to open Selector. Reason: "
-					+ e.getMessage(), e);
+		}
+		catch (final IOException e)
+		{
+			LOGGER.error("FATAL: Failed to open Selector. Reason: " + e.getMessage(), e);
 			System.exit(1);
 		}
-
+		
 		// Packets flood instance
 		PacketsFloodProtector.setProtectedServer(new LoginServerFloodProtectorActions());
-				
-		try {
+		
+		try
+		{
 			_gameServerListener = new GameServerListener();
 			_gameServerListener.start();
-			_log.info("Listening for GameServers on "
-					+ LoginConfig.GAME_SERVER_LOGIN_HOST + ":"
-					+ LoginConfig.GAME_SERVER_LOGIN_PORT);
-		} catch (IOException e) {
-			_log.log(Level.SEVERE,
-					"FATAL: Failed to start the Game Server Listener. Reason: "
-							+ e.getMessage(), e);
+			LOGGER.info("Listening for GameServers on " + LoginConfig.GAME_SERVER_LOGIN_HOST + ":" + LoginConfig.GAME_SERVER_LOGIN_PORT);
+		}
+		catch (final IOException e)
+		{
+			LOGGER.error("FATAL: Failed to start the Game Server Listener. Reason: " + e.getMessage(), e);
 			System.exit(1);
 		}
-
-		try {
-			_selectorThread.openServerSocket(bindAddress,
-					LoginConfig.PORT_LOGIN);
+		
+		try
+		{
+			_selectorThread.openServerSocket(bindAddress, LoginConfig.PORT_LOGIN);
 			_selectorThread.start();
-			_log.log(Level.INFO, getClass().getSimpleName()
-					+ ": is now listening on: "
-					+ LoginConfig.LOGIN_BIND_ADDRESS + ":"
-					+ LoginConfig.PORT_LOGIN);
-		} catch (IOException e) {
-			_log.log(
-					Level.SEVERE,
-					"FATAL: Failed to open server socket. Reason: "
-							+ e.getMessage(), e);
+			LOGGER.info(getClass().getSimpleName() + ": is now listening on: " + LoginConfig.LOGIN_BIND_ADDRESS + ":" + LoginConfig.PORT_LOGIN);
+		}
+		catch (final IOException e)
+		{
+			LOGGER.error("FATAL: Failed to open server socket. Reason: " + e.getMessage(), e);
 			System.exit(1);
 		}
-
+		
 	}
-
-	public GameServerListener getGameServerListener() {
+	
+	public GameServerListener getGameServerListener()
+	{
 		return _gameServerListener;
 	}
-
-	private void loadBanFile() {
+	
+	private void loadBanFile()
+	{
 		final File bannedFile = new File(LoginConfigFiles.BANNED_IP);
-		if (bannedFile.exists() && bannedFile.isFile()) {
-			try (FileInputStream fis = new FileInputStream(bannedFile);
-					InputStreamReader is = new InputStreamReader(fis);
-					LineNumberReader lnr = new LineNumberReader(is)) {
+		if (bannedFile.exists() && bannedFile.isFile())
+		{
+			try (
+				FileInputStream fis = new FileInputStream(bannedFile);
+				InputStreamReader is = new InputStreamReader(fis);
+				LineNumberReader lnr = new LineNumberReader(is))
+			{
 				// @formatter:off
 				lnr.lines()
 						.map(String::trim)
@@ -204,14 +210,14 @@ public final class LoginServer {
 								parts = line.split("\\s+"); // durations might
 															// be aligned via
 															// multiple spaces
-								String address = parts[0];
+								final String address = parts[0];
 								long duration = 0;
 
 								if (parts.length > 1) {
 									try {
 										duration = Long.parseLong(parts[1]);
-									} catch (NumberFormatException nfe) {
-										_log.warning("Skipped: Incorrect ban duration ("
+									} catch (final NumberFormatException nfe) {
+										LOGGER.warn("Skipped: Incorrect ban duration ("
 												+ parts[1]
 												+ ") on ("
 												+ bannedFile.getName()
@@ -225,57 +231,62 @@ public final class LoginServer {
 									LoginController
 											.getInstance()
 											.addBanForAddress(address, duration);
-								} catch (UnknownHostException e) {
-									_log.warning("Skipped: Invalid address ("
+								} catch (final UnknownHostException e) {
+									LOGGER.warn("Skipped: Invalid address ("
 											+ address + ") on ("
 											+ bannedFile.getName()
 											+ "). Line: " + lnr.getLineNumber());
 								}
 							});
 				// @formatter:on
-			} catch (IOException e) {
-				_log.log(
-						Level.WARNING,
-						"Error while reading the bans file ("
-								+ bannedFile.getName() + "). Details: "
-								+ e.getMessage(), e);
 			}
-			_log.info("Loaded "
-					+ LoginController.getInstance().getBannedIps().size()
-					+ " IP Bans.");
-		} else {
-			_log.warning("IP Bans file (" + bannedFile.getName()
-					+ ") is missing or is a directory, skipped.");
+			catch (final IOException e)
+			{
+				LOGGER.warn("Error while reading the bans file (" + bannedFile.getName() + "). Details: " + e.getMessage(), e);
+			}
+			LOGGER.info("Loaded " + LoginController.getInstance().getBannedIps().size() + " IP Bans.");
 		}
-
-		if (LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART) {
-			_log.info("Scheduled LS restart after "
-					+ LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART_TIME + " hours");
+		else
+		{
+			LOGGER.warn("IP Bans file (" + bannedFile.getName() + ") is missing or is a directory, skipped.");
+		}
+		
+		if (LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART)
+		{
+			LOGGER.info("Scheduled LS restart after " + LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART_TIME + " hours");
 			_restartLoginServer = new LoginServerRestart();
 			_restartLoginServer.setDaemon(true);
 			_restartLoginServer.start();
 		}
 	}
-
-	class LoginServerRestart extends Thread {
-		public LoginServerRestart() {
+	
+	class LoginServerRestart extends Thread
+	{
+		public LoginServerRestart()
+		{
 			setName("LoginServerRestart");
 		}
-
+		
 		@Override
-		public void run() {
-			while (!isInterrupted()) {
-				try {
+		public void run()
+		{
+			while (!isInterrupted())
+			{
+				try
+				{
 					Thread.sleep(LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART_TIME * 3600000);
-				} catch (InterruptedException e) {
+				}
+				catch (final InterruptedException e)
+				{
 					return;
 				}
 				shutdown(true);
 			}
 		}
 	}
-
-	public void shutdown(boolean restart) {
+	
+	public void shutdown(final boolean restart)
+	{
 		Runtime.getRuntime().exit(restart ? 2 : 0);
 	}
 }

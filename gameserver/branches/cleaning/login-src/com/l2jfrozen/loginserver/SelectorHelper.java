@@ -50,27 +50,27 @@ public class SelectorHelper implements IMMOExecutor<L2LoginClient>, IClientFacto
 	}
 	
 	@Override
-	public void execute(ReceivablePacket<L2LoginClient> packet)
+	public void execute(final ReceivablePacket<L2LoginClient> packet)
 	{
 		_generalPacketsThreadPool.execute(packet);
 	}
 	
 	@Override
-	public L2LoginClient create(MMOConnection<L2LoginClient> con)
+	public L2LoginClient create(final MMOConnection<L2LoginClient> con)
 	{
-		L2LoginClient client = new L2LoginClient(con);
+		final L2LoginClient client = new L2LoginClient(con);
 		client.sendPacket(new Init(client));
 		return client;
 	}
 	
 	@Override
-	public boolean accept(SocketChannel sc)
+	public boolean accept(final SocketChannel sc)
 	{
 		try
 		{
 			return _ipv4filter.accept(sc) && !LoginController.getInstance().isBannedAddress(sc.socket().getInetAddress());
 		}
-		catch (UnknownHostException e)
+		catch (final UnknownHostException e)
 		{
 			LOG.severe(SelectorHelper.class.getSimpleName() + ": Invalid address: " + sc.socket().getInetAddress() + "; " + e.getMessage());
 		}

@@ -68,7 +68,7 @@ public final class PlayFail extends L2LoginServerPacket
 		
 		private final int _code;
 		
-		PlayFailReason(int code)
+		PlayFailReason(final int code)
 		{
 			_code = code;
 		}
@@ -81,7 +81,7 @@ public final class PlayFail extends L2LoginServerPacket
 	
 	private final PlayFailReason _reason;
 	
-	public PlayFail(PlayFailReason reason)
+	public PlayFail(final PlayFailReason reason)
 	{
 		_reason = reason;
 	}

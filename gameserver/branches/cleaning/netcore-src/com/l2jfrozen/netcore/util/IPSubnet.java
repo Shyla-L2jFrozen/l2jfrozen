@@ -27,9 +27,9 @@ public class IPSubnet
 	final byte[] _mask;
 	final boolean _isIPv4;
 	
-	public IPSubnet(String input) throws UnknownHostException, NumberFormatException, ArrayIndexOutOfBoundsException
+	public IPSubnet(final String input) throws UnknownHostException, NumberFormatException, ArrayIndexOutOfBoundsException
 	{
-		int idx = input.indexOf("/");
+		final int idx = input.indexOf("/");
 		if (idx > 0)
 		{
 			_addr = InetAddress.getByName(input.substring(0, idx)).getAddress();
@@ -49,7 +49,7 @@ public class IPSubnet
 		}
 	}
 	
-	public IPSubnet(InetAddress addr, int mask) throws UnknownHostException
+	public IPSubnet(final InetAddress addr, final int mask) throws UnknownHostException
 	{
 		_addr = addr.getAddress();
 		_isIPv4 = _addr.length == 4;
@@ -65,7 +65,7 @@ public class IPSubnet
 		return _addr;
 	}
 	
-	public boolean applyMask(byte[] addr)
+	public boolean applyMask(final byte[] addr)
 	{
 		// V4 vs V4 or V6 vs V6 checks
 		if (_isIPv4 == (addr.length == 4))
@@ -112,7 +112,7 @@ public class IPSubnet
 	public String toString()
 	{
 		int size = 0;
-		for (byte element : _mask)
+		for (final byte element : _mask)
 		{
 			size += Integer.bitCount((element & 0xFF));
 		}
@@ -121,14 +121,14 @@ public class IPSubnet
 		{
 			return InetAddress.getByAddress(_addr).toString() + "/" + size;
 		}
-		catch (UnknownHostException e)
+		catch (final UnknownHostException e)
 		{
 			return "Invalid";
 		}
 	}
 	
 	@Override
-	public boolean equals(Object o)
+	public boolean equals(final Object o)
 	{
 		if (this == o)
 		{
@@ -146,7 +146,7 @@ public class IPSubnet
 		return false;
 	}
 	
-	private static final byte[] getMask(int n, int maxLength) throws UnknownHostException
+	private static final byte[] getMask(final int n, final int maxLength) throws UnknownHostException
 	{
 		if ((n > (maxLength << 3)) || (n < 0))
 		{

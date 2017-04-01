@@ -20,13 +20,12 @@ package com.l2jfrozen.gameserver.network.gameserverpackets;
 
 import com.l2jfrozen.util.network.BaseSendablePacket;
 
-
 /**
  * @author -Wooden-
  */
 public class ChangeAccessLevel extends BaseSendablePacket
 {
-	public ChangeAccessLevel(String player, int access)
+	public ChangeAccessLevel(final String player, final int access)
 	{
 		writeC(0x04);
 		writeD(access);

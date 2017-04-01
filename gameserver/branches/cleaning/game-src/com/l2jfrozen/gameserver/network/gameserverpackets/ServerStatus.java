@@ -75,7 +75,7 @@ public class ServerStatus extends BaseSendablePacket
 		public int id;
 		public int value;
 		
-		Attribute(int pId, int pValue)
+		Attribute(final int pId, final int pValue)
 		{
 			id = pId;
 			value = pValue;
@@ -87,7 +87,7 @@ public class ServerStatus extends BaseSendablePacket
 		_attributes = new ArrayList<>();
 	}
 	
-	public void addAttribute(int id, int value)
+	public void addAttribute(final int id, final int value)
 	{
 		_attributes.add(new Attribute(id, value));
 	}
@@ -97,7 +97,7 @@ public class ServerStatus extends BaseSendablePacket
 	{
 		writeC(0x06);
 		writeD(_attributes.size());
-		for (Attribute temp : _attributes)
+		for (final Attribute temp : _attributes)
 		{
 			writeD(temp.id);
 			writeD(temp.value);

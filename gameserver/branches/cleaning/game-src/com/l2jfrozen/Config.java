@@ -425,10 +425,10 @@ public final class Config
 		}
 	}
 	
-	public static int getServerTypeId(String[] serverTypes)
+	public static int getServerTypeId(final String[] serverTypes)
 	{
 		int tType = 0;
-		for (String cType : serverTypes)
+		for (final String cType : serverTypes)
 		{
 			switch (cType.trim().toLowerCase())
 			{
@@ -459,7 +459,6 @@ public final class Config
 		}
 		return tType;
 	}
-	
 	
 	// ============================================================
 	public static String SERVER_REVISION;

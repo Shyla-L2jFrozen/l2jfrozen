@@ -20,13 +20,12 @@ package com.l2jfrozen.gameserver.network.gameserverpackets;
 
 import com.l2jfrozen.util.network.BaseSendablePacket;
 
-
 /**
  * @author mrTJO
  */
 public class PlayerTracert extends BaseSendablePacket
 {
-	public PlayerTracert(String account, String pcIp, String hop1, String hop2, String hop3, String hop4)
+	public PlayerTracert(final String account, final String pcIp, final String hop1, final String hop2, final String hop3, final String hop4)
 	{
 		writeC(0x07);
 		writeS(account);

@@ -41,37 +41,39 @@ package com.l2jfrozen.crypt;
 import java.math.BigInteger;
 import java.security.KeyPair;
 import java.security.interfaces.RSAPublicKey;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 /**
  *
  */
 public class ScrambledKeyPair
 {
-	private static Logger _log = Logger.getLogger(ScrambledKeyPair.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ScrambledKeyPair.class);
+	
 	public KeyPair _pair;
 	public byte[] _scrambledModulus;
 	
-	public ScrambledKeyPair(KeyPair pPair)
+	public ScrambledKeyPair(final KeyPair pPair)
 	{
 		_pair = pPair;
 		_scrambledModulus = scrambleModulus(((RSAPublicKey) _pair.getPublic()).getModulus());
 	}
 	
-	private byte[] scrambleModulus(BigInteger modulus)
+	private byte[] scrambleModulus(final BigInteger modulus)
 	{
 		byte[] scrambledMod = modulus.toByteArray();
 		
 		if ((scrambledMod.length == 0x81) && (scrambledMod[0] == 0x00))
 		{
-			byte[] temp = new byte[0x80];
+			final byte[] temp = new byte[0x80];
 			System.arraycopy(scrambledMod, 1, temp, 0, 0x80);
 			scrambledMod = temp;
 		}
 		// step 1 : 0x4d-0x50 <-> 0x00-0x04
 		for (int i = 0; i < 4; i++)
 		{
-			byte temp = scrambledMod[0x00 + i];
+			final byte temp = scrambledMod[0x00 + i];
 			scrambledMod[0x00 + i] = scrambledMod[0x4d + i];
 			scrambledMod[0x4d + i] = temp;
 		}
@@ -90,7 +92,7 @@ public class ScrambledKeyPair
 		{
 			scrambledMod[0x40 + i] = (byte) (scrambledMod[0x40 + i] ^ scrambledMod[i]);
 		}
-		_log.fine("Modulus was scrambled");
+		LOGGER.info("Modulus was scrambled");
 		
 		return scrambledMod;
 	}

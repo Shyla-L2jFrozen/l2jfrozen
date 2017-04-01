@@ -32,7 +32,7 @@ public final class AccountKicked extends L2LoginServerPacket
 		
 		private final int _code;
 		
-		AccountKickedReason(int code)
+		AccountKickedReason(final int code)
 		{
 			_code = code;
 		}
@@ -48,7 +48,7 @@ public final class AccountKicked extends L2LoginServerPacket
 	/**
 	 * @param reason
 	 */
-	public AccountKicked(AccountKickedReason reason)
+	public AccountKicked(final AccountKickedReason reason)
 	{
 		_reason = reason;
 	}

@@ -129,8 +129,8 @@ public class ObjectKnownList
 		{
 			
 			boolean playerInOfflineMode = false;
-			L2PcInstance player = getActiveObject().getActingPlayer();
-			if(player != null)
+			final L2PcInstance player = getActiveObject().getActingPlayer();
+			if (player != null)
 				playerInOfflineMode = player.isInOfflineMode();
 			
 			Collection<L2Object> objects = L2World.getInstance().getVisibleObjects(getActiveObject());
@@ -147,21 +147,20 @@ public class ObjectKnownList
 				}
 				
 				boolean objectIsPlayerInOfflineMode = false;
-				L2PcInstance object_player = object.getActingPlayer();
-				if(object_player != null)
+				final L2PcInstance object_player = object.getActingPlayer();
+				if (object_player != null)
 					objectIsPlayerInOfflineMode = object_player.isInOfflineMode();
-				
-				
+					
 				// Try to add object to active object's known objects
 				// L2PlayableInstance sees everything if it's not in offline mode
-				if(!playerInOfflineMode)
+				if (!playerInOfflineMode)
 					addKnownObject(object);
-				
+					
 				// Try to add active object to object's known objects
 				// Only if object is a L2Character and active object is a L2PlayableInstance
 				if (object instanceof L2Character)
 				{
-					if(!objectIsPlayerInOfflineMode)
+					if (!objectIsPlayerInOfflineMode)
 						object.getKnownList().addKnownObject(getActiveObject());
 				}
 			}

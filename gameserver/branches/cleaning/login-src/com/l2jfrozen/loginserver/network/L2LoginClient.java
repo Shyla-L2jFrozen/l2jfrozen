@@ -77,7 +77,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	/**
 	 * @param con
 	 */
-	public L2LoginClient(MMOConnection<L2LoginClient> con)
+	public L2LoginClient(final MMOConnection<L2LoginClient> con)
 	{
 		super(con);
 		_state = LoginClientState.CONNECTED;
@@ -90,7 +90,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	}
 	
 	@Override
-	public boolean decrypt(ByteBuffer buf, int size)
+	public boolean decrypt(final ByteBuffer buf, final int size)
 	{
 		boolean isChecksumValid = false;
 		try
@@ -104,7 +104,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 			}
 			return true;
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
 			super.getConnection().close((SendablePacket<L2LoginClient>) null);
@@ -113,14 +113,14 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	}
 	
 	@Override
-	public boolean encrypt(ByteBuffer buf, int size)
+	public boolean encrypt(final ByteBuffer buf, int size)
 	{
 		final int offset = buf.position();
 		try
 		{
 			size = _loginCrypt.encrypt(buf.array(), offset, size);
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
 			return false;
@@ -134,7 +134,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		return _state;
 	}
 	
-	public void setState(LoginClientState state)
+	public void setState(final LoginClientState state)
 	{
 		_state = state;
 	}
@@ -159,12 +159,12 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		return _account;
 	}
 	
-	public void setAccount(String account)
+	public void setAccount(final String account)
 	{
 		_account = account;
 	}
 	
-	public void setAccessLevel(int accessLevel)
+	public void setAccessLevel(final int accessLevel)
 	{
 		_accessLevel = accessLevel;
 	}
@@ -174,7 +174,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		return _accessLevel;
 	}
 	
-	public void setLastServer(int lastServer)
+	public void setLastServer(final int lastServer)
 	{
 		_lastServer = lastServer;
 	}
@@ -194,12 +194,12 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		return _joinedGS;
 	}
 	
-	public void setJoinedGS(boolean val)
+	public void setJoinedGS(final boolean val)
 	{
 		_joinedGS = val;
 	}
 	
-	public void setSessionKey(SessionKey sessionKey)
+	public void setSessionKey(final SessionKey sessionKey)
 	{
 		_sessionKey = sessionKey;
 	}
@@ -214,27 +214,27 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		return _connectionStartTime;
 	}
 	
-	public void sendPacket(L2LoginServerPacket lsp)
+	public void sendPacket(final L2LoginServerPacket lsp)
 	{
 		getConnection().sendPacket(lsp);
 	}
 	
-	public void close(LoginFailReason reason)
+	public void close(final LoginFailReason reason)
 	{
 		getConnection().close(new LoginFail(reason));
 	}
 	
-	public void close(PlayFailReason reason)
+	public void close(final PlayFailReason reason)
 	{
 		getConnection().close(new PlayFail(reason));
 	}
 	
-	public void close(L2LoginServerPacket lsp)
+	public void close(final L2LoginServerPacket lsp)
 	{
 		getConnection().close(lsp);
 	}
 	
-	public void setCharsOnServ(int servId, int chars)
+	public void setCharsOnServ(final int servId, final int chars)
 	{
 		if (_charsOnServers == null)
 		{
@@ -248,7 +248,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		return _charsOnServers;
 	}
 	
-	public void serCharsWaitingDelOnServ(int servId, long[] charsToDel)
+	public void serCharsWaitingDelOnServ(final int servId, final long[] charsToDel)
 	{
 		if (_charsToDelete == null)
 		{
@@ -279,18 +279,18 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	@Override
 	public String toString()
 	{
-		InetAddress address = getConnection().getInetAddress();
+		final InetAddress address = getConnection().getInetAddress();
 		if (getState() == LoginClientState.AUTHED_LOGIN)
 		{
 			return "[" + getAccount() + " (" + (address == null ? "disconnected" : address.getHostAddress()) + ")]";
 		}
 		return "[" + (address == null ? "disconnected" : address.getHostAddress()) + "]";
 	}
-
-	@Override
-	protected void onForcedDisconnection(boolean critical) {
-		// empty	
-	}
 	
+	@Override
+	protected void onForcedDisconnection(final boolean critical)
+	{
+		// empty
+	}
 	
 }

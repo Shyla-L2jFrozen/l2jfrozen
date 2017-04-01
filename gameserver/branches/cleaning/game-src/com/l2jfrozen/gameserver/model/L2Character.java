@@ -853,13 +853,13 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 				if (Town.getTownId() == Config.TW_TOWN_ID && !Config.TW_ALL_TOWNS)
 				{
 					if (this instanceof L2PcInstance)
-						 ((L2PcInstance)this).sendMessage("You can't teleport during Townwar event!");
+						((L2PcInstance) this).sendMessage("You can't teleport during Townwar event!");
 					return;
 				}
 				else if (Config.TW_ALL_TOWNS)
 				{
 					if (this instanceof L2PcInstance)
-						 ((L2PcInstance)this).sendMessage("You can't teleport during Townwar event!");
+						((L2PcInstance) this).sendMessage("You can't teleport during Townwar event!");
 					return;
 				}
 			}

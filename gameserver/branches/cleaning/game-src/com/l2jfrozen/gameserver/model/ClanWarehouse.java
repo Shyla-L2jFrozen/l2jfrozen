@@ -25,8 +25,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 
 public final class ClanWarehouse extends Warehouse
 {
-	// private static final Logger LOGGER = Logger.getLogger(PcWarehouse.class);
-	
 	private final L2Clan _clan;
 	
 	public ClanWarehouse(final L2Clan clan)
@@ -37,7 +35,6 @@ public final class ClanWarehouse extends Warehouse
 	@Override
 	public int getOwnerId()
 	{
-		// return _clan.getLeader().getObjectId();
 		return _clan.getClanId();
 	}
 	

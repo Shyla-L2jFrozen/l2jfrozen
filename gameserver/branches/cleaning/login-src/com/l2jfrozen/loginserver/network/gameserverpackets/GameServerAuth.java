@@ -29,10 +29,10 @@ import com.l2jfrozen.loginserver.GameServerTable;
 import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.LoginConfig;
-import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
-import com.l2jfrozen.util.network.BaseRecievePacket;
 import com.l2jfrozen.loginserver.network.L2JGameServerPacketHandler.GameServerState;
 import com.l2jfrozen.loginserver.network.loginserverpackets.AuthResponse;
+import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
+import com.l2jfrozen.util.network.BaseRecievePacket;
 
 /**
  * Format: cccddb c desired ID c accept alternative ID c reserve Host s ExternalHostName s InetranlHostName d max players d hexid size b hexid
@@ -47,15 +47,15 @@ public class GameServerAuth extends BaseRecievePacket
 	private final boolean _acceptAlternativeId;
 	private final int _maxPlayers;
 	private final int _port;
-//	private final String _externalHost;
-//	private final String _internalHost;
+	// private final String _externalHost;
+	// private final String _internalHost;
 	private final GameServerThread _server;
 	private final String[] _hosts;
 	
 	/**
 	 * @param decrypt
 	 */
-	public GameServerAuth(final byte[] decrypt, GameServerThread server)
+	public GameServerAuth(final byte[] decrypt, final GameServerThread server)
 	{
 		super(decrypt);
 		
@@ -70,8 +70,8 @@ public class GameServerAuth extends BaseRecievePacket
 			_hosts[i] = readS();
 		}
 		
-//		_externalHost = readS();
-//		_internalHost = readS();
+		// _externalHost = readS();
+		// _internalHost = readS();
 		_port = readH();
 		_maxPlayers = readD();
 		
@@ -86,7 +86,7 @@ public class GameServerAuth extends BaseRecievePacket
 		
 		if (handleRegProcess())
 		{
-			AuthResponse ar = new AuthResponse(server.getGameServerInfo().getId());
+			final AuthResponse ar = new AuthResponse(server.getGameServerInfo().getId());
 			server.sendPacket(ar);
 			if (CommonConfig.DEBUG)
 			{
@@ -97,53 +97,16 @@ public class GameServerAuth extends BaseRecievePacket
 	}
 	
 	/*
-	public byte[] getHexID()
-	{
-		return _hexId;
-	}
-	
-	public boolean getHostReserved()
-	{
-		return _hostReserved;
-	}
-	
-	public int getDesiredID()
-	{
-		return _desiredId;
-	}
-	
-	public boolean acceptAlternateID()
-	{
-		return _acceptAlternativeId;
-	}
-	
-	public int getMaxPlayers()
-	{
-		return _maxPlayers;
-	}
-	
-	public String getExternalHost()
-	{
-		return _externalHost;
-	}
-
-	public String getInternalHost()
-	{
-		return _internalHost;
-	}
-	
-	public int getPort()
-	{
-		return _port;
-	}
-	*/
+	 * public byte[] getHexID() { return _hexId; } public boolean getHostReserved() { return _hostReserved; } public int getDesiredID() { return _desiredId; } public boolean acceptAlternateID() { return _acceptAlternativeId; } public int getMaxPlayers() { return _maxPlayers; } public String
+	 * getExternalHost() { return _externalHost; } public String getInternalHost() { return _internalHost; } public int getPort() { return _port; }
+	 */
 	
 	private boolean handleRegProcess()
 	{
-		GameServerTable gameServerTable = GameServerTable.getInstance();
+		final GameServerTable gameServerTable = GameServerTable.getInstance();
 		
-		int id = _desiredId;
-		byte[] hexId = _hexId;
+		final int id = _desiredId;
+		final byte[] hexId = _hexId;
 		
 		GameServerInfo gsi = gameServerTable.getRegisteredGameServerById(id);
 		// is there a gameserver registered with this id?
@@ -216,5 +179,5 @@ public class GameServerAuth extends BaseRecievePacket
 		
 		return true;
 	}
-
+	
 }

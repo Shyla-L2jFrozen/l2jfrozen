@@ -36,10 +36,10 @@ public class PlayerLogout extends BaseRecievePacket
 	 * @param decrypt
 	 * @param server
 	 */
-	public PlayerLogout(byte[] decrypt, GameServerThread server)
+	public PlayerLogout(final byte[] decrypt, final GameServerThread server)
 	{
 		super(decrypt);
-		String account = readS();
+		final String account = readS();
 		
 		server.removeAccountOnGameServer(account);
 		if (CommonConfig.DEBUG)

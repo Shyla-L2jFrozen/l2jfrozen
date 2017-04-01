@@ -288,7 +288,7 @@ public final class L2World
 	 */
 	public Collection<L2PcInstance> getAllPlayers()
 	{
-		synchronized(_allPlayers)
+		synchronized (_allPlayers)
 		{
 			return _allPlayers.values();
 		}
@@ -302,7 +302,7 @@ public final class L2World
 	 */
 	public Integer getAllPlayersCount()
 	{
-		synchronized(_allPlayers)
+		synchronized (_allPlayers)
 		{
 			return _allPlayers.size();
 		}
@@ -316,7 +316,7 @@ public final class L2World
 	 */
 	public L2PcInstance getPlayer(final String name)
 	{
-		synchronized(_allPlayers)
+		synchronized (_allPlayers)
 		{
 			return _allPlayers.get(name.toLowerCase());
 		}
@@ -330,7 +330,7 @@ public final class L2World
 	 */
 	public L2PcInstance getPlayer(final int playerObjId)
 	{
-		synchronized(_allPlayers)
+		synchronized (_allPlayers)
 		{
 			for (final L2PcInstance actual : _allPlayers.values())
 			{
@@ -437,14 +437,14 @@ public final class L2World
 		{
 			L2PcInstance player = (L2PcInstance) object;
 			
-			synchronized(_allPlayers)
+			synchronized (_allPlayers)
 			{
-				L2PcInstance tmp = _allPlayers.put(player.getName().toLowerCase(), player);
+				final L2PcInstance tmp = _allPlayers.put(player.getName().toLowerCase(), player);
 				
 				if (tmp != null)
 				{
 					
-					if(tmp != player)  // just kick the player previous instance
+					if (tmp != player) // just kick the player previous instance
 					{
 						tmp.store(); // Store character and items
 						tmp.logout();
@@ -454,7 +454,8 @@ public final class L2World
 							tmp.getClient().setActiveChar(null); // prevent deleteMe from being called a second time on disconnection
 						}
 						
-					}else if (!player.isTeleporting()) // if player is equal to old tmp and is not teleporting --> duplicate
+					}
+					else if (!player.isTeleporting()) // if player is equal to old tmp and is not teleporting --> duplicate
 					{
 						LOGGER.warn("Teleporting: Duplicate character!? Closing both characters (" + player.getName() + ")");
 						player.closeNetConnection();
@@ -469,7 +470,7 @@ public final class L2World
 			
 			if (!newRegion.isActive())
 				return;
-			
+				
 			// Get all visible objects contained in the _visibleObjects of L2WorldRegions
 			// in a circular area of 2000 units
 			final List<L2Object> visibles = getVisibleObjects(object, 2000);
@@ -531,7 +532,7 @@ public final class L2World
 	 */
 	public void addToAllPlayers(final L2PcInstance cha)
 	{
-		synchronized(_allPlayers)
+		synchronized (_allPlayers)
 		{
 			_allPlayers.put(cha.getName().toLowerCase(), cha);
 		}
@@ -555,7 +556,7 @@ public final class L2World
 				LOGGER.info("Removed player: " + cha.getName().toLowerCase());
 			}
 			
-			synchronized(_allPlayers)
+			synchronized (_allPlayers)
 			{
 				_allPlayers.remove(cha.getName().toLowerCase());
 			}
@@ -1049,7 +1050,8 @@ public final class L2World
 	public FastList<L2PcInstance> getAccountPlayers(final String account_name)
 	{
 		
-		synchronized(_allPlayers){
+		synchronized (_allPlayers)
+		{
 			
 			final FastList<L2PcInstance> players_for_account = new FastList<>();
 			for (final L2PcInstance actual : _allPlayers.values())

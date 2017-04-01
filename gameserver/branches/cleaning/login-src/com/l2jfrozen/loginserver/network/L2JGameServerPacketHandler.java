@@ -46,11 +46,11 @@ public class L2JGameServerPacketHandler
 		AUTHED
 	}
 	
-	public static BaseRecievePacket handlePacket(byte[] data, GameServerThread server)
+	public static BaseRecievePacket handlePacket(final byte[] data, final GameServerThread server)
 	{
 		BaseRecievePacket msg = null;
-		int opcode = data[0] & 0xff;
-		GameServerState state = server.getLoginConnectionState();
+		final int opcode = data[0] & 0xff;
+		final GameServerState state = server.getLoginConnectionState();
 		switch (state)
 		{
 			case CONNECTED:

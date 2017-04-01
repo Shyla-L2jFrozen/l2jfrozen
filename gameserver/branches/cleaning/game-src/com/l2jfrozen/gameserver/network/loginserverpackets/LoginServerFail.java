@@ -20,7 +20,6 @@ package com.l2jfrozen.gameserver.network.loginserverpackets;
 
 import com.l2jfrozen.util.network.BaseRecievePacket;
 
-
 public class LoginServerFail extends BaseRecievePacket
 {
 	
@@ -40,7 +39,7 @@ public class LoginServerFail extends BaseRecievePacket
 	/**
 	 * @param decrypt
 	 */
-	public LoginServerFail(byte[] decrypt)
+	public LoginServerFail(final byte[] decrypt)
 	{
 		super(decrypt);
 		_reason = readC();
