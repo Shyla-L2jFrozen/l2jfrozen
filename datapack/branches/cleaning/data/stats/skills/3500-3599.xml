@@ -1717,17 +1717,20 @@
     </skill>
     <!-- Status:Fixed Pack:l2jfrozen author:Nefer -->
     <skill id="3592" levels="1" name="Dispell">
-        <!-- Infinity Spear Skill -->
-        <set name="bestowed" val="true"/>
-        <set name="magicLvl" val="80"/>
-        <set name="negateSkillTypes" val="BUFF"/>
-        <set name="operateType" val="OP_ACTIVE"/>
-        <set name="power" val="80"/>
-        <!-- Base Land Rate -->
-        <set name="skillType" val="CANCEL"/>
-        <set name="target" val="TARGET_ONE"/>
-        <set name="negatePower" val="5"/>
-    </skill>
+        <!-- Infinity Spear Skill -->
+        <set name="bestowed" val="true"/>
+        <set name="magicLvl" val="80"/>
+        <set name="operateType" val="OP_ACTIVE"/>
+        <set name="power" val="80"/>
+        <set name="skillType" val="COREDONE"/>  
+        <set name="target" val="TARGET_ONE"/>
+        <!-- Negate power is max cancel buffs -->
+        <set name="negateSkillTypes" val="BUFF"/>
+        <set name="negatePower" val="5"/>
+        <for>
+            <effect count="1" name="HeroCancel" time="1" noicon="1" val="0"/>
+        </for>
+    </skill>
     <!-- Status:Fixed Pack:l2jfrozen author:Nefer -->
     <skill id="3593" levels="1" name="Special Ability: Infinity Bow">
         <set name="magicLvl" val="80"/>
