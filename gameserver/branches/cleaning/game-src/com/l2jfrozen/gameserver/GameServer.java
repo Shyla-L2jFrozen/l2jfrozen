@@ -458,7 +458,9 @@ public class GameServer
 			doorTable.getDoor(23180004).openMe();
 			doorTable.getDoor(23180005).openMe();
 			doorTable.getDoor(23180006).openMe();
-			doorTable.checkAutoOpen();
+			
+			if (Config.ENABLE_AUTOOPENDOOR)
+				doorTable.checkAutoOpen();
 			doorTable = null;
 		}
 		catch (final NullPointerException e)
