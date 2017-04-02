@@ -131,6 +131,7 @@ public final class Config
 	public static boolean ALLOW_MANOR;
 	public static int AUTODESTROY_ITEM_AFTER;
 	public static int HERB_AUTO_DESTROY_TIME;
+	public static boolean ENABLE_AUTOOPENDOOR;
 	public static String PROTECTED_ITEMS;
 	public static FastList<Integer> LIST_PROTECTED_ITEMS = new FastList<>();
 	public static boolean DESTROY_DROPPED_PLAYER_ITEM;
@@ -204,6 +205,7 @@ public final class Config
 			
 			AUTODESTROY_ITEM_AFTER = Integer.parseInt(optionsSettings.getProperty("AutoDestroyDroppedItemAfter", "0"));
 			HERB_AUTO_DESTROY_TIME = Integer.parseInt(optionsSettings.getProperty("AutoDestroyHerbTime", "15")) * 1000;
+			ENABLE_AUTOOPENDOOR = Boolean.valueOf(optionsSettings.getProperty("AutoCheckOpenDoor", "True"));
 			PROTECTED_ITEMS = optionsSettings.getProperty("ListOfProtectedItems");
 			LIST_PROTECTED_ITEMS = new FastList<>();
 			for (final String id : PROTECTED_ITEMS.split(","))
@@ -4162,6 +4164,7 @@ public final class Config
 	
 	// ============================================================
 	private static final String HEXID_FILE = FService.HEXID_FILE;
+	
 	public static boolean ENABLE_OLYMPIAD_DISCONNECTION_DEBUG = false;
 	public static int SERVER_ID;
 	public static byte[] HEX_ID;
