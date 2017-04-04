@@ -206,7 +206,7 @@ public class L2FortSiegeGuardAI extends L2CharacterAI implements Runnable
 	{
 		if (CommonConfig.DEBUG)
 		{
-			_log1.info("L2SiegeAI.changeIntention(" + intention + ", " + arg0 + ", " + arg1 + ")");
+			_log1.info("L2FortSiegeAI.changeIntention(" + intention + ", " + arg0 + ", " + arg1 + ")");
 		}
 		
 		if (intention == AI_INTENTION_IDLE /* || intention == AI_INTENTION_ACTIVE */) // active becomes idle if only a summon is present

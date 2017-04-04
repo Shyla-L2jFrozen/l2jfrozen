@@ -2527,9 +2527,7 @@ public final class Formulas
 			final StringBuilder stat = new StringBuilder(100);
 			StringUtil.append(stat, " calcSkillSuccess: ", skill.getName(), " ID:", "" + skill.getId(), " type:", skill.getSkillType().toString(), " power:", String.valueOf(value), " stat:", String.format("%1.2f", statModifier), " res:", String.format("%1.2f", resMod), "(", String.format("%1.2f", vulnModifier), " mAtk:", String.format("%1.2f", mAtkModifier), " ss:", String.valueOf(ssModifier), " lvl:", String.valueOf(deltamod), " physics configuration multiplier:", String.valueOf(physics_mult), " total:", String.valueOf(rate));
 			final String result = stat.toString();
-			if (Config.DEVELOPER)
-				LOGGER.info(result);
-			
+			LOGGER.info(result);
 		}
 		
 		if (attacker instanceof L2PcInstance && Config.SEND_SKILLS_CHANCE_TO_PLAYERS)
@@ -2644,9 +2642,7 @@ public final class Formulas
 			final StringBuilder stat = new StringBuilder(100);
 			StringUtil.append(stat, " calcEffectSuccess: ", skill.getName(), " type:", skill.getSkillType().toString(), " power:", String.valueOf(value), " stat:", String.format("%1.2f", statModifier), " res:", String.format("%1.2f", resMod), "(", String.format("%1.2f", vulnModifier), " mAtk:", String.format("%1.2f", mAtkModifier), " ss:", String.valueOf(ssModifier), " lvl:", String.valueOf(deltamod), " physics configuration multiplier:", String.valueOf(physics_mult), " total:", String.valueOf(rate));
 			final String result = stat.toString();
-			if (Config.DEVELOPER)
-				LOGGER.info(result);
-			
+			LOGGER.info(result);
 		}
 		
 		if (attacker instanceof L2PcInstance && Config.SEND_SKILLS_CHANCE_TO_PLAYERS)

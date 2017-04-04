@@ -71,6 +71,7 @@ import com.l2jfrozen.gameserver.model.entity.siege.Siege;
 import com.l2jfrozen.gameserver.model.quest.Quest;
 import com.l2jfrozen.gameserver.model.quest.QuestState;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
+import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.network.serverpackets.ClientSetTime;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;
 import com.l2jfrozen.gameserver.network.serverpackets.Die;
@@ -489,6 +490,9 @@ public class EnterWorld extends L2GameClientPacket
 		
 		// Close lock at login
 		activeChar.setLocked(false);
+		
+		// send an action failed packet to avoid problem with char stuck
+		activeChar.sendPacket(ActionFailed.STATIC_PACKET);
 	}
 	
 	private boolean isValidName(final String text)
