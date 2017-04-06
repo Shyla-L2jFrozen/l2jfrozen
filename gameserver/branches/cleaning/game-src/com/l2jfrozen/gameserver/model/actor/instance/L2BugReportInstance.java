@@ -57,6 +57,13 @@ public class L2BugReportInstance extends L2FolkInstance
 		{
 			final StringTokenizer st = new StringTokenizer(command);
 			st.nextToken();
+			
+			if (st.countTokens() < 2)
+			{
+				player.sendMessage("BugReport: Message can't be empty!");
+				return;
+			}
+			
 			String msg = null;
 			String type = null;
 			type = st.nextToken();
@@ -99,13 +106,32 @@ public class L2BugReportInstance extends L2FolkInstance
 		
 		try
 		{
-			final String fname = "log/BugReports/" + player.getName() + ".txt";
-			final File file = new File(fname);
-			final boolean exist = file.createNewFile();
-			if (!exist)
+			// max 10 report for every player?
+			int x = 15;
+			String fname = "log/BugReports/" + player.getName() + ".txt";
+			File file = new File(fname);
+			
+			for (int i = 0; i < x; i++)
 			{
-				player.sendMessage("You have already sent a bug report, GMs must check it first.");
-				return;
+				final boolean exist = file.createNewFile();
+				
+				if (!exist)
+				{
+					fname = "log/BugReports/" + player.getName() + i + ".txt";
+					file = new File(fname);
+				}
+				else
+				{
+					break;
+				}
+				
+				if (i == 14)
+				{
+					LOGGER.warn("[BugReport] cleanup log/BugReport/ folder for player "+player);
+					player.sendMessage("BugReport: You sent the max number of report in game!");
+					return;
+				}
+				
 			}
 			final FileWriter fstream = new FileWriter(fname);
 			final BufferedWriter out = new BufferedWriter(fstream);

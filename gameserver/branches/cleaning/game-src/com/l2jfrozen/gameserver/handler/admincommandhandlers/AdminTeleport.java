@@ -563,7 +563,6 @@ public class AdminTeleport implements IAdminCommandHandler
 	}
 	
 	private void teleportTo(final L2PcInstance activeChar, final int x, final int y, final int z)
-	// private void teleportTo(L2PcInstance activeChar, String Cords)
 	{
 		
 		activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
