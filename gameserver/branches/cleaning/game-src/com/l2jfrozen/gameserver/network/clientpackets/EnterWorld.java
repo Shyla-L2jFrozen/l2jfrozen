@@ -604,7 +604,7 @@ public class EnterWorld extends L2GameClientPacket
 		
 		if (Config.PM_MESSAGE_ON_START)
 		{
-			activeChar.sendPacket(new CreatureSay(2, Say2.HERO_VOICE, Config.PM_TEXT1, Config.PM_SERVER_NAME));
+			activeChar.sendPacket(new CreatureSay(2, Say2.HERO_VOICE, Config.PM_SERVER_NAME, Config.PM_TEXT1));
 			activeChar.sendPacket(new CreatureSay(15, Say2.PARTYROOM_COMMANDER, activeChar.getName(), Config.PM_TEXT2));
 		}
 		
