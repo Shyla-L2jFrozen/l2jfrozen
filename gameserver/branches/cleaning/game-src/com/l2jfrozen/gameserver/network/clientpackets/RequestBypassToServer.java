@@ -96,8 +96,6 @@ public final class RequestBypassToServer extends L2GameClientPacket
 						activeChar.sendMessage("The command " + command + " does not exists!");
 					}
 					
-					if (CommonConfig.DEBUG)
-						LOGGER.warn("No handler registered for admin command '" + command + "'");
 					return;
 				}
 				
