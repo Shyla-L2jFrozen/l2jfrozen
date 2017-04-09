@@ -632,6 +632,24 @@ public final class L2PcInstance extends L2PlayableInstance
 				return;
 			}
 			
+			// if on same team this avoid autoattackintention after mass skill
+			if (target instanceof L2PcInstance)
+			{
+				if ((_inEventTvT && ((L2PcInstance) target)._inEventTvT && TvT.is_started() && _teamNameTvT.equals(((L2PcInstance) target)._teamNameTvT)) || (_inEventCTF && ((L2PcInstance) target)._inEventCTF && CTF.is_started() && _teamNameCTF.equals(((L2PcInstance) target)._teamNameCTF)))
+				{
+					sendPacket(ActionFailed.STATIC_PACKET);
+					return;
+				}
+			}
+			else if (target instanceof L2SummonInstance)
+			{
+				if ((_inEventTvT && ((L2SummonInstance) target).getOwner()._inEventTvT && TvT.is_started() && _teamNameTvT.equals(((L2SummonInstance) target).getOwner()._teamNameTvT)) || (_inEventCTF && ((L2SummonInstance) target).getOwner()._inEventCTF && CTF.is_started() && _teamNameCTF.equals(((L2SummonInstance) target).getOwner()._teamNameCTF)))
+				{
+					sendPacket(ActionFailed.STATIC_PACKET);
+					return;
+				}
+			}
+			
 			// Pk protection config
 			if (!isGM() && target instanceof L2PcInstance && ((L2PcInstance) target).getPvpFlag() == 0 && ((L2PcInstance) target).getKarma() == 0 && (getLevel() < Config.ALT_PLAYER_PROTECTION_LEVEL || target.getLevel() < Config.ALT_PLAYER_PROTECTION_LEVEL))
 			{
@@ -5821,7 +5839,6 @@ public final class L2PcInstance extends L2PlayableInstance
 	@Override
 	public void onAction(final L2PcInstance player)
 	{
-		// if ((TvT._started && !Config.TVT_ALLOW_INTERFERENCE) || (CTF._started && !Config.CTF_ALLOW_INTERFERENCE) || (DM._started && !Config.DM_ALLOW_INTERFERENCE))
 		// no Interaction with not participant to events
 		if (((TvT.is_started() || TvT.is_teleport()) && !Config.TVT_ALLOW_INTERFERENCE) || ((CTF.is_started() || CTF.is_teleport()) && !Config.CTF_ALLOW_INTERFERENCE) || ((DM.is_started() || DM.is_teleport()) && !Config.DM_ALLOW_INTERFERENCE))
 		{
@@ -5884,12 +5901,7 @@ public final class L2PcInstance extends L2PlayableInstance
 			}
 			else
 			{
-				/*
-				 * //during teleport phase, players cant do any attack if((TvT.is_teleport() && _inEventTvT) || (CTF.is_teleport() && _inEventCTF) || (DM.is_teleport() && _inEventDM)){ player.sendPacket(ActionFailed.STATIC_PACKET); return; } if (TvT.is_started()) { if ((_inEventTvT &&
-				 * player._teamNameTvT.equals(_teamNameTvT))) { player.sendPacket(ActionFailed.STATIC_PACKET); return; } } if(CTF.is_started()){ if ((_inEventCTF && player._teamNameCTF.equals(_teamNameCTF))) { player.sendPacket(ActionFailed.STATIC_PACKET); return; } }
-				 */
 				// Check if this L2PcInstance is autoAttackable
-				// if (isAutoAttackable(player) || (player._inEventTvT && TvT._started) || (player._inEventCTF && CTF._started) || (player._inEventDM && DM._started) || (player._inEventVIP && VIP._started))
 				if (isAutoAttackable(player))
 				{
 					
@@ -6093,7 +6105,6 @@ public final class L2PcInstance extends L2PlayableInstance
 				else
 				{
 					// Check if this L2PcInstance is autoAttackable
-					// if (isAutoAttackable(player) || (player._inEventTvT && TvT._started) || (player._inEventCTF && CTF._started) || (player._inEventDM && DM._started) || (player._inEventVIP && VIP._started))
 					if (isAutoAttackable(player))
 					{
 						
@@ -12428,13 +12439,7 @@ public final class L2PcInstance extends L2PlayableInstance
 				return;
 			}
 			
-			/*
-			 * // Check if the target is attackable if(target instanceof L2PcInstance && !target.isAttackable() && !getAccessLevel().allowPeaceAttack() && (!(_inEventTvT && TvT.is_started()) || !(_inEventCTF && CTF.is_started()) || !(_inEventDM && DM.is_started()) || !(_inEventVIP && VIP._started)))
-			 * { if(!isInFunEvent() || !((L2PcInstance)target).isInFunEvent()) { // If target is not attackable, send a Server->Client packet ActionFailed sendPacket(ActionFailed.STATIC_PACKET); return; } }
-			 */
-			
 			// Check if a Forced ATTACK is in progress on non-attackable target
-			// if (!target.isAutoAttackable(this) && !forceUse && !(_inEventTvT && TvT._started) && !(_inEventDM && DM._started) && !(_inEventCTF && CTF._started) && !(_inEventVIP && VIP._started)
 			if (!target.isAutoAttackable(this) && (!forceUse && (skill.getId() != 3261 && skill.getId() != 3260 && skill.getId() != 3262)) && !(_inEventTvT && TvT.is_started()) && !(_inEventDM && DM.is_started()) && !(_inEventCTF && CTF.is_started()) && !(_inEventVIP && VIP._started) && sklTargetType != SkillTargetType.TARGET_AURA && sklTargetType != SkillTargetType.TARGET_CLAN && sklTargetType != SkillTargetType.TARGET_ALLY && sklTargetType != SkillTargetType.TARGET_PARTY && sklTargetType != SkillTargetType.TARGET_SELF && sklTargetType != SkillTargetType.TARGET_GROUND)
 			
 			{
@@ -13237,7 +13242,7 @@ public final class L2PcInstance extends L2PlayableInstance
 	}
 	
 	/** The _task bot checker. */
-	private ScheduledFuture<?> _taskBotChecker;
+	public ScheduledFuture<?> _taskBotChecker;
 	
 	/** The _task kick bot. */
 	protected ScheduledFuture<?> _taskKickBot;
@@ -13255,7 +13260,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		public void run()
 		{
 			/* Start bot checker if player is in combat online without shop and in a zone not peacefull */
-			if (!isGM() && isOnline() == 1 && isInCombat() && getPrivateStoreType() == 0 && !isInsideZone(L2Character.ZONE_PEACE))
+			if (!isGM() && isOnline() == 1 && isInCombat() && getPrivateStoreType() == 0 && !isInsideZone(L2Character.ZONE_PEACE) && !isInsideZone(L2Character.ZONE_PVP) && !isInsideZone(L2Character.ZONE_SIEGE) && getKarma() == 0 && getPvpFlag() == 0)
 			{
 				try
 				{
@@ -13353,8 +13358,8 @@ public final class L2PcInstance extends L2PlayableInstance
 					_stopKickBotTask = false;
 					return;
 				}
-				LOGGER.warn("Player " + L2PcInstance.this.getName() + " kicked from game, no/wrong answer on ANTI BOT!");
-				L2PcInstance.this.closeNetConnection();
+				LOGGER.warn("Player " + L2PcInstance.this.getName() + " teleported to near city, no/wrong answer on ANTI BOT!");
+				L2PcInstance.this.teleToLocation(MapRegionTable.TeleportWhereType.Town);
 			}
 			else
 			{

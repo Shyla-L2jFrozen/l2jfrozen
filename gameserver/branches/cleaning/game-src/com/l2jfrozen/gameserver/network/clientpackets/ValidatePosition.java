@@ -57,7 +57,7 @@ public final class ValidatePosition extends L2GameClientPacket
 	{
 		final L2PcInstance activeChar = getClient().getActiveChar();
 		
-		if (activeChar == null || activeChar.isTeleporting())
+		if (activeChar == null || activeChar.isTeleporting() || activeChar.inObserverMode())
 			return;
 		
 		if (_x == 0 && _y == 0 && activeChar.getX() != 0)
@@ -86,22 +86,6 @@ public final class ValidatePosition extends L2GameClientPacket
 		
 		final int geoZ = GeoData.getInstance().getHeight(realX, realY, finalZ);
 		
-		/*
-		 * if(activeChar.isMoving() && diffSq > activeChar.getStat().getMoveSpeed()) { activeChar.broadcastPacket(new CharMoveToLocation(activeChar)); } else if(Config.COORD_SYNCHRONIZE > 0) { if(diffSq > 0 && diffSq < 250000) // if too large, messes observation { if((Config.COORD_SYNCHRONIZE & 1)
-		 * == 1 && (!activeChar.isMoving() // character is not moving, take coordinates from client || !activeChar.validateMovementHeading(_heading))) // Heading changed on client = possible obstacle { if(Config.DEVELOPER) LOGGER.info(activeChar.getName() +
-		 * ": Synchronizing position Client --> Server" + (activeChar.isMoving() ? " (collision)" : " (stay sync)")); if(diffSq < 2500){ if(MathLib.abs(dz) < 500){ activeChar.setXYZ(realX, realY, realZ); }else{ final int geoZ = GeoData.getInstance().getHeight(realX, realY, realZ); if((_z - geoZ) >
-		 * 0) { activeChar.setXYZ(realX, realY, _z); } if(Config.FALL_DAMAGE) { activeChar.isFalling((int)dz); } } }else{ if(MathLib.abs(dz) < 500){ activeChar.setXYZ(realX, realY, realZ); }else{ final int geoZ = GeoData.getInstance().getHeight(realX, realY, realZ); if((realZ - geoZ) > 0) {
-		 * activeChar.setXYZ(_x, _y, realZ); } if(Config.FALL_DAMAGE) { activeChar.isFalling((int)dz); } } } activeChar.setHeading(_heading); } else if((Config.COORD_SYNCHRONIZE & 2) == 2 && diffSq > 10000) // more than can be considered to be result of latency { if(Config.DEVELOPER)
-		 * LOGGER.info(activeChar.getName() + ": Synchronizing position Server --> Client"); if(activeChar.isInBoat()) sendPacket(new ValidateLocationInVehicle(activeChar)); else sendPacket(new ValidateLocation(activeChar)); } else if(Config.COORD_SYNCHRONIZE == 4) //synchronization on Z {
-		 * if(activeChar.isInBoat()) { activeChar.setXYZ(activeChar.getBoat().getX(), activeChar.getBoat().getY(), activeChar.getBoat().getZ()); } else if(activeChar.isFlying() || activeChar.isInWater()) { if(MathLib.abs(dz) < 500) { realZ = _z; } else { _z = realZ; } activeChar.setXYZ(realX, realY,
-		 * realZ); if(diffSq > 1000000) { clientToServer(activeChar); } } else if(_z < Config.WORLD_SIZE_MIN_Z || _z > Config.WORLD_SIZE_MAX_Z || diffSq > 1000000) { clientToServer(activeChar); } else if(diffSq < 250000) { if(dz < 0 && MathLib.abs(dz) > 500) clientToServer(activeChar); if(dz > 333)
-		 * { final int geoZ = GeoData.getInstance().getHeight(realX, realY, realZ); if((_z - geoZ) > 0) { activeChar.setXYZ(realX, realY, _z); } if(Config.FALL_DAMAGE) { activeChar.isFalling((int)dz); } } else if(activeChar.isMoving() && diffSq > activeChar.getStat().getMoveSpeed()) {
-		 * activeChar.broadcastPacket(new CharMoveToLocation(activeChar)); } } activeChar.broadcastPacket(new ValidateLocation(activeChar)); } } activeChar.setLastClientPosition(_x, _y, _z); activeChar.setLastServerPosition(activeChar.getX(), activeChar.getY(), activeChar.getZ()); } else
-		 * if(Config.COORD_SYNCHRONIZE == -1) { if(diffSq < 250000){ if(MathLib.abs(dz) < 500){ activeChar.setXYZ(realX, realY, realZ); }else{ int geoZ = GeoData.getInstance().getHeight(realX, realY, realZ); if(MathLib.abs(_z - geoZ) > 0) //client Z is higher then GeoZ --> falling? {
-		 * activeChar.setXYZ(realX, realY, _z); } } //activeChar.setXYZ(realX, realY, _z); } if(CommonConfig.DEBUG) { int realHeading = activeChar.getHeading(); LOGGER.fine("client pos: " + _x + " " + _y + " " + _z + " head " + _heading); LOGGER.fine("server pos: " + realX + " " + realY + " " +
-		 * realZ + " head " + realHeading); } }
-		 */
-		
 		if (CommonConfig.DEBUG)
 		{
 			
@@ -110,6 +94,11 @@ public final class ValidatePosition extends L2GameClientPacket
 			LOGGER.info("server pos: " + realX + " " + realY + " " + realZ + " head " + realHeading);
 			LOGGER.info("finalZ" + finalZ + " geoZ: " + geoZ + " destZ: " + activeChar.getZdestination());
 			
+		}
+		
+		if (activeChar.isFalling(_z))
+		{
+			return; // disable validations during fall to avoid "jumping"
 		}
 		
 		// COORD Client<-->Server synchronization

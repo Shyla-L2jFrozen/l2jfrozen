@@ -654,14 +654,6 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 		// the force operation will allow to not save client position to prevent again criticals
 		// and stuck
 		closeNow();
-		
-		/*
-		 * L2PcInstance player = null; if((player = getActiveChar()) !=null){ if(critical){ LOGGER.warn( "Client " + toString() + " disconnected abnormally."); LOGGER.warn( "Character disconnected at Loc X:"+player.getX()+" Y:"+player.getY()+" Z:"+player.getZ()); LOGGER.warn(
-		 * "Character disconnected in (closest) zone: "+MapRegionTable.getInstance().getClosestTownName(player)); } if(player.isFlying()) player.removeSkill(SkillTable.getInstance().getInfo(4289, 1)); if(player.isAway()) { AwayManager.getInstance().extraBack(player); } if(player.isInParty()) {
-		 * player.getParty().removePartyMember(player); } //Decrease boxes number if(player._active_boxes!=-1) player.decreaseBoxes(); if(player._inEventCTF){ CTF.onDisconnect(player); }else if(player._inEventDM){ DM.onDisconnect(player); }else if(player._inEventTvT){ TvT.onDisconnect(player); }else
-		 * if(player._inEventVIP){ VIP.onDisconnect(player); } if(Olympiad.getInstance().isRegistered(player)){ Olympiad.getInstance().unRegisterNoble(player); } player.deleteMe(); try { player.store(true); } catch(Exception e2) { if(CommonConfig.ENABLE_ALL_EXCEPTIONS) e2.printStackTrace(); }
-		 * L2World.getInstance().removeFromAllPlayers(player); setActiveChar(null); LoginServerThread.getInstance().sendLogout(getAccountName()); } stopGuardTask(); nProtect.getInstance().closeSession(this);
-		 */
 	}
 	
 	@Override
