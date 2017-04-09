@@ -61,15 +61,23 @@ public final class AddTradeItem extends L2GameClientPacket
 		}
 		
 		// Check Partner and ocbjectId
-		if (trade.getPartner() == null || L2World.getInstance().findObject(trade.getPartner().getObjectId()) == null)
+		final L2PcInstance partner = trade.getPartner();
+		if (partner == null || L2World.getInstance().findObject(partner.getObjectId()) == null || (partner.getActiveTradeList() == null))
 		{
 			// Trade partner not found, cancel trade
-			if (trade.getPartner() != null)
+			if (partner != null)
 				LOGGER.warn("Character:" + player.getName() + " requested invalid trade object: " + _objectId);
 			
 			player.sendPacket(new SystemMessage(SystemMessageId.TARGET_IS_NOT_FOUND_IN_THE_GAME));
 			player.getClient().sendPacket(ActionFailed.STATIC_PACKET);
 			player.cancelActiveTrade();
+			return;
+		}
+		
+		if (trade.isConfirmed() || trade.getPartner().getActiveTradeList().isConfirmed())
+		{
+			player.sendMessage("Cannot adjust items after trade confirmed.");
+			player.getClient().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
