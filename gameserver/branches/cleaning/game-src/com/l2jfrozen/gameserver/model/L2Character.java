@@ -2302,6 +2302,21 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 			calculateRewards(killer);
 		}
 		
+		// after the mob is dead start the bot protection!
+		if (Config.BOT_PROTECTOR)
+		{
+			if (mostHated != null && mostHated instanceof L2PcInstance)
+			{
+				if (((L2PcInstance) mostHated)._taskBotChecker == null)
+					((L2PcInstance) mostHated).startBotChecker();
+			}
+			if (killer != null && killer instanceof L2PcInstance)
+			{
+				if (((L2PcInstance) killer)._taskBotChecker == null)
+					((L2PcInstance) killer).startBotChecker();
+			}
+		}
+		
 		// Send the Server->Client packet StatusUpdate with current HP and MP to all other L2PcInstance to inform
 		broadcastStatusUpdate();
 		
