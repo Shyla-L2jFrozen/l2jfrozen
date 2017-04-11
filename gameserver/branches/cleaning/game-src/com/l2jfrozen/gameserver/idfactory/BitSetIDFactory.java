@@ -55,11 +55,6 @@ public class BitSetIDFactory extends IdFactory
 	
 	public class BitSetCapacityCheck implements Runnable
 	{
-		
-		/*
-		 * (non-Javadoc)
-		 * @see java.lang.Runnable#run()
-		 */
 		@Override
 		public void run()
 		{
