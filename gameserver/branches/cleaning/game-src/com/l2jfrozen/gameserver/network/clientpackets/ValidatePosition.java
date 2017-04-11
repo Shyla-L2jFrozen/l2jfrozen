@@ -22,7 +22,6 @@ package com.l2jfrozen.gameserver.network.clientpackets;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
 import com.l2jfrozen.gameserver.geo.GeoData;
@@ -86,14 +85,12 @@ public final class ValidatePosition extends L2GameClientPacket
 		
 		final int geoZ = GeoData.getInstance().getHeight(realX, realY, finalZ);
 		
-		if (CommonConfig.DEBUG)
+		if (Config.ZONE_DEBUG)
 		{
-			
 			final int realHeading = activeChar.getHeading();
 			LOGGER.info("client pos: " + _x + " " + _y + " " + _z + " head " + _heading);
 			LOGGER.info("server pos: " + realX + " " + realY + " " + realZ + " head " + realHeading);
 			LOGGER.info("finalZ" + finalZ + " geoZ: " + geoZ + " destZ: " + activeChar.getZdestination());
-			
 		}
 		
 		if (activeChar.isFalling(_z))
