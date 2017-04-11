@@ -211,7 +211,7 @@ public class AdminCommandHandler
 			{
 				if (AdminCommandAccessRights.getInstance().accessRightForCommand(command) < 0)
 				{
-					LOGGER.info("ATTENTION: admin command " + command + " has not an access right");
+					LOGGER.warn("ATTENTION: admin command " + command + " has not an access right");
 				}
 			}
 			

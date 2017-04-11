@@ -15327,11 +15327,6 @@ public final class L2PcInstance extends L2PlayableInstance
 	{
 		startWarnUserTakeBreak();
 		
-		if (Config.BOT_PROTECTOR)
-		{
-			startBotChecker();
-		}
-		
 		if (SevenSigns.getInstance().isSealValidationPeriod() || SevenSigns.getInstance().isCompResultsPeriod())
 		{
 			if (!isGM() && isIn7sDungeon() && SevenSigns.getInstance().getPlayerCabal(this) != SevenSigns.getInstance().getCabalHighestScore())
