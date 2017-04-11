@@ -480,7 +480,7 @@ public final class UseItem extends L2GameClientPacket
 					}
 				}
 				
-				// unEquipItem will call also the remove boni for augument
+				// unEquipItem will call also the remove boni for augment
 				items = activeChar.getInventory().unEquipItemInBodySlotAndRecord(bodyPart);
 			}
 			else
@@ -558,12 +558,6 @@ public final class UseItem extends L2GameClientPacket
 				}
 				activeChar.sendPacket(sm);
 				
-				// Apply augementation boni on equip
-				if (item.isAugmented())
-				{
-					item.getAugmentation().applyBoni(activeChar);
-				}
-				
 				// Apply cupid's bow skills on equip
 				if (item.isCupidBow())
 				{
@@ -576,6 +570,13 @@ public final class UseItem extends L2GameClientPacket
 				}
 				
 				items = activeChar.getInventory().equipItemAndRecord(item);
+				
+				// Apply augementation boni on equip
+				// This check must be done here after equipItemAndRecord() that will call the removeboni for old item
+				if (item.isAugmented())
+				{
+					item.getAugmentation().applyBoni(activeChar);
+				}
 				
 				if (item.getItem() instanceof L2Weapon)
 				{
