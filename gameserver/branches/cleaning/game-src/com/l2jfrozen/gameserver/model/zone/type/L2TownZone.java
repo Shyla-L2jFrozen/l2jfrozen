@@ -143,11 +143,12 @@ public class L2TownZone extends L2ZoneType
 		}
 		
 		if (Config.ZONE_DEBUG)
+		{
 			if (character instanceof L2PcInstance)
 			{
 				((L2PcInstance) character).sendMessage("You left " + _townName);
 			}
-		
+		}
 	}
 	
 	@Override

@@ -65,7 +65,7 @@ public class L2ZoneManager
 	public void revalidateZones(final L2Character character)
 	{
 		if (Config.ZONE_DEBUG && character != null && character instanceof L2PcInstance && character.getName() != null)
-			LOGGER.debug("ZONE: Revalidating Zone for character: " + character.getName());
+			LOGGER.info("ZONE: Revalidating Zone for character: " + character.getName());
 		
 		for (final L2ZoneType e : _zones)
 		{
