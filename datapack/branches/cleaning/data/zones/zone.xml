@@ -826,7 +826,7 @@
     <stat name='InvadeTime' val='1800000'/>
   </zone>
 <!-- Boss zone Lair of Zaken -->
-  <zone id='12011' type='BossZone' shape='Cuboid' minZ='-3775' maxZ='-2690' bossId='29022'>
+  <zone id='12011' type='BossZone' shape='NPoly' minZ='-4815' maxZ='-315' bossId='29022'>
     <stat name='name' val='LairofZaken'/>
     <stat name='Flying' val='false'/>
     <stat name='EnabledByDefault' val='false'/>
