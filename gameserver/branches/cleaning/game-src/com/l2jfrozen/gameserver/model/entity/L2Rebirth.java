@@ -27,7 +27,6 @@ import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.datatables.sql.ItemTable;
 import com.l2jfrozen.gameserver.datatables.xml.ExperienceData;
-import com.l2jfrozen.gameserver.idfactory.BitSetIDFactory;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
@@ -48,7 +47,7 @@ import com.l2jfrozen.util.database.L2DatabaseFactory;
  */
 public class L2Rebirth
 {
-	private static Logger LOGGER = Logger.getLogger(BitSetIDFactory.class);
+	private static Logger LOGGER = Logger.getLogger(L2Rebirth.class);
 	
 	/** The current instance - static repeller. */
 	private static L2Rebirth _instance = null;
