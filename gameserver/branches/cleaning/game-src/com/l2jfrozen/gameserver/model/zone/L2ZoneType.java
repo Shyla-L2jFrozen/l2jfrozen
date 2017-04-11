@@ -281,13 +281,11 @@ public abstract class L2ZoneType
 		
 		if (Config.ZONE_DEBUG && character instanceof L2PcInstance && ((L2PcInstance) character).isGM())
 		{
-			
-			LOGGER.debug("ZONE: Character " + character.getName() + " has coords: ");
-			LOGGER.debug("ZONE: 	X: " + character.getX());
-			LOGGER.debug("ZONE: 	Y: " + character.getY());
-			LOGGER.debug("ZONE: 	Z: " + character.getZ());
-			LOGGER.debug("ZONE:  -  is inside zone " + _id + "?: " + _zone.isInsideZone(character.getX(), character.getY(), character.getZ()));
-			
+			LOGGER.info("ZONE: Character " + character.getName() + " has coords: ");
+			LOGGER.info("ZONE: 	X: " + character.getX());
+			LOGGER.info("ZONE: 	Y: " + character.getY());
+			LOGGER.info("ZONE: 	Z: " + character.getZ());
+			LOGGER.info("ZONE:  -  is inside zone " + _id + "?: " + _zone.isInsideZone(character.getX(), character.getY(), character.getZ()));
 		}
 		
 		// If the object is inside the zone...
@@ -306,7 +304,8 @@ public abstract class L2ZoneType
 			if (_characterList.containsKey(character.getObjectId()))
 			{
 				if (Config.ZONE_DEBUG && character instanceof L2PcInstance && character.getName() != null)
-					LOGGER.debug("ZONE: " + "Character " + character.getName() + " removed from zone.");
+					LOGGER.info("ZONE: " + "Character " + character.getName() + " removed from zone.");
+				
 				_characterList.remove(character.getObjectId());
 				onExit(character);
 			}
@@ -317,7 +316,7 @@ public abstract class L2ZoneType
 			for (final L2Character actual : _characterList.values())
 			{
 				if (actual instanceof L2PcInstance)
-					LOGGER.debug("ZONE:	 -  " + actual.getName() + " is inside zone " + _id);
+					LOGGER.info("ZONE:	 -  " + actual.getName() + " is inside zone " + _id);
 			}
 		}
 		
