@@ -134,10 +134,6 @@ public final class UseItem extends L2GameClientPacket
 			activeChar.cancelActiveTrade();
 		}
 		
-		// NOTE: disabled due to deadlocks
-		// synchronized (activeChar.getInventory())
-		// {
-		
 		if (item.isWear())
 			// No unequipping wear-items
 			return;
@@ -250,14 +246,6 @@ public final class UseItem extends L2GameClientPacket
 				return;
 			}
 		}
-		
-		/*
-		 * //You can't equip Shield if you have specific weapon equiped, not retail L2Weapon curwep = activeChar.getActiveWeaponItem(); if(curwep != null) { if(curwep.getItemType() == L2WeaponType.DUAL && item.getItemType() == L2WeaponType.NONE) {
-		 * activeChar.sendMessage("You are not allowed to do this."); return; } else if(curwep.getItemType() == L2WeaponType.BOW && item.getItemType() == L2WeaponType.NONE) { activeChar.sendMessage("You are not allowed to do this."); return; } else if(curwep.getItemType() == L2WeaponType.BIGBLUNT &&
-		 * item.getItemType() == L2WeaponType.NONE) { activeChar.sendMessage("You are not allowed to do this."); return; } else if(curwep.getItemType() == L2WeaponType.BIGSWORD && item.getItemType() == L2WeaponType.NONE) { activeChar.sendMessage("You are not allowed to do this."); return; } else
-		 * if(curwep.getItemType() == L2WeaponType.POLE && item.getItemType() == L2WeaponType.NONE) { activeChar.sendMessage("You are not allowed to do this."); return; } else if(curwep.getItemType() == L2WeaponType.DUALFIST && item.getItemType() == L2WeaponType.NONE) {
-		 * activeChar.sendMessage("You are not allowed to do this."); return; } }
-		 */
 		
 		// Char cannot use item when dead
 		if (activeChar.isDead())
@@ -462,12 +450,6 @@ public final class UseItem extends L2GameClientPacket
 				
 				activeChar.sendPacket(sm);
 				
-				// Remove augementation bonus on unequipment
-				if (item.isAugmented())
-				{
-					item.getAugmentation().removeBoni(activeChar);
-				}
-				
 				switch (item.getEquipSlot())
 				{
 					case 1:
@@ -498,6 +480,7 @@ public final class UseItem extends L2GameClientPacket
 					}
 				}
 				
+				// unEquipItem will call also the remove boni for augument
 				items = activeChar.getInventory().unEquipItemInBodySlotAndRecord(bodyPart);
 			}
 			else
@@ -608,10 +591,6 @@ public final class UseItem extends L2GameClientPacket
 			
 			sm = null;
 			
-			/*
-			 * if(item.getItem().getType2() == L2Item.TYPE2_WEAPON) { activeChar.checkIfWeaponIsAllowed(); }
-			 */
-			
 			activeChar.abortAttack();
 			
 			activeChar.sendPacket(new EtcStatusUpdate(activeChar));
@@ -670,7 +649,6 @@ public final class UseItem extends L2GameClientPacket
 				}
 			}
 		}
-		// }
 	}
 	
 	@Override
@@ -678,5 +656,4 @@ public final class UseItem extends L2GameClientPacket
 	{
 		return "[C] 14 UseItem";
 	}
-	
 }
