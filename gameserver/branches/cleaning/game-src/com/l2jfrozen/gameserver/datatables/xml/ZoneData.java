@@ -532,10 +532,9 @@ public class ZoneData
 										
 										if (temp.getZone().intersectsRectangle(ax, bx, ay, by))
 										{
-											if (CommonConfig.DEBUG)
-											{
+											if (Config.ZONE_DEBUG)
 												LOGGER.info("Zone (" + zoneId + ") added to: " + x + " " + y);
-											}
+											
 											worldRegions[x][y].addZone(temp);
 										}
 									}
