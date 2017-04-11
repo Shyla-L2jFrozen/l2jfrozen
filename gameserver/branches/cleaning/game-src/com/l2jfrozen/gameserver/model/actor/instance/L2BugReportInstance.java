@@ -127,7 +127,7 @@ public class L2BugReportInstance extends L2FolkInstance
 				
 				if (i == 14)
 				{
-					LOGGER.warn("[BugReport] cleanup log/BugReport/ folder for player "+player);
+					LOGGER.warn("[BugReport] cleanup log/BugReport/ folder for player " + player);
 					player.sendMessage("BugReport: You sent the max number of report in game!");
 					return;
 				}
@@ -141,7 +141,7 @@ public class L2BugReportInstance extends L2FolkInstance
 			for (final L2PcInstance allgms : L2World.getInstance().getAllGMs())
 				allgms.sendPacket(new CreatureSay(0, Say2.SHOUT, "Bug Report Manager", player.getName() + " sent a bug report."));
 			
-			System.out.println("Character: " + player.getName() + " sent a bug report.");
+			LOGGER.info("Character: " + player.getName() + " sent a bug report.");
 			out.close();
 		}
 		catch (final Exception e)
