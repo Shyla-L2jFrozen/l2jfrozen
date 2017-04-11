@@ -78,7 +78,6 @@ public final class SendBypassBuildCmd extends L2GameClientPacket
 		else
 		{
 			activeChar.sendMessage("The command " + _command + " doesn't exists!");
-			LOGGER.warn("No handler registered for admin command '" + _command + "'");
 			return;
 		}
 	}

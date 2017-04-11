@@ -622,8 +622,6 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 			return;
 		}
 		
-		// if (CommonConfig.DEBUG) LOGGER.fine("players to notify:" + knownPlayers.size() + " packet:"+mov.getType());
-		
 		for (final L2PcInstance player : getKnownList().getKnownPlayers().values())
 		{
 			if (player != null)
@@ -672,8 +670,6 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 		{
 			sendPacket(mov);
 		}
-		
-		// if (CommonConfig.DEBUG) LOGGER.fine("players to notify:" + knownPlayers.size() + " packet:"+mov.getType());
 		
 		for (final L2PcInstance player : getKnownList().getKnownPlayers().values())
 		{

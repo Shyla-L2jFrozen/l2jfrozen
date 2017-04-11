@@ -89,8 +89,7 @@ public class L2DatabaseFactory_c3p0 extends L2DatabaseFactory
 			/* Test the connection */
 			_source.getConnection().close();
 			
-			if (CommonConfig.DEBUG)
-				LOGGER.debug("Database Connection Working");
+			LOGGER.info("Database connection working.");
 			
 			if (CommonConfig.DATABASE_DRIVER.toLowerCase().contains("microsoft"))
 				_providerType = ProviderType.MsSql;
