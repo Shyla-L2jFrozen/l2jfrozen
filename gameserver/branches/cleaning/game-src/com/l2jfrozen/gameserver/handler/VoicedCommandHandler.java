@@ -39,6 +39,7 @@ import com.l2jfrozen.gameserver.handler.voicedcommandhandlers.TvTCmd;
 import com.l2jfrozen.gameserver.handler.voicedcommandhandlers.VersionCmd;
 import com.l2jfrozen.gameserver.handler.voicedcommandhandlers.Voting;
 import com.l2jfrozen.gameserver.handler.voicedcommandhandlers.Wedding;
+import com.l2jfrozen.gameserver.powerpak.PowerPakConfig;
 
 import javolution.util.FastMap;
 
@@ -68,7 +69,10 @@ public class VoicedCommandHandler
 	{
 		_datatable = new FastMap<>();
 		
-		registerVoicedCommandHandler(new Voting());
+		if (PowerPakConfig.ENABLE_VOTE_COMMAND)
+		{
+			registerVoicedCommandHandler(new Voting());
+		}
 		
 		if (Config.BANKING_SYSTEM_ENABLED)
 		{
@@ -95,7 +99,10 @@ public class VoicedCommandHandler
 			registerVoicedCommandHandler(new Wedding());
 		}
 		
-		registerVoicedCommandHandler(new StatsCmd());
+		if (Config.ALLOW_DETAILED_STATS_VIEW || Config.ALLOW_SIMPLE_STATS_VIEW)
+		{
+			registerVoicedCommandHandler(new StatsCmd());
+		}
 		
 		if (Config.ALLOW_VERSION_COMMAND)
 		{
@@ -123,7 +130,6 @@ public class VoicedCommandHandler
 		}
 		
 		LOGGER.info("VoicedCommandHandler: Loaded " + _datatable.size() + " handlers.");
-		
 	}
 	
 	public void registerVoicedCommandHandler(final IVoicedCommandHandler handler)

@@ -18,6 +18,7 @@ package com.l2jfrozen.gameserver.handler.voicedcommandhandlers;
 
 import com.l2jfrozen.gameserver.handler.IVoicedCommandHandler;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jfrozen.gameserver.powerpak.PowerPakConfig;
 
 public class Voting implements IVoicedCommandHandler
 {
@@ -32,7 +33,10 @@ public class Voting implements IVoicedCommandHandler
 	@Override
 	public boolean useVoicedCommand(final String command, final L2PcInstance activeChar, final String target)
 	{
-		// flood protection
+		if (!PowerPakConfig.ENABLE_VOTE_COMMAND)
+			return false;
+		
+		// time check
 		long currentTime = System.currentTimeMillis();
 		if (activeChar.getVoteTimestamp() > currentTime)
 		{

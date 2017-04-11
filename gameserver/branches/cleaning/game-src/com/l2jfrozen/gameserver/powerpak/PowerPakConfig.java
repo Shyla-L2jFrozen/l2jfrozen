@@ -77,21 +77,13 @@ public class PowerPakConfig
 	public static String WEBSERVER_HOST;
 	
 	public static boolean L2TOPDEMON_ENABLED;
-	
 	public static int L2TOPDEMON_POLLINTERVAL;
-	
 	public static boolean L2TOPDEMON_IGNOREFIRST;
-	
 	public static int L2TOPDEMON_MIN;
-	
 	public static int L2TOPDEMON_MAX;
-	
 	public static int L2TOPDEMON_ITEM;
-	
 	public static String L2TOPDEMON_MESSAGE;
-	
 	public static String L2TOPDEMON_URL;
-	
 	public static String L2TOPDEMON_PREFIX;
 	
 	// Vote Reward System Configs
@@ -105,6 +97,9 @@ public class PowerPakConfig
 	
 	public static int VOTES_SYSYEM_INITIAL_DELAY;
 	public static int VOTES_SYSYEM_STEP_DELAY;
+	
+	// vote commands
+	public static boolean ENABLE_VOTE_COMMAND;
 	
 	public static String SERVER_WEB_SITE;
 	public static boolean AUTOVOTEREWARD_ENABLED;
@@ -256,6 +251,7 @@ public class PowerPakConfig
 			SERVER_WEB_SITE = p.getProperty("ServerWebSite", "");
 			VOTES_REWARDS = p.getProperty("VotesRewards", "");
 			VOTES_REWARDS_LIST = new FastMap<>();
+			ENABLE_VOTE_COMMAND = Boolean.parseBoolean(p.getProperty("EnableVoteCommand", "false"));
 			
 			final String[] splitted_VOTES_REWARDS = VOTES_REWARDS.split(";");
 			
