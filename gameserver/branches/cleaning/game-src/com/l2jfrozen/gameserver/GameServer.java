@@ -27,7 +27,6 @@ import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.logging.LogManager;
 
 import org.apache.log4j.Logger;
@@ -119,12 +118,10 @@ import com.l2jfrozen.gameserver.model.L2Manor;
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.PartyMatchRoomList;
 import com.l2jfrozen.gameserver.model.PartyMatchWaitingList;
-import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.entity.Announcements;
 import com.l2jfrozen.gameserver.model.entity.FakeOnline;
 import com.l2jfrozen.gameserver.model.entity.Hero;
 import com.l2jfrozen.gameserver.model.entity.MonsterRace;
-import com.l2jfrozen.gameserver.model.entity.event.TvT;
 import com.l2jfrozen.gameserver.model.entity.event.manager.EventManager;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
 import com.l2jfrozen.gameserver.model.entity.sevensigns.SevenSigns;
@@ -662,18 +659,5 @@ public class GameServer
 			System.exit(1);
 		}
 		_selectorThread.start();
-		
-		final Collection<L2PcInstance> pls = L2World.getInstance().getAllPlayers();
-		
-		int count = 0;
-		// L2ItemInstance item;
-		for (final L2PcInstance player : pls)
-		{
-			TvT.addPlayer(player, "");
-			count++;
-		}
-		LOGGER.fatal("added " + count);
-		
 	}
-	
 }
