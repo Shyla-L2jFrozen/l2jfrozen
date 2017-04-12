@@ -32,6 +32,7 @@ public class CommonConfig
 	public static boolean ENABLE_ALL_EXCEPTIONS;
 	public static boolean ASSERT;
 	public static boolean DEBUG;
+	public static boolean BROADCAST_DEBUG;
 	
 	// ThreadPoolManager
 	public static int THREAD_P_EFFECTS;
@@ -76,6 +77,7 @@ public class CommonConfig
 			DEBUG = Boolean.parseBoolean(serverSettings.getProperty("Debug", "false"));
 			ASSERT = Boolean.parseBoolean(serverSettings.getProperty("Assert", "false"));
 			ENABLE_ALL_EXCEPTIONS = Boolean.parseBoolean(serverSettings.getProperty("EnableAllExceptionsLog", "false"));
+			BROADCAST_DEBUG = Boolean.parseBoolean(serverSettings.getProperty("BroadcastDebug", "false"));
 			
 			DATABASE_POOL_TYPE = serverSettings.getProperty("DatabasePoolType", "c3p0");
 			DATABASE_DRIVER = serverSettings.getProperty("Driver", "com.mysql.jdbc.Driver");

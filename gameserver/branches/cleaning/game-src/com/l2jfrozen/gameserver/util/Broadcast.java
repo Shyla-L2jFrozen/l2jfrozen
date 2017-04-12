@@ -65,10 +65,8 @@ public final class Broadcast
 	 */
 	public static void toPlayersTargettingMyself(final L2Character character, final L2GameServerPacket mov)
 	{
-		if (CommonConfig.DEBUG)
-		{
-			LOGGER.debug("players to notify:" + character.getKnownList().getKnownPlayers().size() + " packet:" + mov.getType());
-		}
+		if (CommonConfig.BROADCAST_DEBUG)
+			LOGGER.info("toPlayersTargettingMyself():" + character.getKnownList().getKnownPlayers().size() + " packet:" + mov.getType());
 		
 		for (final L2PcInstance player : character.getKnownList().getKnownPlayers().values())
 		{
@@ -95,10 +93,8 @@ public final class Broadcast
 	 */
 	public static void toKnownPlayers(final L2Character character, final L2GameServerPacket mov)
 	{
-		if (CommonConfig.DEBUG)
-		{
-			LOGGER.debug("players to notify:" + character.getKnownList().getKnownPlayers().size() + " packet:" + mov.getType());
-		}
+		if (CommonConfig.BROADCAST_DEBUG)
+			LOGGER.info("toKnownPlayers():" + character.getKnownList().getKnownPlayers().size() + " packet:" + mov.getType());
 		
 		final Collection<L2PcInstance> knownlist_players = character.getKnownList().getKnownPlayers().values();
 		
@@ -222,10 +218,8 @@ public final class Broadcast
 	 */
 	public static void toAllOnlinePlayers(final L2GameServerPacket mov)
 	{
-		if (CommonConfig.DEBUG)
-		{
-			LOGGER.debug("Players to notify: " + L2World.getInstance().getAllPlayersCount() + " (with packet " + mov.getType() + ")");
-		}
+		if (CommonConfig.BROADCAST_DEBUG)
+			LOGGER.info("toAllOnlinePlayers(): " + L2World.getInstance().getAllPlayersCount() + " (with packet " + mov.getType() + ")");
 		
 		for (final L2PcInstance onlinePlayer : L2World.getInstance().getAllPlayers())
 		{
