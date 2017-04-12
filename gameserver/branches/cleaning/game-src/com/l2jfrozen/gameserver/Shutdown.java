@@ -41,6 +41,7 @@ import com.l2jfrozen.gameserver.model.entity.Announcements;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
 import com.l2jfrozen.gameserver.model.entity.sevensigns.SevenSigns;
 import com.l2jfrozen.gameserver.model.entity.sevensigns.SevenSignsFestival;
+import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.gameserver.network.serverpackets.ServerClose;
@@ -703,12 +704,13 @@ public class Shutdown extends Thread
 			
 			try
 			{
+				L2GameClient client = player.getClient();
 				// Player Disconnect
-				if (player.getClient() != null)
+				if (client != null && !client.isDetached())
 				{
-					player.getClient().sendPacket(ServerClose.STATIC_PACKET);
-					player.getClient().close(0);
-					player.getClient().setActiveChar(null);
+					client.sendPacket(ServerClose.STATIC_PACKET);
+					client.close(0);
+					client.setActiveChar(null);
 					player.setClient(null);
 					
 				}
