@@ -6592,12 +6592,10 @@ public final class L2PcInstance extends L2PlayableInstance
 		// Send a Server->Client packet UserInfo to this L2PcInstance
 		sendPacket(new UserInfo(this));
 		
-		// Send a Server->Client packet CharInfo to all L2PcInstance in _KnownPlayers of the L2PcInstance
-		if (CommonConfig.DEBUG)
-		{
-			LOGGER.debug("players to notify:" + getKnownList().getKnownPlayers().size() + " packet: [S] 03 CharInfo");
-		}
+		if (CommonConfig.BROADCAST_DEBUG)
+			LOGGER.info("broadcastUserInfo():" + getKnownList().getKnownPlayers().size() + " packet: [S] 03 CharInfo");
 		
+		// Send a Server->Client packet CharInfo to all L2PcInstance in _KnownPlayers of the L2PcInstance
 		Broadcast.toKnownPlayers(this, new CharInfo(this));
 	}
 	
@@ -6609,12 +6607,10 @@ public final class L2PcInstance extends L2PlayableInstance
 		// Send a Server->Client packet UserInfo to this L2PcInstance
 		sendPacket(new UserInfo(this));
 		
-		// Send a Server->Client packet TitleUpdate to all L2PcInstance in _KnownPlayers of the L2PcInstance
-		if (CommonConfig.DEBUG)
-		{
-			LOGGER.debug("players to notify:" + getKnownList().getKnownPlayers().size() + " packet: [S] cc TitleUpdate");
-		}
+		if (CommonConfig.BROADCAST_DEBUG)
+			LOGGER.info("broadcastTitleInfo():" + getKnownList().getKnownPlayers().size() + " packet: [S] cc TitleUpdate");
 		
+		// Send a Server->Client packet TitleUpdate to all L2PcInstance in _KnownPlayers of the L2PcInstance
 		Broadcast.toKnownPlayers(this, new TitleUpdate(this));
 	}
 	
