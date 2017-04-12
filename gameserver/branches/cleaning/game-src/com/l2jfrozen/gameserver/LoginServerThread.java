@@ -527,7 +527,9 @@ public class LoginServerThread extends Thread
 		final L2GameClient client = _accountsInGameServer.get(account);
 		if (client != null)
 		{
-			LOGGER_ACCOUNTING.warn("Kicked by login: {" + client + "}");
+			if (Config.DEVELOPER)
+				LOGGER_ACCOUNTING.info("Kicked by login: {" + client + "}");
+			
 			// client.setAditionalClosePacket(SystemMessage.getSystemMessage(SystemMessageId.ANOTHER_LOGIN_WITH_ACCOUNT));
 			client.closeNow();
 		}

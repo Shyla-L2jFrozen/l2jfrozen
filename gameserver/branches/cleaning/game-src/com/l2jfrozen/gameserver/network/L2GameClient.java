@@ -706,7 +706,13 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	{
 		try
 		{
-			InetAddress address = getConnection().getInetAddress();
+			InetAddress address;
+			
+			if (getConnection() != null)
+				address = getConnection().getInetAddress();
+			else
+				address = null;
+			
 			String ip = "N/A";
 			
 			if (address == null)
