@@ -188,35 +188,6 @@ public final class Rnd
 	}
 	
 	/**
-	 * @author Forsaiken
-	 */
-	public static enum RandomType
-	{
-		/**
-		 * For best random quality.
-		 * @see java.security.SecureRandom
-		 */
-		SECURE,
-		
-		/**
-		 * For average random quality.
-		 * @see java.util.Random
-		 */
-		UNSECURE_ATOMIC,
-		
-		/**
-		 * Each thread has it`s own random instance.<br>
-		 * Provides best parallel access speed.
-		 */
-		UNSECURE_THREAD_LOCAL,
-		
-		/**
-		 * Provides much faster parallel access speed.
-		 */
-		UNSECURE_VOLATILE
-	}
-	
-	/**
 	 * This class extends {@link java.util.Random} but do not compare and store atomically.<br>
 	 * Instead it`s using thread local ensure reading and storing the whole 64bit seed chunk.<br>
 	 * This implementation is the fastest, never generates the same seed for 2 threads.<br>
