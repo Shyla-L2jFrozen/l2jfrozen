@@ -25,7 +25,6 @@ import org.apache.log4j.Logger;
 
 import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.Shutdown;
-import com.l2jfrozen.gameserver.network.L2GameClient.GameClientState;
 import com.l2jfrozen.gameserver.network.clientpackets.*;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.logs.Log;

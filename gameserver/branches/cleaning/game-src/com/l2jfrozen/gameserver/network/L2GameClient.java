@@ -77,17 +77,6 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 {
 	protected static final Logger LOGGER = Logger.getLogger(L2GameClient.class);
 	
-	/**
-	 * CONNECTED - client has just connected AUTHED - client has authed but doesn't has character attached to it yet IN_GAME - client has selected a char and is in game
-	 * @author KenM
-	 */
-	public static enum GameClientState
-	{
-		CONNECTED,
-		AUTHED,
-		IN_GAME
-	}
-	
 	// floodprotectors
 	private final FloodProtectors _floodProtectors = new FloodProtectors(this);
 	
