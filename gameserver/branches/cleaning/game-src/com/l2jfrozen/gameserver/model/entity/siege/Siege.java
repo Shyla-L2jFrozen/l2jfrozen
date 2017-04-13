@@ -109,28 +109,6 @@ public class Siege
 	protected static final Logger LOGGER = Logger.getLogger(Siege.class);
 	private final SimpleDateFormat fmt = new SimpleDateFormat("H:mm.");
 	
-	/**
-	 * The Enum TeleportWhoType.
-	 */
-	public static enum TeleportWhoType
-	{
-		
-		/** The All. */
-		All,
-		
-		/** The Attacker. */
-		Attacker,
-		
-		/** The Defender not owner. */
-		DefenderNotOwner,
-		
-		/** The Owner. */
-		Owner,
-		
-		/** The Spectator. */
-		Spectator
-	}
-	
 	/** The _control tower count. */
 	private int _controlTowerCount;
 	
@@ -396,13 +374,13 @@ public class Siege
 			removeFlags();
 			
 			// Teleport to the second closest town
-			teleportPlayer(Siege.TeleportWhoType.Attacker, TeleportWhereType.Town);
+			teleportPlayer(TeleportWhoType.Attacker, TeleportWhereType.Town);
 			
 			// Teleport to the second closest town
-			teleportPlayer(Siege.TeleportWhoType.DefenderNotOwner, TeleportWhereType.Town);
+			teleportPlayer(TeleportWhoType.DefenderNotOwner, TeleportWhereType.Town);
 			
 			// Teleport to the second closest town
-			teleportPlayer(Siege.TeleportWhoType.Spectator, TeleportWhereType.Town);
+			teleportPlayer(TeleportWhoType.Spectator, TeleportWhereType.Town);
 			
 			// Flag so that siege instance can be started
 			_isInProgress = false;
@@ -585,10 +563,10 @@ public class Siege
 				}
 				
 				// Teleport to the second closest town
-				teleportPlayer(Siege.TeleportWhoType.Attacker, TeleportWhereType.SiegeFlag);
+				teleportPlayer(TeleportWhoType.Attacker, TeleportWhereType.SiegeFlag);
 				
 				// Teleport to the second closest town
-				teleportPlayer(Siege.TeleportWhoType.Spectator, TeleportWhereType.Town);
+				teleportPlayer(TeleportWhoType.Spectator, TeleportWhereType.Town);
 				
 				// Removes defenders' flags
 				removeDefenderFlags();
@@ -652,7 +630,7 @@ public class Siege
 			updatePlayerSiegeStateFlags(false);
 			
 			// Teleport to the closest town
-			teleportPlayer(Siege.TeleportWhoType.Attacker, TeleportWhereType.Town);
+			teleportPlayer(TeleportWhoType.Attacker, TeleportWhereType.Town);
 			
 			_controlTowerCount = 0;
 			_controlTowerMaxCount = 0;

@@ -32,8 +32,9 @@ import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2Skill;
-import com.l2jfrozen.gameserver.model.L2Skill.SkillType;
 import com.l2jfrozen.gameserver.model.L2Summon;
+import com.l2jfrozen.gameserver.model.SkillTargetType;
+import com.l2jfrozen.gameserver.model.SkillType;
 import com.l2jfrozen.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
@@ -51,24 +52,24 @@ public class Continuous implements ISkillHandler
 {
 	private static final SkillType[] SKILL_IDS =
 	{
-		L2Skill.SkillType.BUFF,
-		L2Skill.SkillType.DEBUFF,
-		L2Skill.SkillType.DOT,
-		L2Skill.SkillType.MDOT,
-		L2Skill.SkillType.POISON,
-		L2Skill.SkillType.BLEED,
-		L2Skill.SkillType.HOT,
-		L2Skill.SkillType.CPHOT,
-		L2Skill.SkillType.MPHOT,
-		// L2Skill.SkillType.MANAHEAL,
-		// L2Skill.SkillType.MANA_BY_LEVEL,
-		L2Skill.SkillType.FEAR,
-		L2Skill.SkillType.CONT,
-		L2Skill.SkillType.WEAKNESS,
-		L2Skill.SkillType.REFLECT,
-		L2Skill.SkillType.UNDEAD_DEFENSE,
-		L2Skill.SkillType.AGGDEBUFF,
-		L2Skill.SkillType.FORCE_BUFF
+		SkillType.BUFF,
+		SkillType.DEBUFF,
+		SkillType.DOT,
+		SkillType.MDOT,
+		SkillType.POISON,
+		SkillType.BLEED,
+		SkillType.HOT,
+		SkillType.CPHOT,
+		SkillType.MPHOT,
+		// SkillType.MANAHEAL,
+		// SkillType.MANA_BY_LEVEL,
+		SkillType.FEAR,
+		SkillType.CONT,
+		SkillType.WEAKNESS,
+		SkillType.REFLECT,
+		SkillType.UNDEAD_DEFENSE,
+		SkillType.AGGDEBUFF,
+		SkillType.FORCE_BUFF
 	};
 	private L2Skill _skill;
 	
@@ -128,22 +129,22 @@ public class Continuous implements ISkillHandler
 					continue;
 			}
 			
-			if (skill.getSkillType() != L2Skill.SkillType.BUFF && skill.getSkillType() != L2Skill.SkillType.HOT && skill.getSkillType() != L2Skill.SkillType.CPHOT && skill.getSkillType() != L2Skill.SkillType.MPHOT && skill.getSkillType() != L2Skill.SkillType.UNDEAD_DEFENSE && skill.getSkillType() != L2Skill.SkillType.AGGDEBUFF && skill.getSkillType() != L2Skill.SkillType.CONT)
+			if (skill.getSkillType() != SkillType.BUFF && skill.getSkillType() != SkillType.HOT && skill.getSkillType() != SkillType.CPHOT && skill.getSkillType() != SkillType.MPHOT && skill.getSkillType() != SkillType.UNDEAD_DEFENSE && skill.getSkillType() != SkillType.AGGDEBUFF && skill.getSkillType() != SkillType.CONT)
 			{
 				if (target.reflectSkill(skill))
 					target = activeChar;
 			}
 			
 			// Walls and Door should not be buffed
-			if (target instanceof L2DoorInstance && (skill.getSkillType() == L2Skill.SkillType.BUFF || skill.getSkillType() == L2Skill.SkillType.HOT))
+			if (target instanceof L2DoorInstance && (skill.getSkillType() == SkillType.BUFF || skill.getSkillType() == SkillType.HOT))
 				continue;
 			
 			// Anti-Buff Protection prevents you from getting buffs by other players
-			if (activeChar instanceof L2PlayableInstance && target != activeChar && target.isBuffProtected() && !skill.isHeroSkill() && (skill.getSkillType() == L2Skill.SkillType.BUFF || skill.getSkillType() == L2Skill.SkillType.HEAL_PERCENT || skill.getSkillType() == L2Skill.SkillType.FORCE_BUFF || skill.getSkillType() == L2Skill.SkillType.MANAHEAL_PERCENT || skill.getSkillType() == L2Skill.SkillType.COMBATPOINTHEAL || skill.getSkillType() == L2Skill.SkillType.REFLECT))
+			if (activeChar instanceof L2PlayableInstance && target != activeChar && target.isBuffProtected() && !skill.isHeroSkill() && (skill.getSkillType() == SkillType.BUFF || skill.getSkillType() == SkillType.HEAL_PERCENT || skill.getSkillType() == SkillType.FORCE_BUFF || skill.getSkillType() == SkillType.MANAHEAL_PERCENT || skill.getSkillType() == SkillType.COMBATPOINTHEAL || skill.getSkillType() == SkillType.REFLECT))
 				continue;
 			
 			// Player holding a cursed weapon can't be buffed and can't buff
-			if (skill.getSkillType() == L2Skill.SkillType.BUFF)
+			if (skill.getSkillType() == SkillType.BUFF)
 			{
 				if (target != activeChar)
 				{
@@ -193,7 +194,7 @@ public class Continuous implements ISkillHandler
 				}
 				
 			}
-			else if (skill.getSkillType() == L2Skill.SkillType.BUFF)
+			else if (skill.getSkillType() == SkillType.BUFF)
 			{
 				if (!Formulas.getInstance().calcBuffSuccess(target, skill))
 				{
@@ -238,7 +239,7 @@ public class Continuous implements ISkillHandler
 			// if this is a debuff let the duel manager know about it
 			// so the debuff can be removed after the duel
 			// (player & target must be in the same duel)
-			if (target instanceof L2PcInstance && player != null && ((L2PcInstance) target).isInDuel() && (skill.getSkillType() == L2Skill.SkillType.DEBUFF || skill.getSkillType() == L2Skill.SkillType.BUFF) && player.getDuelId() == ((L2PcInstance) target).getDuelId())
+			if (target instanceof L2PcInstance && player != null && ((L2PcInstance) target).isInDuel() && (skill.getSkillType() == SkillType.DEBUFF || skill.getSkillType() == SkillType.BUFF) && player.getDuelId() == ((L2PcInstance) target).getDuelId())
 			{
 				DuelManager dm = DuelManager.getInstance();
 				if (dm != null)
@@ -254,7 +255,7 @@ public class Continuous implements ISkillHandler
 			else
 				skill.getEffects(activeChar, target, ss, sps, bss);
 			
-			if (skill.getSkillType() == L2Skill.SkillType.AGGDEBUFF)
+			if (skill.getSkillType() == SkillType.AGGDEBUFF)
 			{
 				if (target instanceof L2Attackable)
 					target.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, activeChar, (int) skill.getPower());
@@ -267,7 +268,7 @@ public class Continuous implements ISkillHandler
 				}
 			}
 			
-			if (target.isDead() && skill.getTargetType() == L2Skill.SkillTargetType.TARGET_AREA_CORPSE_MOB && target instanceof L2NpcInstance)
+			if (target.isDead() && skill.getTargetType() == SkillTargetType.TARGET_AREA_CORPSE_MOB && target instanceof L2NpcInstance)
 			{
 				((L2NpcInstance) target).endDecayTask();
 			}

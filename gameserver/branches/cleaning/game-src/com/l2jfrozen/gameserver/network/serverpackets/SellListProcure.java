@@ -25,6 +25,7 @@ import java.util.Map;
 
 import com.l2jfrozen.gameserver.managers.CastleManager;
 import com.l2jfrozen.gameserver.managers.CastleManorManager.CropProcure;
+import com.l2jfrozen.gameserver.model.actor.instance.ItemLocation;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 
@@ -51,7 +52,7 @@ public class SellListProcure extends L2GameServerPacket
 		for (final CropProcure c : _procureList)
 		{
 			final L2ItemInstance item = _activeChar.getInventory().getItemByItemId(c.getId());
-			if (item != null && c.getAmount() > 0 && item.getLocation() == L2ItemInstance.ItemLocation.INVENTORY)
+			if (item != null && c.getAmount() > 0 && item.getLocation() == ItemLocation.INVENTORY)
 			{
 				_sellList.put(item, c.getAmount());
 			}

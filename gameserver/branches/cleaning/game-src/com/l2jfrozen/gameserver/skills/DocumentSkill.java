@@ -29,7 +29,7 @@ import org.w3c.dom.Node;
 
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.gameserver.model.L2Skill;
-import com.l2jfrozen.gameserver.model.L2Skill.SkillType;
+import com.l2jfrozen.gameserver.model.SkillType;
 import com.l2jfrozen.gameserver.skills.conditions.Condition;
 import com.l2jfrozen.gameserver.templates.StatsSet;
 

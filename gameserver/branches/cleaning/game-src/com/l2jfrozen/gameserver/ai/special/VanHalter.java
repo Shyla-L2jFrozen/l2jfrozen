@@ -37,7 +37,7 @@ import com.l2jfrozen.gameserver.datatables.csv.DoorTable;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.datatables.sql.SpawnTable;
 import com.l2jfrozen.gameserver.managers.GrandBossManager;
-import com.l2jfrozen.gameserver.model.L2Effect;
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
@@ -1228,7 +1228,7 @@ public class VanHalter extends Quest implements Runnable
 			{
 				if (_vanHalter.isAfraid())
 				{
-					_vanHalter.stopEffects(L2Effect.EffectType.FEAR);
+					_vanHalter.stopEffects(EffectType.FEAR);
 					_vanHalter.setIsAfraid(false);
 					_vanHalter.updateAbnormalEffect();
 				}
@@ -1240,7 +1240,7 @@ public class VanHalter extends Quest implements Runnable
 						final L2CharPosition pos = new L2CharPosition(-16397, -53308, -10448, 0);
 						if (_vanHalter.getX() == pos.x && _vanHalter.getY() == pos.y)
 						{
-							_vanHalter.stopEffects(L2Effect.EffectType.FEAR);
+							_vanHalter.stopEffects(EffectType.FEAR);
 							_vanHalter.setIsAfraid(false);
 							_vanHalter.updateAbnormalEffect();
 						}
@@ -1268,7 +1268,7 @@ public class VanHalter extends Quest implements Runnable
 			}
 			else
 			{
-				_vanHalter.stopEffects(L2Effect.EffectType.FEAR);
+				_vanHalter.stopEffects(EffectType.FEAR);
 				_vanHalter.setIsAfraid(false);
 				_vanHalter.updateAbnormalEffect();
 				if (_halterEscapeTask != null)
@@ -1315,9 +1315,9 @@ public class VanHalter extends Quest implements Runnable
 			return;
 		for (final L2PcInstance pc : (FastList<L2PcInstance>) _bleedingPlayers.get(npcId))
 		{
-			if (pc.getFirstEffect(L2Effect.EffectType.DMG_OVER_TIME) != null)
+			if (pc.getFirstEffect(EffectType.DMG_OVER_TIME) != null)
 			{
-				pc.stopEffects(L2Effect.EffectType.DMG_OVER_TIME);
+				pc.stopEffects(EffectType.DMG_OVER_TIME);
 			}
 		}
 		_bleedingPlayers.remove(npcId);

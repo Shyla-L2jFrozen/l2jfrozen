@@ -164,12 +164,6 @@ public class Olympiad
 	protected ScheduledFuture<?> _scheduledWeeklyTask;
 	protected ScheduledFuture<?> _scheduledValdationTask;
 	
-	protected static enum COMP_TYPE
-	{
-		CLASSED,
-		NON_CLASSED
-	}
-	
 	public static Olympiad getInstance()
 	{
 		if (_instance == null)

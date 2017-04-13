@@ -33,6 +33,7 @@ import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.handler.IBBSHandler;
 import com.l2jfrozen.gameserver.handler.ICustomByPassHandler;
 import com.l2jfrozen.gameserver.handler.IVoicedCommandHandler;
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.L2Skill;
@@ -218,7 +219,7 @@ public class BuffHandler implements IVoicedCommandHandler, ICustomByPassHandler,
 			
 			for (final L2Effect e : effects)
 			{
-				if (e.getEffectType() == L2Effect.EffectType.BUFF)
+				if (e.getEffectType() == EffectType.BUFF)
 					player.removeEffect(e);
 			}
 		}
@@ -229,7 +230,7 @@ public class BuffHandler implements IVoicedCommandHandler, ICustomByPassHandler,
 			
 			for (final L2Effect e : effects)
 			{
-				if (e.getEffectType() == L2Effect.EffectType.BUFF)
+				if (e.getEffectType() == EffectType.BUFF)
 					player.getPet().removeEffect(e);
 			}
 		}

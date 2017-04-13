@@ -30,8 +30,8 @@ import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.datatables.sql.ItemTable;
 import com.l2jfrozen.gameserver.handler.IItemHandler;
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Effect;
-import com.l2jfrozen.gameserver.model.L2Effect.EffectType;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.L2Summon;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
@@ -267,7 +267,7 @@ public class Potions implements IItemHandler
 			{
 				// MANA POTIONS
 				case 726: // mana drug, xml: 2003
-					if (!isEffectReplaceable(playable, L2Effect.EffectType.MANA_HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(playable, EffectType.MANA_HEAL_OVER_TIME, itemId))
 						return;
 					usePotion(activeChar, 2003, 1);
 					break;
@@ -280,12 +280,12 @@ public class Potions implements IItemHandler
 					usePotion(activeChar, 2001, 1);
 					break;
 				case 725: // healing_drug, xml: 2002
-					if (!isEffectReplaceable(playable, L2Effect.EffectType.HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(playable, EffectType.HEAL_OVER_TIME, itemId))
 						return;
 					usePotion(activeChar, 2002, 1);
 					break;
 				case 727: // _healing_potion, xml: 2032
-					if (!isEffectReplaceable(playable, L2Effect.EffectType.HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(playable, EffectType.HEAL_OVER_TIME, itemId))
 						return;
 					usePotion(activeChar, 2032, 1);
 					break;
@@ -300,12 +300,12 @@ public class Potions implements IItemHandler
 					break;
 				case 1060: // lesser_healing_potion,
 				case 1073: // beginner's potion, xml: 2031
-					if (!isEffectReplaceable(playable, L2Effect.EffectType.HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(playable, EffectType.HEAL_OVER_TIME, itemId))
 						return;
 					usePotion(activeChar, 2031, 1);
 					break;
 				case 1061: // healing_potion, xml: 2032
-					if (!isEffectReplaceable(playable, L2Effect.EffectType.HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(playable, EffectType.HEAL_OVER_TIME, itemId))
 						return;
 					usePotion(activeChar, 2032, 1);
 					break;
@@ -319,7 +319,7 @@ public class Potions implements IItemHandler
 					usePotion(activeChar, 2035, 1);
 					break;
 				case 1539: // greater_healing_potion, xml: 2037
-					if (!isEffectReplaceable(playable, L2Effect.EffectType.HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(playable, EffectType.HEAL_OVER_TIME, itemId))
 						return;
 					usePotion(activeChar, 2037, 1);
 					break;
@@ -336,7 +336,7 @@ public class Potions implements IItemHandler
 					usePotion(activeChar, 2077, 1);
 					break;
 				case 5283: // Rice Cake, xml: 2136
-					if (!isEffectReplaceable(playable, L2Effect.EffectType.HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(playable, EffectType.HEAL_OVER_TIME, itemId))
 						return;
 					usePotion(activeChar, 2136, 1);
 					break;
@@ -361,7 +361,7 @@ public class Potions implements IItemHandler
 				case 8626:
 				case 8627:
 					// elixir of Life
-					if (!isEffectReplaceable(activeChar, L2Effect.EffectType.HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(activeChar, EffectType.HEAL_OVER_TIME, itemId))
 						return;
 					
 					if (itemId == 8622 && activeChar.getExpertiseIndex() == 0 || itemId == 8623 && activeChar.getExpertiseIndex() == 1 || itemId == 8624 && activeChar.getExpertiseIndex() == 2 || itemId == 8625 && activeChar.getExpertiseIndex() == 3 || itemId == 8626 && activeChar.getExpertiseIndex() == 4 || itemId == 8627 && activeChar.getExpertiseIndex() == 5)
@@ -385,7 +385,7 @@ public class Potions implements IItemHandler
 				case 8632:
 				case 8633:
 					// elixir of Strength
-					if (!isEffectReplaceable(activeChar, L2Effect.EffectType.HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(activeChar, EffectType.HEAL_OVER_TIME, itemId))
 						return;
 					
 					if (itemId == 8628 && activeChar.getExpertiseIndex() == 0 || itemId == 8629 && activeChar.getExpertiseIndex() == 1 || itemId == 8630 && activeChar.getExpertiseIndex() == 2 || itemId == 8631 && activeChar.getExpertiseIndex() == 3 || itemId == 8632 && activeChar.getExpertiseIndex() == 4 || itemId == 8633 && activeChar.getExpertiseIndex() == 5)
@@ -409,7 +409,7 @@ public class Potions implements IItemHandler
 				case 8638:
 				case 8639:
 					// elixir of cp
-					if (!isEffectReplaceable(activeChar, L2Effect.EffectType.HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(activeChar, EffectType.HEAL_OVER_TIME, itemId))
 						return;
 					
 					if (itemId == 8634 && activeChar.getExpertiseIndex() == 0 || itemId == 8635 && activeChar.getExpertiseIndex() == 1 || itemId == 8636 && activeChar.getExpertiseIndex() == 2 || itemId == 8637 && activeChar.getExpertiseIndex() == 3 || itemId == 8638 && activeChar.getExpertiseIndex() == 4 || itemId == 8639 && activeChar.getExpertiseIndex() == 5)
@@ -598,12 +598,12 @@ public class Potions implements IItemHandler
 				// HEALING AND SPEED POTIONS
 				case 1060: // lesser_healing_potion,
 				case 1073: // beginner's potion, xml: 2031
-					if (!isEffectReplaceable(playable, L2Effect.EffectType.HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(playable, EffectType.HEAL_OVER_TIME, itemId))
 						return;
 					usePotion(activeChar, 2031, 1);
 					break;
 				case 1061: // healing_potion, xml: 2032
-					if (!isEffectReplaceable(playable, L2Effect.EffectType.HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(playable, EffectType.HEAL_OVER_TIME, itemId))
 						return;
 					usePotion(activeChar, 2032, 1);
 					break;
@@ -611,7 +611,7 @@ public class Potions implements IItemHandler
 					usePotion(activeChar, 2011, 1);
 					break;
 				case 1539:
-					if (!isEffectReplaceable(playable, L2Effect.EffectType.HEAL_OVER_TIME, itemId))
+					if (!isEffectReplaceable(playable, EffectType.HEAL_OVER_TIME, itemId))
 						return;
 					usePotion(activeChar, 2037, 1);
 					break;

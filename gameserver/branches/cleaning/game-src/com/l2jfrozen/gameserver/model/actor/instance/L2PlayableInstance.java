@@ -19,6 +19,7 @@
  */
 package com.l2jfrozen.gameserver.model.actor.instance;
 
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.L2Object;
@@ -259,7 +260,7 @@ public abstract class L2PlayableInstance extends L2Character
 		
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.NOBLESSE_BLESSING);
+			stopEffects(EffectType.NOBLESSE_BLESSING);
 		}
 		else
 		{
@@ -317,7 +318,7 @@ public abstract class L2PlayableInstance extends L2Character
 		
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.PROTECTION_BLESSING);
+			stopEffects(EffectType.PROTECTION_BLESSING);
 		}
 		else
 		{
@@ -374,7 +375,7 @@ public abstract class L2PlayableInstance extends L2Character
 		
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.PHOENIX_BLESSING);
+			stopEffects(EffectType.PHOENIX_BLESSING);
 		}
 		else
 		{
@@ -454,7 +455,7 @@ public abstract class L2PlayableInstance extends L2Character
 		
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.CHARM_OF_LUCK);
+			stopEffects(EffectType.CHARM_OF_LUCK);
 		}
 		else
 		{

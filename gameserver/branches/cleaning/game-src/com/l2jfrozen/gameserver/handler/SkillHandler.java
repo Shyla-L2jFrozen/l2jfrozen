@@ -60,8 +60,7 @@ import com.l2jfrozen.gameserver.handler.skillhandlers.TakeCastle;
 import com.l2jfrozen.gameserver.handler.skillhandlers.Unlock;
 import com.l2jfrozen.gameserver.handler.skillhandlers.ZakenPlayer;
 import com.l2jfrozen.gameserver.handler.skillhandlers.ZakenSelf;
-import com.l2jfrozen.gameserver.model.L2Skill;
-import com.l2jfrozen.gameserver.model.L2Skill.SkillType;
+import com.l2jfrozen.gameserver.model.SkillType;
 
 /**
  * This class ...
@@ -73,7 +72,7 @@ public class SkillHandler
 	
 	private static SkillHandler _instance;
 	
-	private final Map<L2Skill.SkillType, ISkillHandler> _datatable;
+	private final Map<SkillType, ISkillHandler> _datatable;
 	
 	public static SkillHandler getInstance()
 	{

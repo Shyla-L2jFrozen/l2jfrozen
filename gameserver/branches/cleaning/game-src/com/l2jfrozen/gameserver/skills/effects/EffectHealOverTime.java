@@ -20,6 +20,7 @@
  */
 package com.l2jfrozen.gameserver.skills.effects;
 
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jfrozen.gameserver.network.serverpackets.StatusUpdate;

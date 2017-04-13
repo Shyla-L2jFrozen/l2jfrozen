@@ -100,34 +100,6 @@ public class Duel
 	/** The _player conditions. */
 	private FastMap<Integer, PlayerCondition> _playerConditions;
 	
-	/**
-	 * The Enum DuelResultEnum.
-	 */
-	public static enum DuelResultEnum
-	{
-		
-		/** The Continue. */
-		Continue,
-		
-		/** The Team1 win. */
-		Team1Win,
-		
-		/** The Team2 win. */
-		Team2Win,
-		
-		/** The Team1 surrender. */
-		Team1Surrender,
-		
-		/** The Team2 surrender. */
-		Team2Surrender,
-		
-		/** The Canceled. */
-		Canceled,
-		
-		/** The Timeout. */
-		Timeout
-	}
-	
 	// =========================================================
 	// Constructor
 	/**

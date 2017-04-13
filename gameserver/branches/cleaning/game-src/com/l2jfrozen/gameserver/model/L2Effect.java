@@ -27,7 +27,6 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
-import com.l2jfrozen.gameserver.model.L2Skill.SkillType;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.ExOlympiadSpelledInfo;
@@ -51,69 +50,6 @@ import javolution.util.FastList;
 public abstract class L2Effect
 {
 	static final Logger LOGGER = Logger.getLogger(L2Effect.class);
-	
-	public static enum EffectState
-	{
-		CREATED,
-		ACTING,
-		FINISHING
-	}
-	
-	public static enum EffectType
-	{
-		BUFF,
-		DEBUFF,
-		CHARGE,
-		DMG_OVER_TIME,
-		HEAL_OVER_TIME,
-		COMBAT_POINT_HEAL_OVER_TIME,
-		MANA_DMG_OVER_TIME,
-		MANA_HEAL_OVER_TIME,
-		MP_CONSUME_PER_LEVEL,
-		RELAXING,
-		STUN,
-		ROOT,
-		SLEEP,
-		HATE,
-		FAKE_DEATH,
-		CONFUSION,
-		CONFUSE_MOB_ONLY,
-		MUTE,
-		IMMOBILEUNTILATTACKED,
-		FEAR,
-		SALVATION,
-		SILENT_MOVE,
-		SIGNET_EFFECT,
-		SIGNET_GROUND,
-		SEED,
-		PARALYZE,
-		STUN_SELF,
-		PSYCHICAL_MUTE,
-		REMOVE_TARGET,
-		TARGET_ME,
-		SILENCE_MAGIC_PHYSICAL,
-		BETRAY,
-		NOBLESSE_BLESSING,
-		PHOENIX_BLESSING,
-		PETRIFICATION,
-		BLUFF,
-		BATTLE_FORCE,
-		SPELL_FORCE,
-		CHARM_OF_LUCK,
-		INVINCIBLE,
-		PROTECTION_BLESSING,
-		INTERRUPT,
-		MEDITATION,
-		BLOW,
-		FUSION,
-		CANCEL,
-		BLOCK_BUFF,
-		BLOCK_DEBUFF,
-		PREVENT_BUFF,
-		CLAN_GATE,
-		NEGATE,
-		HERO_CANCEL
-	}
 	
 	private static final Func[] _emptyFunctionSet = new Func[0];
 	

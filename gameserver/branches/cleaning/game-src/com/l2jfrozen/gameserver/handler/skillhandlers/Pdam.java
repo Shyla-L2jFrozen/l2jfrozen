@@ -29,11 +29,12 @@ import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.handler.ISkillHandler;
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2Skill;
-import com.l2jfrozen.gameserver.model.L2Skill.SkillType;
+import com.l2jfrozen.gameserver.model.SkillType;
 import com.l2jfrozen.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2MonsterInstance;
@@ -348,7 +349,7 @@ public class Pdam implements ISkillHandler
 			
 			if (skill.getId() == 345 || skill.getId() == 346) // Sonic Rage or Raging Force
 			{
-				EffectCharge effect = (EffectCharge) activeChar.getFirstEffect(L2Effect.EffectType.CHARGE);
+				EffectCharge effect = (EffectCharge) activeChar.getFirstEffect(EffectType.CHARGE);
 				if (effect != null)
 				{
 					int effectcharge = effect.getLevel();

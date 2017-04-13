@@ -20,6 +20,7 @@
  */
 package com.l2jfrozen.gameserver.skills.effects;
 
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.skills.Env;
 
@@ -33,7 +34,7 @@ public class EffectMute extends L2Effect
 	@Override
 	public EffectType getEffectType()
 	{
-		return L2Effect.EffectType.MUTE;
+		return EffectType.MUTE;
 	}
 	
 	@Override
