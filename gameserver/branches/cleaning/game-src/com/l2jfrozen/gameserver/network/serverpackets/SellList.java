@@ -25,6 +25,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.gameserver.model.actor.instance.ItemLocation;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2MerchantInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
@@ -67,7 +68,7 @@ public class SellList extends L2GameServerPacket
 			for (final L2ItemInstance item : _activeChar.getInventory().getItems())
 			{
 				if (item != null && !item.isEquipped() && // Not equipped
-					item.getLocation() == L2ItemInstance.ItemLocation.INVENTORY && // exploit fix
+					item.getLocation() == ItemLocation.INVENTORY && // exploit fix
 					item.getItem().isSellable() && // Item is sellable
 					item.getItem().getItemId() != 57 && // Adena is not sellable
 					(_activeChar.getPet() == null || // Pet not summoned or

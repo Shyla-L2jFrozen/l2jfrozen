@@ -22,12 +22,13 @@ package com.l2jfrozen.gameserver.skills.effects;
 import com.l2jfrozen.gameserver.ai.CtrlEvent;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.idfactory.IdFactory;
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Attackable;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
-import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.L2Summon;
 import com.l2jfrozen.gameserver.model.L2World;
+import com.l2jfrozen.gameserver.model.SkillTargetType;
 import com.l2jfrozen.gameserver.model.actor.instance.L2EffectPointInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PlayableInstance;
@@ -85,7 +86,7 @@ public final class EffectSignetMDam extends L2Effect
 		int y = getEffector().getY();
 		int z = getEffector().getZ();
 		
-		if (getEffector() instanceof L2PcInstance && getSkill().getTargetType() == L2Skill.SkillTargetType.TARGET_GROUND)
+		if (getEffector() instanceof L2PcInstance && getSkill().getTargetType() == SkillTargetType.TARGET_GROUND)
 		{
 			final Point3D wordPosition = ((L2PcInstance) getEffector()).getCurrentSkillWorldPosition();
 			

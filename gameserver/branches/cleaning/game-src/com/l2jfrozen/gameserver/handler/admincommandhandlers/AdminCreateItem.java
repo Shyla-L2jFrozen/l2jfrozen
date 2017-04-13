@@ -28,6 +28,7 @@ import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.datatables.sql.ItemTable;
 import com.l2jfrozen.gameserver.handler.IAdminCommandHandler;
 import com.l2jfrozen.gameserver.model.L2World;
+import com.l2jfrozen.gameserver.model.actor.instance.ItemLocation;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
@@ -410,7 +411,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 	{
 		for (final L2ItemInstance item : activeChar.getInventory().getItems())
 		{
-			if (item.getLocation() == L2ItemInstance.ItemLocation.INVENTORY)
+			if (item.getLocation() == ItemLocation.INVENTORY)
 				activeChar.getInventory().destroyItem("Destroy", item.getObjectId(), item.getCount(), activeChar, null);
 		}
 		activeChar.sendPacket(new ItemList(activeChar, false));

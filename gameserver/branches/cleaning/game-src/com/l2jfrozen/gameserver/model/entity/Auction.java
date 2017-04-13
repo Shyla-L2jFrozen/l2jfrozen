@@ -113,16 +113,6 @@ public class Auction
 	};
 	
 	/**
-	 * The Enum ItemTypeEnum.
-	 */
-	public static enum ItemTypeEnum
-	{
-		
-		/** The Clan hall. */
-		ClanHall
-	}
-	
-	/**
 	 * The Class Bidder.
 	 */
 	public class Bidder

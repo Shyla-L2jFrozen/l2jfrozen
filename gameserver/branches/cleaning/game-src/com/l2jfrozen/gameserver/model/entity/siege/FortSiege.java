@@ -66,28 +66,6 @@ public class FortSiege
 	/** The Constant LOGGER. */
 	protected static final Logger LOGGER = Logger.getLogger(FortSiege.class);
 	
-	/**
-	 * The Enum TeleportWhoType.
-	 */
-	public static enum TeleportWhoType
-	{
-		
-		/** The All. */
-		All,
-		
-		/** The Attacker. */
-		Attacker,
-		
-		/** The Defender not owner. */
-		DefenderNotOwner,
-		
-		/** The Owner. */
-		Owner,
-		
-		/** The Spectator. */
-		Spectator
-	}
-	
 	// ===============================================================
 	// Schedule task
 	/**
@@ -330,13 +308,13 @@ public class FortSiege
 			unSpawnFlags();
 			
 			// Teleport to the second closest town
-			teleportPlayer(FortSiege.TeleportWhoType.Attacker, TeleportWhereType.Town);
+			teleportPlayer(TeleportWhoType.Attacker, TeleportWhereType.Town);
 			
 			// Teleport to the second closest town
-			teleportPlayer(FortSiege.TeleportWhoType.DefenderNotOwner, TeleportWhereType.Town);
+			teleportPlayer(TeleportWhoType.DefenderNotOwner, TeleportWhereType.Town);
 			
 			// Teleport to the second closest town
-			teleportPlayer(FortSiege.TeleportWhoType.Spectator, TeleportWhereType.Town);
+			teleportPlayer(TeleportWhoType.Spectator, TeleportWhereType.Town);
 			
 			// Flag so that siege instance can be started
 			_isInProgress = false;
@@ -484,7 +462,7 @@ public class FortSiege
 			updatePlayerSiegeStateFlags(false);
 			
 			// Teleport to the closest town
-			teleportPlayer(FortSiege.TeleportWhoType.Attacker, TeleportWhereType.Town);
+			teleportPlayer(TeleportWhoType.Attacker, TeleportWhereType.Town);
 			
 			// Spawn commander
 			spawnCommander(getFort().getFortId());

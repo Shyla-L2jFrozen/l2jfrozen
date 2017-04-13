@@ -20,7 +20,7 @@
 package com.l2jfrozen.gameserver.model;
 
 import com.l2jfrozen.Config;
-import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance.ItemLocation;
+import com.l2jfrozen.gameserver.model.actor.instance.ItemLocation;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 
 public final class ClanWarehouse extends Warehouse

@@ -23,6 +23,7 @@ package com.l2jfrozen.gameserver.network.clientpackets;
 import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.cache.HtmCache;
 import com.l2jfrozen.gameserver.model.L2Object;
+import com.l2jfrozen.gameserver.model.actor.instance.ItemLocation;
 import com.l2jfrozen.gameserver.model.actor.instance.L2FishermanInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2MerchantInstance;
@@ -147,7 +148,7 @@ public final class RequestSellItem extends L2GameClientPacket
 			L2ItemInstance item = player.checkItemManipulation(objectId, count, "sell");
 			
 			// Check Item
-			if (item == null || !item.getItem().isSellable() || item.getLocation() != L2ItemInstance.ItemLocation.INVENTORY)
+			if (item == null || !item.getItem().isSellable() || item.getLocation() != ItemLocation.INVENTORY)
 				continue;
 			
 			final long price = item.getReferencePrice() / 2;
