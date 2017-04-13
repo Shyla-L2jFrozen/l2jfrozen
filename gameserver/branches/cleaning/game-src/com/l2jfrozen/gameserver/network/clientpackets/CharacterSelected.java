@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.gameserver.network.L2GameClient.GameClientState;
+import com.l2jfrozen.gameserver.network.GameClientState;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.network.serverpackets.CharSelected;
 
