@@ -19,8 +19,8 @@
 package com.l2jfrozen.loginserver.network.clientpackets;
 
 import com.l2jfrozen.loginserver.LoginController;
-import com.l2jfrozen.loginserver.network.serverpackets.LoginFail.LoginFailReason;
-import com.l2jfrozen.loginserver.network.serverpackets.PlayFail.PlayFailReason;
+import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
+import com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason;
 import com.l2jfrozen.loginserver.network.serverpackets.PlayOk;
 import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.SessionKey;

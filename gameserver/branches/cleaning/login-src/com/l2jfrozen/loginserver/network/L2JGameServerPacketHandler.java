@@ -39,13 +39,6 @@ public class L2JGameServerPacketHandler
 {
 	protected static Logger _log = Logger.getLogger(L2JGameServerPacketHandler.class.getName());
 	
-	public static enum GameServerState
-	{
-		CONNECTED,
-		BF_CONNECTED,
-		AUTHED
-	}
-	
 	public static BaseRecievePacket handlePacket(final byte[] data, final GameServerThread server)
 	{
 		BaseRecievePacket msg = null;

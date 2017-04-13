@@ -18,25 +18,22 @@
  */
 package com.l2jfrozen.loginserver.network.serverpackets;
 
-/**
- * @author KenM
- */
-public final class AccountKicked extends L2LoginServerPacket
+public enum AccountKickedReason
 {
-	private final AccountKickedReason _reason;
+	REASON_DATA_STEALER(0x01),
+	REASON_GENERIC_VIOLATION(0x08),
+	REASON_7_DAYS_SUSPENDED(0x10),
+	REASON_PERMANENTLY_BANNED(0x20);
 	
-	/**
-	 * @param reason
-	 */
-	public AccountKicked(final AccountKickedReason reason)
+	private final int _code;
+	
+	AccountKickedReason(final int code)
 	{
-		_reason = reason;
+		_code = code;
 	}
 	
-	@Override
-	protected void write()
+	public final int getCode()
 	{
-		writeC(0x02);
-		writeD(_reason.getCode());
+		return _code;
 	}
 }

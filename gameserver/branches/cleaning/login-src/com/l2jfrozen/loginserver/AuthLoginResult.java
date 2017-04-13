@@ -16,27 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.l2jfrozen.loginserver.network.serverpackets;
+package com.l2jfrozen.loginserver;
 
-/**
- * @author KenM
- */
-public final class AccountKicked extends L2LoginServerPacket
+public enum AuthLoginResult
 {
-	private final AccountKickedReason _reason;
-	
-	/**
-	 * @param reason
-	 */
-	public AccountKicked(final AccountKickedReason reason)
-	{
-		_reason = reason;
-	}
-	
-	@Override
-	protected void write()
-	{
-		writeC(0x02);
-		writeD(_reason.getCode());
-	}
+	INVALID_PASSWORD,
+	ACCOUNT_BANNED,
+	ALREADY_ON_LS,
+	ALREADY_ON_GS,
+	AUTH_SUCCESS
 }

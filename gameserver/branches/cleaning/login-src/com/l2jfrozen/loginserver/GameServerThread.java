@@ -32,8 +32,8 @@ import java.util.logging.Logger;
 
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
+import com.l2jfrozen.loginserver.network.GameServerState;
 import com.l2jfrozen.loginserver.network.L2JGameServerPacketHandler;
-import com.l2jfrozen.loginserver.network.L2JGameServerPacketHandler.GameServerState;
 import com.l2jfrozen.loginserver.network.loginserverpackets.InitLS;
 import com.l2jfrozen.loginserver.network.loginserverpackets.KickPlayer;
 import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
