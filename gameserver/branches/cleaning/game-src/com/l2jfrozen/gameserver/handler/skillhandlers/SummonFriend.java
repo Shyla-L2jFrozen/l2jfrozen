@@ -31,7 +31,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.entity.event.CTF;
 import com.l2jfrozen.gameserver.model.entity.event.DM;
 import com.l2jfrozen.gameserver.model.entity.event.TvT;
-import com.l2jfrozen.gameserver.model.entity.event.VIP;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.ConfirmDlg;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
@@ -81,11 +80,6 @@ public class SummonFriend implements ISkillHandler
 			return;
 		}
 		if (activePlayer._inEventTvT && TvT.is_started())
-		{
-			activePlayer.sendMessage("You cannot use this skill in Event.");
-			return;
-		}
-		if (activePlayer._inEventVIP && VIP._started)
 		{
 			activePlayer.sendMessage("You cannot use this skill in Event.");
 			return;
@@ -154,11 +148,6 @@ public class SummonFriend implements ISkillHandler
 						return;
 					}
 					if (targetChar._inEventTvT)
-					{
-						targetChar.sendMessage("You cannot use this skill in a Event.");
-						return;
-					}
-					if (targetChar._inEventVIP)
 					{
 						targetChar.sendMessage("You cannot use this skill in a Event.");
 						return;

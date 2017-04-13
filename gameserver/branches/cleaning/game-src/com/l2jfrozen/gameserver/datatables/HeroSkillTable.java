@@ -41,7 +41,7 @@ public class HeroSkillTable
 		_heroSkills[3] = SkillTable.getInstance().getInfo(1375, 1);
 		_heroSkills[4] = SkillTable.getInstance().getInfo(1376, 1);
 		
-		LOGGER.info("NobleSkillTable: loaded 5 skills.");
+		LOGGER.info("HeroSkillTable: loaded 5 skills.");
 	}
 	
 	public static HeroSkillTable getInstance()

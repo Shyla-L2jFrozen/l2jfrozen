@@ -21,7 +21,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.entity.event.CTF;
 import com.l2jfrozen.gameserver.model.entity.event.DM;
 import com.l2jfrozen.gameserver.model.entity.event.TvT;
-import com.l2jfrozen.gameserver.model.entity.event.VIP;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.ConfirmDlg;
 import com.l2jfrozen.gameserver.network.serverpackets.MagicSkillUser;
@@ -336,11 +335,6 @@ public class Wedding implements IVoicedCommandHandler
 		if (activeChar._inEventDM && DM.is_started())
 		{
 			activeChar.sendMessage("You can't do it. You may not use go to love in DM.");
-			return false;
-		}
-		if (activeChar._inEventVIP && VIP._started)
-		{
-			activeChar.sendMessage("You can't do it. You may not use go to love in VIP.");
 			return false;
 		}
 		else if (activeChar.isInDuel())

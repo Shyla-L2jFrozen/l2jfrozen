@@ -92,7 +92,6 @@ import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminTest;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminTownWar;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminTvTEngine;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminUnblockIp;
-import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminVIPEngine;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminWho;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminZone;
 
@@ -129,7 +128,6 @@ public class AdminCommandHandler
 		registerAdminCommandHandler(new AdminTarget());
 		registerAdminCommandHandler(new AdminShop());
 		registerAdminCommandHandler(new AdminCTFEngine());
-		registerAdminCommandHandler(new AdminVIPEngine());
 		registerAdminCommandHandler(new AdminDMEngine());
 		registerAdminCommandHandler(new AdminAnnouncements());
 		registerAdminCommandHandler(new AdminCreateItem());
