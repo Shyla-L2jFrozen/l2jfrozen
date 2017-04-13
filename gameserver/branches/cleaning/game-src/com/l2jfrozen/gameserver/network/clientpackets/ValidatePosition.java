@@ -23,7 +23,7 @@ package com.l2jfrozen.gameserver.network.clientpackets;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.Config;
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.geo.GeoData;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.serverpackets.CharMoveToLocation;
@@ -64,7 +64,7 @@ public final class ValidatePosition extends L2GameClientPacket
 		
 		if (activeChar.getX() == 0 && activeChar.getY() == 0)
 		{
-			activeChar.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+			activeChar.teleToLocation(TeleportWhereType.Town);
 			clientToServer(activeChar);
 		}
 		

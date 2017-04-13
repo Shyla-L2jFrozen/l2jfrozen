@@ -27,6 +27,7 @@ import org.apache.log4j.Logger;
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.datatables.sql.SpawnTable;
 import com.l2jfrozen.gameserver.handler.IAdminCommandHandler;
@@ -127,7 +128,7 @@ public class AdminTeleport implements IAdminCommandHandler
 				final L2PcInstance player = L2World.getInstance().getPlayer(targetName);
 				if (player != null)
 				{
-					final Location loc = MapRegionTable.getInstance().getTeleToLocation(player, MapRegionTable.TeleportWhereType.Town);
+					final Location loc = MapRegionTable.getInstance().getTeleToLocation(player, TeleportWhereType.Town);
 					player.setInstanceId(0);
 					player.teleToLocation(loc, true);
 				}

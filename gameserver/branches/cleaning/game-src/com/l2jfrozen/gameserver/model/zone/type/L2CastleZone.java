@@ -20,7 +20,7 @@
 package com.l2jfrozen.gameserver.model.zone.type;
 
 import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.managers.CastleManager;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
@@ -189,7 +189,7 @@ public class L2CastleZone extends L2ZoneType
 				continue;
 			}
 			
-			((L2PcInstance) temp).teleToLocation(MapRegionTable.TeleportWhereType.Town);
+			((L2PcInstance) temp).teleToLocation(TeleportWhereType.Town);
 		}
 	}
 	

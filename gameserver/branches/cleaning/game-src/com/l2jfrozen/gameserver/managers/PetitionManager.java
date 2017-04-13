@@ -54,32 +54,6 @@ public final class PetitionManager
 	private final Map<Integer, Petition> _pendingPetitions;
 	private final Map<Integer, Petition> _completedPetitions;
 	
-	private static enum PetitionState
-	{
-		Pending,
-		Responder_Cancel,
-		Responder_Missing,
-		Responder_Reject,
-		Responder_Complete,
-		Petitioner_Cancel,
-		Petitioner_Missing,
-		In_Process,
-		Completed
-	}
-	
-	private static enum PetitionType
-	{
-		Immobility,
-		Recovery_Related,
-		Bug_Report,
-		Quest_Related,
-		Bad_User,
-		Suggestions,
-		Game_Tip,
-		Operation_Related,
-		Other
-	}
-	
 	public static PetitionManager getInstance()
 	{
 		if (_instance == null)

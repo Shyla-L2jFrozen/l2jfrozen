@@ -23,6 +23,7 @@ package com.l2jfrozen.gameserver.model.actor.instance;
 import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.managers.RaidBossPointsManager;
 import com.l2jfrozen.gameserver.managers.RaidBossSpawnManager;
+import com.l2jfrozen.gameserver.managers.StatusEnum;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Summon;
 import com.l2jfrozen.gameserver.model.spawn.L2Spawn;
@@ -43,7 +44,7 @@ public final class L2RaidBossInstance extends L2MonsterInstance
 	private static final int RAIDBOSS_MAINTENANCE_INTERVAL = 20000; // 20 sec
 	
 	/** The _raid status. */
-	private RaidBossSpawnManager.StatusEnum _raidStatus;
+	private StatusEnum _raidStatus;
 	
 	/**
 	 * Constructor of L2RaidBossInstance (use L2Character and L2NpcInstance constructor).<BR>
@@ -160,7 +161,7 @@ public final class L2RaidBossInstance extends L2MonsterInstance
 	 * Sets the raid status.
 	 * @param status the new raid status
 	 */
-	public void setRaidStatus(final RaidBossSpawnManager.StatusEnum status)
+	public void setRaidStatus(final StatusEnum status)
 	{
 		_raidStatus = status;
 	}
@@ -169,7 +170,7 @@ public final class L2RaidBossInstance extends L2MonsterInstance
 	 * Gets the raid status.
 	 * @return the raid status
 	 */
-	public RaidBossSpawnManager.StatusEnum getRaidStatus()
+	public StatusEnum getRaidStatus()
 	{
 		return _raidStatus;
 	}

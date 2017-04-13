@@ -30,7 +30,7 @@ import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.Config;
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.handler.AutoChatHandler;
 import com.l2jfrozen.gameserver.managers.CastleManager;
 import com.l2jfrozen.gameserver.model.L2World;
@@ -1649,7 +1649,7 @@ public class SevenSigns
 			{
 				if (!onlinePlayer.isGM() && onlinePlayer.isIn7sDungeon() && !currPlayer.getString("cabal").equals(compWinner))
 				{
-					onlinePlayer.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+					onlinePlayer.teleToLocation(TeleportWhereType.Town);
 					onlinePlayer.setIsIn7sDungeon(false);
 					onlinePlayer.sendMessage("You have been teleported to the nearest town due to the beginning of the Seal Validation period.");
 				}
@@ -1658,7 +1658,7 @@ public class SevenSigns
 			{
 				if (!onlinePlayer.isGM() && onlinePlayer.isIn7sDungeon() && !currPlayer.getString("cabal").equals(""))
 				{
-					onlinePlayer.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+					onlinePlayer.teleToLocation(TeleportWhereType.Town);
 					onlinePlayer.setIsIn7sDungeon(false);
 					onlinePlayer.sendMessage("You have been teleported to the nearest town because you have not signed for any cabal.");
 				}

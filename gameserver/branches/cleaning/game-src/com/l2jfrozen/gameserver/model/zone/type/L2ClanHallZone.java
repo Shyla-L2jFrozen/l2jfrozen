@@ -19,7 +19,7 @@
  */
 package com.l2jfrozen.gameserver.model.zone.type;
 
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.managers.ClanHallManager;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.Location;
@@ -142,7 +142,7 @@ public class L2ClanHallZone extends L2ZoneType
 				continue;
 			}
 			
-			((L2PcInstance) temp).teleToLocation(MapRegionTable.TeleportWhereType.Town);
+			((L2PcInstance) temp).teleToLocation(TeleportWhereType.Town);
 		}
 	}
 	

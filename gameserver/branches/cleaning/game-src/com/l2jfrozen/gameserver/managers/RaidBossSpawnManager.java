@@ -62,13 +62,6 @@ public class RaidBossSpawnManager
 	protected static Map<Integer, StatsSet> _storedInfo = new FastMap<>();
 	protected static Map<Integer, ScheduledFuture<?>> _schedules = new FastMap<>();
 	
-	public static enum StatusEnum
-	{
-		ALIVE,
-		DEAD,
-		UNDEFINED
-	}
-	
 	public RaidBossSpawnManager()
 	{
 		init();
