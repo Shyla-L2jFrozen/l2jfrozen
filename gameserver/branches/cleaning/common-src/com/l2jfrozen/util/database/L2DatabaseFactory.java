@@ -29,12 +29,6 @@ public abstract class L2DatabaseFactory
 {
 	private static final Logger LOGGER = Logger.getLogger(L2DatabaseFactory.class);
 	
-	protected enum ProviderType
-	{
-		MySql,
-		MsSql
-	}
-	
 	// =========================================================
 	// Data Field
 	protected static L2DatabaseFactory _instance;
