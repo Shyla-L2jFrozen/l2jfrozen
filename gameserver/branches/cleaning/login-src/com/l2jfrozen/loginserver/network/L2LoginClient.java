@@ -30,9 +30,9 @@ import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.network.serverpackets.L2LoginServerPacket;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFail;
-import com.l2jfrozen.loginserver.network.serverpackets.LoginFail.LoginFailReason;
+import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.loginserver.network.serverpackets.PlayFail;
-import com.l2jfrozen.loginserver.network.serverpackets.PlayFail.PlayFailReason;
+import com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason;
 import com.l2jfrozen.netcore.MMOClient;
 import com.l2jfrozen.netcore.MMOConnection;
 import com.l2jfrozen.netcore.SendablePacket;
@@ -48,13 +48,6 @@ import com.l2jfrozen.util.random.Rnd;
 public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 {
 	private static final Logger _log = Logger.getLogger(L2LoginClient.class.getName());
-	
-	public static enum LoginClientState
-	{
-		CONNECTED,
-		AUTHED_GG,
-		AUTHED_LOGIN
-	}
 	
 	private LoginClientState _state;
 	

@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
 
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
-import com.l2jfrozen.loginserver.network.serverpackets.LoginFail.LoginFailReason;
+import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.netcore.MMOClient;
 import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.util.PacketsFloodServer;
@@ -33,15 +33,10 @@ public class LoginServerFloodProtectorActions implements PacketsFloodServer
 {
 	
 	private final Logger LOGGER = Logger.getLogger(LoginServerFloodProtectorActions.class);
-	
 	private final int MAX_CONCURRENT_ACTIONS_PER_PLAYER = 10;
-	
 	private final Hashtable<String, AtomicInteger> clients_concurrent_actions = new Hashtable<>();
-	
 	private final Hashtable<String, Hashtable<Integer, AtomicInteger>> clients_actions = new Hashtable<>();
-	
 	private final Hashtable<String, Hashtable<Integer, Integer>> clients_nextGameTick = new Hashtable<>();
-	
 	private final Hashtable<String, Boolean> punishes_in_progress = new Hashtable<>();
 	
 	/**

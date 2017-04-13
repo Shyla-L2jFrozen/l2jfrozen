@@ -18,9 +18,9 @@
  */
 package com.l2jfrozen.loginserver.network.clientpackets;
 
-import com.l2jfrozen.loginserver.network.L2LoginClient.LoginClientState;
+import com.l2jfrozen.loginserver.network.LoginClientState;
 import com.l2jfrozen.loginserver.network.serverpackets.GGAuth;
-import com.l2jfrozen.loginserver.network.serverpackets.LoginFail.LoginFailReason;
+import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 
 /**
  * Format: ddddd

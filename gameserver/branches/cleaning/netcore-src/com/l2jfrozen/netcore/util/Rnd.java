@@ -81,7 +81,6 @@ public final class Rnd
 		/**
 		 * Get a random double number from 0 to 1
 		 * @return A random double number from 0 to 1
-		 * @see com.l2jserver.util.Rnd#nextDouble()
 		 */
 		public final double get()
 		{
@@ -282,7 +281,6 @@ public final class Rnd
 	/**
 	 * Get a random double number from 0 to 1
 	 * @return A random double number from 0 to 1
-	 * @see com.l2jserver.util.Rnd#nextDouble()
 	 */
 	public static final double get()
 	{
@@ -404,7 +402,6 @@ public final class Rnd
 	/**
 	 * @param n
 	 * @return
-	 * @see com.l2jserver.util.Rnd#get(int n)
 	 */
 	public static final int nextInt(final int n)
 	{

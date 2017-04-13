@@ -29,7 +29,7 @@ import com.l2jfrozen.loginserver.GameServerTable;
 import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.LoginConfig;
-import com.l2jfrozen.loginserver.network.L2JGameServerPacketHandler.GameServerState;
+import com.l2jfrozen.loginserver.network.GameServerState;
 import com.l2jfrozen.loginserver.network.loginserverpackets.AuthResponse;
 import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
 import com.l2jfrozen.util.network.BaseRecievePacket;

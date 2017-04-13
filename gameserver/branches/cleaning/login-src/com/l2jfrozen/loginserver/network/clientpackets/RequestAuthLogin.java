@@ -25,15 +25,15 @@ import java.util.logging.Logger;
 
 import javax.crypto.Cipher;
 
+import com.l2jfrozen.loginserver.AuthLoginResult;
 import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
 import com.l2jfrozen.loginserver.LoginController;
-import com.l2jfrozen.loginserver.LoginController.AuthLoginResult;
 import com.l2jfrozen.loginserver.model.data.AccountInfo;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
-import com.l2jfrozen.loginserver.network.L2LoginClient.LoginClientState;
+import com.l2jfrozen.loginserver.network.LoginClientState;
 import com.l2jfrozen.loginserver.network.serverpackets.AccountKicked;
-import com.l2jfrozen.loginserver.network.serverpackets.AccountKicked.AccountKickedReason;
-import com.l2jfrozen.loginserver.network.serverpackets.LoginFail.LoginFailReason;
+import com.l2jfrozen.loginserver.network.serverpackets.AccountKickedReason;
+import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginOk;
 import com.l2jfrozen.loginserver.network.serverpackets.ServerList;
 import com.l2jfrozen.netcore.NetcoreConfig;
