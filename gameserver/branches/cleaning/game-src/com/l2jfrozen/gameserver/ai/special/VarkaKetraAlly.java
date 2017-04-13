@@ -22,6 +22,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.network.serverpackets.InventoryUpdate;
 import com.l2jfrozen.gameserver.util.Util;
 
@@ -80,8 +81,8 @@ public class VarkaKetraAlly extends Quest implements Runnable
 		
 		for (final int mob : mobs)
 		{
-			addEventId(mob, Quest.QuestEventType.ON_KILL);
-			addEventId(mob, Quest.QuestEventType.ON_ATTACK);
+			addEventId(mob, QuestEventType.ON_KILL);
+			addEventId(mob, QuestEventType.ON_ATTACK);
 		}
 	}
 	

@@ -33,6 +33,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2GrandBossInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.model.zone.type.L2BossZone;
 import com.l2jfrozen.gameserver.network.serverpackets.PlaySound;
 import com.l2jfrozen.gameserver.templates.StatsSet;
@@ -173,8 +174,8 @@ public class Zaken extends Quest implements Runnable
 			}
 		}, 2000L, 600000L);
 		
-		addEventId(ZAKEN, Quest.QuestEventType.ON_KILL);
-		addEventId(ZAKEN, Quest.QuestEventType.ON_ATTACK);
+		addEventId(ZAKEN, QuestEventType.ON_KILL);
+		addEventId(ZAKEN, QuestEventType.ON_ATTACK);
 		
 		_Zone = GrandBossManager.getInstance().getZone(55312, 219168, -3223);
 		

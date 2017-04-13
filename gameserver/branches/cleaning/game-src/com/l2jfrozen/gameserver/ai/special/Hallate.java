@@ -1,6 +1,7 @@
 package com.l2jfrozen.gameserver.ai.special;
 
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 
 /*
  * @author m095 (L2EmuRT)
@@ -15,7 +16,7 @@ public class Hallate extends Quest implements Runnable
 	{
 		super(questId, name, descr);
 		
-		addEventId(HALLATE, Quest.QuestEventType.ON_ATTACK);
+		addEventId(HALLATE, QuestEventType.ON_ATTACK);
 	}
 	
 	@Override

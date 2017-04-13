@@ -89,6 +89,7 @@ import com.l2jfrozen.gameserver.model.entity.event.L2Event;
 import com.l2jfrozen.gameserver.model.entity.event.TvT;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.model.quest.QuestState;
 import com.l2jfrozen.gameserver.model.zone.type.L2BossZone;
 import com.l2jfrozen.gameserver.model.zone.type.L2TownZone;
@@ -8813,7 +8814,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 			
 			final L2PcInstance player = target instanceof L2PcInstance ? (L2PcInstance) target : ((L2Summon) target).getOwner();
 			
-			for (final Quest quest : ((L2NpcTemplate) getTemplate()).getEventQuests(Quest.QuestEventType.ON_SPELL_FINISHED))
+			for (final Quest quest : ((L2NpcTemplate) getTemplate()).getEventQuests(QuestEventType.ON_SPELL_FINISHED))
 			{
 				quest.notifySpellFinished(((L2NpcInstance) this), player, skill);
 			}
@@ -9391,7 +9392,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 					{
 						L2NpcInstance npc = (L2NpcInstance) target;
 						
-						for (final Quest quest : npc.getTemplate().getEventQuests(Quest.QuestEventType.ON_SKILL_USE))
+						for (final Quest quest : npc.getTemplate().getEventQuests(QuestEventType.ON_SKILL_USE))
 						{
 							quest.notifySkillUse(npc, caster, skill);
 						}

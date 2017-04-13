@@ -25,6 +25,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.actor.position.L2CharPosition;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.model.spawn.L2Spawn;
 
 /**
@@ -328,9 +329,9 @@ public class Gordon extends Quest implements Runnable
 	{
 		super(id, name, descr);
 		
-		addEventId(GORDON, Quest.QuestEventType.ON_KILL);
-		addEventId(GORDON, Quest.QuestEventType.ON_ATTACK);
-		addEventId(GORDON, Quest.QuestEventType.ON_SPAWN);
+		addEventId(GORDON, QuestEventType.ON_KILL);
+		addEventId(GORDON, QuestEventType.ON_ATTACK);
+		addEventId(GORDON, QuestEventType.ON_SPAWN);
 		
 		// wait 2 minutes after Start AI
 		startQuestTimer("check_ai", 120000, null, null, true);

@@ -54,10 +54,10 @@ import com.l2jfrozen.gameserver.skills.effects.EffectTemplate;
 import com.l2jfrozen.gameserver.skills.funcs.Func;
 import com.l2jfrozen.gameserver.templates.L2Armor;
 import com.l2jfrozen.gameserver.templates.L2Item;
-import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
 import com.l2jfrozen.gameserver.templates.L2PcTemplate;
 import com.l2jfrozen.gameserver.templates.L2Weapon;
 import com.l2jfrozen.gameserver.templates.L2WeaponType;
+import com.l2jfrozen.gameserver.templates.Race;
 import com.l2jfrozen.gameserver.util.Util;
 import com.l2jfrozen.util.StringUtil;
 import com.l2jfrozen.util.random.Rnd;
@@ -1573,32 +1573,32 @@ public final class Formulas
 		if (attacker instanceof L2NpcInstance)
 		{
 			// Skill Race : Undead
-			if (((L2NpcInstance) attacker).getTemplate().getRace() == L2NpcTemplate.Race.UNDEAD)
+			if (((L2NpcInstance) attacker).getTemplate().getRace() == Race.UNDEAD)
 			{
 				damage /= attacker.getPDefUndead(target);
 			}
 			
-			if (((L2NpcInstance) attacker).getTemplate().getRace() == L2NpcTemplate.Race.PLANT)
+			if (((L2NpcInstance) attacker).getTemplate().getRace() == Race.PLANT)
 			{
 				damage /= attacker.getPDefPlants(target);
 			}
 			
-			if (((L2NpcInstance) attacker).getTemplate().getRace() == L2NpcTemplate.Race.BUG)
+			if (((L2NpcInstance) attacker).getTemplate().getRace() == Race.BUG)
 			{
 				damage /= attacker.getPDefInsects(target);
 			}
 			
-			if (((L2NpcInstance) attacker).getTemplate().getRace() == L2NpcTemplate.Race.ANIMAL)
+			if (((L2NpcInstance) attacker).getTemplate().getRace() == Race.ANIMAL)
 			{
 				damage /= attacker.getPDefAnimals(target);
 			}
 			
-			if (((L2NpcInstance) attacker).getTemplate().getRace() == L2NpcTemplate.Race.BEAST)
+			if (((L2NpcInstance) attacker).getTemplate().getRace() == Race.BEAST)
 			{
 				damage /= attacker.getPDefMonsters(target);
 			}
 			
-			if (((L2NpcInstance) attacker).getTemplate().getRace() == L2NpcTemplate.Race.DRAGON)
+			if (((L2NpcInstance) attacker).getTemplate().getRace() == Race.DRAGON)
 			{
 				damage /= attacker.getPDefDragons(target);
 			}

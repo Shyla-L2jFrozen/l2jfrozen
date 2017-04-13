@@ -54,6 +54,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2RaidBossInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2RiftInvaderInstance;
 import com.l2jfrozen.gameserver.model.actor.position.L2CharPosition;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.templates.L2Weapon;
 import com.l2jfrozen.gameserver.templates.L2WeaponType;
 import com.l2jfrozen.thread.ThreadPoolManager;
@@ -426,7 +427,7 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 					{
 						final L2PcInstance targetPlayer = obj instanceof L2PcInstance ? (L2PcInstance) obj : ((L2Summon) obj).getOwner();
 						
-						for (final Quest quest : npc.getTemplate().getEventQuests(Quest.QuestEventType.ON_AGGRO_RANGE_ENTER))
+						for (final Quest quest : npc.getTemplate().getEventQuests(QuestEventType.ON_AGGRO_RANGE_ENTER))
 						{
 							quest.notifyAggroRangeEnter(npc, targetPlayer, obj instanceof L2Summon);
 						}
@@ -702,7 +703,7 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 							if (originalAttackTarget instanceof L2PcInstance || originalAttackTarget instanceof L2Summon)
 							{
 								final L2PcInstance player = originalAttackTarget instanceof L2PcInstance ? (L2PcInstance) originalAttackTarget : ((L2Summon) originalAttackTarget).getOwner();
-								for (final Quest quest : npc.getTemplate().getEventQuests(Quest.QuestEventType.ON_FACTION_CALL))
+								for (final Quest quest : npc.getTemplate().getEventQuests(QuestEventType.ON_FACTION_CALL))
 								{
 									quest.notifyFactionCall(npc, (L2NpcInstance) _actor, player, (originalAttackTarget instanceof L2Summon));
 								}
