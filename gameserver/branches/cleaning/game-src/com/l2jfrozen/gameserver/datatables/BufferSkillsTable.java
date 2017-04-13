@@ -40,7 +40,6 @@ import javolution.util.FastMap;
  * <li>Dances</li>
  * <li>Newbie buffs</li>
  * <li>Advanced buffs</li>
- * <li>Vip buffs</li>
  * <li>...</li> <br>
  * <font color="red"><b>IMPORTANT: type must not contain spaces</b></font> <br>
  * <br>

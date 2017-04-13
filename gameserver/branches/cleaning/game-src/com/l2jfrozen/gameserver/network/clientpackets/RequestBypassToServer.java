@@ -41,7 +41,6 @@ import com.l2jfrozen.gameserver.model.entity.event.CTF;
 import com.l2jfrozen.gameserver.model.entity.event.DM;
 import com.l2jfrozen.gameserver.model.entity.event.L2Event;
 import com.l2jfrozen.gameserver.model.entity.event.TvT;
-import com.l2jfrozen.gameserver.model.entity.event.VIP;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -207,21 +206,6 @@ public final class RequestBypassToServer extends L2GameClientPacket
 							CTF.removePlayer(activeChar);
 						else
 							activeChar.sendMessage("The event is already started. You can't leave now!");
-					}
-					
-					if (_command.substring(endOfId + 1).startsWith("vip_joinVIPTeam"))
-					{
-						VIP.addPlayerVIP(activeChar);
-					}
-					
-					if (_command.substring(endOfId + 1).startsWith("vip_joinNotVIPTeam"))
-					{
-						VIP.addPlayerNotVIP(activeChar);
-					}
-					
-					if (_command.substring(endOfId + 1).startsWith("vip_finishVIP"))
-					{
-						VIP.vipWin(activeChar);
 					}
 					
 					if (_command.substring(endOfId + 1).startsWith("event_participate"))

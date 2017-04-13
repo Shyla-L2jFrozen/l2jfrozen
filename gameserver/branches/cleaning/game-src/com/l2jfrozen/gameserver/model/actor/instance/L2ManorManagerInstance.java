@@ -190,7 +190,7 @@ public class L2ManorManagerInstance extends L2MerchantInstance
 						for (final SeedProduction s : seeds)
 						{
 							final L2ItemInstance item = ItemTable.getInstance().createDummyItem(s.getId());
-							int price = s.getPrice();
+							final int price = s.getPrice();
 							item.setPriceToSell(price);
 							item.setCount(s.getCanProduce());
 							if (item.getCount() > 0 && item.getPriceToSell() > 0)

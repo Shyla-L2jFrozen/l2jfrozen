@@ -704,7 +704,7 @@ public class Shutdown extends Thread
 			
 			try
 			{
-				L2GameClient client = player.getClient();
+				final L2GameClient client = player.getClient();
 				// Player Disconnect
 				if (client != null && !client.isDetached())
 				{

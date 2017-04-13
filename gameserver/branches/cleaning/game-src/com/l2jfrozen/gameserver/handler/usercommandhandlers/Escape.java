@@ -31,7 +31,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.entity.event.CTF;
 import com.l2jfrozen.gameserver.model.entity.event.DM;
 import com.l2jfrozen.gameserver.model.entity.event.TvT;
-import com.l2jfrozen.gameserver.model.entity.event.VIP;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.MagicSkillUser;
 import com.l2jfrozen.gameserver.network.serverpackets.SetupGauge;
@@ -85,13 +84,6 @@ public class Escape implements IUserCommandHandler
 		if (activeChar._inEventDM && DM.is_started())
 		{
 			activeChar.sendMessage("You may not use an escape skill in DM.");
-			return false;
-		}
-		
-		// Check to see if the current player is in Vip Event.
-		if (activeChar._inEventVIP && VIP._started)
-		{
-			activeChar.sendMessage("You may not use an escape skill in VIP.");
 			return false;
 		}
 		
