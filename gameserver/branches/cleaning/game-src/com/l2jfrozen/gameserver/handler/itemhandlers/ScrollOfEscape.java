@@ -25,7 +25,7 @@ import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.handler.IItemHandler;
 import com.l2jfrozen.gameserver.managers.CastleManager;
 import com.l2jfrozen.gameserver.managers.ClanHallManager;
@@ -247,26 +247,25 @@ public class ScrollOfEscape implements IItemHandler
 			
 			try
 			{
-				
 				// escape to castle if own's one
 				if ((_itemId == 1830 || _itemId == 5859))
 				{
 					if (CastleManager.getInstance().getCastleByOwner(_activeChar.getClan()) != null)
-						_activeChar.teleToLocation(MapRegionTable.TeleportWhereType.Castle);
+						_activeChar.teleToLocation(TeleportWhereType.Castle);
 					else
-						_activeChar.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+						_activeChar.teleToLocation(TeleportWhereType.Town);
 				}
 				// escape to fortress if own's one if own's one
 				else if ((_itemId == 1830 || _itemId == 5859))
 				{
 					if (FortManager.getInstance().getFortByOwner(_activeChar.getClan()) != null)
-						_activeChar.teleToLocation(MapRegionTable.TeleportWhereType.Fortress);
+						_activeChar.teleToLocation(TeleportWhereType.Fortress);
 					else
-						_activeChar.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+						_activeChar.teleToLocation(TeleportWhereType.Town);
 				}
 				else if ((_itemId == 1829 || _itemId == 5858) && _activeChar.getClan() != null && ClanHallManager.getInstance().getClanHallByOwner(_activeChar.getClan()) != null) // escape to clan hall if own's one
 				{
-					_activeChar.teleToLocation(MapRegionTable.TeleportWhereType.ClanHall);
+					_activeChar.teleToLocation(TeleportWhereType.ClanHall);
 				}
 				else if (_itemId == 5858) // do nothing
 				{
@@ -282,7 +281,7 @@ public class ScrollOfEscape implements IItemHandler
 				{
 					if (_itemId < 7117)
 					{
-						_activeChar.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+						_activeChar.teleToLocation(TeleportWhereType.Town);
 					}
 					else
 					{
@@ -370,7 +369,7 @@ public class ScrollOfEscape implements IItemHandler
 								_activeChar.teleToLocation(108275, -53785, -2524, true); // Varka Silenos Village
 								break;
 							default:
-								_activeChar.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+								_activeChar.teleToLocation(TeleportWhereType.Town);
 								break;
 						}
 					}

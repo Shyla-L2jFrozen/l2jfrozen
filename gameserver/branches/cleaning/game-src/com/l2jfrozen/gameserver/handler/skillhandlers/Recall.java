@@ -21,7 +21,7 @@
 package com.l2jfrozen.gameserver.handler.skillhandlers;
 
 import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.handler.ISkillHandler;
 import com.l2jfrozen.gameserver.managers.GrandBossManager;
 import com.l2jfrozen.gameserver.model.L2Character;
@@ -155,7 +155,7 @@ public class Recall implements ISkillHandler
 					}
 				}
 				
-				target.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+				target.teleToLocation(TeleportWhereType.Town);
 				target = null;
 			}
 			

@@ -64,15 +64,6 @@ public class MapRegionTable
 	
 	private final int[][] _pointsWithKarmas;
 	
-	public static enum TeleportWhereType
-	{
-		Castle,
-		ClanHall,
-		SiegeFlag,
-		Town,
-		Fortress
-	}
-	
 	public static MapRegionTable getInstance()
 	{
 		if (_instance == null)

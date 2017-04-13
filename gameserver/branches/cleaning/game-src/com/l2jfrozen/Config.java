@@ -3624,14 +3624,6 @@ public final class Config
 	public static boolean ALLOW_PLAYERS_PATHNODE;
 	public static boolean FORCE_GEODATA;
 	
-	public static enum CorrectSpawnsZ
-	{
-		TOWN,
-		MONSTER,
-		ALL,
-		NONE
-	}
-	
 	public static CorrectSpawnsZ GEO_CORRECT_Z;
 	
 	public static boolean ACCEPT_GEOEDITOR_CONN;
@@ -4287,28 +4279,6 @@ public final class Config
 	// throw new Error("Failed to Load " + LOGIN + " File.");
 	// }
 	// }
-	
-	/** Enumeration for type of ID Factory */
-	public static enum IdFactoryType
-	{
-		Compaction,
-		BitSet,
-		Stack
-	}
-	
-	/** Enumeration for type of maps object */
-	public static enum ObjectMapType
-	{
-		WorldObjectTree,
-		WorldObjectMap
-	}
-	
-	/** Enumeration for type of set object */
-	public static enum ObjectSetType
-	{
-		L2ObjectHashSet,
-		WorldObjectSet
-	}
 	
 	public static void load()
 	{

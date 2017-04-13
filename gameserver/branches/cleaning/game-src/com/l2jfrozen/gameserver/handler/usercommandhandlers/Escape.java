@@ -24,7 +24,7 @@ import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.handler.IUserCommandHandler;
 import com.l2jfrozen.gameserver.managers.GrandBossManager;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
@@ -185,7 +185,7 @@ public class Escape implements IUserCommandHandler
 					return;
 				}
 				
-				_activeChar.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+				_activeChar.teleToLocation(TeleportWhereType.Town);
 			}
 			catch (final Throwable e)
 			{

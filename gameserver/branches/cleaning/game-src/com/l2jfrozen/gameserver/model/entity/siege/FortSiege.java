@@ -25,7 +25,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.datatables.sql.ClanTable;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.idfactory.IdFactory;
@@ -330,13 +330,13 @@ public class FortSiege
 			unSpawnFlags();
 			
 			// Teleport to the second closest town
-			teleportPlayer(FortSiege.TeleportWhoType.Attacker, MapRegionTable.TeleportWhereType.Town);
+			teleportPlayer(FortSiege.TeleportWhoType.Attacker, TeleportWhereType.Town);
 			
 			// Teleport to the second closest town
-			teleportPlayer(FortSiege.TeleportWhoType.DefenderNotOwner, MapRegionTable.TeleportWhereType.Town);
+			teleportPlayer(FortSiege.TeleportWhoType.DefenderNotOwner, TeleportWhereType.Town);
 			
 			// Teleport to the second closest town
-			teleportPlayer(FortSiege.TeleportWhoType.Spectator, MapRegionTable.TeleportWhereType.Town);
+			teleportPlayer(FortSiege.TeleportWhoType.Spectator, TeleportWhereType.Town);
 			
 			// Flag so that siege instance can be started
 			_isInProgress = false;
@@ -484,7 +484,7 @@ public class FortSiege
 			updatePlayerSiegeStateFlags(false);
 			
 			// Teleport to the closest town
-			teleportPlayer(FortSiege.TeleportWhoType.Attacker, MapRegionTable.TeleportWhereType.Town);
+			teleportPlayer(FortSiege.TeleportWhoType.Attacker, TeleportWhereType.Town);
 			
 			// Spawn commander
 			spawnCommander(getFort().getFortId());
@@ -1125,7 +1125,7 @@ public class FortSiege
 	 * @param teleportWho the teleport who
 	 * @param teleportWhere the teleport where
 	 */
-	public void teleportPlayer(final TeleportWhoType teleportWho, final MapRegionTable.TeleportWhereType teleportWhere)
+	public void teleportPlayer(final TeleportWhoType teleportWho, final TeleportWhereType teleportWhere)
 	{
 		List<L2PcInstance> players;
 		switch (teleportWho)

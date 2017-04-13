@@ -32,7 +32,7 @@ import org.apache.log4j.Logger;
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.datatables.sql.ClanTable;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.datatables.sql.SpawnTable;
@@ -5170,7 +5170,7 @@ public class SevenSignsFestival implements SpawnListener
 				// If an exception occurs, just move the player to the nearest town.
 				try
 				{
-					participant.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+					participant.teleToLocation(TeleportWhereType.Town);
 					participant.sendMessage("You have been removed from the festival arena.");
 				}
 				catch (final NullPointerException e2)

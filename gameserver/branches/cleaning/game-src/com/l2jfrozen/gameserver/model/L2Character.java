@@ -42,7 +42,7 @@ import com.l2jfrozen.gameserver.datatables.HeroSkillTable;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.datatables.csv.DoorTable;
 import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable.TeleportWhereType;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.geo.GeoData;
 import com.l2jfrozen.gameserver.geo.pathfinding.Node;

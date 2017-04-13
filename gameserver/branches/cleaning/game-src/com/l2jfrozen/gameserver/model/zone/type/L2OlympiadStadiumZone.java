@@ -19,7 +19,7 @@
  */
 package com.l2jfrozen.gameserver.model.zone.type;
 
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable.TeleportWhereType;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.zone.L2ZoneType;
