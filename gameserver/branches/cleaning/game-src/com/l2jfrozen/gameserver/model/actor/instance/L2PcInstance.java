@@ -153,6 +153,7 @@ import com.l2jfrozen.gameserver.model.entity.siege.FortSiege;
 import com.l2jfrozen.gameserver.model.entity.siege.Siege;
 import com.l2jfrozen.gameserver.model.entity.siege.clanhalls.DevastatedCastle;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.model.quest.QuestState;
 import com.l2jfrozen.gameserver.model.zone.type.L2TownZone;
 import com.l2jfrozen.gameserver.network.L2GameClient;
@@ -2286,7 +2287,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		QuestState[] states = null;
 		
 		// Go through the QuestState of the L2PcInstance quests
-		for (final Quest quest : npc.getTemplate().getEventQuests(Quest.QuestEventType.ON_ATTACK))
+		for (final Quest quest : npc.getTemplate().getEventQuests(QuestEventType.ON_ATTACK))
 		{
 			// Check if the Identifier of the L2Attackable attck is needed for the current quest
 			if (getQuestState(quest.getName()) != null)
@@ -2322,7 +2323,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		QuestState[] states = null;
 		
 		// Go through the QuestState of the L2PcInstance quests
-		for (final Quest quest : npc.getTemplate().getEventQuests(Quest.QuestEventType.ON_KILL))
+		for (final Quest quest : npc.getTemplate().getEventQuests(QuestEventType.ON_KILL))
 		{
 			// Check if the Identifier of the L2Attackable killed is needed for the current quest
 			if (getQuestState(quest.getName()) != null)
@@ -2358,7 +2359,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		QuestState[] states = null;
 		
 		// Go through the QuestState of the L2PcInstance quests
-		for (final Quest quest : NpcTable.getInstance().getTemplate(npcId).getEventQuests(Quest.QuestEventType.QUEST_TALK))
+		for (final Quest quest : NpcTable.getInstance().getTemplate(npcId).getEventQuests(QuestEventType.QUEST_TALK))
 		{
 			if (quest != null)
 			{

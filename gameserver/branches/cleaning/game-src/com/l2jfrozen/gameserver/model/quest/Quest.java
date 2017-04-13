@@ -143,77 +143,6 @@ public class Quest extends ManagedScript
 		
 	}
 	
-	public static enum QuestEventType
-	{
-		/**
-		 * control the first dialog shown by NPCs when they are clicked (some quests must override the default npc action)
-		 */
-		NPC_FIRST_TALK(false),
-		
-		/** onTalk action from start npcs */
-		QUEST_START(true),
-		
-		/** onTalk action from npcs participating in a quest */
-		QUEST_TALK(true),
-		
-		/**
-		 * onAttack action triggered when a mob gets attacked by someone<br>
-		 * <font color=red><b>USE: ON_ATTACK</b></font>
-		 */
-		@Deprecated
-		MOBGOTATTACKED(true),
-		
-		/**
-		 * onKill action triggered when a mob gets killed.<br>
-		 * <font color=red><b>USE: ON_KILL</b></font>
-		 */
-		@Deprecated
-		MOBKILLED(true),
-		
-		/** Call a faction for support */
-		ON_FACTION_CALL(true),
-		
-		/**
-		 * onSkillUse action triggered when a character uses a skill on a mob<br>
-		 * <font color=red><b>USE: ON_SKILL_USE</b></font>
-		 */
-		@Deprecated
-		MOB_TARGETED_BY_SKILL(true),
-		
-		/** on spell finished action when npc finish casting skill */
-		ON_SPELL_FINISHED(true),
-		
-		/** a person came within the Npc/Mob's range */
-		ON_AGGRO_RANGE_ENTER(true),
-		
-		/** OnSpawn */
-		ON_SPAWN(true),
-		
-		/** OnSkillUse */
-		ON_SKILL_USE(true),
-		
-		/** OnKill (MOBKILLED) */
-		ON_KILL(true),
-		
-		/** OnAttack (MOBGOTATTACKED) */
-		ON_ATTACK(true);
-		
-		// control whether this event type is allowed for the same npc template in multiple quests
-		// or if the npc must be registered in at most one quest for the specified event
-		private boolean _allowMultipleRegistration;
-		
-		QuestEventType(final boolean allowMultipleRegistration)
-		{
-			_allowMultipleRegistration = allowMultipleRegistration;
-		}
-		
-		public boolean isMultipleRegistrationAllowed()
-		{
-			return _allowMultipleRegistration;
-		}
-		
-	}
-	
 	/**
 	 * Return ID of the quest
 	 * @return int
@@ -881,7 +810,7 @@ public class Quest extends ManagedScript
 	 */
 	public L2NpcTemplate addStartNpc(final int npcId)
 	{
-		return addEventId(npcId, Quest.QuestEventType.QUEST_START);
+		return addEventId(npcId, QuestEventType.QUEST_START);
 	}
 	
 	/**
@@ -891,7 +820,7 @@ public class Quest extends ManagedScript
 	 */
 	public L2NpcTemplate addFirstTalkId(final int npcId)
 	{
-		return addEventId(npcId, Quest.QuestEventType.NPC_FIRST_TALK);
+		return addEventId(npcId, QuestEventType.NPC_FIRST_TALK);
 	}
 	
 	/**
@@ -902,7 +831,7 @@ public class Quest extends ManagedScript
 	 */
 	public L2NpcTemplate addAttackId(final int attackId)
 	{
-		return addEventId(attackId, Quest.QuestEventType.ON_ATTACK);
+		return addEventId(attackId, QuestEventType.ON_ATTACK);
 	}
 	
 	/**
@@ -913,7 +842,7 @@ public class Quest extends ManagedScript
 	 */
 	public L2NpcTemplate addKillId(final int killId)
 	{
-		return addEventId(killId, Quest.QuestEventType.ON_KILL);
+		return addEventId(killId, QuestEventType.ON_KILL);
 	}
 	
 	/**
@@ -924,12 +853,12 @@ public class Quest extends ManagedScript
 	 */
 	public L2NpcTemplate addTalkId(final int talkId)
 	{
-		return addEventId(talkId, Quest.QuestEventType.QUEST_TALK);
+		return addEventId(talkId, QuestEventType.QUEST_TALK);
 	}
 	
 	public L2NpcTemplate addFactionCallId(final int npcId)
 	{
-		return addEventId(npcId, Quest.QuestEventType.ON_FACTION_CALL);
+		return addEventId(npcId, QuestEventType.ON_FACTION_CALL);
 	}
 	
 	/**
@@ -940,12 +869,12 @@ public class Quest extends ManagedScript
 	 */
 	public L2NpcTemplate addSkillUseId(final int npcId)
 	{
-		return addEventId(npcId, Quest.QuestEventType.ON_SKILL_USE);
+		return addEventId(npcId, QuestEventType.ON_SKILL_USE);
 	}
 	
 	public L2NpcTemplate addSpellFinishedId(final int npcId)
 	{
-		return addEventId(npcId, Quest.QuestEventType.ON_SPELL_FINISHED);
+		return addEventId(npcId, QuestEventType.ON_SPELL_FINISHED);
 	}
 	
 	/**
@@ -956,12 +885,12 @@ public class Quest extends ManagedScript
 	 */
 	public L2NpcTemplate addAggroRangeEnterId(final int npcId)
 	{
-		return addEventId(npcId, Quest.QuestEventType.ON_AGGRO_RANGE_ENTER);
+		return addEventId(npcId, QuestEventType.ON_AGGRO_RANGE_ENTER);
 	}
 	
 	public L2NpcTemplate addSpawnId(final int npcId)
 	{
-		return addEventId(npcId, Quest.QuestEventType.ON_SPAWN);
+		return addEventId(npcId, QuestEventType.ON_SPAWN);
 	}
 	
 	/**

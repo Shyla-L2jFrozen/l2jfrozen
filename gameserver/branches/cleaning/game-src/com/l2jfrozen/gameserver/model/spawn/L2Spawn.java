@@ -34,6 +34,7 @@ import com.l2jfrozen.gameserver.model.L2Attackable;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
 import com.l2jfrozen.thread.ThreadPoolManager;
 import com.l2jfrozen.util.random.Rnd;
@@ -629,7 +630,7 @@ public class L2Spawn
 				LOGGER.debug("spawned Mob ID: " + _template.npcId + " ,at: " + mob.getX() + " x, " + mob.getY() + " y, " + mob.getZ() + " z");
 			}
 			
-			for (final Quest quest : mob.getTemplate().getEventQuests(Quest.QuestEventType.ON_SPAWN))
+			for (final Quest quest : mob.getTemplate().getEventQuests(QuestEventType.ON_SPAWN))
 			{
 				quest.notifySpawn(mob);
 			}

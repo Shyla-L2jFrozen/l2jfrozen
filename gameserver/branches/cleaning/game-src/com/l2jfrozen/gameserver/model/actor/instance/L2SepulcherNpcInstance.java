@@ -26,6 +26,7 @@ import com.l2jfrozen.gameserver.datatables.csv.DoorTable;
 import com.l2jfrozen.gameserver.managers.FourSepulchersManager;
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;
 import com.l2jfrozen.gameserver.network.serverpackets.MyTargetSelected;
@@ -255,11 +256,11 @@ public class L2SepulcherNpcInstance extends L2NpcInstance
 			
 			default:
 			{
-				if (getTemplate().getEventQuests(Quest.QuestEventType.QUEST_START).length > 0)
+				if (getTemplate().getEventQuests(QuestEventType.QUEST_START).length > 0)
 				{
 					player.setLastQuestNpcObject(getObjectId());
 				}
-				final Quest[] qlst = getTemplate().getEventQuests(Quest.QuestEventType.QUEST_TALK);
+				final Quest[] qlst = getTemplate().getEventQuests(QuestEventType.QUEST_TALK);
 				if (qlst.length == 1)
 				{
 					qlst[0].notifyFirstTalk(this, player);

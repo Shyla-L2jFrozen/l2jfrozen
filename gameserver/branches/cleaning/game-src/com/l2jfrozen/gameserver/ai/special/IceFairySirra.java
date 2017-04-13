@@ -30,6 +30,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.model.spawn.L2Spawn;
 import com.l2jfrozen.gameserver.model.zone.type.L2BossZone;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
@@ -67,9 +68,9 @@ public class IceFairySirra extends Quest implements Runnable
 		for (final int mob : mobs)
 		{
 			// TODO:
-			addEventId(mob, Quest.QuestEventType.QUEST_START);
-			addEventId(mob, Quest.QuestEventType.QUEST_TALK);
-			addEventId(mob, Quest.QuestEventType.NPC_FIRST_TALK);
+			addEventId(mob, QuestEventType.QUEST_START);
+			addEventId(mob, QuestEventType.QUEST_TALK);
+			addEventId(mob, QuestEventType.NPC_FIRST_TALK);
 		}
 		
 		init();

@@ -33,6 +33,7 @@ import com.l2jfrozen.gameserver.model.L2MinionData;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.base.ClassId;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.skills.Stats;
 
 import javolution.util.FastList;
@@ -83,41 +84,6 @@ public final class L2NpcTemplate extends L2CharTemplate
 	
 	private final boolean _custom;
 	
-	public static enum AbsorbCrystalType
-	{
-		LAST_HIT,
-		FULL_PARTY,
-		PARTY_ONE_RANDOM
-	}
-	
-	public static enum Race
-	{
-		UNDEAD,
-		MAGICCREATURE,
-		BEAST,
-		ANIMAL,
-		PLANT,
-		HUMANOID,
-		SPIRIT,
-		ANGEL,
-		DEMON,
-		DRAGON,
-		GIANT,
-		BUG,
-		FAIRIE,
-		HUMAN,
-		ELVE,
-		DARKELVE,
-		ORC,
-		DWARVE,
-		OTHER,
-		NONLIVING,
-		SIEGEWEAPON,
-		DEFENDINGARMY,
-		MERCENARIE,
-		UNKNOWN
-	}
-	
 	private final StatsSet _npcStatsSet;
 	
 	/** The table containing all Item that can be dropped by L2NpcInstance using this L2NpcTemplate */
@@ -130,7 +96,7 @@ public final class L2NpcTemplate extends L2CharTemplate
 	private final Map<Integer, L2Skill> _skills = new FastMap<>();
 	private final Map<Stats, Double> _vulnerabilities = new FastMap<>();
 	// contains a list of quests for each event type (questStart, questAttack, questKill, etc)
-	private final Map<Quest.QuestEventType, Quest[]> _questEvents = new FastMap<>();
+	private final Map<QuestEventType, Quest[]> _questEvents = new FastMap<>();
 	private static FastMap<Action, AIExtend[]> _aiEvents = new FastMap<>();
 	
 	/**
@@ -310,7 +276,7 @@ public final class L2NpcTemplate extends L2CharTemplate
 		return _skills;
 	}
 	
-	public void addQuestEvent(final Quest.QuestEventType EventType, final Quest q)
+	public void addQuestEvent(final QuestEventType EventType, final Quest q)
 	{
 		if (_questEvents.get(EventType) == null)
 		{
@@ -362,7 +328,7 @@ public final class L2NpcTemplate extends L2CharTemplate
 		}
 	}
 	
-	public Quest[] getEventQuests(final Quest.QuestEventType EventType)
+	public Quest[] getEventQuests(final QuestEventType EventType)
 	{
 		if (_questEvents.get(EventType) == null)
 			return new Quest[0];
@@ -439,85 +405,85 @@ public final class L2NpcTemplate extends L2CharTemplate
 		switch (raceId)
 		{
 			case 1:
-				race = L2NpcTemplate.Race.UNDEAD;
+				race = Race.UNDEAD;
 				break;
 			case 2:
-				race = L2NpcTemplate.Race.MAGICCREATURE;
+				race = Race.MAGICCREATURE;
 				break;
 			case 3:
-				race = L2NpcTemplate.Race.BEAST;
+				race = Race.BEAST;
 				break;
 			case 4:
-				race = L2NpcTemplate.Race.ANIMAL;
+				race = Race.ANIMAL;
 				break;
 			case 5:
-				race = L2NpcTemplate.Race.PLANT;
+				race = Race.PLANT;
 				break;
 			case 6:
-				race = L2NpcTemplate.Race.HUMANOID;
+				race = Race.HUMANOID;
 				break;
 			case 7:
-				race = L2NpcTemplate.Race.SPIRIT;
+				race = Race.SPIRIT;
 				break;
 			case 8:
-				race = L2NpcTemplate.Race.ANGEL;
+				race = Race.ANGEL;
 				break;
 			case 9:
-				race = L2NpcTemplate.Race.DEMON;
+				race = Race.DEMON;
 				break;
 			case 10:
-				race = L2NpcTemplate.Race.DRAGON;
+				race = Race.DRAGON;
 				break;
 			case 11:
-				race = L2NpcTemplate.Race.GIANT;
+				race = Race.GIANT;
 				break;
 			case 12:
-				race = L2NpcTemplate.Race.BUG;
+				race = Race.BUG;
 				break;
 			case 13:
-				race = L2NpcTemplate.Race.FAIRIE;
+				race = Race.FAIRIE;
 				break;
 			case 14:
-				race = L2NpcTemplate.Race.HUMAN;
+				race = Race.HUMAN;
 				break;
 			case 15:
-				race = L2NpcTemplate.Race.ELVE;
+				race = Race.ELVE;
 				break;
 			case 16:
-				race = L2NpcTemplate.Race.DARKELVE;
+				race = Race.DARKELVE;
 				break;
 			case 17:
-				race = L2NpcTemplate.Race.ORC;
+				race = Race.ORC;
 				break;
 			case 18:
-				race = L2NpcTemplate.Race.DWARVE;
+				race = Race.DWARVE;
 				break;
 			case 19:
-				race = L2NpcTemplate.Race.OTHER;
+				race = Race.OTHER;
 				break;
 			case 20:
-				race = L2NpcTemplate.Race.NONLIVING;
+				race = Race.NONLIVING;
 				break;
 			case 21:
-				race = L2NpcTemplate.Race.SIEGEWEAPON;
+				race = Race.SIEGEWEAPON;
 				break;
 			case 22:
-				race = L2NpcTemplate.Race.DEFENDINGARMY;
+				race = Race.DEFENDINGARMY;
 				break;
 			case 23:
-				race = L2NpcTemplate.Race.MERCENARIE;
+				race = Race.MERCENARIE;
 				break;
 			default:
-				race = L2NpcTemplate.Race.UNKNOWN;
+				race = Race.UNKNOWN;
 				break;
 		}
 	}
 	
-	public L2NpcTemplate.Race getRace()
+	public Race getRace()
 	{
 		if (race == null)
 		{
-			race = L2NpcTemplate.Race.UNKNOWN;
+			race = Race.UNKNOWN;
 		}
 		
 		return race;
