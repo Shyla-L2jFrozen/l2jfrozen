@@ -40,12 +40,13 @@ import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.SkillType;
 import com.l2jfrozen.gameserver.model.base.Race;
+import com.l2jfrozen.gameserver.skills.conditions.CheckGameTime;
+import com.l2jfrozen.gameserver.skills.conditions.CheckPlayerState;
 import com.l2jfrozen.gameserver.skills.conditions.Condition;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionElementSeed;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionForceBuff;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionGameChance;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionGameTime;
-import com.l2jfrozen.gameserver.skills.conditions.ConditionGameTime.CheckGameTime;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionLogicAnd;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionLogicNot;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionLogicOr;
@@ -56,7 +57,6 @@ import com.l2jfrozen.gameserver.skills.conditions.ConditionPlayerLevel;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionPlayerMp;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionPlayerRace;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionPlayerState;
-import com.l2jfrozen.gameserver.skills.conditions.ConditionPlayerState.CheckPlayerState;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionSkillStats;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionSlotItemId;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionTargetAggro;
@@ -73,6 +73,7 @@ import com.l2jfrozen.gameserver.skills.funcs.Lambda;
 import com.l2jfrozen.gameserver.skills.funcs.LambdaCalc;
 import com.l2jfrozen.gameserver.skills.funcs.LambdaConst;
 import com.l2jfrozen.gameserver.skills.funcs.LambdaStats;
+import com.l2jfrozen.gameserver.skills.funcs.StatsType;
 import com.l2jfrozen.gameserver.templates.L2ArmorType;
 import com.l2jfrozen.gameserver.templates.L2Item;
 import com.l2jfrozen.gameserver.templates.L2Weapon;
@@ -887,16 +888,16 @@ abstract class DocumentBase
 			else if (val.charAt(0) == '$')
 			{
 				if (val.equalsIgnoreCase("$player_level"))
-					return new LambdaStats(LambdaStats.StatsType.PLAYER_LEVEL);
+					return new LambdaStats(StatsType.PLAYER_LEVEL);
 				
 				if (val.equalsIgnoreCase("$target_level"))
-					return new LambdaStats(LambdaStats.StatsType.TARGET_LEVEL);
+					return new LambdaStats(StatsType.TARGET_LEVEL);
 				
 				if (val.equalsIgnoreCase("$player_max_hp"))
-					return new LambdaStats(LambdaStats.StatsType.PLAYER_MAX_HP);
+					return new LambdaStats(StatsType.PLAYER_MAX_HP);
 				
 				if (val.equalsIgnoreCase("$player_max_mp"))
-					return new LambdaStats(LambdaStats.StatsType.PLAYER_MAX_MP);
+					return new LambdaStats(StatsType.PLAYER_MAX_MP);
 				
 				// try to find value out of item fields
 				final StatsSet set = getStatsSet();

@@ -56,22 +56,6 @@ public class AdminAnnouncements implements IAdminCommandHandler
 		"admin_autoannounce"
 	};
 	
-	private enum CommandEnum
-	{
-		admin_list_announcements,
-		admin_reload_announcements,
-		admin_announce_announcements,
-		admin_add_announcement,
-		admin_del_announcement,
-		admin_announce,
-		admin_critannounce,
-		admin_announce_menu,
-		admin_list_autoannouncements,
-		admin_add_autoannouncement,
-		admin_del_autoannouncement,
-		admin_autoannounce
-	}
-	
 	@Override
 	public boolean useAdminCommand(String command, final L2PcInstance activeChar)
 	{

@@ -52,6 +52,7 @@ import com.l2jfrozen.gameserver.network.serverpackets.AquireSkillList;
 import com.l2jfrozen.gameserver.network.serverpackets.NpcHtmlMessage;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.network.serverpackets.UserInfo;
+import com.l2jfrozen.gameserver.network.serverpackets.skillType;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
 import com.l2jfrozen.gameserver.util.Util;
 
@@ -1131,7 +1132,7 @@ public final class L2VillageMasterInstance extends L2FolkInstance
 			return;
 		
 		L2PledgeSkillLearn[] skills = SkillTreeTable.getInstance().getAvailablePledgeSkills(player);
-		AquireSkillList asl = new AquireSkillList(AquireSkillList.skillType.Clan);
+		AquireSkillList asl = new AquireSkillList(skillType.Clan);
 		int counts = 0;
 		
 		for (final L2PledgeSkillLearn s : skills)

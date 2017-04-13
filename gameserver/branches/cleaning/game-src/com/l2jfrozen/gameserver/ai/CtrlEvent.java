@@ -23,7 +23,6 @@ package com.l2jfrozen.gameserver.ai;
 /**
  * This class contains an enum of each possibles evenements that can happen on an AI character.
  */
-
 public enum CtrlEvent
 {
 	/**

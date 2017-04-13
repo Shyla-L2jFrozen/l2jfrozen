@@ -278,12 +278,6 @@ public class Repair implements IVoicedCommandHandler, ICustomByPassHandler
 		"repair_close_win"
 	};
 	
-	private enum CommandEnum
-	{
-		repair,
-		repair_close_win
-	}
-	
 	@Override
 	public String[] getByPassCommands()
 	{

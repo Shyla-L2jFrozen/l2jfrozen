@@ -27,15 +27,6 @@ import com.l2jfrozen.gameserver.skills.Env;
  */
 public final class LambdaStats extends Lambda
 {
-	
-	public enum StatsType
-	{
-		PLAYER_LEVEL,
-		TARGET_LEVEL,
-		PLAYER_MAX_HP,
-		PLAYER_MAX_MP
-	}
-	
 	private final StatsType _stat;
 	
 	public LambdaStats(final StatsType stat)

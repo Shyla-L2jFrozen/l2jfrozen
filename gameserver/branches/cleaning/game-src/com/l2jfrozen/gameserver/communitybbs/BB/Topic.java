@@ -113,12 +113,6 @@ public class Topic
 		
 	}
 	
-	public enum ConstructorType
-	{
-		RESTORE,
-		CREATE
-	}
-	
 	/**
 	 * @return
 	 */

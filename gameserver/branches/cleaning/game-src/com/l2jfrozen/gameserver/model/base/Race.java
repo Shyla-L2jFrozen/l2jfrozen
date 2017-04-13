@@ -25,7 +25,6 @@ package com.l2jfrozen.gameserver.model.base;
  * <BR>
  * @version $Revision: 1.2.4.2 $ $Date: 2005/03/27 15:29:32 $
  */
-
 public enum Race
 {
 	human,

@@ -43,15 +43,6 @@ public class AdminPetition implements IAdminCommandHandler
 		"admin_reset_petitions"
 	};
 	
-	private enum CommandEnum
-	{
-		admin_view_petitions,
-		admin_view_petition,
-		admin_accept_petition,
-		admin_reject_petition,
-		admin_reset_petitions
-	}
-	
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{

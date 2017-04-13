@@ -94,38 +94,6 @@ public class AdminEditChar implements IAdminCommandHandler
 		"admin_sethero"
 	};
 	
-	private enum CommandEnum
-	{
-		admin_changename, // changes char name
-		admin_setname, // changes char name
-		admin_edit_character,
-		admin_current_player,
-		admin_nokarma,
-		admin_setkarma,
-		admin_character_list, // same as character_info, kept for compatibility purposes
-		admin_character_info, // given a player name, displays an information window
-		admin_show_characters,
-		admin_find_character,
-		admin_find_dualbox,
-		admin_find_ip, // find all the player connections from a given IPv4 number
-		admin_find_account, // list all the characters from an account (useful for GMs w/o DB access)
-		admin_save_modifications, // consider it deprecated...
-		admin_rec,
-		admin_setclass,
-		admin_settitle,
-		admin_setsex,
-		admin_setcolor,
-		admin_fullfood,
-		admin_remclanwait,
-		admin_setcp,
-		admin_sethp,
-		admin_setmp,
-		admin_setchar_cp,
-		admin_setchar_hp,
-		admin_setchar_mp,
-		admin_sethero
-	}
-	
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{

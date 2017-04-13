@@ -46,17 +46,6 @@ public class AdminCache implements IAdminCommandHandler
 		"admin_cache_crest_fix"
 	};
 	
-	private enum CommandEnum
-	{
-		admin_cache_htm_rebuild,
-		admin_cache_htm_reload,
-		admin_cache_reload_path,
-		admin_cache_reload_file,
-		admin_cache_crest_rebuild,
-		admin_cache_crest_reload,
-		admin_cache_crest_fix
-	}
-	
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{

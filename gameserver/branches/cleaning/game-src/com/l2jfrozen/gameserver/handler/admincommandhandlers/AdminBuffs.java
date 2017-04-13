@@ -25,14 +25,6 @@ public class AdminBuffs implements IAdminCommandHandler
 		"admin_areacancel"
 	};
 	
-	private enum CommandEnum
-	{
-		admin_getbuffs,
-		admin_stopbuff,
-		admin_stopallbuffs,
-		admin_areacancel
-	}
-	
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{

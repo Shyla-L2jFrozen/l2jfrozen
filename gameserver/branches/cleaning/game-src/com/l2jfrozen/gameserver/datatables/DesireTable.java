@@ -54,14 +54,6 @@ public class DesireTable
 		DesireType.DAMAGE
 	};
 	
-	public enum DesireType
-	{
-		FEAR,
-		DISLIKE,
-		HATE,
-		DAMAGE
-	}
-	
 	class DesireValue
 	{
 		private float _value;
