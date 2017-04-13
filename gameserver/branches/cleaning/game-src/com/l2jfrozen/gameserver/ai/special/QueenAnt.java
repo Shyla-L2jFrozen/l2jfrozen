@@ -33,6 +33,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.entity.Announcements;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.model.zone.type.L2BossZone;
 import com.l2jfrozen.gameserver.network.serverpackets.PlaySound;
 import com.l2jfrozen.gameserver.network.serverpackets.SocialAction;
@@ -91,8 +92,8 @@ public class QueenAnt extends Quest implements Runnable
 		};
 		for (final int mob : mobs)
 		{
-			addEventId(mob, Quest.QuestEventType.ON_KILL);
-			addEventId(mob, Quest.QuestEventType.ON_ATTACK);
+			addEventId(mob, QuestEventType.ON_KILL);
+			addEventId(mob, QuestEventType.ON_ATTACK);
 		}
 		
 		_Zone = GrandBossManager.getInstance().getZone(-21610, 181594, -5734);

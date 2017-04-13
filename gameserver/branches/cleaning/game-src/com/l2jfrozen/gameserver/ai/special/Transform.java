@@ -29,6 +29,7 @@ import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;
 import com.l2jfrozen.util.random.Rnd;
 
@@ -116,7 +117,7 @@ public class Transform extends Quest implements Runnable
 		
 		for (final int mob : mobsKill)
 		{
-			addEventId(mob, Quest.QuestEventType.ON_KILL);
+			addEventId(mob, QuestEventType.ON_KILL);
 		}
 		
 		final int[] mobsAttack =
@@ -136,7 +137,7 @@ public class Transform extends Quest implements Runnable
 		
 		for (final int mob : mobsAttack)
 		{
-			addEventId(mob, Quest.QuestEventType.ON_ATTACK);
+			addEventId(mob, QuestEventType.ON_ATTACK);
 		}
 	}
 	

@@ -30,6 +30,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.entity.Announcements;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;
 import com.l2jfrozen.gameserver.network.serverpackets.PlaySound;
 import com.l2jfrozen.gameserver.templates.StatsSet;
@@ -76,8 +77,8 @@ public class Core extends Quest implements Runnable
 		
 		for (final int mob : mobs)
 		{
-			addEventId(mob, Quest.QuestEventType.ON_KILL);
-			addEventId(mob, Quest.QuestEventType.ON_ATTACK);
+			addEventId(mob, QuestEventType.ON_KILL);
+			addEventId(mob, QuestEventType.ON_ATTACK);
 		}
 		
 		_FirstAttacked = false;

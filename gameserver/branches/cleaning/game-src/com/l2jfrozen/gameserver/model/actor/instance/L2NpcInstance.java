@@ -69,6 +69,7 @@ import com.l2jfrozen.gameserver.model.entity.siege.Castle;
 import com.l2jfrozen.gameserver.model.entity.siege.Fort;
 import com.l2jfrozen.gameserver.model.multisell.L2Multisell;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.model.quest.QuestState;
 import com.l2jfrozen.gameserver.model.scripts.L2RBManager;
 import com.l2jfrozen.gameserver.model.spawn.L2Spawn;
@@ -882,7 +883,7 @@ public class L2NpcInstance extends L2Character
 						 * Quest[] qlsa = getTemplate().getEventQuests(Quest.QuestEventType.QUEST_START); if ( (qlsa != null) && qlsa.length > 0) player.setLastQuestNpcObject(getObjectId());
 						 */
 						
-						final Quest[] qlst = getTemplate().getEventQuests(Quest.QuestEventType.NPC_FIRST_TALK);
+						final Quest[] qlst = getTemplate().getEventQuests(QuestEventType.NPC_FIRST_TALK);
 						if (qlst.length == 1)
 						{
 							qlst[0].notifyFirstTalk(this, player);
@@ -1218,7 +1219,7 @@ public class L2NpcInstance extends L2Character
 							 * Quest[] qlsa = getTemplate().getEventQuests(Quest.QuestEventType.QUEST_START); if ( (qlsa != null) && qlsa.length > 0) player.setLastQuestNpcObject(getObjectId());
 							 */
 							
-							final Quest[] qlst = getTemplate().getEventQuests(Quest.QuestEventType.NPC_FIRST_TALK);
+							final Quest[] qlst = getTemplate().getEventQuests(QuestEventType.NPC_FIRST_TALK);
 							if (qlst.length == 1)
 							{
 								qlst[0].notifyFirstTalk(this, player);
@@ -2049,7 +2050,7 @@ public class L2NpcInstance extends L2Character
 					}
 				}
 				// Check for start point
-				for (final Quest temp : getTemplate().getEventQuests(Quest.QuestEventType.QUEST_START))
+				for (final Quest temp : getTemplate().getEventQuests(QuestEventType.QUEST_START))
 				{
 					if (temp == q)
 					{
@@ -2104,7 +2105,7 @@ public class L2NpcInstance extends L2Character
 		final List<Quest> options = new FastList<>();
 		
 		final QuestState[] awaits = player.getQuestsForTalk(getTemplate().npcId);
-		final Quest[] starts = getTemplate().getEventQuests(Quest.QuestEventType.QUEST_START);
+		final Quest[] starts = getTemplate().getEventQuests(QuestEventType.QUEST_START);
 		
 		// Quests are limited between 1 and 999 because those are the quests that are supported by the client.
 		// By limitting them there, we are allowed to create custom quests at higher IDs without interfering

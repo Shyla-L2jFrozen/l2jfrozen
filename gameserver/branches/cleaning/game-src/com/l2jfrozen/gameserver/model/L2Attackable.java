@@ -49,6 +49,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2SummonInstance;
 import com.l2jfrozen.gameserver.model.actor.knownlist.AttackableKnownList;
 import com.l2jfrozen.gameserver.model.base.SoulCrystal;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.clientpackets.Say2;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;
@@ -57,6 +58,7 @@ import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.script.EventDroplist;
 import com.l2jfrozen.gameserver.script.EventDroplist.DateDrop;
 import com.l2jfrozen.gameserver.skills.Stats;
+import com.l2jfrozen.gameserver.templates.AbsorbCrystalType;
 import com.l2jfrozen.gameserver.templates.L2EtcItemType;
 import com.l2jfrozen.gameserver.templates.L2Item;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
@@ -560,7 +562,7 @@ public class L2Attackable extends L2NpcInstance
 				final L2PcInstance player = killer instanceof L2PcInstance ? (L2PcInstance) killer : ((L2Summon) killer).getOwner();
 				
 				// only 1 randomly choosen quest of all quests registered to this character can be applied
-				for (final Quest quest : getTemplate().getEventQuests(Quest.QuestEventType.ON_KILL))
+				for (final Quest quest : getTemplate().getEventQuests(QuestEventType.ON_KILL))
 				{
 					quest.notifyKill(this, player, killer instanceof L2Summon);
 				}
@@ -1035,7 +1037,7 @@ public class L2Attackable extends L2NpcInstance
 				{
 					L2PcInstance player = attacker instanceof L2PcInstance ? (L2PcInstance) attacker : ((L2Summon) attacker).getOwner();
 					
-					for (final Quest quest : getTemplate().getEventQuests(Quest.QuestEventType.ON_ATTACK))
+					for (final Quest quest : getTemplate().getEventQuests(QuestEventType.ON_ATTACK))
 					{
 						quest.notifyAttack(this, player, damage, attacker instanceof L2Summon);
 					}
@@ -2694,7 +2696,7 @@ public class L2Attackable extends L2NpcInstance
 		boolean doLevelup = true;
 		final boolean isBossMob = maxAbsorbLevel > 10 ? true : false;
 		
-		final L2NpcTemplate.AbsorbCrystalType absorbType = getTemplate().absorbType;
+		final AbsorbCrystalType absorbType = getTemplate().absorbType;
 		
 		L2PcInstance killer = attacker instanceof L2Summon ? ((L2Summon) attacker).getOwner() : (L2PcInstance) attacker;
 		
@@ -2749,11 +2751,11 @@ public class L2Attackable extends L2NpcInstance
 		
 		List<L2PcInstance> players = new FastList<>();
 		
-		if (absorbType == L2NpcTemplate.AbsorbCrystalType.FULL_PARTY && killer.isInParty())
+		if (absorbType == AbsorbCrystalType.FULL_PARTY && killer.isInParty())
 		{
 			players = killer.getParty().getPartyMembers();
 		}
-		else if (absorbType == L2NpcTemplate.AbsorbCrystalType.PARTY_ONE_RANDOM && killer.isInParty())
+		else if (absorbType == AbsorbCrystalType.PARTY_ONE_RANDOM && killer.isInParty())
 		{
 			// This is a naive method for selecting a random member. It gets any random party member and
 			// then checks if the member has a valid crystal. It does not select the random party member
@@ -2899,7 +2901,7 @@ public class L2Attackable extends L2NpcInstance
 			final int chanceLevelUp = isBossMob ? 70 : SoulCrystal.LEVEL_CHANCE;
 			
 			// If succeeds or it is a full party absorb, level up the crystal.
-			if (absorbType == L2NpcTemplate.AbsorbCrystalType.FULL_PARTY && doLevelup || dice <= chanceLevelUp)
+			if (absorbType == AbsorbCrystalType.FULL_PARTY && doLevelup || dice <= chanceLevelUp)
 			{
 				// Give staged crystal
 				exchangeCrystal(player, crystalOLD, crystalNEW, false);

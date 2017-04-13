@@ -1,6 +1,7 @@
 package com.l2jfrozen.gameserver.ai.special;
 
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 
 /*
  * @author m095 (L2EmuRT)
@@ -15,7 +16,7 @@ public class Kernon extends Quest implements Runnable
 	{
 		super(questId, name, descr);
 		
-		addEventId(KERNON, Quest.QuestEventType.ON_ATTACK);
+		addEventId(KERNON, QuestEventType.ON_ATTACK);
 	}
 	
 	@Override

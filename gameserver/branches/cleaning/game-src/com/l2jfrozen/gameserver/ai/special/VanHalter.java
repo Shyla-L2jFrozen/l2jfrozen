@@ -45,6 +45,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2RaidBossInstance;
 import com.l2jfrozen.gameserver.model.actor.position.L2CharPosition;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.model.spawn.L2Spawn;
 import com.l2jfrozen.gameserver.network.serverpackets.MagicSkillUser;
 import com.l2jfrozen.gameserver.network.serverpackets.SpecialCamera;
@@ -142,10 +143,10 @@ public class VanHalter extends Quest implements Runnable
 			32066
 		};
 		
-		addEventId(29062, Quest.QuestEventType.ON_ATTACK);
+		addEventId(29062, QuestEventType.ON_ATTACK);
 		for (final int mob : mobs)
 		{
-			addEventId(mob, Quest.QuestEventType.ON_KILL);
+			addEventId(mob, QuestEventType.ON_KILL);
 		}
 		
 		// GrandBossManager.getInstance().addBoss(29062);

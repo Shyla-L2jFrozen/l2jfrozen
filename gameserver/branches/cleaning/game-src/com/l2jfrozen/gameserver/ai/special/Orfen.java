@@ -29,6 +29,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.entity.Announcements;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.network.serverpackets.PlaySound;
 import com.l2jfrozen.gameserver.templates.StatsSet;
 import com.l2jfrozen.util.random.Rnd;
@@ -67,8 +68,8 @@ public class Orfen extends Quest implements Runnable
 		final StatsSet info = GrandBossManager.getInstance().getStatsSet(ORFEN);
 		final Integer status = GrandBossManager.getInstance().getBossStatus(ORFEN);
 		
-		addEventId(ORFEN, Quest.QuestEventType.ON_KILL);
-		addEventId(ORFEN, Quest.QuestEventType.ON_ATTACK);
+		addEventId(ORFEN, QuestEventType.ON_KILL);
+		addEventId(ORFEN, QuestEventType.ON_ATTACK);
 		
 		switch (status)
 		{

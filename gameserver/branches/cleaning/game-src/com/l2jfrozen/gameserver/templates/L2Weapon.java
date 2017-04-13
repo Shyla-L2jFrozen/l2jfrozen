@@ -35,6 +35,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.quest.Quest;
+import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.skills.Env;
 import com.l2jfrozen.gameserver.skills.conditions.ConditionGameChance;
 import com.l2jfrozen.gameserver.skills.funcs.Func;
@@ -427,7 +428,7 @@ public final class L2Weapon extends L2Item
 				
 				if (caster instanceof L2PcInstance && target instanceof L2NpcInstance)
 				{
-					for (final Quest quest : ((L2NpcInstance) target).getTemplate().getEventQuests(Quest.QuestEventType.ON_SKILL_USE))
+					for (final Quest quest : ((L2NpcInstance) target).getTemplate().getEventQuests(QuestEventType.ON_SKILL_USE))
 					{
 						quest.notifySkillUse((L2NpcInstance) target, (L2PcInstance) caster, skill);
 					}
