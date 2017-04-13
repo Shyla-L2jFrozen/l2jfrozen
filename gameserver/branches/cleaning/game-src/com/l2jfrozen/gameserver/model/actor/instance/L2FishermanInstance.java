@@ -36,6 +36,7 @@ import com.l2jfrozen.gameserver.network.serverpackets.BuyList;
 import com.l2jfrozen.gameserver.network.serverpackets.NpcHtmlMessage;
 import com.l2jfrozen.gameserver.network.serverpackets.SellList;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
+import com.l2jfrozen.gameserver.network.serverpackets.skillType;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
 
 import javolution.text.TextBuilder;
@@ -150,7 +151,7 @@ public class L2FishermanInstance extends L2FolkInstance
 	public void showSkillList(final L2PcInstance player)
 	{
 		L2SkillLearn[] skills = SkillTreeTable.getInstance().getAvailableSkills(player);
-		AquireSkillList asl = new AquireSkillList(AquireSkillList.skillType.Fishing);
+		AquireSkillList asl = new AquireSkillList(skillType.Fishing);
 		
 		int counts = 0;
 		

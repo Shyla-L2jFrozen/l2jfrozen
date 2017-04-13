@@ -66,33 +66,9 @@ public class AdminAdmin implements IAdminCommandHandler
 		"admin_manualhero"
 	};
 	
-	private enum CommandEnum
-	{
-		admin_admin,
-		admin_admin1,
-		admin_admin2,
-		admin_admin3,
-		admin_admin4,
-		admin_admin5,
-		admin_gmliston,
-		admin_gmlistoff,
-		admin_silence,
-		admin_diet,
-		admin_set,
-		admin_set_menu,
-		admin_set_mod,
-		admin_saveolymp,
-		admin_manualhero
-	}
-	
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{
-		/*
-		 * if(!AdminCommandAccessRights.getInstance().hasAccess(command, activeChar.getAccessLevel())){ return false; } if(Config.GMAUDIT) { Logger _logAudit = Logger.getLogger("gmaudit"); LogRecord record = new LogRecord(Level.INFO, command); record.setParameters(new Object[] { "GM: " +
-		 * activeChar.getName(), " to target [" + activeChar.getTarget() + "] " }); _logAudit.LOGGER(record); }
-		 */
-		
 		StringTokenizer st = new StringTokenizer(command);
 		
 		final CommandEnum comm = CommandEnum.valueOf(st.nextToken());

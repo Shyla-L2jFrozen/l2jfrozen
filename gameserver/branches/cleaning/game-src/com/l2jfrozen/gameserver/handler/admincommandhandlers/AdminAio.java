@@ -51,12 +51,6 @@ public class AdminAio implements IAdminCommandHandler
 		"admin_removeaio"
 	};
 	
-	private enum CommandEnum
-	{
-		admin_setaio,
-		admin_removeaio
-	}
-	
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{

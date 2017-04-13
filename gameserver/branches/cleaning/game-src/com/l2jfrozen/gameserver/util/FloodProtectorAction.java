@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
 import com.l2jfrozen.FloodProtectorConfig;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance.PunishLevel;
+import com.l2jfrozen.gameserver.model.actor.instance.PunishLevel;
 import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.util.StringUtil;
 
@@ -276,7 +276,7 @@ public final class FloodProtectorAction
 	{
 		if (client.getActiveChar() != null)
 		{
-			client.getActiveChar().setPunishLevel(L2PcInstance.PunishLevel.ACC, config.PUNISHMENT_TIME);
+			client.getActiveChar().setPunishLevel(PunishLevel.ACC, config.PUNISHMENT_TIME);
 			
 			LOGGER(client.getActiveChar().getName() + " banned for flooding");
 			
@@ -293,7 +293,7 @@ public final class FloodProtectorAction
 	{
 		if (client.getActiveChar() != null)
 		{
-			client.getActiveChar().setPunishLevel(L2PcInstance.PunishLevel.JAIL, config.PUNISHMENT_TIME);
+			client.getActiveChar().setPunishLevel(PunishLevel.JAIL, config.PUNISHMENT_TIME);
 			
 			LOGGER.warn(client.getActiveChar().getName() + " jailed for flooding");
 		}

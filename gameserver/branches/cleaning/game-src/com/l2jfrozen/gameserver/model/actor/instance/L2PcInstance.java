@@ -18886,63 +18886,6 @@ public final class L2PcInstance extends L2PlayableInstance
 	/** The _punish task. */
 	private ScheduledFuture<?> _punishTask;
 	
-	/**
-	 * The Enum PunishLevel.
-	 */
-	public enum PunishLevel
-	{
-		
-		/** The NONE. */
-		NONE(0, ""),
-		
-		/** The CHAT. */
-		CHAT(1, "chat banned"),
-		
-		/** The JAIL. */
-		JAIL(2, "jailed"),
-		
-		/** The CHAR. */
-		CHAR(3, "banned"),
-		
-		/** The ACC. */
-		ACC(4, "banned");
-		
-		/** The pun value. */
-		private final int punValue;
-		
-		/** The pun string. */
-		private final String punString;
-		
-		/**
-		 * Instantiates a new punish level.
-		 * @param value the value
-		 * @param string the string
-		 */
-		PunishLevel(final int value, final String string)
-		{
-			punValue = value;
-			punString = string;
-		}
-		
-		/**
-		 * Value.
-		 * @return the int
-		 */
-		public int value()
-		{
-			return punValue;
-		}
-		
-		/**
-		 * String.
-		 * @return the string
-		 */
-		public String string()
-		{
-			return punString;
-		}
-	}
-	
 	// open/close gates
 	@SuppressWarnings("synthetic-access")
 	private final GatesRequest _gatesRequest = new GatesRequest();

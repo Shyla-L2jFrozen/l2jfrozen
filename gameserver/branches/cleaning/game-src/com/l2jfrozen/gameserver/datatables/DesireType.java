@@ -1,4 +1,17 @@
 /*
+ * $Header$
+ *
+ * $Author$
+ * $Date$
+ * $Revision$
+ * $Log$
+ * Revision 1.1.2.1  2005/04/08 08:03:40  luisantonioa
+ * *** empty LOGGER message ***
+ *
+ * Revision 1.1  4/04/2005 17:15:07  luisantonioa
+ * Created New Class
+ *
+ *
  * L2jFrozen Project - www.l2jfrozen.com 
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -18,33 +31,12 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.gameserver.skills.conditions;
+package com.l2jfrozen.gameserver.datatables;
 
-import com.l2jfrozen.gameserver.controllers.GameTimeController;
-import com.l2jfrozen.gameserver.skills.Env;
-
-/**
- * @author mkizub
- */
-public class ConditionGameTime extends Condition
+public enum DesireType
 {
-	private final CheckGameTime _check;
-	private final boolean _required;
-	
-	public ConditionGameTime(final CheckGameTime check, final boolean required)
-	{
-		_check = check;
-		_required = required;
-	}
-	
-	@Override
-	public boolean testImpl(final Env env)
-	{
-		switch (_check)
-		{
-			case NIGHT:
-				return GameTimeController.getInstance().isNowNight() == _required;
-		}
-		return !_required;
-	}
+	FEAR,
+	DISLIKE,
+	HATE,
+	DAMAGE
 }

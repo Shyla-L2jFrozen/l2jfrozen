@@ -18,33 +18,61 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.gameserver.skills.conditions;
-
-import com.l2jfrozen.gameserver.controllers.GameTimeController;
-import com.l2jfrozen.gameserver.skills.Env;
+package com.l2jfrozen.gameserver.model.actor.instance;
 
 /**
- * @author mkizub
+ * The Enum PunishLevel.
  */
-public class ConditionGameTime extends Condition
+public enum PunishLevel
 {
-	private final CheckGameTime _check;
-	private final boolean _required;
 	
-	public ConditionGameTime(final CheckGameTime check, final boolean required)
+	/** The NONE. */
+	NONE(0, ""),
+	
+	/** The CHAT. */
+	CHAT(1, "chat banned"),
+	
+	/** The JAIL. */
+	JAIL(2, "jailed"),
+	
+	/** The CHAR. */
+	CHAR(3, "banned"),
+	
+	/** The ACC. */
+	ACC(4, "banned");
+	
+	/** The pun value. */
+	private final int punValue;
+	
+	/** The pun string. */
+	private final String punString;
+	
+	/**
+	 * Instantiates a new punish level.
+	 * @param value the value
+	 * @param string the string
+	 */
+	PunishLevel(final int value, final String string)
 	{
-		_check = check;
-		_required = required;
+		punValue = value;
+		punString = string;
 	}
 	
-	@Override
-	public boolean testImpl(final Env env)
+	/**
+	 * Value.
+	 * @return the int
+	 */
+	public int value()
 	{
-		switch (_check)
-		{
-			case NIGHT:
-				return GameTimeController.getInstance().isNowNight() == _required;
-		}
-		return !_required;
+		return punValue;
+	}
+	
+	/**
+	 * String.
+	 * @return the string
+	 */
+	public String string()
+	{
+		return punString;
 	}
 }

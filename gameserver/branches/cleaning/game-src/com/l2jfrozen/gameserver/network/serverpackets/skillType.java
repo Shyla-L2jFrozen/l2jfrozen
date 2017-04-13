@@ -18,33 +18,11 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.gameserver.skills.conditions;
+package com.l2jfrozen.gameserver.network.serverpackets;
 
-import com.l2jfrozen.gameserver.controllers.GameTimeController;
-import com.l2jfrozen.gameserver.skills.Env;
-
-/**
- * @author mkizub
- */
-public class ConditionGameTime extends Condition
+public enum skillType
 {
-	private final CheckGameTime _check;
-	private final boolean _required;
-	
-	public ConditionGameTime(final CheckGameTime check, final boolean required)
-	{
-		_check = check;
-		_required = required;
-	}
-	
-	@Override
-	public boolean testImpl(final Env env)
-	{
-		switch (_check)
-		{
-			case NIGHT:
-				return GameTimeController.getInstance().isNowNight() == _required;
-		}
-		return !_required;
-	}
+	Usual,
+	Fishing,
+	Clan
 }

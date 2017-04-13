@@ -38,7 +38,7 @@ import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance.PunishLevel;
+import com.l2jfrozen.gameserver.model.actor.instance.PunishLevel;
 import com.l2jfrozen.gameserver.network.SystemChatChannelId;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;

@@ -34,7 +34,6 @@ package com.l2jfrozen.gameserver.model.base;
  */
 public enum ClassId
 {
-	
 	/** The fighter. */
 	fighter(0x00, false, Race.human, null),
 	

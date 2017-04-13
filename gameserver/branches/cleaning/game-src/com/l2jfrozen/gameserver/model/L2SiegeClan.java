@@ -37,14 +37,6 @@ public class L2SiegeClan
 	private int _numFlagsAdded = 0;
 	private SiegeClanType _type;
 	
-	public enum SiegeClanType
-	{
-		OWNER,
-		DEFENDER,
-		ATTACKER,
-		DEFENDER_PENDING
-	}
-	
 	// =========================================================
 	// Constructor
 	

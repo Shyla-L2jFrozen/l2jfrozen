@@ -1,4 +1,14 @@
 /*
+ * $Header: BlockList.java, 21/11/2005 14:53:53 luisantonioa Exp $
+ *
+ * $Author: luisantonioa $
+ * $Date: 21/11/2005 14:53:53 $
+ * $Revision: 1 $
+ * $Log: BlockList.java,v $
+ * Revision 1  21/11/2005 14:53:53  luisantonioa
+ * Added copyright notice
+ *
+ *
  * L2jFrozen Project - www.l2jfrozen.com 
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -18,33 +28,12 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.gameserver.skills.conditions;
+package com.l2jfrozen.gameserver.model;
 
-import com.l2jfrozen.gameserver.controllers.GameTimeController;
-import com.l2jfrozen.gameserver.skills.Env;
-
-/**
- * @author mkizub
- */
-public class ConditionGameTime extends Condition
+public enum SiegeClanType
 {
-	private final CheckGameTime _check;
-	private final boolean _required;
-	
-	public ConditionGameTime(final CheckGameTime check, final boolean required)
-	{
-		_check = check;
-		_required = required;
-	}
-	
-	@Override
-	public boolean testImpl(final Env env)
-	{
-		switch (_check)
-		{
-			case NIGHT:
-				return GameTimeController.getInstance().isNowNight() == _required;
-		}
-		return !_required;
-	}
+	OWNER,
+	DEFENDER,
+	ATTACKER,
+	DEFENDER_PENDING
 }

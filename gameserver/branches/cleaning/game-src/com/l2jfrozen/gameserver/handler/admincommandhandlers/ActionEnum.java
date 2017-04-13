@@ -16,35 +16,15 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
  * 02111-1307, USA.
  *
- * http://www.gnu.org/copyleft/gpl.html
+ * [URL]http://www.gnu.org/copyleft/gpl.html[/URL]
  */
-package com.l2jfrozen.gameserver.skills.conditions;
+package com.l2jfrozen.gameserver.handler.admincommandhandlers;
 
-import com.l2jfrozen.gameserver.controllers.GameTimeController;
-import com.l2jfrozen.gameserver.skills.Env;
-
-/**
- * @author mkizub
- */
-public class ConditionGameTime extends Condition
+public enum ActionEnum
 {
-	private final CheckGameTime _check;
-	private final boolean _required;
-	
-	public ConditionGameTime(final CheckGameTime check, final boolean required)
-	{
-		_check = check;
-		_required = required;
-	}
-	
-	@Override
-	public boolean testImpl(final Env env)
-	{
-		switch (_check)
-		{
-			case NIGHT:
-				return GameTimeController.getInstance().isNowNight() == _required;
-		}
-		return !_required;
-	}
+	create,
+	dismiss,
+	info,
+	setlevel,
+	rep
 }
