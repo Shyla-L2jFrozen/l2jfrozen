@@ -107,7 +107,7 @@ public class L2BugReportInstance extends L2FolkInstance
 		try
 		{
 			// max 10 report for every player?
-			int x = 15;
+			final int x = 15;
 			String fname = "log/BugReports/" + player.getName() + ".txt";
 			File file = new File(fname);
 			

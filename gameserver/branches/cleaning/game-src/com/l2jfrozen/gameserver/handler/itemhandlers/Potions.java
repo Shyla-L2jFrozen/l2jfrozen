@@ -41,7 +41,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jfrozen.gameserver.model.entity.event.CTF;
 import com.l2jfrozen.gameserver.model.entity.event.DM;
 import com.l2jfrozen.gameserver.model.entity.event.TvT;
-import com.l2jfrozen.gameserver.model.entity.event.VIP;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
@@ -242,13 +241,6 @@ public class Potions implements IItemHandler
 			
 			// if(activeChar._inEventCTF && CTF._started && !Config.CTF_ALLOW_POTIONS)
 			if (activeChar._inEventCTF && CTF.is_started() && !Config.CTF_ALLOW_POTIONS)
-			{
-				activeChar.sendPacket(ActionFailed.STATIC_PACKET);
-				return;
-			}
-			
-			// if(activeChar._inEventVIP && VIP._started)
-			if (activeChar._inEventVIP && VIP._started)
 			{
 				activeChar.sendPacket(ActionFailed.STATIC_PACKET);
 				return;

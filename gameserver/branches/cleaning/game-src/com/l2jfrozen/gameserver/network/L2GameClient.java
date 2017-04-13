@@ -49,7 +49,6 @@ import com.l2jfrozen.gameserver.model.entity.event.CTF;
 import com.l2jfrozen.gameserver.model.entity.event.DM;
 import com.l2jfrozen.gameserver.model.entity.event.L2Event;
 import com.l2jfrozen.gameserver.model.entity.event.TvT;
-import com.l2jfrozen.gameserver.model.entity.event.VIP;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.network.serverpackets.L2GameServerPacket;
@@ -817,11 +816,6 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 						{
 							TvT.onDisconnect(player);
 						}
-						else if (player._inEventVIP)
-						{
-							VIP.onDisconnect(player);
-						}
-						
 					}
 					
 					if (player.isFlying())
@@ -949,11 +943,6 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 						{
 							TvT.onDisconnect(player);
 						}
-						else if (player._inEventVIP)
-						{
-							VIP.onDisconnect(player);
-						}
-						
 					}
 					
 					if (player.isFlying())

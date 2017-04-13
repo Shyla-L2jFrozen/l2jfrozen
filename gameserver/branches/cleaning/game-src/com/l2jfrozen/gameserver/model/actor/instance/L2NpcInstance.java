@@ -62,7 +62,6 @@ import com.l2jfrozen.gameserver.model.entity.event.DM;
 import com.l2jfrozen.gameserver.model.entity.event.L2Event;
 import com.l2jfrozen.gameserver.model.entity.event.Lottery;
 import com.l2jfrozen.gameserver.model.entity.event.TvT;
-import com.l2jfrozen.gameserver.model.entity.event.VIP;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
 import com.l2jfrozen.gameserver.model.entity.sevensigns.SevenSigns;
 import com.l2jfrozen.gameserver.model.entity.sevensigns.SevenSignsFestival;
@@ -145,7 +144,7 @@ public class L2NpcInstance extends L2Character
 	private int _fortIndex = -2;
 	
 	/** The _is ct f_ flag. */
-	public boolean isEventMob = false, _isEventMobTvT = false, _isEventVIPNPC = false, _isEventVIPNPCEnd = false, _isEventMobDM = false, _isEventMobCTF = false, _isCTF_throneSpawn = false, _isCTF_Flag = false;
+	public boolean isEventMob = false, _isEventMobTvT = false, _isEventMobDM = false, _isEventMobCTF = false, _isCTF_throneSpawn = false, _isCTF_Flag = false;
 	
 	/** The _is in town. */
 	private boolean _isInTown = false;
@@ -876,14 +875,6 @@ public class L2NpcInstance extends L2Character
 					{
 						CTF.checkRestoreFlags();
 					}
-					else if (this._isEventVIPNPC)
-					{
-						VIP.showJoinHTML(player, String.valueOf(this.getObjectId()));
-					}
-					else if (this._isEventVIPNPCEnd)
-					{
-						VIP.showEndHTML(player, String.valueOf(this.getObjectId()));
-					}
 					else
 					{
 						// Open a chat window on client with the text of the L2NpcInstance
@@ -1219,14 +1210,6 @@ public class L2NpcInstance extends L2Character
 						else if (_isCTF_throneSpawn)
 						{
 							CTF.checkRestoreFlags();
-						}
-						else if (this._isEventVIPNPC)
-						{
-							VIP.showJoinHTML(player, String.valueOf(this.getObjectId()));
-						}
-						else if (this._isEventVIPNPCEnd)
-						{
-							VIP.showEndHTML(player, String.valueOf(this.getObjectId()));
 						}
 						else
 						{

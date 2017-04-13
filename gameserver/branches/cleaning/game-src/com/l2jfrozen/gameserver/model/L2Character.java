@@ -87,7 +87,6 @@ import com.l2jfrozen.gameserver.model.entity.event.CTF;
 import com.l2jfrozen.gameserver.model.entity.event.DM;
 import com.l2jfrozen.gameserver.model.entity.event.L2Event;
 import com.l2jfrozen.gameserver.model.entity.event.TvT;
-import com.l2jfrozen.gameserver.model.entity.event.VIP;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
 import com.l2jfrozen.gameserver.model.quest.Quest;
 import com.l2jfrozen.gameserver.model.quest.QuestState;
@@ -6279,12 +6278,6 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 				((L2PcInstance) this).getClient().sendPacket(ActionFailed.STATIC_PACKET);
 				return;
 			}
-			else if (VIP._sitForced && ((L2PcInstance) this)._inEventVIP)
-			{
-				((L2PcInstance) this).sendMessage("A dark force beyond your mortal understanding makes your knees to shake when you try to stand up...");
-				((L2PcInstance) this).sendPacket(ActionFailed.STATIC_PACKET);
-				return;
-			}
 		}
 		
 		// when start to move again, it has to stop sitdown task
@@ -7652,10 +7645,6 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 				else if (src.isInStartedDMEvent() && dst.isInStartedDMEvent())
 					return false;
 				else if (src.isInStartedCTFEvent() && dst.isInStartedCTFEvent())
-					return false;
-				else if (src.isInStartedVIPEvent() && dst.isInStartedVIPEvent())
-					return false;
-				else if (src.isInStartedVIPEvent() && dst.isInStartedVIPEvent())
 					return false;
 				// else
 				// different events in same location --> already checked

@@ -1902,7 +1902,7 @@ public abstract class L2Skill
 								
 								// if src is in event and trg not OR viceversa:
 								// to be fixed for mixed events status (in TvT joining phase, someone can attack a partecipating CTF player with area attack)
-								if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT || src._inEventVIP) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT && !trg._inEventVIP)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT || trg._inEventVIP) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT && !src._inEventVIP)))
+								if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT)))
 								{
 									continue;
 								}
@@ -1919,7 +1919,7 @@ public abstract class L2Skill
 								
 								// if src is in event and trg not OR viceversa:
 								// to be fixed for mixed events status (in TvT joining phase, someone can attack a partecipating CTF player with area attack)
-								if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT || src._inEventVIP) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT && !trg._inEventVIP)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT || trg._inEventVIP) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT && !src._inEventVIP)))
+								if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT)))
 								{
 									continue;
 								}
@@ -2084,7 +2084,7 @@ public abstract class L2Skill
 							
 							// if src is in event and trg not OR viceversa:
 							// to be fixed for mixed events status (in TvT joining phase, someone can attack a partecipating CTF player with area attack)
-							if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT || src._inEventVIP) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT && !trg._inEventVIP)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT || trg._inEventVIP) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT && !src._inEventVIP)))
+							if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT)))
 							{
 								continue;
 							}
@@ -2101,7 +2101,7 @@ public abstract class L2Skill
 							
 							// if src is in event and trg not OR viceversa:
 							// to be fixed for mixed events status (in TvT joining phase, someone can attack a partecipating CTF player with area attack)
-							if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT || src._inEventVIP) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT && !trg._inEventVIP)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT || trg._inEventVIP) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT && !src._inEventVIP)))
+							if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT)))
 							{
 								continue;
 							}
@@ -2205,7 +2205,7 @@ public abstract class L2Skill
 							// if src is in event and trg not OR viceversa:
 							// to be fixed for mixed events status (in TvT joining phase, someone can attack a partecipating CTF player with area attack)
 							if (src != null)
-								if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT || src._inEventVIP) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT && !trg._inEventVIP)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT || trg._inEventVIP) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT && !src._inEventVIP)))
+								if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT)))
 								{
 									continue;
 								}
@@ -2339,23 +2339,12 @@ public abstract class L2Skill
 								
 								// if src is in event and trg not OR viceversa:
 								// to be fixed for mixed events status (in TvT joining phase, someone can attack a partecipating CTF player with area attack)
-								if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT || src._inEventVIP) && (!playerTarget._inEvent && !playerTarget._inEventCTF && !playerTarget._inEventDM && !playerTarget._inEventTvT && !playerTarget._inEventVIP)) || ((playerTarget._inEvent || playerTarget._inEventCTF || playerTarget._inEventDM || playerTarget._inEventTvT || playerTarget._inEventVIP) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT && !src._inEventVIP)))
+								if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT) && (!playerTarget._inEvent && !playerTarget._inEventCTF && !playerTarget._inEventDM && !playerTarget._inEventTvT)) || ((playerTarget._inEvent || playerTarget._inEventCTF || playerTarget._inEventDM || playerTarget._inEventTvT) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT)))
 								{
 									continue;
 								}
 								
 							}
-							
-							/*
-							 * The target_ally or target_corpse_ally have to work indipendent on duel/party status if(player.isInDuel() && (player.getDuelId() != ((L2PcInstance) newTarget).getDuelId() || player.getParty() != null && !player.getParty().getPartyMembers().contains(newTarget))) {
-							 * continue; }
-							 */
-							
-							/*
-							 * }else if(newTarget instanceof L2Summon){ L2PcInstance trg = ((L2Summon) newTarget).getOwner(); if(trg == src) { continue; } //if src is in event and trg not OR viceversa: //to be fixed for mixed events status (in TvT joining phase, someone can attack a partecipating
-							 * CTF player with area attack) if( ((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT || src._inEventVIP) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT && !trg._inEventVIP)) || ((trg._inEvent || trg._inEventCTF ||
-							 * trg._inEventDM || trg._inEventTvT || trg._inEventVIP) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT && !src._inEventVIP)) ){ continue; } }
-							 */
 							
 							L2Summon pet = ((L2PcInstance) newTarget).getPet();
 							if (pet != null && Util.checkIfInRange(radius, activeChar, pet, true) && !onlyFirst && (targetType == SkillTargetType.TARGET_CORPSE_ALLY && pet.isDead() || targetType == SkillTargetType.TARGET_ALLY && !pet.isDead()) && player.checkPvpSkill(newTarget, this))
@@ -2457,7 +2446,7 @@ public abstract class L2Skill
 							
 							// if src is in event and trg not OR viceversa:
 							// to be fixed for mixed events status (in TvT joining phase, someone can attack a partecipating CTF player with area attack)
-							if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT || src._inEventVIP) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT && !trg._inEventVIP)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT || trg._inEventVIP) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT && !src._inEventVIP)))
+							if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT)))
 							{
 								continue;
 							}
@@ -2786,7 +2775,7 @@ public abstract class L2Skill
 						// if src is in event and trg not OR viceversa:
 						// to be fixed for mixed events status (in TvT joining phase, someone can attack a partecipating CTF player with area attack)
 						if (src != null && trg != null)
-							if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT || src._inEventVIP) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT && !trg._inEventVIP)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT || trg._inEventVIP) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT && !src._inEventVIP)))
+							if (((src._inEvent || src._inEventCTF || src._inEventDM || src._inEventTvT) && (!trg._inEvent && !trg._inEventCTF && !trg._inEventDM && !trg._inEventTvT)) || ((trg._inEvent || trg._inEventCTF || trg._inEventDM || trg._inEventTvT) && (!src._inEvent && !src._inEventCTF && !src._inEventDM && !src._inEventTvT)))
 							{
 								continue;
 							}
@@ -3316,12 +3305,12 @@ public abstract class L2Skill
 				
 			// if src is in event and trg not OR viceversa, the target must be not attackable
 			// to be fixed for mixed events status (in TvT joining phase, someone can attack a partecipating CTF player with area attack)
-			if (((activeCh._inEvent || activeCh._inEventCTF || activeCh._inEventDM || activeCh._inEventTvT || activeCh._inEventVIP) && (!targetChar._inEvent && !targetChar._inEventCTF && !targetChar._inEventDM && !targetChar._inEventTvT && !targetChar._inEventVIP)) || ((targetChar._inEvent || targetChar._inEventCTF || targetChar._inEventDM || targetChar._inEventTvT || targetChar._inEventVIP) && (!activeCh._inEvent && !activeCh._inEventCTF && !activeCh._inEventDM && !activeCh._inEventTvT && !activeCh._inEventVIP)))
+			if (((activeCh._inEvent || activeCh._inEventCTF || activeCh._inEventDM || activeCh._inEventTvT) && (!targetChar._inEvent && !targetChar._inEventCTF && !targetChar._inEventDM && !targetChar._inEventTvT)) || ((targetChar._inEvent || targetChar._inEventCTF || targetChar._inEventDM || targetChar._inEventTvT) && (!activeCh._inEvent && !activeCh._inEventCTF && !activeCh._inEventDM && !activeCh._inEventTvT)))
 			{
 				return true;
 			}
 			
-			if ((activeCh._inEvent && targetChar._inEvent) || (activeCh._inEventDM && targetChar._inEventDM) || (activeCh._inEventTvT && targetChar._inEventTvT) || (activeCh._inEventCTF && targetChar._inEventCTF) || (activeCh._inEventVIP && targetChar._inEventVIP))
+			if ((activeCh._inEvent && targetChar._inEvent) || (activeCh._inEventDM && targetChar._inEventDM) || (activeCh._inEventTvT && targetChar._inEventTvT) || (activeCh._inEventCTF && targetChar._inEventCTF))
 			{
 				
 				return false;
