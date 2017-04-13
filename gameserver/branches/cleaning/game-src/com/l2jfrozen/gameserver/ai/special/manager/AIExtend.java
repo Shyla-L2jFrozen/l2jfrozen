@@ -49,39 +49,6 @@ public class AIExtend implements Runnable
 		}
 	}
 	
-	public static enum Action
-	{
-		/** on spell finished action when npc finish casting skill */
-		ON_SPELL_FINISHED(true),
-		
-		/** a person came within the Npc/Mob's range */
-		ON_AGGRO_RANGE_ENTER(true),
-		
-		/** OnSpawn */
-		ON_SPAWN(true),
-		
-		/** OnSkillUse (MOB_TARGETED_BY_SKILL) */
-		ON_SKILL_USE(true),
-		
-		/** OnKill (MOBKILLED) */
-		ON_KILL(true),
-		
-		/** OnAttack (MOBGOTATTACKED) */
-		ON_ATTACK(true);
-		
-		private final boolean _isRegistred;
-		
-		Action(final boolean reg)
-		{
-			_isRegistred = reg;
-		}
-		
-		public boolean isRegistred()
-		{
-			return _isRegistred;
-		}
-	}
-	
 	public static void clearAllAI()
 	{
 		_AI.clear();

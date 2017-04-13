@@ -58,30 +58,6 @@ import com.l2jfrozen.util.database.SqlUtils;
  */
 public class Shutdown extends Thread
 {
-	public enum ShutdownModeType1
-	{
-		SIGTERM("Terminating"),
-		SHUTDOWN("Shutting down"),
-		RESTART("Restarting"),
-		ABORT("Aborting"),
-		TASK_SHUT("Shuting down"),
-		TASK_RES("Restarting"),
-		TELL_SHUT("Shuting down"),
-		TELL_RES("Restarting");
-		
-		private final String _modeText;
-		
-		ShutdownModeType1(final String modeText)
-		{
-			_modeText = modeText;
-		}
-		
-		public String getText()
-		{
-			return _modeText;
-		}
-	}
-	
 	protected static final Logger LOGGER = Logger.getLogger(Shutdown.class);
 	
 	private static Shutdown _instance;

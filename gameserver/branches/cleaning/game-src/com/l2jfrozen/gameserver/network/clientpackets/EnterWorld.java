@@ -33,7 +33,7 @@ import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.datatables.CharSchemesTable;
 import com.l2jfrozen.gameserver.datatables.GmListTable;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.datatables.sql.AdminCommandAccessRights;
 import com.l2jfrozen.gameserver.handler.custom.CustomWorldHandler;
 import com.l2jfrozen.gameserver.managers.CastleManager;
@@ -329,7 +329,7 @@ public class EnterWorld extends L2GameClientPacket
 		
 		if (Olympiad.getInstance().playerInStadia(activeChar))
 		{
-			activeChar.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+			activeChar.teleToLocation(TeleportWhereType.Town);
 			activeChar.sendMessage("You have been teleported to the nearest town due to you being in an Olympiad Stadium");
 		}
 		
@@ -388,7 +388,7 @@ public class EnterWorld extends L2GameClientPacket
 		if (!activeChar.isGM() && activeChar.getSiegeState() < 2 && activeChar.isInsideZone(L2Character.ZONE_SIEGE))
 		{
 			// Attacker or spectator logging in to a siege zone. Actually should be checked for inside castle only?
-			activeChar.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+			activeChar.teleToLocation(TeleportWhereType.Town);
 			activeChar.sendMessage("You have been teleported to the nearest town due to you being in siege zone");
 		}
 		

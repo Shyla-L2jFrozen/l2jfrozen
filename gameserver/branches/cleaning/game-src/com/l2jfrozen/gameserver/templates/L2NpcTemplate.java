@@ -26,6 +26,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.gameserver.ai.special.manager.AIExtend;
+import com.l2jfrozen.gameserver.ai.special.manager.Action;
 import com.l2jfrozen.gameserver.model.L2DropCategory;
 import com.l2jfrozen.gameserver.model.L2DropData;
 import com.l2jfrozen.gameserver.model.L2MinionData;
@@ -130,7 +131,7 @@ public final class L2NpcTemplate extends L2CharTemplate
 	private final Map<Stats, Double> _vulnerabilities = new FastMap<>();
 	// contains a list of quests for each event type (questStart, questAttack, questKill, etc)
 	private final Map<Quest.QuestEventType, Quest[]> _questEvents = new FastMap<>();
-	private static FastMap<AIExtend.Action, AIExtend[]> _aiEvents = new FastMap<>();
+	private static FastMap<Action, AIExtend[]> _aiEvents = new FastMap<>();
 	
 	/**
 	 * Constructor of L2Character.<BR>
@@ -370,7 +371,7 @@ public final class L2NpcTemplate extends L2CharTemplate
 	}
 	
 	// TODO
-	public void addAIEvent(final AIExtend.Action actionType, final AIExtend ai)
+	public void addAIEvent(final Action actionType, final AIExtend ai)
 	{
 		if (_aiEvents.get(actionType) == null)
 		{

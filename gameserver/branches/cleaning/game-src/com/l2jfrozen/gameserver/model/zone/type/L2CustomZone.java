@@ -20,6 +20,7 @@
 
 package com.l2jfrozen.gameserver.model.zone.type;
 
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.zone.L2ZoneType;
@@ -68,7 +69,7 @@ public class L2CustomZone extends L2ZoneType
 			final L2PcInstance player = (L2PcInstance) character;
 			if (!player.isGM() && player.isFlying() && !player.isInJail() && !_IsFlyingEnable)
 			{
-				player.teleToLocation(com.l2jfrozen.gameserver.datatables.csv.MapRegionTable.TeleportWhereType.Town);
+				player.teleToLocation(TeleportWhereType.Town);
 			}
 			
 			if (_zoneName.equalsIgnoreCase("tradeoff"))

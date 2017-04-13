@@ -31,7 +31,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.datatables.sql.ClanTable;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.idfactory.IdFactory;
@@ -396,13 +396,13 @@ public class Siege
 			removeFlags();
 			
 			// Teleport to the second closest town
-			teleportPlayer(Siege.TeleportWhoType.Attacker, MapRegionTable.TeleportWhereType.Town);
+			teleportPlayer(Siege.TeleportWhoType.Attacker, TeleportWhereType.Town);
 			
 			// Teleport to the second closest town
-			teleportPlayer(Siege.TeleportWhoType.DefenderNotOwner, MapRegionTable.TeleportWhereType.Town);
+			teleportPlayer(Siege.TeleportWhoType.DefenderNotOwner, TeleportWhereType.Town);
 			
 			// Teleport to the second closest town
-			teleportPlayer(Siege.TeleportWhoType.Spectator, MapRegionTable.TeleportWhereType.Town);
+			teleportPlayer(Siege.TeleportWhoType.Spectator, TeleportWhereType.Town);
 			
 			// Flag so that siege instance can be started
 			_isInProgress = false;
@@ -585,10 +585,10 @@ public class Siege
 				}
 				
 				// Teleport to the second closest town
-				teleportPlayer(Siege.TeleportWhoType.Attacker, MapRegionTable.TeleportWhereType.SiegeFlag);
+				teleportPlayer(Siege.TeleportWhoType.Attacker, TeleportWhereType.SiegeFlag);
 				
 				// Teleport to the second closest town
-				teleportPlayer(Siege.TeleportWhoType.Spectator, MapRegionTable.TeleportWhereType.Town);
+				teleportPlayer(Siege.TeleportWhoType.Spectator, TeleportWhereType.Town);
 				
 				// Removes defenders' flags
 				removeDefenderFlags();
@@ -652,7 +652,7 @@ public class Siege
 			updatePlayerSiegeStateFlags(false);
 			
 			// Teleport to the closest town
-			teleportPlayer(Siege.TeleportWhoType.Attacker, MapRegionTable.TeleportWhereType.Town);
+			teleportPlayer(Siege.TeleportWhoType.Attacker, TeleportWhereType.Town);
 			
 			_controlTowerCount = 0;
 			_controlTowerMaxCount = 0;
@@ -1245,7 +1245,7 @@ public class Siege
 	 * @param teleportWho the teleport who
 	 * @param teleportWhere the teleport where
 	 */
-	public void teleportPlayer(final TeleportWhoType teleportWho, final MapRegionTable.TeleportWhereType teleportWhere)
+	public void teleportPlayer(final TeleportWhoType teleportWho, final TeleportWhereType teleportWhere)
 	{
 		List<L2PcInstance> players;
 		switch (teleportWho)

@@ -24,6 +24,7 @@ import java.util.StringTokenizer;
 
 import com.l2jfrozen.gameserver.datatables.GmListTable;
 import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.handler.IAdminCommandHandler;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.Location;
@@ -86,16 +87,16 @@ public class AdminZone implements IAdminCommandHandler
 			
 			Location loc;
 			
-			loc = MapRegionTable.getInstance().getTeleToLocation(activeChar, MapRegionTable.TeleportWhereType.Castle);
+			loc = MapRegionTable.getInstance().getTeleToLocation(activeChar, TeleportWhereType.Castle);
 			activeChar.sendMessage("TeleToLocation (Castle): x:" + loc.getX() + " y:" + loc.getY() + " z:" + loc.getZ());
 			
-			loc = MapRegionTable.getInstance().getTeleToLocation(activeChar, MapRegionTable.TeleportWhereType.ClanHall);
+			loc = MapRegionTable.getInstance().getTeleToLocation(activeChar, TeleportWhereType.ClanHall);
 			activeChar.sendMessage("TeleToLocation (ClanHall): x:" + loc.getX() + " y:" + loc.getY() + " z:" + loc.getZ());
 			
-			loc = MapRegionTable.getInstance().getTeleToLocation(activeChar, MapRegionTable.TeleportWhereType.SiegeFlag);
+			loc = MapRegionTable.getInstance().getTeleToLocation(activeChar, TeleportWhereType.SiegeFlag);
 			activeChar.sendMessage("TeleToLocation (SiegeFlag): x:" + loc.getX() + " y:" + loc.getY() + " z:" + loc.getZ());
 			
-			loc = MapRegionTable.getInstance().getTeleToLocation(activeChar, MapRegionTable.TeleportWhereType.Town);
+			loc = MapRegionTable.getInstance().getTeleToLocation(activeChar, TeleportWhereType.Town);
 			activeChar.sendMessage("TeleToLocation (Town): x:" + loc.getX() + " y:" + loc.getY() + " z:" + loc.getZ());
 			
 			loc = null;

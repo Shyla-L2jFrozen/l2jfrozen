@@ -19,7 +19,7 @@
  */
 package com.l2jfrozen.gameserver.model.zone.type;
 
-import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
+import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.zone.L2ZoneType;
@@ -120,7 +120,7 @@ public class L2ArenaZone extends L2ZoneType
 				
 				if (player.isOnline() == 1)
 				{
-					player.teleToLocation(MapRegionTable.TeleportWhereType.Town);
+					player.teleToLocation(TeleportWhereType.Town);
 				}
 				
 				player = null;
