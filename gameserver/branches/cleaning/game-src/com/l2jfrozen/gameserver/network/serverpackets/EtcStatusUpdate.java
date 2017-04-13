@@ -19,8 +19,8 @@
  */
 package com.l2jfrozen.gameserver.network.serverpackets;
 
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Character;
-import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.skills.effects.EffectCharge;
 
@@ -39,7 +39,7 @@ public class EtcStatusUpdate extends L2GameServerPacket
 	public EtcStatusUpdate(final L2PcInstance activeChar)
 	{
 		_activeChar = activeChar;
-		_effect = (EffectCharge) _activeChar.getFirstEffect(L2Effect.EffectType.CHARGE);
+		_effect = (EffectCharge) _activeChar.getFirstEffect(EffectType.CHARGE);
 	}
 	
 	/**

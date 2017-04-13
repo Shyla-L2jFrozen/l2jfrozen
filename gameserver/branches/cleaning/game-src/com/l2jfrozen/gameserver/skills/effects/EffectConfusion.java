@@ -23,6 +23,7 @@ package com.l2jfrozen.gameserver.skills.effects;
 import java.util.List;
 
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.L2Object;

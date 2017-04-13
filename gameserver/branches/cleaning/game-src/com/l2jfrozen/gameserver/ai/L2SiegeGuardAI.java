@@ -36,6 +36,7 @@ import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.L2Summon;
+import com.l2jfrozen.gameserver.model.SkillType;
 import com.l2jfrozen.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2FolkInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2MonsterInstance;
@@ -395,18 +396,18 @@ public class L2SiegeGuardAI extends L2CharacterAI implements Runnable
 				{
 					final int castRange = sk.getCastRange();
 					
-					if ((sk.getSkillType() == L2Skill.SkillType.BUFF || sk.getSkillType() == L2Skill.SkillType.HEAL || dist_2 >= castRange * castRange / 9 && dist_2 <= castRange * castRange && castRange > 70) && !_actor.isSkillDisabled(sk) && _actor.getCurrentMp() >= _actor.getStat().getMpConsume(sk) && !sk.isPassive())
+					if ((sk.getSkillType() == SkillType.BUFF || sk.getSkillType() == SkillType.HEAL || dist_2 >= castRange * castRange / 9 && dist_2 <= castRange * castRange && castRange > 70) && !_actor.isSkillDisabled(sk) && _actor.getCurrentMp() >= _actor.getStat().getMpConsume(sk) && !sk.isPassive())
 					{
-						if (sk.getSkillType() == L2Skill.SkillType.BUFF || sk.getSkillType() == L2Skill.SkillType.HEAL)
+						if (sk.getSkillType() == SkillType.BUFF || sk.getSkillType() == SkillType.HEAL)
 						{
 							boolean useSkillSelf = true;
 							
-							if ((sk.getSkillType() == L2Skill.SkillType.BUFF || sk.getSkillType() == L2Skill.SkillType.HEAL || dist_2 >= castRange * castRange / 9 && dist_2 <= castRange * castRange && castRange > 70) && !_actor.isSkillDisabled(sk) && _actor.getCurrentMp() >= _actor.getStat().getMpConsume(sk) && !sk.isPassive())
+							if ((sk.getSkillType() == SkillType.BUFF || sk.getSkillType() == SkillType.HEAL || dist_2 >= castRange * castRange / 9 && dist_2 <= castRange * castRange && castRange > 70) && !_actor.isSkillDisabled(sk) && _actor.getCurrentMp() >= _actor.getStat().getMpConsume(sk) && !sk.isPassive())
 							{
 								useSkillSelf = false;
 								break;
 							}
-							if (sk.getSkillType() == L2Skill.SkillType.BUFF)
+							if (sk.getSkillType() == SkillType.BUFF)
 							{
 								L2Effect[] effects = _actor.getAllEffects();
 								
@@ -533,17 +534,17 @@ public class L2SiegeGuardAI extends L2CharacterAI implements Runnable
 					
 					if (castRange * castRange >= dist_2 && castRange <= 70 && !sk.isPassive() && _actor.getCurrentMp() >= _actor.getStat().getMpConsume(sk) && !_actor.isSkillDisabled(sk))
 					{
-						if (sk.getSkillType() == L2Skill.SkillType.BUFF || sk.getSkillType() == L2Skill.SkillType.HEAL)
+						if (sk.getSkillType() == SkillType.BUFF || sk.getSkillType() == SkillType.HEAL)
 						{
 							boolean useSkillSelf = true;
 							
-							if (sk.getSkillType() == L2Skill.SkillType.HEAL && _actor.getCurrentHp() > (int) (_actor.getMaxHp() / 1.5))
+							if (sk.getSkillType() == SkillType.HEAL && _actor.getCurrentHp() > (int) (_actor.getMaxHp() / 1.5))
 							{
 								useSkillSelf = false;
 								break;
 							}
 							
-							if (sk.getSkillType() == L2Skill.SkillType.BUFF)
+							if (sk.getSkillType() == SkillType.BUFF)
 							{
 								final L2Effect[] effects = _actor.getAllEffects();
 								

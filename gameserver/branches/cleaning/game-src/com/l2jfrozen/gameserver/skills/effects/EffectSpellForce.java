@@ -19,6 +19,7 @@
  */
 package com.l2jfrozen.gameserver.skills.effects;
 
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.skills.Env;
 
 /**

@@ -93,6 +93,7 @@ import com.l2jfrozen.gameserver.managers.QuestManager;
 import com.l2jfrozen.gameserver.managers.SiegeManager;
 import com.l2jfrozen.gameserver.managers.TownManager;
 import com.l2jfrozen.gameserver.model.BlockList;
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.FishData;
 import com.l2jfrozen.gameserver.model.Inventory;
 import com.l2jfrozen.gameserver.model.ItemContainer;
@@ -111,8 +112,6 @@ import com.l2jfrozen.gameserver.model.L2RecipeList;
 import com.l2jfrozen.gameserver.model.L2Request;
 import com.l2jfrozen.gameserver.model.L2ShortCut;
 import com.l2jfrozen.gameserver.model.L2Skill;
-import com.l2jfrozen.gameserver.model.L2Skill.SkillTargetType;
-import com.l2jfrozen.gameserver.model.L2Skill.SkillType;
 import com.l2jfrozen.gameserver.model.L2SkillLearn;
 import com.l2jfrozen.gameserver.model.L2Summon;
 import com.l2jfrozen.gameserver.model.L2World;
@@ -127,6 +126,8 @@ import com.l2jfrozen.gameserver.model.PcWarehouse;
 import com.l2jfrozen.gameserver.model.PetInventory;
 import com.l2jfrozen.gameserver.model.PlayerStatus;
 import com.l2jfrozen.gameserver.model.ShortCuts;
+import com.l2jfrozen.gameserver.model.SkillTargetType;
+import com.l2jfrozen.gameserver.model.SkillType;
 import com.l2jfrozen.gameserver.model.TradeList;
 import com.l2jfrozen.gameserver.model.actor.appearance.PcAppearance;
 import com.l2jfrozen.gameserver.model.actor.knownlist.PcKnownList;
@@ -4481,7 +4482,7 @@ public final class L2PcInstance extends L2PlayableInstance
 			if (_relax)
 			{
 				setRelax(false);
-				stopEffects(L2Effect.EffectType.RELAXING);
+				stopEffects(EffectType.RELAXING);
 			}
 			
 			broadcastPacket(new ChangeWaitType(this, ChangeWaitType.WT_STANDING));
@@ -12262,7 +12263,7 @@ public final class L2PcInstance extends L2PlayableInstance
 			if (requiredItems == null || requiredItems.getCount() < skill.getItemConsume())
 			{
 				// Checked: when a summon skill failed, server show required consume item count
-				if (sklType == L2Skill.SkillType.SUMMON)
+				if (sklType == SkillType.SUMMON)
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.SUMMONING_SERVITOR_COSTS_S2_S1);
 					sm.addItemName(skill.getItemConsumeId());
@@ -12289,7 +12290,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		}
 		
 		// Like L2OFF if you have a summon you can't summon another one (ignore cubics)
-		if (sklType == L2Skill.SkillType.SUMMON && skill instanceof L2SkillSummon && !((L2SkillSummon) skill).isCubic())
+		if (sklType == SkillType.SUMMON && skill instanceof L2SkillSummon && !((L2SkillSummon) skill).isCubic())
 		{
 			if (getPet() != null || isMounted())
 			{
@@ -12300,7 +12301,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		
 		if (skill.getNumCharges() > 0 && skill.getSkillType() != SkillType.CHARGE && skill.getSkillType() != SkillType.CHARGEDAM && skill.getSkillType() != SkillType.CHARGE_EFFECT && skill.getSkillType() != SkillType.PDAM)
 		{
-			final EffectCharge effect = (EffectCharge) getFirstEffect(L2Effect.EffectType.CHARGE);
+			final EffectCharge effect = (EffectCharge) getFirstEffect(EffectType.CHARGE);
 			if (effect == null || effect.numCharges < skill.getNumCharges())
 			{
 				sendPacket(new SystemMessage(SystemMessageId.SKILL_NOT_AVAILABLE));
@@ -12337,7 +12338,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		// Abnormal effects(ex : Stun, Sleep...) are checked in L2Character useMagic()
 		
 		// Check if the player use "Fake Death" skill
-		if (isAlikeDead() && !skill.isPotion() && skill.getSkillType() != L2Skill.SkillType.FAKE_DEATH)
+		if (isAlikeDead() && !skill.isPotion() && skill.getSkillType() != SkillType.FAKE_DEATH)
 		{
 			
 			// Send a Server->Client packet ActionFailed to the L2PcInstance

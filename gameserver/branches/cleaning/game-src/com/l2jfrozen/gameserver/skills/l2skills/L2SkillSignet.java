@@ -22,6 +22,7 @@ import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.L2World;
+import com.l2jfrozen.gameserver.model.SkillTargetType;
 import com.l2jfrozen.gameserver.model.actor.instance.L2EffectPointInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
@@ -56,7 +57,7 @@ public final class L2SkillSignet extends L2Skill
 		int y = caster.getY();
 		int z = caster.getZ();
 		
-		if (caster instanceof L2PcInstance && getTargetType() == L2Skill.SkillTargetType.TARGET_GROUND)
+		if (caster instanceof L2PcInstance && getTargetType() == SkillTargetType.TARGET_GROUND)
 		{
 			final Point3D wordPosition = ((L2PcInstance) caster).getCurrentSkillWorldPosition();
 			

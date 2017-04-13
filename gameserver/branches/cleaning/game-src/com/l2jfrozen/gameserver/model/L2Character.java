@@ -55,8 +55,6 @@ import com.l2jfrozen.gameserver.managers.DuelManager;
 import com.l2jfrozen.gameserver.managers.GrandBossManager;
 import com.l2jfrozen.gameserver.managers.RaidBossSpawnManager;
 import com.l2jfrozen.gameserver.managers.TownManager;
-import com.l2jfrozen.gameserver.model.L2Skill.SkillTargetType;
-import com.l2jfrozen.gameserver.model.L2Skill.SkillType;
 import com.l2jfrozen.gameserver.model.actor.instance.L2BoatInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ControlTowerInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2DoorInstance;
@@ -1841,7 +1839,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 			getAI().notifyEvent(CtrlEvent.EVT_CANCEL);
 			return;
 		}
-		else if ((skill.getSkillType() == SkillType.BUFF || skill.getSkillType() == SkillType.HEAL || skill.getSkillType() == SkillType.COMBATPOINTHEAL || skill.getSkillType() == SkillType.COMBATPOINTPERCENTHEAL || skill.getSkillType() == SkillType.MANAHEAL || skill.getSkillType() == SkillType.REFLECT || skill.getSkillType() == SkillType.SEED || skill.getTargetType() == L2Skill.SkillTargetType.TARGET_SELF || skill.getTargetType() == L2Skill.SkillTargetType.TARGET_PET || skill.getTargetType() == L2Skill.SkillTargetType.TARGET_PARTY || skill.getTargetType() == L2Skill.SkillTargetType.TARGET_CLAN || skill.getTargetType() == L2Skill.SkillTargetType.TARGET_ALLY) && !skill.isPotion())
+		else if ((skill.getSkillType() == SkillType.BUFF || skill.getSkillType() == SkillType.HEAL || skill.getSkillType() == SkillType.COMBATPOINTHEAL || skill.getSkillType() == SkillType.COMBATPOINTPERCENTHEAL || skill.getSkillType() == SkillType.MANAHEAL || skill.getSkillType() == SkillType.REFLECT || skill.getSkillType() == SkillType.SEED || skill.getTargetType() == SkillTargetType.TARGET_SELF || skill.getTargetType() == SkillTargetType.TARGET_PET || skill.getTargetType() == SkillTargetType.TARGET_PARTY || skill.getTargetType() == SkillTargetType.TARGET_CLAN || skill.getTargetType() == SkillTargetType.TARGET_ALLY) && !skill.isPotion())
 		{
 			target = (L2Character) targets[0];
 			
@@ -3681,7 +3679,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 					
 				}
 				
-				if ((newEffect.getSkill().getSkillType() == SkillType.BUFF || newEffect.getEffectType() == L2Effect.EffectType.BUFF || newEffect.getEffectType() == L2Effect.EffectType.HEAL_OVER_TIME) && newEffect.getStackOrder() >= effect.getStackOrder())
+				if ((newEffect.getSkill().getSkillType() == SkillType.BUFF || newEffect.getEffectType() == EffectType.BUFF || newEffect.getEffectType() == EffectType.HEAL_OVER_TIME) && newEffect.getStackOrder() >= effect.getStackOrder())
 				{
 					effect.exit(false);
 				}
@@ -3697,7 +3695,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 		final L2Skill tempskill = newEffect.getSkill();
 		
 		// Remove first Buff if number of buffs > BUFFS_MAX_AMOUNT
-		if (getBuffCount() >= getMaxBuffCount() && !doesStack(tempskill) && (tempskill.getSkillType() == L2Skill.SkillType.BUFF || tempskill.getSkillType() == L2Skill.SkillType.REFLECT || tempskill.getSkillType() == L2Skill.SkillType.HEAL_PERCENT || tempskill.getSkillType() == L2Skill.SkillType.MANAHEAL_PERCENT) && !(tempskill.getId() > 4360 && tempskill.getId() < 4367) && !(tempskill.getId() > 4550 && tempskill.getId() < 4555))
+		if (getBuffCount() >= getMaxBuffCount() && !doesStack(tempskill) && (tempskill.getSkillType() == SkillType.BUFF || tempskill.getSkillType() == SkillType.REFLECT || tempskill.getSkillType() == SkillType.HEAL_PERCENT || tempskill.getSkillType() == SkillType.MANAHEAL_PERCENT) && !(tempskill.getId() > 4360 && tempskill.getId() < 4367) && !(tempskill.getId() > 4550 && tempskill.getId() < 4555))
 		{
 			if (newEffect.isHerbEffect())
 			{
@@ -4111,7 +4109,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	 */
 	public final void stopBetray()
 	{
-		stopEffects(L2Effect.EffectType.BETRAY);
+		stopEffects(EffectType.BETRAY);
 		setIsBetrayed(false);
 		updateAbnormalEffect();
 	}
@@ -4175,7 +4173,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	{
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.IMMOBILEUNTILATTACKED);
+			stopEffects(EffectType.IMMOBILEUNTILATTACKED);
 		}
 		else
 		{
@@ -4204,7 +4202,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	{
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.CONFUSION);
+			stopEffects(EffectType.CONFUSION);
 		}
 		else
 		{
@@ -4267,7 +4265,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	 * <BR>
 	 * @param type The type of effect to stop ((ex : BUFF, DMG_OVER_TIME...)
 	 */
-	public final void stopEffects(final L2Effect.EffectType type)
+	public final void stopEffects(final EffectType type)
 	{
 		final L2Effect[] effects = getAllEffects();
 		
@@ -4356,7 +4354,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	{
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.FAKE_DEATH);
+			stopEffects(EffectType.FAKE_DEATH);
 		}
 		else
 		{
@@ -4395,7 +4393,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	{
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.FEAR);
+			stopEffects(EffectType.FEAR);
 		}
 		else
 		{
@@ -4422,7 +4420,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	{
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.MUTE);
+			stopEffects(EffectType.MUTE);
 		}
 		else
 		{
@@ -4441,7 +4439,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	{
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.PSYCHICAL_MUTE);
+			stopEffects(EffectType.PSYCHICAL_MUTE);
 		}
 		else
 		{
@@ -4468,7 +4466,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	{
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.ROOT);
+			stopEffects(EffectType.ROOT);
 		}
 		else
 		{
@@ -4496,7 +4494,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	{
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.SLEEP);
+			stopEffects(EffectType.SLEEP);
 		}
 		else
 		{
@@ -4527,7 +4525,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 		
 		if (effect == null)
 		{
-			stopEffects(L2Effect.EffectType.STUN);
+			stopEffects(EffectType.STUN);
 		}
 		else
 		{
@@ -4641,7 +4639,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 					
 				}
 				
-				if (_effects.get(i).getEffectType() == L2Effect.EffectType.CHARGE && player != null)
+				if (_effects.get(i).getEffectType() == EffectType.CHARGE && player != null)
 				{
 					// handled by EtcStatusUpdate
 					continue;
@@ -4908,7 +4906,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	 * @param tp The Effect Type of skills whose effect must be returned
 	 * @return The first L2Effect corresponding to the Effect Type
 	 */
-	public final L2Effect getFirstEffect(final L2Effect.EffectType tp)
+	public final L2Effect getFirstEffect(final EffectType tp)
 	{
 		final L2Effect[] effects = getAllEffects();
 		
@@ -5810,7 +5808,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	public final boolean isCastingNow()
 	{
 		
-		final L2Effect mog = getFirstEffect(L2Effect.EffectType.SIGNET_GROUND);
+		final L2Effect mog = getFirstEffect(EffectType.SIGNET_GROUND);
 		if (mog != null)
 		{
 			return true;
@@ -5915,7 +5913,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 				getForceBuff().onCastAbort();
 			}
 			
-			final L2Effect mog = getFirstEffect(L2Effect.EffectType.SIGNET_GROUND);
+			final L2Effect mog = getFirstEffect(EffectType.SIGNET_GROUND);
 			if (mog != null)
 			{
 				mog.exit(true);
@@ -8084,7 +8082,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 				continue;
 			}
 			
-			if ((e.getSkill().getSkillType() == L2Skill.SkillType.BUFF || e.getSkill().getId() == 1416 || e.getSkill().getSkillType() == L2Skill.SkillType.REFLECT || e.getSkill().getSkillType() == L2Skill.SkillType.HEAL_PERCENT || e.getSkill().getSkillType() == L2Skill.SkillType.MANAHEAL_PERCENT) && !(e.getSkill().getId() > 4360 && e.getSkill().getId() < 4367)) // 7s
+			if ((e.getSkill().getSkillType() == SkillType.BUFF || e.getSkill().getId() == 1416 || e.getSkill().getSkillType() == SkillType.REFLECT || e.getSkill().getSkillType() == SkillType.HEAL_PERCENT || e.getSkill().getSkillType() == SkillType.MANAHEAL_PERCENT) && !(e.getSkill().getId() > 4360 && e.getSkill().getId() < 4367)) // 7s
 			// buffs
 			{
 				numBuffs++;
@@ -8156,7 +8154,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 				continue;
 			}
 			
-			if ((e.getSkill().getSkillType() == L2Skill.SkillType.BUFF || e.getSkill().getSkillType() == L2Skill.SkillType.REFLECT || e.getSkill().getSkillType() == L2Skill.SkillType.HEAL_PERCENT || e.getSkill().getSkillType() == L2Skill.SkillType.MANAHEAL_PERCENT) && !(e.getSkill().getId() > 4360 && e.getSkill().getId() < 4367))
+			if ((e.getSkill().getSkillType() == SkillType.BUFF || e.getSkill().getSkillType() == SkillType.REFLECT || e.getSkill().getSkillType() == SkillType.HEAL_PERCENT || e.getSkill().getSkillType() == SkillType.MANAHEAL_PERCENT) && !(e.getSkill().getId() > 4360 && e.getSkill().getId() < 4367))
 			{
 				if (preferSkill == 0)
 				{
@@ -8493,7 +8491,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 			return;
 		}
 		
-		final L2Effect mog = getFirstEffect(L2Effect.EffectType.SIGNET_GROUND);
+		final L2Effect mog = getFirstEffect(EffectType.SIGNET_GROUND);
 		if (mog != null)
 		{
 			_skillCast = null;
@@ -8534,7 +8532,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 						// If the skill is type STEALTH(ex: Dance of Shadow)
 						if (skill.isAbnormalEffectByName(ABNORMAL_EFFECT_STEALTH))
 						{
-							final L2Effect silentMove = target.getFirstEffect(L2Effect.EffectType.SILENT_MOVE);
+							final L2Effect silentMove = target.getFirstEffect(EffectType.SILENT_MOVE);
 							if (silentMove != null)
 								silentMove.exit(true);
 						}
@@ -9034,7 +9032,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 					// Set some values inside target's instance for later use
 					L2Character player = (L2Character) target;
 					
-					if (skill.getEffectType() == L2Skill.SkillType.BUFF)
+					if (skill.getEffectType() == SkillType.BUFF)
 						if (player.isBlockBuff())
 							continue;
 						
@@ -9256,7 +9254,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 							if (player instanceof L2PcInstance || player instanceof L2Summon)
 							{
 								// Signets are a special case, casted on target_self but don't harm self
-								if (skill.getSkillType() != L2Skill.SkillType.SIGNET && skill.getSkillType() != L2Skill.SkillType.SIGNET_CASTTIME)
+								if (skill.getSkillType() != SkillType.SIGNET && skill.getSkillType() != SkillType.SIGNET_CASTTIME)
 								{
 									player.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, activeChar);
 									activeChar.updatePvPStatus(player);
@@ -9294,7 +9292,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 									activeChar.updatePvPStatus();
 								}
 							}
-							else if (player instanceof L2Attackable && !(skill.getSkillType() == L2Skill.SkillType.SUMMON) && !(skill.getSkillType() == L2Skill.SkillType.BEAST_FEED) && !(skill.getSkillType() == L2Skill.SkillType.UNLOCK) && !(skill.getSkillType() == L2Skill.SkillType.DELUXE_KEY_UNLOCK))
+							else if (player instanceof L2Attackable && !(skill.getSkillType() == SkillType.SUMMON) && !(skill.getSkillType() == SkillType.BEAST_FEED) && !(skill.getSkillType() == SkillType.UNLOCK) && !(skill.getSkillType() == SkillType.DELUXE_KEY_UNLOCK))
 							{
 								activeChar.updatePvPStatus(this);
 							}

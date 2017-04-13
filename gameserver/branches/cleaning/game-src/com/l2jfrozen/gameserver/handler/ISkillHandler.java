@@ -25,7 +25,7 @@ import java.io.IOException;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2Skill;
-import com.l2jfrozen.gameserver.model.L2Skill.SkillType;
+import com.l2jfrozen.gameserver.model.SkillType;
 
 /**
  * an IItemHandler implementation has to be stateless

@@ -25,8 +25,8 @@ import java.sql.ResultSet;
 import java.util.List;
 
 import com.l2jfrozen.gameserver.model.TradeList.TradeItem;
+import com.l2jfrozen.gameserver.model.actor.instance.ItemLocation;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
-import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance.ItemLocation;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.templates.L2EtcItemType;
 import com.l2jfrozen.gameserver.templates.L2Item;

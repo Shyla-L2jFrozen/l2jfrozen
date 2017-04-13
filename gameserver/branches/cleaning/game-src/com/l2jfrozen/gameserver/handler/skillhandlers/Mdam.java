@@ -26,7 +26,8 @@ import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2Skill;
-import com.l2jfrozen.gameserver.model.L2Skill.SkillType;
+import com.l2jfrozen.gameserver.model.SkillTargetType;
+import com.l2jfrozen.gameserver.model.SkillType;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2RaidBossInstance;
@@ -80,7 +81,7 @@ public class Mdam implements ISkillHandler
 			}
 			else if (target.isAlikeDead())
 			{
-				if (skill.getTargetType() == L2Skill.SkillTargetType.TARGET_AREA_CORPSE_MOB && target instanceof L2NpcInstance)
+				if (skill.getTargetType() == SkillTargetType.TARGET_AREA_CORPSE_MOB && target instanceof L2NpcInstance)
 				{
 					((L2NpcInstance) target).endDecayTask();
 				}

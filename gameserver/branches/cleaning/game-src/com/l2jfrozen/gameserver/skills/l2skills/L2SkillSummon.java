@@ -24,6 +24,7 @@ import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.L2World;
+import com.l2jfrozen.gameserver.model.SkillTargetType;
 import com.l2jfrozen.gameserver.model.actor.instance.L2CubicInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
@@ -82,7 +83,7 @@ public class L2SkillSummon extends L2Skill
 			
 			if (isCubic())
 			{
-				if (getTargetType() != L2Skill.SkillTargetType.TARGET_SELF)
+				if (getTargetType() != SkillTargetType.TARGET_SELF)
 				{
 					return true; // Player is always able to cast mass cubic skill
 				}

@@ -44,6 +44,7 @@ import com.l2jfrozen.gameserver.managers.DimensionalRiftManager;
 import com.l2jfrozen.gameserver.managers.FortSiegeManager;
 import com.l2jfrozen.gameserver.managers.PetitionManager;
 import com.l2jfrozen.gameserver.managers.SiegeManager;
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.Inventory;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Clan;
@@ -188,14 +189,14 @@ public class EnterWorld extends L2GameClientPacket
 		{
 			for (final L2Effect e : effects)
 			{
-				if (e.getEffectType() == L2Effect.EffectType.HEAL_OVER_TIME)
+				if (e.getEffectType() == EffectType.HEAL_OVER_TIME)
 				{
-					activeChar.stopEffects(L2Effect.EffectType.HEAL_OVER_TIME);
+					activeChar.stopEffects(EffectType.HEAL_OVER_TIME);
 					activeChar.removeEffect(e);
 				}
-				if (e.getEffectType() == L2Effect.EffectType.COMBAT_POINT_HEAL_OVER_TIME)
+				if (e.getEffectType() == EffectType.COMBAT_POINT_HEAL_OVER_TIME)
 				{
-					activeChar.stopEffects(L2Effect.EffectType.COMBAT_POINT_HEAL_OVER_TIME);
+					activeChar.stopEffects(EffectType.COMBAT_POINT_HEAL_OVER_TIME);
 					activeChar.removeEffect(e);
 				}
 			}

@@ -38,6 +38,7 @@ import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.L2Summon;
+import com.l2jfrozen.gameserver.model.SkillType;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ChestInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2FestivalMonsterInstance;
@@ -863,20 +864,20 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 						_inRange = true;
 					}
 					
-					if ((sk.getSkillType() == L2Skill.SkillType.BUFF || sk.getSkillType() == L2Skill.SkillType.HEAL || _inRange) && !_actor.isSkillDisabled(sk) && _actor.getCurrentMp() >= _actor.getStat().getMpConsume(sk) && !sk.isPassive() && Rnd.nextInt(100) <= 5)
+					if ((sk.getSkillType() == SkillType.BUFF || sk.getSkillType() == SkillType.HEAL || _inRange) && !_actor.isSkillDisabled(sk) && _actor.getCurrentMp() >= _actor.getStat().getMpConsume(sk) && !sk.isPassive() && Rnd.nextInt(100) <= 5)
 					{
 						
-						if (sk.getSkillType() == L2Skill.SkillType.BUFF || sk.getSkillType() == L2Skill.SkillType.HEAL)
+						if (sk.getSkillType() == SkillType.BUFF || sk.getSkillType() == SkillType.HEAL)
 						{
 							boolean useSkillSelf = true;
 							
-							if (sk.getSkillType() == L2Skill.SkillType.HEAL && _actor.getCurrentHp() > (int) (_actor.getMaxHp() / 1.5))
+							if (sk.getSkillType() == SkillType.HEAL && _actor.getCurrentHp() > (int) (_actor.getMaxHp() / 1.5))
 							{
 								useSkillSelf = false;
 								break;
 							}
 							
-							if (sk.getSkillType() == L2Skill.SkillType.BUFF)
+							if (sk.getSkillType() == SkillType.BUFF)
 							{
 								L2Effect[] effects = _actor.getAllEffects();
 								
@@ -938,17 +939,17 @@ public class L2AttackableAI extends L2CharacterAI implements Runnable
 			{
 				if (/* sk.getCastRange() >= dist && sk.getCastRange() <= 70 && */!sk.isPassive() && _actor.getCurrentMp() >= _actor.getStat().getMpConsume(sk) && !_actor.isSkillDisabled(sk) && (Rnd.nextInt(100) <= 8 || _actor instanceof L2PenaltyMonsterInstance && Rnd.nextInt(100) <= 20))
 				{
-					if (sk.getSkillType() == L2Skill.SkillType.BUFF || sk.getSkillType() == L2Skill.SkillType.HEAL)
+					if (sk.getSkillType() == SkillType.BUFF || sk.getSkillType() == SkillType.HEAL)
 					{
 						useSkillSelf = true;
 						
-						if (sk.getSkillType() == L2Skill.SkillType.HEAL && _actor.getCurrentHp() > (int) (_actor.getMaxHp() / 1.5))
+						if (sk.getSkillType() == SkillType.HEAL && _actor.getCurrentHp() > (int) (_actor.getMaxHp() / 1.5))
 						{
 							useSkillSelf = false;
 							break;
 						}
 						
-						if (sk.getSkillType() == L2Skill.SkillType.BUFF)
+						if (sk.getSkillType() == SkillType.BUFF)
 						{
 							L2Effect[] effects = _actor.getAllEffects();
 							

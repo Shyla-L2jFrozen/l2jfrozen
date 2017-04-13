@@ -21,8 +21,9 @@
 package com.l2jfrozen.gameserver.handler.itemhandlers;
 
 import com.l2jfrozen.gameserver.handler.IItemHandler;
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Effect;
-import com.l2jfrozen.gameserver.model.L2Skill;
+import com.l2jfrozen.gameserver.model.SkillType;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PetInstance;
@@ -75,7 +76,7 @@ public class Remedy implements IItemHandler
 			L2Effect[] effects = activeChar.getAllEffects();
 			for (final L2Effect e : effects)
 			{
-				if (e.getSkill().getSkillType() == L2Skill.SkillType.POISON && e.getSkill().getLevel() <= 3)
+				if (e.getSkill().getSkillType() == SkillType.POISON && e.getSkill().getLevel() <= 3)
 				{
 					e.exit(true);
 					break;
@@ -93,7 +94,7 @@ public class Remedy implements IItemHandler
 			L2Effect[] effects = activeChar.getAllEffects();
 			for (final L2Effect e : effects)
 			{
-				if (e.getSkill().getSkillType() == L2Skill.SkillType.POISON && e.getSkill().getLevel() <= 7)
+				if (e.getSkill().getSkillType() == SkillType.POISON && e.getSkill().getLevel() <= 7)
 				{
 					e.exit(true);
 					break;
@@ -111,7 +112,7 @@ public class Remedy implements IItemHandler
 			L2Effect[] effects = activeChar.getAllEffects();
 			for (final L2Effect e : effects)
 			{
-				if (e.getSkill().getSkillType() == L2Skill.SkillType.BLEED && e.getSkill().getLevel() <= 3)
+				if (e.getSkill().getSkillType() == SkillType.BLEED && e.getSkill().getLevel() <= 3)
 				{
 					e.exit(true);
 					break;
@@ -129,7 +130,7 @@ public class Remedy implements IItemHandler
 			L2Effect[] effects = activeChar.getAllEffects();
 			for (final L2Effect e : effects)
 			{
-				if (e.getSkill().getSkillType() == L2Skill.SkillType.BLEED && e.getSkill().getLevel() <= 7)
+				if (e.getSkill().getSkillType() == SkillType.BLEED && e.getSkill().getLevel() <= 7)
 				{
 					e.exit(true);
 					break;
@@ -156,7 +157,7 @@ public class Remedy implements IItemHandler
 			effects = null;
 			activeChar.setIsImobilised(false);
 			
-			if (activeChar.getFirstEffect(L2Effect.EffectType.ROOT) == null)
+			if (activeChar.getFirstEffect(EffectType.ROOT) == null)
 			{
 				activeChar.stopRooting(null);
 			}

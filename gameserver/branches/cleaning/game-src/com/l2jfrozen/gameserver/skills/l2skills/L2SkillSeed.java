@@ -19,10 +19,12 @@
  */
 package com.l2jfrozen.gameserver.skills.l2skills;
 
+import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2Skill;
+import com.l2jfrozen.gameserver.model.SkillTargetType;
 import com.l2jfrozen.gameserver.skills.effects.EffectSeed;
 import com.l2jfrozen.gameserver.templates.StatsSet;
 
@@ -61,7 +63,7 @@ public class L2SkillSeed extends L2Skill
 			
 			final L2Effect[] effects = target.getAllEffects();
 			for (final L2Effect effect : effects)
-				if (effect.getEffectType() == L2Effect.EffectType.SEED)
+				if (effect.getEffectType() == EffectType.SEED)
 				{
 					effect.rescheduleEffect();
 					/*

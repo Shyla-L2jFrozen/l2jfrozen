@@ -28,6 +28,7 @@ import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.managers.ItemsOnGroundManager;
 import com.l2jfrozen.gameserver.model.L2World;
+import com.l2jfrozen.gameserver.model.actor.instance.ItemLocation;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.templates.L2EtcItemType;
 import com.l2jfrozen.thread.ThreadPoolManager;
@@ -82,7 +83,7 @@ public class ItemsAutoDestroy
 		
 		for (final L2ItemInstance item : _items)
 		{
-			if (item == null || item.getDropTime() == 0 || item.getLocation() != L2ItemInstance.ItemLocation.VOID)
+			if (item == null || item.getDropTime() == 0 || item.getLocation() != ItemLocation.VOID)
 			{
 				_items.remove(item);
 			}

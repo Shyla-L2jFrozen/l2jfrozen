@@ -77,40 +77,6 @@ public final class L2ItemInstance extends L2Object
 	/** The _drop protection. */
 	private final DropProtection _dropProtection = new DropProtection();
 	
-	/**
-	 * Enumeration of locations for item.
-	 */
-	public static enum ItemLocation
-	{
-		
-		/** The VOID. */
-		VOID,
-		
-		/** The INVENTORY. */
-		INVENTORY,
-		
-		/** The PAPERDOLL. */
-		PAPERDOLL,
-		
-		/** The WAREHOUSE. */
-		WAREHOUSE,
-		
-		/** The CLANWH. */
-		CLANWH,
-		
-		/** The PET. */
-		PET,
-		
-		/** The PE t_ equip. */
-		PET_EQUIP,
-		
-		/** The LEASE. */
-		LEASE,
-		
-		/** The FREIGHT. */
-		FREIGHT
-	}
-	
 	/** ID of the owner. */
 	private int _ownerId;
 	
