@@ -21,7 +21,6 @@ package com.l2jfrozen.loginserver.network;
 import java.nio.ByteBuffer;
 import java.util.logging.Logger;
 
-import com.l2jfrozen.loginserver.network.L2LoginClient.LoginClientState;
 import com.l2jfrozen.loginserver.network.clientpackets.AuthGameGuard;
 import com.l2jfrozen.loginserver.network.clientpackets.RequestAuthLogin;
 import com.l2jfrozen.loginserver.network.clientpackets.RequestServerList;

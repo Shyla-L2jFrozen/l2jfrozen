@@ -46,7 +46,7 @@ import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
 import com.l2jfrozen.loginserver.model.data.AccountInfo;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
-import com.l2jfrozen.loginserver.network.serverpackets.LoginFail.LoginFailReason;
+import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.netcore.SessionKey;
 import com.l2jfrozen.util.crypt.ScrambledKeyPair;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
@@ -682,14 +682,5 @@ public class LoginController
 				}
 			}
 		}
-	}
-	
-	public static enum AuthLoginResult
-	{
-		INVALID_PASSWORD,
-		ACCOUNT_BANNED,
-		ALREADY_ON_LS,
-		ALREADY_ON_GS,
-		AUTH_SUCCESS
 	}
 }

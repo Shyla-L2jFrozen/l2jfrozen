@@ -26,7 +26,7 @@ import javax.crypto.Cipher;
 
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.loginserver.GameServerThread;
-import com.l2jfrozen.loginserver.network.L2JGameServerPacketHandler.GameServerState;
+import com.l2jfrozen.loginserver.network.GameServerState;
 import com.l2jfrozen.util.crypt.NewCrypt;
 import com.l2jfrozen.util.network.BaseRecievePacket;
 
