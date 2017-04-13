@@ -53,15 +53,6 @@ public class AdminCreateItem implements IAdminCommandHandler
 		"admin_clear_inventory"
 	};
 	
-	private enum CommandEnum
-	{
-		admin_l2jfrozen,
-		admin_itemcreate,
-		admin_create_item,
-		admin_mass_create,
-		admin_clear_inventory
-	}
-	
 	@SuppressWarnings("null")
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)

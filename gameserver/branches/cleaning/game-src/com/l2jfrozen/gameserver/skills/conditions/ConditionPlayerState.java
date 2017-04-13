@@ -28,17 +28,6 @@ import com.l2jfrozen.gameserver.skills.Env;
  */
 public class ConditionPlayerState extends Condition
 {
-	public enum CheckPlayerState
-	{
-		RESTING,
-		MOVING,
-		RUNNING,
-		FLYING,
-		BEHIND,
-		FRONT,
-		SIDE
-	}
-	
 	private final CheckPlayerState _check;
 	private final boolean _required;
 	

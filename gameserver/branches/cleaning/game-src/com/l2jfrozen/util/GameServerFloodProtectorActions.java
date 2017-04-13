@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
-import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jfrozen.gameserver.model.actor.instance.PunishLevel;
 import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.netcore.MMOClient;
 import com.l2jfrozen.netcore.NetcoreConfig;
@@ -228,7 +228,7 @@ public class GameServerFloodProtectorActions implements PacketsFloodServer
 		
 		if (game_cl.getActiveChar() != null)
 		{
-			game_cl.getActiveChar().setPunishLevel(L2PcInstance.PunishLevel.ACC, 0);
+			game_cl.getActiveChar().setPunishLevel(PunishLevel.ACC, 0);
 			LOGGER.warn("Player " + game_cl.getActiveChar() + " of account " + game_cl.accountName + " banned forever for flooding with packet " + Integer.toHexString(opcode));
 			game_cl.getActiveChar().logout();
 		}

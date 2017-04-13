@@ -78,31 +78,6 @@ public class AdminTeleport implements IAdminCommandHandler
 		"admin_recall_party",
 	};
 	
-	private enum CommandEnum
-	{
-		admin_show_moves,
-		admin_show_moves_other,
-		admin_show_teleport,
-		admin_teleport_to_character,
-		admin_teleportto,
-		admin_move_to,
-		admin_teleport_character,
-		admin_recall,
-		admin_walk,
-		admin_recall_npc,
-		admin_gonorth,
-		admin_gosouth,
-		admin_goeast,
-		admin_gowest,
-		admin_goup,
-		admin_godown,
-		admin_instant_move,
-		admin_sendhome,
-		admin_tele,
-		admin_teleto,
-		admin_recall_party
-	}
-	
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{

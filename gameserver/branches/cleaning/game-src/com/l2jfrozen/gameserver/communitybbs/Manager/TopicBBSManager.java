@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import com.l2jfrozen.gameserver.communitybbs.BB.ConstructorType;
 import com.l2jfrozen.gameserver.communitybbs.BB.Forum;
 import com.l2jfrozen.gameserver.communitybbs.BB.Post;
 import com.l2jfrozen.gameserver.communitybbs.BB.Topic;
@@ -117,7 +118,7 @@ public class TopicBBSManager extends BaseBBSManager
 				else
 				{
 					f.vload();
-					Topic t = new Topic(Topic.ConstructorType.CREATE, TopicBBSManager.getInstance().getMaxID(f) + 1, Integer.parseInt(ar2), ar5, Calendar.getInstance().getTimeInMillis(), activeChar.getName(), activeChar.getObjectId(), Topic.MEMO, 0);
+					Topic t = new Topic(ConstructorType.CREATE, TopicBBSManager.getInstance().getMaxID(f) + 1, Integer.parseInt(ar2), ar5, Calendar.getInstance().getTimeInMillis(), activeChar.getName(), activeChar.getObjectId(), Topic.MEMO, 0);
 					f.addtopic(t);
 					TopicBBSManager.getInstance().setMaxID(t.getID(), f);
 					Post p = new Post(activeChar.getName(), activeChar.getObjectId(), Calendar.getInstance().getTimeInMillis(), t.getID(), f.getID(), ar4);

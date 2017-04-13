@@ -46,13 +46,6 @@ public class AdminShutdown implements IAdminCommandHandler
 		"admin_server_abort"
 	};
 	
-	private enum CommandEnum
-	{
-		admin_server_shutdown,
-		admin_server_restart,
-		admin_server_abort
-	}
-	
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{

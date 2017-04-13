@@ -39,15 +39,6 @@ public class AdminCharSupervision implements IAdminCommandHandler
 		"admin_restore_char_packet"
 	};
 	
-	private enum CommandEnum
-	{
-		admin_start_monitor_char,
-		admin_stop_monitor_char,
-		admin_block_char_packet,
-		admin_restore_char_packet
-	
-	}
-	
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{

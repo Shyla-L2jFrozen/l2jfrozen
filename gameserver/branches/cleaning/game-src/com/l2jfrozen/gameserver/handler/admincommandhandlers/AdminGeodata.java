@@ -43,18 +43,6 @@ public class AdminGeodata implements IAdminCommandHandler
 		"admin_geo_unload"
 	};
 	
-	private enum CommandEnum
-	{
-		admin_geo_z,
-		admin_geo_type,
-		admin_geo_nswe,
-		admin_geo_los,
-		admin_geo_position,
-		admin_geo_bug,
-		admin_geo_load,
-		admin_geo_unload
-	}
-	
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{

@@ -33,6 +33,7 @@ import com.l2jfrozen.gameserver.network.serverpackets.AquireSkillList;
 import com.l2jfrozen.gameserver.network.serverpackets.ExEnchantSkillList;
 import com.l2jfrozen.gameserver.network.serverpackets.NpcHtmlMessage;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
+import com.l2jfrozen.gameserver.network.serverpackets.skillType;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
 
 import javolution.text.TextBuilder;
@@ -116,7 +117,7 @@ public class L2FolkInstance extends L2NpcInstance
 		}
 		
 		L2SkillLearn[] skills = SkillTreeTable.getInstance().getAvailableSkills(player, classId);
-		AquireSkillList asl = new AquireSkillList(AquireSkillList.skillType.Usual);
+		AquireSkillList asl = new AquireSkillList(skillType.Usual);
 		int counts = 0;
 		
 		for (final L2SkillLearn s : skills)

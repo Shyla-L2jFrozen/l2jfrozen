@@ -55,8 +55,6 @@ public class Post
 	
 	private final List<CPost> _post;
 	
-	// public enum ConstructorType {REPLY, CREATE };
-	
 	/**
 	 * @param _PostOwner
 	 * @param _PostOwnerID

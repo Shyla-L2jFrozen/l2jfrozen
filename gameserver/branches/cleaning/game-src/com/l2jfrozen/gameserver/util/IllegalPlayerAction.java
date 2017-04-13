@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.datatables.GmListTable;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jfrozen.gameserver.model.actor.instance.PunishLevel;
 
 /**
  * This class ...
@@ -96,7 +97,7 @@ public final class IllegalPlayerAction implements Runnable
 				_actor.logout(true);
 				break;
 			case PUNISH_JAIL:
-				_actor.setPunishLevel(L2PcInstance.PunishLevel.JAIL, Config.DEFAULT_PUNISH_PARAM);
+				_actor.setPunishLevel(PunishLevel.JAIL, Config.DEFAULT_PUNISH_PARAM);
 				break;
 		}
 	}
