@@ -492,7 +492,7 @@ public class BuffHandler implements IVoicedCommandHandler, ICustomByPassHandler,
 			final String targettype = st.nextToken();
 			final String scheme_key = st.nextToken();
 			final int cost = Integer.parseInt(st.nextToken());
-			if (cost == 0 || cost <= player.getInventory().getAdena())
+			if (player.isGM() || cost == 0 || cost <= player.getInventory().getAdena())
 			{
 				L2Character target = player;
 				if (targettype.equalsIgnoreCase("pet"))
@@ -685,7 +685,7 @@ public class BuffHandler implements IVoicedCommandHandler, ICustomByPassHandler,
 			if (PowerPakConfig.BUFFER_PRICE > 0)
 				cost = PowerPakConfig.BUFFER_PRICE * skills_to_buff.size();
 			
-			if (cost == 0 || cost <= player.getInventory().getAdena())
+			if (player.isGM() || cost == 0 || cost <= player.getInventory().getAdena())
 			{
 				L2Character target = player;
 				if (targettype.equalsIgnoreCase("pet"))

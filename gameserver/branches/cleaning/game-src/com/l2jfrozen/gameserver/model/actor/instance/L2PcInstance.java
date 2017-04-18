@@ -2069,17 +2069,7 @@ public final class L2PcInstance extends L2PlayableInstance
 	 */
 	public void logout()
 	{
-		
 		logout(false);
-		/*
-		 * if(_active_boxes!=-1){ //normal logout this.decreaseBoxes(); }
-		 */
-		/*
-		 * _active_boxes = _active_boxes-1; if(getClient()!=null && !getClient().getConnection().isClosed()){ String thisip = getClient().getConnection().getSocketChannel().socket().getInetAddress().getHostAddress(); Collection<L2PcInstance> allPlayers = L2World.getInstance().getAllPlayers();
-		 * L2PcInstance[] players = allPlayers.toArray(new L2PcInstance[allPlayers.size()]); for(L2PcInstance player : players) { if(player != null) { if(player.getClient()!=null && !player.getClient().getConnection().isClosed()){ String ip =
-		 * player.getClient().getConnection().getSocketChannel().socket().getInetAddress().getHostAddress(); if(thisip.equals(ip) && this != player && player != null) { player._active_boxes = _active_boxes; } } } } }
-		 */
-		
 	}
 	
 	/**
@@ -13204,6 +13194,13 @@ public final class L2PcInstance extends L2PlayableInstance
 			/* Start bot checker if player is in combat online without shop and in a zone not peacefull */
 			if (!isGM() && isOnline() == 1 && isInCombat() && getPrivateStoreType() == 0 && !isInsideZone(L2Character.ZONE_PEACE) && !isInsideZone(L2Character.ZONE_PVP) && !isInsideZone(L2Character.ZONE_SIEGE) && getKarma() == 0 && getPvpFlag() == 0)
 			{
+				// ignore anti bot during the events
+				if ((_inEventCTF && CTF.is_started()) || (_inEventDM && DM.is_started()) || (_inEventTvT && TvT.is_started()))
+				{
+					stopBotChecker();
+					return;
+				}
+				
 				try
 				{
 					String text = HtmCache.getInstance().getHtm("data/html/custom/bot.htm");
@@ -18582,20 +18579,10 @@ public final class L2PcInstance extends L2PlayableInstance
 	 */
 	public void decreaseBoxes()
 	{
-		
 		_active_boxes = _active_boxes - 1;
 		active_boxes_characters.remove(this.getName());
 		
 		refreshOtherBoxes();
-		/*
-		 * if(getClient()!=null && !getClient().getConnection().isClosed()){ String thisip = getClient().getConnection().getSocketChannel().socket().getInetAddress().getHostAddress(); Collection<L2PcInstance> allPlayers = L2World.getInstance().getAllPlayers(); L2PcInstance[] players =
-		 * allPlayers.toArray(new L2PcInstance[allPlayers.size()]); for(L2PcInstance player : players) { if(player != null) { if(player.getClient()!=null && !player.getClient().getConnection().isClosed()){ String ip =
-		 * player.getClient().getConnection().getSocketChannel().socket().getInetAddress().getHostAddress(); if(thisip.equals(ip) && this != player && player != null) { player._active_boxes = _active_boxes; player.active_boxes_characters = active_boxes_characters;
-		 * LOGGER.info("Player "+player.getName()+" has this boxes"); for(String name:player.active_boxes_characters){ LOGGER.info("*** "+name+" ***"); } } } } } }
-		 */
-		/*
-		 * LOGGER.info("Player "+getName()+" has this boxes"); for(String name:active_boxes_characters){ LOGGER.info("*** "+name+" ***"); }
-		 */
 	}
 	
 	/**

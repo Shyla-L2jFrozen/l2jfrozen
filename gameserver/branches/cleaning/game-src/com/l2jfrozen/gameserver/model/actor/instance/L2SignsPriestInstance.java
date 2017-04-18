@@ -43,8 +43,6 @@ import javolution.text.TextBuilder;
  */
 public class L2SignsPriestInstance extends L2FolkInstance
 {
-	// private static Logger LOGGER = Logger.getLogger(L2SignsPriestInstance.class);
-	
 	public L2SignsPriestInstance(final int objectId, final L2NpcTemplate template)
 	{
 		super(objectId, template);
@@ -83,18 +81,12 @@ public class L2SignsPriestInstance extends L2FolkInstance
 				}
 				catch (final Exception e)
 				{
-					if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
-						e.printStackTrace();
-					
 					try
 					{
 						cabal = Integer.parseInt(command.substring(13, 14).trim());
 					}
 					catch (final Exception e2)
 					{
-						// if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
-						// e2.printStackTrace();
-						
 						try
 						{
 							StringTokenizer st = new StringTokenizer(command.trim());
