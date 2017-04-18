@@ -525,8 +525,6 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	
 	public L2PcInstance loadCharFromDisk(final int charslot)
 	{
-		// L2PcInstance character = L2PcInstance.load(getObjectIdForSlot(charslot));
-		
 		final int objId = getObjectIdForSlot(charslot);
 		if (objId < 0)
 			return null;
@@ -535,8 +533,9 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 		if (character != null)
 		{
 			// exploit prevention, should not happens in normal way
-			
-			LOGGER.warn("Attempt of double login: " + character.getName() + "(" + objId + ") " + getAccountName());
+			// can happend with fakeplayer or offline player
+			if (character.isInOfflineMode() || character.isFakeOfflinePlayer())
+				LOGGER.warn("Attempt of double login: " + character.getName() + "(" + objId + ") " + getAccountName());
 			
 			if (character.getClient() != null)
 				character.getClient().closeNow();
@@ -554,38 +553,9 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 				}
 				
 			}
-			
-			// return null;
 		}
 		
 		character = L2PcInstance.load(objId);
-		// if(character != null)
-		// {
-		// //restoreInventory(character);
-		// //restoreSkills(character);
-		// //character.restoreSkills();
-		// //restoreShortCuts(character);
-		// //restoreWarehouse(character);
-		//
-		// // preinit some values for each login
-		// character.setRunning(); // running is default
-		// character.standUp(); // standing is default
-		//
-		// character.refreshOverloaded();
-		// character.refreshExpertisePenalty();
-		// character.refreshMasteryPenality();
-		// character.refreshMasteryWeapPenality();
-		//
-		// character.sendPacket(new UserInfo(character));
-		// character.broadcastKarma();
-		// character.setOnlineStatus(true);
-		// }
-		// if(character == null)
-		// {
-		// LOGGER.severe("could not restore in slot: " + charslot);
-		// }
-		
-		// setCharacter(character);
 		return character;
 	}
 	
