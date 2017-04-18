@@ -128,7 +128,7 @@ public class AutoSaveManager
 			final Collection<L2PcInstance> players = L2World.getInstance().getAllPlayers();
 			
 			final long LoadStart = System.currentTimeMillis();
-			
+			int connections = 0;
 			for (final L2PcInstance player : players)
 			{
 				if (player != null && !player.isInOfflineMode() && !player.isFakeOfflinePlayer())
@@ -163,9 +163,10 @@ public class AutoSaveManager
 							LOGGER.error("[AutoSaveManager] Error saving player character: " + player.getName(), e);
 						}
 					}
+					connections++;
 				}
 			}
-			LOGGER.info("[AutoSaveManager] ConnectionCheckTask, players connections checked. (" + (System.currentTimeMillis() - LoadStart) / 1000 + " seconds)");
+			LOGGER.info("[AutoSaveManager] ConnectionCheckTask, " + connections + " connections checked. (" + (System.currentTimeMillis() - LoadStart) / 1000 + " seconds)");
 		}
 	}
 	

@@ -73,9 +73,9 @@ public class L2BufferInstance
 		{
 			if (paymentRequired)
 			{
-				if (!_buff.checkPrice(player))
+				if (!player.isGM() && !_buff.checkPrice(player))
 				{
-					player.sendMessage("Not enough Adena");
+					player.sendMessage("Not enough Adena for buffs!");
 					return;
 				}
 				_priceTotal += _buff._price;

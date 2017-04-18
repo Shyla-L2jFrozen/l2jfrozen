@@ -530,84 +530,9 @@ public class LoginServerThread extends Thread
 			if (Config.DEVELOPER)
 				LOGGER_ACCOUNTING.info("Kicked by login: {" + client + "}");
 			
-			// client.setAditionalClosePacket(SystemMessage.getSystemMessage(SystemMessageId.ANOTHER_LOGIN_WITH_ACCOUNT));
 			client.closeNow();
 		}
 	}
-	
-	// /**
-	// * Gets the chars on server.
-	// * @param account the account
-	// */
-	// private void getCharsOnServer(String account)
-	// {
-	//
-	// int chars = 0;
-	// List<Long> charToDel = new ArrayList<>();
-	// try (Connection con = ConnectionFactory.getInstance().getConnection();
-	// PreparedStatement ps = con.prepareStatement("SELECT deletetime FROM characters WHERE account_name=?"))
-	// {
-	// ps.setString(1, account);
-	// try (ResultSet rs = ps.executeQuery())
-	// {
-	// while (rs.next())
-	// {
-	// chars++;
-	// long delTime = rs.getLong("deletetime");
-	// if (delTime != 0)
-	// {
-	// charToDel.add(delTime);
-	// }
-	// }
-	// }
-	// }
-	// catch (SQLException e)
-	// {
-	// LOGGER.warn("Exception: getCharsOnServer!", e);
-	// }
-	//
-	// }
-	//
-	// /**
-	// * Gets the chars on server.
-	// * @param account the account
-	// */
-	// private void getCharsOnServer(String account)
-	// {
-	//
-	// int chars = 0;
-	// List<Long> charToDel = new ArrayList<>();
-	// try (Connection con = ConnectionFactory.getInstance().getConnection();
-	// PreparedStatement ps = con.prepareStatement("SELECT deletetime FROM characters WHERE account_name=?"))
-	// {
-	// ps.setString(1, account);
-	// try (ResultSet rs = ps.executeQuery())
-	// {
-	// while (rs.next())
-	// {
-	// chars++;
-	// long delTime = rs.getLong("deletetime");
-	// if (delTime != 0)
-	// {
-	// charToDel.add(delTime);
-	// }
-	// }
-	// }
-	// }
-	// catch (SQLException e)
-	// {
-	// LOG.warn("Exception: getCharsOnServer!", e);
-	// }
-	//
-	// ReplyCharacters rec = new ReplyCharacters(account, chars, charToDel);
-	// try
-	// {
-	// sendPacket(rec);
-	// }
-	// catch (IOException e)
-	// {
-	// }
-	// }
 	
 	/**
 	 * Send packet.
