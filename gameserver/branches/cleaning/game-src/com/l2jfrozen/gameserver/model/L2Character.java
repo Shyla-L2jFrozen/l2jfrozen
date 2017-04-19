@@ -6468,6 +6468,9 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 						if (Config.ALLOW_PLAYERS_PATHNODE && (this instanceof L2PcInstance)/* this instanceof L2PcInstance || */
 							|| (!(this instanceof L2PlayableInstance) && Math.abs(z - curZ) > 140) || (this instanceof L2Summon && !((L2Summon) this).getFollowStatus()))
 						{
+							if (getAI() == null)
+								return;
+							
 							getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
 							return;
 						}
