@@ -13633,30 +13633,6 @@ public final class L2PcInstance extends L2PlayableInstance
 	}
 	
 	/**
-	 * Leave olympiad observer mode.
-	 */
-	public void leaveOlympiadObserverMode()
-	{
-		setTarget(null);
-		sendPacket(new ExOlympiadMode(0, this));
-		teleToLocation(_obsX, _obsY, _obsZ, true);
-		getAppearance().setVisible();
-		setIsInvul(false);
-		if (getAI() != null)
-		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
-		}
-		Olympiad.getInstance();
-		Olympiad.removeSpectator(_olympiadGameId, this);
-		_olympiadGameId = -1;
-		_observerMode = false;
-		
-		if (!_wasInvisible)
-			broadcastUserInfo();
-		
-	}
-	
-	/**
 	 * Update name title color.
 	 */
 	public void updateNameTitleColor()
@@ -19495,6 +19471,9 @@ public final class L2PcInstance extends L2PlayableInstance
 	
 	public void leaveOlympiadObserverMode(final boolean olymp)
 	{
+		if (_olympiadGameId == -1)
+			return;
+		
 		setTarget(null);
 		sendPacket(new ExOlympiadMode(0, this));
 		teleToLocation(_obsX, _obsY, _obsZ, true);
@@ -19503,14 +19482,17 @@ public final class L2PcInstance extends L2PlayableInstance
 		if (!AdminCommandAccessRights.getInstance().hasAccess("admin_invul", getAccessLevel()))
 			setIsInvul(false);
 		if (getAI() != null)
-		{
 			getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
-		}
+		
 		if (!olymp)
 			Olympiad.removeSpectator(_olympiadGameId, this);
+		
 		_olympiadGameId = -1;
 		_observerMode = false;
-		broadcastUserInfo();
+		setLastCords(0, 0, 0);
+		
+		if (!_wasInvisible)
+			broadcastUserInfo();
 	}
 	
 	public void setHero(final boolean hero)
@@ -19593,5 +19575,12 @@ public final class L2PcInstance extends L2PlayableInstance
 	public void setfakeplayer(final boolean fake)
 	{
 		fakeplayer = fake;
+	}
+	
+	public void setLastCords(int x, int y, int z)
+	{
+		_obsX = getX();
+		_obsY = getY();
+		_obsZ = getZ();
 	}
 }
