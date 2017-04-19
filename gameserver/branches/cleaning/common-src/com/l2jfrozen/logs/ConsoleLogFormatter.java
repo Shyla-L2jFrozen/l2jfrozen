@@ -34,10 +34,8 @@ import javolution.text.TextBuilder;
  * @version $Revision: 1.1.4.2 $ $Date: 2005/03/27 15:30:08 $
  * @author ProGramMoS
  */
-
 public class ConsoleLogFormatter extends Formatter
 {
-	
 	/*
 	 * (non-Javadoc)
 	 * @see java.util.logging.Formatter#format(java.util.logging.LogRecord)
@@ -50,7 +48,13 @@ public class ConsoleLogFormatter extends Formatter
 		final TextBuilder output = new TextBuilder();
 		output.append(record.getMessage());
 		output.append(CRLF);
-		if (record.getThrown() != null)
+		
+		Throwable throwable = record.getThrown();
+		
+		if (record.getMessage() != null && record.getMessage() == "Unevenly distributed hash code - Degraded Performance")
+			throwable = new ExtendedLog();
+		
+		if (throwable != null)
 		{
 			try
 			{
@@ -65,10 +69,19 @@ public class ConsoleLogFormatter extends Formatter
 			{
 				if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 					ex.printStackTrace();
-				
 			}
 		}
 		
 		return output.toString();
+	}
+	
+	private static final class ExtendedLog extends Exception
+	{
+		private static final long serialVersionUID = -8959693629510963880L;
+		
+		ExtendedLog()
+		{
+			super("This is just an extended feature of logging to show the stacktrace! It's not a real exception to report!");
+		}
 	}
 }

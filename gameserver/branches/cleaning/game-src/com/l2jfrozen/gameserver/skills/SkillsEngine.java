@@ -21,6 +21,7 @@
 package com.l2jfrozen.gameserver.skills;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -102,7 +103,7 @@ public class SkillsEngine
 		return doc.getSkills();
 	}
 	
-	public void loadAllSkills(final Map<Integer, L2Skill> allSkills)
+	public void loadAllSkills(final HashMap<Integer, L2Skill> allSkills)
 	{
 		int count = 0;
 		for (final File file : _skillFiles)
