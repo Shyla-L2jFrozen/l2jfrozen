@@ -190,7 +190,7 @@ public class AdminTest implements IAdminCommandHandler
 			}
 			else
 			{
-				activeChar.leaveOlympiadObserverMode();
+				activeChar.leaveOlympiadObserverMode(true);
 			}
 		}
 		else if (command.startsWith("admin_obs_mode"))
