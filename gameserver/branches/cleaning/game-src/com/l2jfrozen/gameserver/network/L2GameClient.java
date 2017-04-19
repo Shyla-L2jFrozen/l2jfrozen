@@ -793,7 +793,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 					}
 					
 					// Decrease boxes number
-					if (player._active_boxes != -1)
+					if (player._active_boxes >= 1)
 						player.decreaseBoxes();
 					
 					// prevent closing again
@@ -920,7 +920,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 					}
 					
 					// Decrease boxes number
-					if (player._active_boxes != -1)
+					if (player._active_boxes >= 1)
 						player.decreaseBoxes();
 					
 					if (!player.isKicked() && !Olympiad.getInstance().isRegistered(player) && !player.isInOlympiadMode() && !player.isInFunEvent() && ((player.isInStoreMode() && Config.OFFLINE_TRADE_ENABLE) || (player.isInCraftMode() && Config.OFFLINE_CRAFT_ENABLE)))
