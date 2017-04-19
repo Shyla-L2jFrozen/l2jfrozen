@@ -92,9 +92,18 @@ public final class RequestSellItem extends L2GameClientPacket
 			return;
 		}
 		
+		if (_items == null)
+		{
+			sendPacket(ActionFailed.STATIC_PACKET);
+			return;
+		}
+		
 		// Alt game - Karma punishment
 		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_SHOP && player.getKarma() > 0)
+		{
+			sendPacket(ActionFailed.STATIC_PACKET);
 			return;
+		}
 		
 		final L2Object target = player.getTarget();
 		if (!player.isGM() && (target == null // No target (ie GM Shop)
