@@ -140,6 +140,7 @@ public class PacketsLoggerManager<T extends MMOClient<?>>
 	
 	public void logReceivedPacket(final ReceivablePacket<?> cp)
 	{
+		LOGGER.info("Converting Class " + cp.getClass().getName() + " in XML");
 		
 		final String packet_content = xstream.toXML(cp);
 		
