@@ -106,17 +106,17 @@ public class AccessLevels
 				
 				if (accessLevel == Config.USERACCESS_LEVEL)
 				{
-					LOGGER.info("AccessLevels: Access level with name {} is using reserved user access level {}. Ignoring it.. " + name + " " + Config.USERACCESS_LEVEL);
+					LOGGER.info("AccessLevels: Access level with name {" + name + "} is using reserved user access level {" + Config.USERACCESS_LEVEL + "}.");
 					continue;
 				}
 				else if (accessLevel == Config.MASTERACCESS_LEVEL)
 				{
-					LOGGER.info("AccessLevels: Access level with name {} is using reserved master access level {}. Ignoring it.. " + name + " " + Config.MASTERACCESS_LEVEL);
+					LOGGER.info("AccessLevels: Access level with name {" + name + "} is using reserved master access level {" + Config.MASTERACCESS_LEVEL + "}.");
 					continue;
 				}
 				else if (accessLevel < 0)
 				{
-					LOGGER.info("AccessLevels: Access level with name {} is using banned access level state(below 0). Ignoring it.. " + name);
+					LOGGER.info("AccessLevels: Access level with name {" + name + "} is using banned access level state(below 0).");
 					continue;
 				}
 				

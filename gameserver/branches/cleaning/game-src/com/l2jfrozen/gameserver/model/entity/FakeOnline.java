@@ -32,6 +32,7 @@ import com.l2jfrozen.gameserver.model.ItemContainer;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.GameClientState;
 import com.l2jfrozen.gameserver.network.L2GameClient;
+import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 
 /**
@@ -53,9 +54,11 @@ public class FakeOnline
 		final long LoadStart = System.currentTimeMillis();
 		
 		int nfakeplayer = 0;
-		try (
-			Connection con = L2DatabaseFactory.getInstance().getConnection())
+		Connection con = null;
+		
+		try
 		{
+			con = L2DatabaseFactory.getInstance().getConnection(false);
 			final PreparedStatement stm = con.prepareStatement(LOAD_OFFLINE_STATUS);
 			final ResultSet rs = stm.executeQuery();
 			
@@ -111,6 +114,10 @@ public class FakeOnline
 		catch (final Exception e)
 		{
 			LOGGER.warn("FakePlayer: Error while loading FakePlayer: ", e);
+		}
+		finally
+		{
+			CloseUtil.close(con);
 		}
 	}
 	

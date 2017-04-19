@@ -20,13 +20,11 @@
  */
 package com.l2jfrozen.gameserver.datatables;
 
-import java.util.Map;
+import java.util.HashMap;
 
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.skills.SkillsEngine;
 import com.l2jfrozen.gameserver.templates.L2WeaponType;
-
-import javolution.util.FastMap;
 
 /**
  * This class ...
@@ -38,7 +36,7 @@ public class SkillTable
 	// private static Logger LOGGER = Logger.getLogger(SkillTable.class);
 	private static SkillTable _instance;
 	
-	private final Map<Integer, L2Skill> _skills;
+	private final HashMap<Integer, L2Skill> _skills;
 	private final boolean _initialized = true;
 	
 	public static SkillTable getInstance()
@@ -53,7 +51,7 @@ public class SkillTable
 	
 	private SkillTable()
 	{
-		_skills = new FastMap<>();
+		_skills = new HashMap<>();
 		SkillsEngine.getInstance().loadAllSkills(_skills);
 	}
 	

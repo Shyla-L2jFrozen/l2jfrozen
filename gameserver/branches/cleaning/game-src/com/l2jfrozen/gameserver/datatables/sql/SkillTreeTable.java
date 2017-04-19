@@ -25,6 +25,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -80,7 +81,7 @@ public class SkillTreeTable
 			
 			while (classlist.next())
 			{
-				map = new FastMap<>();
+				map = new HashMap<>();
 				parentClassId = classlist.getInt("parent_id");
 				classId = classlist.getInt("id");
 				final PreparedStatement statement2 = con.prepareStatement("SELECT class_id, skill_id, level, name, sp, min_level FROM skill_trees where class_id=? ORDER BY skill_id, level");
@@ -104,12 +105,11 @@ public class SkillTreeTable
 					final int cost = skilltree.getInt("sp");
 					
 					if (prevSkillId != id)
-					{
 						prevSkillId = id;
-					}
 					
 					skillLearn = new L2SkillLearn(id, lvl, minLvl, name, cost, 0, 0);
-					map.put(SkillTable.getSkillHashCode(id, lvl), skillLearn);
+					int hash = SkillTable.getSkillHashCode(id, lvl);
+					map.put(hash, skillLearn);
 				}
 				
 				getSkillTrees().put(ClassId.values()[classId], map);
