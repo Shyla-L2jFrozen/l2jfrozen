@@ -37,6 +37,7 @@ import com.l2jfrozen.gameserver.network.serverpackets.InventoryUpdate;
 import com.l2jfrozen.gameserver.network.serverpackets.ItemList;
 import com.l2jfrozen.gameserver.network.serverpackets.StatusUpdate;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
+import com.l2jfrozen.gameserver.util.Util;
 
 public final class SendWareHouseWithDrawList extends L2GameClientPacket
 {
@@ -141,10 +142,12 @@ public final class SendWareHouseWithDrawList extends L2GameClientPacket
 			
 			// Calculate needed slots
 			final L2ItemInstance item = warehouse.getItemByObjectId(objectId);
-			if (item == null)
+			if ((item == null) || (item.getCount() < count))
 			{
-				continue;
+				Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried to withdraw non-existent item from warehouse.", Config.DEFAULT_PUNISH);
+				return;
 			}
+			
 			weight += count * item.getItem().getWeight();
 			if (!item.isStackable())
 			{
