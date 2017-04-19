@@ -337,11 +337,17 @@ public class TradeList
 		}
 		
 		L2Object o = L2World.getInstance().findObject(objectId);
-		
-		if (o == null || !(o instanceof L2ItemInstance))
+		if (o == null)
 		{
 			Util.handleIllegalPlayerAction(_owner, "Player " + _owner.getName() + " Attempt to add invalid item to TradeList! ", Config.DEFAULT_PUNISH);
-			LOGGER.warn(_owner.getName() + ": Attempt to add invalid item to TradeList!");
+			LOGGER.warn(_owner.getName() + ": Attempt to add invalid item to TradeList! [1]");
+			return null;
+		}
+		
+		if (!(o instanceof L2ItemInstance))
+		{
+			Util.handleIllegalPlayerAction(_owner, "Player " + _owner.getName() + " Trying to add something other than an item! ", Config.DEFAULT_PUNISH);
+			LOGGER.warn(_owner.getName() + ": Trying to add something other than an item!");
 			return null;
 		}
 		
@@ -361,8 +367,11 @@ public class TradeList
 		if ((getOwner().isGM() && Config.GM_TRADE_RESTRICTED_ITEMS))
 			return null;
 		
-		if (count > item.getCount())
+		if ((count <= 0) || (count > item.getCount()))
+		{
+			LOGGER.warn(_owner.getName() + ": Attempt to add an item with invalid item count!");
 			return null;
+		}
 		
 		if (!item.isStackable() && count > 1)
 		{
@@ -373,7 +382,10 @@ public class TradeList
 		for (final TradeItem checkitem : _items)
 		{
 			if (checkitem.getObjectId() == objectId)
+			{
+				LOGGER.warn(_owner.getName() + ": Attempt to add an item that is already present!");
 				return null;
+			}
 		}
 		
 		final TradeItem titem = new TradeItem(item, count, price);
@@ -416,7 +428,7 @@ public class TradeList
 		if (item == null)
 		{
 			Util.handleIllegalPlayerAction(_owner, "Player " + _owner.getName() + " Attempt to add invalid item to TradeList! Banned ", Config.DEFAULT_PUNISH);
-			LOGGER.warn(_owner.getName() + ": Attempt to add invalid item to TradeList!");
+			LOGGER.warn(_owner.getName() + ": Attempt to add invalid item to TradeList! [2]");
 			return null;
 		}
 		
@@ -458,6 +470,7 @@ public class TradeList
 		}
 		
 		for (final TradeItem titem : _items)
+		{
 			if (titem.getObjectId() == objectId || titem.getItem().getItemId() == itemId)
 			{
 				// If Partner has already confirmed this trade, invalidate the confirmation
@@ -485,7 +498,7 @@ public class TradeList
 				
 				return titem;
 			}
-		
+		}
 		return null;
 	}
 	
