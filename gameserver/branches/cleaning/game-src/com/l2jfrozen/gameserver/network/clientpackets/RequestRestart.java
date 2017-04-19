@@ -175,7 +175,7 @@ public final class RequestRestart extends L2GameClientPacket
 		}
 		
 		// delete box from the world
-		if (player._active_boxes != -1)
+		if (player._active_boxes >= 1)
 			player.decreaseBoxes();
 		
 		final L2GameClient client = getClient();
