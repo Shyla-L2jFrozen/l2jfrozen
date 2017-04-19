@@ -26,6 +26,7 @@ import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.managers.CursedWeaponsManager;
 import com.l2jfrozen.gameserver.model.ClanWarehouse;
 import com.l2jfrozen.gameserver.model.ItemContainer;
+import com.l2jfrozen.gameserver.model.PcWarehouse;
 import com.l2jfrozen.gameserver.model.actor.instance.L2FolkInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
@@ -90,7 +91,7 @@ public final class SendWareHouseDepositList extends L2GameClientPacket
 			return;
 		
 		final L2FolkInstance manager = player.getLastFolkNPC();
-		
+		final boolean isPrivate = warehouse instanceof PcWarehouse;
 		if (manager == null || !player.isInsideRadius(manager, L2NpcInstance.INTERACTION_DISTANCE, false, false))
 			return;
 		
@@ -216,6 +217,12 @@ public final class SendWareHouseDepositList extends L2GameClientPacket
 			if (oldItem == null)
 			{
 				LOGGER.warn("Error depositing a warehouse object for char " + player.getName() + " (olditem == null)");
+				continue;
+			}
+			
+			// new check
+			if (!oldItem.isAvailable(player, true, isPrivate))
+			{
 				continue;
 			}
 			
