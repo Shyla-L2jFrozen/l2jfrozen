@@ -5628,7 +5628,7 @@ public final class L2PcInstance extends L2PlayableInstance
 	{
 		if (L2World.getInstance().findObject(objectId) == null)
 		{
-			LOGGER.warn(getObjectId() + ": player tried to " + action + " item not available in L2World");
+			LOGGER.warn(getObjectId() + ": player " + this + " tried to " + action + " item not available in L2World");
 			return null;
 		}
 		
@@ -5636,19 +5636,19 @@ public final class L2PcInstance extends L2PlayableInstance
 		
 		if (item == null || item.getOwnerId() != getObjectId())
 		{
-			LOGGER.warn(getObjectId() + ": player tried to " + action + " item he is not owner of");
+			LOGGER.warn(getObjectId() + ": player " + this + " tried to " + action + " item he is not owner of [1]");
 			return null;
 		}
 		
 		if (count < 0 || count > 1 && !item.isStackable())
 		{
-			LOGGER.warn(getObjectId() + ": player tried to " + action + " item with invalid count: " + count);
+			LOGGER.warn(getObjectId() + ": player " + this + " tried to " + action + " item with invalid count: " + count);
 			return null;
 		}
 		
 		if (count > item.getCount())
 		{
-			LOGGER.warn(getObjectId() + ": player tried to " + action + " more items than he owns");
+			LOGGER.warn(getObjectId() + ": player " + this + " tried to " + action + " more items than he owns");
 			return null;
 		}
 		
@@ -5656,9 +5656,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		if (getPet() != null && getPet().getControlItemId() == objectId || getMountObjectID() == objectId)
 		{
 			if (CommonConfig.DEBUG)
-			{
-				LOGGER.debug(getObjectId() + ": player tried to " + action + " item controling pet");
-			}
+				LOGGER.debug(getObjectId() + ": player " + this + " tried to " + action + " item controling pet");
 			
 			return null;
 		}
@@ -5666,15 +5664,17 @@ public final class L2PcInstance extends L2PlayableInstance
 		if (getActiveEnchantItem() != null && getActiveEnchantItem().getObjectId() == objectId)
 		{
 			if (CommonConfig.DEBUG)
-			{
-				LOGGER.debug(getObjectId() + ":player tried to " + action + " an enchant scroll he was using");
-			}
+				LOGGER.debug(getObjectId() + ":player " + this + " tried to " + action + " an enchant scroll he was using");
 			
 			return null;
 		}
 		
+		// We cannot put a Weapon with Augmention in WH while casting (Possible Exploit)
+		if (item.isAugmented() && (isCastingNow()))
+			return null;
+		
+		// cannot drop/trade wear-items
 		if (item.isWear())
-			// cannot drop/trade wear-items
 			return null;
 		
 		return item;
@@ -16107,21 +16107,21 @@ public final class L2PcInstance extends L2PlayableInstance
 		
 		if (item == null || item.getOwnerId() != getObjectId())
 		{
-			LOGGER.warn(getObjectId() + ": player tried to " + action + " item he is not owner of");
+			LOGGER.warn(getObjectId() + ": player " + this + " tried to " + action + " item he is not owner of [2]");
 			return false;
 		}
 		if (getActiveEnchantItem() != null && getActiveEnchantItem().getItemId() == itemId)
 		{
-			LOGGER.warn(getObjectId() + ":player tried to " + action + " an enchant scroll he was using");
+			LOGGER.warn(getObjectId() + ":player " + this + " tried to " + action + " an enchant scroll he was using");
 			return false;
 		}
 		
+		// can not trade a cursed weapon
 		if (CursedWeaponsManager.getInstance().isCursed(itemId))
-			// can not trade a cursed weapon
 			return false;
 		
+		// cannot drop/trade wear-items
 		if (item.isWear())
-			// cannot drop/trade wear-items
 			return false;
 		
 		item = null;
@@ -16141,7 +16141,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		
 		if (item == null || item.getOwnerId() != getObjectId())
 		{
-			LOGGER.warn(getObjectId() + ": player tried to " + action + " item he is not owner of");
+			LOGGER.warn(getObjectId() + ": player " + this + " tried to " + action + " item he is not owner of [3]");
 			return false;
 		}
 		
@@ -16149,9 +16149,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		if (getPet() != null && getPet().getControlItemId() == objectId || getMountObjectID() == objectId)
 		{
 			if (CommonConfig.DEBUG)
-			{
-				LOGGER.debug(getObjectId() + ": player tried to " + action + " item controling pet");
-			}
+				LOGGER.debug(getObjectId() + ": player " + this + " tried to " + action + " item controling pet");
 			
 			return false;
 		}
@@ -16159,19 +16157,17 @@ public final class L2PcInstance extends L2PlayableInstance
 		if (getActiveEnchantItem() != null && getActiveEnchantItem().getObjectId() == objectId)
 		{
 			if (CommonConfig.DEBUG)
-			{
-				LOGGER.debug(getObjectId() + ":player tried to " + action + " an enchant scroll he was using");
-			}
+				LOGGER.debug(getObjectId() + ":player " + this + " tried to " + action + " an enchant scroll he was using");
 			
 			return false;
 		}
 		
+		// can not trade a cursed weapon
 		if (CursedWeaponsManager.getInstance().isCursed(item.getItemId()))
-			// can not trade a cursed weapon
 			return false;
 		
+		// cannot drop/trade wear-items
 		if (item.isWear())
-			// cannot drop/trade wear-items
 			return false;
 		
 		item = null;
