@@ -834,9 +834,7 @@ public class ItemTable
 			
 			L2World.getInstance().removeObject(item);
 			IdFactory.getInstance().releaseId(item.getObjectId());
-			/*
-			 * if(Config.LOG_ITEMS) { LogRecord record = new LogRecord(Level.INFO, "DELETE:" + process); record.setLoggerName("item"); record.setParameters(new Object[] { item, actor, reference }); _logItems.LOGGER(record); }
-			 */
+			
 			// if it's a pet control item, delete the pet as well
 			if (L2PetDataTable.isPetItem(item.getItemId()))
 			{
