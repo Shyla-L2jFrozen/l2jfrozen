@@ -67,7 +67,8 @@ public class MMOConnection<T extends MMOClient<?>>
 	
 	private volatile boolean _pendingClose;
 	
-	private T _client;
+	//private T _client;
+	private long _clientIdentifier;
 	
 	public MMOConnection(final SelectorThread<T> selectorThread, final Socket socket, final SelectionKey key) throws IOException
 	{
@@ -87,17 +88,20 @@ public class MMOConnection<T extends MMOClient<?>>
 	
 	final void setClient(final T client)
 	{
-		_client = client;
+		//_client = client;
+		_clientIdentifier = client.getIdentifier();
 	}
 	
 	public final T getClient()
 	{
-		return _client;
+		//return _client;
+		return (T) MMOClientsManager.getInstance().getClient(_clientIdentifier);
 	}
 	
 	public final void sendPacket(final SendablePacket<T> sp)
 	{
-		sp._client = _client;
+		//sp._client = _client;
+		sp._clientIdentifier = _clientIdentifier;
 		
 		if (_pendingClose)
 		{

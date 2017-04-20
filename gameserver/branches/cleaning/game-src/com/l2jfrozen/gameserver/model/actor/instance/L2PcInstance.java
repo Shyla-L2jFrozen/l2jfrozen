@@ -235,6 +235,7 @@ import com.l2jfrozen.gameserver.util.FloodProtectors;
 import com.l2jfrozen.gameserver.util.IllegalPlayerAction;
 import com.l2jfrozen.gameserver.util.Util;
 import com.l2jfrozen.logs.Log;
+import com.l2jfrozen.netcore.MMOClientsManager;
 import com.l2jfrozen.thread.ThreadPoolManager;
 import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.Point3D;
@@ -13195,7 +13196,7 @@ public final class L2PcInstance extends L2PlayableInstance
 			if (!isGM() && isOnline() == 1 && isInCombat() && getPrivateStoreType() == 0 && !isInsideZone(L2Character.ZONE_PEACE) && !isInsideZone(L2Character.ZONE_PVP) && !isInsideZone(L2Character.ZONE_SIEGE) && getKarma() == 0 && getPvpFlag() == 0)
 			{
 				// ignore anti bot during the events
-				if ((_inEventCTF && CTF.is_started()) || (_inEventDM && DM.is_started()) || (_inEventTvT && TvT.is_started()))
+				if ((_inEventCTF) || (_inEventDM) || (_inEventTvT))
 				{
 					stopBotChecker();
 					return;
@@ -16589,6 +16590,9 @@ public final class L2PcInstance extends L2PlayableInstance
 			
 			LOGGER.error("deleteMe()", t);
 		}
+		
+		if ((isInOfflineMode() || isFakeOfflinePlayer()) && getClient() != null)
+			MMOClientsManager.getInstance().removeClient(getClient().getIdentifier());
 		
 		// Close the connection with the client
 		closeNetConnection();
