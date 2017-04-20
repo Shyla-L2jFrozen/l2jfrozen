@@ -39,11 +39,6 @@ public class AdminKick implements IAdminCommandHandler
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{
-		/*
-		 * if(!AdminCommandAccessRights.getInstance().hasAccess(command, activeChar.getAccessLevel())){ return false; } if(Config.GMAUDIT) { Logger _logAudit = Logger.getLogger("gmaudit"); LogRecord record = new LogRecord(Level.INFO, command); record.setParameters(new Object[] { "GM: " +
-		 * activeChar.getName(), " to target [" + activeChar.getTarget() + "] " }); _logAudit.LOGGER(record); }
-		 */
-		
 		if (command.startsWith("admin_kick"))
 		{
 			StringTokenizer st = new StringTokenizer(command);
@@ -67,13 +62,19 @@ public class AdminKick implements IAdminCommandHandler
 					RegionBBSManager.getInstance().changeCommunityBoard();
 				}
 				
-				if (plyr != null && plyr.isInOfflineMode())
+				if (plyr != null && (plyr.isInOfflineMode()))
 				{
 					plyr.deleteMe();
 					activeChar.sendMessage("You kicked Offline Player " + plyr.getName() + " from the game.");
 					RegionBBSManager.getInstance().changeCommunityBoard();
 				}
 				
+				if (plyr != null && (plyr.isFakeOfflinePlayer()))
+				{
+					plyr.deleteMe();
+					activeChar.sendMessage("You kicked a Fake Player " + plyr.getName() + " from the game.");
+					RegionBBSManager.getInstance().changeCommunityBoard();
+				}
 			}
 			
 			st = null;
@@ -87,10 +88,19 @@ public class AdminKick implements IAdminCommandHandler
 			{
 				if (!player.isGM())
 				{
-					counter++;
-					player.sendPacket(new LeaveWorld());
-					player.logout(true);
-					RegionBBSManager.getInstance().changeCommunityBoard();
+					if (!player.isInOfflineMode() && !player.isFakeOfflinePlayer())
+					{
+						counter++;
+						player.sendPacket(new LeaveWorld());
+						player.logout(true);
+						RegionBBSManager.getInstance().changeCommunityBoard();
+					}
+					else
+					{
+						player.deleteMe();
+						RegionBBSManager.getInstance().changeCommunityBoard();
+					}
+					
 				}
 			}
 			activeChar.sendMessage("Kicked " + counter + " players");
@@ -103,5 +113,4 @@ public class AdminKick implements IAdminCommandHandler
 	{
 		return ADMIN_COMMANDS;
 	}
-	
 }
