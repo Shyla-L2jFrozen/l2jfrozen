@@ -52,10 +52,7 @@ public final class TradeDone extends L2GameClientPacket
 		
 		final TradeList trade = player.getActiveTradeList();
 		if (trade == null)
-		{
-			// LOGGER.warn("player.getTradeList == null in " + getType() + " for player " + player.getName());
 			return;
-		}
 		
 		if (trade.getOwner().getActiveEnchantItem() != null || trade.getPartner().getActiveEnchantItem() != null)
 			return;
