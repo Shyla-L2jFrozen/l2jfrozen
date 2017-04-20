@@ -230,8 +230,7 @@ public final class L2ItemInstance extends L2Object
 	 */
 	public void setOwnerId(final String process, final int owner_id, final L2PcInstance creator, final L2Object reference)
 	{
-		setOwnerId(_ownerId);
-		
+		setOwnerId(owner_id);
 	}
 	
 	/**
