@@ -677,29 +677,18 @@ public class TradeList
 			if (ownerIU != null)
 			{
 				if (oldItem.getCount() > 0 && oldItem != newItem)
-				{
 					ownerIU.addModifiedItem(oldItem);
-				}
 				else
-				{
 					ownerIU.addRemovedItem(oldItem);
-				}
 			}
 			
 			if (partnerIU != null)
 			{
 				if (newItem.getCount() > titem.getCount())
-				{
 					partnerIU.addModifiedItem(newItem);
-				}
 				else
-				{
 					partnerIU.addNewItem(newItem);
-				}
 			}
-			
-			oldItem = null;
-			newItem = null;
 		}
 		return true;
 	}
@@ -832,6 +821,7 @@ public class TradeList
 			ownerIU = null;
 			partnerIU = null;
 		}
+		
 		// Finish the trade
 		partnerList.getOwner().onTradeFinish(success);
 		getOwner().onTradeFinish(success);
