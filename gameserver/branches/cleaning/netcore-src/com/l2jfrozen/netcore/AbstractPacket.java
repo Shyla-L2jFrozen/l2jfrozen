@@ -29,10 +29,14 @@ public abstract class AbstractPacket<T extends MMOClient<?>>
 {
 	protected ByteBuffer _buf;
 	
-	T _client;
+	//protected T _client;
+	protected Long _clientIdentifier;
 	
 	public final T getClient()
 	{
-		return _client;
+		//return _client;
+		return (T) MMOClientsManager.getInstance().getClient(_clientIdentifier);
 	}
+	
+	
 }
