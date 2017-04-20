@@ -12020,29 +12020,6 @@ public final class L2PcInstance extends L2PlayableInstance
 			return;
 		}
 		
-		// Check if skill is in reause time
-		if (isSkillDisabled(skill))
-		{
-			if (!(skill.getId() == 2166))
-			{
-				SystemMessage sm = new SystemMessage(SystemMessageId.S1_PREPARED_FOR_REUSE);
-				sm.addSkillName(skill.getId(), skill.getLevel());
-				sendPacket(sm);
-				sm = null;
-			}
-			// Cp potion message like L2OFF
-			else if ((skill.getId() == 2166))
-			{
-				if (skill.getLevel() == 2)
-					sendMessage("Greater CP Potion is not available at this time: being prepared for reuse.");
-				else if (skill.getLevel() == 1)
-					sendMessage("CP Potion is not available at this time: being prepared for reuse.");
-			}
-			
-			sendPacket(ActionFailed.STATIC_PACKET);
-			return;
-		}
-		
 		// Check if it's ok to summon
 		// siege golem (13), Wild Hog Cannon (299), Swoop Cannon (448)
 		if ((skill_id == 13 || skill_id == 299 || skill_id == 448) && !SiegeManager.getInstance().checkIfOkToSummon(this, false) && !FortSiegeManager.getInstance().checkIfOkToSummon(this, false))
@@ -12070,6 +12047,29 @@ public final class L2PcInstance extends L2PlayableInstance
 			
 			// Create a new SkillDat object and queue it in the player _queuedSkill
 			setQueuedSkill(skill, forceUse, dontMove);
+			sendPacket(ActionFailed.STATIC_PACKET);
+			return;
+		}
+		
+		// Check if skill is in reause time
+		if (isSkillDisabled(skill))
+		{
+			if (!(skill.getId() == 2166))
+			{
+				SystemMessage sm = new SystemMessage(SystemMessageId.S1_PREPARED_FOR_REUSE);
+				sm.addSkillName(skill.getId(), skill.getLevel());
+				sendPacket(sm);
+				sm = null;
+			}
+			// Cp potion message like L2OFF
+			else if ((skill.getId() == 2166))
+			{
+				if (skill.getLevel() == 2)
+					sendMessage("Greater CP Potion is not available at this time: being prepared for reuse.");
+				else if (skill.getLevel() == 1)
+					sendMessage("CP Potion is not available at this time: being prepared for reuse.");
+			}
+			
 			sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
