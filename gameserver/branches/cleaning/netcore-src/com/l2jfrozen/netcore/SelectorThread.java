@@ -490,7 +490,8 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 			{
 				cp._buf = buf;
 				cp._sbuf = STRING_BUFFER;
-				cp._client = client;
+				//cp._client = client;
+				cp._clientIdentifier = client.getIdentifier();
 				
 				if (cp.read())
 				{
@@ -726,6 +727,8 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 				key.attach(null);
 				// cancel key
 				key.cancel();
+				
+				MMOClientsManager.getInstance().removeClient(con.getClient().getIdentifier());				
 			}
 		}
 	}

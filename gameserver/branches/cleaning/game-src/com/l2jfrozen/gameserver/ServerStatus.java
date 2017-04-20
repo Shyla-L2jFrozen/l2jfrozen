@@ -28,6 +28,7 @@ import org.apache.log4j.Logger;
 
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
+import com.l2jfrozen.netcore.MMOClientsManager;
 import com.l2jfrozen.thread.ThreadPoolManager;
 import com.l2jfrozen.util.Memory;
 import com.l2jfrozen.util.Util;
@@ -76,6 +77,7 @@ public class ServerStatus
 			LOGGER.info("Server Time: " + fmt.format(new Date(System.currentTimeMillis())));
 			LOGGER.info("Players Online: " + TotalOnline);
 			LOGGER.info("Active: " + ActivePlayers + ", Offline shop: " + OfflinePlayers + ", Fake player: " + FakePlayers);
+			LOGGER.info("Alive clients: " + MMOClientsManager.getInstance().printClientsNumber());
 			LOGGER.info("Free Memory: " + Memory.getFreeMemory() + " MB, Used memory: " + Memory.getUsedMemory() + " MB.");
 			
 			final long loadtime = ((System.currentTimeMillis() - LoadStart) / 1000);

@@ -105,9 +105,9 @@ public class EnterWorld extends L2GameClientPacket
 {
 	private static Logger LOGGER = Logger.getLogger(EnterWorld.class);
 	
-	private final SimpleDateFormat fmt = new SimpleDateFormat("H:mm.");
-	private long _daysleft;
-	SimpleDateFormat df = new SimpleDateFormat("dd MM yyyy");
+	// private final SimpleDateFormat fmt = new SimpleDateFormat("H:mm.");
+	// private long _daysleft;
+	// private SimpleDateFormat df = new SimpleDateFormat("dd MM yyyy");
 	
 	public TaskPriority getPriority()
 	{
@@ -610,7 +610,11 @@ public class EnterWorld extends L2GameClientPacket
 		}
 		
 		if (Config.SERVER_TIME_ON_START)
+		{
+			SimpleDateFormat fmt = new SimpleDateFormat("H:mm.");
 			activeChar.sendMessage("SVR time is " + fmt.format(new Date(System.currentTimeMillis())));
+		}
+		
 	}
 	
 	private void ColorSystem(final L2PcInstance activeChar)
@@ -693,9 +697,12 @@ public class EnterWorld extends L2GameClientPacket
 		else
 		{
 			final Date dt = new Date(endDay);
-			_daysleft = (endDay - now) / 86400000;
+			final long _daysleft = (endDay - now) / 86400000;
 			if (_daysleft > 30)
+			{
+				SimpleDateFormat df = new SimpleDateFormat("dd MM yyyy");
 				activeChar.sendMessage("[Aio System]: Aio period ends in " + df.format(dt) + ". enjoy the Game.");
+			}
 			else if (_daysleft > 0)
 				activeChar.sendMessage("[Aio System]: Left " + (int) _daysleft + " for Aio period ends.");
 			else if (_daysleft < 1)

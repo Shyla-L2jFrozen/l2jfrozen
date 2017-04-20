@@ -21,23 +21,22 @@
 package com.l2jfrozen.gameserver.network.clientpackets;
 
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.gameserver.network.serverpackets.SkillCoolTime;
 
 public class RequestSkillCoolTime extends L2GameClientPacket
 {
-	L2GameClient _client;
+	// L2GameClient _client;
 	
 	@Override
 	public void readImpl()
 	{
-		_client = getClient();
+		// _client = getClient();
 	}
 	
 	@Override
 	public void runImpl()
 	{
-		final L2PcInstance pl = _client.getActiveChar();
+		final L2PcInstance pl = getClient().getActiveChar();
 		if (pl != null)
 			pl.sendPacket(new SkillCoolTime(pl));
 	}

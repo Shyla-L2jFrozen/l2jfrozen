@@ -534,7 +534,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 		{
 			// exploit prevention, should not happens in normal way
 			// can happend with fakeplayer or offline player
-			if (character.isInOfflineMode() || character.isFakeOfflinePlayer())
+			if (!character.isInOfflineMode() && !character.isFakeOfflinePlayer())
 				LOGGER.warn("Attempt of double login: " + character.getName() + "(" + objId + ") " + getAccountName());
 			
 			if (character.getClient() != null)
@@ -796,10 +796,10 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 					if (player._active_boxes >= 1)
 						player.decreaseBoxes();
 					
+					player.deleteMe();
+					
 					// prevent closing again
 					player.setClient(null);
-					
-					player.deleteMe();
 					
 					try
 					{

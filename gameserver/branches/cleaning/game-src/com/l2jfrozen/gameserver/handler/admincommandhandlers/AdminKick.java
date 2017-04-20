@@ -90,7 +90,6 @@ public class AdminKick implements IAdminCommandHandler
 				{
 					if (!player.isInOfflineMode() && !player.isFakeOfflinePlayer())
 					{
-						counter++;
 						player.sendPacket(new LeaveWorld());
 						player.logout(true);
 						RegionBBSManager.getInstance().changeCommunityBoard();
@@ -100,7 +99,7 @@ public class AdminKick implements IAdminCommandHandler
 						player.deleteMe();
 						RegionBBSManager.getInstance().changeCommunityBoard();
 					}
-					
+					counter++;
 				}
 			}
 			activeChar.sendMessage("Kicked " + counter + " players");
