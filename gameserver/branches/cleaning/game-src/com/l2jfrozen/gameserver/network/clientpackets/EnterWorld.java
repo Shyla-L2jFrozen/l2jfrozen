@@ -611,7 +611,7 @@ public class EnterWorld extends L2GameClientPacket
 		
 		if (Config.SERVER_TIME_ON_START)
 		{
-			SimpleDateFormat fmt = new SimpleDateFormat("H:mm.");
+			final SimpleDateFormat fmt = new SimpleDateFormat("H:mm.");
 			activeChar.sendMessage("SVR time is " + fmt.format(new Date(System.currentTimeMillis())));
 		}
 		
@@ -700,7 +700,7 @@ public class EnterWorld extends L2GameClientPacket
 			final long _daysleft = (endDay - now) / 86400000;
 			if (_daysleft > 30)
 			{
-				SimpleDateFormat df = new SimpleDateFormat("dd MM yyyy");
+				final SimpleDateFormat df = new SimpleDateFormat("dd MM yyyy");
 				activeChar.sendMessage("[Aio System]: Aio period ends in " + df.format(dt) + ". enjoy the Game.");
 			}
 			else if (_daysleft > 0)

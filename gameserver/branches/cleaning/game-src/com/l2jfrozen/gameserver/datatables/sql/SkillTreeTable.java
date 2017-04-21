@@ -108,7 +108,7 @@ public class SkillTreeTable
 						prevSkillId = id;
 					
 					skillLearn = new L2SkillLearn(id, lvl, minLvl, name, cost, 0, 0);
-					int hash = SkillTable.getSkillHashCode(id, lvl);
+					final int hash = SkillTable.getSkillHashCode(id, lvl);
 					map.put(hash, skillLearn);
 				}
 				

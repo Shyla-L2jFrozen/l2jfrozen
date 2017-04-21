@@ -665,11 +665,11 @@ public class TradeList
 	{
 		for (final TradeItem titem : _items)
 		{
-			L2ItemInstance oldItem = _owner.getInventory().getItemByObjectId(titem.getObjectId());
+			final L2ItemInstance oldItem = _owner.getInventory().getItemByObjectId(titem.getObjectId());
 			if (oldItem == null)
 				return false;
 			
-			L2ItemInstance newItem = _owner.getInventory().transferItem("Trade", titem.getObjectId(), titem.getCount(), partner.getInventory(), _owner, _partner);
+			final L2ItemInstance newItem = _owner.getInventory().transferItem("Trade", titem.getObjectId(), titem.getCount(), partner.getInventory(), _owner, _partner);
 			if (newItem == null)
 				return false;
 			

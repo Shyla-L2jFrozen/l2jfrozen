@@ -28,24 +28,24 @@ public class MMOClientsManager<T extends MMOClient<?>>
 	
 	private static Logger LOGGER = Logger.getLogger(MMOClientsManager.class);
 	
-	private Map<Long, T> managedClients;
+	private final Map<Long, T> managedClients;
 	
 	private MMOClientsManager()
 	{
 		managedClients = new HashMap<>();
 	}
 	
-	public T getClient(Long clientId)
+	public T getClient(final Long clientId)
 	{
 		return managedClients.get(clientId);
 	}
 	
-	public T removeClient(Long clientId)
+	public T removeClient(final Long clientId)
 	{
 		return managedClients.remove(clientId);
 	}
 	
-	public T addClient(T client)
+	public T addClient(final T client)
 	{
 		return managedClients.put(client.getIdentifier(), client);
 	}
@@ -61,7 +61,7 @@ public class MMOClientsManager<T extends MMOClient<?>>
 		LOGGER.info("-- Connected Clients Number: " + managedClients.size());
 		LOGGER.debug("-- Connected Clients:");
 		
-		for (Long key : managedClients.keySet())
+		for (final Long key : managedClients.keySet())
 		{
 			LOGGER.debug("\t-- ID: " + key + " Type: " + managedClients.get(key).getClass().getName());
 		}

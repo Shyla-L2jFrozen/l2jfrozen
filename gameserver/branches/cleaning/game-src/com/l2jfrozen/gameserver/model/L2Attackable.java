@@ -1018,7 +1018,7 @@ public class L2Attackable extends L2NpcInstance
 		// Add new damage and aggro (=damage) to the AggroInfo object
 		ai._damage += damage;
 		
-		L2CharacterAI activeAI = getAI();
+		final L2CharacterAI activeAI = getAI();
 		// Set the intention to the L2Attackable to AI_INTENTION_ACTIVE
 		if (activeAI != null)
 		{
