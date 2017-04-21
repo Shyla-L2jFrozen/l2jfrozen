@@ -45,7 +45,8 @@ public abstract class MMOClient<T extends MMOConnection<?>>
 		return _con;
 	}
 	
-	public long getIdentifier(){
+	public long getIdentifier()
+	{
 		return _identifier;
 	}
 	

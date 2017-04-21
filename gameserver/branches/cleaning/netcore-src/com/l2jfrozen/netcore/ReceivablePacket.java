@@ -197,7 +197,7 @@ public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractP
 	public void setBuffers(final ByteBuffer data, final T client, final NioNetStringBuffer sBuffer)
 	{
 		_buf = data;
-		//_client = client;
+		// _client = client;
 		_clientIdentifier = client.getIdentifier();
 		_sbuf = sBuffer;
 	}

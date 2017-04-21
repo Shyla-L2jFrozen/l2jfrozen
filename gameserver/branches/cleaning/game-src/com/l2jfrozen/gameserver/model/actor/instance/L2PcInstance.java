@@ -19577,7 +19577,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		fakeplayer = fake;
 	}
 	
-	public void setLastCords(int x, int y, int z)
+	public void setLastCords(final int x, final int y, final int z)
 	{
 		_obsX = getX();
 		_obsY = getY();
