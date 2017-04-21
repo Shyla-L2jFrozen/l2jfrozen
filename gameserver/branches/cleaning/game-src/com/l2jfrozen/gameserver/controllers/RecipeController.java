@@ -348,9 +348,16 @@ public class RecipeController
 				return;
 			}
 			
-			if (_player.isOnline() == 0 || _target.isOnline() == 0)
+			if (_player.isOnline() == 0 && !_player.isInOfflineMode())
 			{
-				LOGGER.warn("player or target is not online, aborting " + _target + _player);
+				LOGGER.warn("player is not online, aborting -> " + _player);
+				abort();
+				return;
+			}
+			
+			if (_target.isOnline() == 0)
+			{
+				LOGGER.warn("target is not online, aborting -> " + _target);
 				abort();
 				return;
 			}

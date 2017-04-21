@@ -482,6 +482,7 @@ public class EnterWorld extends L2GameClientPacket
 		// If it's a Beta server all players got GM SPEED skill for better testing
 		if (Config.BETASERVER)
 		{
+			activeChar.setHero(true);
 			activeChar.addSkill(SkillTable.getInstance().getInfo(7029, 4), true);
 			activeChar.sendMessage("Server is on Beta mode. Skill Gm Haste 4 added for better testing.");
 		}
