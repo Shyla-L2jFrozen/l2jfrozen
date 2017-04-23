@@ -220,8 +220,8 @@ public final class SendWareHouseDepositList extends L2GameClientPacket
 				continue;
 			}
 			
-			// new check
-			if (!oldItem.isAvailable(player, true, isPrivate))
+			// new check, excluding augmented items
+			if (!oldItem.isAugmented() && !oldItem.isAvailable(player, true, isPrivate))
 			{
 				continue;
 			}
