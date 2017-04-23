@@ -825,7 +825,6 @@ public class DM implements EventTask
 							
 							if (_teamEvent)
 							{
-								// player.teleToLocation(_teamsX.get(_teams.indexOf(player._teamNameCTF)), _teamsY.get(_teams.indexOf(player._teamNameCTF)), _teamsZ.get(_teams.indexOf(player._teamNameCTF)));
 								
 							}
 							else

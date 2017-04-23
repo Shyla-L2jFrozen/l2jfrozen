@@ -883,8 +883,10 @@ public class CTF implements EventTask
 							if (_teamEvent)
 							{
 								final int offset = Config.CTF_SPAWN_OFFSET;
-								player.teleToLocation(_teamsX.get(_teams.indexOf(player._teamNameCTF)) + Rnd.get(offset), _teamsY.get(_teams.indexOf(player._teamNameCTF)) + Rnd.get(offset), _teamsZ.get(_teams.indexOf(player._teamNameCTF)));
-								
+								if (_teams.indexOf(player._teamNameCTF) != -1)
+									player.teleToLocation(_teamsX.get(_teams.indexOf(player._teamNameCTF)) + Rnd.get(offset), _teamsY.get(_teams.indexOf(player._teamNameCTF)) + Rnd.get(offset), _teamsZ.get(_teams.indexOf(player._teamNameCTF)));
+								else
+									LOGGER.warn("DEBUGCTF: Player " + player + " got _teams -1 [1].");
 							}
 							else
 							{
@@ -2286,7 +2288,10 @@ public class CTF implements EventTask
 			player.broadcastUserInfo();
 			
 			final int offset = Config.CTF_SPAWN_OFFSET;
-			player.teleToLocation(_teamsX.get(_teams.indexOf(player._teamNameCTF)) + Rnd.get(offset), _teamsY.get(_teams.indexOf(player._teamNameCTF)) + Rnd.get(offset), _teamsZ.get(_teams.indexOf(player._teamNameCTF)));
+			if (_teams.indexOf(player._teamNameCTF) != -1)
+				player.teleToLocation(_teamsX.get(_teams.indexOf(player._teamNameCTF)) + Rnd.get(offset), _teamsY.get(_teams.indexOf(player._teamNameCTF)) + Rnd.get(offset), _teamsZ.get(_teams.indexOf(player._teamNameCTF)));
+			else
+				LOGGER.warn("DEBUGCTF: Player " + player + " got _teams -1 [2].");
 			
 			afterAddDisconnectedPlayerOperations(player);
 			
@@ -2915,8 +2920,14 @@ public class CTF implements EventTask
 								}
 							removeFlagFromPlayer(player);
 							player._teamNameHaveFlagCTF = null;
-							player.teleToLocation(_teamsX.get(_teams.indexOf(player._teamNameCTF)), _teamsY.get(_teams.indexOf(player._teamNameCTF)), _teamsZ.get(_teams.indexOf(player._teamNameCTF)));
-							player.sendMessage("You have been returned to your team spawn");
+							if (_teams.indexOf(player._teamNameCTF) != -1)
+							{
+								player.teleToLocation(_teamsX.get(_teams.indexOf(player._teamNameCTF)), _teamsY.get(_teams.indexOf(player._teamNameCTF)), _teamsZ.get(_teams.indexOf(player._teamNameCTF)));
+								player.sendMessage("You have been returned to your team spawn");
+							}
+							else
+								LOGGER.warn("DEBUGCTF: Player " + player + " got _teams -1 [3].");
+							
 							return;
 						}
 					}
