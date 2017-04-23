@@ -159,7 +159,7 @@ import javolution.util.FastTable;
 public abstract class L2Character extends L2Object implements ISkillsHolder
 {
 	/** The Constant LOGGER. */
-	protected static final Logger LOGGER = Logger.getLogger(L2Character.class);
+	public static final Logger LOGGER = Logger.getLogger(L2Character.class);
 	
 	// =========================================================
 	// Data Field
@@ -946,6 +946,9 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	 */
 	public void teleToLocation(final Location loc, final boolean allowRandomOffset)
 	{
+		// set teleporting status true
+		setIsTeleporting(true);
+		
 		int x = loc.getX();
 		int y = loc.getY();
 		int z = loc.getZ();

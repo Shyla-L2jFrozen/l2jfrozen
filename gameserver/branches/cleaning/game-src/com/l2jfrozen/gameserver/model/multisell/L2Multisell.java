@@ -50,7 +50,7 @@ public class L2Multisell
 	private final List<MultiSellListContainer> _entries = new FastList<>();
 	private static L2Multisell _instance;/* = new L2Multisell(); */
 	
-	public MultiSellListContainer getList(final int id)
+	public MultiSellListContainer getList(final int id, L2PcInstance player)
 	{
 		synchronized (_entries)
 		{
@@ -61,7 +61,8 @@ public class L2Multisell
 			}
 		}
 		
-		LOGGER.warn("[L2Multisell] can't find list with id: " + id);
+		LOGGER.warn("[L2Multisell] Player " + player + " can't find list with id: " + id);
+		LOGGER.warn("[L2Multisell] Possible use of phx or missing multisell.");
 		return null;
 	}
 	
@@ -104,7 +105,7 @@ public class L2Multisell
 	 */
 	private MultiSellListContainer generateMultiSell(final int listId, final boolean inventoryOnly, final L2PcInstance player, final double taxRate)
 	{
-		MultiSellListContainer listTemplate = L2Multisell.getInstance().getList(listId);
+		MultiSellListContainer listTemplate = L2Multisell.getInstance().getList(listId, player);
 		MultiSellListContainer list = new MultiSellListContainer();
 		
 		if (listTemplate == null)

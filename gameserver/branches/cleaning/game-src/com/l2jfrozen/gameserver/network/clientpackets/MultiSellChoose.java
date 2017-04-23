@@ -93,7 +93,7 @@ public class MultiSellChoose extends L2GameClientPacket
 			return;
 		}
 		
-		final MultiSellListContainer list = L2Multisell.getInstance().getList(_listId);
+		final MultiSellListContainer list = L2Multisell.getInstance().getList(_listId, player);
 		
 		final int selectedList = player.getMultiSellId();
 		if (list == null || list.getListId() != _listId || selectedList != _listId)
