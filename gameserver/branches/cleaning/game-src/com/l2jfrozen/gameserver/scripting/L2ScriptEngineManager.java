@@ -286,6 +286,11 @@ public final class L2ScriptEngineManager
 	{
 		if (dir.isDirectory())
 		{
+			if (dir.listFiles() == null)
+			{
+				LOGGER.info("executeAllScriptsInDirectory is null.");
+				return;
+			}
 			for (final File file : dir.listFiles())
 			{
 				if (file.isDirectory() && recurseDown && maxDepth > currentDepth)

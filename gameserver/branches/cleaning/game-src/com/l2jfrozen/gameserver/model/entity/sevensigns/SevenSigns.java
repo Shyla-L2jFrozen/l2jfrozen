@@ -1705,7 +1705,8 @@ public class SevenSigns
 					final int compWinner = getCabalHighestScore();
 					
 					// Schedule a stop of the festival engine.
-					SevenSignsFestival.getInstance().getFestivalManagerSchedule().cancel(false);
+					if (Config.ENABLE_FESTIVAL)
+						SevenSignsFestival.getInstance().getFestivalManagerSchedule().cancel(false);
 					
 					calcNewSealOwners();
 					

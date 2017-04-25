@@ -1466,7 +1466,6 @@ public final class L2PcInstance extends L2PlayableInstance
 		 * @see java.lang.Runnable#run()
 		 */
 		@Override
-		@SuppressWarnings("synthetic-access")
 		public void run()
 		{
 			try
@@ -7463,7 +7462,11 @@ public final class L2PcInstance extends L2PlayableInstance
 									sendMessage("Teleport aborted! You are alive! FIGHT!");
 									return;
 								}
-								teleToLocation(TvT._teamsX.get(TvT._teams.indexOf(_teamNameTvT)), TvT._teamsY.get(TvT._teams.indexOf(_teamNameTvT)), TvT._teamsZ.get(TvT._teams.indexOf(_teamNameTvT)), false);
+								if (TvT._teams.indexOf(_teamNameTvT) != -1)
+									teleToLocation(TvT._teamsX.get(TvT._teams.indexOf(_teamNameTvT)), TvT._teamsY.get(TvT._teams.indexOf(_teamNameTvT)), TvT._teamsZ.get(TvT._teams.indexOf(_teamNameTvT)), false);
+								else
+									LOGGER.warn("DEBUGTVT: Player " + this + " got _teams -1 [4].");
+								
 								doRevive();
 								broadcastPacket(new SocialAction(getObjectId(), 15));
 							}
@@ -10689,7 +10692,6 @@ public final class L2PcInstance extends L2PlayableInstance
 		}
 	}
 	
-	@SuppressWarnings("null")
 	private synchronized void storeEffect()
 	{
 		if (!Config.STORE_SKILL_COOLTIME)
@@ -10718,13 +10720,16 @@ public final class L2PcInstance extends L2PlayableInstance
 			
 			for (final L2Effect effect : effects)
 			{
+				if (effect == null)
+					continue;
+				
 				final int skillId = effect.getSkill().getId();
 				
 				if (storedSkills.contains(skillId))
 					continue;
 				storedSkills.add(skillId);
 				
-				if (effect != null && effect.getInUse() && !effect.getSkill().isToggle() && !effect.getStackType().equals("BattleForce") && !effect.getStackType().equals("SpellForce") && effect.getSkill().getSkillType() != SkillType.FORCE_BUFF)
+				if (effect.getInUse() && !effect.getSkill().isToggle() && !effect.getStackType().equals("BattleForce") && !effect.getStackType().equals("SpellForce") && effect.getSkill().getSkillType() != SkillType.FORCE_BUFF)
 				{
 					statement.setInt(1, getObjectId());
 					statement.setInt(2, skillId);
@@ -13266,7 +13271,6 @@ public final class L2PcInstance extends L2PlayableInstance
 		 * (non-Javadoc)
 		 * @see java.lang.Runnable#run()
 		 */
-		@SuppressWarnings("synthetic-access")
 		@Override
 		public void run()
 		{
@@ -14483,28 +14487,18 @@ public final class L2PcInstance extends L2PlayableInstance
 			for (final L2Skill s : player.getAllSkills())
 			{
 				if (s == null)
-				{
 					continue;
-				}
 				
-				if (s.getId() > 9000)
-				{
+				if (s.getId() > 9000 && s.getId() < 9007)
 					continue; // Fake skills to change base stats
-				}
-				
+					
 				if (s.bestowed())
-				{
 					continue;
-				}
 				
 				if (s.isChance())
-				{
 					sl.addSkill(s.getId(), s.getLevel(), s.isChance());
-				}
 				else
-				{
 					sl.addSkill(s.getId(), s.getLevel(), s.isPassive());
-				}
 			}
 		}
 		sendPacket(sl);

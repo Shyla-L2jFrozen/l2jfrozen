@@ -30,7 +30,7 @@ public final class Rnd
 	 * @author Forsaiken
 	 * @see java.util.Random
 	 */
-	public static final class NonAtomicRandom extends Random
+	private static final class NonAtomicRandom extends Random
 	{
 		private static final long serialVersionUID = 1L;
 		private volatile long _seed;
@@ -40,7 +40,7 @@ public final class Rnd
 			this(++SEED_UNIQUIFIER + System.nanoTime());
 		}
 		
-		public NonAtomicRandom(final long seed)
+		private NonAtomicRandom(final long seed)
 		{
 			setSeed(seed);
 		}
@@ -61,11 +61,11 @@ public final class Rnd
 	/**
 	 * @author Forsaiken
 	 */
-	public static final class RandomContainer
+	private static final class RandomContainer
 	{
 		private final Random _random;
 		
-		protected RandomContainer(final Random random)
+		RandomContainer(final Random random)
 		{
 			_random = random;
 		}
@@ -195,7 +195,7 @@ public final class Rnd
 	 * @author Forsaiken
 	 * @see java.util.Random
 	 */
-	public static final class ThreadLocalRandom extends Random
+	private static final class ThreadLocalRandom extends Random
 	{
 		private static final class Seed
 		{
@@ -266,7 +266,7 @@ public final class Rnd
 	
 	private static final RandomContainer rnd = newInstance(RandomType.UNSECURE_THREAD_LOCAL);
 	
-	protected static volatile long SEED_UNIQUIFIER = 8682522807148012L;
+	private static volatile long SEED_UNIQUIFIER = 8682522807148012L;
 	
 	public static final Random directRandom()
 	{
@@ -314,7 +314,7 @@ public final class Rnd
 		return rnd.get(min, max);
 	}
 	
-	public static final RandomContainer newInstance(final RandomType type)
+	private static final RandomContainer newInstance(final RandomType type)
 	{
 		switch (type)
 		{

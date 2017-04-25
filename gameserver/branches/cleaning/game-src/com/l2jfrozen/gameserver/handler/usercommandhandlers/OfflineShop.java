@@ -50,7 +50,6 @@ public class OfflineShop implements IUserCommandHandler
 	 * (non-Javadoc)
 	 * @see com.l2jfrozen.gameserver.handler.IUserCommandHandler#useUserCommand(int, com.l2jfrozen.gameserver.model.L2PcInstance)
 	 */
-	@SuppressWarnings("null")
 	@Override
 	public synchronized boolean useUserCommand(final int id, final L2PcInstance player)
 	{
@@ -73,7 +72,7 @@ public class OfflineShop implements IUserCommandHandler
 		}
 		
 		final TradeList storeListBuy = player.getBuyList();
-		if (storeListBuy == null && storeListBuy.getItemCount() == 0)
+		if (storeListBuy == null)
 		{
 			player.sendMessage("Your buy list is empty.");
 			player.sendPacket(ActionFailed.STATIC_PACKET);
@@ -81,7 +80,7 @@ public class OfflineShop implements IUserCommandHandler
 		}
 		
 		final TradeList storeListSell = player.getSellList();
-		if (storeListSell == null && storeListSell.getItemCount() == 0)
+		if (storeListSell == null)
 		{
 			player.sendMessage("Your sell list is empty.");
 			player.sendPacket(ActionFailed.STATIC_PACKET);

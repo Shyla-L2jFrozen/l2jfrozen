@@ -76,14 +76,21 @@ public class SkillsEngine
 			return;
 		}
 		final File[] files = dir.listFiles();
-		for (final File f : files)
+		
+		if (files != null)
 		{
-			if (f.getName().endsWith(".xml"))
-				if (!f.getName().startsWith("custom"))
-				{
-					hash.add(f);
-				}
+			for (final File f : files)
+			{
+				if (f.getName().endsWith(".xml"))
+					if (!f.getName().startsWith("custom"))
+					{
+						hash.add(f);
+					}
+			}
 		}
+		else
+			LOGGER.warn("Problem loading dir.listFiles(). Missing files?");
+		
 		final File customfile = new File(Config.DATAPACK_ROOT, dirname + "/custom.xml");
 		if (customfile.exists())
 		{
