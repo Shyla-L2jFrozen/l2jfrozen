@@ -89,7 +89,6 @@ public class Disablers implements ISkillHandler
 	/*
 	 * Suppress null warnings, all are checked if target is null go to the next iteration.
 	 */
-	@SuppressWarnings("null")
 	@Override
 	public void useSkill(final L2Character activeChar, final L2Skill skill, final L2Object[] targets)
 	{
@@ -101,13 +100,18 @@ public class Disablers implements ISkillHandler
 		
 		for (final L2Object target2 : targets)
 		{
+			// bypass if target is null
+			if (target2 == null)
+				continue;
+			
 			// Get a target
 			if (!(target2 instanceof L2Character))
 				continue;
 			
 			L2Character target = (L2Character) target2;
 			
-			if (target == null || target.isDead()) // bypass if target is null or dead
+			// bypass if dead
+			if (target.isDead())
 				continue;
 			
 			switch (type)

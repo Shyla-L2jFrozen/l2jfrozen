@@ -77,7 +77,6 @@ public class LoginServerThread extends Thread
 	protected static final Logger LOGGER = Logger.getLogger(LoginServerThread.class);
 	protected static final Logger LOGGER_ACCOUNTING = Logger.getLogger("accounting");
 	
-	/** @see com.l2jserver.loginserver.L2LoginServer#PROTOCOL_REV */
 	private static final int REVISION = 0x0102;
 	private final String _hostname;
 	private final int _port;

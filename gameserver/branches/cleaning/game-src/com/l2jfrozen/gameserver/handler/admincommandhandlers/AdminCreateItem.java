@@ -53,7 +53,6 @@ public class AdminCreateItem implements IAdminCommandHandler
 		"admin_clear_inventory"
 	};
 	
-	@SuppressWarnings("null")
 	@Override
 	public boolean useAdminCommand(final String command, final L2PcInstance activeChar)
 	{
@@ -84,13 +83,10 @@ public class AdminCreateItem implements IAdminCommandHandler
 					return false;
 				}
 				
-				L2PcInstance Player = null;
+				L2PcInstance Player;
 				// Items can be added only to self Gm
-				if (Player == null)
-				{
-					activeChar.setTarget(activeChar);
-					Player = activeChar;
-				}
+				activeChar.setTarget(activeChar);
+				Player = activeChar;
 				
 				Player.getInventory().addItem("Admin", 1458, 5000, Player, activeChar); // Cry d
 				Player.getInventory().addItem("Admin", 1459, 5000, Player, activeChar); // Cry c

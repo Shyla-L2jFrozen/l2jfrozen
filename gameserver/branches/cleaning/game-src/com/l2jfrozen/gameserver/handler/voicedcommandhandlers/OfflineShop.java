@@ -41,7 +41,6 @@ public class OfflineShop implements IVoicedCommandHandler
 		"offline_shop"
 	};
 	
-	@SuppressWarnings("null")
 	@Override
 	public boolean useVoicedCommand(final String command, final L2PcInstance player, final String target)
 	{
@@ -65,7 +64,7 @@ public class OfflineShop implements IVoicedCommandHandler
 		}
 		
 		final TradeList storeListBuy = player.getBuyList();
-		if (storeListBuy == null && storeListBuy.getItemCount() == 0)
+		if (storeListBuy == null)
 		{
 			player.sendMessage("Your buy list is empty.");
 			player.sendPacket(ActionFailed.STATIC_PACKET);
@@ -73,7 +72,7 @@ public class OfflineShop implements IVoicedCommandHandler
 		}
 		
 		final TradeList storeListSell = player.getSellList();
-		if (storeListSell == null && storeListSell.getItemCount() == 0)
+		if (storeListSell == null)
 		{
 			player.sendMessage("Your sell list is empty.");
 			player.sendPacket(ActionFailed.STATIC_PACKET);

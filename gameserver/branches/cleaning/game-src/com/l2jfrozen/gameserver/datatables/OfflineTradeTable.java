@@ -269,7 +269,7 @@ public class OfflineTradeTable
 								if (pc.getCreateList() == null)
 									continue;
 								
-								if (pc.getCreateList() != null && pc.getCreateList() != null)
+								if (pc.getCreateList() != null)
 								{
 									title = pc.getCreateList().getStoreName();
 								}
@@ -387,8 +387,10 @@ public class OfflineTradeTable
 				
 				try
 				{
-					rs.close();
-					stm.close();
+					if (rs != null)
+						rs.close();
+					if (stm != null)
+						stm.close();
 				}
 				catch (final Exception e)
 				{
@@ -434,10 +436,10 @@ public class OfflineTradeTable
 					
 					try
 					{
-						
-						items.close();
-						stm_items.close();
-						
+						if (items != null)
+							items.close();
+						if (stm_items != null)
+							stm_items.close();					
 					}
 					catch (final Exception e)
 					{

@@ -50,7 +50,7 @@ public class L2Multisell
 	private final List<MultiSellListContainer> _entries = new FastList<>();
 	private static L2Multisell _instance;/* = new L2Multisell(); */
 	
-	public MultiSellListContainer getList(final int id, L2PcInstance player)
+	public MultiSellListContainer getList(final int id, final L2PcInstance player)
 	{
 		synchronized (_entries)
 		{
