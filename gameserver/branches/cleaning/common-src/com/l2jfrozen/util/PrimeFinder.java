@@ -32,7 +32,7 @@ public final class PrimeFinder
 	/**
 	 * The largest prime this class can generate; currently equal to <tt>Integer.MAX_VALUE</tt>.
 	 */
-	public static final int LARGEST_PRIME = Integer.MAX_VALUE; // yes, it is prime.
+	private static final int LARGEST_PRIME = Integer.MAX_VALUE; // yes, it is prime.
 	
 	/**
 	 * The prime number list consists of 11 chunks. Each chunk contains prime numbers. A chunk starts with a prime P1. The next element is a prime P2. P2 is the smallest prime for which holds: P2 >= 2*P1. The next element is P3, for which the same holds with respect to P2, and so on. Chunks are

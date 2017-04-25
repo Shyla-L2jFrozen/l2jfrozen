@@ -21,9 +21,7 @@ package com.l2jfrozen.gameserver.model;
 
 import java.util.List;
 
-import com.l2jfrozen.gameserver.model.actor.instance.L2GrandBossInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.gameserver.model.actor.instance.L2RaidBossInstance;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;
 import com.l2jfrozen.gameserver.network.serverpackets.ExCloseMPCC;
@@ -228,7 +226,7 @@ public class L2CommandChannel
 	 */
 	public boolean meetRaidWarCondition(final L2Object obj)
 	{
-		if (!(obj instanceof L2RaidBossInstance) || !(obj instanceof L2GrandBossInstance))
+		if (!(obj instanceof L2Character && ((L2Character) obj).isRaid()))
 			return false;
 		
 		final int npcId = ((L2Attackable) obj).getNpcId();

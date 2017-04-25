@@ -783,6 +783,11 @@ public class AdminCTFEngine implements IAdminCommandHandler
 		
 		for (final String team : CTF._teams)
 		{
+			if (team == null)
+			{
+				activeChar.sendMessage("Team is null.");
+				continue;
+			}
 			replyMSG.append("<tr><td width=\"100\">Name: <font color=\"FF0000\">" + team + "</font>");
 			
 			if (Config.CTF_EVEN_TEAMS.equals("NO") || Config.CTF_EVEN_TEAMS.equals("BALANCE"))

@@ -69,7 +69,6 @@ public class AdminSiege implements IAdminCommandHandler
 		"admin_clanhallteleportself"
 	};
 	
-	@SuppressWarnings("null")
 	@Override
 	public boolean useAdminCommand(String command, final L2PcInstance activeChar)
 	{
@@ -119,6 +118,12 @@ public class AdminSiege implements IAdminCommandHandler
 			
 			if (command.equalsIgnoreCase("admin_add_attacker"))
 			{
+				if (castle == null)
+				{
+					activeChar.sendMessage("Castle is null");
+					return false;
+				}
+				
 				if (player == null)
 				{
 					activeChar.sendPacket(new SystemMessage(SystemMessageId.TARGET_IS_INCORRECT));
@@ -134,6 +139,11 @@ public class AdminSiege implements IAdminCommandHandler
 			}
 			else if (command.equalsIgnoreCase("admin_add_defender"))
 			{
+				if (castle == null)
+				{
+					activeChar.sendMessage("Castle is null");
+					return false;
+				}
 				if (player == null)
 				{
 					activeChar.sendPacket(new SystemMessage(SystemMessageId.TARGET_IS_INCORRECT));
@@ -145,6 +155,11 @@ public class AdminSiege implements IAdminCommandHandler
 			}
 			else if (command.equalsIgnoreCase("admin_add_guard"))
 			{
+				if (castle == null)
+				{
+					activeChar.sendMessage("Castle is null");
+					return false;
+				}
 				try
 				{
 					final int npcId = Integer.parseInt(val);
@@ -160,14 +175,29 @@ public class AdminSiege implements IAdminCommandHandler
 			}
 			else if (command.equalsIgnoreCase("admin_clear_siege_list"))
 			{
+				if (castle == null)
+				{
+					activeChar.sendMessage("Castle is null");
+					return false;
+				}
 				castle.getSiege().clearSiegeClan();
 			}
 			else if (command.equalsIgnoreCase("admin_endsiege"))
 			{
+				if (castle == null)
+				{
+					activeChar.sendMessage("Castle is null");
+					return false;
+				}
 				castle.getSiege().endSiege();
 			}
 			else if (command.equalsIgnoreCase("admin_list_siege_clans"))
 			{
+				if (castle == null)
+				{
+					activeChar.sendMessage("Castle is null");
+					return false;
+				}
 				castle.getSiege().listRegisterClan(activeChar);
 				
 				return true;
@@ -184,11 +214,21 @@ public class AdminSiege implements IAdminCommandHandler
 				}
 				else
 				{
+					if (castle == null)
+					{
+						activeChar.sendMessage("Castle is null");
+						return false;
+					}
 					castle.setOwner(player.getClan());
 				}
 			}
 			else if (command.equalsIgnoreCase("admin_removecastle"))
 			{
+				if (castle == null)
+				{
+					activeChar.sendMessage("Castle is null");
+					return false;
+				}
 				L2Clan clan = ClanTable.getInstance().getClan(castle.getOwnerId());
 				
 				if (clan != null)
@@ -208,12 +248,17 @@ public class AdminSiege implements IAdminCommandHandler
 				{
 					activeChar.sendPacket(new SystemMessage(SystemMessageId.TARGET_IS_INCORRECT));
 				}
-				else if (!ClanHallManager.getInstance().isFree(clanhall.getId()))
+				else if (clanhall != null && !ClanHallManager.getInstance().isFree(clanhall.getId()))
 				{
 					activeChar.sendMessage("This ClanHall isn't free!");
 				}
 				else if (player.getClan().getHasHideout() == 0)
 				{
+					if (clanhall == null)
+					{
+						activeChar.sendMessage("Clanhall is null");
+						return false;
+					}
 					ClanHallManager.getInstance().setOwner(clanhall.getId(), player.getClan());
 					
 					if (AuctionManager.getInstance().getAuction(clanhall.getId()) != null)
@@ -228,6 +273,11 @@ public class AdminSiege implements IAdminCommandHandler
 			}
 			else if (command.equalsIgnoreCase("admin_clanhalldel"))
 			{
+				if (clanhall == null)
+				{
+					activeChar.sendMessage("Clanhall is null");
+					return false;
+				}
 				if (!ClanHallManager.getInstance().isFree(clanhall.getId()))
 				{
 					ClanHallManager.getInstance().setFree(clanhall.getId());
@@ -240,14 +290,29 @@ public class AdminSiege implements IAdminCommandHandler
 			}
 			else if (command.equalsIgnoreCase("admin_clanhallopendoors"))
 			{
+				if (clanhall == null)
+				{
+					activeChar.sendMessage("Clanhall is null");
+					return false;
+				}
 				clanhall.openCloseDoors(true);
 			}
 			else if (command.equalsIgnoreCase("admin_clanhallclosedoors"))
 			{
+				if (clanhall == null)
+				{
+					activeChar.sendMessage("Clanhall is null");
+					return false;
+				}
 				clanhall.openCloseDoors(false);
 			}
 			else if (command.equalsIgnoreCase("admin_clanhallteleportself"))
 			{
+				if (clanhall == null)
+				{
+					activeChar.sendMessage("Clanhall is null");
+					return false;
+				}
 				L2ClanHallZone zone = clanhall.getZone();
 				
 				if (zone != null)
@@ -259,10 +324,20 @@ public class AdminSiege implements IAdminCommandHandler
 			}
 			else if (command.equalsIgnoreCase("admin_spawn_doors"))
 			{
+				if (castle == null)
+				{
+					activeChar.sendMessage("Castle is null");
+					return false;
+				}
 				castle.spawnDoor();
 			}
 			else if (command.equalsIgnoreCase("admin_startsiege"))
 			{
+				if (castle == null)
+				{
+					activeChar.sendMessage("Castle is null");
+					return false;
+				}
 				castle.getSiege().startSiege();
 			}
 			
@@ -272,6 +347,11 @@ public class AdminSiege implements IAdminCommandHandler
 			}
 			else
 			{
+				if (castle == null)
+				{
+					activeChar.sendMessage("Castle is null");
+					return false;
+				}
 				showSiegePage(activeChar, castle.getName());
 			}
 			

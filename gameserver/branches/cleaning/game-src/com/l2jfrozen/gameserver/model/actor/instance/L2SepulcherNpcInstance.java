@@ -401,7 +401,6 @@ public class L2SepulcherNpcInstance extends L2NpcInstance
 		}
 		
 		@Override
-		@SuppressWarnings("synthetic-access")
 		public void run()
 		{
 			try

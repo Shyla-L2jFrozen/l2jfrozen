@@ -95,51 +95,54 @@ public class hitConditionBonus
 			}
 			
 			String name;
-			for (@SuppressWarnings("null")
-			Node list = doc.getFirstChild(); list != null; list = list.getNextSibling())
+			
+			if (doc != null)
 			{
-				if ("hitConditionBonus".equalsIgnoreCase(list.getNodeName()) || "list".equalsIgnoreCase(list.getNodeName()))
+				for (Node list = doc.getFirstChild(); list != null; list = list.getNextSibling())
 				{
-					for (Node cond = list.getFirstChild(); cond != null; cond = cond.getNextSibling())
+					if ("hitConditionBonus".equalsIgnoreCase(list.getNodeName()) || "list".equalsIgnoreCase(list.getNodeName()))
 					{
-						int bonus = 0;
-						name = cond.getNodeName();
-						try
+						for (Node cond = list.getFirstChild(); cond != null; cond = cond.getNextSibling())
 						{
-							if (cond.hasAttributes())
-								bonus = Integer.parseInt(cond.getAttributes().getNamedItem("val").getNodeValue());
-						}
-						catch (final Exception e)
-						{
-							LOGGER.warn("[hitConditionBonus] Could not parse condition: " + e.getMessage(), e);
-						}
-						finally
-						{
-							switch (name)
+							int bonus = 0;
+							name = cond.getNodeName();
+							try
 							{
-								case "front":
-									frontBonus = bonus;
-									break;
-								case "side":
-									sideBonus = bonus;
-									break;
-								case "back":
-									backBonus = bonus;
-									break;
-								case "high":
-									highBonus = bonus;
-									break;
-								case "low":
-									lowBonus = bonus;
-									break;
-								case "dark":
-									darkBonus = bonus;
-									break;
+								if (cond.hasAttributes())
+									bonus = Integer.parseInt(cond.getAttributes().getNamedItem("val").getNodeValue());
 							}
-							// else if ("rain".equals(name))
-							// rainBonus = bonus;
+							catch (final Exception e)
+							{
+								LOGGER.warn("[hitConditionBonus] Could not parse condition: " + e.getMessage(), e);
+							}
+							finally
+							{
+								switch (name)
+								{
+									case "front":
+										frontBonus = bonus;
+										break;
+									case "side":
+										sideBonus = bonus;
+										break;
+									case "back":
+										backBonus = bonus;
+										break;
+									case "high":
+										highBonus = bonus;
+										break;
+									case "low":
+										lowBonus = bonus;
+										break;
+									case "dark":
+										darkBonus = bonus;
+										break;
+								}
+								// else if ("rain".equals(name))
+								// rainBonus = bonus;
+							}
+							
 						}
-						
 					}
 				}
 			}

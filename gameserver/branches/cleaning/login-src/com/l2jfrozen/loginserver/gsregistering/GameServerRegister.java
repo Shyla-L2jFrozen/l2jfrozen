@@ -97,7 +97,7 @@ public class GameServerRegister
 		{
 			LOGGER.info("Your choice:");
 			_choice = _in.readLine();
-			if (_choice.equalsIgnoreCase("help"))
+			if (_choice != null && _choice.equalsIgnoreCase("help"))
 			{
 				for (final Map.Entry<Integer, String> entry : gameServerTable.getServerNames().entrySet())
 				{
@@ -105,11 +105,11 @@ public class GameServerRegister
 				}
 				LOGGER.info("You can also see servername.xml");
 			}
-			else if (_choice.equalsIgnoreCase("clean"))
+			else if (_choice != null && _choice.equalsIgnoreCase("clean"))
 			{
 				System.out.print("This is going to UNREGISTER ALL servers from this LoginServer. Are you sure? (y/n) ");
 				_choice = _in.readLine();
-				if (_choice.equals("y"))
+				if (_choice != null && _choice.equals("y"))
 				{
 					GameServerRegister.cleanRegisteredGameServersFromDB();
 					gameServerTable.getRegisteredGameServers().clear();
@@ -133,7 +133,7 @@ public class GameServerRegister
 					
 					_choice = "";
 					
-					while (!_choice.equalsIgnoreCase(""))
+					while (_choice != null && !_choice.equalsIgnoreCase(""))
 					{
 						LOGGER.info("External Server Ip:");
 						_choice = _in.readLine();
@@ -202,10 +202,7 @@ public class GameServerRegister
 	{
 		final byte[] array = new byte[size];
 		Rnd.nextBytes(array);
-		if (CommonConfig.DEBUG)
-		{
-			LOGGER.debug("Generated random String:  \"" + array + "\"");
-		}
+		
 		return array;
 	}
 	
