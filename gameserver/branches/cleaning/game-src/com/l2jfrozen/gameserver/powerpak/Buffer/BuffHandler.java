@@ -122,7 +122,8 @@ public class BuffHandler implements IVoicedCommandHandler, ICustomByPassHandler,
 			msg = "Buffer is not available in CTF";
 		else if (PowerPakConfig.BUFFER_EXCLUDE_ON.contains("DM") && activeChar._inEventDM && DM.is_started())
 			msg = "Buffer is not available in DM";
-		
+		else if (PowerPakConfig.BUFFER_EXCLUDE_ON.contains("KARMA") && activeChar.getKarma() > 0)
+			msg = "Buffer is not available with Karma!";
 		if (msg != null)
 			activeChar.sendMessage(msg);
 		
