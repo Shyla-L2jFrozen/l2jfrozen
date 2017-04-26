@@ -2550,7 +2550,6 @@ public final class Config
 	public static int PK_REWARD_AMOUNT;
 	public static int REWARD_PROTECT;
 	public static boolean ENABLE_PK_INFO;
-	public static boolean FLAGED_PLAYER_USE_BUFFER;
 	public static boolean FLAGED_PLAYER_CAN_USE_GK;
 	public static boolean PVPEXPSP_SYSTEM;
 	/** Add Exp At Pvp! */
@@ -2670,8 +2669,6 @@ public final class Config
 			TITLE_COLOR_FOR_PK_AMOUNT3 = Integer.decode("0x" + pvpSettings.getProperty("TitleForAmount3", "00FF00"));
 			TITLE_COLOR_FOR_PK_AMOUNT4 = Integer.decode("0x" + pvpSettings.getProperty("TitleForAmount4", "00FF00"));
 			TITLE_COLOR_FOR_PK_AMOUNT5 = Integer.decode("0x" + pvpSettings.getProperty("TitleForAmount5", "00FF00"));
-			
-			FLAGED_PLAYER_USE_BUFFER = Boolean.valueOf(pvpSettings.getProperty("AltKarmaFlagPlayerCanUseBuffer", "false"));
 			
 			FLAGED_PLAYER_CAN_USE_GK = Boolean.parseBoolean(pvpSettings.getProperty("FlaggedPlayerCanUseGK", "false"));
 			PVPEXPSP_SYSTEM = Boolean.parseBoolean(pvpSettings.getProperty("AllowAddExpSpAtPvP", "False"));
@@ -4940,10 +4937,6 @@ public final class Config
 		else if (pName.equalsIgnoreCase("AltKarmaPlayerCanUseGK"))
 		{
 			ALT_GAME_KARMA_PLAYER_CAN_USE_GK = Boolean.valueOf(pValue);
-		}
-		else if (pName.equalsIgnoreCase("AltKarmaFlagPlayerCanUseBuffer"))
-		{
-			FLAGED_PLAYER_USE_BUFFER = Boolean.valueOf(pValue);
 		}
 		else if (pName.equalsIgnoreCase("AltKarmaPlayerCanTeleport"))
 		{

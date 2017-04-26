@@ -17638,7 +17638,7 @@ public final class L2PcInstance extends L2PlayableInstance
 	{
 		if (Config.DEVELOPER)
 		{
-			LOGGER.info("Restoring character status " + getName() + " from database...");
+			LOGGER.info("Restoring character: [" + getName() + "], account: [" + getAccountName() + "], ip: [" + getClient().getConnection().getInetAddress().getHostAddress() + "]");
 		}
 		
 		int hero = 0;

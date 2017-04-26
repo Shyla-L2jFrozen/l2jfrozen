@@ -530,17 +530,19 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 			return null;
 		
 		L2PcInstance character = L2World.getInstance().getPlayer(objId);
+		// exploit prevention, should not happens in normal way
 		if (character != null)
 		{
-			// exploit prevention, should not happens in normal way
-			// can happend with fakeplayer or offline player
-			if (!character.isInOfflineMode() && !character.isFakeOfflinePlayer())
-				LOGGER.warn("Attempt of double login: " + character.getName() + "(" + objId + ") " + getAccountName());
-			
 			if (character.getClient() != null)
+			{
+				LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "], ip: [" + character.getClient().getConnection().getInetAddress().getHostAddress() + "]. Client closed.");
 				character.getClient().closeNow();
+			}
 			else
 			{
+				if (Config.DEVELOPER)
+					LOGGER.warn("Attempt of double login (possible offliner or fakeplayer) character: [" + character.getName() + "], account: [" + character.getAccountName() + "]. Player unspawned.");
+				
 				character.deleteMe();
 				
 				try
