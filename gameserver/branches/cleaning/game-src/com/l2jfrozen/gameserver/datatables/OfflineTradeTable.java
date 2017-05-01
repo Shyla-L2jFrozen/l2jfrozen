@@ -439,7 +439,7 @@ public class OfflineTradeTable
 						if (items != null)
 							items.close();
 						if (stm_items != null)
-							stm_items.close();					
+							stm_items.close();
 					}
 					catch (final Exception e)
 					{
