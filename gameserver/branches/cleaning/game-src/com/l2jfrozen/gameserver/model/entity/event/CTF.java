@@ -886,7 +886,7 @@ public class CTF implements EventTask
 								if (_teams.indexOf(player._teamNameCTF) != -1)
 									player.teleToLocation(_teamsX.get(_teams.indexOf(player._teamNameCTF)) + Rnd.get(offset), _teamsY.get(_teams.indexOf(player._teamNameCTF)) + Rnd.get(offset), _teamsZ.get(_teams.indexOf(player._teamNameCTF)));
 								else
-									LOGGER.warn("DEBUGCTF: Player " + player + " got _teams -1 [1].");
+									LOGGER.warn("DEBUGCTF: Player " + player + " got _teams -1 [1]. TeamName: " + player._teamNameCTF);
 							}
 							else
 							{
@@ -2291,7 +2291,7 @@ public class CTF implements EventTask
 			if (_teams.indexOf(player._teamNameCTF) != -1)
 				player.teleToLocation(_teamsX.get(_teams.indexOf(player._teamNameCTF)) + Rnd.get(offset), _teamsY.get(_teams.indexOf(player._teamNameCTF)) + Rnd.get(offset), _teamsZ.get(_teams.indexOf(player._teamNameCTF)));
 			else
-				LOGGER.warn("DEBUGCTF: Player " + player + " got _teams -1 [2].");
+				LOGGER.warn("DEBUGCTF: Player " + player + " got _teams -1 [2]. TeamName: " + player._teamNameCTF);
 			
 			afterAddDisconnectedPlayerOperations(player);
 			
@@ -2926,7 +2926,7 @@ public class CTF implements EventTask
 								player.sendMessage("You have been returned to your team spawn");
 							}
 							else
-								LOGGER.warn("DEBUGCTF: Player " + player + " got _teams -1 [3].");
+								LOGGER.warn("DEBUGCTF: Player " + player + " got _teams -1 [3]. TeamName: " + player._teamNameCTF);
 							
 							return;
 						}

@@ -828,7 +828,7 @@ public class TvT implements EventTask
 							if (_teams.indexOf(player._teamNameTvT) != -1)
 								player.teleToLocation(_teamsX.get(_teams.indexOf(player._teamNameTvT)) + Rnd.get(201) - 100, _teamsY.get(_teams.indexOf(player._teamNameTvT)) + Rnd.get(201) - 100, _teamsZ.get(_teams.indexOf(player._teamNameTvT)));
 							else
-								LOGGER.warn("DEBUGTVT: Player " + player + " got _teams -1 [1].");
+								LOGGER.warn("DEBUGTVT: Player " + player + " got _teams -1 [1]. TeamName: " + player._teamNameTvT);
 						}
 					}
 				}
@@ -2181,7 +2181,7 @@ public class TvT implements EventTask
 			if (_teams.indexOf(player._teamNameTvT) != -1)
 				player.teleToLocation(_teamsX.get(_teams.indexOf(player._teamNameTvT)), _teamsY.get(_teams.indexOf(player._teamNameTvT)), _teamsZ.get(_teams.indexOf(player._teamNameTvT)));
 			else
-				LOGGER.warn("DEBUGTVT: Player " + player + " got _teams -1 [2].");
+				LOGGER.warn("DEBUGTVT: Player " + player + " got _teams -1 [2]. TeamName: " + player._teamNameTvT);
 			
 			afterAddDisconnectedPlayerOperations(player);
 			

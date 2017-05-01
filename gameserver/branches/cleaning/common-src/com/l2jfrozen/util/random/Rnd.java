@@ -76,15 +76,6 @@ public final class Rnd
 		}
 		
 		/**
-		 * Get a random double number from 0 to 1
-		 * @return A random double number from 0 to 1
-		 */
-		public final double get()
-		{
-			return _random.nextDouble();
-		}
-		
-		/**
 		 * Gets a random integer number from 0(inclusive) to n(exclusive)
 		 * @param n The superior limit (exclusive)
 		 * @return A random integer number from 0 to n-1
@@ -228,18 +219,6 @@ public final class Rnd
 				public final Seed initialValue()
 				{
 					return new Seed(++SEED_UNIQUIFIER + System.nanoTime());
-				}
-			};
-		}
-		
-		public ThreadLocalRandom(final long seed)
-		{
-			_seedLocal = new ThreadLocal<Seed>()
-			{
-				@Override
-				public final Seed initialValue()
-				{
-					return new Seed(seed);
 				}
 			};
 		}
