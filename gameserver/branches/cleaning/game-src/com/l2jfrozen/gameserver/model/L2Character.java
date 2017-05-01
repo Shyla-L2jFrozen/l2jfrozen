@@ -202,9 +202,6 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	/** The _is killed already. */
 	private boolean _isKilledAlready = false;
 	
-	/** The _is imobilised. */
-	private int _isImobilised = 0;
-	
 	/** The _is overloaded. */
 	private boolean _isOverloaded = false; // the char is carrying too much
 	
@@ -216,6 +213,8 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	
 	/** The _is pending revive. */
 	private boolean _isPendingRevive = false;
+	
+	private boolean _imobilised;
 	
 	/** The _is rooted. */
 	private boolean _isRooted = false; // Cannot move until root timed out
@@ -2712,25 +2711,24 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	 */
 	public boolean isImobilised()
 	{
-		return _isImobilised > 0;
+		return _imobilised;
 	}
 	
 	/**
 	 * Sets the checks if is imobilised.
-	 * @param value the new checks if is imobilised
+	 * @param imobilised
 	 */
-	public void setIsImobilised(final boolean value)
+	public void setIsImobilised(final boolean imobilised)
 	{
 		// Stop this if he is moving
 		this.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
 		
-		if (value)
+		if (_imobilised != imobilised)
 		{
-			_isImobilised++;
-		}
-		else
-		{
-			_isImobilised--;
+			if (imobilised)
+				_imobilised = true;
+			else
+				_imobilised = false;
 		}
 	}
 	
@@ -3163,7 +3161,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	 * Gets the template.
 	 * @return the template
 	 */
-	public L2CharTemplate getTemplate()
+	synchronized public L2CharTemplate getTemplate()
 	{
 		return _template;
 	}
@@ -8016,6 +8014,9 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	 */
 	public final L2Skill[] getAllSkills()
 	{
+		if (_skills == null)
+			return new L2Skill[0];
+		
 		return _skills.values().toArray(new L2Skill[_skills.values().size()]);
 	}
 	
@@ -10324,13 +10325,10 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	public void reduceCurrentHpByDamOverTime(final double i, final L2Character attacker, final boolean awake, final int period)
 	{
 		if (_nextReducingHPByOverTime > System.currentTimeMillis())
-		{
 			return;
-		}
 		
-		_nextReducingHPByOverTime = System.currentTimeMillis() + (period * 1000);
+		_nextReducingHPByOverTime = System.currentTimeMillis() + (period * 880);
 		reduceCurrentHp(i, attacker, awake);
-		
 	}
 	
 	private long _nextReducingMPByOverTime = -1;
@@ -10338,13 +10336,10 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 	public void reduceCurrentMpByDamOverTime(final double i, final int period)
 	{
 		if (_nextReducingMPByOverTime > System.currentTimeMillis())
-		{
 			return;
-		}
 		
-		_nextReducingMPByOverTime = System.currentTimeMillis() + (period * 1000);
+		_nextReducingMPByOverTime = System.currentTimeMillis() + (period * 880);
 		reduceCurrentMp(i);
-		
 	}
 	
 	/**

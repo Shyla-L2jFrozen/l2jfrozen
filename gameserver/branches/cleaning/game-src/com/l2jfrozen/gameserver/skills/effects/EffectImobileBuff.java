@@ -20,7 +20,10 @@
  */
 package com.l2jfrozen.gameserver.skills.effects;
 
+import org.apache.log4j.Logger;
+
 import com.l2jfrozen.gameserver.model.EffectType;
+import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.skills.Env;
 
@@ -29,6 +32,8 @@ import com.l2jfrozen.gameserver.skills.Env;
  */
 final class EffectImobileBuff extends L2Effect
 {
+	public static final Logger LOGGER = Logger.getLogger(L2Character.class);
+	
 	public EffectImobileBuff(final Env env, final EffectTemplate template)
 	{
 		super(env, template);
@@ -44,6 +49,7 @@ final class EffectImobileBuff extends L2Effect
 	@Override
 	public void onStart()
 	{
+		super.onStart();
 		getEffector().setIsImobilised(true);
 	}
 	
@@ -51,13 +57,13 @@ final class EffectImobileBuff extends L2Effect
 	@Override
 	public void onExit()
 	{
+		super.onExit();
 		getEffector().setIsImobilised(false);
 	}
 	
 	@Override
 	public boolean onActionTime()
 	{
-		// just stop this effect
 		return false;
 	}
 }

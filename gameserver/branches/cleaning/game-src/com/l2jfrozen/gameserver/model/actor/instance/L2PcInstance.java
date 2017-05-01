@@ -7439,7 +7439,7 @@ public final class L2PcInstance extends L2PlayableInstance
 								if (TvT._teams.indexOf(_teamNameTvT) != -1)
 									teleToLocation(TvT._teamsX.get(TvT._teams.indexOf(_teamNameTvT)) + Rnd.get(201) - 100, TvT._teamsY.get(TvT._teams.indexOf(_teamNameTvT)) + Rnd.get(201) - 100, TvT._teamsZ.get(TvT._teams.indexOf(_teamNameTvT)), false);
 								else
-									LOGGER.warn("DEBUGTVT: Player " + this + " got _teams -1 [3].");
+									LOGGER.warn("DEBUGTVT: Player " + getName() + " got _teams -1 [3]. TeamName: " + _teamNameTvT);
 								
 								doRevive();
 							}
@@ -7465,7 +7465,7 @@ public final class L2PcInstance extends L2PlayableInstance
 								if (TvT._teams.indexOf(_teamNameTvT) != -1)
 									teleToLocation(TvT._teamsX.get(TvT._teams.indexOf(_teamNameTvT)), TvT._teamsY.get(TvT._teams.indexOf(_teamNameTvT)), TvT._teamsZ.get(TvT._teams.indexOf(_teamNameTvT)), false);
 								else
-									LOGGER.warn("DEBUGTVT: Player " + this + " got _teams -1 [4].");
+									LOGGER.warn("DEBUGTVT: Player " + getName() + " got _teams -1 [4].TeamName: " + _teamNameTvT);
 								
 								doRevive();
 								broadcastPacket(new SocialAction(getObjectId(), 15));
@@ -7494,7 +7494,7 @@ public final class L2PcInstance extends L2PlayableInstance
 								if (CTF._teams.indexOf(_teamNameCTF) != -1)
 									teleToLocation(CTF._teamsX.get(CTF._teams.indexOf(_teamNameCTF)), CTF._teamsY.get(CTF._teams.indexOf(_teamNameCTF)), CTF._teamsZ.get(CTF._teams.indexOf(_teamNameCTF)), false);
 								else
-									LOGGER.warn("DEBUGCTF: Player " + this + " got _teams -1 [4].");
+									LOGGER.warn("DEBUGCTF: Player " + getName() + " got _teams -1 [4]. TeamName: " + _teamNameCTF);
 								
 								doRevive();
 							}
