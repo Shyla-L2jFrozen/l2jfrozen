@@ -56,7 +56,9 @@ public class BoatManager
 	
 	public BoatManager()
 	{
-		LOGGER.info("Initializing BoatManager");
+		if (Config.DEVELOPER)
+			LOGGER.info("Initializing BoatManager");
+		
 		load();
 	}
 	

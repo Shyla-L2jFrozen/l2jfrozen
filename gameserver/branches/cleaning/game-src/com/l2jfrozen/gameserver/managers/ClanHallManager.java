@@ -26,6 +26,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.datatables.sql.ClanTable;
 import com.l2jfrozen.gameserver.model.L2Clan;
 import com.l2jfrozen.gameserver.model.entity.ClanHall;
@@ -69,7 +70,9 @@ public class ClanHallManager
 	/** Load All Clan Hall */
 	private final void load()
 	{
-		LOGGER.info("Initializing ClanHallManager");
+		if (Config.DEVELOPER)
+			LOGGER.info("Initializing ClanHallManager.");
+		
 		Connection con = null;
 		try
 		{

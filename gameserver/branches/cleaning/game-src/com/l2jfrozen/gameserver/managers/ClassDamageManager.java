@@ -66,7 +66,6 @@ public class ClassDamageManager
 			
 			for (final Object key : key_set)
 			{
-				
 				final String key_string = (String) key;
 				
 				final String[] class_and_type = key_string.split("__");
@@ -99,26 +98,16 @@ public class ClassDamageManager
 				{
 					damage_by_mage.put(class_id, Double.parseDouble(scriptSetting.getProperty(key_string)));
 				}
-				// LOGGER.info("class: "+class_name+" key: "+key_string+" classid: "+class_id);
-				// LOGGER.info("multiplier: "+Double.parseDouble(scriptSetting.getProperty(key_string)));
-				
 			}
 			
-			LOGGER.info("Loaded " + id_to_name.size() + " classes Damages configurations");
-			
-			/*
-			 * int class_id = 114; LOGGER.info("class: "+id_to_name.get(class_id)+" classid: "+class_id); LOGGER.info("multiplier to fighter: "+damage_to_fighter.get(class_id)); LOGGER.info("multiplier to mage: "+damage_to_mage.get(class_id));
-			 * LOGGER.info("multiplier by fighter: "+damage_by_fighter.get(class_id)); LOGGER.info("multiplier by mage: "+damage_by_mage.get(class_id));
-			 */
+			LOGGER.info("Loaded " + id_to_name.size() + " classes Damages configurations.");
 		}
 		catch (final Exception e)
 		{
 			e.printStackTrace();
-			
 		}
 		finally
 		{
-			
 			if (is != null)
 			{
 				try
@@ -131,12 +120,10 @@ public class ClassDamageManager
 				}
 			}
 		}
-		
 	}
 	
 	public static double getClassDamageToMage(final int id)
 	{
-		
 		final Double multiplier = damage_to_mage.get(id);
 		
 		if (multiplier != null)
@@ -170,7 +157,6 @@ public class ClassDamageManager
 	
 	public static int getIdByName(final String name)
 	{
-		
 		final Integer id = name_to_id.get(name);
 		if (id != null)
 			return id;
@@ -179,7 +165,6 @@ public class ClassDamageManager
 	
 	public static String getNameById(final int id)
 	{
-		
 		final String name = id_to_name.get(id);
 		if (name != null)
 			return name;
@@ -194,7 +179,6 @@ public class ClassDamageManager
 	 */
 	public static double getDamageMultiplier(final L2PcInstance attacker, final L2PcInstance attacked)
 	{
-		
 		if (attacker == null || attacked == null)
 			return 1;
 		
@@ -224,7 +208,5 @@ public class ClassDamageManager
 		}
 		
 		return output;
-		
 	}
-	
 }

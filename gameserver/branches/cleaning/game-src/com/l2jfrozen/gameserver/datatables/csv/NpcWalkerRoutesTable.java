@@ -55,7 +55,9 @@ public class NpcWalkerRoutesTable
 		if (_instance == null)
 		{
 			_instance = new NpcWalkerRoutesTable();
-			LOGGER.info("Initializing Walkers Routes Table.");
+			
+			if (Config.DEVELOPER)
+				LOGGER.info("Initializing Walkers Routes Table.");
 		}
 		
 		return _instance;

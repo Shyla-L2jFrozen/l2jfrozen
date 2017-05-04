@@ -27,6 +27,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.model.L2Clan;
 import com.l2jfrozen.gameserver.model.L2ClanMember;
 import com.l2jfrozen.gameserver.model.L2Object;
@@ -114,7 +115,9 @@ public class CastleManager
 	// Method - Private
 	private final void load()
 	{
-		LOGGER.info("Initializing CastleManager");
+		if (Config.DEVELOPER)
+			LOGGER.info("Initializing CastleManager.");
+		
 		Connection con = null;
 		try
 		{

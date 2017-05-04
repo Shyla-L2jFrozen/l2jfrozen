@@ -591,6 +591,6 @@ public class ZoneData
 		if (done)
 			GrandBossManager.getInstance().initZones();
 		
-		LOGGER.info("Done: loaded " + zoneCount + " zones.");
+		LOGGER.info("ZonesData: loaded " + zoneCount + " zones.");
 	}
 }

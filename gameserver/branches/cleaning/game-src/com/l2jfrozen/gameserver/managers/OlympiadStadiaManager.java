@@ -21,6 +21,7 @@ package com.l2jfrozen.gameserver.managers;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.zone.type.L2OlympiadStadiumZone;
 
@@ -37,7 +38,9 @@ public class OlympiadStadiaManager
 	{
 		if (_instance == null)
 		{
-			LOGGER.info("Initializing OlympiadStadiaManager");
+			if (Config.DEVELOPER)
+				LOGGER.info("Initializing OlympiadStadiaManager.");
+			
 			_instance = new OlympiadStadiaManager();
 		}
 		return _instance;

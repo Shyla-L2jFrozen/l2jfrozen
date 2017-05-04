@@ -38,6 +38,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.Config;
 import com.l2jfrozen.util.StringUtil;
 
 /**
@@ -135,7 +136,8 @@ public class ThreadPoolManager
 		
 		scheduleGeneralAtFixedRate(new PurgeTask(), 10 * 60 * 1000L, 5 * 60 * 1000L);
 		
-		LOGGER.info("ThreadPoolManager: loaded.");
+		if (Config.DEVELOPER)
+			LOGGER.info("ThreadPoolManager: loaded.");
 	}
 	
 	public static long validateDelay(long delay)
