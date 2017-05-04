@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.handler.AutoChatHandler;
 import com.l2jfrozen.gameserver.idfactory.IdFactory;
@@ -65,7 +66,9 @@ public class MercTicketManager
 	
 	public MercTicketManager()
 	{
-		LOGGER.info("Initializing MercTicketManager");
+		if (Config.DEVELOPER)
+			LOGGER.info("Initializing MercTicketManager");
+		
 		_droppedTickets.clear();
 		load();
 	}

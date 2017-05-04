@@ -77,7 +77,9 @@ public class CastleManorManager
 	{
 		if (_instance == null)
 		{
-			LOGGER.info("Initializing CastleManorManager");
+			if (Config.DEVELOPER)
+				LOGGER.info("Initializing CastleManorManager");
+			
 			_instance = new CastleManorManager();
 		}
 		return _instance;

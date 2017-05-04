@@ -54,7 +54,8 @@ public class AutoSaveManager
 	
 	public AutoSaveManager()
 	{
-		LOGGER.info("Initializing AutoSaveManager");
+		if (Config.DEVELOPER)
+			LOGGER.info("Initializing AutoSaveManager");
 	}
 	
 	public void stopAutoSaveManager()

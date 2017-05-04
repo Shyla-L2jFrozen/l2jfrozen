@@ -39,7 +39,6 @@ import org.apache.log4j.Logger;
 
 import com.l2jfrozen.gameserver.model.entity.olympiad.OlympiadPeriod;
 import com.l2jfrozen.util.StringUtil;
-import com.l2jfrozen.util.Util;
 
 import javolution.text.TypeFormat;
 import javolution.util.FastList;
@@ -4128,7 +4127,7 @@ public final class Config
 				}
 				QUESTION_LIST.add(line.trim());
 			}
-			LOGGER.info("Loaded " + QUESTION_LIST.size() + " Question Words.");
+			LOGGER.info("Bot protection actived. Loaded " + QUESTION_LIST.size() + " question Words.");
 		}
 		catch (final Exception e)
 		{
@@ -4163,7 +4162,9 @@ public final class Config
 	{
 		try
 		{
-			LOGGER.info("Loading Hexid file...");
+			if (Config.DEVELOPER)
+				LOGGER.info("Loading Hexid file...");
+			
 			final Properties Settings = new Properties();
 			final InputStream is = new FileInputStream(new File(HEXID_FILE));
 			Settings.load(is);
@@ -4281,10 +4282,11 @@ public final class Config
 	{
 		if (ServerType.serverMode == ServerType.MODE_GAMESERVER)
 		{
-			Util.printSection("Configs");
-			loadHexed();
+			if (Config.DEVELOPER)
+				LOGGER.info("Loading Configs file...");
 			
-			LOGGER.info("Loading Configs file...");
+			// check hexid file
+			loadHexed();
 			
 			// Load network
 			loadServerConfig();
@@ -4351,10 +4353,6 @@ public final class Config
 			if (Config.USE_SAY_FILTER)
 			{
 				loadFilter();
-			}
-			if (Config.BOT_PROTECTOR)
-			{
-				loadQuestion();
 			}
 		}
 		else

@@ -26,6 +26,7 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.datatables.csv.DoorTable;
 import com.l2jfrozen.gameserver.datatables.sql.ClanTable;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
@@ -75,7 +76,9 @@ public class BanditStrongholdSiege extends ClanHallSiege
 	
 	private BanditStrongholdSiege()
 	{
-		LOGGER.info("SiegeManager of Bandits Stronghold");
+		if (Config.DEVELOPER)
+			LOGGER.info("SiegeManager of Bandits Stronghold.");
+		
 		final long siegeDate = restoreSiegeDate(35);
 		final Calendar tmpDate = Calendar.getInstance();
 		tmpDate.setTimeInMillis(siegeDate);

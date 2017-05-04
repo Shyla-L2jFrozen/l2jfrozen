@@ -133,7 +133,9 @@ public abstract class IdFactory
 			con2 = L2DatabaseFactory.getInstance().getConnection();
 			final Statement s2 = con2.createStatement();
 			s2.executeUpdate("update characters set online=0");
-			LOGGER.info("Updated characters online status.");
+			
+			if (Config.DEVELOPER)
+				LOGGER.info("Updated characters online status.");
 			
 			s2.close();
 		}
@@ -196,7 +198,7 @@ public abstract class IdFactory
 			cleanCount += stmt.executeUpdate("DELETE FROM posts WHERE posts.post_forum_id NOT IN (SELECT forum_id FROM forums);");
 			
 			stmt.close();
-			LOGGER.info("Cleaned " + cleanCount + " elements from database.");
+			LOGGER.info("CleanDB: Cleaned " + cleanCount + " elements from database.");
 		}
 		catch (final SQLException e)
 		{

@@ -25,6 +25,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.model.L2Skill;
@@ -71,7 +72,8 @@ public class DayNightSpawnManager
 		_nightCreatures = new FastMap<>();
 		_bosses = new FastMap<>();
 		
-		LOGGER.info("DayNightSpawnManager: Day/Night handler initialised");
+		if (Config.DEVELOPER)
+			LOGGER.info("DayNightSpawnManager: Day/Night handler initialised");
 	}
 	
 	public void addDayCreature(final L2Spawn spawnDat)

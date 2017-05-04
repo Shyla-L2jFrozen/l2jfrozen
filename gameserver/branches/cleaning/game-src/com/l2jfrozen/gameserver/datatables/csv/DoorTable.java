@@ -94,7 +94,6 @@ public class DoorTable
 			lnr = new LineNumberReader(buff);
 			
 			String line = null;
-			LOGGER.info("Searching clan halls doors:");
 			
 			while ((line = lnr.readLine()) != null)
 			{

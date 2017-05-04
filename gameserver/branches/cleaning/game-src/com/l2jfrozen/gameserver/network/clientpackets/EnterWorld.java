@@ -277,6 +277,20 @@ public class EnterWorld extends L2GameClientPacket
 		SevenSigns.getInstance().sendCurrentPeriodMsg(activeChar);
 		Announcements.getInstance().showAnnouncements(activeChar);
 		
+		// BETA SERVER
+		if (Config.BETASERVER)
+		{
+			activeChar.setHero(true);
+			activeChar.addSkill(SkillTable.getInstance().getInfo(7029, 4), true);
+			activeChar.sendMessage("Server is on Beta mode. Skill Gm Haste 4 added for better testing.");
+			
+			for (final L2PcInstance cha : L2World.getInstance().getAllPlayers())
+			{
+				if (cha != null && cha != activeChar)
+					cha.sendMessage("Tester " + activeChar + " logged into the server.");
+			}
+		}
+		
 		loadTutorial(activeChar);
 		
 		// Check for crowns
@@ -477,14 +491,6 @@ public class EnterWorld extends L2GameClientPacket
 			activeChar.removeSkill(3626, true);
 			activeChar.removeSkill(3627, true);
 			activeChar.removeSkill(3628, true);
-		}
-		
-		// If it's a Beta server all players got GM SPEED skill for better testing
-		if (Config.BETASERVER)
-		{
-			activeChar.setHero(true);
-			activeChar.addSkill(SkillTable.getInstance().getInfo(7029, 4), true);
-			activeChar.sendMessage("Server is on Beta mode. Skill Gm Haste 4 added for better testing.");
 		}
 		
 		// Send all skills to char

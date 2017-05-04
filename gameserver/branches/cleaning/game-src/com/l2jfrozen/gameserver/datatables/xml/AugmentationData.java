@@ -97,7 +97,8 @@ public class AugmentationData
 	@SuppressWarnings("unchecked")
 	private AugmentationData()
 	{
-		LOGGER.info("Initializing AugmentationData.");
+		if (Config.DEVELOPER)
+			LOGGER.info("Initializing AugmentationData.");
 		
 		_augmentationStats = new FastList[4];
 		_augmentationStats[0] = new FastList<>();

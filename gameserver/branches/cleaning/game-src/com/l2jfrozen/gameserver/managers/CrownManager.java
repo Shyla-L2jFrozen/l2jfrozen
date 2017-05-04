@@ -18,6 +18,7 @@ package com.l2jfrozen.gameserver.managers;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.datatables.CrownTable;
 import com.l2jfrozen.gameserver.model.L2Clan;
 import com.l2jfrozen.gameserver.model.L2ClanMember;
@@ -44,7 +45,8 @@ public class CrownManager
 	
 	public CrownManager()
 	{
-		LOGGER.info("CrownManager: initialized");
+		if (Config.DEVELOPER)
+			LOGGER.info("CrownManager: initialized.");
 	}
 	
 	public void checkCrowns(final L2Clan clan)

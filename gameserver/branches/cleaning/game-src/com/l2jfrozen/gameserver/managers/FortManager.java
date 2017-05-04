@@ -23,6 +23,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.model.L2Clan;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.entity.siege.Fort;
@@ -53,7 +54,9 @@ public class FortManager
 	// Constructor
 	public FortManager()
 	{
-		LOGGER.info("Initializing FortManager");
+		if (Config.DEVELOPER)
+			LOGGER.info("Initializing FortManager");
+		
 		_forts.clear();
 		load();
 	}

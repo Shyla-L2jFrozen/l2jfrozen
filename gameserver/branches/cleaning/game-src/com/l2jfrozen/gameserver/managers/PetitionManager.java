@@ -58,7 +58,9 @@ public final class PetitionManager
 	{
 		if (_instance == null)
 		{
-			LOGGER.info("Initializing PetitionManager");
+			if (Config.DEVELOPER)
+				LOGGER.info("Initializing PetitionManager");
+			
 			_instance = new PetitionManager();
 		}
 		

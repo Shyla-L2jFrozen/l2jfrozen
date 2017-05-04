@@ -28,6 +28,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Object;
@@ -80,7 +81,9 @@ public class GrandBossManager
 	{
 		if (_instance == null)
 		{
-			LOGGER.info("Initializing GrandBossManager");
+			if (Config.DEVELOPER)
+				LOGGER.info("Initializing GrandBossManager.");
+			
 			_instance = new GrandBossManager();
 		}
 		return _instance;

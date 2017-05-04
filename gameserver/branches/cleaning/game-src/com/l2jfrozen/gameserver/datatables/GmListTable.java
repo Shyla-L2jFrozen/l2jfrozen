@@ -19,6 +19,7 @@ package com.l2jfrozen.gameserver.datatables;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.L2GameServerPacket;
@@ -89,7 +90,9 @@ public class GmListTable
 	
 	private GmListTable()
 	{
-		LOGGER.info("GmListTable: initalized.");
+		if (Config.DEVELOPER)
+			LOGGER.info("GmListTable: initalized.");
+		
 		_gmList = new FastMap<L2PcInstance, Boolean>().shared();
 	}
 	

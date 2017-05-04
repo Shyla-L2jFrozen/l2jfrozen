@@ -87,7 +87,9 @@ public final class L2ScriptEngineManager
 			_cache = null;
 		}
 		ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(new CleaneCache(), 43200000, 43200000);
-		LOGGER.info("Initializing Script Engine Manager");
+		
+		if (Config.DEVELOPER)
+			LOGGER.info("Initializing Script Engine Manager");
 		
 		for (final ScriptEngineFactory factory : factories)
 		{

@@ -91,7 +91,7 @@ public class TeleportLocationTable
 			DatabaseUtils.close(statement);
 			DatabaseUtils.close(rset);
 			
-			LOGGER.info("TeleportLocationTable: Loaded " + teleports.size() + " Teleport Location Templates");
+			LOGGER.info("TeleportLocationTable: Loaded " + teleports.size() + " Teleport Location Templates.");
 		}
 		catch (final Exception e)
 		{
