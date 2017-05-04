@@ -27,6 +27,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.model.entity.Auction;
 import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.database.DatabaseUtils;
@@ -127,7 +128,9 @@ public class AuctionManager
 	
 	public AuctionManager()
 	{
-		LOGGER.info("Initializing AuctionManager");
+		if (Config.DEVELOPER)
+			LOGGER.info("Initializing AuctionManager.");
+		
 		_auctions.clear();
 		load();
 	}
@@ -156,7 +159,7 @@ public class AuctionManager
 			statement = null;
 			rs.close();
 			rs = null;
-			LOGGER.info("Loaded: " + getAuctions().size() + " auction(s)");
+			LOGGER.info("AuctionManager: Loaded: " + getAuctions().size() + " auction(s)");
 		}
 		
 		catch (final Exception e)

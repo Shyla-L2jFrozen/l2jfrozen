@@ -21,6 +21,7 @@ package com.l2jfrozen.gameserver.managers;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.entity.siege.Castle;
@@ -39,7 +40,9 @@ public class TownManager
 	{
 		if (_instance == null)
 		{
-			LOGGER.info("Initializing TownManager");
+			if (Config.DEVELOPER)
+				LOGGER.info("Initializing TownManager.");
+			
 			_instance = new TownManager();
 		}
 		return _instance;

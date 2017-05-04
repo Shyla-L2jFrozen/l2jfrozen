@@ -21,6 +21,7 @@ package com.l2jfrozen.gameserver.managers;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.zone.type.L2ArenaZone;
 
@@ -36,7 +37,9 @@ public class ArenaManager
 	{
 		if (_instance == null)
 		{
-			LOGGER.info("Initializing ArenaManager");
+			if (Config.DEVELOPER)
+				LOGGER.info("Initializing ArenaManager");
+			
 			_instance = new ArenaManager();
 		}
 		return _instance;

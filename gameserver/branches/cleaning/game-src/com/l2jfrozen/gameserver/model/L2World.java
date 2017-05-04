@@ -994,7 +994,8 @@ public final class L2World
 	 */
 	private void initRegions()
 	{
-		LOGGER.info("L2World: Setting up World Regions");
+		if (Config.DEVELOPER)
+			LOGGER.info("L2World: Setting up World Regions");
 		
 		_worldRegions = new L2WorldRegion[REGIONS_X + 1][REGIONS_Y + 1];
 		

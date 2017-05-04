@@ -214,13 +214,10 @@ public class GameServer
 		
 		Util.printSection("Database");
 		L2DatabaseFactory.getInstance();
-		
-		Util.printSection("Threads");
 		ThreadPoolManager.getInstance();
+		
 		if (Config.DEADLOCKCHECK_INTIAL_TIME > 0)
-		{
 			ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(DeadlockDetector.getInstance(), Config.DEADLOCKCHECK_INTIAL_TIME, Config.DEADLOCKCHECK_DELAY_TIME);
-		}
 		
 		Util.printSection("World");
 		L2World.getInstance();
@@ -386,6 +383,7 @@ public class GameServer
 		{
 			ItemsAutoDestroy.getInstance();
 		}
+		BoatManager.getInstance();
 		
 		Util.printSection("Manor");
 		L2Manor.getInstance();
@@ -397,9 +395,6 @@ public class GameServer
 		FortManager.getInstance();
 		FortSiegeManager.getInstance();
 		CrownManager.getInstance();
-		
-		Util.printSection("Boat");
-		BoatManager.getInstance();
 		
 		Util.printSection("Doors");
 		DoorTable.getInstance().parseData();
@@ -589,6 +584,9 @@ public class GameServer
 		
 		if (NetcoreConfig.getInstance().ENABLE_CLIENT_FLOOD_PROTECTION)
 			LOGGER.info("Client flood protection actived.");
+		
+		if (Config.BOT_PROTECTOR)
+			Config.loadQuestion();
 		
 		Util.printSection("Info");
 		LOGGER.info("Operating System: " + Util.getOSName() + " " + Util.getOSVersion() + " " + Util.getOSArch());

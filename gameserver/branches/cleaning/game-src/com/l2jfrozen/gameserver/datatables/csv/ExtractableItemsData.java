@@ -146,7 +146,7 @@ public class ExtractableItemsData
 				_items.put(itemID, new L2ExtractableItem(itemID, product_temp));
 			}
 			
-			LOGGER.info("Extractable items data: Loaded " + _items.size() + " extractable items!");
+			LOGGER.info("Extractable items data: Loaded " + _items.size() + " extractable items.");
 		}
 		catch (final Exception e)
 		{
