@@ -35,7 +35,7 @@ public class GMAudit
 	
 	private static final Logger LOGGER = Logger.getLogger(Log.class);
 	
-	public static void auditGMAction(final String gmName, final String action, final String target, final String params)
+	public static void auditGMAction(final String gmName, final String ip, final String action, final String target, final String params)
 	{
 		final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy H:mm:ss");
 		final String today = formatter.format(new Date());
@@ -46,9 +46,7 @@ public class GMAudit
 			final File file = new File("log/GMAudit/" + gmName + ".txt");
 			save = new FileWriter(file, true);
 			
-			final String out = "[" + today + "] --> GM: " + gmName + ", Target: [" + target + "], Action: [" + action + "], Params: [" + params + "] \r\n";
-			
-			// String out = (today + ">" + gmName + ">" + action + ">" + target + ">" + params + "\r\n");
+			final String out = "[" + today + "] --> GM: " + gmName + ", IP: [" + ip + "], Target: [" + target + "], Action: [" + action + "], Params: [" + params + "] \r\n";
 			save.write(out);
 		}
 		catch (final IOException e)
@@ -69,8 +67,8 @@ public class GMAudit
 		}
 	}
 	
-	public static void auditGMAction(final String gmName, final String action, final String target)
+	public static void auditGMAction(final String gmName, final String ip, final String action, final String target)
 	{
-		auditGMAction(gmName, action, target, "");
+		auditGMAction(gmName, ip, action, target, "");
 	}
 }

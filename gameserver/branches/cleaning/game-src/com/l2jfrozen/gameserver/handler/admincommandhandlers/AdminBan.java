@@ -287,7 +287,7 @@ public class AdminBan implements IAdminCommandHandler
 		
 		final String[] command = fullCommand.split(" ");
 		
-		GMAudit.auditGMAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", command[0], (target.equals("") ? "no-target" : target), (command.length > 2 ? command[2] : ""));
+		GMAudit.auditGMAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", activeChar.getClient().getConnection().getInetAddress().getHostAddress(), command[0], (target.equals("") ? "no-target" : target), (command.length > 2 ? command[2] : ""));
 	}
 	
 	private void banChatOfflinePlayer(final L2PcInstance activeChar, final String name, final int delay, final boolean ban)
