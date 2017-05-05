@@ -427,6 +427,9 @@ public class RaidBossSpawnManager
 	{
 		for (final Integer bossId : _storedInfo.keySet())
 		{
+			if (bossId == null)
+				continue;
+			
 			Connection con = null;
 			
 			try

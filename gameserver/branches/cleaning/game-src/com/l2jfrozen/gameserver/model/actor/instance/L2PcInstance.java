@@ -6427,8 +6427,8 @@ public final class L2PcInstance extends L2PlayableInstance
 			}
 			// Send the Server->Client packet PartySmallWindowUpdate with current HP, MP and Level to all other L2PcInstance of the Party
 			PartySmallWindowUpdate update = new PartySmallWindowUpdate(this);
-			getParty().broadcastToPartyMembers(this, update);
-			update = null;
+			if (getParty() != null)
+				getParty().broadcastToPartyMembers(this, update);
 		}
 		
 		if (isInOlympiadMode())

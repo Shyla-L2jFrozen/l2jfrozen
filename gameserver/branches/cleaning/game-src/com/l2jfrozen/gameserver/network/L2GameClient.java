@@ -623,7 +623,6 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 		try
 		{
 			ThreadPoolManager.getInstance().executeTask(new DisconnectTask());
-			
 		}
 		catch (final RejectedExecutionException e)
 		{

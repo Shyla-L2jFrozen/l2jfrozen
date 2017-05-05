@@ -544,7 +544,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		}
 	}
 	
-	protected final void writePacket(final SelectionKey key, final MMOConnection<T> con)
+	private final void writePacket(final SelectionKey key, final MMOConnection<T> con)
 	{
 		if (!prepareWriteBuffer(con))
 		{
@@ -656,6 +656,14 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 	
 	private final void putPacketIntoWriteBuffer(final T client, final SendablePacket<T> sp)
 	{
+		// FIXME: find why some times is null
+		if (client == null)
+		{
+			LOGGER.warn("## CLIENT NULL ##");
+			Thread.dumpStack();
+			return;
+		}
+		
 		WRITE_BUFFER.clear();
 		
 		// reserve space for the size
@@ -696,13 +704,16 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 	{
 		try
 		{
-			
-			/*
-			 * TODO this code must be contains on game module if(con.getClient() instanceof L2GameClient){ if(!((L2GameClient)con.getClient()).is_forcedToClose()){ con.getClient().onDisconnection(); } }else{
-			 */
-			con.getClient().onDisconnection();
-			// }
-			
+			// FIXME: find why sometimes is null
+			if (con.getClient() != null)
+			{
+				con.getClient().onDisconnection();
+			}
+			else
+			{
+				LOGGER.warn("## CLIENT NULL2 ##");
+				Thread.dumpStack();
+			}
 		}
 		catch (final Exception e)
 		{
@@ -734,7 +745,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		}
 	}
 	
-	public final void shutdown()
+	private final void shutdown()
 	{
 		_shutdown = true;
 	}
@@ -744,7 +755,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		return _shutdown;
 	}
 	
-	protected void closeSelectorThread()
+	private void closeSelectorThread()
 	{
 		for (final SelectionKey key : _selector.keys())
 		{
