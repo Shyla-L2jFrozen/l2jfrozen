@@ -277,6 +277,15 @@ public class EnterWorld extends L2GameClientPacket
 		SevenSigns.getInstance().sendCurrentPeriodMsg(activeChar);
 		Announcements.getInstance().showAnnouncements(activeChar);
 		
+		loadTutorial(activeChar);
+		
+		// Check for crowns
+		CrownManager.getInstance().checkCrowns(activeChar);
+		
+		// Check player skills
+		if (Config.CHECK_SKILLS_ON_ENTER && !Config.ALT_GAME_SKILL_LEARN)
+			activeChar.checkAllowedSkills();
+		
 		// BETA SERVER
 		if (Config.BETASERVER)
 		{
@@ -290,15 +299,6 @@ public class EnterWorld extends L2GameClientPacket
 					cha.sendMessage("Tester " + activeChar + " logged into the server.");
 			}
 		}
-		
-		loadTutorial(activeChar);
-		
-		// Check for crowns
-		CrownManager.getInstance().checkCrowns(activeChar);
-		
-		// Check player skills
-		if (Config.CHECK_SKILLS_ON_ENTER && !Config.ALT_GAME_SKILL_LEARN)
-			activeChar.checkAllowedSkills();
 		
 		PetitionManager.getInstance().checkPetitionMessages(activeChar);
 		
