@@ -35,7 +35,7 @@ import com.l2jfrozen.gameserver.skills.l2skills.L2SkillSignetCasttime;
 /**
  * @author L2jFrozen
  */
-public final class EffectSignet extends L2Effect
+public class EffectSignet extends L2Effect
 {
 	private L2Skill _skill;
 	private L2EffectPointInstance _actor;

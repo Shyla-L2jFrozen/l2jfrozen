@@ -46,7 +46,7 @@ import javolution.util.FastList;
 /**
  * @author Shyla
  */
-public final class EffectSignetMDam extends L2Effect
+public class EffectSignetMDam extends L2Effect
 {
 	private L2EffectPointInstance _actor;
 	private boolean bss;

@@ -25,7 +25,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 /**
  * @author kombat
  */
-public final class EffectBattleForce extends EffectForce
+public class EffectBattleForce extends EffectForce
 {
 	public EffectBattleForce(final Env env, final EffectTemplate template)
 	{

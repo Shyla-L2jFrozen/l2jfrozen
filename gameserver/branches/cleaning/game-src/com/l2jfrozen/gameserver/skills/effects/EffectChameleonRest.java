@@ -30,7 +30,7 @@ import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.skills.Env;
 
-public final class EffectChameleonRest extends L2Effect
+public class EffectChameleonRest extends L2Effect
 {
 	public EffectChameleonRest(final Env env, final EffectTemplate template)
 	{

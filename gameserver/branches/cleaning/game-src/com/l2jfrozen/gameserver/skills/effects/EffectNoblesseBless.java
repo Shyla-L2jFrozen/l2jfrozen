@@ -28,7 +28,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 /**
  * @author earendil
  */
-final class EffectNoblesseBless extends L2Effect
+class EffectNoblesseBless extends L2Effect
 {
 	
 	public EffectNoblesseBless(final Env env, final EffectTemplate template)

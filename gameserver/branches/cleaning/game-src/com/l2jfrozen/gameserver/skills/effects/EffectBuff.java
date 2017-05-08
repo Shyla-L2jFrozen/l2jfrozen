@@ -27,7 +27,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 /**
  * @author ProGramMoS, L2JFrozen
  */
-final class EffectBuff extends L2Effect
+class EffectBuff extends L2Effect
 {
 	
 	public EffectBuff(final Env envbuff, final EffectTemplate template)

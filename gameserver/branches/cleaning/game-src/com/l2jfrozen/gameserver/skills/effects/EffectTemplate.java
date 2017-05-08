@@ -36,7 +36,7 @@ import com.l2jfrozen.gameserver.skills.funcs.Lambda;
 /**
  * @author mkizub
  */
-public final class EffectTemplate
+public class EffectTemplate
 {
 	static Logger LOGGER = Logger.getLogger(EffectTemplate.class);
 	

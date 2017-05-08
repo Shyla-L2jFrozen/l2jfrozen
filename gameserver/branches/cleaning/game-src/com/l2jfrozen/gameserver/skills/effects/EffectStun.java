@@ -27,7 +27,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 /**
  * @author mkizub
  */
-final class EffectStun extends L2Effect
+class EffectStun extends L2Effect
 {
 	
 	public EffectStun(final Env env, final EffectTemplate template)

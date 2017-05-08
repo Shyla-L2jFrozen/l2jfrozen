@@ -30,7 +30,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 import com.l2jfrozen.gameserver.skills.Stats;
 import com.l2jfrozen.util.random.Rnd;
 
-final class EffectCancel extends L2Effect
+class EffectCancel extends L2Effect
 {
 	public EffectCancel(final Env env, final EffectTemplate template)
 	{
