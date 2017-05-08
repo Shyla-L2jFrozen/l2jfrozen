@@ -25,7 +25,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 /**
  * @author kombat
  */
-final class EffectBestowSkill extends L2Effect
+class EffectBestowSkill extends L2Effect
 {
 	public EffectBestowSkill(final Env env, final EffectTemplate template)
 	{

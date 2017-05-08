@@ -20,7 +20,7 @@ package com.l2jfrozen.util.crypt;
 
 import java.io.IOException;
 
-import com.l2jfrozen.netcore.util.Rnd;
+import com.l2jfrozen.util.random.Rnd;
 
 /**
  * @author KenM

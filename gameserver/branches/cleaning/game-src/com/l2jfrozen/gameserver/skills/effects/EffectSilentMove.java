@@ -29,7 +29,7 @@ import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.skills.Env;
 
-final class EffectSilentMove extends L2Effect
+class EffectSilentMove extends L2Effect
 {
 	public EffectSilentMove(final Env env, final EffectTemplate template)
 	{

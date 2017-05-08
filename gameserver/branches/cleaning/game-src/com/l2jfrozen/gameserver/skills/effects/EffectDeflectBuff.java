@@ -30,7 +30,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 /**
  * @author Java
  */
-public final class EffectDeflectBuff extends L2Effect
+public class EffectDeflectBuff extends L2Effect
 {
 	/**
 	 * @param env

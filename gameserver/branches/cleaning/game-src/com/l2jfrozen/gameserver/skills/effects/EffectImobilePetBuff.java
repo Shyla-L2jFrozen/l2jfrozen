@@ -29,7 +29,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 /**
  * @author demonia
  */
-final class EffectImobilePetBuff extends L2Effect
+class EffectImobilePetBuff extends L2Effect
 {
 	private L2Summon _pet;
 	

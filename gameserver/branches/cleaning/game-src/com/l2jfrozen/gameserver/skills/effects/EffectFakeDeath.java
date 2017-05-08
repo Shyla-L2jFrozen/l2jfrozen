@@ -29,7 +29,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 /**
  * @author mkizub
  */
-final class EffectFakeDeath extends L2Effect
+class EffectFakeDeath extends L2Effect
 {
 	
 	public EffectFakeDeath(final Env env, final EffectTemplate template)

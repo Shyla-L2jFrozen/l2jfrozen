@@ -24,7 +24,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 /**
  * @author Kerberos
  */
-public final class EffectFusion extends L2Effect
+public class EffectFusion extends L2Effect
 {
 	public int _effect;
 	public int _maxEffect;
