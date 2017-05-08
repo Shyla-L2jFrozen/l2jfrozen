@@ -30,7 +30,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 /**
  * @author decad
  */
-final class EffectBetray extends L2Effect
+class EffectBetray extends L2Effect
 {
 	public EffectBetray(final Env env, final EffectTemplate template)
 	{

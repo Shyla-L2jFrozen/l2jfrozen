@@ -24,7 +24,7 @@ import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.skills.Env;
 
-public final class EffectSeed extends L2Effect
+public class EffectSeed extends L2Effect
 {
 	
 	private int _power = 1;

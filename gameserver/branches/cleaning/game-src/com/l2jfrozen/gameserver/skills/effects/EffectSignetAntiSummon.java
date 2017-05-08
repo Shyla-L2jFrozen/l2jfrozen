@@ -30,7 +30,7 @@ import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.skills.Env;
 
-public final class EffectSignetAntiSummon extends L2Effect
+public class EffectSignetAntiSummon extends L2Effect
 {
 	private L2EffectPointInstance _actor;
 	

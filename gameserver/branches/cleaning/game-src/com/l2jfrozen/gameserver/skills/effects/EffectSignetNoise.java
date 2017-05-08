@@ -25,7 +25,7 @@ import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.actor.instance.L2EffectPointInstance;
 import com.l2jfrozen.gameserver.skills.Env;
 
-public final class EffectSignetNoise extends L2Effect
+public class EffectSignetNoise extends L2Effect
 {
 	private L2EffectPointInstance _actor;
 	

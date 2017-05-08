@@ -11,7 +11,7 @@ import com.l2jfrozen.util.random.Rnd;
  * @Authors: Souverain and OnePaTuBHuK
  */
 
-final class EffectHeroCancel extends L2Effect
+class EffectHeroCancel extends L2Effect
 {
 	public EffectHeroCancel(final Env env, final EffectTemplate template)
 	{

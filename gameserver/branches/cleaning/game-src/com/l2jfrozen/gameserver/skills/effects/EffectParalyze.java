@@ -25,7 +25,7 @@ import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.skills.Env;
 
-final class EffectParalyze extends L2Effect
+class EffectParalyze extends L2Effect
 {
 	
 	public EffectParalyze(final Env env, final EffectTemplate template)

@@ -27,7 +27,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 /**
  * @author mkizub
  */
-final class EffectRoot extends L2Effect
+class EffectRoot extends L2Effect
 {
 	
 	public EffectRoot(final Env env, final EffectTemplate template)

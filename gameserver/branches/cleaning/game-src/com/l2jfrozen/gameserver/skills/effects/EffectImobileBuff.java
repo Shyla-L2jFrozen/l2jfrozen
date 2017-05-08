@@ -30,7 +30,7 @@ import com.l2jfrozen.gameserver.skills.Env;
 /**
  * @author mkizub
  */
-final class EffectImobileBuff extends L2Effect
+class EffectImobileBuff extends L2Effect
 {
 	public static final Logger LOGGER = Logger.getLogger(L2Character.class);
 	
