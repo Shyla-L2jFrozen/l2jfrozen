@@ -17,40 +17,41 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.gameserver.taskmanager;
+package com.l2jfrozen.util.monitoring.task;
 
-import java.util.concurrent.ScheduledFuture;
-
-import org.apache.log4j.Logger;
-
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager.ExecutedTask;
+import com.l2jfrozen.util.Util;
+import com.l2jfrozen.util.monitoring.StatusManager;
+import com.l2jfrozen.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.util.taskmanager.Task;
+import com.l2jfrozen.util.taskmanager.TaskManager;
+import com.l2jfrozen.util.taskmanager.TaskTypes;
 
 /**
- * @author Layane
+ * @author Shyla
  */
-public abstract class Task
+public class TaskPrintServerStatus extends Task
 {
-	private static Logger LOGGER = Logger.getLogger(Task.class);
+	private final String NAME = "printServerStatus";
 	
+	@Override
+	public String getName()
+	{
+		return NAME;
+	}
+	
+	@Override
+	public void onTimeElapsed(final ExecutedTask task)
+	{
+		Util.printSection("Server Status");
+		
+		StatusManager.getInstance().logCurrentMonitoredStatuses();
+		
+	}
+	
+	@Override
 	public void initializate()
 	{
-		if (CommonConfig.DEBUG)
-		{
-			LOGGER.info("Task" + getName() + " inializate");
-		}
-	}
-	
-	public ScheduledFuture<?> launchSpecial(final ExecutedTask instance)
-	{
-		return null;
-	}
-	
-	public abstract String getName();
-	
-	public abstract void onTimeElapsed(ExecutedTask task);
-	
-	public void onDestroy()
-	{
+		super.initializate();
+		TaskManager.addUniqueTaskOnDB(NAME, TaskTypes.TYPE_FIXED_SHEDULED, "0", "3600000", "");
 	}
 }

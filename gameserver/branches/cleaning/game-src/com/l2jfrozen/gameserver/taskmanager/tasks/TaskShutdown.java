@@ -22,16 +22,16 @@ package com.l2jfrozen.gameserver.taskmanager.tasks;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.gameserver.Shutdown;
-import com.l2jfrozen.gameserver.taskmanager.Task;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager.ExecutedTask;
+import com.l2jfrozen.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.util.taskmanager.Task;
 
 /**
  * @author Layane
  */
 public class TaskShutdown extends Task
 {
-	private static final Logger LOGGER = Logger.getLogger(TaskShutdown.class);
-	public static final String NAME = "shutdown";
+	private final Logger LOGGER = Logger.getLogger(TaskShutdown.class);
+	private final String NAME = "shutdown";
 	
 	/*
 	 * (non-Javadoc)

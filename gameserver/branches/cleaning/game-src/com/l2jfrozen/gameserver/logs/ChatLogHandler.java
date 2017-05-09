@@ -18,17 +18,14 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.logs;
+package com.l2jfrozen.gameserver.logs;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
 
-/**
- * @author ProGramMoS
- */
-public class ItemLogHandler extends FileHandler
+public class ChatLogHandler extends FileHandler
 {
-	public ItemLogHandler() throws IOException, SecurityException
+	public ChatLogHandler() throws IOException, SecurityException
 	{
 		super();
 	}

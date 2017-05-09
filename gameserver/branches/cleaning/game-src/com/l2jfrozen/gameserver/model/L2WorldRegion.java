@@ -37,8 +37,8 @@ import com.l2jfrozen.gameserver.model.spawn.L2Spawn;
 import com.l2jfrozen.gameserver.model.zone.L2ZoneManager;
 import com.l2jfrozen.gameserver.model.zone.L2ZoneType;
 import com.l2jfrozen.gameserver.model.zone.type.L2PeaceZone;
+import com.l2jfrozen.gameserver.util.object.L2ObjectSet;
 import com.l2jfrozen.thread.ThreadPoolManager;
-import com.l2jfrozen.util.object.L2ObjectSet;
 
 import javolution.util.FastList;
 

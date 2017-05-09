@@ -24,10 +24,10 @@ import org.apache.log4j.Logger;
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.gameserver.model.entity.sevensigns.SevenSigns;
 import com.l2jfrozen.gameserver.model.entity.sevensigns.SevenSignsFestival;
-import com.l2jfrozen.gameserver.taskmanager.Task;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager.ExecutedTask;
-import com.l2jfrozen.gameserver.taskmanager.TaskTypes;
+import com.l2jfrozen.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.util.taskmanager.Task;
+import com.l2jfrozen.util.taskmanager.TaskManager;
+import com.l2jfrozen.util.taskmanager.TaskTypes;
 
 /**
  * Updates all data for the Seven Signs and Festival of Darkness engines, when time is elapsed.
@@ -35,8 +35,8 @@ import com.l2jfrozen.gameserver.taskmanager.TaskTypes;
  */
 public class TaskSevenSignsUpdate extends Task
 {
-	private static final Logger LOGGER = Logger.getLogger(TaskSevenSignsUpdate.class);
-	public static final String NAME = "sevensignsupdate";
+	private final Logger LOGGER = Logger.getLogger(TaskSevenSignsUpdate.class);
+	private final String NAME = "sevensignsupdate";
 	
 	@Override
 	public String getName()
@@ -69,6 +69,6 @@ public class TaskSevenSignsUpdate extends Task
 	public void initializate()
 	{
 		super.initializate();
-		TaskManager.addUniqueTask(NAME, TaskTypes.TYPE_FIXED_SHEDULED, "1800000", "1800000", "");
+		TaskManager.addUniqueTaskOnDB(NAME, TaskTypes.TYPE_FIXED_SHEDULED, "1800000", "1800000", "");
 	}
 }

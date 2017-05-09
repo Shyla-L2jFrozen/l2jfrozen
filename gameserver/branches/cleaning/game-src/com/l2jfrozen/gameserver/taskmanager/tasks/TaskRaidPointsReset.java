@@ -31,15 +31,15 @@ import com.l2jfrozen.gameserver.model.L2Clan;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.gameserver.taskmanager.Task;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager.ExecutedTask;
-import com.l2jfrozen.gameserver.taskmanager.TaskTypes;
+import com.l2jfrozen.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.util.taskmanager.Task;
+import com.l2jfrozen.util.taskmanager.TaskManager;
+import com.l2jfrozen.util.taskmanager.TaskTypes;
 
 public class TaskRaidPointsReset extends Task
 {
-	private static final Logger LOGGER = Logger.getLogger(TaskRaidPointsReset.class);
-	public static final String NAME = "raid_points_reset";
+	private final Logger LOGGER = Logger.getLogger(TaskRaidPointsReset.class);
+	private final String NAME = "raid_points_reset";
 	
 	@Override
 	public String getName()
@@ -120,6 +120,6 @@ public class TaskRaidPointsReset extends Task
 	public void initializate()
 	{
 		super.initializate();
-		TaskManager.addUniqueTask(NAME, TaskTypes.TYPE_GLOBAL_TASK, "1", "00:10:00", "");
+		TaskManager.addUniqueTaskOnDB(NAME, TaskTypes.TYPE_GLOBAL_TASK, "1", "00:10:00", "");
 	}
 }
