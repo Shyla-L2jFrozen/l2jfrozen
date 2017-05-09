@@ -138,9 +138,17 @@ import com.l2jfrozen.gameserver.script.EventDroplist;
 import com.l2jfrozen.gameserver.script.faenor.FaenorScriptEngine;
 import com.l2jfrozen.gameserver.scripting.CompiledScriptCache;
 import com.l2jfrozen.gameserver.scripting.L2ScriptEngineManager;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager;
+import com.l2jfrozen.gameserver.taskmanager.tasks.TaskCleanUp;
+import com.l2jfrozen.gameserver.taskmanager.tasks.TaskOlympiadSave;
+import com.l2jfrozen.gameserver.taskmanager.tasks.TaskRaidPointsReset;
+import com.l2jfrozen.gameserver.taskmanager.tasks.TaskRecom;
+import com.l2jfrozen.gameserver.taskmanager.tasks.TaskRestart;
+import com.l2jfrozen.gameserver.taskmanager.tasks.TaskSevenSignsUpdate;
+import com.l2jfrozen.gameserver.taskmanager.tasks.TaskShutdown;
 import com.l2jfrozen.gameserver.thread.daemons.ItemsAutoDestroy;
 import com.l2jfrozen.gameserver.thread.daemons.PcPoint;
+import com.l2jfrozen.gameserver.util.GameServerFloodProtectorActions;
+import com.l2jfrozen.gameserver.util.monitoring.ServerStatus;
 import com.l2jfrozen.gameserver.util.sql.SQLQueue;
 import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.SelectorConfig;
@@ -149,10 +157,12 @@ import com.l2jfrozen.netcore.util.IPv4Filter;
 import com.l2jfrozen.netcore.util.PacketsFloodProtector;
 import com.l2jfrozen.thread.DeadlockDetector;
 import com.l2jfrozen.thread.ThreadPoolManager;
-import com.l2jfrozen.util.GameServerFloodProtectorActions;
-import com.l2jfrozen.util.Memory;
 import com.l2jfrozen.util.Util;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
+import com.l2jfrozen.util.monitoring.StatusManager;
+import com.l2jfrozen.util.monitoring.data.RuntimeStatus;
+import com.l2jfrozen.util.monitoring.task.TaskPrintServerStatus;
+import com.l2jfrozen.util.taskmanager.TaskManager;
 
 public class GameServer
 {
@@ -368,7 +378,22 @@ public class GameServer
 		MercTicketManager.getInstance();
 		PetitionManager.getInstance();
 		CursedWeaponsManager.getInstance();
-		TaskManager.getInstance();
+		
+		//Register Gamseserver Monitored Statuses
+		StatusManager.getInstance().registerMonitoredStatus(new ServerStatus());
+		
+		//Register all Gameserver Tasks on TaskManager and startThem
+		TaskManager.getInstance().registerTask(new TaskCleanUp());
+		// TaskManager.getInstance().registerTask(new TaskJython());
+		TaskManager.getInstance().registerTask(new TaskOlympiadSave());
+		TaskManager.getInstance().registerTask(new TaskRaidPointsReset());
+		TaskManager.getInstance().registerTask(new TaskRecom());
+		TaskManager.getInstance().registerTask(new TaskRestart());
+		TaskManager.getInstance().registerTask(new TaskSevenSignsUpdate());
+		TaskManager.getInstance().registerTask(new TaskShutdown());
+		
+		TaskManager.getInstance().startRegisteredTasksPresentOnDB();
+		
 		L2PetDataTable.getInstance().loadPetsData();
 		SQLQueue.getInstance();
 		if (Config.ACCEPT_GEOEDITOR_CONN)
@@ -589,30 +614,29 @@ public class GameServer
 			Config.loadQuestion();
 		
 		Util.printSection("Info");
-		LOGGER.info("Operating System: " + Util.getOSName() + " " + Util.getOSVersion() + " " + Util.getOSArch());
-		LOGGER.info("Available CPUs: " + Util.getAvailableProcessors());
 		LOGGER.info("Maximum Numbers of Connected Players: " + Config.MAXIMUM_ONLINE_USERS);
-		LOGGER.info("GameServer Started, free memory " + Memory.getFreeMemory() + " Mb of " + Memory.getTotalMemory() + " Mb");
-		LOGGER.info("Used memory: " + Memory.getUsedMemory() + " MB");
-		
-		Util.printSection("Java specific");
-		LOGGER.info("JRE name: " + System.getProperty("java.vendor"));
-		LOGGER.info("JRE specification version: " + System.getProperty("java.specification.version"));
-		LOGGER.info("JRE version: " + System.getProperty("java.version"));
-		LOGGER.info("--- Detecting Java Virtual Machine (JVM)");
-		LOGGER.info("JVM installation directory: " + System.getProperty("java.home"));
-		LOGGER.info("JVM Avaible Memory(RAM): " + Runtime.getRuntime().maxMemory() / 1048576 + " MB");
-		LOGGER.info("JVM specification version: " + System.getProperty("java.vm.specification.version"));
-		LOGGER.info("JVM specification vendor: " + System.getProperty("java.vm.specification.vendor"));
-		LOGGER.info("JVM specification name: " + System.getProperty("java.vm.specification.name"));
-		LOGGER.info("JVM implementation version: " + System.getProperty("java.vm.version"));
-		LOGGER.info("JVM implementation vendor: " + System.getProperty("java.vm.vendor"));
-		LOGGER.info("JVM implementation name: " + System.getProperty("java.vm.name"));
-		
-		Util.printSection("Status");
+//		LOGGER.info("Operating System: " + ServerStatusManager.getOSName() + " " + ServerStatusManager.getOSVersion() + " " + ServerStatusManager.getOSArch());
+//		LOGGER.info("Available CPUs: " + ServerStatusManager.getAvailableProcessors());
+//		LOGGER.info("GameServer Started, free memory " + ServerStatusManager.getFreeMemory() + " Mb of " + ServerStatusManager.getTotalMemory() + " Mb");
+//		LOGGER.info("Used memory: " + ServerStatusManager.getUsedMemory() + " MB");
+//		
+//		Util.printSection("Java specific");
+//		LOGGER.info("JRE name: " + System.getProperty("java.vendor"));
+//		LOGGER.info("JRE specification version: " + System.getProperty("java.specification.version"));
+//		LOGGER.info("JRE version: " + System.getProperty("java.version"));
+//		LOGGER.info("--- Detecting Java Virtual Machine (JVM)");
+//		LOGGER.info("JVM installation directory: " + System.getProperty("java.home"));
+//		LOGGER.info("JVM Avaible Memory(RAM): " + Runtime.getRuntime().maxMemory() / 1048576 + " MB");
+//		LOGGER.info("JVM specification version: " + System.getProperty("java.vm.specification.version"));
+//		LOGGER.info("JVM specification vendor: " + System.getProperty("java.vm.specification.vendor"));
+//		LOGGER.info("JVM specification name: " + System.getProperty("java.vm.specification.name"));
+//		LOGGER.info("JVM implementation version: " + System.getProperty("java.vm.version"));
+//		LOGGER.info("JVM implementation vendor: " + System.getProperty("java.vm.vendor"));
+//		LOGGER.info("JVM implementation name: " + System.getProperty("java.vm.name"));
+//		
+//		Util.printSection("Status");
 		System.gc();
 		LOGGER.info("Server Loaded in " + (System.currentTimeMillis() - serverLoadStart) / 1000 + " seconds");
-		ServerStatus.getInstance();
 		
 		Util.printSection("Login");
 		_loginThread = LoginServerThread.getInstance();

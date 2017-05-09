@@ -17,7 +17,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.gameserver.taskmanager;
+package com.l2jfrozen.util.taskmanager;
 
 import java.util.concurrent.Future;
 

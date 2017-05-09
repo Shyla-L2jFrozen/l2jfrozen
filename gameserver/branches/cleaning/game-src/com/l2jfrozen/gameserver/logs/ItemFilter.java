@@ -18,7 +18,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.logs;
+package com.l2jfrozen.gameserver.logs;
 
 import java.util.logging.Filter;
 import java.util.logging.LogRecord;

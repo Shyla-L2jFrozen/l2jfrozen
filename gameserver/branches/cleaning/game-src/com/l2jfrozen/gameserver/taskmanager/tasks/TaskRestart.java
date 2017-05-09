@@ -22,16 +22,16 @@ package com.l2jfrozen.gameserver.taskmanager.tasks;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.gameserver.Shutdown;
-import com.l2jfrozen.gameserver.taskmanager.Task;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager.ExecutedTask;
+import com.l2jfrozen.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.util.taskmanager.Task;
 
 /**
  * @author Layane
  */
 public final class TaskRestart extends Task
 {
-	private static final Logger LOGGER = Logger.getLogger(TaskRestart.class);
-	public static final String NAME = "restart";
+	private final Logger LOGGER = Logger.getLogger(TaskRestart.class);
+	private final String NAME = "restart";
 	
 	/*
 	 * (non-Javadoc)

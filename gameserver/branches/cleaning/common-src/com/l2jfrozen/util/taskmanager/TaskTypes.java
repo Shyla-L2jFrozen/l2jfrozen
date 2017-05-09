@@ -17,18 +17,18 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.logs;
-
-import java.io.IOException;
-import java.util.logging.FileHandler;
+package com.l2jfrozen.util.taskmanager;
 
 /**
- * @author ProGramMoS, Lets drink to code!
+ * @author Layane
  */
-public class AuditLogHandler extends FileHandler
+public enum TaskTypes
 {
-	public AuditLogHandler() throws IOException, SecurityException
-	{
-		super();
-	}
+	TYPE_NONE,
+	TYPE_TIME,
+	TYPE_SHEDULED,
+	TYPE_FIXED_SHEDULED,
+	TYPE_GLOBAL_TASK,
+	TYPE_STARTUP,
+	TYPE_SPECIAL
 }

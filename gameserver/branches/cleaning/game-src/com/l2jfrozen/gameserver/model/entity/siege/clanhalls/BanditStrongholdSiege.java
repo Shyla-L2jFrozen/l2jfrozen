@@ -43,9 +43,9 @@ import com.l2jfrozen.gameserver.model.entity.ClanHall;
 import com.l2jfrozen.gameserver.model.entity.siege.ClanHallSiege;
 import com.l2jfrozen.gameserver.model.zone.type.L2ClanHallZone;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;
-import com.l2jfrozen.gameserver.taskmanager.ExclusiveTask;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
 import com.l2jfrozen.thread.ThreadPoolManager;
+import com.l2jfrozen.util.taskmanager.ExclusiveTask;
 
 import javolution.util.FastList;
 

@@ -18,16 +18,18 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.logs;
+package com.l2jfrozen.gameserver.logs;
 
-import java.util.logging.Filter;
-import java.util.logging.LogRecord;
+import java.io.IOException;
+import java.util.logging.FileHandler;
 
-public class ChatFilter implements Filter
+/**
+ * @author ProGramMoS
+ */
+public class ItemLogHandler extends FileHandler
 {
-	@Override
-	public boolean isLoggable(final LogRecord record)
+	public ItemLogHandler() throws IOException, SecurityException
 	{
-		return record.getLoggerName() == "chat";
+		super();
 	}
 }

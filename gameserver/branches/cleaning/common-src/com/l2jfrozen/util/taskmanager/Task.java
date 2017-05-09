@@ -17,19 +17,39 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.logs;
+package com.l2jfrozen.util.taskmanager;
 
-import java.util.logging.Filter;
-import java.util.logging.LogRecord;
+import java.util.concurrent.ScheduledFuture;
+
+import org.apache.log4j.Logger;
+
+import com.l2jfrozen.CommonConfig;
 
 /**
- * @author ProGramMoS, Lets drink to code!
+ * @author Layane
  */
-public class AuditFilter implements Filter
+public abstract class Task
 {
-	@Override
-	public boolean isLoggable(final LogRecord record)
+	private static Logger LOGGER = Logger.getLogger(Task.class);
+	
+	public void initializate()
 	{
-		return record.getLoggerName().equalsIgnoreCase("audit");
+		if (CommonConfig.DEBUG)
+		{
+			LOGGER.info("Task" + getName() + " inializate");
+		}
+	}
+	
+	public ScheduledFuture<?> launchSpecial(final ExecutedTask instance)
+	{
+		return null;
+	}
+	
+	public abstract String getName();
+	
+	public abstract void onTimeElapsed(ExecutedTask task);
+	
+	public void onDestroy()
+	{
 	}
 }

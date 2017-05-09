@@ -17,44 +17,19 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.logs;
+package com.l2jfrozen.gameserver.logs;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Formatter;
+import java.util.logging.Filter;
 import java.util.logging.LogRecord;
-
-import javolution.text.TextBuilder;
 
 /**
  * @author ProGramMoS, Lets drink to code!
  */
-public class AuditFormatter extends Formatter
+public class AuditFilter implements Filter
 {
-	private static final String CRLF = "\r\n";
-	private final SimpleDateFormat dateFmt = new SimpleDateFormat("dd MMM H:mm:ss");
-	
 	@Override
-	public String format(final LogRecord record)
+	public boolean isLoggable(final LogRecord record)
 	{
-		final TextBuilder output = new TextBuilder();
-		output.append('[');
-		output.append(dateFmt.format(new Date(record.getMillis())));
-		output.append(']');
-		output.append(' ');
-		output.append(record.getMessage());
-		for (final Object p : record.getParameters())
-		{
-			if (p == null)
-			{
-				continue;
-			}
-			output.append(',');
-			output.append(' ');
-			output.append(p.toString());
-		}
-		output.append(CRLF);
-		
-		return output.toString();
+		return record.getLoggerName().equalsIgnoreCase("audit");
 	}
 }

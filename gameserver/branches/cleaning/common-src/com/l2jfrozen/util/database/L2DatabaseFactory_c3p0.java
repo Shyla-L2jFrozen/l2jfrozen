@@ -23,7 +23,6 @@ import java.sql.SQLException;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
 import com.l2jfrozen.thread.ThreadPoolManager;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -90,7 +89,7 @@ public class L2DatabaseFactory_c3p0 extends L2DatabaseFactory
 			/* Test the connection */
 			_source.getConnection().close();
 			
-			if (Config.DEVELOPER)
+			if (CommonConfig.DEBUG)
 				LOGGER.info("Database connection working.");
 			
 			if (CommonConfig.DATABASE_DRIVER.toLowerCase().contains("microsoft"))

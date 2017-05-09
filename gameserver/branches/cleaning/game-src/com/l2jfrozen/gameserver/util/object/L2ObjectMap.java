@@ -18,7 +18,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.util.object;
+package com.l2jfrozen.gameserver.util.object;
 
 import java.util.Iterator;
 

@@ -64,7 +64,6 @@ import com.l2jfrozen.netcore.ReceivablePacket;
 import com.l2jfrozen.netcore.SessionKey;
 import com.l2jfrozen.thread.ThreadPoolManager;
 import com.l2jfrozen.util.CloseUtil;
-import com.l2jfrozen.util.OlympiadLogger;
 import com.l2jfrozen.util.database.DatabaseUtils;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 
@@ -738,17 +737,17 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 							if (player.isInOlympiadMode())
 							{
 								final String text = "Player " + player.getName() + ", Class:" + player.getClassId() + ", Level:" + player.getLevel() + ", Mode: Olympiad, Loc: " + player.getX() + " Y:" + player.getY() + " Z:" + player.getZ() + ", Critical?: " + _forcedToClose;
-								OlympiadLogger.add(text, "Olympiad_crash_debug");
+								Log.add(text, "Olympiad_crash_debug");
 							}
 							else if (player.inObserverMode())
 							{
 								final String text = "Player " + player.getName() + ", Class:" + player.getClassId() + ", Level:" + player.getLevel() + ", Mode: Observer, Loc: " + player.getX() + " Y:" + player.getY() + " Z:" + player.getZ() + ", Critical?: " + _forcedToClose;
-								OlympiadLogger.add(text, "Olympiad_crash_debug");
+								Log.add(text, "Olympiad_crash_debug");
 							}
 							else
 							{
 								final String text = "Player " + player.getName() + ", Class:" + player.getClassId() + ", Level:" + player.getLevel() + ", Mode: Default, Loc: " + player.getX() + " Y:" + player.getY() + " Z:" + player.getZ() + ", Critical?: " + _forcedToClose;
-								OlympiadLogger.add(text, "Olympiad_crash_debug");
+								Log.add(text, "Olympiad_crash_debug");
 							}
 						}
 					}

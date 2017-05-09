@@ -23,10 +23,10 @@ import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
-import com.l2jfrozen.gameserver.taskmanager.Task;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager.ExecutedTask;
-import com.l2jfrozen.gameserver.taskmanager.TaskTypes;
+import com.l2jfrozen.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.util.taskmanager.Task;
+import com.l2jfrozen.util.taskmanager.TaskManager;
+import com.l2jfrozen.util.taskmanager.TaskTypes;
 
 /**
  * Updates all data of Olympiad nobles in db
@@ -34,8 +34,8 @@ import com.l2jfrozen.gameserver.taskmanager.TaskTypes;
  */
 public class TaskOlympiadSave extends Task
 {
-	private static final Logger LOGGER = Logger.getLogger(TaskOlympiadSave.class);
-	public static final String NAME = "olympiadsave";
+	private final Logger LOGGER = Logger.getLogger(TaskOlympiadSave.class);
+	private final String NAME = "olympiadsave";
 	
 	@Override
 	public String getName()
@@ -67,7 +67,7 @@ public class TaskOlympiadSave extends Task
 	public void initializate()
 	{
 		super.initializate();
-		TaskManager.addUniqueTask(NAME, TaskTypes.TYPE_FIXED_SHEDULED, "900000", "1800000", "");
+		TaskManager.addUniqueTaskOnDB(NAME, TaskTypes.TYPE_FIXED_SHEDULED, "900000", "1800000", "");
 	}
 	
 }

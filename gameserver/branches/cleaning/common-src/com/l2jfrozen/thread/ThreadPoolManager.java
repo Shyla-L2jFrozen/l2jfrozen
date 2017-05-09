@@ -31,14 +31,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-//import javolution.util.FastList;
-//import javolution.util.FastMap;
-//import javolution.util.FastSet;
-
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
 import com.l2jfrozen.util.StringUtil;
 
 /**
@@ -136,7 +131,7 @@ public class ThreadPoolManager
 		
 		scheduleGeneralAtFixedRate(new PurgeTask(), 10 * 60 * 1000L, 5 * 60 * 1000L);
 		
-		if (Config.DEVELOPER)
+		if (CommonConfig.DEBUG)
 			LOGGER.info("ThreadPoolManager: loaded.");
 	}
 	
