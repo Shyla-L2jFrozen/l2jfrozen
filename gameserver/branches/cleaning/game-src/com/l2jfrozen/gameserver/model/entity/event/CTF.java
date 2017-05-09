@@ -742,10 +742,8 @@ public class CTF implements EventTask
 		}
 		catch (final Exception e)
 		{
-			if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
-				e.printStackTrace();
-			
 			LOGGER.error(_eventName + " Engine[spawnEventNpc(exception: " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
 	

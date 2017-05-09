@@ -1476,7 +1476,7 @@ public abstract class L2Skill
 						continue;
 					
 					// Like L2OFF you can cast the skill on peace zone but hasn't any effect
-					if (isOffensive() && L2Character.isInsidePeaceZone(target, activeChar))
+					if (isOffensive() && L2Character.isInsidePeaceZone(activeChar, obj))
 						continue;
 					
 					if (src != null && (obj instanceof L2Attackable || obj instanceof L2PlayableInstance))
