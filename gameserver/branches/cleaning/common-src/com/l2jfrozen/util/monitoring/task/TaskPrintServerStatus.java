@@ -31,7 +31,7 @@ import com.l2jfrozen.util.taskmanager.TaskTypes;
  */
 public class TaskPrintServerStatus extends Task
 {
-	private final String NAME = "printServerStatus";
+	private final String NAME = "printserverstatus";
 	
 	@Override
 	public String getName()
@@ -45,13 +45,12 @@ public class TaskPrintServerStatus extends Task
 		Util.printSection("Server Status");
 		
 		StatusManager.getInstance().logCurrentMonitoredStatuses();
-		
 	}
 	
 	@Override
 	public void initializate()
 	{
 		super.initializate();
-		TaskManager.addUniqueTaskOnDB(NAME, TaskTypes.TYPE_FIXED_SHEDULED, "0", "3600000", "");
+		TaskManager.addUniqueTaskOnDB(NAME, TaskTypes.TYPE_FIXED_SHEDULED, "3600000", "3600000", "");
 	}
 }
