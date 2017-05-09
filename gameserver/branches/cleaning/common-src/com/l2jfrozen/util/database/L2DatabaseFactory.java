@@ -25,7 +25,7 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.CommonConfig;
 
 public abstract class L2DatabaseFactory
 {
@@ -51,7 +51,7 @@ public abstract class L2DatabaseFactory
 	
 	public L2DatabaseFactory()
 	{
-		if (Config.DEVELOPER)
+		if (CommonConfig.DEBUG)
 			LOGGER.info("L2DatabaseFactory: loaded.");
 	}
 	

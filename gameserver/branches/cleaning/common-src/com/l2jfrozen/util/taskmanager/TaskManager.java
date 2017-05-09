@@ -17,15 +17,8 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.gameserver.taskmanager;
+package com.l2jfrozen.util.taskmanager;
 
-import static com.l2jfrozen.gameserver.taskmanager.TaskTypes.TYPE_FIXED_SHEDULED;
-import static com.l2jfrozen.gameserver.taskmanager.TaskTypes.TYPE_GLOBAL_TASK;
-import static com.l2jfrozen.gameserver.taskmanager.TaskTypes.TYPE_NONE;
-import static com.l2jfrozen.gameserver.taskmanager.TaskTypes.TYPE_SHEDULED;
-import static com.l2jfrozen.gameserver.taskmanager.TaskTypes.TYPE_SPECIAL;
-import static com.l2jfrozen.gameserver.taskmanager.TaskTypes.TYPE_STARTUP;
-import static com.l2jfrozen.gameserver.taskmanager.TaskTypes.TYPE_TIME;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,17 +32,12 @@ import java.util.concurrent.ScheduledFuture;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.gameserver.taskmanager.tasks.TaskCleanUp;
-import com.l2jfrozen.gameserver.taskmanager.tasks.TaskOlympiadSave;
-import com.l2jfrozen.gameserver.taskmanager.tasks.TaskRaidPointsReset;
-import com.l2jfrozen.gameserver.taskmanager.tasks.TaskRecom;
-import com.l2jfrozen.gameserver.taskmanager.tasks.TaskRestart;
-import com.l2jfrozen.gameserver.taskmanager.tasks.TaskSevenSignsUpdate;
-import com.l2jfrozen.gameserver.taskmanager.tasks.TaskShutdown;
+
 import com.l2jfrozen.thread.ThreadPoolManager;
 import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.database.DatabaseUtils;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
+import com.sun.org.omg.SendingContext._CodeBaseImplBase;
 
 import javolution.util.FastList;
 import javolution.util.FastMap;
@@ -59,10 +47,10 @@ import javolution.util.FastMap;
  */
 public final class TaskManager
 {
-	protected static final Logger LOGGER = Logger.getLogger(TaskManager.class);
+	private static final Logger LOGGER = Logger.getLogger(TaskManager.class);
 	private static TaskManager _instance;
 	
-	protected static final String[] SQL_STATEMENTS =
+	private static final String[] SQL_STATEMENTS =
 	{
 		"SELECT id,task,type,last_activation,param1,param2,param3 FROM global_tasks",
 		"UPDATE global_tasks SET last_activation=? WHERE id=?",
@@ -71,123 +59,7 @@ public final class TaskManager
 	};
 	
 	private final FastMap<Integer, Task> _tasks = new FastMap<>();
-	protected final FastList<ExecutedTask> _currentTasks = new FastList<>();
-	
-	public class ExecutedTask implements Runnable
-	{
-		int id;
-		long lastActivation;
-		
-		Task task;
-		TaskTypes type;
-		String[] params;
-		ScheduledFuture<?> scheduled;
-		
-		public ExecutedTask(final Task ptask, final TaskTypes ptype, final ResultSet rset) throws SQLException
-		{
-			task = ptask;
-			type = ptype;
-			id = rset.getInt("id");
-			lastActivation = rset.getLong("last_activation");
-			params = new String[]
-			{
-				rset.getString("param1"),
-				rset.getString("param2"),
-				rset.getString("param3")
-			};
-		}
-		
-		@Override
-		public void run()
-		{
-			task.onTimeElapsed(this);
-			lastActivation = System.currentTimeMillis();
-			
-			Connection con = null;
-			
-			try
-			{
-				con = L2DatabaseFactory.getInstance().getConnection(false);
-				PreparedStatement statement = con.prepareStatement(SQL_STATEMENTS[1]);
-				statement.setLong(1, lastActivation);
-				statement.setInt(2, id);
-				statement.executeUpdate();
-				DatabaseUtils.close(statement);
-				statement = null;
-			}
-			catch (final SQLException e)
-			{
-				if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
-					e.printStackTrace();
-				
-				LOGGER.warn("cannot updated the Global Task " + id + ": " + e.getMessage());
-			}
-			finally
-			{
-				CloseUtil.close(con);
-				con = null;
-			}
-			
-			if (type == TYPE_SHEDULED || type == TYPE_TIME)
-			{
-				stopTask();
-			}
-		}
-		
-		@Override
-		public boolean equals(final Object object)
-		{
-			if (object == null)
-			{
-				return false;
-			}
-			return id == ((ExecutedTask) object).id;
-		}
-		
-		@Override
-		public int hashCode()
-		{
-			return id;
-		}
-		
-		public Task getTask()
-		{
-			return task;
-		}
-		
-		public TaskTypes getType()
-		{
-			return type;
-		}
-		
-		public int getId()
-		{
-			return id;
-		}
-		
-		public String[] getParams()
-		{
-			return params;
-		}
-		
-		public long getLastActivation()
-		{
-			return lastActivation;
-		}
-		
-		public void stopTask()
-		{
-			task.onDestroy();
-			
-			if (scheduled != null)
-			{
-				scheduled.cancel(true);
-			}
-			
-			_currentTasks.remove(this);
-		}
-		
-	}
+	private final FastList<ExecutedTask> _currentTasks = new FastList<>();
 	
 	public static TaskManager getInstance()
 	{
@@ -198,10 +70,11 @@ public final class TaskManager
 	
 	private TaskManager()
 	{
-		initializate();
-		startAllTasks();
+		//initializate();
+		//startAllTasks();
 	}
 	
+	/*
 	private void initializate()
 	{
 		registerTask(new TaskCleanUp());
@@ -213,6 +86,7 @@ public final class TaskManager
 		registerTask(new TaskSevenSignsUpdate());
 		registerTask(new TaskShutdown());
 	}
+	*/
 	
 	public void registerTask(final Task task)
 	{
@@ -224,7 +98,7 @@ public final class TaskManager
 		}
 	}
 	
-	private void startAllTasks()
+	public void startRegisteredTasksPresentOnDB()
 	{
 		Connection con = null;
 		try
@@ -244,7 +118,7 @@ public final class TaskManager
 				
 				final TaskTypes type = TaskTypes.valueOf(rset.getString("type"));
 				
-				if (type != TYPE_NONE)
+				if (type != TaskTypes.TYPE_NONE)
 				{
 					final ExecutedTask current = new ExecutedTask(task, type, rset);
 					if (launchTask(current))
@@ -277,26 +151,26 @@ public final class TaskManager
 		final ThreadPoolManager scheduler = ThreadPoolManager.getInstance();
 		final TaskTypes type = task.getType();
 		
-		if (type == TYPE_STARTUP)
+		if (type == TaskTypes.TYPE_STARTUP)
 		{
 			task.run();
 			return false;
 		}
-		else if (type == TYPE_SHEDULED)
+		else if (type == TaskTypes.TYPE_SHEDULED)
 		{
 			final long delay = Long.valueOf(task.getParams()[0]);
-			task.scheduled = scheduler.scheduleGeneral(task, delay);
+			task.setScheduled(scheduler.scheduleGeneral(task, delay));
 			return true;
 		}
-		else if (type == TYPE_FIXED_SHEDULED)
+		else if (type == TaskTypes.TYPE_FIXED_SHEDULED)
 		{
 			final long delay = Long.valueOf(task.getParams()[0]);
 			final long interval = Long.valueOf(task.getParams()[1]);
 			
-			task.scheduled = scheduler.scheduleGeneralAtFixedRate(task, delay, interval);
+			task.setScheduled(scheduler.scheduleGeneralAtFixedRate(task, delay, interval));
 			return true;
 		}
-		else if (type == TYPE_TIME)
+		else if (type == TaskTypes.TYPE_TIME)
 		{
 			try
 			{
@@ -304,7 +178,7 @@ public final class TaskManager
 				final long diff = desired.getTime() - System.currentTimeMillis();
 				if (diff >= 0)
 				{
-					task.scheduled = scheduler.scheduleGeneral(task, diff);
+					task.setScheduled(scheduler.scheduleGeneral(task, diff));
 					return true;
 				}
 				LOGGER.info("Task " + task.getId() + " is obsoleted.");
@@ -315,16 +189,16 @@ public final class TaskManager
 					e.printStackTrace();
 			}
 		}
-		else if (type == TYPE_SPECIAL)
+		else if (type == TaskTypes.TYPE_SPECIAL)
 		{
 			final ScheduledFuture<?> result = task.getTask().launchSpecial(task);
 			if (result != null)
 			{
-				task.scheduled = result;
+				task.setScheduled(result);
 				return true;
 			}
 		}
-		else if (type == TYPE_GLOBAL_TASK)
+		else if (type == TaskTypes.TYPE_GLOBAL_TASK)
 		{
 			final long interval = Long.valueOf(task.getParams()[0]) * 86400000L;
 			final String[] hour = task.getParams()[1].split(":");
@@ -360,7 +234,7 @@ public final class TaskManager
 				delay += interval;
 			}
 			
-			task.scheduled = scheduler.scheduleGeneralAtFixedRate(task, delay, interval);
+			task.setScheduled(scheduler.scheduleGeneralAtFixedRate(task, delay, interval));
 			
 			return true;
 		}
@@ -368,12 +242,45 @@ public final class TaskManager
 		return false;
 	}
 	
-	public static boolean addUniqueTask(final String task, final TaskTypes type, final String param1, final String param2, final String param3)
+	public static boolean addUniqueTaskOnDB(final String task, final TaskTypes type, final String param1, final String param2, final String param3)
 	{
-		return addUniqueTask(task, type, param1, param2, param3, 0);
+		return addUniqueTaskOnDB(task, type, param1, param2, param3, 0);
 	}
 	
-	public static boolean addUniqueTask(final String task, final TaskTypes type, final String param1, final String param2, final String param3, final long lastActivation)
+	public static boolean updateExecutedTaskOnDB(long lastActivation, int id)
+	{
+		Connection con = null;
+		
+		boolean output = false;
+		try
+		{
+			con = L2DatabaseFactory.getInstance().getConnection(false);
+			PreparedStatement statement = con.prepareStatement(SQL_STATEMENTS[1]);
+			statement.setLong(1, lastActivation);
+			statement.setInt(2, id);
+			statement.executeUpdate();
+			DatabaseUtils.close(statement);
+			statement = null;
+			output = true;
+			
+		}
+		catch (final SQLException e)
+		{
+			if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
+				e.printStackTrace();
+			
+			LOGGER.warn("cannot updated the Global Task " + id + ": " + e.getMessage());
+		}
+		finally
+		{
+			CloseUtil.close(con);
+			con = null;
+		}
+		
+		return output;
+	}
+	
+	public static boolean addUniqueTaskOnDB(final String task, final TaskTypes type, final String param1, final String param2, final String param3, final long lastActivation)
 	{
 		Connection con = null;
 		
@@ -419,12 +326,12 @@ public final class TaskManager
 		return output;
 	}
 	
-	public static boolean addTask(final String task, final TaskTypes type, final String param1, final String param2, final String param3)
+	public static boolean addTaskOnDB(final String task, final TaskTypes type, final String param1, final String param2, final String param3)
 	{
-		return addTask(task, type, param1, param2, param3, 0);
+		return addTaskOnDB(task, type, param1, param2, param3, 0);
 	}
 	
-	public static boolean addTask(final String task, final TaskTypes type, final String param1, final String param2, final String param3, final long lastActivation)
+	public static boolean addTaskOnDB(final String task, final TaskTypes type, final String param1, final String param2, final String param3, final long lastActivation)
 	{
 		Connection con = null;
 		
@@ -459,5 +366,13 @@ public final class TaskManager
 		}
 		
 		return output;
+	}
+
+	/**
+	 * @param executedTask
+	 */
+	public void removeActiveTask(ExecutedTask executedTask)
+	{
+		_currentTasks.remove(executedTask);
 	}
 }

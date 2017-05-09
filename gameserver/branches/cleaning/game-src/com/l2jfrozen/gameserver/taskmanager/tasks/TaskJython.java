@@ -22,16 +22,16 @@ package com.l2jfrozen.gameserver.taskmanager.tasks;
 import org.apache.log4j.Logger;
 import org.python.util.PythonInterpreter;
 
-import com.l2jfrozen.gameserver.taskmanager.Task;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager.ExecutedTask;
+import com.l2jfrozen.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.util.taskmanager.Task;
 
 /**
  * @author Layane
  */
 public class TaskJython extends Task
 {
-	private static final Logger LOGGER = Logger.getLogger(TaskJython.class);
-	public static final String NAME = "jython";
+	private final Logger LOGGER = Logger.getLogger(TaskJython.class);
+	private final String NAME = "jython";
 	
 	private final PythonInterpreter _python = new PythonInterpreter();
 	

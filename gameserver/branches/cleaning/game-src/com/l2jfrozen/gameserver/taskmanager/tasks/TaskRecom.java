@@ -24,18 +24,18 @@ import org.apache.log4j.Logger;
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.serverpackets.UserInfo;
-import com.l2jfrozen.gameserver.taskmanager.Task;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager;
-import com.l2jfrozen.gameserver.taskmanager.TaskManager.ExecutedTask;
-import com.l2jfrozen.gameserver.taskmanager.TaskTypes;
+import com.l2jfrozen.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.util.taskmanager.Task;
+import com.l2jfrozen.util.taskmanager.TaskManager;
+import com.l2jfrozen.util.taskmanager.TaskTypes;
 
 /**
  * @author Layane
  */
 public class TaskRecom extends Task
 {
-	private static final Logger LOGGER = Logger.getLogger(TaskRecom.class);
-	private static final String NAME = "sp_recommendations";
+	private final Logger LOGGER = Logger.getLogger(TaskRecom.class);
+	private final String NAME = "sp_recommendations";
 	
 	/*
 	 * (non-Javadoc)
@@ -66,6 +66,6 @@ public class TaskRecom extends Task
 	public void initializate()
 	{
 		super.initializate();
-		TaskManager.addUniqueTask(NAME, TaskTypes.TYPE_GLOBAL_TASK, "1", "13:00:00", "");
+		TaskManager.addUniqueTaskOnDB(NAME, TaskTypes.TYPE_GLOBAL_TASK, "1", "13:00:00", "");
 	}
 }

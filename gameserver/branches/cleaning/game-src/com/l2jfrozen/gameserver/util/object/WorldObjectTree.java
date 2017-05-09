@@ -17,7 +17,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.util.object;
+package com.l2jfrozen.gameserver.util.object;
 
 import java.util.Iterator;
 import java.util.TreeMap;
@@ -38,7 +38,7 @@ public class WorldObjectTree<T extends L2Object> extends L2ObjectMap<T>
 	private final Lock _w = _rwl.writeLock();
 	
 	/**
-	 * @see com.l2jfrozen.util.object.L2ObjectMap#size()
+	 * @see com.l2jfrozen.gameserver.util.object.L2ObjectMap#size()
 	 */
 	@Override
 	public int size()
@@ -55,7 +55,7 @@ public class WorldObjectTree<T extends L2Object> extends L2ObjectMap<T>
 	}
 	
 	/**
-	 * @see com.l2jfrozen.util.object.L2ObjectMap#isEmpty()
+	 * @see com.l2jfrozen.gameserver.util.object.L2ObjectMap#isEmpty()
 	 */
 	@Override
 	public boolean isEmpty()
@@ -72,7 +72,7 @@ public class WorldObjectTree<T extends L2Object> extends L2ObjectMap<T>
 	}
 	
 	/**
-	 * @see com.l2jfrozen.util.object.L2ObjectMap#clear()
+	 * @see com.l2jfrozen.gameserver.util.object.L2ObjectMap#clear()
 	 */
 	@Override
 	public void clear()
@@ -123,7 +123,7 @@ public class WorldObjectTree<T extends L2Object> extends L2ObjectMap<T>
 	}
 	
 	/**
-	 * @see com.l2jfrozen.util.object.L2ObjectMap#get(int)
+	 * @see com.l2jfrozen.gameserver.util.object.L2ObjectMap#get(int)
 	 */
 	@Override
 	public T get(final int id)
@@ -156,7 +156,7 @@ public class WorldObjectTree<T extends L2Object> extends L2ObjectMap<T>
 	}
 	
 	/**
-	 * @see com.l2jfrozen.util.object.L2ObjectMap#iterator()
+	 * @see com.l2jfrozen.gameserver.util.object.L2ObjectMap#iterator()
 	 */
 	@Override
 	public Iterator<T> iterator()
