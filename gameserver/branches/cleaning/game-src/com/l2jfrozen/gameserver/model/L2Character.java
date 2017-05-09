@@ -1989,10 +1989,6 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 		// To turn local player in target direction
 		setHeading(Util.calculateHeadingFrom(getX(), getY(), target.getX(), target.getY()));
 		
-		/*
-		 * if(skill.isOffensive() && skill.getTargetType() != SkillTargetType.TARGET_AURA && target.isBehind(this)) { moveToLocation(target.getX(), target.getY(), target.getZ(), 0); stopMove(null); }
-		 */
-		
 		// Like L2OFF after a skill the player must stop the movement, also with toggle
 		if (!skill.isPotion() && this instanceof L2PcInstance)
 			((L2PcInstance) this).stopMove(null);
@@ -7628,10 +7624,9 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 			}
 		}
 		
+		// gm char can use skill on peace zone
 		if (src != null && src.getAccessLevel().allowPeaceAttack())
-		{
 			return false;
-		}
 		
 		// checks on event status
 		if (src != null && dst != null)
@@ -7654,16 +7649,10 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 			}
 		}
 		
-		if (attacker instanceof L2Character && ((L2Character) attacker).isInsideZone(ZONE_PEACE)
-		// the townzone has to be already peace zone
-		// || TownManager.getInstance().getTown(attacker.getX(), attacker.getY(), attacker.getZ())!= null
-		)
+		if (attacker instanceof L2Character && ((L2Character) attacker).isInsideZone(ZONE_PEACE))
 			return true;
 		
-		if (target instanceof L2Character && ((L2Character) target).isInsideZone(ZONE_PEACE)
-		// the townzone has to be already peace zone
-		// || TownManager.getInstance().getTown(target.getX(), target.getY(), target.getZ())!= null
-		)
+		if (target instanceof L2Character && ((L2Character) target).isInsideZone(ZONE_PEACE))
 			return true;
 		
 		return false;
