@@ -304,7 +304,7 @@ public class CharSelectInfo extends L2GameServerPacket
 		{
 			if (System.currentTimeMillis() > deletetime)
 			{
-				final L2PcInstance cha = L2PcInstance.load(objectId);
+				final L2PcInstance cha = L2PcInstance.load(objectId, false);
 				final L2Clan clan = cha.getClan();
 				if (clan != null)
 				{

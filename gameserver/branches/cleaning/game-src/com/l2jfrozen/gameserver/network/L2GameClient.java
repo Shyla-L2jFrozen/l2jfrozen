@@ -535,14 +535,15 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 			if (character.getClient() != null)
 			{
 				LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "], ip: [" + character.getClient().getConnection().getInetAddress().getHostAddress() + "]. Client closed.");
-				character.getClient().closeNow();
+				// character.getClient().closeNow();
+				character.closeNetConnection();
 			}
 			else
 			{
 				if (Config.DEVELOPER)
 					LOGGER.warn("Attempt of double login (possible offliner or fakeplayer) character: [" + character.getName() + "], account: [" + character.getAccountName() + "]. Player unspawned.");
 				
-				character.deleteMe();
+				character.deleteMe(false);
 				
 				try
 				{
@@ -556,7 +557,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 			}
 		}
 		
-		character = L2PcInstance.load(objId);
+		character = L2PcInstance.load(objId, false);
 		return character;
 	}
 	
@@ -610,9 +611,16 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 			Log.add(text, "Chars_disconnection_logs");
 		}
 		
+		synchronized (this)
+		{
+			if (_cleanupTask != null)
+				cancelCleanup();
+			_cleanupTask = ThreadPoolManager.getInstance().scheduleGeneral(new CleanupTask(), 0); // delayed
+		}
+		
 		// the force operation will allow to not save client position to prevent again criticals
 		// and stuck
-		closeNow();
+		// closeNow();
 	}
 	
 	@Override
@@ -796,10 +804,10 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 					if (player._active_boxes >= 1)
 						player.decreaseBoxes();
 					
-					player.deleteMe();
+					player.deleteMe(false);
 					
 					// prevent closing again
-					player.setClient(null);
+					// player.setClient(null);
 					
 					try
 					{
@@ -946,7 +954,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 					}
 					
 					// notify the world about our disconnect
-					player.deleteMe();
+					player.deleteMe(false);
 					
 					// store operation
 					try
