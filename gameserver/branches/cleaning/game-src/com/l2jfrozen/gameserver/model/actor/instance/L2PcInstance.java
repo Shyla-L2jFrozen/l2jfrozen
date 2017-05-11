@@ -235,7 +235,6 @@ import com.l2jfrozen.gameserver.util.FloodProtectors;
 import com.l2jfrozen.gameserver.util.IllegalPlayerAction;
 import com.l2jfrozen.gameserver.util.Util;
 import com.l2jfrozen.logs.Log;
-import com.l2jfrozen.netcore.MMOClientsManager;
 import com.l2jfrozen.thread.ThreadPoolManager;
 import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.Point3D;
@@ -1730,9 +1729,9 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * @param objectId Identifier of the object to initialized
 	 * @return The L2PcInstance loaded from the database
 	 */
-	public static L2PcInstance load(final int objectId)
+	public static L2PcInstance load(final int objectId, final boolean offlinerOrfaker)
 	{
-		return restore(objectId);
+		return restore(objectId, offlinerOrfaker);
 	}
 	
 	/**
@@ -1941,7 +1940,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		if (level == -1)
 		{
 			
-			final L2PcInstance local_char = restore(this.getObjectId());
+			final L2PcInstance local_char = restore(this.getObjectId(), false);
 			
 			if (local_char != null)
 				level = local_char.getLevel();
@@ -2037,6 +2036,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		{
 			sendMessage("A superior power doesn't allow you to leave the event.");
 			sendPacket(ActionFailed.STATIC_PACKET);
+			return;
 		}
 		
 		_kicked = kicked;
@@ -6426,7 +6426,7 @@ public final class L2PcInstance extends L2PlayableInstance
 				LOGGER.debug("Send status for party window of " + getObjectId() + "(" + getName() + ") to his party. CP: " + getCurrentCp() + " HP: " + getCurrentHp() + " MP: " + getCurrentMp());
 			}
 			// Send the Server->Client packet PartySmallWindowUpdate with current HP, MP and Level to all other L2PcInstance of the Party
-			PartySmallWindowUpdate update = new PartySmallWindowUpdate(this);
+			final PartySmallWindowUpdate update = new PartySmallWindowUpdate(this);
 			if (getParty() != null)
 				getParty().broadcastToPartyMembers(this, update);
 		}
@@ -9032,7 +9032,7 @@ public final class L2PcInstance extends L2PlayableInstance
 			this.store();
 			if (Config.OFFLINE_DISCONNECT_FINISHED)
 			{
-				this.deleteMe();
+				this.deleteMe(false);
 				
 				if (this.getClient() != null)
 				{
@@ -9977,9 +9977,10 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <li>Update the overloaded status of the L2PcInstance</li><BR>
 	 * <BR>
 	 * @param objectId Identifier of the object to initialized
+	 * @param offlineOrfaker
 	 * @return The L2PcInstance loaded from the database
 	 */
-	public static L2PcInstance restore(final int objectId)
+	public static L2PcInstance restore(final int objectId, final boolean offlineOrfaker)
 	{
 		L2PcInstance player = null;
 		double curHp = 0;
@@ -10196,7 +10197,7 @@ public final class L2PcInstance extends L2PlayableInstance
 			}
 			
 			// Optimize server start up for offliner and fakeofflineplayer
-			if (!player.isInOfflineMode() && !player.isFakeOfflinePlayer())
+			if (!offlineOrfaker)
 			{
 				// Retrieve from the database all secondary data of this L2PcInstance
 				// and reward expertise/lucky skills if necessary.
@@ -16314,7 +16315,7 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <li>Close the connection with the client</li><BR>
 	 * <BR>
 	 */
-	public synchronized void deleteMe()
+	public synchronized void deleteMe(final boolean disconnect)
 	{
 		// Check if the L2PcInstance is in observer mode to set its position to its position before entering in observer mode
 		if (inObserverMode())
@@ -16588,12 +16589,13 @@ public final class L2PcInstance extends L2PlayableInstance
 			LOGGER.error("deleteMe()", t);
 		}
 		
-		if ((isInOfflineMode() || isFakeOfflinePlayer()) && getClient() != null)
-			MMOClientsManager.getInstance().removeClient(getClient().getIdentifier());
+		// if ((isInOfflineMode() || isFakeOfflinePlayer()) && getClient() != null)
+		// MMOClientsManager.getInstance().removeClient(getClient().getIdentifier());
 		
 		// Close the connection with the client
-		closeNetConnection();
-		
+		if (disconnect)
+			closeNetConnection();
+			
 		// remove from flood protector
 		// FloodProtector.getInstance().removePlayer(getObjectId());
 		

@@ -39,7 +39,14 @@ public final class ProtocolVersion extends L2GameClientPacket
 	protected void runImpl()
 	{
 		// this packet is never encrypted
-		if (_version == 65534 || _version == -2) // Ping
+		if (_version == -1) // Possible bot/ddos ignore it
+		{
+			if (Config.DEVELOPER)
+				LOGGER.info("Client: " + getClient().toString() + " -> Protocol Revision: " + _version + " is invalid. Possible bot or ddos. Ignore it.");
+			
+			getClient().close((L2GameServerPacket) null);
+		}
+		else if (_version == 65534 || _version == -2) // Ping
 		{
 			if (CommonConfig.DEBUG)
 				LOGGER.info("DEBUG " + getType() + ": Ping received");

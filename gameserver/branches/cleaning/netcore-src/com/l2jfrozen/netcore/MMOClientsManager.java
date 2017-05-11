@@ -19,6 +19,8 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.Config;
+
 /**
  * @author Shyla
  * @param <T>
@@ -42,11 +44,17 @@ public class MMOClientsManager<T extends MMOClient<?>>
 	
 	public T removeClient(final Long clientId)
 	{
+		if (Config.DEVELOPER)
+			LOGGER.info("REMOVED CLIENT: " + clientId + ". TOTAL CLIENT: " + (managedClients.size() - 1));
+		
 		return managedClients.remove(clientId);
 	}
 	
 	public T addClient(final T client)
 	{
+		if (Config.DEVELOPER)
+			LOGGER.info("ADDED CLIENT: " + client.getIdentifier() + ". TOTAL CLIENT: " + (managedClients.size() + 1));
+		
 		return managedClients.put(client.getIdentifier(), client);
 	}
 	

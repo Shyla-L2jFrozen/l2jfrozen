@@ -154,7 +154,7 @@ public final class Logout extends L2GameClientPacket
 		}
 		
 		RegionBBSManager.getInstance().changeCommunityBoard();
-		player.deleteMe();
+		player.deleteMe(true);
 	}
 	
 	@Override

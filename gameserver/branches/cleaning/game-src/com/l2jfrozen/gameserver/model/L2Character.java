@@ -6427,7 +6427,8 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 					getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
 					if (this instanceof L2PcInstance)
 					{
-						((L2PcInstance) this).deleteMe();
+						// ((L2PcInstance) this).deleteMe();
+						((L2PcInstance) this).closeNetConnection();
 					}
 					else
 					{

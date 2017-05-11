@@ -84,7 +84,7 @@ public final class RequestPackageSend extends L2GameClientPacket
 		if (player.getObjectId() == _objectID)
 			return;
 		
-		final L2PcInstance target = L2PcInstance.load(_objectID);
+		final L2PcInstance target = L2PcInstance.load(_objectID, false);
 		
 		if (player.getAccountChars().size() < 1)
 		{
@@ -104,7 +104,7 @@ public final class RequestPackageSend extends L2GameClientPacket
 		
 		final PcFreight freight = target.getFreight();
 		player.setActiveWarehouse(freight);
-		target.deleteMe();
+		target.deleteMe(true);
 		final ItemContainer warehouse = player.getActiveWarehouse();
 		
 		if (warehouse == null)

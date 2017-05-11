@@ -224,7 +224,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 				{
 					con = _pendingClose.removeFirst();
 					writeClosePacket(con);
-					closeConnectionImpl(con.getSelectionKey(), con, true);
+					closeConnectionImpl(con.getSelectionKey(), con, true, false);
 					
 				}
 			}
@@ -251,8 +251,8 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		{
 			LOGGER.warn("", e);
 			
-			con.getClient().onForcedDisconnection(true);
-			closeConnectionImpl(key, con, true);
+			// con.getClient().onForcedDisconnection(true);
+			closeConnectionImpl(key, con, false, true);
 		}
 		
 		// key might have been invalidated on finishConnect()
@@ -312,7 +312,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		
 		int result = -2;
 		
-		boolean critical = true;
+		boolean critical = false;
 		
 		try
 		{
@@ -320,14 +320,14 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		}
 		catch (final IOException e)
 		{
-			if (!con.isConnected() || !con.isChannelConnected())
+			if (con.isConnected() || con.isChannelConnected())
 			{
-				critical = false;
+				critical = true;
+				
 			}
 			else
-			{
 				LOGGER.warn("", e);
-			}
+			
 		}
 		
 		if (result > 0)
@@ -368,11 +368,11 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 			{
 				case 0:
 				case -1:
-					closeConnectionImpl(key, con, false);
+					closeConnectionImpl(key, con, true, false);
 					break;
 				case -2:
-					con.getClient().onForcedDisconnection(critical);
-					closeConnectionImpl(key, con, true);
+					// con.getClient().onForcedDisconnection(critical);
+					closeConnectionImpl(key, con, false, critical);
 					break;
 			}
 		}
@@ -591,8 +591,8 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		}
 		else
 		{
-			con.getClient().onForcedDisconnection(true);
-			closeConnectionImpl(key, con, true);
+			// con.getClient().onForcedDisconnection(true);
+			closeConnectionImpl(key, con, true, true);
 		}
 	}
 	
@@ -700,19 +700,29 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		}
 	}
 	
-	private final void closeConnectionImpl(final SelectionKey key, final MMOConnection<T> con, final boolean critical)
+	private final void closeConnectionImpl(final SelectionKey key, final MMOConnection<T> con, final boolean clientDisconnected, final boolean critical)
 	{
 		try
 		{
-			// FIXME: find why sometimes is null
-			if (con.getClient() != null)
+			if (clientDisconnected)
 			{
-				con.getClient().onDisconnection();
+				if (con.getClient() != null)
+					con.getClient().onDisconnection();
+				else
+				{
+					LOGGER.warn("CLIENT NULL3");
+					Thread.dumpStack();
+				}
 			}
 			else
 			{
-				LOGGER.warn("## CLIENT NULL2 ##");
-				Thread.dumpStack();
+				if (con.getClient() != null)
+					con.getClient().onForcedDisconnection(critical);
+				else
+				{
+					LOGGER.warn("CLIENT NULL4");
+					Thread.dumpStack();
+				}
 			}
 		}
 		catch (final Exception e)
@@ -723,7 +733,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		{
 			try
 			{
-				// close socket and the SocketChannel
+				// close server socket and the SocketChannel
 				con.close();
 			}
 			catch (final IOException e)
@@ -739,8 +749,13 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 				// cancel key
 				key.cancel();
 				
-				if (!critical)
+				if (con.getClient() != null)
 					MMOClientsManager.getInstance().removeClient(con.getClient().getIdentifier());
+				else
+				{
+					LOGGER.warn("CLIENT NULL5");
+					Thread.dumpStack();
+				}
 			}
 		}
 	}

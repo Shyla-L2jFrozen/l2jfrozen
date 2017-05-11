@@ -269,7 +269,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		
 		startTutorialQuest(newChar);
 		newChar.store();
-		newChar.deleteMe(); // Release the world of this character and it's inventory
+		newChar.deleteMe(true); // Release the world of this character and it's inventory
 		
 		// Before the char selection, check shutdown status
 		if (client.getConnection().getSelectorThread().isShutdown())

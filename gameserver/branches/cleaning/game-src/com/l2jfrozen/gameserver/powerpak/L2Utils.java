@@ -36,7 +36,7 @@ public class L2Utils
 				stm.setString(1, charName);
 				final ResultSet r = stm.executeQuery();
 				if (r.next())
-					result = L2PcInstance.load(r.getInt(1));
+					result = L2PcInstance.load(r.getInt(1), false);
 				r.close();
 				stm.close();
 				
