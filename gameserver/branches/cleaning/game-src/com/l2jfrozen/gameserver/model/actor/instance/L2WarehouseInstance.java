@@ -253,7 +253,7 @@ public final class L2WarehouseInstance extends L2FolkInstance
 	private void showDepositWindowFreight(final L2PcInstance player, final int obj_Id)
 	{
 		player.sendPacket(ActionFailed.STATIC_PACKET);
-		L2PcInstance destChar = L2PcInstance.load(obj_Id);
+		L2PcInstance destChar = L2PcInstance.load(obj_Id, false);
 		if (destChar == null)
 		{
 			// Something went wrong!
@@ -275,7 +275,7 @@ public final class L2WarehouseInstance extends L2FolkInstance
 		}
 		player.setActiveWarehouse(freight);
 		player.tempInvetoryDisable();
-		destChar.deleteMe();
+		destChar.deleteMe(false);
 		destChar = null;
 		freight = null;
 		

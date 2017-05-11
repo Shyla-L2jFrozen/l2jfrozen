@@ -47,26 +47,27 @@ public class ServerStatus extends MonitoredStatus
 	
 	public ServerStatus()
 	{
-	
+		
 		refreshStatus();
 		
 	}
-
-	/* (non-Javadoc)
+	
+	/*
+	 * (non-Javadoc)
 	 * @see com.l2jfrozen.util.monitoring.data.MonitoredStatus#getStatus()
 	 */
 	@Override
 	public String getStatus()
 	{
-		StringWriter sw = new StringWriter();
+		final StringWriter sw = new StringWriter();
 		
 		sw.append("Players Online: " + TotalOnline);
 		sw.append("Active: " + ActivePlayers + ", Offline shop: " + OfflinePlayers + ", Fake player: " + FakePlayers);
 		sw.append("Alive clients: " + ActiveClients);
-
+		
 		return sw.toString();
 	}
-
+	
 	/**
 	 * @return the serialversionuid
 	 */
@@ -74,7 +75,7 @@ public class ServerStatus extends MonitoredStatus
 	{
 		return serialVersionUID;
 	}
-
+	
 	/**
 	 * @return the totalOnline
 	 */
@@ -82,7 +83,7 @@ public class ServerStatus extends MonitoredStatus
 	{
 		return TotalOnline;
 	}
-
+	
 	/**
 	 * @return the activePlayers
 	 */
@@ -90,7 +91,7 @@ public class ServerStatus extends MonitoredStatus
 	{
 		return ActivePlayers;
 	}
-
+	
 	/**
 	 * @return the offlinePlayers
 	 */
@@ -98,7 +99,7 @@ public class ServerStatus extends MonitoredStatus
 	{
 		return OfflinePlayers;
 	}
-
+	
 	/**
 	 * @return the fakePlayers
 	 */
@@ -106,7 +107,7 @@ public class ServerStatus extends MonitoredStatus
 	{
 		return FakePlayers;
 	}
-
+	
 	/**
 	 * @return the activeClients
 	 */
@@ -114,8 +115,9 @@ public class ServerStatus extends MonitoredStatus
 	{
 		return ActiveClients;
 	}
-
-	/* (non-Javadoc)
+	
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -123,8 +125,9 @@ public class ServerStatus extends MonitoredStatus
 	{
 		return getStatus();
 	}
-
-	/* (non-Javadoc)
+	
+	/*
+	 * (non-Javadoc)
 	 * @see com.l2jfrozen.util.monitoring.data.MonitoredStatus#refreshStatus()
 	 */
 	@Override
@@ -148,5 +151,5 @@ public class ServerStatus extends MonitoredStatus
 		TotalOnline = ActivePlayers + OfflinePlayers + FakePlayers;
 		ActiveClients = MMOClientsManager.getInstance().printClientsNumber();
 	}
-
+	
 }

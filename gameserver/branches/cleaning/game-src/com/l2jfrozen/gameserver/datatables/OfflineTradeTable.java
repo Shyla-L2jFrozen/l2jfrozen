@@ -45,6 +45,7 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.GameClientState;
 import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.logs.Log;
+import com.l2jfrozen.netcore.MMOClientsManager;
 import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 
@@ -464,7 +465,7 @@ public class OfflineTradeTable
 				try
 				{
 					final L2GameClient client = new L2GameClient(null);
-					player = L2PcInstance.load(trader.getCharId());
+					player = L2PcInstance.load(trader.getCharId(), true);
 					client.setActiveChar(player);
 					client.setAccountName(player.getAccountName());
 					client.setState(GameClientState.IN_GAME);
@@ -477,6 +478,16 @@ public class OfflineTradeTable
 						player.startAbnormalEffect(L2Character.ABNORMAL_EFFECT_SLEEP);
 					player.spawnMe(player.getX(), player.getY(), player.getZ());
 					LoginServerThread.getInstance().addGameServerLogin(player.getAccountName(), client);
+					
+					if (player.getClient() != null)
+					{
+						MMOClientsManager.getInstance().removeClient(player.getClient().getIdentifier());
+					}
+					else
+					{
+						LOGGER.warn("## CLIENT NULL6 ##");
+						Thread.dumpStack();
+					}
 					
 					for (final OfflineTraderItem item : trader.getItems())
 					{

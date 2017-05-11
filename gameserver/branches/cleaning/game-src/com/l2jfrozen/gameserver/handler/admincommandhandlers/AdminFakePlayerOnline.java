@@ -51,7 +51,7 @@ public class AdminFakePlayerOnline implements IAdminCommandHandler
 				activeChar.sendMessage("You have set " + obj + " as a fake player.");
 				FakeOnline.setfakeplayers((L2PcInstance) obj);
 				((L2PcInstance) obj).setfakeplayer(true);
-				((L2PcInstance) obj).deleteMe();
+				((L2PcInstance) obj).deleteMe(true);
 				((L2PcInstance) obj).logout();
 			}
 		}

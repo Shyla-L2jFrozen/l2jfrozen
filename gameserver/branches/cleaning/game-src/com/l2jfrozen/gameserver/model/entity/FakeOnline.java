@@ -32,6 +32,7 @@ import com.l2jfrozen.gameserver.model.ItemContainer;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.GameClientState;
 import com.l2jfrozen.gameserver.network.L2GameClient;
+import com.l2jfrozen.netcore.MMOClientsManager;
 import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 
@@ -71,7 +72,7 @@ public class FakeOnline
 						LOGGER.info("Loaded " + nfakeplayer + " fake players.");
 					
 					final L2GameClient client = new L2GameClient(null);
-					player = L2PcInstance.restore(rs.getInt("charId"));
+					player = L2PcInstance.restore(rs.getInt("charId"), true);
 					client.setActiveChar(player);
 					player.setOnlineStatus(true);
 					client.setAccountName(player.getAccountName());
@@ -80,6 +81,17 @@ public class FakeOnline
 					player.setClient(client);
 					player.spawnMe(player.getX(), player.getY(), player.getZ());
 					LoginServerThread.getInstance().addGameServerLogin(player.getAccountName(), client);
+					
+					if (player.getClient() != null)
+					{
+						MMOClientsManager.getInstance().removeClient(player.getClient().getIdentifier());
+					}
+					else
+					{
+						LOGGER.warn("## CLIENT NULL7 ##");
+						Thread.dumpStack();
+					}
+					
 					final ItemContainer items = player.getInventory();
 					items.restore();
 					// L2Clan clan = player.getClan();
@@ -102,7 +114,7 @@ public class FakeOnline
 					LOGGER.warn("FakePlayer: Error loading trader: " + player, e);
 					if (player != null)
 					{
-						player.deleteMe();
+						player.deleteMe(false);
 					}
 				}
 			}

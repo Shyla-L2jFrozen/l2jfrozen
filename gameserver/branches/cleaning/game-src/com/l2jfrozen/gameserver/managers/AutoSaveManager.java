@@ -138,14 +138,15 @@ public class AutoSaveManager
 					{
 						LOGGER.info("[AutoSaveManager] Player " + player.getName() + " status == 0 ---> Closing Connection..");
 						player.store();
-						player.deleteMe();
+						player.deleteMe(false);
 					}
 					else if (!player.getClient().isConnectionAlive())
 					{
 						try
 						{
 							LOGGER.info("[AutoSaveManager] Player " + player.getName() + " connection is not alive ---> Closing Connection..");
-							player.getClient().onDisconnection();
+							// player.getClient().onDisconnection();
+							player.closeNetConnection();
 						}
 						catch (final Exception e)
 						{
@@ -157,7 +158,8 @@ public class AutoSaveManager
 						try
 						{
 							LOGGER.info("[AutoSaveManager] Player " + player.getName() + " has a teleport overtime ---> Closing Connection..");
-							player.getClient().onDisconnection();
+							// player.getClient().onDisconnection();
+							player.closeNetConnection();
 						}
 						catch (final Exception e)
 						{

@@ -64,14 +64,14 @@ public class AdminKick implements IAdminCommandHandler
 				
 				if (plyr != null && (plyr.isInOfflineMode()))
 				{
-					plyr.deleteMe();
+					plyr.deleteMe(false);
 					activeChar.sendMessage("You kicked Offline Player " + plyr.getName() + " from the game.");
 					RegionBBSManager.getInstance().changeCommunityBoard();
 				}
 				
 				if (plyr != null && (plyr.isFakeOfflinePlayer()))
 				{
-					plyr.deleteMe();
+					plyr.deleteMe(false);
 					activeChar.sendMessage("You kicked a Fake Player " + plyr.getName() + " from the game.");
 					RegionBBSManager.getInstance().changeCommunityBoard();
 				}
@@ -96,7 +96,7 @@ public class AdminKick implements IAdminCommandHandler
 					}
 					else
 					{
-						player.deleteMe();
+						player.deleteMe(true);
 						RegionBBSManager.getInstance().changeCommunityBoard();
 					}
 					counter++;
