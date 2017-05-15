@@ -157,6 +157,7 @@ import com.l2jfrozen.netcore.util.IPv4Filter;
 import com.l2jfrozen.netcore.util.PacketsFloodProtector;
 import com.l2jfrozen.thread.DeadlockDetector;
 import com.l2jfrozen.thread.ThreadPoolManager;
+import com.l2jfrozen.util.Memory;
 import com.l2jfrozen.util.Util;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 import com.l2jfrozen.util.monitoring.StatusManager;
@@ -611,30 +612,30 @@ public class GameServer
 		if (Config.BOT_PROTECTOR)
 			Config.loadQuestion();
 		
-		Util.printSection("Info");
-		LOGGER.info("Maximum Numbers of Connected Players: " + Config.MAXIMUM_ONLINE_USERS);
-		// LOGGER.info("Operating System: " + ServerStatusManager.getOSName() + " " + ServerStatusManager.getOSVersion() + " " + ServerStatusManager.getOSArch());
-		// LOGGER.info("Available CPUs: " + ServerStatusManager.getAvailableProcessors());
-		// LOGGER.info("GameServer Started, free memory " + ServerStatusManager.getFreeMemory() + " Mb of " + ServerStatusManager.getTotalMemory() + " Mb");
-		// LOGGER.info("Used memory: " + ServerStatusManager.getUsedMemory() + " MB");
-		//
-		// Util.printSection("Java specific");
-		// LOGGER.info("JRE name: " + System.getProperty("java.vendor"));
-		// LOGGER.info("JRE specification version: " + System.getProperty("java.specification.version"));
-		// LOGGER.info("JRE version: " + System.getProperty("java.version"));
-		// LOGGER.info("--- Detecting Java Virtual Machine (JVM)");
-		// LOGGER.info("JVM installation directory: " + System.getProperty("java.home"));
-		// LOGGER.info("JVM Avaible Memory(RAM): " + Runtime.getRuntime().maxMemory() / 1048576 + " MB");
-		// LOGGER.info("JVM specification version: " + System.getProperty("java.vm.specification.version"));
-		// LOGGER.info("JVM specification vendor: " + System.getProperty("java.vm.specification.vendor"));
-		// LOGGER.info("JVM specification name: " + System.getProperty("java.vm.specification.name"));
-		// LOGGER.info("JVM implementation version: " + System.getProperty("java.vm.version"));
-		// LOGGER.info("JVM implementation vendor: " + System.getProperty("java.vm.vendor"));
-		// LOGGER.info("JVM implementation name: " + System.getProperty("java.vm.name"));
-		//
-		// Util.printSection("Status");
+		Util.printSection("OS Infos");
+		LOGGER.info("Operating System: " + Memory.getOSName() + " " + Memory.getOSVersion() + " " + Memory.getOSArch());
+		LOGGER.info("Available CPUs: " + Memory.getAvailableProcessors());
+		LOGGER.info("GameServer Started, free memory " + Memory.getFreeMemory() + " Mb of " + Memory.getTotalMemory() + " Mb");
+		LOGGER.info("Used memory: " + Memory.getUsedMemory() + " MB");
+		
+		Util.printSection("Java specific");
+		LOGGER.info("JRE name: " + System.getProperty("java.vendor"));
+		LOGGER.info("JRE specification version: " + System.getProperty("java.specification.version"));
+		LOGGER.info("JRE version: " + System.getProperty("java.version"));
+		LOGGER.info("--- Detecting Java Virtual Machine (JVM)");
+		LOGGER.info("JVM installation directory: " + System.getProperty("java.home"));
+		LOGGER.info("JVM Avaible Memory(RAM): " + Runtime.getRuntime().maxMemory() / 1048576 + " MB");
+		LOGGER.info("JVM specification version: " + System.getProperty("java.vm.specification.version"));
+		LOGGER.info("JVM specification vendor: " + System.getProperty("java.vm.specification.vendor"));
+		LOGGER.info("JVM specification name: " + System.getProperty("java.vm.specification.name"));
+		LOGGER.info("JVM implementation version: " + System.getProperty("java.vm.version"));
+		LOGGER.info("JVM implementation vendor: " + System.getProperty("java.vm.vendor"));
+		LOGGER.info("JVM implementation name: " + System.getProperty("java.vm.name"));
+		
+		Util.printSection("Status");
 		System.gc();
 		LOGGER.info("Server Loaded in " + (System.currentTimeMillis() - serverLoadStart) / 1000 + " seconds");
+		LOGGER.info("Maximum Numbers of Connected Players: " + Config.MAXIMUM_ONLINE_USERS);
 		
 		Util.printSection("Login");
 		_loginThread = LoginServerThread.getInstance();
