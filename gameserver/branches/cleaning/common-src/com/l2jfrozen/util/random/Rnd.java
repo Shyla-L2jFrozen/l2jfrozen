@@ -27,7 +27,6 @@ import java.util.Random;
 public final class Rnd
 {
 	
-	
 	public static final long ADDEND = 0xBL;
 	
 	public static final long MASK = (1L << 48) - 1;
@@ -103,7 +102,6 @@ public final class Rnd
 	{
 		return rnd.get(min, max);
 	}
-	
 	
 	/**
 	 * Get a random boolean state (true or false)

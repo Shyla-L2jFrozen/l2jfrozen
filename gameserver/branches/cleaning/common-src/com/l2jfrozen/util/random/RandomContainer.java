@@ -144,4 +144,3 @@ public class RandomContainer
 		return _random.nextLong();
 	}
 }
-

@@ -43,8 +43,8 @@ public class TaskPrintServerStatus extends Task
 	public void onTimeElapsed(final ExecutedTask task)
 	{
 		Util.printSection("Server Status");
-		
 		StatusManager.getInstance().logCurrentMonitoredStatuses();
+		Util.printSection("Server Status");
 	}
 	
 	@Override
