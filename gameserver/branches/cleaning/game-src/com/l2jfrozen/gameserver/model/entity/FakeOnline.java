@@ -83,14 +83,7 @@ public class FakeOnline
 					LoginServerThread.getInstance().addGameServerLogin(player.getAccountName(), client);
 					
 					if (player.getClient() != null)
-					{
 						MMOClientsManager.getInstance().removeClient(player.getClient().getIdentifier());
-					}
-					else
-					{
-						LOGGER.warn("## CLIENT NULL7 ##");
-						Thread.dumpStack();
-					}
 					
 					final ItemContainer items = player.getInventory();
 					items.restore();

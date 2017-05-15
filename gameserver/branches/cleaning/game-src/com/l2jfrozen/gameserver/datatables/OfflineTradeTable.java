@@ -480,14 +480,7 @@ public class OfflineTradeTable
 					LoginServerThread.getInstance().addGameServerLogin(player.getAccountName(), client);
 					
 					if (player.getClient() != null)
-					{
 						MMOClientsManager.getInstance().removeClient(player.getClient().getIdentifier());
-					}
-					else
-					{
-						LOGGER.warn("## CLIENT NULL6 ##");
-						Thread.dumpStack();
-					}
 					
 					for (final OfflineTraderItem item : trader.getItems())
 					{
