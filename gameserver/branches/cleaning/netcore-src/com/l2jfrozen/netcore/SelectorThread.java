@@ -658,11 +658,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 	{
 		// FIXME: find why some times is null
 		if (client == null)
-		{
-			LOGGER.warn("## CLIENT NULL ##");
-			Thread.dumpStack();
 			return;
-		}
 		
 		WRITE_BUFFER.clear();
 		
@@ -708,21 +704,11 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 			{
 				if (con.getClient() != null)
 					con.getClient().onDisconnection();
-				else
-				{
-					LOGGER.warn("CLIENT NULL3");
-					Thread.dumpStack();
-				}
 			}
 			else
 			{
 				if (con.getClient() != null)
 					con.getClient().onForcedDisconnection(critical);
-				else
-				{
-					LOGGER.warn("CLIENT NULL4");
-					Thread.dumpStack();
-				}
 			}
 		}
 		catch (final Exception e)
@@ -751,11 +737,6 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 				
 				if (con.getClient() != null)
 					MMOClientsManager.getInstance().removeClient(con.getClient().getIdentifier());
-				else
-				{
-					LOGGER.warn("CLIENT NULL5");
-					Thread.dumpStack();
-				}
 			}
 		}
 	}
