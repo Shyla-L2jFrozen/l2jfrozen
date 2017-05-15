@@ -19,7 +19,6 @@
  */
 package com.l2jfrozen.util.taskmanager;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,12 +31,10 @@ import java.util.concurrent.ScheduledFuture;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
-
 import com.l2jfrozen.thread.ThreadPoolManager;
 import com.l2jfrozen.util.CloseUtil;
 import com.l2jfrozen.util.database.DatabaseUtils;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
-import com.sun.org.omg.SendingContext._CodeBaseImplBase;
 
 import javolution.util.FastList;
 import javolution.util.FastMap;
@@ -70,23 +67,14 @@ public final class TaskManager
 	
 	private TaskManager()
 	{
-		//initializate();
-		//startAllTasks();
+		// initializate();
+		// startAllTasks();
 	}
 	
 	/*
-	private void initializate()
-	{
-		registerTask(new TaskCleanUp());
-		// registerTask(new TaskJython());
-		registerTask(new TaskOlympiadSave());
-		registerTask(new TaskRaidPointsReset());
-		registerTask(new TaskRecom());
-		registerTask(new TaskRestart());
-		registerTask(new TaskSevenSignsUpdate());
-		registerTask(new TaskShutdown());
-	}
-	*/
+	 * private void initializate() { registerTask(new TaskCleanUp()); // registerTask(new TaskJython()); registerTask(new TaskOlympiadSave()); registerTask(new TaskRaidPointsReset()); registerTask(new TaskRecom()); registerTask(new TaskRestart()); registerTask(new TaskSevenSignsUpdate());
+	 * registerTask(new TaskShutdown()); }
+	 */
 	
 	public void registerTask(final Task task)
 	{
@@ -247,7 +235,7 @@ public final class TaskManager
 		return addUniqueTaskOnDB(task, type, param1, param2, param3, 0);
 	}
 	
-	public static boolean updateExecutedTaskOnDB(long lastActivation, int id)
+	public static boolean updateExecutedTaskOnDB(final long lastActivation, final int id)
 	{
 		Connection con = null;
 		
@@ -367,11 +355,11 @@ public final class TaskManager
 		
 		return output;
 	}
-
+	
 	/**
 	 * @param executedTask
 	 */
-	public void removeActiveTask(ExecutedTask executedTask)
+	public void removeActiveTask(final ExecutedTask executedTask)
 	{
 		_currentTasks.remove(executedTask);
 	}
