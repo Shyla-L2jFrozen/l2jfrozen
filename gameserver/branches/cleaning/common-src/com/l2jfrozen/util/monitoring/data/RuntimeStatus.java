@@ -20,7 +20,6 @@ import java.util.Date;
 
 /**
  * @author Shyla
- *
  */
 public class RuntimeStatus extends MonitoredStatus
 {
@@ -30,7 +29,7 @@ public class RuntimeStatus extends MonitoredStatus
 	 */
 	private static final long serialVersionUID = 8586930329090845553L;
 	
-	//Env
+	// Env
 	private String systemTime;
 	private int avaibleCPUs;
 	private String processorIdentifier;
@@ -38,23 +37,23 @@ public class RuntimeStatus extends MonitoredStatus
 	private String osBuild;
 	private String osArch;
 	
-	//Java Platform Information;
+	// Java Platform Information;
 	private String javaRuntimeName;
 	private String javaVersion;
 	private String javaClassVersion;
 	
-	//Runtime Information";
+	// Runtime Information";
 	private long currentFreeHeapSize;
 	private long currentHeapSize;
 	private long maximumHeapSize;
-
 	
-	//Virtual Machine Information (JVM)
+	// Virtual Machine Information (JVM)
 	private String jvmName;
 	private String jvmInstallationDirectory;
 	private String jvmVersion;
 	private String jvmVendor;
 	private String jvmExtraInfo;
+	
 	/**
 	 * 
 	 * 
@@ -66,6 +65,7 @@ public class RuntimeStatus extends MonitoredStatus
 		refreshStatus();
 		
 	}
+	
 	/**
 	 * @return the systemTime
 	 */
@@ -73,6 +73,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return systemTime;
 	}
+	
 	/**
 	 * @return the avaibleCPUs
 	 */
@@ -80,6 +81,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return avaibleCPUs;
 	}
+	
 	/**
 	 * @return the processorIdentifier
 	 */
@@ -87,6 +89,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return processorIdentifier;
 	}
+	
 	/**
 	 * @return the os
 	 */
@@ -94,6 +97,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return os;
 	}
+	
 	/**
 	 * @return the osArch
 	 */
@@ -101,6 +105,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return osArch;
 	}
+	
 	/**
 	 * @return the javaRuntimeName
 	 */
@@ -108,6 +113,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return javaRuntimeName;
 	}
+	
 	/**
 	 * @return the javaVersion
 	 */
@@ -115,6 +121,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return javaVersion;
 	}
+	
 	/**
 	 * @return the javaClassVersion
 	 */
@@ -122,6 +129,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return javaClassVersion;
 	}
+	
 	/**
 	 * @return the currentFreeHeapSize
 	 */
@@ -129,6 +137,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return currentFreeHeapSize;
 	}
+	
 	/**
 	 * @return the currentHeapSize
 	 */
@@ -136,6 +145,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return currentHeapSize;
 	}
+	
 	/**
 	 * @return the maximumHeapSize
 	 */
@@ -143,6 +153,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return maximumHeapSize;
 	}
+	
 	/**
 	 * @return the jvmName
 	 */
@@ -150,6 +161,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return jvmName;
 	}
+	
 	/**
 	 * @return the jvmInstallationDirectory
 	 */
@@ -157,6 +169,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return jvmInstallationDirectory;
 	}
+	
 	/**
 	 * @return the jvmVersion
 	 */
@@ -164,6 +177,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return jvmVersion;
 	}
+	
 	/**
 	 * @return the jvmVendor
 	 */
@@ -171,6 +185,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return jvmVendor;
 	}
+	
 	/**
 	 * @return the jvmInfo
 	 */
@@ -178,131 +193,126 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return jvmExtraInfo;
 	}
-	/* (non-Javadoc)
+	
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString()
 	{
-		//return "RuntimeStatus [systemTime=" + systemTime + ", avaibleCPUs=" + avaibleCPUs + ", processorIdentifier=" + processorIdentifier + ", os=" + os + ", osArch=" + osArch + ", javaRuntimeName=" + javaRuntimeName + ", javaVersion=" + javaVersion + ", javaClassVersion=" + javaClassVersion + ", currentFreeHeapSize=" + currentFreeHeapSize + ", currentHeapSize=" + currentHeapSize + ", maximumHeapSize=" + maximumHeapSize + ", jvmName=" + jvmName + ", jvmInstallationDirectory=" + jvmInstallationDirectory + ", jvmVersion=" + jvmVersion + ", jvmVendor=" + jvmVendor + ", jvmExtraInfo=" + jvmExtraInfo + "]";
+		// return "RuntimeStatus [systemTime=" + systemTime + ", avaibleCPUs=" + avaibleCPUs + ", processorIdentifier=" + processorIdentifier + ", os=" + os + ", osArch=" + osArch + ", javaRuntimeName=" + javaRuntimeName + ", javaVersion=" + javaVersion + ", javaClassVersion=" + javaClassVersion +
+		// ", currentFreeHeapSize=" + currentFreeHeapSize + ", currentHeapSize=" + currentHeapSize + ", maximumHeapSize=" + maximumHeapSize + ", jvmName=" + jvmName + ", jvmInstallationDirectory=" + jvmInstallationDirectory + ", jvmVersion=" + jvmVersion + ", jvmVendor=" + jvmVendor + ",
+		// jvmExtraInfo=" + jvmExtraInfo + "]";
 		return getStatus();
 	}
 	
 	/**
 	 * returns how many processors are installed on this system.
-	 * @return 
+	 * @return
 	 */
 	public String getCpuInfo()
 	{
-		StringWriter sw = new StringWriter();
-		sw.append("Avaible CPU(s): " + avaibleCPUs);
-		sw.append("Processor(s) Identifier: " + processorIdentifier);
-		sw.append("..................................................");
-		sw.append("..................................................");
+		final StringWriter sw = new StringWriter();
+		sw.append("Avaible CPU(s): " + avaibleCPUs + " \n");
+		sw.append("Processor(s) Identifier: " + processorIdentifier + " \n");
+		
 		return sw.toString();
 	}
 	
 	/**
 	 * returns the operational system server is running on it.
-	 * @return 
+	 * @return
 	 */
 	public String getOSInfo()
 	{
-		StringWriter sw = new StringWriter();
-		sw.append("OS: " + os);
-		sw.append("OS Build: " + osBuild);
-		sw.append("OS Arch: " + osArch);
-		sw.append("..................................................");
-		sw.append("..................................................");
+		final StringWriter sw = new StringWriter();
+		sw.append("OS: " + os + " \n");
+		sw.append("OS Build: " + osBuild + " \n");
+		sw.append("OS Arch: " + osArch + " \n");
 		
 		return sw.toString();
 	}
 	
 	/**
 	 * returns JAVA Runtime Enviroment properties
-	 * @return 
+	 * @return
 	 */
 	public String getJreInfo()
 	{
-		StringWriter sw = new StringWriter();
-		sw.append("Java Platform Information");
-		sw.append("Java Runtime  Name: " + javaRuntimeName);
-		sw.append("Java Version: " + javaVersion);
-		sw.append("Java Class Version: " + javaClassVersion);
-		sw.append("..................................................");
-		sw.append("..................................................");
+		final StringWriter sw = new StringWriter();
+		sw.append("Java Platform Information" + " \n");
+		sw.append("Java Runtime  Name: " + javaRuntimeName + " \n");
+		sw.append("Java Version: " + javaVersion + " \n");
+		sw.append("Java Class Version: " + javaClassVersion + " \n");
 		
 		return sw.toString();
 	}
 	
 	/**
 	 * returns general infos related to machine
-	 * @return 
+	 * @return
 	 */
 	public String getRuntimeInfo()
 	{
-		StringWriter sw = new StringWriter();
-		sw.append("Runtime Information");
-		sw.append("Current Free Heap Size: " + currentFreeHeapSize + " mb");
-		sw.append("Current Heap Size: " + currentHeapSize + " mb");
-		sw.append("Maximum Heap Size: " + maximumHeapSize + " mb");
-		sw.append("..................................................");
-		sw.append("..................................................");
-		return sw.toString();
+		final StringWriter sw = new StringWriter();
+		sw.append("Runtime Information" + " \n");
+		sw.append("Current Free Heap Size: " + currentFreeHeapSize + " mb" + " \n");
+		sw.append("Current Heap Size: " + currentHeapSize + " mb" + " \n");
+		sw.append("Maximum Heap Size: " + maximumHeapSize + " mb" + " \n");
 		
+		return sw.toString();
 	}
 	
 	/**
 	 * calls time service to get system time.
-	 * @return 
+	 * @return
 	 */
 	public String getSystemTimeInfo()
 	{
-		StringWriter sw = new StringWriter();
-		sw.append("..................................................");
+		final StringWriter sw = new StringWriter();
 		sw.append("System Time: " + systemTime);
-		sw.append("..................................................");
 		return sw.toString();
 	}
 	
 	/**
 	 * gets system JVM properties.
-	 * @return 
+	 * @return
 	 */
 	public String getJvmInfo()
 	{
-		StringWriter sw = new StringWriter();
-		
-		sw.append("Virtual Machine Information (JVM)");
-		sw.append("JVM Name: " + jvmName);
-		sw.append("JVM installation directory: " + jvmInstallationDirectory);
-		sw.append("JVM version: " + jvmVersion);
-		sw.append("JVM Vendor: " + jvmVendor);
-		sw.append("JVM Extra Info: " + jvmExtraInfo);
-		sw.append("..................................................");
-		sw.append("..................................................");
+		final StringWriter sw = new StringWriter();
+		sw.append("Virtual Machine Information (JVM)" + " \n");
+		sw.append("JVM Name: " + jvmName + " \n");
+		sw.append("JVM installation directory: " + jvmInstallationDirectory + " \n");
+		sw.append("JVM version: " + jvmVersion + " \n");
+		sw.append("JVM Vendor: " + jvmVendor + " \n");
+		sw.append("JVM Extra Info: " + jvmExtraInfo + " \n");
 		
 		return sw.toString();
 	}
-
-	/* (non-Javadoc)
+	
+	/*
+	 * (non-Javadoc)
 	 * @see com.l2jfrozen.util.monitoring.data.MonitoredStatus#getStatus()
 	 */
 	@Override
 	public String getStatus()
 	{
-		StringWriter sw = new StringWriter();
+		final StringWriter sw = new StringWriter();
 		
-		sw.append(getSystemTime());
-		sw.append(getOSInfo());
-		sw.append(getCpuInfo());
-		sw.append(getRuntimeInfo());
-		sw.append(getJreInfo());
-		sw.append(getJvmInfo());
+		sw.append(getSystemTimeInfo());
+		// sw.append(getOSInfo());
+		// sw.append(getCpuInfo());
+		// sw.append(getRuntimeInfo());
+		// sw.append(getJreInfo());
+		// sw.append(getJvmInfo());
 		
 		return sw.toString();
 	}
-	/* (non-Javadoc)
+	
+	/*
+	 * (non-Javadoc)
 	 * @see com.l2jfrozen.util.monitoring.data.MonitoredStatus#refreshStatus()
 	 */
 	@Override

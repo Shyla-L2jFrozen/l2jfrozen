@@ -27,9 +27,10 @@ import com.l2jfrozen.util.taskmanager.TaskManager;
  */
 public class StatusManager
 {
-	private List<MonitoredStatus> monitoredStatus = new ArrayList<>();
+	private final List<MonitoredStatus> monitoredStatus = new ArrayList<>();
 	
-	private StatusManager(){
+	private StatusManager()
+	{
 		
 		registerMonitoredStatus(new RuntimeStatus());
 		
@@ -38,19 +39,14 @@ public class StatusManager
 	}
 	
 	/*
-	public static RuntimeStatus getRuntimeStatusInfo()
+	 * public static RuntimeStatus getRuntimeStatusInfo() { RuntimeStatus output = new RuntimeStatus(); return output; }
+	 */
+	
+	public boolean registerMonitoredStatus(final MonitoredStatus status)
 	{
 		
-		RuntimeStatus output = new RuntimeStatus();
-		
-		return output;
-		
-	}
-	*/
-	
-	public boolean registerMonitoredStatus(MonitoredStatus status){
-		
-		if(!monitoredStatus.contains(status)){
+		if (!monitoredStatus.contains(status))
+		{
 			monitoredStatus.add(status);
 			return true;
 		}
@@ -59,9 +55,11 @@ public class StatusManager
 		
 	}
 	
-	public boolean unregisterMonitoredStatus(MonitoredStatus status){
+	public boolean unregisterMonitoredStatus(final MonitoredStatus status)
+	{
 		
-		if(!monitoredStatus.contains(status)){
+		if (!monitoredStatus.contains(status))
+		{
 			return false;
 		}
 		
@@ -70,18 +68,22 @@ public class StatusManager
 		
 	}
 	
-	public void logCurrentMonitoredStatuses(){
+	public void logCurrentMonitoredStatuses()
+	{
 		
-		for(MonitoredStatus status:monitoredStatus){
+		for (final MonitoredStatus status : monitoredStatus)
+		{
 			status.refreshStatus();
 			status.printStatus();
 		}
 		
 	}
 	
-	public List<MonitoredStatus> getCurrentMonitoredStatuses(){
+	public List<MonitoredStatus> getCurrentMonitoredStatuses()
+	{
 		
-		for(MonitoredStatus status:monitoredStatus){
+		for (final MonitoredStatus status : monitoredStatus)
+		{
 			status.refreshStatus();
 		}
 		return monitoredStatus;

@@ -20,9 +20,6 @@
  */
 package com.l2jfrozen.util;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.apache.log4j.Logger;
 
 import javolution.text.TextBuilder;
@@ -150,7 +147,6 @@ public class Util
 		return printData(raw, raw.length);
 	}
 	
-	
 	/**
 	 * converts a given time from minutes -> miliseconds
 	 * @param minutesToConvert
@@ -160,6 +156,5 @@ public class Util
 	{
 		return minutesToConvert * 60000;
 	}
-	
 	
 }

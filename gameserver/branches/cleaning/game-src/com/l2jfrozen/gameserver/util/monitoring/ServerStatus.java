@@ -61,9 +61,8 @@ public class ServerStatus extends MonitoredStatus
 	{
 		final StringWriter sw = new StringWriter();
 		
-		sw.append("Players Online: " + TotalOnline);
-		sw.append("Active: " + ActivePlayers + ", Offline shop: " + OfflinePlayers + ", Fake player: " + FakePlayers);
-		sw.append("Alive clients: " + ActiveClients);
+		sw.append("Players Online: " + TotalOnline + ", Alive clients: " + ActiveClients + " \n");
+		sw.append("INFO  Active: " + ActivePlayers + ", Offline shop: " + OfflinePlayers + ", Fake player: " + FakePlayers);
 		
 		return sw.toString();
 	}

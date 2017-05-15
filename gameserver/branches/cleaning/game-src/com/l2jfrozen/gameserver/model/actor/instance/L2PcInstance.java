@@ -16314,6 +16314,7 @@ public final class L2PcInstance extends L2PlayableInstance
 	 * <li>Remove all L2Object from _knownObjects and _knownPlayer of the L2Character then cancel Attak or Cast and notify AI</li>
 	 * <li>Close the connection with the client</li><BR>
 	 * <BR>
+	 * @param disconnect
 	 */
 	public synchronized void deleteMe(final boolean disconnect)
 	{

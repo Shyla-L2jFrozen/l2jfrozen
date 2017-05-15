@@ -20,7 +20,6 @@ import org.apache.log4j.Logger;
 
 /**
  * @author Shyla
- *
  */
 public abstract class MonitoredStatus implements Serializable
 {
@@ -30,7 +29,8 @@ public abstract class MonitoredStatus implements Serializable
 	
 	public abstract String getStatus();
 	
-	public void printStatus(){
+	public void printStatus()
+	{
 		LOGGER.info(getStatus());
 	}
 	

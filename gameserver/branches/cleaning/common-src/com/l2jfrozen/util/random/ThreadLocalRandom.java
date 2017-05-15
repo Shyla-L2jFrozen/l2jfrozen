@@ -2,7 +2,6 @@ package com.l2jfrozen.util.random;
 
 import java.util.Random;
 
-
 /**
  * This class extends {@link java.util.Random} but do not compare and store atomically.<br>
  * Instead it`s using thread local ensure reading and storing the whole 64bit seed chunk.<br>

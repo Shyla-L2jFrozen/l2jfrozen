@@ -17,28 +17,20 @@ package com.l2jfrozen.util.taskmanager;
 import static com.l2jfrozen.util.taskmanager.TaskTypes.TYPE_SHEDULED;
 import static com.l2jfrozen.util.taskmanager.TaskTypes.TYPE_TIME;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.concurrent.ScheduledFuture;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.util.CloseUtil;
-import com.l2jfrozen.util.database.DatabaseUtils;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
-
 /**
  * @author Shyla
- *
  */
 public class ExecutedTask implements Runnable
 {
-	private int id;
+	private final int id;
 	private long lastActivation;
-	private Task task;
-	private TaskTypes type;
-	private String[] params;
+	private final Task task;
+	private final TaskTypes type;
+	private final String[] params;
 	private ScheduledFuture<?> scheduled;
 	
 	public ExecutedTask(final Task ptask, final TaskTypes ptype, final ResultSet rset) throws SQLException
@@ -123,22 +115,21 @@ public class ExecutedTask implements Runnable
 		TaskManager.getInstance().removeActiveTask(this);
 		
 	}
-
-//	/**
-//	 * @return the scheduled
-//	 */
-//	public ScheduledFuture<?> getScheduled()
-//	{
-//		return scheduled;
-//	}
-
+	
+	// /**
+	// * @return the scheduled
+	// */
+	// public ScheduledFuture<?> getScheduled()
+	// {
+	// return scheduled;
+	// }
+	
 	/**
 	 * @param scheduled the scheduled to set
 	 */
-	public void setScheduled(ScheduledFuture<?> scheduled)
+	public void setScheduled(final ScheduledFuture<?> scheduled)
 	{
 		this.scheduled = scheduled;
 	}
 	
 }
-
