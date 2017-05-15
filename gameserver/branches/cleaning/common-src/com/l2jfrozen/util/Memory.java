@@ -39,4 +39,25 @@ public class Memory
 	{
 		return Runtime.getRuntime().maxMemory() / 1048576;
 	}
+	
+	public static String getOSName()
+	{
+		return System.getProperty("os.name");
+	}
+	
+	public static String getOSVersion()
+	{
+		return System.getProperty("os.version");
+	}
+	
+	public static String getOSArch()
+	{
+		return System.getProperty("os.arch");
+	}
+	
+	public static int getAvailableProcessors()
+	{
+		final Runtime rt = Runtime.getRuntime();
+		return rt.availableProcessors();
+	}
 }
