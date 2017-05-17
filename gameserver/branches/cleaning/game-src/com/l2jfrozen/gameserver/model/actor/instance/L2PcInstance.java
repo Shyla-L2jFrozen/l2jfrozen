@@ -5685,7 +5685,7 @@ public final class L2PcInstance extends L2PlayableInstance
 	 */
 	public void setProtection(final boolean protect)
 	{
-		if (Config.DEVELOPER && (protect || _protectEndTime > 0))
+		if (CommonConfig.DEBUG && (protect || _protectEndTime > 0))
 			LOGGER.info(getName() + ": Protection " + (protect ? "ON " + (GameTimeController.getGameTicks() + Config.PLAYER_SPAWN_PROTECTION * GameTimeController.TICKS_PER_SECOND) : "OFF") + " (currently " + GameTimeController.getGameTicks() + ")");
 		
 		if (isInOlympiadMode())
@@ -5703,8 +5703,8 @@ public final class L2PcInstance extends L2PlayableInstance
 	 */
 	public void setTeleportProtection(final boolean protect)
 	{
-		if (Config.DEVELOPER && (protect || _teleportProtectEndTime > 0))
-			LOGGER.warn(getName() + ": Tele Protection " + (protect ? "ON " + (GameTimeController.getGameTicks() + Config.PLAYER_TELEPORT_PROTECTION * GameTimeController.TICKS_PER_SECOND) : "OFF") + " (currently " + GameTimeController.getGameTicks() + ")");
+		if (CommonConfig.DEBUG && (protect || _teleportProtectEndTime > 0))
+			LOGGER.info(getName() + ": Tele Protection " + (protect ? "ON " + (GameTimeController.getGameTicks() + Config.PLAYER_TELEPORT_PROTECTION * GameTimeController.TICKS_PER_SECOND) : "OFF") + " (currently " + GameTimeController.getGameTicks() + ")");
 		
 		_teleportProtectEndTime = protect ? GameTimeController.getGameTicks() + Config.PLAYER_TELEPORT_PROTECTION * GameTimeController.TICKS_PER_SECOND : 0;
 		
@@ -16590,6 +16590,9 @@ public final class L2PcInstance extends L2PlayableInstance
 			LOGGER.error("deleteMe()", t);
 		}
 		
+		if (Config.DEVELOPER)
+			LOGGER.info("Removing character: [" + getName() + "], account: [" + getAccountName() + "], ip: [" + getClient().getConnection().getInetAddress().getHostAddress() + "]");
+			
 		// if ((isInOfflineMode() || isFakeOfflinePlayer()) && getClient() != null)
 		// MMOClientsManager.getInstance().removeClient(getClient().getIdentifier());
 		
@@ -17639,11 +17642,6 @@ public final class L2PcInstance extends L2PlayableInstance
 	 */
 	public void restoreCustomStatus()
 	{
-		if (Config.DEVELOPER)
-		{
-			LOGGER.info("Restoring character: [" + getName() + "], account: [" + getAccountName() + "], ip: [" + getClient().getConnection().getInetAddress().getHostAddress() + "]");
-		}
-		
 		int hero = 0;
 		int noble = 0;
 		int donator = 0;

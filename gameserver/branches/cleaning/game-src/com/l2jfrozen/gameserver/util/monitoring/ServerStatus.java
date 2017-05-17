@@ -34,10 +34,7 @@ import com.l2jfrozen.util.monitoring.data.MonitoredStatus;
  */
 public class ServerStatus extends MonitoredStatus
 {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4059798755377928431L;
+	private static final long serialVersionUID = -4059798755377928430L;
 	
 	private int TotalOnline;
 	private int ActivePlayers;
@@ -47,9 +44,7 @@ public class ServerStatus extends MonitoredStatus
 	
 	public ServerStatus()
 	{
-		
 		refreshStatus();
-		
 	}
 	
 	/*
@@ -150,5 +145,4 @@ public class ServerStatus extends MonitoredStatus
 		TotalOnline = ActivePlayers + OfflinePlayers + FakePlayers;
 		ActiveClients = MMOClientsManager.getInstance().printClientsNumber();
 	}
-	
 }
