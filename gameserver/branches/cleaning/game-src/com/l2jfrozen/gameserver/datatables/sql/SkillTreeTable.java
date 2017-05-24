@@ -385,6 +385,9 @@ public class SkillTreeTable
 		
 		for (final L2SkillLearn skill : skills)
 		{
+			if ((skill == null) || ((skill.getId() == L2Skill.SKILL_DIVINE_INSPIRATION) && !Config.AUTO_LEARN_DIVINE_INSPIRATION && !player.isGM()))
+				continue;
+			
 			if (skill.getMinLevel() <= player.getLevel())
 			{
 				final L2Skill oldSkill = holder.getKnownSkill(skill.getId());
@@ -704,20 +707,13 @@ public class SkillTreeTable
 	public Collection<L2Skill> getAllAvailableSkills(final L2PcInstance player, final ClassId classId)
 	{
 		// Get available skills
-		int unLearnable = 0;
 		final PlayerSkillHolder holder = new PlayerSkillHolder(player.getSkills());
 		List<L2SkillLearn> learnable = getAvailableSkills(player, classId, holder);
-		while (learnable.size() > unLearnable)
+		while (learnable.size() > 0)
 		{
 			for (final L2SkillLearn s : learnable)
 			{
 				final L2Skill sk = SkillTable.getInstance().getInfo(s.getId(), s.getLevel());
-				if ((sk == null) || ((sk.getId() == L2Skill.SKILL_DIVINE_INSPIRATION) && !Config.AUTO_LEARN_DIVINE_INSPIRATION && !player.isGM()))
-				{
-					unLearnable++;
-					continue;
-				}
-				
 				holder.addSkill(sk);
 			}
 			
