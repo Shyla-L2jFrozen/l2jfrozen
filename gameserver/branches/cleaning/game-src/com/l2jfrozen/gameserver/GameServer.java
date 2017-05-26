@@ -157,7 +157,6 @@ import com.l2jfrozen.netcore.util.IPv4Filter;
 import com.l2jfrozen.netcore.util.PacketsFloodProtector;
 import com.l2jfrozen.thread.DeadlockDetector;
 import com.l2jfrozen.thread.ThreadPoolManager;
-import com.l2jfrozen.util.Memory;
 import com.l2jfrozen.util.Util;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 import com.l2jfrozen.util.monitoring.StatusManager;
@@ -612,6 +611,7 @@ public class GameServer
 		if (Config.BOT_PROTECTOR)
 			Config.loadQuestion();
 		
+		/*
 		Util.printSection("OS Infos");
 		LOGGER.info("Operating System: " + Memory.getOSName() + " " + Memory.getOSVersion() + " " + Memory.getOSArch());
 		LOGGER.info("Available CPUs: " + Memory.getAvailableProcessors());
@@ -631,8 +631,12 @@ public class GameServer
 		LOGGER.info("JVM implementation version: " + System.getProperty("java.vm.version"));
 		LOGGER.info("JVM implementation vendor: " + System.getProperty("java.vm.vendor"));
 		LOGGER.info("JVM implementation name: " + System.getProperty("java.vm.name"));
+		*/
 		
 		Util.printSection("Status");
+		//Server Static Info
+		StatusManager.getInstance().logStaticMonitoredStatuses();
+				
 		System.gc();
 		LOGGER.info("Server Loaded in " + (System.currentTimeMillis() - serverLoadStart) / 1000 + " seconds");
 		LOGGER.info("Maximum Numbers of Connected Players: " + Config.MAXIMUM_ONLINE_USERS);

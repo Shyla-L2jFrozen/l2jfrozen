@@ -27,11 +27,18 @@ public abstract class MonitoredStatus implements Serializable
 	
 	public abstract void refreshStatus();
 	
-	public abstract String getStatus();
+	public abstract String getStaticStatus();
 	
-	public void printStatus()
+	public abstract String getDynamicStatus();
+	
+	public void printDynamicStatus()
 	{
-		LOGGER.info(getStatus());
+		LOGGER.info(getDynamicStatus());
+	}
+	
+	public void printStaticStatus()
+	{
+		LOGGER.info(getStaticStatus());
 	}
 	
 }
