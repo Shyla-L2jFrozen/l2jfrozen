@@ -56,7 +56,7 @@ public class ServerStatus extends MonitoredStatus
 	 */
 	@SuppressWarnings("static-access")
 	@Override
-	public String getStatus()
+	public String getDynamicStatus()
 	{
 		final StringWriter sw = new StringWriter();
 		
@@ -73,6 +73,12 @@ public class ServerStatus extends MonitoredStatus
 		}
 		
 		return sw.toString();
+	}
+	
+	@Override
+	public String getStaticStatus()
+	{
+		return "";
 	}
 	
 	/**
@@ -123,16 +129,15 @@ public class ServerStatus extends MonitoredStatus
 		return ActiveClients;
 	}
 	
-	/*
-	 * (non-Javadoc)
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString()
 	{
-		return getStatus();
+		return "ServerStatus [TotalOnline=" + TotalOnline + ", ActivePlayers=" + ActivePlayers + ", OfflinePlayers=" + OfflinePlayers + ", FakePlayers=" + FakePlayers + ", ActiveClients=" + ActiveClients + "]";
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.l2jfrozen.util.monitoring.data.MonitoredStatus#refreshStatus()
@@ -156,6 +161,6 @@ public class ServerStatus extends MonitoredStatus
 		}
 		
 		TotalOnline = ActivePlayers + OfflinePlayers + FakePlayers;
-		ActiveClients = MMOClientsManager.getInstance().printClientsNumber();
+		ActiveClients = MMOClientsManager.getInstance().getActiveClientsNumber();
 	}
 }

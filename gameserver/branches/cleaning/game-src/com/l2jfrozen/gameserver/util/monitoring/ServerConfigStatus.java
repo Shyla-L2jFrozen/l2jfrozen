@@ -23,7 +23,6 @@ package com.l2jfrozen.gameserver.util.monitoring;
 import java.io.StringWriter;
 
 import com.l2jfrozen.Config;
-import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.powerpak.PowerPakConfig;
 import com.l2jfrozen.util.monitoring.data.MonitoredStatus;
 
@@ -45,7 +44,6 @@ public class ServerConfigStatus extends MonitoredStatus
 	private String GameServerHopzoneLink;
 	private String GameServerTopzoneLink;
 	private String GameServerL2NetworkLink;
-	private int ActualOnlinePlayers;
 	
 	public ServerConfigStatus()
 	{
@@ -57,7 +55,7 @@ public class ServerConfigStatus extends MonitoredStatus
 	 * @see com.l2jfrozen.util.monitoring.data.MonitoredStatus#getStatus()
 	 */
 	@Override
-	public String getStatus()
+	public String getStaticStatus()
 	{
 		final StringWriter sw = new StringWriter();
 		
@@ -70,9 +68,14 @@ public class ServerConfigStatus extends MonitoredStatus
 		sw.append("	GameServerHopzoneLink: " + GameServerHopzoneLink + " \n");
 		sw.append("	GameServerTopzoneLink: " + GameServerTopzoneLink + " \n");
 		sw.append("	GameServerL2NetworkLink: " + GameServerL2NetworkLink + " \n");
-		sw.append("	ActualOnlinePlayers: " + ActualOnlinePlayers);
 		
 		return sw.toString();
+	}
+	
+	@Override
+	public String getDynamicStatus()
+	{
+		return "";
 	}
 	
 	public String getServerName()
@@ -120,11 +123,6 @@ public class ServerConfigStatus extends MonitoredStatus
 		return GameServerL2NetworkLink;
 	}
 	
-	public int getActualOnlinePlayers()
-	{
-		return ActualOnlinePlayers;
-	}
-	
 	/**
 	 * @return the serialversionuid
 	 */
@@ -133,16 +131,16 @@ public class ServerConfigStatus extends MonitoredStatus
 		return serialVersionUID;
 	}
 	
-	/*
-	 * (non-Javadoc)
+	
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString()
 	{
-		return getStatus();
+		return "ServerConfigStatus [ServerName=" + ServerName + ", GameServerIp=" + GameServerIp + ", GameServerPort=" + GameServerPort + ", GameServerRate=" + GameServerRate + ", GameServerAdenaRate=" + GameServerAdenaRate + ", GameServerLink=" + GameServerLink + ", GameServerHopzoneLink=" + GameServerHopzoneLink + ", GameServerTopzoneLink=" + GameServerTopzoneLink + ", GameServerL2NetworkLink=" + GameServerL2NetworkLink + "]";
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see com.l2jfrozen.util.monitoring.data.MonitoredStatus#refreshStatus()
@@ -159,6 +157,5 @@ public class ServerConfigStatus extends MonitoredStatus
 		GameServerHopzoneLink = PowerPakConfig.VOTES_SITE_HOPZONE_URL;
 		GameServerTopzoneLink = PowerPakConfig.VOTES_SITE_TOPZONE_URL;
 		GameServerL2NetworkLink = PowerPakConfig.VOTES_SITE_L2NETWORK_URL;
-		ActualOnlinePlayers = L2World.getInstance().getAllPlayers().size();
 	}
 }

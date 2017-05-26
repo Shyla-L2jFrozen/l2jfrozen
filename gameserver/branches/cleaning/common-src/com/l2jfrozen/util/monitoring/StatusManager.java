@@ -62,12 +62,23 @@ public class StatusManager
 		return true;
 	}
 	
+	public void logStaticMonitoredStatuses()
+	{
+		
+		for (final MonitoredStatus status : monitoredStatus)
+		{
+			status.refreshStatus();
+			status.printStaticStatus();
+		}
+		
+	}
+	
 	public void logCurrentMonitoredStatuses()
 	{
 		for (final MonitoredStatus status : monitoredStatus)
 		{
 			status.refreshStatus();
-			status.printStatus();
+			status.printDynamicStatus();
 		}
 	}
 	
