@@ -116,8 +116,9 @@ public class AutoSaveManager
 					}
 				}
 			}
-			LOGGER.info("[AutoSaveManager] AutoSaveTask, " + playerscount + " players data saved. (" + (System.currentTimeMillis() - LoadStart) / 1000 + " seconds)");
 			
+			if (Config.AUTOSAVEMANAGER_LOG)
+				LOGGER.info("[AutoSaveManager] AutoSaveTask, " + playerscount + " players data saved. (" + (System.currentTimeMillis() - LoadStart) / 1000 + " seconds)");
 		}
 	}
 	
@@ -169,7 +170,9 @@ public class AutoSaveManager
 					connections++;
 				}
 			}
-			LOGGER.info("[AutoSaveManager] ConnectionCheckTask, " + connections + " connections checked. (" + (System.currentTimeMillis() - LoadStart) / 1000 + " seconds)");
+			
+			if (Config.AUTOSAVEMANAGER_LOG)
+				LOGGER.info("[AutoSaveManager] ConnectionCheckTask, " + connections + " connections checked. (" + (System.currentTimeMillis() - LoadStart) / 1000 + " seconds)");
 		}
 	}
 	
@@ -207,7 +210,8 @@ public class AutoSaveManager
 				CloseUtil.close(con);
 			}
 			
-			LOGGER.info("[AutoSaveManager] AutoCleanDBTask, " + erased + " entries cleaned from db. (" + (System.currentTimeMillis() - LoadStart) / 1000 + " seconds)");
+			if (Config.AUTOSAVEMANAGER_LOG)
+				LOGGER.info("[AutoSaveManager] AutoCleanDBTask, " + erased + " entries cleaned from db. (" + (System.currentTimeMillis() - LoadStart) / 1000 + " seconds)");
 		}
 	}
 	

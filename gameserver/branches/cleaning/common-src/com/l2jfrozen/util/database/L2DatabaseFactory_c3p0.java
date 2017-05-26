@@ -190,4 +190,8 @@ public class L2DatabaseFactory_c3p0 extends L2DatabaseFactory
 		return _source.getNumIdleConnectionsDefaultUser();
 	}
 	
+	public int getNumConnections() throws SQLException
+	{
+		return _source.getNumConnections();
+	}
 }

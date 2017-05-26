@@ -53,9 +53,9 @@ public final class SetPrivateStoreListBuy extends L2GameClientPacket
 		{
 			final int itemId = readD();
 			_items[x * 4 + 0] = itemId;
-			_items[(x * 4 + 3)] = readH();
+			_items[(x * 4 + 3)] = readH(this.getClass().getSimpleName());
 			// readH();//it's the enchant value, but the interlude client has a bug, so it dnt send back the correct enchant value
-			readH();// TODO analyse this
+			readH(this.getClass().getSimpleName());// TODO analyse this
 			final long cnt = readD();
 			
 			if (cnt > Integer.MAX_VALUE || cnt < 0)

@@ -4028,6 +4028,7 @@ public final class Config
 	public static long CHECK_TELEPORT_ZOMBIE_DELAY_TIME;
 	public static long DEADLOCKCHECK_INTIAL_TIME;
 	public static long DEADLOCKCHECK_DELAY_TIME;
+	public static boolean AUTOSAVEMANAGER_LOG;
 	
 	// ============================================================
 	public static void loadDaemonsConf()
@@ -4038,6 +4039,7 @@ public final class Config
 		{
 			final L2Properties p = new L2Properties(DAEMONS);
 			
+			AUTOSAVEMANAGER_LOG = Boolean.parseBoolean(p.getProperty("AutoSaveManagerLog", "False"));
 			AUTOSAVE_INITIAL_TIME = Long.parseLong(p.getProperty("AutoSaveInitial", "300000"));
 			AUTOSAVE_DELAY_TIME = Long.parseLong(p.getProperty("AutoSaveDelay", "900000"));
 			CHECK_CONNECTION_INITIAL_TIME = Long.parseLong(p.getProperty("CheckConnectionInitial", "300000"));

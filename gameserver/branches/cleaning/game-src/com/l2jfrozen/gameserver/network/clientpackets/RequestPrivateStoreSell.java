@@ -59,8 +59,8 @@ public final class RequestPrivateStoreSell extends L2GameClientPacket
 		{
 			final int objectId = readD();
 			final int itemId = readD();
-			final int enchant = readH();
-			readH(); // TODO analyse this
+			final int enchant = readH(this.getClass().getSimpleName());
+			readH(this.getClass().getSimpleName()); // TODO analyse this
 			final long count = readD();
 			final int price = readD();
 			
