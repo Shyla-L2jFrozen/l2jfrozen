@@ -31,11 +31,9 @@ public class StatusManager
 	
 	private StatusManager()
 	{
-		
 		registerMonitoredStatus(new RuntimeStatus());
 		
 		TaskManager.getInstance().registerTask(new TaskPrintServerStatus());
-		
 	}
 	
 	/*
@@ -44,7 +42,6 @@ public class StatusManager
 	
 	public boolean registerMonitoredStatus(final MonitoredStatus status)
 	{
-		
 		if (!monitoredStatus.contains(status))
 		{
 			monitoredStatus.add(status);
@@ -52,12 +49,10 @@ public class StatusManager
 		}
 		
 		return false;
-		
 	}
 	
 	public boolean unregisterMonitoredStatus(final MonitoredStatus status)
 	{
-		
 		if (!monitoredStatus.contains(status))
 		{
 			return false;
@@ -65,23 +60,19 @@ public class StatusManager
 		
 		monitoredStatus.remove(status);
 		return true;
-		
 	}
 	
 	public void logCurrentMonitoredStatuses()
 	{
-		
 		for (final MonitoredStatus status : monitoredStatus)
 		{
 			status.refreshStatus();
 			status.printStatus();
 		}
-		
 	}
 	
 	public List<MonitoredStatus> getCurrentMonitoredStatuses()
 	{
-		
 		for (final MonitoredStatus status : monitoredStatus)
 		{
 			status.refreshStatus();

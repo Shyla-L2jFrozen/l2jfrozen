@@ -94,9 +94,8 @@ public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractP
 		
 	}
 	
-	protected final int readH()
+	protected final int readH(final String NamePacket)
 	{
-		
 		try
 		{
 			
@@ -105,8 +104,8 @@ public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractP
 		}
 		catch (final BufferUnderflowException e)
 		{
-			LOGGER.warn("", e);
-			
+			if (NamePacket != "ProtocolVersion")
+				LOGGER.warn("", e);
 		}
 		
 		return -1;

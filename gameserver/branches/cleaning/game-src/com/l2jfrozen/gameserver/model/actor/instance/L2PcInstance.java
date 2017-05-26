@@ -12258,7 +12258,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		}
 		
 		// Check if the spell consummes an Item
-		if (skill.getItemConsume() > 0)
+		if (skill.getItemConsume() > 0 && !isGM())
 		{
 			// Get the L2ItemInstance consummed by the spell
 			final L2ItemInstance requiredItems = getInventory().getItemByItemId(skill.getItemConsumeId());
@@ -16318,6 +16318,14 @@ public final class L2PcInstance extends L2PlayableInstance
 	 */
 	public synchronized void deleteMe(final boolean disconnect)
 	{
+		if (Config.DEVELOPER)
+		{
+			if (getClient() != null && getClient().getConnection().getInetAddress().getHostAddress() != null)
+				LOGGER.info("Removing character: [" + getName() + "], account: [" + getAccountName() + "], ip: [" + getClient().getConnection().getInetAddress().getHostAddress() + "]");
+			else
+				LOGGER.info("Removing character: [" + getName() + "], account: [" + getAccountName() + "]");
+		}
+		
 		// Check if the L2PcInstance is in observer mode to set its position to its position before entering in observer mode
 		if (inObserverMode())
 		{
@@ -16589,12 +16597,6 @@ public final class L2PcInstance extends L2PlayableInstance
 			
 			LOGGER.error("deleteMe()", t);
 		}
-		
-		if (Config.DEVELOPER)
-			LOGGER.info("Removing character: [" + getName() + "], account: [" + getAccountName() + "], ip: [" + getClient().getConnection().getInetAddress().getHostAddress() + "]");
-			
-		// if ((isInOfflineMode() || isFakeOfflinePlayer()) && getClient() != null)
-		// MMOClientsManager.getInstance().removeClient(getClient().getIdentifier());
 		
 		// Close the connection with the client
 		if (disconnect)

@@ -107,6 +107,7 @@ public class PowerPakConfig
 	public static boolean ENABLE_SAY_SOCIAL_ACTIONS;
 	
 	public static boolean CHAR_REPAIR;
+	public static boolean VOTEMANAGER_LOG;
 	
 	public static void load()
 	{
@@ -272,7 +273,7 @@ public class PowerPakConfig
 			ENABLE_SAY_SOCIAL_ACTIONS = Boolean.parseBoolean(p.getProperty("EnableSocialSayActions", "false"));
 			
 			CHAR_REPAIR = Boolean.parseBoolean(p.getProperty("CharacterRepair", "False"));
-			
+			VOTEMANAGER_LOG = Boolean.parseBoolean(p.getProperty("VoteManagerLog", "False"));
 		}
 		catch (final Exception e)
 		{

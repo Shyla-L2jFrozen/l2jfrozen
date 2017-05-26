@@ -32,7 +32,7 @@ public final class ProtocolVersion extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_version = readH();
+		_version = readH(this.getClass().getSimpleName());
 	}
 	
 	@Override
