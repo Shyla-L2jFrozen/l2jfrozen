@@ -29,7 +29,7 @@ public final class RequestTargetCanceld extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_unselect = readH();
+		_unselect = readH(this.getClass().getSimpleName());
 	}
 	
 	@Override

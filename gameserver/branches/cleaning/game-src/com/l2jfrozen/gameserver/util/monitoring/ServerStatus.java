@@ -21,10 +21,13 @@
 package com.l2jfrozen.gameserver.util.monitoring;
 
 import java.io.StringWriter;
+import java.sql.SQLException;
 
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.netcore.MMOClientsManager;
+import com.l2jfrozen.util.Memory;
+import com.l2jfrozen.util.database.L2DatabaseFactory_c3p0;
 import com.l2jfrozen.util.monitoring.data.MonitoredStatus;
 
 /**
@@ -51,13 +54,23 @@ public class ServerStatus extends MonitoredStatus
 	 * (non-Javadoc)
 	 * @see com.l2jfrozen.util.monitoring.data.MonitoredStatus#getStatus()
 	 */
+	@SuppressWarnings("static-access")
 	@Override
 	public String getStatus()
 	{
 		final StringWriter sw = new StringWriter();
 		
-		sw.append("Players Online: " + TotalOnline + ", Alive clients: " + ActiveClients + " \n");
-		sw.append("INFO  Active: " + ActivePlayers + ", Offline shop: " + OfflinePlayers + ", Fake player: " + FakePlayers);
+		sw.append("Players Online: " + TotalOnline + ", Alive clients: " + ActiveClients + ". \n");
+		sw.append("INFO  Active: " + ActivePlayers + ", Offline shop: " + OfflinePlayers + ", Fake player: " + FakePlayers + ". \n");
+		sw.append("INFO  Free Memory: " + Memory.getFreeMemory() + " MB, Used memory: " + Memory.getUsedMemory() + " MB, Threads count: " + Thread.activeCount() + ". \n");
+		try
+		{
+			sw.append("INFO  Connections c3p0 -> Count: " + ((L2DatabaseFactory_c3p0) L2DatabaseFactory_c3p0.getInstance()).getNumConnections() + ", Idle: " + ((L2DatabaseFactory_c3p0) L2DatabaseFactory_c3p0.getInstance()).getIdleConnectionCount() + ", Busy: " + L2DatabaseFactory_c3p0.getInstance().getBusyConnectionCount() + ".");
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 		
 		return sw.toString();
 	}

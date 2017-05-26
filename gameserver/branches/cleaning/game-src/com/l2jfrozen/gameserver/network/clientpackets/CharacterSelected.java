@@ -35,7 +35,7 @@ public class CharacterSelected extends L2GameClientPacket
 	protected void readImpl()
 	{
 		_charSlot = readD();
-		_unk1 = readH();
+		_unk1 = readH(this.getClass().getSimpleName());
 		_unk2 = readD();
 		_unk3 = readD();
 		_unk4 = readD();
