@@ -75,7 +75,7 @@ public class MMOClientsManager<T extends MMOClient<?>>
 		}
 	}
 	
-	public int printClientsNumber()
+	public int getActiveClientsNumber()
 	{
 		return managedClients.size();
 	}

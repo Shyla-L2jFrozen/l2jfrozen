@@ -73,6 +73,7 @@ public class EffectTemplate
 		
 		try
 		{
+			
 			_func = Class.forName("com.l2jfrozen.gameserver.skills.effects.Effect" + func);
 		}
 		catch (final ClassNotFoundException e)
