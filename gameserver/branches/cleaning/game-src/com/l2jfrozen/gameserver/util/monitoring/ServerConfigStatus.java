@@ -131,8 +131,8 @@ public class ServerConfigStatus extends MonitoredStatus
 		return serialVersionUID;
 	}
 	
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -140,7 +140,7 @@ public class ServerConfigStatus extends MonitoredStatus
 	{
 		return "ServerConfigStatus [ServerName=" + ServerName + ", GameServerIp=" + GameServerIp + ", GameServerPort=" + GameServerPort + ", GameServerRate=" + GameServerRate + ", GameServerAdenaRate=" + GameServerAdenaRate + ", GameServerLink=" + GameServerLink + ", GameServerHopzoneLink=" + GameServerHopzoneLink + ", GameServerTopzoneLink=" + GameServerTopzoneLink + ", GameServerL2NetworkLink=" + GameServerL2NetworkLink + "]";
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.l2jfrozen.util.monitoring.data.MonitoredStatus#refreshStatus()
