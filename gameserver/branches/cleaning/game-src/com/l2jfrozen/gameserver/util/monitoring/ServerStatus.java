@@ -59,18 +59,18 @@ public class ServerStatus extends MonitoredStatus
 	public String getDynamicStatus()
 	{
 		final StringWriter sw = new StringWriter();
-		
 		sw.append("Players Online: " + TotalOnline + ", Alive clients: " + ActiveClients + ". \n");
 		sw.append("INFO  Active: " + ActivePlayers + ", Offline shop: " + OfflinePlayers + ", Fake player: " + FakePlayers + ". \n");
 		sw.append("INFO  Free Memory: " + Memory.getFreeMemory() + " MB, Used memory: " + Memory.getUsedMemory() + " MB, Threads count: " + Thread.activeCount() + ". \n");
 		try
 		{
-			sw.append("INFO  Connections c3p0 -> Count: " + ((L2DatabaseFactory_c3p0) L2DatabaseFactory_c3p0.getInstance()).getNumConnections() + ", Idle: " + ((L2DatabaseFactory_c3p0) L2DatabaseFactory_c3p0.getInstance()).getIdleConnectionCount() + ", Busy: " + L2DatabaseFactory_c3p0.getInstance().getBusyConnectionCount() + ".");
+			sw.append("INFO  Connections c3p0 -> Count: " + ((L2DatabaseFactory_c3p0) L2DatabaseFactory_c3p0.getInstance()).getNumConnections() + ", Idle: " + ((L2DatabaseFactory_c3p0) L2DatabaseFactory_c3p0.getInstance()).getIdleConnectionCount() + ", Busy: " + L2DatabaseFactory_c3p0.getInstance().getBusyConnectionCount() + ". \n");
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
+		sw.append("INFO  =============================================================-[ Server status ] \n");
 		
 		return sw.toString();
 	}
@@ -129,7 +129,8 @@ public class ServerStatus extends MonitoredStatus
 		return ActiveClients;
 	}
 	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -137,7 +138,7 @@ public class ServerStatus extends MonitoredStatus
 	{
 		return "ServerStatus [TotalOnline=" + TotalOnline + ", ActivePlayers=" + ActivePlayers + ", OfflinePlayers=" + OfflinePlayers + ", FakePlayers=" + FakePlayers + ", ActiveClients=" + ActiveClients + "]";
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.l2jfrozen.util.monitoring.data.MonitoredStatus#refreshStatus()

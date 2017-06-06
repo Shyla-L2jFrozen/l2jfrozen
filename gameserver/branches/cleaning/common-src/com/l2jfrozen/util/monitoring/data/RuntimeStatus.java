@@ -194,8 +194,8 @@ public class RuntimeStatus extends MonitoredStatus
 		return jvmExtraInfo;
 	}
 	
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -203,7 +203,7 @@ public class RuntimeStatus extends MonitoredStatus
 	{
 		return "RuntimeStatus [systemTime=" + systemTime + ", avaibleCPUs=" + avaibleCPUs + ", processorIdentifier=" + processorIdentifier + ", os=" + os + ", osBuild=" + osBuild + ", osArch=" + osArch + ", javaRuntimeName=" + javaRuntimeName + ", javaVersion=" + javaVersion + ", javaClassVersion=" + javaClassVersion + ", currentFreeHeapSize=" + currentFreeHeapSize + ", currentHeapSize=" + currentHeapSize + ", maximumHeapSize=" + maximumHeapSize + ", jvmName=" + jvmName + ", jvmInstallationDirectory=" + jvmInstallationDirectory + ", jvmVersion=" + jvmVersion + ", jvmVendor=" + jvmVendor + ", jvmExtraInfo=" + jvmExtraInfo + "]";
 	}
-
+	
 	/**
 	 * returns how many processors are installed on this system.
 	 * @return
@@ -268,7 +268,7 @@ public class RuntimeStatus extends MonitoredStatus
 	public String getSystemTimeInfo()
 	{
 		final StringWriter sw = new StringWriter();
-		sw.append("System Time: " + systemTime);
+		sw.append("INFO  System Time: " + systemTime);
 		return sw.toString();
 	}
 	
@@ -297,11 +297,11 @@ public class RuntimeStatus extends MonitoredStatus
 	public String getDynamicStatus()
 	{
 		final StringWriter sw = new StringWriter();
-		
+		sw.append("=============================================================-[ Server status ] \n");
 		sw.append(getSystemTimeInfo());
 		// sw.append(getOSInfo());
 		// sw.append(getCpuInfo());
-		sw.append(getRuntimeInfo());
+		// sw.append(getRuntimeInfo());
 		// sw.append(getJreInfo());
 		// sw.append(getJvmInfo());
 		

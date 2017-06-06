@@ -40,5 +40,4 @@ public abstract class MonitoredStatus implements Serializable
 	{
 		LOGGER.info(getStaticStatus());
 	}
-	
 }
