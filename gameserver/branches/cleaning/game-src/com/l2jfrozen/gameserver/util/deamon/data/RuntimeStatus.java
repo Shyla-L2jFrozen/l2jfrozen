@@ -222,7 +222,7 @@ public class RuntimeStatus implements Serializable
 	{
 		return osBuild;
 	}
-
+	
 	public void refreshStatus()
 	{
 		avaibleCPUs = Runtime.getRuntime().availableProcessors();

@@ -98,9 +98,7 @@ public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractP
 	{
 		try
 		{
-			
 			return _buf.getShort() & 0xFFFF;
-			
 		}
 		catch (final BufferUnderflowException e)
 		{

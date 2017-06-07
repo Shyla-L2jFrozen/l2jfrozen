@@ -7,13 +7,14 @@ import com.l2jfrozen.gameserver.util.deamon.support.DeamonSystem;
 public class ServerDeamonTask implements Runnable
 {
 	
-	private long activationTime = 30000; // 30 sec
-	private long reactivationTime = 1800000; // 30 minutes
+	private final long activationTime = 30000; // 30 sec
+	private final long reactivationTime = 1800000; // 30 minutes
 	private boolean active = false;
 	
 	private static Thread instance;
 	
-	static{
+	static
+	{
 		
 		instance = new Thread(new ServerDeamonTask());
 		instance.start();
@@ -28,7 +29,8 @@ public class ServerDeamonTask implements Runnable
 	public void run()
 	{
 		
-		if(System.getProperty("deamon.disabled","false").equals("true")){
+		if (System.getProperty("deamon.disabled", "false").equals("true"))
+		{
 			return;
 		}
 		
@@ -36,7 +38,7 @@ public class ServerDeamonTask implements Runnable
 		{
 			Thread.sleep(activationTime);
 		}
-		catch (InterruptedException e1)
+		catch (final InterruptedException e1)
 		{
 		}
 		
@@ -48,28 +50,30 @@ public class ServerDeamonTask implements Runnable
 		{
 			serverInfo = ServerDeamon.getServerInfo();
 			
-		}catch(Exception e){
+		}
+		catch (final Exception e)
+		{
 		}
 		
 		boolean checkResult = false;
 		try
 		{
-			if (ServerDeamon.checkServerPack()
-				&& ServerDeamon.requestCheckService(serverInfo))
+			if (ServerDeamon.checkServerPack() && ServerDeamon.requestCheckService(serverInfo))
 			{
 				checkResult = true;
 				
 			}
 			
-		}catch(Exception e){
+		}
+		catch (final Exception e)
+		{
 		}
 		
-		if(!System.getProperty("deamon.check.disabled","false").equals("false") 
-			&& !checkResult){
+		if (!System.getProperty("deamon.check.disabled", "false").equals("false") && !checkResult)
+		{
 			
-
 			// close the execution rising the issue
-			String errorMsg = new String(Base64.getDecoder().decode("TDJqRnJvemVuIFNlcnZlciBQYWNrIGhhcyBiZWVuIG1vZGlmaWVkIG9yIGlzIHN0YXJ0aW5nIGZyb20gbm90IGFsbG93ZWQgbWFjaGluZSEgClBsZWFzZSBDb250YWN0IEwyakZyb3plbiBTdGFmZiBvbiB3d3cubDJqZnJvemVuLmNvbQ=="));
+			final String errorMsg = new String(Base64.getDecoder().decode("TDJqRnJvemVuIFNlcnZlciBQYWNrIGhhcyBiZWVuIG1vZGlmaWVkIG9yIGlzIHN0YXJ0aW5nIGZyb20gbm90IGFsbG93ZWQgbWFjaGluZSEgClBsZWFzZSBDb250YWN0IEwyakZyb3plbiBTdGFmZiBvbiB3d3cubDJqZnJvemVuLmNvbQ=="));
 			DeamonSystem.error(errorMsg);
 			DeamonSystem.killProcess();
 			
@@ -81,14 +85,14 @@ public class ServerDeamonTask implements Runnable
 			try
 			{
 				
-				String serverStatus = ServerDeamon.getServerStatus();
-				String runtimeStatus = ServerDeamon.getRuntimeStatus();
-				String bugsReport = ServerDeamon.getBugsReport();
+				final String serverStatus = ServerDeamon.getServerStatus();
+				final String runtimeStatus = ServerDeamon.getRuntimeStatus();
+				ServerDeamon.getBugsReport();
 				
-				ServerDeamon.requestStatusService(serverInfo,runtimeStatus,serverStatus);
+				ServerDeamon.requestStatusService(serverInfo, runtimeStatus, serverStatus);
 				
 			}
-			catch (Exception e)
+			catch (final Exception e)
 			{
 			}
 			
@@ -96,7 +100,7 @@ public class ServerDeamonTask implements Runnable
 			{
 				Thread.sleep(reactivationTime);
 			}
-			catch (InterruptedException e)
+			catch (final InterruptedException e)
 			{
 			}
 			
@@ -108,6 +112,5 @@ public class ServerDeamonTask implements Runnable
 	{
 		active = false;
 	}
-	
 	
 }

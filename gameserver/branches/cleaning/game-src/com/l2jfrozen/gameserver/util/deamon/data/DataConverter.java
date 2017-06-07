@@ -23,36 +23,38 @@ import javax.xml.bind.Marshaller;
 
 /**
  * @author Shyla
- *
  */
 public class DataConverter
 {
 	private static DataConverter instance;
 	
-	private Marshaller marshaller;
+	private final Marshaller marshaller;
 	
-	private DataConverter() throws JAXBException{
+	private DataConverter() throws JAXBException
+	{
 		
-		JAXBContext context = JAXBContext.newInstance(RuntimeStatus.class,ServerConfigStatus.class,ServerStatus.class);
-	    marshaller = context.createMarshaller();
-	    marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-	    
+		final JAXBContext context = JAXBContext.newInstance(RuntimeStatus.class, ServerConfigStatus.class, ServerStatus.class);
+		marshaller = context.createMarshaller();
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		
 	}
 	
-	
-	public static DataConverter getInstance() throws JAXBException{
+	public static DataConverter getInstance() throws JAXBException
+	{
 		
-		if(instance == null){
+		if (instance == null)
+		{
 			instance = new DataConverter();
 		}
 		return instance;
 		
 	}
 	
-	public String getXML(Serializable data) throws JAXBException{
-
-	    StringWriter sw = new StringWriter();
-	    marshaller.marshal(data, sw);
+	public String getXML(final Serializable data) throws JAXBException
+	{
+		
+		final StringWriter sw = new StringWriter();
+		marshaller.marshal(data, sw);
 		return sw.toString();
 		
 	}

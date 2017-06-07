@@ -583,7 +583,7 @@ class OlympiadGame
 		return false;
 	}
 	
-	protected void validateWinner()
+	protected void validateWinner(final boolean observerModeTie)
 	{
 		if (_aborted)
 			return;
@@ -881,20 +881,28 @@ class OlympiadGame
 			result = " tie";
 			_sm = new SystemMessage(SystemMessageId.THE_GAME_ENDED_IN_A_TIE);
 			broadcastMessage(_sm, true);
-			final int pointOneDiff = playerOnePoints / 5;
-			final int pointTwoDiff = playerTwoPoints / 5;
-			playerOneStat.set(POINTS, playerOnePoints - pointOneDiff);
-			playerTwoStat.set(POINTS, playerTwoPoints - pointTwoDiff);
-			playerOneStat.set(COMP_DRAWN, playerOneDrawn + 1);
-			playerTwoStat.set(COMP_DRAWN, playerTwoDrawn + 1);
-			_sm2 = new SystemMessage(SystemMessageId.S1_HAS_LOST_S2_OLYMPIAD_POINTS);
-			_sm2.addString(_playerOneName);
-			_sm2.addNumber(pointOneDiff);
-			broadcastMessage(_sm2, false);
-			_sm3 = new SystemMessage(SystemMessageId.S1_HAS_LOST_S2_OLYMPIAD_POINTS);
-			_sm3.addString(_playerTwoName);
-			_sm3.addNumber(pointTwoDiff);
-			broadcastMessage(_sm3, false);
+			if (!observerModeTie)
+			{
+				final int pointOneDiff = playerOnePoints / 5;
+				final int pointTwoDiff = playerTwoPoints / 5;
+				playerOneStat.set(POINTS, playerOnePoints - pointOneDiff);
+				playerTwoStat.set(POINTS, playerTwoPoints - pointTwoDiff);
+				playerOneStat.set(COMP_DRAWN, playerOneDrawn + 1);
+				playerTwoStat.set(COMP_DRAWN, playerTwoDrawn + 1);
+				_sm2 = new SystemMessage(SystemMessageId.S1_HAS_LOST_S2_OLYMPIAD_POINTS);
+				_sm2.addString(_playerOneName);
+				_sm2.addNumber(pointOneDiff);
+				broadcastMessage(_sm2, false);
+				_sm3 = new SystemMessage(SystemMessageId.S1_HAS_LOST_S2_OLYMPIAD_POINTS);
+				_sm3.addString(_playerTwoName);
+				_sm3.addNumber(pointTwoDiff);
+				broadcastMessage(_sm3, false);
+			}
+			else
+			{
+				LOGGER.info("[OLYMPIAD DEBUG] " + _playerOneName + " vs " + _playerTwoName + " one was on observer mode! TIE without losing points!");
+			}
+			
 		}
 		
 		if (Config.ENABLE_OLYMPIAD_DEBUG)
@@ -1063,6 +1071,9 @@ class OlympiadGameTask implements Runnable
 	private boolean _terminated = false;
 	private boolean _started = false;
 	
+	/** The OLYMPIAD_MODE_TIE */
+	public boolean OLYMPIAD_MODE_TIE = false;
+	
 	public boolean isTerminated()
 	{
 		return _terminated || _game._aborted;
@@ -1119,6 +1130,8 @@ class OlympiadGameTask implements Runnable
 		player.sendPacket(new ExOlympiadMode(2, player));
 		
 		player.broadcastUserInfo();
+		
+		OLYMPIAD_MODE_TIE = true;
 		
 		LOGGER.info("[OLYMPIAD DEBUG] Player " + player.getName() + "was on observer mode! Status restored!");
 	}
@@ -1202,7 +1215,12 @@ class OlympiadGameTask implements Runnable
 				runGame();
 			
 			_terminated = true;
-			_game.validateWinner();
+			
+			if (OLYMPIAD_MODE_TIE)
+				_game.validateWinner(true);
+			else
+				_game.validateWinner(false);
+			
 			_game.PlayersStatusBack();
 			
 			if (_game._gamestarted)
