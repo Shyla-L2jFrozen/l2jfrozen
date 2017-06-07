@@ -19,7 +19,6 @@
  */
 package com.l2jfrozen.util.monitoring.task;
 
-import com.l2jfrozen.util.Util;
 import com.l2jfrozen.util.monitoring.StatusManager;
 import com.l2jfrozen.util.taskmanager.ExecutedTask;
 import com.l2jfrozen.util.taskmanager.Task;

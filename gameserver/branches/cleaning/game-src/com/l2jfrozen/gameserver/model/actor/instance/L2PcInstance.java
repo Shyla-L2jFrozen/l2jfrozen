@@ -16320,7 +16320,7 @@ public final class L2PcInstance extends L2PlayableInstance
 	{
 		if (Config.DEVELOPER)
 		{
-			if (getClient() != null && getClient().getConnection().getInetAddress().getHostAddress() != null)
+			if (getClient() != null && getClient().getConnection() != null && getClient().getConnection().getInetAddress().getHostAddress() != null)
 				LOGGER.info("Removing character: [" + getName() + "], account: [" + getAccountName() + "], ip: [" + getClient().getConnection().getInetAddress().getHostAddress() + "]");
 			else
 				LOGGER.info("Removing character: [" + getName() + "], account: [" + getAccountName() + "]");

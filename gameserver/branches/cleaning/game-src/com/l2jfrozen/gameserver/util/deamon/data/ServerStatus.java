@@ -31,7 +31,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @version 1.0
  */
 
-
 @XmlRootElement
 public class ServerStatus implements Serializable
 {
@@ -96,7 +95,7 @@ public class ServerStatus implements Serializable
 	public void refreshStatus()
 	{
 		
-		com.l2jfrozen.gameserver.util.monitoring.ServerStatus currentStatus = new com.l2jfrozen.gameserver.util.monitoring.ServerStatus();
+		final com.l2jfrozen.gameserver.util.monitoring.ServerStatus currentStatus = new com.l2jfrozen.gameserver.util.monitoring.ServerStatus();
 		
 		ActivePlayers = currentStatus.getActivePlayers();
 		OfflinePlayers = currentStatus.getOfflinePlayers();

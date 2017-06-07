@@ -534,7 +534,11 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 		{
 			if (character.getClient() != null)
 			{
-				LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "], ip: [" + character.getClient().getConnection().getInetAddress().getHostAddress() + "]. Client closed.");
+				if (character.getClient() != null && character.getClient().getConnection() != null)
+					LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "], ip: [" + character.getClient().getConnection().getInetAddress().getHostAddress() + "]. Client closed.");
+				else
+					LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "]. Client closed.");
+				
 				// character.getClient().closeNow();
 				character.closeNetConnection();
 			}
