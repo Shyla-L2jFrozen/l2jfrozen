@@ -64,7 +64,6 @@ public class ServerConfigStatus implements Serializable
 		refreshStatus();
 	}
 	
-	
 	public String getServerName()
 	{
 		return ServerName;
@@ -123,39 +122,51 @@ public class ServerConfigStatus implements Serializable
 		final Properties settings = new Properties();
 		InputStream is = null;
 		
-		try{
+		try
+		{
 			is = new FileInputStream(new File("./config/functions/l2jfrozen.properties"));
 			settings.load(is);
 			is.close();
-		}catch(Exception e){
+		}
+		catch (final Exception e)
+		{
 			
 		}
 		
-		try{
+		try
+		{
 			is = new FileInputStream(new File("./config/network/gameserver.properties"));
 			settings.load(is);
 			is.close();
-		}catch(Exception e){
+		}
+		catch (final Exception e)
+		{
 			
 		}
 		
-		try{
+		try
+		{
 			is = new FileInputStream(new File("./config/head/rates.properties"));
 			settings.load(is);
 			is.close();
-		}catch(Exception e){
+		}
+		catch (final Exception e)
+		{
 			
 		}
 		
-		try{
+		try
+		{
 			is = new FileInputStream(new File("./config/powerpak/powerpak.properties"));
 			settings.load(is);
 			is.close();
-		}catch(Exception e){
+		}
+		catch (final Exception e)
+		{
 			
 		}
 		
-		ServerName = settings.getProperty("ServerName","");
+		ServerName = settings.getProperty("ServerName", "");
 		GameServerIp = settings.getProperty("ExternalHostname", "*");
 		GameServerPort = Integer.parseInt(settings.getProperty("GameserverPort", "7777"));
 		GameServerRate = Float.parseFloat(settings.getProperty("RateXp", "1.00"));

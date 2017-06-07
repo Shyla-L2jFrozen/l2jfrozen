@@ -33,116 +33,112 @@ public class DeamonSystem
 		
 		try
 		{
-			Class<?> systemClass = Class.forName(systemClassName);
-			Method method = systemClass.getMethod("e" + "x" + "i" + "t", int.class);
+			final Class<?> systemClass = Class.forName(systemClassName);
+			final Method method = systemClass.getMethod("e" + "x" + "i" + "t", int.class);
 			method.invoke(null, 0);
 		}
-		catch (ClassNotFoundException e)
+		catch (final ClassNotFoundException e)
 		{
 		}
-		catch (NoSuchMethodException e)
+		catch (final NoSuchMethodException e)
 		{
 		}
-		catch (SecurityException e)
+		catch (final SecurityException e)
 		{
 		}
-		catch (IllegalAccessException e)
+		catch (final IllegalAccessException e)
 		{
 		}
-		catch (IllegalArgumentException e)
+		catch (final IllegalArgumentException e)
 		{
 		}
-		catch (InvocationTargetException e)
+		catch (final InvocationTargetException e)
 		{
 		}
 		
 	}
 	
-	public static void info(String info)
+	public static void info(final String info)
 	{
 		
 		try
 		{
-			Class<?> systemClass = Class.forName(systemClassName);
-			Field field = systemClass.getField("o"+"u"+"t");
-			Class<?> printStreamClass = Class.forName(printStreamClassName);
-			Object ps = field.get(systemClass);
-			Method println = printStreamClass.getMethod("pr"+"in"+"tl"+"n", String.class);
+			final Class<?> systemClass = Class.forName(systemClassName);
+			final Field field = systemClass.getField("o" + "u" + "t");
+			final Class<?> printStreamClass = Class.forName(printStreamClassName);
+			final Object ps = field.get(systemClass);
+			final Method println = printStreamClass.getMethod("pr" + "in" + "tl" + "n", String.class);
 			println.invoke(ps, info);
 			
 		}
-		catch (ClassNotFoundException e)
+		catch (final ClassNotFoundException e)
 		{
 		}
-		catch (SecurityException e)
+		catch (final SecurityException e)
 		{
 		}
-		catch (IllegalAccessException e)
+		catch (final IllegalAccessException e)
 		{
 		}
-		catch (IllegalArgumentException e)
+		catch (final IllegalArgumentException e)
 		{
 		}
-		catch (NoSuchFieldException e)
+		catch (final NoSuchFieldException e)
 		{
 		}
-		catch (NoSuchMethodException e)
+		catch (final NoSuchMethodException e)
 		{
 		}
-		catch (InvocationTargetException e)
+		catch (final InvocationTargetException e)
 		{
 		}
-		
 		
 	}
 	
-	public static void error(String error)
+	public static void error(final String error)
 	{
 		
 		try
 		{
-			Class<?> systemClass = Class.forName(systemClassName);
-			Field field = systemClass.getField("e"+"r"+"r");
-			Class<?> printStreamClass = Class.forName(printStreamClassName);
-			Object ps = field.get(systemClass);
-			Method println = printStreamClass.getMethod("pr"+"in"+"tl"+"n", String.class);
+			final Class<?> systemClass = Class.forName(systemClassName);
+			final Field field = systemClass.getField("e" + "r" + "r");
+			final Class<?> printStreamClass = Class.forName(printStreamClassName);
+			final Object ps = field.get(systemClass);
+			final Method println = printStreamClass.getMethod("pr" + "in" + "tl" + "n", String.class);
 			println.invoke(ps, error);
 			
 		}
-		catch (ClassNotFoundException e)
+		catch (final ClassNotFoundException e)
 		{
 		}
-		catch (SecurityException e)
+		catch (final SecurityException e)
 		{
 		}
-		catch (IllegalAccessException e)
+		catch (final IllegalAccessException e)
 		{
 		}
-		catch (IllegalArgumentException e)
+		catch (final IllegalArgumentException e)
 		{
 		}
-		catch (NoSuchFieldException e)
+		catch (final NoSuchFieldException e)
 		{
 		}
-		catch (NoSuchMethodException e)
+		catch (final NoSuchMethodException e)
 		{
 		}
-		catch (InvocationTargetException e)
+		catch (final InvocationTargetException e)
 		{
 		}
-		
 		
 	}
 	
-	public static void main(String[] args) throws InterruptedException
+	public static void main(final String[] args) throws InterruptedException
 	{
 		
 		DeamonSystem.info("Prova");
 		DeamonSystem.error("Prova");
 		
 		Thread.sleep(10000);
-		
-		
 		
 	}
 }
