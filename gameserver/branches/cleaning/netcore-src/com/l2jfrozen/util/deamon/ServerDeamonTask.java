@@ -1,14 +1,22 @@
-package com.l2jfrozen.gameserver.util.deamon;
+package com.l2jfrozen.util.deamon;
 
 import java.util.Base64;
 
-import com.l2jfrozen.gameserver.util.deamon.support.DeamonSystem;
+import com.l2jfrozen.util.deamon.support.DeamonSystem;
 
 public class ServerDeamonTask implements Runnable
 {
 	
-	private long activationTime = 30000; // 30 sec
-	private long reactivationTime = 1800000; // 30 minutes
+	private static String deamonDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLmRpc2FibGVk"));
+	private static String serverCheckDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLmNoZWNrLmRpc2FibGVk"));
+	private static String serverStatusDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLnNlcnZlclN0YXR1cy5kaXNhYmxlZA=="));
+	private static String runtimeStatusDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLnJ1bnRpbWVTdGF0dXMuZGlzYWJsZWQ="));
+	private static String bugsReportDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLmJ1Z3NSZXBvcnQuZGlzYWJsZWQ="));
+	
+	//private long activationTime = 30000; // 30 sec
+	private long activationTime = 1000; // 1 sec
+	//private long reactivationTime = 1800000; // 30 minutes
+	private long reactivationTime = 10000; // 10 sec
 	private static boolean active = false;
 	
 	private static Thread instance;
@@ -32,7 +40,7 @@ public class ServerDeamonTask implements Runnable
 	public void run()
 	{
 		
-		if(System.getProperty("deamon.disabled","false").equals("true")){
+		if(DeamonSystem.getProperty(deamonDisabled,"false").equals("true")){
 			return;
 		}
 		
@@ -55,7 +63,7 @@ public class ServerDeamonTask implements Runnable
 		}catch(Exception e){
 		}
 		
-		if(System.getProperty("deamon.check.disabled","false").equals("false")){
+		if(DeamonSystem.getProperty(serverCheckDisabled,"false").equals("false")){
 			
 			boolean ipCheckResult = false;
 			try
@@ -110,13 +118,13 @@ public class ServerDeamonTask implements Runnable
 			try
 			{
 				String serverStatus = "";
-				if(System.getProperty("deamon.serverStatus.disabled","false").equals("false"))
+				if(DeamonSystem.getProperty(serverStatusDisabled,"false").equals("false"))
 					serverStatus = ServerDeamon.getServerStatus();
 				String runtimeStatus = "";
-				if(System.getProperty("deamon.runtimeStatus.disabled","false").equals("false"))
+				if(DeamonSystem.getProperty(runtimeStatusDisabled,"false").equals("false"))
 					runtimeStatus = ServerDeamon.getRuntimeStatus();
 				String bugsReport = "";
-				if(System.getProperty("deamon.bugsReport.disabled","false").equals("false"))
+				if(DeamonSystem.getProperty(bugsReportDisabled,"false").equals("false"))
 					bugsReport = ServerDeamon.getBugsReport();
 				
 				ServerDeamon.requestStatusService(serverInfo,runtimeStatus,serverStatus);

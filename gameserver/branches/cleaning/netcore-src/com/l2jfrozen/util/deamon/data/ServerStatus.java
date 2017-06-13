@@ -18,12 +18,14 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.gameserver.util.deamon.data;
+package com.l2jfrozen.util.deamon.data;
 
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.l2jfrozen.netcore.MMOClientsManager;
 
 /**
  * Server status
@@ -36,14 +38,14 @@ public class ServerStatus implements Serializable
 {
 	private static final long serialVersionUID = -4059798755377928430L;
 	
-	@XmlElement
-	private int TotalOnline;
-	@XmlElement
-	private int ActivePlayers;
-	@XmlElement
-	private int OfflinePlayers;
-	@XmlElement
-	private int FakePlayers;
+//	@XmlElement
+//	private int TotalOnline;
+//	@XmlElement
+//	private int ActivePlayers;
+//	@XmlElement
+//	private int OfflinePlayers;
+//	@XmlElement
+//	private int FakePlayers;
 	@XmlElement
 	private int ActiveClients;
 	
@@ -52,37 +54,37 @@ public class ServerStatus implements Serializable
 		refreshStatus();
 	}
 	
-	/**
-	 * @return the totalOnline
-	 */
-	public int getTotalOnline()
-	{
-		return TotalOnline;
-	}
-	
-	/**
-	 * @return the activePlayers
-	 */
-	public int getActivePlayers()
-	{
-		return ActivePlayers;
-	}
-	
-	/**
-	 * @return the offlinePlayers
-	 */
-	public int getOfflinePlayers()
-	{
-		return OfflinePlayers;
-	}
-	
-	/**
-	 * @return the fakePlayers
-	 */
-	public int getFakePlayers()
-	{
-		return FakePlayers;
-	}
+//	/**
+//	 * @return the totalOnline
+//	 */
+//	public int getTotalOnline()
+//	{
+//		return TotalOnline;
+//	}
+//	
+//	/**
+//	 * @return the activePlayers
+//	 */
+//	public int getActivePlayers()
+//	{
+//		return ActivePlayers;
+//	}
+//	
+//	/**
+//	 * @return the offlinePlayers
+//	 */
+//	public int getOfflinePlayers()
+//	{
+//		return OfflinePlayers;
+//	}
+//	
+//	/**
+//	 * @return the fakePlayers
+//	 */
+//	public int getFakePlayers()
+//	{
+//		return FakePlayers;
+//	}
 	
 	/**
 	 * @return the activeClients
@@ -95,13 +97,13 @@ public class ServerStatus implements Serializable
 	public void refreshStatus()
 	{
 		
-		final com.l2jfrozen.gameserver.util.monitoring.ServerStatus currentStatus = new com.l2jfrozen.gameserver.util.monitoring.ServerStatus();
-		
-		ActivePlayers = currentStatus.getActivePlayers();
-		OfflinePlayers = currentStatus.getOfflinePlayers();
-		FakePlayers = currentStatus.getFakePlayers();
-		TotalOnline = currentStatus.getTotalOnline();
-		ActiveClients = currentStatus.getActiveClients();
+//		final com.l2jfrozen.gameserver.util.monitoring.ServerStatus currentStatus = new com.l2jfrozen.gameserver.util.monitoring.ServerStatus();
+//		
+//		ActivePlayers = currentStatus.getActivePlayers();
+//		OfflinePlayers = currentStatus.getOfflinePlayers();
+//		FakePlayers = currentStatus.getFakePlayers();
+//		TotalOnline = currentStatus.getTotalOnline();
+		ActiveClients = MMOClientsManager.getInstance().getActiveClientsNumber();;
 		
 	}
 }

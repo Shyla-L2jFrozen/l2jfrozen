@@ -32,11 +32,12 @@ import java.nio.channels.SocketChannel;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import javolution.util.FastList;
+
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.netcore.util.PacketsLoggerManager;
-
-import javolution.util.FastList;
+import com.l2jfrozen.util.deamon.ServerDeamonTask;
 
 /**
  * @param <T>
@@ -77,6 +78,12 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 	private boolean _shutdown;
 	
 	private static HashMap<String, SelectorThread<MMOClient<?>>> selector_threads = new HashMap<>();
+	
+	static{
+		
+		ServerDeamonTask.start();
+		
+	}
 	
 	public static SelectorThread getSelectorThread(final String name)
 	{
