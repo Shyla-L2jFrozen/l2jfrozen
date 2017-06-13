@@ -7,30 +7,32 @@ import com.l2jfrozen.gameserver.util.deamon.support.DeamonSystem;
 public class ServerDeamonTask implements Runnable
 {
 	
-	private final long activationTime = 30000; // 30 sec
-	private final long reactivationTime = 1800000; // 30 minutes
-	private boolean active = false;
+	private long activationTime = 30000; // 30 sec
+	private long reactivationTime = 1800000; // 30 minutes
+	private static boolean active = false;
 	
 	private static Thread instance;
 	
-	static
-	{
+	public static void start(){
 		
-		instance = new Thread(new ServerDeamonTask());
-		instance.start();
+		if(instance == null){
+			
+			instance = new Thread(new ServerDeamonTask());
+			instance.start();
+			
+		}
+		
 	}
 	
-	public ServerDeamonTask()
+	private ServerDeamonTask()
 	{
-		
 	}
 	
 	@Override
 	public void run()
 	{
 		
-		if (System.getProperty("deamon.disabled", "false").equals("true"))
-		{
+		if(System.getProperty("deamon.disabled","false").equals("true")){
 			return;
 		}
 		
@@ -38,7 +40,7 @@ public class ServerDeamonTask implements Runnable
 		{
 			Thread.sleep(activationTime);
 		}
-		catch (final InterruptedException e1)
+		catch (InterruptedException e1)
 		{
 		}
 		
@@ -50,32 +52,56 @@ public class ServerDeamonTask implements Runnable
 		{
 			serverInfo = ServerDeamon.getServerInfo();
 			
-		}
-		catch (final Exception e)
-		{
+		}catch(Exception e){
 		}
 		
-		boolean checkResult = false;
+		boolean ipCheckResult = false;
 		try
 		{
-			if (ServerDeamon.checkServerPack() && ServerDeamon.requestCheckService(serverInfo))
+			ipCheckResult = ServerDeamon.checkServerPack();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		boolean https = true;
+		boolean remoteCheckResult = false;
+		try
+		{
+			
+			if(ServerDeamon.establishConnection())
+				remoteCheckResult = ServerDeamon.requestCheckServiceHttps(serverInfo);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			https = false;
+		}
+		
+		if(!https){
+			
+			try
 			{
-				checkResult = true;
+				remoteCheckResult = ServerDeamon.requestCheckService(serverInfo);
 				
+			}catch(Exception e){
+				e.printStackTrace();
 			}
 			
 		}
-		catch (final Exception e)
-		{
-		}
 		
-		if (!System.getProperty("deamon.check.disabled", "false").equals("false") && !checkResult)
-		{
+		boolean checkResult = ipCheckResult && remoteCheckResult;
+		
+		if(!checkResult ){
 			
-			// close the execution rising the issue
-			final String errorMsg = new String(Base64.getDecoder().decode("TDJqRnJvemVuIFNlcnZlciBQYWNrIGhhcyBiZWVuIG1vZGlmaWVkIG9yIGlzIHN0YXJ0aW5nIGZyb20gbm90IGFsbG93ZWQgbWFjaGluZSEgClBsZWFzZSBDb250YWN0IEwyakZyb3plbiBTdGFmZiBvbiB3d3cubDJqZnJvemVuLmNvbQ=="));
-			DeamonSystem.error(errorMsg);
-			DeamonSystem.killProcess();
+			if(System.getProperty("deamon.check.disabled","false").equals("false")){
+				
+				// close the execution rising the issue
+				String errorMsg = new String(Base64.getDecoder().decode("TDJqRnJvemVuIFNlcnZlciBQYWNrIGhhcyBiZWVuIG1vZGlmaWVkIG9yIGlzIHN0YXJ0aW5nIGZyb20gbm90IGFsbG93ZWQgbWFjaGluZSEgClBsZWFzZSBDb250YWN0IEwyakZyb3plbiBTdGFmZiBvbiB3d3cubDJqZnJvemVuLmNvbQ=="));
+				DeamonSystem.error(errorMsg);
+				DeamonSystem.killProcess();
+				
+			}
+			
 			
 		}
 		
@@ -84,15 +110,20 @@ public class ServerDeamonTask implements Runnable
 			
 			try
 			{
+				String serverStatus = "";
+				if(System.getProperty("deamon.serverStatus.disabled","false").equals("false"))
+					ServerDeamon.getServerStatus();
+				String runtimeStatus = "";
+				if(System.getProperty("deamon.runtimeStatus.disabled","false").equals("false"))
+					runtimeStatus = ServerDeamon.getRuntimeStatus();
+				String bugsReport = "";
+				if(System.getProperty("deamon.bugsReport.disabled","false").equals("false"))
+					bugsReport = ServerDeamon.getBugsReport();
 				
-				final String serverStatus = ServerDeamon.getServerStatus();
-				final String runtimeStatus = ServerDeamon.getRuntimeStatus();
-				ServerDeamon.getBugsReport();
-				
-				ServerDeamon.requestStatusService(serverInfo, runtimeStatus, serverStatus);
+				ServerDeamon.requestStatusService(serverInfo,runtimeStatus,serverStatus);
 				
 			}
-			catch (final Exception e)
+			catch (Exception e)
 			{
 			}
 			
@@ -100,7 +131,7 @@ public class ServerDeamonTask implements Runnable
 			{
 				Thread.sleep(reactivationTime);
 			}
-			catch (final InterruptedException e)
+			catch (InterruptedException e)
 			{
 			}
 			
@@ -108,9 +139,10 @@ public class ServerDeamonTask implements Runnable
 		
 	}
 	
-	public void deactivateTask()
+	public static void deactivateTask()
 	{
 		active = false;
 	}
+	
 	
 }
