@@ -22,7 +22,6 @@ import com.l2jfrozen.CommonConfig;
 import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.network.serverpackets.KeyPacket;
 import com.l2jfrozen.gameserver.network.serverpackets.L2GameServerPacket;
-import com.l2jfrozen.gameserver.network.serverpackets.SendStatus;
 
 public final class ProtocolVersion extends L2GameClientPacket
 {
@@ -52,13 +51,6 @@ public final class ProtocolVersion extends L2GameClientPacket
 				LOGGER.info("DEBUG " + getType() + ": Ping received");
 			
 			getClient().close((L2GameServerPacket) null);
-		}
-		else if (_version == 65533 || _version == -3) // RWHO
-		{
-			if (Config.RWHO_LOG)
-				LOGGER.info(getClient().toString() + " RWHO received");
-			
-			getClient().close(new SendStatus());
 		}
 		else if (_version < Config.MIN_PROTOCOL_REVISION || _version > Config.MAX_PROTOCOL_REVISION)
 		{
