@@ -24,7 +24,8 @@ import java.security.interfaces.RSAPublicKey;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.netcore.NetcoreConfig;
+
 
 /**
  *
@@ -74,7 +75,7 @@ public class ScrambledKeyPair
 			scrambledMod[0x40 + i] = (byte) (scrambledMod[0x40 + i] ^ scrambledMod[i]);
 		}
 		
-		if (CommonConfig.DEBUG)
+		if (NetcoreConfig.getInstance().ENABLE_MMOCORE_DEBUG)
 			LOGGER.info("Modulus was scrambled");
 		
 		return scrambledMod;
