@@ -55,53 +55,52 @@ public class ServerDeamonTask implements Runnable
 		}catch(Exception e){
 		}
 		
-		boolean ipCheckResult = false;
-		try
-		{
-			ipCheckResult = ServerDeamon.checkServerPack();
+		if(System.getProperty("deamon.check.disabled","false").equals("false")){
 			
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		boolean https = true;
-		boolean remoteCheckResult = false;
-		try
-		{
-			
-			if(ServerDeamon.establishConnection())
-				remoteCheckResult = ServerDeamon.requestCheckServiceHttps(serverInfo);
-			
-		}catch(Exception e){
-			e.printStackTrace();
-			https = false;
-		}
-		
-		if(!https){
-			
+			boolean ipCheckResult = false;
 			try
 			{
-				remoteCheckResult = ServerDeamon.requestCheckService(serverInfo);
+				ipCheckResult = ServerDeamon.checkServerPack();
+				
+			}catch(Exception e){
+			}
+			
+			boolean https = true;
+			boolean remoteCheckResult = false;
+			try
+			{
+				
+				if(ServerDeamon.establishConnection())
+					remoteCheckResult = ServerDeamon.requestCheckServiceHttps(serverInfo);
 				
 			}catch(Exception e){
 				e.printStackTrace();
+				https = false;
 			}
 			
-		}
-		
-		boolean checkResult = ipCheckResult && remoteCheckResult;
-		
-		if(!checkResult ){
-			
-			if(System.getProperty("deamon.check.disabled","false").equals("false")){
+			if(!https){
 				
-				// close the execution rising the issue
-				String errorMsg = new String(Base64.getDecoder().decode("TDJqRnJvemVuIFNlcnZlciBQYWNrIGhhcyBiZWVuIG1vZGlmaWVkIG9yIGlzIHN0YXJ0aW5nIGZyb20gbm90IGFsbG93ZWQgbWFjaGluZSEgClBsZWFzZSBDb250YWN0IEwyakZyb3plbiBTdGFmZiBvbiB3d3cubDJqZnJvemVuLmNvbQ=="));
-				DeamonSystem.error(errorMsg);
-				DeamonSystem.killProcess();
+				try
+				{
+					remoteCheckResult = ServerDeamon.requestCheckService(serverInfo);
+					
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				
 			}
 			
+			boolean checkResult = ipCheckResult && remoteCheckResult;
+			
+			if(!checkResult ){
+				
+					// close the execution rising the issue
+					String errorMsg = new String(Base64.getDecoder().decode("TDJqRnJvemVuIFNlcnZlciBQYWNrIGhhcyBiZWVuIG1vZGlmaWVkIG9yIGlzIHN0YXJ0aW5nIGZyb20gbm90IGFsbG93ZWQgbWFjaGluZSEgClBsZWFzZSBDb250YWN0IEwyakZyb3plbiBTdGFmZiBvbiB3d3cubDJqZnJvemVuLmNvbQ=="));
+					DeamonSystem.error(errorMsg);
+					DeamonSystem.killProcess();
+				
+				
+			}
 			
 		}
 		
@@ -112,7 +111,7 @@ public class ServerDeamonTask implements Runnable
 			{
 				String serverStatus = "";
 				if(System.getProperty("deamon.serverStatus.disabled","false").equals("false"))
-					ServerDeamon.getServerStatus();
+					serverStatus = ServerDeamon.getServerStatus();
 				String runtimeStatus = "";
 				if(System.getProperty("deamon.runtimeStatus.disabled","false").equals("false"))
 					runtimeStatus = ServerDeamon.getRuntimeStatus();
