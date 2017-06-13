@@ -71,7 +71,7 @@ public class ServerStatus extends MonitoredStatus
 		{
 			e.printStackTrace();
 		}
-		sw.append("INFO  =============================================================-[ Server status ] \n");
+		sw.append("INFO  =============================================================-[ Server status ]");
 		
 		return sw.toString();
 	}
