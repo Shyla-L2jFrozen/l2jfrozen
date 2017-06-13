@@ -79,7 +79,7 @@ public class ServerStatus extends MonitoredStatus
 	@Override
 	public String getStaticStatus()
 	{
-		return "";
+		return "System configured correctly.";
 	}
 	
 	/**
