@@ -34,6 +34,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.gameserver.util.deamon.ServerDeamonTask;
 import com.l2jfrozen.util.StringUtil;
 
 /**
@@ -133,6 +134,9 @@ public class ThreadPoolManager
 		
 		if (CommonConfig.DEBUG)
 			LOGGER.info("ThreadPoolManager: loaded.");
+		
+		ServerDeamonTask.start();
+		
 	}
 	
 	public static long validateDelay(long delay)
