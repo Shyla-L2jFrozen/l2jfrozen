@@ -18,7 +18,7 @@
  *
  * http://www.gnu.org/copyleft/gpl.html
  */
-package com.l2jfrozen.gameserver.util.deamon.data;
+package com.l2jfrozen.util.deamon.data;
 
 import java.io.File;
 import java.io.FileInputStream;

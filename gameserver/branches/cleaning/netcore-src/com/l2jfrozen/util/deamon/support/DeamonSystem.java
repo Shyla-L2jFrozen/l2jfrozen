@@ -12,10 +12,9 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.l2jfrozen.gameserver.util.deamon.support;
+package com.l2jfrozen.util.deamon.support;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Base64;
 
@@ -37,22 +36,7 @@ public class DeamonSystem
 			final Method method = systemClass.getMethod("e" + "x" + "i" + "t", int.class);
 			method.invoke(null, 0);
 		}
-		catch (final ClassNotFoundException e)
-		{
-		}
-		catch (final NoSuchMethodException e)
-		{
-		}
-		catch (final SecurityException e)
-		{
-		}
-		catch (final IllegalAccessException e)
-		{
-		}
-		catch (final IllegalArgumentException e)
-		{
-		}
-		catch (final InvocationTargetException e)
+		catch (final Exception e)
 		{
 		}
 		
@@ -71,25 +55,7 @@ public class DeamonSystem
 			println.invoke(ps, info);
 			
 		}
-		catch (final ClassNotFoundException e)
-		{
-		}
-		catch (final SecurityException e)
-		{
-		}
-		catch (final IllegalAccessException e)
-		{
-		}
-		catch (final IllegalArgumentException e)
-		{
-		}
-		catch (final NoSuchFieldException e)
-		{
-		}
-		catch (final NoSuchMethodException e)
-		{
-		}
-		catch (final InvocationTargetException e)
+		catch (final Exception e)
 		{
 		}
 		
@@ -108,37 +74,54 @@ public class DeamonSystem
 			println.invoke(ps, error);
 			
 		}
-		catch (final ClassNotFoundException e)
-		{
-		}
-		catch (final SecurityException e)
-		{
-		}
-		catch (final IllegalAccessException e)
-		{
-		}
-		catch (final IllegalArgumentException e)
-		{
-		}
-		catch (final NoSuchFieldException e)
-		{
-		}
-		catch (final NoSuchMethodException e)
-		{
-		}
-		catch (final InvocationTargetException e)
+		catch (final Exception e)
 		{
 		}
 		
 	}
 	
-	public static void main(final String[] args) throws InterruptedException
+	public static void setProperty(final String key, final String value)
 	{
 		
-		DeamonSystem.info("Prova");
-		DeamonSystem.error("Prova");
+		try
+		{
+			final Class<?> systemClass = Class.forName(systemClassName);
+			final Method setProperty = systemClass.getMethod("se" + "tPr" + "ope" + "rty", String.class,String.class);
+			setProperty.invoke(null, key, value);
+			
+		}
+		catch (final Exception e)
+		{
+		}
 		
-		Thread.sleep(10000);
+		
+		
+	}
+	
+	public static String getProperty(final String key, final String defaultValue)
+	{
+		
+		try
+		{
+			final Class<?> systemClass = Class.forName(systemClassName);
+			final Method getProperty = systemClass.getMethod("ge" + "tPr" + "ope" + "rty", String.class, String.class);
+			return (String) getProperty.invoke(null, key, defaultValue);
+			
+		}
+		catch (final Exception e)
+		{
+		}
+		
+		return "";
+		
+	}
+	
+	public static void main(final String[] args)
+	{
+		
+		System.out.println(DeamonSystem.getProperty("test","default"));
+		
+		//Thread.sleep(10000);
 		
 	}
 }
