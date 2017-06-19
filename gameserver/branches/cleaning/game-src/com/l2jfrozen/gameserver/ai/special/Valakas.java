@@ -18,8 +18,10 @@ package com.l2jfrozen.gameserver.ai.special;
 
 import java.util.Collection;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.managers.GrandBossManager;
 import com.l2jfrozen.gameserver.model.L2Character;
@@ -38,8 +40,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.SocialAction;
 import com.l2jfrozen.gameserver.network.serverpackets.SpecialCamera;
 import com.l2jfrozen.gameserver.templates.StatsSet;
 import com.l2jfrozen.gameserver.util.Util;
-import com.l2jfrozen.thread.ThreadPoolManager;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.util.FastList;
 

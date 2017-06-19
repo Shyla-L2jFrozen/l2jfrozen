@@ -21,6 +21,8 @@ package com.l2jfrozen.gameserver.model;
 
 import java.util.concurrent.Future;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PenaltyMonsterInstance;
@@ -31,8 +33,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.ExFishingStartCombat;
 import com.l2jfrozen.gameserver.network.serverpackets.PlaySound;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
-import com.l2jfrozen.thread.ThreadPoolManager;
-import com.l2jfrozen.util.random.Rnd;
 
 public class L2Fishing implements Runnable
 {

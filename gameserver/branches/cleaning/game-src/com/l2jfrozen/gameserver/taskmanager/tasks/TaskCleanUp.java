@@ -21,10 +21,10 @@ package com.l2jfrozen.gameserver.taskmanager.tasks;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.util.taskmanager.ExecutedTask;
-import com.l2jfrozen.util.taskmanager.Task;
-import com.l2jfrozen.util.taskmanager.TaskManager;
-import com.l2jfrozen.util.taskmanager.TaskTypes;
+import com.l2jfrozen.common.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.common.util.taskmanager.Task;
+import com.l2jfrozen.common.util.taskmanager.TaskManager;
+import com.l2jfrozen.common.util.taskmanager.TaskTypes;
 
 /**
  * @author Tempy

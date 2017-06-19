@@ -20,7 +20,7 @@ package com.l2jfrozen.loginserver.network.serverpackets;
 
 import java.util.logging.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 
 /**
  * Fromat: d d: response

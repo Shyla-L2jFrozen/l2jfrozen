@@ -26,9 +26,10 @@ import java.util.regex.PatternSyntaxException;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.TaskPriority;
 import com.l2jfrozen.gameserver.communitybbs.Manager.RegionBBSManager;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.datatables.CharSchemesTable;
 import com.l2jfrozen.gameserver.datatables.GmListTable;
@@ -96,7 +97,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.network.serverpackets.UserInfo;
 import com.l2jfrozen.gameserver.powerpak.PowerPakConfig;
 import com.l2jfrozen.gameserver.util.Util;
-import com.l2jfrozen.thread.TaskPriority;
 
 /**
  * Enter World Packet Handler

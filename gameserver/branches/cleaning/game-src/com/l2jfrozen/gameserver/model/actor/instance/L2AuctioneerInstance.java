@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
 import com.l2jfrozen.gameserver.managers.AuctionManager;

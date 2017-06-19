@@ -2,13 +2,13 @@ package com.l2jfrozen.gameserver.taskmanager;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.L2WorldRegion;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PlayableInstance;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 public class KnownListUpdateTaskManager
 {

@@ -20,7 +20,7 @@
  */
 package com.l2jfrozen.gameserver.handler.skillhandlers;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.handler.ISkillHandler;
 import com.l2jfrozen.gameserver.model.L2Attackable;
 import com.l2jfrozen.gameserver.model.L2Character;

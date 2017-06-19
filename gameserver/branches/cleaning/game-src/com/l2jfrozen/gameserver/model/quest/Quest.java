@@ -31,9 +31,13 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.CloseUtil;
+import com.l2jfrozen.common.util.database.DatabaseUtils;
+import com.l2jfrozen.common.util.database.L2DatabaseFactory;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.cache.HtmCache;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.GmListTable;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.managers.QuestManager;
@@ -50,10 +54,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.scripting.ManagedScript;
 import com.l2jfrozen.gameserver.scripting.ScriptManager;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
-import com.l2jfrozen.util.CloseUtil;
-import com.l2jfrozen.util.database.DatabaseUtils;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
-import com.l2jfrozen.util.random.Rnd;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import javolution.util.FastList;

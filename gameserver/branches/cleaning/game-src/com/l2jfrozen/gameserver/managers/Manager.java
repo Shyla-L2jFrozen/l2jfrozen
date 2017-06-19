@@ -19,7 +19,7 @@
  */
 package com.l2jfrozen.gameserver.managers;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 
 public class Manager
 {

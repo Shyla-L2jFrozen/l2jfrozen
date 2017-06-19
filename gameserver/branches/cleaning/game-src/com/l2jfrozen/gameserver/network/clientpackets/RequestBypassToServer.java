@@ -22,10 +22,10 @@ package com.l2jfrozen.gameserver.network.clientpackets;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.communitybbs.CommunityBoard;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.sql.AdminCommandAccessRights;
 import com.l2jfrozen.gameserver.handler.AdminCommandHandler;
 import com.l2jfrozen.gameserver.handler.IAdminCommandHandler;

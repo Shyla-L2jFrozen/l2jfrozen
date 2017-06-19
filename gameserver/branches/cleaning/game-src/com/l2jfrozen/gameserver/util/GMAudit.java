@@ -24,7 +24,7 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.logs.Log;
+import com.l2jfrozen.common.logs.Log;
 
 public class GMAudit
 {

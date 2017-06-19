@@ -22,7 +22,8 @@ package com.l2jfrozen.gameserver.handler.skillhandlers;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.handler.ISkillHandler;
 import com.l2jfrozen.gameserver.model.L2Character;
@@ -37,7 +38,6 @@ import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.network.serverpackets.PlaySound;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
-import com.l2jfrozen.util.random.Rnd;
 
 /**
  * @author l3x

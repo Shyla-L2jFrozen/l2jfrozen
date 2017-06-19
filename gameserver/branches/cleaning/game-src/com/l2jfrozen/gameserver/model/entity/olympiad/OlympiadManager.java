@@ -20,10 +20,10 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.L2FastList;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.util.L2FastList;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.util.FastMap;
 

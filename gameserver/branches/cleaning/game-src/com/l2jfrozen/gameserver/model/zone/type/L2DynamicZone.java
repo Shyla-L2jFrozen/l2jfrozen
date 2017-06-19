@@ -21,13 +21,13 @@ package com.l2jfrozen.gameserver.model.zone.type;
 
 import java.util.concurrent.Future;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.L2WorldRegion;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.zone.L2ZoneType;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 /**
  * A dynamic zone? Maybe use this for interlude skills like protection field :>

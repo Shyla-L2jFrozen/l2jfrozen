@@ -18,9 +18,9 @@ package com.l2jfrozen.gameserver.model;
 
 import java.util.concurrent.ScheduledFuture;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PetInstance;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 /**
  * @author DrHouse

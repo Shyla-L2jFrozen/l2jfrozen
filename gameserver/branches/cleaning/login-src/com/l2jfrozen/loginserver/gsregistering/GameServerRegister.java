@@ -34,15 +34,15 @@ import java.util.logging.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.CommonConfigFiles;
-import com.l2jfrozen.ServerType;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.CommonConfigFiles;
+import com.l2jfrozen.common.ServerType;
+import com.l2jfrozen.common.util.CloseUtil;
+import com.l2jfrozen.common.util.database.DatabaseUtils;
+import com.l2jfrozen.common.util.database.L2DatabaseFactory;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.loginserver.GameServerTable;
 import com.l2jfrozen.loginserver.LoginConfig;
-import com.l2jfrozen.util.CloseUtil;
-import com.l2jfrozen.util.database.DatabaseUtils;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
-import com.l2jfrozen.util.random.Rnd;
 
 public class GameServerRegister
 {

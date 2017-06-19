@@ -16,6 +16,7 @@
  */
 package com.l2jfrozen.gameserver.ai.special;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.model.L2Attackable;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
@@ -23,7 +24,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.quest.Quest;
 import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.util.FastList;
 import javolution.util.FastMap;

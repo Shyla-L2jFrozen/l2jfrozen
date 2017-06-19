@@ -22,13 +22,13 @@ package com.l2jfrozen.gameserver.model.actor.instance;
 
 import java.util.concurrent.Future;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.SkillTargetType;
 import com.l2jfrozen.gameserver.model.SkillType;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
-import com.l2jfrozen.thread.ThreadPoolManager;
-import com.l2jfrozen.util.random.Rnd;
 
 /**
  * This class ...

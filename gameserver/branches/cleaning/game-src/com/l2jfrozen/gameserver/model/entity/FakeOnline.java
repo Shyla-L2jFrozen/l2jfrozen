@@ -26,15 +26,15 @@ import java.sql.ResultSet;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.util.CloseUtil;
+import com.l2jfrozen.common.util.database.L2DatabaseFactory;
 import com.l2jfrozen.gameserver.LoginServerThread;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.model.ItemContainer;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.GameClientState;
 import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.netcore.MMOClientsManager;
-import com.l2jfrozen.util.CloseUtil;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
 
 /**
  * @author FOFAS

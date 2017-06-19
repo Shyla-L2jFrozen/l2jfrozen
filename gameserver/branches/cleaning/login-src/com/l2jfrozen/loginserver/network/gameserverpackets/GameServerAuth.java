@@ -24,7 +24,7 @@ import java.util.Arrays;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.loginserver.GameServerTable;
 import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
 import com.l2jfrozen.loginserver.GameServerThread;
@@ -32,7 +32,7 @@ import com.l2jfrozen.loginserver.LoginConfig;
 import com.l2jfrozen.loginserver.network.GameServerState;
 import com.l2jfrozen.loginserver.network.loginserverpackets.AuthResponse;
 import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
-import com.l2jfrozen.util.network.BaseRecievePacket;
+import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
 
 /**
  * Format: cccddb c desired ID c accept alternative ID c reserve Host s ExternalHostName s InetranlHostName d max players d hexid size b hexid

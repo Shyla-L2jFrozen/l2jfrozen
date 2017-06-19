@@ -27,15 +27,15 @@ import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.random.Rnd;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.GmListTable;
 import com.l2jfrozen.gameserver.handler.IAdminCommandHandler;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
-import com.l2jfrozen.util.random.Rnd;
 
 /**
  * This class handles following admin commands: - admin|admin1/admin2/admin3/admin4/admin5 = slots for the 5 starting admin menus - gmliston/gmlistoff = includes/excludes active character from /gmlist results - silence = toggles private messages acceptance mode - diet = toggles weight penalty mode -

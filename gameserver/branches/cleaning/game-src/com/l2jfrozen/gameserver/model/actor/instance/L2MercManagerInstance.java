@@ -21,7 +21,7 @@ package com.l2jfrozen.gameserver.model.actor.instance;
 
 import java.util.StringTokenizer;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.controllers.TradeController;
 import com.l2jfrozen.gameserver.model.L2Clan;

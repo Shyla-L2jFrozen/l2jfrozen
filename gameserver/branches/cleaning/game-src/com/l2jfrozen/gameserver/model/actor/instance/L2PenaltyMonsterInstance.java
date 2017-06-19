@@ -19,6 +19,7 @@
  */
 package com.l2jfrozen.gameserver.model.actor.instance;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.ai.CtrlEvent;
 import com.l2jfrozen.gameserver.datatables.sql.SpawnTable;
 import com.l2jfrozen.gameserver.model.L2Character;
@@ -26,7 +27,6 @@ import com.l2jfrozen.gameserver.model.spawn.L2Spawn;
 import com.l2jfrozen.gameserver.network.clientpackets.Say2;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
-import com.l2jfrozen.util.random.Rnd;
 
 public class L2PenaltyMonsterInstance extends L2MonsterInstance
 {

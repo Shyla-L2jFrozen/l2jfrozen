@@ -21,9 +21,9 @@ package com.l2jfrozen.gameserver.model.actor.instance;
 
 import java.util.Map;
 
-import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.ai.L2CharacterAI;
 import com.l2jfrozen.gameserver.ai.L2NpcWalkerAI;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;

@@ -20,6 +20,7 @@
  */
 package com.l2jfrozen.gameserver.ai;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2Skill;
@@ -27,7 +28,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2DoorInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2FortSiegeGuardInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2SiegeGuardInstance;
 import com.l2jfrozen.gameserver.model.actor.position.L2CharPosition;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 /**
  * @author mkizub TODO To change the template for this generated type comment go to Window - Preferences - Java - Code Style - Code Templates

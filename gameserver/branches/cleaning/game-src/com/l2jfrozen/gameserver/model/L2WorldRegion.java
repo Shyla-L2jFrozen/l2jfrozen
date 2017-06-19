@@ -25,11 +25,12 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.ai.L2AttackableAI;
 import com.l2jfrozen.gameserver.ai.L2FortSiegeGuardAI;
 import com.l2jfrozen.gameserver.ai.L2SiegeGuardAI;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.sql.SpawnTable;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PlayableInstance;
@@ -38,7 +39,6 @@ import com.l2jfrozen.gameserver.model.zone.L2ZoneManager;
 import com.l2jfrozen.gameserver.model.zone.L2ZoneType;
 import com.l2jfrozen.gameserver.model.zone.type.L2PeaceZone;
 import com.l2jfrozen.gameserver.util.object.L2ObjectSet;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 import javolution.util.FastList;
 

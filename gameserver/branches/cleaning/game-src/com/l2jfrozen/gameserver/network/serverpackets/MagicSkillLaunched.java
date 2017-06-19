@@ -20,7 +20,7 @@
  */
 package com.l2jfrozen.gameserver.network.serverpackets;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Object;
 

@@ -18,7 +18,7 @@ package com.l2jfrozen.gameserver.network.clientpackets;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.sql.ItemTable;
 import com.l2jfrozen.gameserver.model.L2Augmentation;
 import com.l2jfrozen.gameserver.model.PcInventory;

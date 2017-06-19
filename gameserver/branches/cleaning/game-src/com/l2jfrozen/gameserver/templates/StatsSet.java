@@ -24,7 +24,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 
 import javolution.util.FastMap;
 

@@ -24,8 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.StringTokenizer;
 
-import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.Shutdown;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.handler.IAdminCommandHandler;
 import com.l2jfrozen.gameserver.model.L2World;

@@ -18,7 +18,7 @@
  */
 package com.l2jfrozen.gameserver.network;
 
-import com.l2jfrozen.util.random.Rnd;
+import com.l2jfrozen.common.util.random.Rnd;
 
 /**
  * Blowfish keygen for GameServer client connections.

@@ -22,7 +22,8 @@ package com.l2jfrozen.gameserver.network.clientpackets;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.csv.MapRegionTable;
 import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.managers.CastleManager;
@@ -40,7 +41,6 @@ import com.l2jfrozen.gameserver.model.entity.siege.Fort;
 import com.l2jfrozen.gameserver.network.serverpackets.Revive;
 import com.l2jfrozen.gameserver.util.IllegalPlayerAction;
 import com.l2jfrozen.gameserver.util.Util;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 /**
  * @author programmos

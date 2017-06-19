@@ -24,10 +24,10 @@ import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.actor.instance.L2RaidBossInstance;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 import javolution.util.FastMap;
 

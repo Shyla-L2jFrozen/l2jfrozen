@@ -22,7 +22,7 @@ package com.l2jfrozen.gameserver.network.serverpackets;
 
 import java.util.List;
 
-import com.l2jfrozen.util.Point3D;
+import com.l2jfrozen.common.util.Point3D;
 
 /**
  * Format: (ch) d[ddddd].

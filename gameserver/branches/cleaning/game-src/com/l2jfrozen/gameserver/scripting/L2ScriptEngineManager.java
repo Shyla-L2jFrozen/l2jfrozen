@@ -44,9 +44,9 @@ import javax.script.SimpleScriptContext;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
-import com.l2jfrozen.thread.ThreadPoolManager;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jserver.script.jython.JythonScriptEngine;
 
 import javolution.util.FastMap;

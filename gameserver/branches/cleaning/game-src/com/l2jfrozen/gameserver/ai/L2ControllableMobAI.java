@@ -25,6 +25,7 @@ import static com.l2jfrozen.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
 
 import java.util.List;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.datatables.MobGroupTable;
 import com.l2jfrozen.gameserver.model.L2Attackable;
 import com.l2jfrozen.gameserver.model.L2Character;
@@ -38,7 +39,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2FolkInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.util.Util;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.util.FastList;
 
