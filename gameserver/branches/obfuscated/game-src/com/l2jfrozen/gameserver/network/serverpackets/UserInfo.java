@@ -22,7 +22,7 @@ package com.l2jfrozen.gameserver.network.serverpackets;
 
 import java.util.Map;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.managers.CursedWeaponsManager;
 import com.l2jfrozen.gameserver.model.Inventory;

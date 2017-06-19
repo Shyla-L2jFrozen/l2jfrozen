@@ -20,8 +20,8 @@
  */
 package com.l2jfrozen.gameserver.network.clientpackets;
 
-import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.communitybbs.CommunityBoard;
+import com.l2jfrozen.gameserver.config.Config;
 
 public final class RequestShowBoard extends L2GameClientPacket
 {

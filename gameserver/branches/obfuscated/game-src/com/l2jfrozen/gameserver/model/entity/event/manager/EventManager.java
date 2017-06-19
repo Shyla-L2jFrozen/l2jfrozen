@@ -29,7 +29,7 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.FService;
+import com.l2jfrozen.gameserver.config.FService;
 import com.l2jfrozen.gameserver.model.entity.event.CTF;
 import com.l2jfrozen.gameserver.model.entity.event.DM;
 import com.l2jfrozen.gameserver.model.entity.event.TvT;

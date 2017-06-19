@@ -22,7 +22,7 @@ package com.l2jfrozen.gameserver.network.serverpackets;
 
 import java.util.List;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.model.L2TradeList;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.templates.L2Item;

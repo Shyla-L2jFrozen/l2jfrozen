@@ -22,12 +22,12 @@ package com.l2jfrozen.gameserver.geo;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.util.Point3D;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.geo.pathfinding.Node;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.Location;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.util.Point3D;
 
 public class GeoData
 {

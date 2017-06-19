@@ -25,10 +25,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.concurrent.ScheduledFuture;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.thread.ThreadPoolManager;
-import com.l2jfrozen.util.CloseUtil;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.common.util.CloseUtil;
+import com.l2jfrozen.common.util.database.L2DatabaseFactory;
 
 import javolution.util.FastList;
 

@@ -19,14 +19,14 @@
  */
 package com.l2jfrozen.gameserver.ai;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.csv.NpcWalkerRoutesTable;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2NpcWalkerNode;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcWalkerInstance;
 import com.l2jfrozen.gameserver.model.actor.position.L2CharPosition;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 import javolution.util.FastList;
 

@@ -26,12 +26,12 @@ import java.sql.ResultSet;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.CloseUtil;
+import com.l2jfrozen.common.util.database.DatabaseUtils;
+import com.l2jfrozen.common.util.database.L2DatabaseFactory;
 import com.l2jfrozen.gameserver.handler.IAdminCommandHandler;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.util.CloseUtil;
-import com.l2jfrozen.util.database.DatabaseUtils;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
 
 /**
  * This class handles following admin commands: - delete = deletes target

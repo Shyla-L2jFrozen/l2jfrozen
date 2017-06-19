@@ -14,7 +14,7 @@
  */
 package com.l2jfrozen.gameserver.util;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.network.L2GameClient;
 
 /**

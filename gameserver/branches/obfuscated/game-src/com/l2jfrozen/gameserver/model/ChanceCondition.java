@@ -16,8 +16,8 @@
  */
 package com.l2jfrozen.gameserver.model;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.templates.StatsSet;
-import com.l2jfrozen.util.random.Rnd;
 
 /**
  * @author kombat

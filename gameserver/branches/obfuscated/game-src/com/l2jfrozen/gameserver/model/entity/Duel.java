@@ -24,8 +24,9 @@ import java.util.Calendar;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.managers.DuelManager;
 import com.l2jfrozen.gameserver.managers.OlympiadStadiaManager;
 import com.l2jfrozen.gameserver.model.L2Character;
@@ -42,7 +43,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.L2GameServerPacket;
 import com.l2jfrozen.gameserver.network.serverpackets.PlaySound;
 import com.l2jfrozen.gameserver.network.serverpackets.SocialAction;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 import javolution.util.FastList;
 import javolution.util.FastMap;

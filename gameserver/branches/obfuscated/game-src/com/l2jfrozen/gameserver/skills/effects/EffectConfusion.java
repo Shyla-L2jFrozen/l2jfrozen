@@ -22,13 +22,13 @@ package com.l2jfrozen.gameserver.skills.effects;
 
 import java.util.List;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.skills.Env;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.util.FastList;
 

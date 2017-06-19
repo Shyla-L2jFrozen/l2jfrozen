@@ -39,11 +39,11 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.database.L2DatabaseFactory;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.netcore.util.IPSubnet;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.io.UTF8StreamReader;
 import javolution.xml.stream.XMLStreamConstants;

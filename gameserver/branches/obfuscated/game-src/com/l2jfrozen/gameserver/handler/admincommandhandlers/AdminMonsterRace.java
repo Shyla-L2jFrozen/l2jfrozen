@@ -20,6 +20,7 @@
  */
 package com.l2jfrozen.gameserver.handler.admincommandhandlers;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.handler.IAdminCommandHandler;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.entity.MonsterRace;
@@ -28,7 +29,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.DeleteObject;
 import com.l2jfrozen.gameserver.network.serverpackets.MonRaceInfo;
 import com.l2jfrozen.gameserver.network.serverpackets.PlaySound;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 /**
  * This class handles following admin commands: - invul = turns invulnerability on/off

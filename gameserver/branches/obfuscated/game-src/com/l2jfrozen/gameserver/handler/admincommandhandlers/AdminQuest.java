@@ -30,7 +30,7 @@
  */
 package com.l2jfrozen.gameserver.handler.admincommandhandlers;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.handler.IAdminCommandHandler;
 import com.l2jfrozen.gameserver.managers.QuestManager;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;

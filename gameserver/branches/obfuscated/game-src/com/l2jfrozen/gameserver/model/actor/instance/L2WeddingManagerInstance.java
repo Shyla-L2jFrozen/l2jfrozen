@@ -20,8 +20,8 @@
  */
 package com.l2jfrozen.gameserver.model.actor.instance;
 
-import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.managers.CoupleManager;
 import com.l2jfrozen.gameserver.model.Inventory;

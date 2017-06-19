@@ -23,9 +23,9 @@ package com.l2jfrozen.gameserver.handler.admincommandhandlers;
 import java.io.File;
 import java.util.StringTokenizer;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.cache.HtmCache;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.controllers.TradeController;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.datatables.csv.NpcWalkerRoutesTable;

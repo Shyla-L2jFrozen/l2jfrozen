@@ -22,7 +22,7 @@ package com.l2jfrozen.gameserver.network.clientpackets;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.model.L2Clan;
 import com.l2jfrozen.gameserver.model.L2ClanMember;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;

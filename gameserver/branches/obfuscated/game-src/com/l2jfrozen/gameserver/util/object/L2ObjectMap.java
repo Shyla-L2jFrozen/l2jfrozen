@@ -22,7 +22,7 @@ package com.l2jfrozen.gameserver.util.object;
 
 import java.util.Iterator;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.model.L2Object;
 
 /**

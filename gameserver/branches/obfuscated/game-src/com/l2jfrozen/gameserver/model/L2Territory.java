@@ -31,9 +31,9 @@ import java.awt.Polygon;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.util.random.Rnd;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.geo.GeoData;
-import com.l2jfrozen.util.random.Rnd;
 
 public class L2Territory
 {

@@ -25,7 +25,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.CloseUtil;
+import com.l2jfrozen.common.util.database.DatabaseUtils;
+import com.l2jfrozen.common.util.database.L2DatabaseFactory;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.datatables.sql.ArmorSetsTable;
 import com.l2jfrozen.gameserver.datatables.sql.ItemTable;
@@ -38,9 +41,6 @@ import com.l2jfrozen.gameserver.templates.L2EtcItemType;
 import com.l2jfrozen.gameserver.templates.L2Item;
 import com.l2jfrozen.gameserver.templates.L2Weapon;
 import com.l2jfrozen.gameserver.templates.L2WeaponType;
-import com.l2jfrozen.util.CloseUtil;
-import com.l2jfrozen.util.database.DatabaseUtils;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
 
 import javolution.util.FastList;
 

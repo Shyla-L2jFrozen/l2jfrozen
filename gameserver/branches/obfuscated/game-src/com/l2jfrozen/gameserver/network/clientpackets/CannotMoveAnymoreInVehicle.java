@@ -16,9 +16,9 @@
  */
 package com.l2jfrozen.gameserver.network.clientpackets;
 
+import com.l2jfrozen.common.util.Point3D;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.serverpackets.StopMoveInVehicle;
-import com.l2jfrozen.util.Point3D;
 
 /**
  * @author Maktakien

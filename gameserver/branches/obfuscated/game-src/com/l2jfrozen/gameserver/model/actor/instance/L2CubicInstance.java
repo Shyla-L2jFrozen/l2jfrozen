@@ -19,7 +19,9 @@ import java.util.concurrent.Future;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.ai.CtrlEvent;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.handler.ISkillHandler;
@@ -39,8 +41,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.skills.Formulas;
 import com.l2jfrozen.gameserver.skills.l2skills.L2SkillDrain;
 import com.l2jfrozen.gameserver.taskmanager.AttackStanceTaskManager;
-import com.l2jfrozen.thread.ThreadPoolManager;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.util.FastList;
 

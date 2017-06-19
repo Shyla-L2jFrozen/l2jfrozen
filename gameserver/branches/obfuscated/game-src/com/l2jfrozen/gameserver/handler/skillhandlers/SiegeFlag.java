@@ -20,7 +20,7 @@
  */
 package com.l2jfrozen.gameserver.handler.skillhandlers;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.handler.ISkillHandler;
 import com.l2jfrozen.gameserver.idfactory.IdFactory;

@@ -19,6 +19,7 @@
  */
 package com.l2jfrozen.gameserver.skills.effects;
 
+import com.l2jfrozen.common.util.Point3D;
 import com.l2jfrozen.gameserver.ai.CtrlEvent;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.idfactory.IdFactory;
@@ -39,7 +40,6 @@ import com.l2jfrozen.gameserver.skills.Env;
 import com.l2jfrozen.gameserver.skills.Formulas;
 import com.l2jfrozen.gameserver.skills.l2skills.L2SkillSignetCasttime;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
-import com.l2jfrozen.util.Point3D;
 
 import javolution.util.FastList;
 
