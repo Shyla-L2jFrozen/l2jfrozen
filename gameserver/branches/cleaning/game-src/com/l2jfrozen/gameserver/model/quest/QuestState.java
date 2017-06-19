@@ -24,9 +24,10 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.cache.HtmCache;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.managers.QuestManager;
 import com.l2jfrozen.gameserver.model.L2Character;
@@ -49,7 +50,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.TutorialEnableClientEvent;
 import com.l2jfrozen.gameserver.network.serverpackets.TutorialShowHtml;
 import com.l2jfrozen.gameserver.network.serverpackets.TutorialShowQuestionMark;
 import com.l2jfrozen.gameserver.skills.Stats;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.util.FastList;
 import javolution.util.FastMap;

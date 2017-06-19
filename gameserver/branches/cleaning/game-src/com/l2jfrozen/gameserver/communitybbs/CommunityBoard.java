@@ -22,7 +22,6 @@ package com.l2jfrozen.gameserver.communitybbs;
 
 import java.util.Map;
 
-import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.cache.HtmCache;
 import com.l2jfrozen.gameserver.communitybbs.Manager.BaseBBSManager;
 import com.l2jfrozen.gameserver.communitybbs.Manager.ClanBBSManager;
@@ -30,6 +29,7 @@ import com.l2jfrozen.gameserver.communitybbs.Manager.PostBBSManager;
 import com.l2jfrozen.gameserver.communitybbs.Manager.RegionBBSManager;
 import com.l2jfrozen.gameserver.communitybbs.Manager.TopBBSManager;
 import com.l2jfrozen.gameserver.communitybbs.Manager.TopicBBSManager;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.handler.IBBSHandler;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.L2GameClient;

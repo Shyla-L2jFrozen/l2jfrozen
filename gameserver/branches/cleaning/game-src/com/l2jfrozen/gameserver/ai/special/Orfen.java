@@ -20,8 +20,9 @@
  */
 package com.l2jfrozen.gameserver.ai.special;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.managers.GrandBossManager;
 import com.l2jfrozen.gameserver.model.actor.instance.L2GrandBossInstance;
@@ -32,7 +33,6 @@ import com.l2jfrozen.gameserver.model.quest.Quest;
 import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.network.serverpackets.PlaySound;
 import com.l2jfrozen.gameserver.templates.StatsSet;
-import com.l2jfrozen.util.random.Rnd;
 
 /**
  * @author Shyla

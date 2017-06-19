@@ -16,8 +16,8 @@
  */
 package com.l2jfrozen.gameserver.model.entity.olympiad;
 
+import com.l2jfrozen.common.util.L2FastList;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.util.L2FastList;
 
 /**
  * @author GodKratos

@@ -20,7 +20,7 @@ package com.l2jfrozen.gameserver.network.gameserverpackets;
 
 import java.util.ArrayList;
 
-import com.l2jfrozen.util.network.BaseSendablePacket;
+import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
 
 /**
  * @author -Wooden-

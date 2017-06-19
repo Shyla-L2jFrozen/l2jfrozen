@@ -16,11 +16,11 @@
  */
 package com.l2jfrozen.gameserver.model.actor.instance;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.managers.CustomNpcInstanceManager;
 import com.l2jfrozen.gameserver.model.base.ClassId;
 import com.l2jfrozen.gameserver.model.base.Race;
 import com.l2jfrozen.gameserver.templates.L2WeaponType;
-import com.l2jfrozen.util.random.Rnd;
 
 /**
  * This class manages Npc Polymorph into player instances, they look like regular players. This effect will show up on all clients.

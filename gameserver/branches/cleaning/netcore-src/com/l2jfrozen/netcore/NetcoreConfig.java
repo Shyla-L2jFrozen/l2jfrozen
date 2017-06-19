@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
+import com.l2jfrozen.netcore.util.deamon.ServerDeamonTask;
+
 import javolution.util.FastList;
 
 public class NetcoreConfig
@@ -57,6 +59,10 @@ public class NetcoreConfig
 	
 	// ============================================================
 	private static NetcoreConfig _instance;
+	
+	static{
+		ServerDeamonTask.start();
+	}
 	
 	public static NetcoreConfig getInstance()
 	{

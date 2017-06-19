@@ -22,12 +22,12 @@ package com.l2jfrozen.gameserver.model.zone.type;
 
 import java.util.Iterator;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.managers.CastleManager;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.entity.siege.Castle;
 import com.l2jfrozen.gameserver.model.zone.L2ZoneType;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.util.FastList;
 

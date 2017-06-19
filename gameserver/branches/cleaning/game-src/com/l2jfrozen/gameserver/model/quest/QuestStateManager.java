@@ -21,9 +21,9 @@ package com.l2jfrozen.gameserver.model.quest;
 
 import java.util.List;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 import javolution.util.FastList;
 

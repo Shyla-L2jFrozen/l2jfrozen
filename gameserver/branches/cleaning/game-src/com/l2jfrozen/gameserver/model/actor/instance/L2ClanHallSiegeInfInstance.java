@@ -18,7 +18,7 @@ package com.l2jfrozen.gameserver.model.actor.instance;
 
 import java.text.SimpleDateFormat;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.managers.ClanHallManager;
 import com.l2jfrozen.gameserver.model.L2Clan;

@@ -23,13 +23,13 @@ package com.l2jfrozen.gameserver.model.entity;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.util.random.Rnd;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.managers.DimensionalRiftManager;
 import com.l2jfrozen.gameserver.managers.DimensionalRiftManager.DimensionalRiftRoom;
 import com.l2jfrozen.gameserver.model.L2Party;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.util.FastList;
 

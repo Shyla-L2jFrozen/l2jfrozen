@@ -41,16 +41,16 @@ import java.util.logging.Logger;
 
 import javax.crypto.Cipher;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.database.L2DatabaseFactory;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
 import com.l2jfrozen.loginserver.model.data.AccountInfo;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.netcore.SessionKey;
-import com.l2jfrozen.util.crypt.ScrambledKeyPair;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
-import com.l2jfrozen.util.random.Rnd;
+import com.l2jfrozen.netcore.util.crypt.ScrambledKeyPair;
 
 public class LoginController
 {

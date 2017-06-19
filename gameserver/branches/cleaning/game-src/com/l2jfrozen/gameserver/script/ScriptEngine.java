@@ -22,7 +22,7 @@ package com.l2jfrozen.gameserver.script;
 
 import java.util.Hashtable;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.script.faenor.FaenorInterface;
 
 /**

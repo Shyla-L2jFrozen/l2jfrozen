@@ -20,6 +20,8 @@
  */
 package com.l2jfrozen.gameserver.network.clientpackets;
 
+import com.l2jfrozen.common.thread.TaskPriority;
+import com.l2jfrozen.common.util.Point3D;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.managers.BoatManager;
 import com.l2jfrozen.gameserver.model.actor.instance.L2BoatInstance;
@@ -27,8 +29,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.actor.position.L2CharPosition;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.templates.L2WeaponType;
-import com.l2jfrozen.thread.TaskPriority;
-import com.l2jfrozen.util.Point3D;
 
 public final class RequestMoveToLocationInVehicle extends L2GameClientPacket
 {

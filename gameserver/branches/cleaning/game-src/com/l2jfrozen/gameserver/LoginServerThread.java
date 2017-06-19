@@ -42,10 +42,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
-import com.l2jfrozen.FService;
-import com.l2jfrozen.crypt.NewCrypt;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.crypt.NewCrypt;
+import com.l2jfrozen.common.util.random.Rnd;
+import com.l2jfrozen.gameserver.config.Config;
+import com.l2jfrozen.gameserver.config.FService;
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.GameClientState;
@@ -69,8 +70,7 @@ import com.l2jfrozen.gameserver.network.loginserverpackets.PlayerAuthResponse;
 import com.l2jfrozen.gameserver.network.serverpackets.AuthLoginFail;
 import com.l2jfrozen.gameserver.network.serverpackets.CharSelectInfo;
 import com.l2jfrozen.netcore.SessionKey;
-import com.l2jfrozen.util.network.BaseSendablePacket;
-import com.l2jfrozen.util.random.Rnd;
+import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
 
 public class LoginServerThread extends Thread
 {

@@ -20,11 +20,11 @@
  */
 package com.l2jfrozen.gameserver.model;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.clientpackets.L2GameClientPacket;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 /**
  * This class manages requests (transactions) between two L2PcInstance.

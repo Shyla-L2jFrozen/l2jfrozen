@@ -34,8 +34,8 @@ import javax.script.ScriptException;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Node;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.script.Parser;
 import com.l2jfrozen.gameserver.script.ParserNotCreatedException;
 import com.l2jfrozen.gameserver.script.ScriptDocument;

@@ -27,7 +27,7 @@ import javax.script.ScriptContext;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.model.L2DropCategory;
 import com.l2jfrozen.gameserver.model.L2DropData;
 import com.l2jfrozen.gameserver.model.L2PetData;

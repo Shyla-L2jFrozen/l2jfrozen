@@ -1,10 +1,10 @@
 package com.l2jfrozen.gameserver.skills.effects;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.SkillType;
 import com.l2jfrozen.gameserver.skills.Env;
-import com.l2jfrozen.util.random.Rnd;
 
 /**
  * Infinity Spear effect like L2OFF Interlude (lineage2.com 2007 year)

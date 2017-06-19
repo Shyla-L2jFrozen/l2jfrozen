@@ -18,6 +18,7 @@ package com.l2jfrozen.gameserver.model.actor.instance;
 
 import java.util.concurrent.Future;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.managers.FourSepulchersManager;
 import com.l2jfrozen.gameserver.model.L2Character;
@@ -25,7 +26,6 @@ import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.quest.QuestState;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 /**
  * @author sandman
