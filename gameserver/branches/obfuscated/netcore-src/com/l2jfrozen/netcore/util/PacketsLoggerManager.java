@@ -31,7 +31,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.logs.Log;
+import com.l2jfrozen.common.logs.Log;
 import com.l2jfrozen.netcore.MMOClient;
 import com.l2jfrozen.netcore.ReceivablePacket;
 import com.thoughtworks.xstream.XStream;

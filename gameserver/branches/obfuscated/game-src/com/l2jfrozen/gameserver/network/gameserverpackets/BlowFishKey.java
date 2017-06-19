@@ -24,7 +24,7 @@ import javax.crypto.Cipher;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.util.network.BaseSendablePacket;
+import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
 
 /**
  * @author -Wooden-

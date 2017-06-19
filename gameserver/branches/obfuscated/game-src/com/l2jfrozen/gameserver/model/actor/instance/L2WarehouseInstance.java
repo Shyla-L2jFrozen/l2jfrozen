@@ -22,8 +22,8 @@ package com.l2jfrozen.gameserver.model.actor.instance;
 
 import java.util.Map;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.model.L2Clan;
 import com.l2jfrozen.gameserver.model.PcFreight;
 import com.l2jfrozen.gameserver.network.SystemMessageId;

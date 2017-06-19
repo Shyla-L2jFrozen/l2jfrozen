@@ -19,13 +19,13 @@
  */
 package com.l2jfrozen.gameserver.handler.skillhandlers;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.handler.ISkillHandler;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2Skill;
 import com.l2jfrozen.gameserver.model.SkillType;
-import com.l2jfrozen.util.random.Rnd;
 
 public class ZakenSelf implements ISkillHandler
 {

@@ -26,6 +26,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
@@ -38,7 +39,6 @@ import com.l2jfrozen.gameserver.skills.effects.EffectTemplate;
 import com.l2jfrozen.gameserver.skills.funcs.Func;
 import com.l2jfrozen.gameserver.skills.funcs.FuncTemplate;
 import com.l2jfrozen.gameserver.skills.funcs.Lambda;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 import javolution.util.FastList;
 

@@ -24,8 +24,8 @@ import java.util.Arrays;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.sql.AdminCommandAccessRights;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminAdmin;
 import com.l2jfrozen.gameserver.handler.admincommandhandlers.AdminAio;

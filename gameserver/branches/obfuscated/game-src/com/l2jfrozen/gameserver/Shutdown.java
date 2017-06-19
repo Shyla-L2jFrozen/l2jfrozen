@@ -22,8 +22,11 @@ package com.l2jfrozen.gameserver;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.common.util.database.L2DatabaseFactory;
+import com.l2jfrozen.common.util.database.SqlUtils;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.controllers.TradeController;
 import com.l2jfrozen.gameserver.datatables.CharSchemesTable;
@@ -48,9 +51,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.ServerClose;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.util.sql.SQLQueue;
 import com.l2jfrozen.netcore.SelectorThread;
-import com.l2jfrozen.thread.ThreadPoolManager;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
-import com.l2jfrozen.util.database.SqlUtils;
 
 /**
  * This class provides the functions for shutting down and restarting the server It closes all open client connections and saves all data.

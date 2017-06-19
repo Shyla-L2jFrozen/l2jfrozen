@@ -25,12 +25,12 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Summon;
 import com.l2jfrozen.gameserver.model.actor.instance.L2CubicInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.serverpackets.AutoAttackStop;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 import javolution.util.FastMap;
 

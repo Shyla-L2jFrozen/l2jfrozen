@@ -18,7 +18,7 @@
  */
 package com.l2jfrozen.loginserver.network.loginserverpackets;
 
-import com.l2jfrozen.util.network.BaseSendablePacket;
+import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
 
 /**
  * @author -Wooden-

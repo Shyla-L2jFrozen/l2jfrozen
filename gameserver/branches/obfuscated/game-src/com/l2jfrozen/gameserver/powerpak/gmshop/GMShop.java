@@ -20,7 +20,7 @@
  */
 package com.l2jfrozen.gameserver.powerpak.gmshop;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.cache.HtmCache;
 import com.l2jfrozen.gameserver.handler.IBBSHandler;
 import com.l2jfrozen.gameserver.handler.ICustomByPassHandler;

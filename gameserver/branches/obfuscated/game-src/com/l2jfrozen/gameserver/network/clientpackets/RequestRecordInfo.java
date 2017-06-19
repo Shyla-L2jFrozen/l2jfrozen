@@ -20,6 +20,7 @@
  */
 package com.l2jfrozen.gameserver.network.clientpackets;
 
+import com.l2jfrozen.common.thread.TaskPriority;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2Summon;
@@ -43,7 +44,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.SpawnItemPoly;
 import com.l2jfrozen.gameserver.network.serverpackets.StaticObject;
 import com.l2jfrozen.gameserver.network.serverpackets.UserInfo;
 import com.l2jfrozen.gameserver.network.serverpackets.VehicleInfo;
-import com.l2jfrozen.thread.TaskPriority;
 
 public class RequestRecordInfo extends L2GameClientPacket
 {

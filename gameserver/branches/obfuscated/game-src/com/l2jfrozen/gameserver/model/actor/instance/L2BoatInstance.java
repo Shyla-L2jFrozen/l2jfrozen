@@ -31,7 +31,8 @@ import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.actor.knownlist.BoatKnownList;
@@ -45,7 +46,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.VehicleDeparture;
 import com.l2jfrozen.gameserver.network.serverpackets.VehicleInfo;
 import com.l2jfrozen.gameserver.templates.L2CharTemplate;
 import com.l2jfrozen.gameserver.templates.L2Weapon;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 import javolution.util.FastMap;
 

@@ -30,7 +30,7 @@ import com.l2jfrozen.loginserver.network.gameserverpackets.PlayerLogout;
 import com.l2jfrozen.loginserver.network.gameserverpackets.PlayerTracert;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
-import com.l2jfrozen.util.network.BaseRecievePacket;
+import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
 
 /**
  * @author mrTJO

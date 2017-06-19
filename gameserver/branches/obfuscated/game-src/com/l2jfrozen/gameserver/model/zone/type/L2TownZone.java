@@ -21,11 +21,11 @@ package com.l2jfrozen.gameserver.model.zone.type;
 
 import org.w3c.dom.Node;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.util.random.Rnd;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.zone.L2ZoneType;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.util.FastList;
 

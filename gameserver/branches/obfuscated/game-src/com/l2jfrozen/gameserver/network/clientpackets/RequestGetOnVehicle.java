@@ -20,11 +20,11 @@
  */
 package com.l2jfrozen.gameserver.network.clientpackets;
 
+import com.l2jfrozen.common.util.Point3D;
 import com.l2jfrozen.gameserver.managers.BoatManager;
 import com.l2jfrozen.gameserver.model.actor.instance.L2BoatInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.serverpackets.GetOnVehicle;
-import com.l2jfrozen.util.Point3D;
 
 public final class RequestGetOnVehicle extends L2GameClientPacket
 {

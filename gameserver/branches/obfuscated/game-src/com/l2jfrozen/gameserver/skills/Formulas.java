@@ -22,8 +22,10 @@ package com.l2jfrozen.gameserver.skills;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.StringUtil;
+import com.l2jfrozen.common.util.random.Rnd;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.managers.ClanHallManager;
 import com.l2jfrozen.gameserver.managers.ClassDamageManager;
 import com.l2jfrozen.gameserver.managers.SiegeManager;
@@ -59,8 +61,6 @@ import com.l2jfrozen.gameserver.templates.L2Weapon;
 import com.l2jfrozen.gameserver.templates.L2WeaponType;
 import com.l2jfrozen.gameserver.templates.Race;
 import com.l2jfrozen.gameserver.util.Util;
-import com.l2jfrozen.util.StringUtil;
-import com.l2jfrozen.util.random.Rnd;
 
 /**
  * Global calculations, can be modified by server admins

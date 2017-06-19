@@ -33,11 +33,11 @@ package com.l2jfrozen.gameserver.util;
 import java.io.File;
 import java.util.Collection;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 /**
  * General Utility functions related to Gameserver

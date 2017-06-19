@@ -24,8 +24,8 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.geo.GeoData;
 import com.l2jfrozen.gameserver.geo.pathfinding.cellnodes.CellPathFinding;
 import com.l2jfrozen.gameserver.geo.pathfinding.geonodes.GeoPathFinding;

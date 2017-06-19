@@ -19,15 +19,15 @@ package com.l2jfrozen.gameserver.model.zone.type;
 import java.util.List;
 import java.util.Map;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.util.L2FastList;
 import com.l2jfrozen.gameserver.GameServer;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.csv.TeleportWhereType;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.zone.L2ZoneType;
-import com.l2jfrozen.util.L2FastList;
 
 import javolution.util.FastMap;
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="netcore-src"/>
 	<classpathentry kind="src" path="common-src"/>
 	<classpathentry kind="src" path="game-src"/>
 	<classpathentry kind="src" path="login-src"/>
+	<classpathentry kind="src" path="netcore-src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<accessrules>
 			<accessrule kind="accessible" pattern="com/sun/net/httpserver/**"/>

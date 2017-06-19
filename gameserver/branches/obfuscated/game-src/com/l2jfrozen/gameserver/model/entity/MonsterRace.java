@@ -22,11 +22,11 @@ package com.l2jfrozen.gameserver.model.entity;
 
 import java.lang.reflect.Constructor;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.idfactory.IdFactory;
 import com.l2jfrozen.gameserver.model.actor.instance.L2NpcInstance;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
-import com.l2jfrozen.util.random.Rnd;
 
 public class MonsterRace
 {
