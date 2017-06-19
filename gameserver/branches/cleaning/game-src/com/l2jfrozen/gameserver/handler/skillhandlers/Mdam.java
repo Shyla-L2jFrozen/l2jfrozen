@@ -20,7 +20,8 @@
  */
 package com.l2jfrozen.gameserver.handler.skillhandlers;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.logs.Log;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.handler.ISkillHandler;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
@@ -34,7 +35,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2RaidBossInstance;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.skills.Formulas;
-import com.l2jfrozen.logs.Log;
 
 /**
  * This class ...

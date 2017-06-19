@@ -25,7 +25,9 @@ import java.util.concurrent.Future;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.managers.DuelManager;
 import com.l2jfrozen.gameserver.model.L2Attackable;
@@ -37,8 +39,6 @@ import com.l2jfrozen.gameserver.model.actor.stat.CharStat;
 import com.l2jfrozen.gameserver.model.entity.Duel;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.skills.Formulas;
-import com.l2jfrozen.thread.ThreadPoolManager;
-import com.l2jfrozen.util.random.Rnd;
 
 /**
  * The Class CharStatus.

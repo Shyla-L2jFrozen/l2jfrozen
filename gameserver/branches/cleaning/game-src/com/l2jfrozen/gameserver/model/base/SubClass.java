@@ -20,7 +20,7 @@
  */
 package com.l2jfrozen.gameserver.model.base;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.xml.ExperienceData;
 
 /**

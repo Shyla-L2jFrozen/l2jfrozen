@@ -21,6 +21,7 @@ package com.l2jfrozen.gameserver.model;
 
 import java.util.List;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.ai.L2ControllableMobAI;
 import com.l2jfrozen.gameserver.datatables.MobGroupTable;
@@ -29,7 +30,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2ControllableMobInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.spawn.L2GroupSpawn;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.util.FastList;
 

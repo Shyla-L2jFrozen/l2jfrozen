@@ -24,17 +24,17 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.common.util.taskmanager.Task;
+import com.l2jfrozen.common.util.taskmanager.TaskManager;
+import com.l2jfrozen.common.util.taskmanager.TaskTypes;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.datatables.sql.ClanTable;
 import com.l2jfrozen.gameserver.managers.RaidBossPointsManager;
 import com.l2jfrozen.gameserver.model.L2Clan;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.util.taskmanager.ExecutedTask;
-import com.l2jfrozen.util.taskmanager.Task;
-import com.l2jfrozen.util.taskmanager.TaskManager;
-import com.l2jfrozen.util.taskmanager.TaskTypes;
 
 public class TaskRaidPointsReset extends Task
 {

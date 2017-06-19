@@ -19,6 +19,7 @@
  */
 package com.l2jfrozen.gameserver.handler.skillhandlers;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.handler.ISkillHandler;
 import com.l2jfrozen.gameserver.model.L2Character;
@@ -32,7 +33,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
 import com.l2jfrozen.gameserver.network.serverpackets.SocialAction;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.skills.Formulas;
-import com.l2jfrozen.util.random.Rnd;
 
 public class Unlock implements ISkillHandler
 {

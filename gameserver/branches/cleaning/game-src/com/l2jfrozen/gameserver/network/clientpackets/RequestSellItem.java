@@ -20,8 +20,8 @@
  */
 package com.l2jfrozen.gameserver.network.clientpackets;
 
-import com.l2jfrozen.Config;
 import com.l2jfrozen.gameserver.cache.HtmCache;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.model.L2Object;
 import com.l2jfrozen.gameserver.model.actor.instance.ItemLocation;
 import com.l2jfrozen.gameserver.model.actor.instance.L2FishermanInstance;

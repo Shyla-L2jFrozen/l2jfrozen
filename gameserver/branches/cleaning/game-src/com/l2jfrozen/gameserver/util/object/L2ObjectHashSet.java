@@ -25,7 +25,7 @@ import java.util.NoSuchElementException;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.model.L2Object;
 
 /**

@@ -32,15 +32,21 @@ import java.util.logging.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.CommonConfigFiles;
-import com.l2jfrozen.Config;
-import com.l2jfrozen.L2Frozen;
-import com.l2jfrozen.ServerType;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.CommonConfigFiles;
+import com.l2jfrozen.common.L2Frozen;
+import com.l2jfrozen.common.ServerType;
+import com.l2jfrozen.common.thread.DeadlockDetector;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.common.util.Util;
+import com.l2jfrozen.common.util.database.L2DatabaseFactory;
+import com.l2jfrozen.common.util.monitoring.StatusManager;
+import com.l2jfrozen.common.util.taskmanager.TaskManager;
 import com.l2jfrozen.gameserver.ai.special.manager.AILoader;
 import com.l2jfrozen.gameserver.cache.CrestCache;
 import com.l2jfrozen.gameserver.cache.HtmCache;
 import com.l2jfrozen.gameserver.communitybbs.Manager.ForumsBBSManager;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.controllers.RecipeController;
 import com.l2jfrozen.gameserver.controllers.TradeController;
@@ -155,12 +161,6 @@ import com.l2jfrozen.netcore.SelectorConfig;
 import com.l2jfrozen.netcore.SelectorThread;
 import com.l2jfrozen.netcore.util.IPv4Filter;
 import com.l2jfrozen.netcore.util.PacketsFloodProtector;
-import com.l2jfrozen.thread.DeadlockDetector;
-import com.l2jfrozen.thread.ThreadPoolManager;
-import com.l2jfrozen.util.Util;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
-import com.l2jfrozen.util.monitoring.StatusManager;
-import com.l2jfrozen.util.taskmanager.TaskManager;
 
 public class GameServer
 {

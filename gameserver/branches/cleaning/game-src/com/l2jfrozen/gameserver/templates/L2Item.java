@@ -22,7 +22,7 @@ package com.l2jfrozen.gameserver.templates;
 
 import java.util.List;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.L2Skill;

@@ -21,9 +21,9 @@ package com.l2jfrozen.gameserver.taskmanager.tasks;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.common.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.common.util.taskmanager.Task;
 import com.l2jfrozen.gameserver.Shutdown;
-import com.l2jfrozen.util.taskmanager.ExecutedTask;
-import com.l2jfrozen.util.taskmanager.Task;
 
 /**
  * @author Layane

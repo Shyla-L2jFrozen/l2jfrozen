@@ -32,9 +32,10 @@ import java.util.logging.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.CommonConfigFiles;
-import com.l2jfrozen.ServerType;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.CommonConfigFiles;
+import com.l2jfrozen.common.ServerType;
+import com.l2jfrozen.common.util.database.L2DatabaseFactory;
 import com.l2jfrozen.loginserver.gsregistering.GameServerRegister;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.L2LoginPacketHandler;
@@ -43,7 +44,6 @@ import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.SelectorConfig;
 import com.l2jfrozen.netcore.SelectorThread;
 import com.l2jfrozen.netcore.util.PacketsFloodProtector;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
 
 /**
  * @author KenM

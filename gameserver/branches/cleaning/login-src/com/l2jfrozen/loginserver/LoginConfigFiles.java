@@ -14,7 +14,7 @@
  */
 package com.l2jfrozen.loginserver;
 
-import com.l2jfrozen.CommonConfigFiles;
+import com.l2jfrozen.common.CommonConfigFiles;
 
 /**
  * @author Shyla

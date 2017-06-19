@@ -18,6 +18,7 @@ package com.l2jfrozen.gameserver.ai.special;
 
 import java.util.Collection;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
 import com.l2jfrozen.gameserver.datatables.SkillTable;
 import com.l2jfrozen.gameserver.model.L2Attackable;
@@ -34,7 +35,6 @@ import com.l2jfrozen.gameserver.model.quest.Quest;
 import com.l2jfrozen.gameserver.model.quest.QuestEventType;
 import com.l2jfrozen.gameserver.network.serverpackets.CreatureSay;
 import com.l2jfrozen.gameserver.util.Util;
-import com.l2jfrozen.util.random.Rnd;
 
 import javolution.util.FastList;
 

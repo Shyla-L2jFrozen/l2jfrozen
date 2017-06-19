@@ -25,9 +25,9 @@ import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.FService;
-import com.l2jfrozen.L2Properties;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.L2Properties;
+import com.l2jfrozen.gameserver.config.FService;
 import com.l2jfrozen.gameserver.datatables.sql.ItemTable;
 
 import javolution.util.FastList;

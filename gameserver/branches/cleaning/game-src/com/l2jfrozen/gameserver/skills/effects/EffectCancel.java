@@ -20,6 +20,7 @@
  */
 package com.l2jfrozen.gameserver.skills.effects;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.model.EffectType;
 import com.l2jfrozen.gameserver.model.L2Effect;
 import com.l2jfrozen.gameserver.model.SkillType;
@@ -28,7 +29,6 @@ import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.skills.Env;
 import com.l2jfrozen.gameserver.skills.Stats;
-import com.l2jfrozen.util.random.Rnd;
 
 class EffectCancel extends L2Effect
 {

@@ -18,7 +18,7 @@ package com.l2jfrozen.gameserver.network.clientpackets;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.LoginServerThread;
 import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.netcore.SessionKey;

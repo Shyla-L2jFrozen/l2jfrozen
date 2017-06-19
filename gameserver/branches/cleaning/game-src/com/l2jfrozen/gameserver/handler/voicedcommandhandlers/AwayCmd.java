@@ -16,7 +16,7 @@
  */
 package com.l2jfrozen.gameserver.handler.voicedcommandhandlers;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.handler.IVoicedCommandHandler;
 import com.l2jfrozen.gameserver.managers.AwayManager;
 import com.l2jfrozen.gameserver.managers.SiegeManager;

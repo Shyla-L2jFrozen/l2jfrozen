@@ -16,6 +16,7 @@
  */
 package com.l2jfrozen.gameserver.skills.l2skills;
 
+import com.l2jfrozen.common.util.Point3D;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.idfactory.IdFactory;
 import com.l2jfrozen.gameserver.model.L2Character;
@@ -27,7 +28,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2EffectPointInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
 import com.l2jfrozen.gameserver.templates.StatsSet;
-import com.l2jfrozen.util.Point3D;
 
 public final class L2SkillSignet extends L2Skill
 {

@@ -21,12 +21,12 @@
 
 package com.l2jfrozen.gameserver.handler.voicedcommandhandlers;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.handler.IVoicedCommandHandler;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
 import com.l2jfrozen.gameserver.network.serverpackets.SetupGauge;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 public class FarmPvpCmd implements IVoicedCommandHandler
 {
