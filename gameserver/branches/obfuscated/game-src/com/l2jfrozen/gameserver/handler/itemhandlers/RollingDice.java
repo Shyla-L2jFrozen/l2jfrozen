@@ -20,6 +20,7 @@
  */
 package com.l2jfrozen.gameserver.handler.itemhandlers;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.handler.IItemHandler;
 import com.l2jfrozen.gameserver.model.L2Character;
 import com.l2jfrozen.gameserver.model.actor.instance.L2ItemInstance;
@@ -29,7 +30,6 @@ import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.Dice;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.util.Broadcast;
-import com.l2jfrozen.util.random.Rnd;
 
 /**
  * This class ...

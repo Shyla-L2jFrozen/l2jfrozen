@@ -22,6 +22,7 @@ package com.l2jfrozen.gameserver.model.actor.instance;
 
 import java.util.List;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.idfactory.IdFactory;
 import com.l2jfrozen.gameserver.model.actor.knownlist.RaceManagerKnownList;
 import com.l2jfrozen.gameserver.model.entity.MonsterRace;
@@ -36,7 +37,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.PlaySound;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
 import com.l2jfrozen.gameserver.util.Broadcast;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 import javolution.util.FastList;
 

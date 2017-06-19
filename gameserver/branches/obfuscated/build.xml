@@ -153,11 +153,11 @@
 			<fileset dir="${build.classes}" />
 		</jar>
 
-		<copy todir="${build.dist.login.lib}">
+		<!-- copy todir="${build.dist.login.lib}">
 			<fileset dir="${build}">
 				<include name="l2jfrozen-login.jar" />
 			</fileset>
-		</copy>
+		</copy -->
 
 	</target>
 
@@ -167,11 +167,11 @@
 			<fileset dir="${build.classes}" />
 		</jar>
 
-		<copy todir="${build.dist.game.lib}">
+		<!-- copy todir="${build.dist.game.lib}">
 			<fileset dir="${build}">
 				<include name="l2jfrozen-game.jar" />
 			</fileset>
-		</copy>
+		</copy -->
 
 	</target>
 	

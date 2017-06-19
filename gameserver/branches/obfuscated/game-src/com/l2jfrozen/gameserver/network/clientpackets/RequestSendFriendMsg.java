@@ -23,7 +23,7 @@ package com.l2jfrozen.gameserver.network.clientpackets;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.SystemMessageId;

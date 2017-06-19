@@ -18,9 +18,10 @@ package com.l2jfrozen.gameserver.network.clientpackets;
 
 import java.nio.BufferUnderflowException;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.TaskPriority;
 import com.l2jfrozen.gameserver.ai.CtrlIntention;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.actor.position.L2CharPosition;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
@@ -29,7 +30,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.EnchantResult;
 import com.l2jfrozen.gameserver.network.serverpackets.StopMove;
 import com.l2jfrozen.gameserver.util.IllegalPlayerAction;
 import com.l2jfrozen.gameserver.util.Util;
-import com.l2jfrozen.thread.TaskPriority;
 
 @SuppressWarnings("unused")
 public class MoveBackwardToLocation extends L2GameClientPacket

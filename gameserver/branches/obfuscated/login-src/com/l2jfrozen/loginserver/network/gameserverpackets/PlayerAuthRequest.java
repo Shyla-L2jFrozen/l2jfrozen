@@ -20,12 +20,12 @@ package com.l2jfrozen.loginserver.network.gameserverpackets;
 
 import java.util.logging.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.network.loginserverpackets.PlayerAuthResponse;
 import com.l2jfrozen.netcore.SessionKey;
-import com.l2jfrozen.util.network.BaseRecievePacket;
+import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
 
 /**
  * @author -Wooden-

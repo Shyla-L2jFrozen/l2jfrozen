@@ -22,6 +22,7 @@ package com.l2jfrozen.gameserver.handler.itemhandlers;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.cache.HtmCache;
 import com.l2jfrozen.gameserver.datatables.csv.ExtractableItemsData;
 import com.l2jfrozen.gameserver.datatables.sql.ItemTable;
@@ -34,7 +35,6 @@ import com.l2jfrozen.gameserver.model.actor.instance.L2PlayableInstance;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.NpcHtmlMessage;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
-import com.l2jfrozen.util.random.Rnd;
 
 /**
  * @author FBIagent 11/12/2006

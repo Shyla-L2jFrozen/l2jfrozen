@@ -21,12 +21,12 @@ package com.l2jfrozen.gameserver.taskmanager.tasks;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.common.util.taskmanager.Task;
+import com.l2jfrozen.common.util.taskmanager.TaskManager;
+import com.l2jfrozen.common.util.taskmanager.TaskTypes;
 import com.l2jfrozen.gameserver.model.entity.olympiad.Olympiad;
-import com.l2jfrozen.util.taskmanager.ExecutedTask;
-import com.l2jfrozen.util.taskmanager.Task;
-import com.l2jfrozen.util.taskmanager.TaskManager;
-import com.l2jfrozen.util.taskmanager.TaskTypes;
 
 /**
  * Updates all data of Olympiad nobles in db

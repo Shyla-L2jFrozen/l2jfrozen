@@ -29,7 +29,7 @@ import javax.script.ScriptContext;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.script.Parser;
 
 /**

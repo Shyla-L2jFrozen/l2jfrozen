@@ -1,6 +1,7 @@
 package com.l2jfrozen.gameserver.powerpak.globalGK;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.cache.HtmCache;
 import com.l2jfrozen.gameserver.communitybbs.Manager.BaseBBSManager;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
@@ -21,7 +22,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.SetupGauge;
 import com.l2jfrozen.gameserver.powerpak.PowerPakConfig;
 import com.l2jfrozen.gameserver.taskmanager.AttackStanceTaskManager;
 import com.l2jfrozen.gameserver.util.Broadcast;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 public class GKHandler implements IVoicedCommandHandler, ICustomByPassHandler, IBBSHandler
 {

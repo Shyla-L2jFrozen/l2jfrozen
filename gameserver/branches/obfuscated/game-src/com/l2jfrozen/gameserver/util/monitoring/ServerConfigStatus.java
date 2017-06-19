@@ -22,9 +22,9 @@ package com.l2jfrozen.gameserver.util.monitoring;
 
 import java.io.StringWriter;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.util.monitoring.data.MonitoredStatus;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.powerpak.PowerPakConfig;
-import com.l2jfrozen.util.monitoring.data.MonitoredStatus;
 
 /**
  * Server status

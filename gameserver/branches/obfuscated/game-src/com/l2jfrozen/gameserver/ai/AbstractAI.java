@@ -28,7 +28,8 @@ import java.util.concurrent.Future;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.model.L2Attackable;
 import com.l2jfrozen.gameserver.model.L2Character;
@@ -49,7 +50,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.MoveToPawn;
 import com.l2jfrozen.gameserver.network.serverpackets.StopMove;
 import com.l2jfrozen.gameserver.network.serverpackets.StopRotation;
 import com.l2jfrozen.gameserver.taskmanager.AttackStanceTaskManager;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 /**
  * Mother class of all objects AI in the world.<BR>

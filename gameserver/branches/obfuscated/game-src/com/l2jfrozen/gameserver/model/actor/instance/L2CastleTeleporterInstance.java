@@ -21,9 +21,9 @@ import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.network.serverpackets.NpcHtmlMessage;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 /**
  * The Class L2CastleTeleporterInstance.

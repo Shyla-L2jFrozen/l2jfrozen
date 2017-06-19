@@ -22,6 +22,7 @@ package com.l2jfrozen.gameserver.ai.special.manager;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.gameserver.ai.special.Antharas;
 import com.l2jfrozen.gameserver.ai.special.Baium;
 import com.l2jfrozen.gameserver.ai.special.Barakiel;
@@ -43,7 +44,6 @@ import com.l2jfrozen.gameserver.ai.special.VanHalter;
 import com.l2jfrozen.gameserver.ai.special.VarkaKetraAlly;
 import com.l2jfrozen.gameserver.ai.special.Zaken;
 import com.l2jfrozen.gameserver.ai.special.ZombieGatekeepers;
-import com.l2jfrozen.thread.ThreadPoolManager;
 
 /**
  * @author qwerty

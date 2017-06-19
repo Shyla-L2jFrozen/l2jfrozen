@@ -21,7 +21,7 @@ package com.l2jfrozen.gameserver.network.serverpackets;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.netcore.SendablePacket;
 

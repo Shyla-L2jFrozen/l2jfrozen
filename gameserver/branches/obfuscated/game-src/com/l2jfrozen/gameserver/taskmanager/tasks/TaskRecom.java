@@ -21,13 +21,13 @@ package com.l2jfrozen.gameserver.taskmanager.tasks;
 
 import org.apache.log4j.Logger;
 
+import com.l2jfrozen.common.util.taskmanager.ExecutedTask;
+import com.l2jfrozen.common.util.taskmanager.Task;
+import com.l2jfrozen.common.util.taskmanager.TaskManager;
+import com.l2jfrozen.common.util.taskmanager.TaskTypes;
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.serverpackets.UserInfo;
-import com.l2jfrozen.util.taskmanager.ExecutedTask;
-import com.l2jfrozen.util.taskmanager.Task;
-import com.l2jfrozen.util.taskmanager.TaskManager;
-import com.l2jfrozen.util.taskmanager.TaskTypes;
 
 /**
  * @author Layane

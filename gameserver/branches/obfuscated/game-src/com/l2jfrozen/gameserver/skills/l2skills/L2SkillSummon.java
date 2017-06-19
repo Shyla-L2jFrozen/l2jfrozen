@@ -16,7 +16,8 @@
  */
 package com.l2jfrozen.gameserver.skills.l2skills;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.datatables.sql.NpcTable;
 import com.l2jfrozen.gameserver.datatables.xml.ExperienceData;
 import com.l2jfrozen.gameserver.idfactory.IdFactory;
@@ -35,7 +36,6 @@ import com.l2jfrozen.gameserver.network.serverpackets.PetInfo;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
 import com.l2jfrozen.gameserver.templates.StatsSet;
-import com.l2jfrozen.util.random.Rnd;
 
 public class L2SkillSummon extends L2Skill
 {

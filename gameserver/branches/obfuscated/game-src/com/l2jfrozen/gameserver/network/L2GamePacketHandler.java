@@ -23,11 +23,12 @@ import java.nio.ByteBuffer;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.logs.Log;
+import com.l2jfrozen.common.util.Util;
 import com.l2jfrozen.gameserver.Shutdown;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.network.clientpackets.*;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
-import com.l2jfrozen.logs.Log;
 import com.l2jfrozen.netcore.IClientFactory;
 import com.l2jfrozen.netcore.IMMOExecutor;
 import com.l2jfrozen.netcore.IPacketHandler;
@@ -36,7 +37,6 @@ import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.ReceivablePacket;
 import com.l2jfrozen.netcore.util.PacketsFloodProtector;
 import com.l2jfrozen.netcore.util.PacketsLoggerManager;
-import com.l2jfrozen.util.Util;
 
 /**
  * Stateful Packet Handler<BR>

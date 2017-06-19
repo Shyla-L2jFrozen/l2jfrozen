@@ -26,7 +26,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.network.serverpackets.L2LoginServerPacket;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFail;
@@ -37,9 +38,8 @@ import com.l2jfrozen.netcore.MMOClient;
 import com.l2jfrozen.netcore.MMOConnection;
 import com.l2jfrozen.netcore.SendablePacket;
 import com.l2jfrozen.netcore.SessionKey;
-import com.l2jfrozen.util.crypt.LoginCrypt;
-import com.l2jfrozen.util.crypt.ScrambledKeyPair;
-import com.l2jfrozen.util.random.Rnd;
+import com.l2jfrozen.netcore.util.crypt.LoginCrypt;
+import com.l2jfrozen.netcore.util.crypt.ScrambledKeyPair;
 
 /**
  * Represents a client connected into the LoginServer

@@ -20,8 +20,8 @@
  */
 package com.l2jfrozen.gameserver.skills.conditions;
 
+import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.skills.Env;
-import com.l2jfrozen.util.random.Rnd;
 
 /**
  * @author Advi

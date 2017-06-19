@@ -24,7 +24,7 @@ import java.io.File;
 
 import javax.script.ScriptException;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 
 /**
  * Abstract class for classes that are meant to be implemented by scripts.

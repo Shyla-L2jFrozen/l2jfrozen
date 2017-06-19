@@ -11,8 +11,8 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.Map;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.gameserver.config.Config;
 
 import javolution.util.FastMap;
 

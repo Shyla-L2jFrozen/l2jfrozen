@@ -31,8 +31,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import com.l2jfrozen.CommonConfig;
-import com.l2jfrozen.Config;
+import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.util.CloseUtil;
+import com.l2jfrozen.common.util.database.DatabaseUtils;
+import com.l2jfrozen.common.util.database.L2DatabaseFactory;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.managers.ArenaManager;
 import com.l2jfrozen.gameserver.managers.FishingZoneManager;
 import com.l2jfrozen.gameserver.managers.GrandBossManager;
@@ -67,9 +70,6 @@ import com.l2jfrozen.gameserver.model.zone.type.L2PoisonZone;
 import com.l2jfrozen.gameserver.model.zone.type.L2SwampZone;
 import com.l2jfrozen.gameserver.model.zone.type.L2TownZone;
 import com.l2jfrozen.gameserver.model.zone.type.L2WaterZone;
-import com.l2jfrozen.util.CloseUtil;
-import com.l2jfrozen.util.database.DatabaseUtils;
-import com.l2jfrozen.util.database.L2DatabaseFactory;
 
 import javolution.util.FastList;
 

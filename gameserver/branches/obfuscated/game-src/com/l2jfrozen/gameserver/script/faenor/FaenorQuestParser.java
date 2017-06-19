@@ -25,7 +25,7 @@ import javax.script.ScriptContext;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Node;
 
-import com.l2jfrozen.CommonConfig;
+import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.script.Parser;
 import com.l2jfrozen.gameserver.script.ParserFactory;
 import com.l2jfrozen.gameserver.script.ScriptEngine;
