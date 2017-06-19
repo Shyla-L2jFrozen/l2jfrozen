@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="L2jFrozen_GameServer" default="dist-local" basedir=".">
+	<description>
+        This script will build the L2J-Frozen server. Thanks for Using our Pack.
+        
+        This program is opensource   
+        
+    </description>
+
+	<property file="build.properties" />
+	<property name="game-src" location="game-src" />
+	<property name="login-src" location="login-src" />
+	<property name="netcore-src" location="netcore-src" />
+	<property name="common-src" location="common-src" />
+	<property name="target" location="target" />
+	<property name="src-lib" location="lib" />
+
+	<target name="prepare-test" description="Prepare the test folder property">
+
+		<property name="build" location="${test_destination_folder}" />
+		<property name="build.classes" location="${build}/classes" />
+
+	</target>
+
+	<target name="prepare-compiledRev" description="Prepare the compiledRev folder property">
+
+		<property name="build" location="${compiled_rev_destination_folder}" />
+		<property name="build.classes" location="${build}/classes" />
+
+	</target>
+
+	<target name="prepare-local" description="Prepare the local folder property">
+
+		<property name="build" location="${target}" />
+		<property name="build.classes" location="${build}/classes" />
+
+	</target>
+
+	<target name="prepare-dist" description="Prepare the final folders properties">
+
+		<property name="build.dist" location="${build}/dist" />
+		<property name="build.dist.login" location="${build.dist}/loginserver" />
+		<property name="build.dist.login.lib" location="${build.dist.login}/lib" />
+		<property name="build.dist.game" location="${build.dist}/gameserver" />
+		<property name="build.dist.game.lib" location="${build.dist.game}/lib" />
+		<property name="properties-file" location="${build.dist.game}/config/version/l2jfrozen-server.properties" />
+
+	</target>
+
+	<path id="classpath-login">
+		<fileset dir="${src-lib}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="classpath-game">
+		<fileset dir="${src-lib}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="classpath">
+		<fileset dir="${src-lib}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="init" description="Create the output directories.">
+
+		<mkdir dir="${build}" />
+		<mkdir dir="${build.classes}" />
+		<mkdir dir="${build.dist}" />
+		<mkdir dir="${build.dist.login}" />
+		<mkdir dir="${build.dist.login.lib}" />
+		<mkdir dir="${build.dist.game}" />
+		<mkdir dir="${build.dist.game.lib}" />
+
+	</target>
+
+
+	<target name="compile" description="Compile the source.">
+
+		<delete dir="${build.classes}" />
+		<delete file="${build}/l2jfrozen-core.jar" />
+		<mkdir dir="${build.classes}"/>
+
+		<javac destdir="${build.classes}" includeantruntime="false" optimize="on" debug="on" source="1.8" target="1.8" encoding="utf-8" nowarn="off">
+			<src path="common-src"/>
+			<src path="netcore-src"/>
+			<src path="login-src"/>
+			<src path="game-src" />
+
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+
+	<target name="compile-login" depends="prepare-local" description="Compile the source.">
+
+		<delete dir="${build.classes}" />
+		<delete file="${build}/l2jfrozen-login.jar" />
+		<mkdir dir="${build.classes}"/>
+
+		<javac destdir="${build.classes}" includeantruntime="false" optimize="on" debug="on" source="1.8" target="1.8" encoding="utf-8" nowarn="off">
+			<src path="common-src"/>
+			<src path="netcore-src"/>
+			<src path="login-src"/>
+
+			<classpath refid="classpath-login" />
+		</javac>
+
+	</target>
+
+	<target name="compile-game" depends="prepare-local" description="Compile the source.">
+
+		<delete dir="${build.classes}" />
+		<delete file="${build}/l2jfrozen-core.jar" />
+		<mkdir dir="${build.classes}"/>
+
+
+		<javac destdir="${build.classes}" includeantruntime="false" optimize="on" debug="on" source="1.8" target="1.8" encoding="utf-8" nowarn="off">
+			<src path="common-src"/>
+			<src path="netcore-src"/>
+			<src path="game-src"/>
+
+			<classpath refid="classpath-game" />
+		</javac>
+
+	</target>
+
+
+	<target name="jar" depends="compile" description="Create the jar file">
+
+		<jar destfile="${build}/l2jfrozen-core.jar">
+			<fileset dir="${build.classes}" />
+		</jar>
+
+		<copy todir="${build.dist.login.lib}">
+			<fileset dir="${build}">
+				<include name="l2jfrozen-core.jar" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dist.game.lib}">
+			<fileset dir="${build}">
+				<include name="l2jfrozen-core.jar" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="jar-login" depends="compile-login" description="Create the login jar file">
+
+		<jar destfile="${build}/l2jfrozen-login.jar">
+			<fileset dir="${build.classes}" />
+		</jar>
+
+		<copy todir="${build.dist.login.lib}">
+			<fileset dir="${build}">
+				<include name="l2jfrozen-login.jar" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="jar-game" depends="compile-game" description="Create the login jar file">
+
+		<jar destfile="${build}/l2jfrozen-game.jar">
+			<fileset dir="${build.classes}" />
+		</jar>
+
+		<copy todir="${build.dist.game.lib}">
+			<fileset dir="${build}">
+				<include name="l2jfrozen-game.jar" />
+			</fileset>
+		</copy>
+
+	</target>
+	
+	<target name="export-login" depends="jar-login">
+
+			<copy todir="${build.dist.login.lib}">
+				<fileset dir="${src-lib}">
+					<include name="c3p0*.jar" />
+					<include name="commons-lang3*.jar" />
+					<include name="javolution*.jar" />
+					<include name="log4j*.jar" />
+					<include name="mchange*.jar" />
+					<include name="mysql*.jar" />
+				</fileset>
+			</copy>
+
+			<copy todir="${build.dist.login}">
+				<fileset dir="dist">
+					<include name="LoginServer_loop.sh" />
+					<include name="startLoginServer.*" />
+					<include name="RegisterGameServer.*" />
+				</fileset>
+			</copy>
+			
+			<fixcrlf srcdir="${build.dist.login}" eol="lf" eof="remove" includes="**/*.sh">
+			</fixcrlf>
+
+			<fixcrlf srcdir="${build.dist.login}" eol="crlf" eof="remove" includes="**/*.bat">
+			</fixcrlf>
+
+			<mkdir dir="${build.dist.login}/log" />
+
+			<mkdir dir="${build.dist.login}/config" />
+			<mkdir dir="${build.dist.login}/config/network" />
+			<mkdir dir="${build.dist.login}/config/protected" />
+			<mkdir dir="${build.dist.login}/config/others" />
+
+			<!-- login server -->
+			<copy todir="${build.dist.login}/config/protected">
+				<fileset dir="config/protected">
+					<include name="mmocore.properties" />
+				</fileset>
+			</copy>
+
+			<copy todir="${build.dist.login}/config">
+				<fileset dir="config">
+					<include name="common.properties" />
+					<include name="configFilesPaths.properties" />
+				</fileset>
+			</copy>
+		
+			<copy todir="${build.dist.login}/config/network">
+				<fileset dir="config/network">
+					<include name="loginserver.properties" />
+				</fileset>
+			</copy>
+
+			<copy todir="${build.dist.login}/config/others">
+				<fileset dir="config/others">
+					<include name="banned_ip.cfg" />
+					<include name="logger.properties" />
+					<include name="servername.xml" />
+					<include name="log.cfg" />
+				</fileset>
+			</copy>
+
+		</target>
+
+	<target name="export-game" depends="jar-game">
+
+			<copy todir="${build.dist.game.lib}">
+				<fileset dir="${src-lib}">
+					<include name="**/*.jar" />
+				</fileset>
+			</copy>
+
+			
+			<copy todir="${build.dist.game}">
+				<fileset dir="dist">
+					<include name="GameServer_loop.sh" />
+					<include name="startGameServer.*" />
+					<include name="startBackup.*" />
+					<include name="restartGameServer.*" />
+				</fileset>
+			</copy>
+		
+
+			<fixcrlf srcdir="${build.dist.game}" eol="lf" eof="remove" includes="**/*.sh">
+			</fixcrlf>
+			
+			<fixcrlf srcdir="${build.dist.game}" eol="crlf" eof="remove" includes="**/*.bat">
+			</fixcrlf>
+			
+			<mkdir dir="${build.dist.game}/log" />
+			
+			<mkdir dir="${build.dist.game}/config/protected" />
+			<mkdir dir="${build.dist.game}/config/head" />
+			<mkdir dir="${build.dist.game}/config/functions" />
+			<mkdir dir="${build.dist.game}/config/powerpak" />
+			<mkdir dir="${build.dist.game}/config/powerpak/webservices" />
+			<mkdir dir="${build.dist.game}/config/network" />
+			<mkdir dir="${build.dist.game}/config/mods" />
+			<mkdir dir="${build.dist.game}/config/others" />
+		    <mkdir dir="${build.dist.game}/config/events" />
+
+			<copy todir="${build.dist.game}/config">
+				<fileset dir="config">
+					<include name="*.properties" />
+					<include name="*.info" />
+					<include name="chatfilter.txt" />
+					<include name="questionwords.txt" />
+					<include name="key.cfg" />
+				</fileset>
+			</copy>
+
+			<copy todir="${build.dist.game}/config/protected">
+				<fileset dir="config/protected">
+					<include name="*.properties" />
+				</fileset>
+			</copy>
+
+			<copy todir="${build.dist.game}/config/functions">
+				<fileset dir="config/functions">
+					<include name="*.properties" />
+				</fileset>
+			</copy>
+
+			<copy todir="${build.dist.game}/config/head">
+				<fileset dir="config/head">
+					<include name="*.properties" />
+				</fileset>
+			</copy>
+
+			<copy todir="${build.dist.game}/config/powerpak">
+				<fileset dir="config/powerpak">
+					<include name="*.*" />
+				</fileset>
+			</copy>
+
+			<copy todir="${build.dist.game}/config/events">
+				<fileset dir="config/events">
+					<include name="*.properties" />
+				</fileset>
+			</copy>
+
+			<copy todir="${build.dist.game}/config/mods">
+				<fileset dir="config/mods">
+					<include name="*.properties" />
+				</fileset>
+			</copy>
+			
+			<copy todir="${build.dist.game}/config/network">
+				<fileset dir="config/network">
+					<include name="gameserver.properties" />
+				</fileset>
+			</copy>
+
+			<copy todir="${build.dist.game}/config/others">
+				<fileset dir="config/others">
+					<include name="*.*" />
+				</fileset>
+			</copy>
+
+			
+		</target>
+	
+	<target name="export" depends="jar">
+
+		<copy todir="${build.dist.game.lib}">
+			<fileset dir="${src-lib}">
+				<include name="**/*.jar" />
+				<include name="*.txt" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dist.login.lib}">
+			<fileset dir="${src-lib}">
+				<include name="*.jar" />
+				<include name="*.txt" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dist.login}">
+			<fileset dir="dist">
+				<include name="LoginServer_loop.sh" />
+				<include name="startLoginServer.*" />
+				<include name="RegisterGameServer.*" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dist.game}">
+			<fileset dir="dist">
+				<include name="GameServer_loop.sh" />
+				<include name="startGameServer.*" />
+				<include name="startBackup.*" />
+				<include name="restartGameServer.*" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dist}">
+			<fileset dir="dist">
+				<include name="Start_GameServer_noScreen.sh" />
+				<include name="Start_LoginServer_noScreen.sh" />
+			</fileset>
+		</copy>
+
+		<fixcrlf srcdir="${build.dist.game}" eol="lf" eof="remove" includes="**/*.sh">
+		</fixcrlf>
+		<fixcrlf srcdir="${build.dist.login}" eol="lf" eof="remove" includes="**/*.sh">
+		</fixcrlf>
+
+		<fixcrlf srcdir="${build.dist.game}" eol="crlf" eof="remove" includes="**/*.bat">
+		</fixcrlf>
+		<fixcrlf srcdir="${build.dist.login}" eol="crlf" eof="remove" includes="**/*.bat">
+		</fixcrlf>
+
+		<mkdir dir="${build.dist.game}/log" />
+		<mkdir dir="${build.dist.login}/log" />
+
+		<mkdir dir="${build.dist.login}/config" />
+		<mkdir dir="${build.dist.login}/config/network" />
+		<mkdir dir="${build.dist.login}/config/protected" />
+
+		<mkdir dir="${build.dist.game}/config/protected" />
+		<mkdir dir="${build.dist.game}/config/head" />
+		<mkdir dir="${build.dist.game}/config/functions" />
+		<mkdir dir="${build.dist.game}/config/powerpak" />
+		<mkdir dir="${build.dist.game}/config/powerpak/webservices" />
+		<mkdir dir="${build.dist.game}/config/network" />
+		<mkdir dir="${build.dist.game}/config/mods" />
+		<mkdir dir="${build.dist.game}/config/others" />
+		<mkdir dir="${build.dist.game}/config/events" />
+
+		<!-- game server -->
+		<copy todir="${build.dist.game}/config">
+			<fileset dir="config">
+				<include name="*.properties" />
+				<include name="*.info" />
+				<include name="chatfilter.txt" />
+				<include name="questionwords.txt" />
+				<include name="key.cfg" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dist.game}/config/protected">
+			<fileset dir="config/protected">
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dist.game}/config/functions">
+			<fileset dir="config/functions">
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dist.game}/config/head">
+			<fileset dir="config/head">
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dist.game}/config/powerpak">
+			<fileset dir="config/powerpak">
+				<include name="*.*" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dist.game}/config/events">
+			<fileset dir="config/events">
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dist.game}/config/mods">
+			<fileset dir="config/mods">
+				<include name="*.properties" />
+			</fileset>
+		</copy>
+		<!-- network gameserver -->
+		<copy todir="${build.dist.game}/config/network">
+			<fileset dir="config/network">
+				<include name="gameserver.properties" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dist.game}/config/others">
+			<fileset dir="config/others">
+				<include name="*.*" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dist.login}/config/protected">
+			<fileset dir="config/protected">
+				<include name="mmocore.properties" />
+			</fileset>
+		</copy>
+
+
+		<!-- network ls -->
+		<copy todir="${build.dist.login}/config/network">
+			<fileset dir="config/network">
+				<include name="loginserver.properties" />
+			</fileset>
+		</copy>
+
+		<copy todir="${build.dist.login}/config/others">
+			<fileset dir="config/others">
+				<include name="*.*" />
+			</fileset>
+		</copy>
+
+
+		<delete dir="${build.classes}" />
+		<delete file="${build}/l2jfrozen-core.jar" />
+
+	</target>
+	
+	<target name="dist-local-login" depends="prepare-local,prepare-dist,export-login" description="Create distribution files and Zip one into 'build' folder">
+			<zip destfile="${build}/L2JFrozen_LoginServer.zip" basedir="${build.dist}" update="true" />
+		</target>
+	
+	<target name="dist-local-game" depends="prepare-local,prepare-dist,export-game" description="Create distribution files and Zip one into 'build' folder">
+				<zip destfile="${build}/L2JFrozen_GameServer.zip" basedir="${build.dist}" update="true" />
+			</target>
+		
+	<target name="dist-local" depends="prepare-local,prepare-dist,export" description="Create distribution files and Zip one into 'build' folder">
+		<zip destfile="${build}/L2JFrozen_GameServer.zip" basedir="${build.dist}" update="true" />
+	</target>
+
+	<target name="dist-test" depends="prepare-test,prepare-dist,export" description="Create distribution files into 'local_test_folder' folder: change it into build.properties">
+	</target>
+
+	<target name="dist-compiledRev" depends="prepare-compiledRev,prepare-dist,export" description="Create distribution files into 'compiledRev_folder' folder: change it into build.properties">
+	</target>
+
+	<target name="dist-core" depends="prepare-local" description="Generate core jar into 'build-core' folder">
+
+		<delete dir="${build.classes}" />
+		<delete file="${build}/l2jfrozen-core.jar" />
+		<mkdir dir="${build}" />
+		<mkdir dir="${build.classes}" />
+
+		<javac destdir="${build.classes}" includeantruntime="false" optimize="on" debug="on" source="1.8" target="1.8" encoding="UTF-8" nowarn="off">
+			<src path="${src}" />
+			<classpath refid="classpath" />
+		</javac>
+
+		<jar destfile="${build}/l2jfrozen-core.jar">
+			<fileset dir="${build.classes}" />
+		</jar>
+
+		<delete dir="${build.classes}" />
+	</target>
+
+</project>
