@@ -2,7 +2,7 @@
 # Version 0.2b
 import sys
 from com.l2jfrozen.gameserver.model.actor.instance import L2PcInstance
-from com.l2jfrozen.util.database import L2DatabaseFactory
+from com.l2jfrozen.common.util.database import L2DatabaseFactory
 from com.l2jfrozen.gameserver.model.quest import State
 from com.l2jfrozen.gameserver.model.quest import QuestState
 from com.l2jfrozen.gameserver.model.quest.jython import QuestJython as JQuest

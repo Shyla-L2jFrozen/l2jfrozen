@@ -2,7 +2,7 @@
 # Visit http://www.l2jdp.com/trac if you find a bug and wish to report it.
 # Visit http://forum.l2jdp.com for more details about our community and the project.
 import sys
-from com.l2jfrozen import Config
+from com.l2jfrozen.gameserver.config import Config
 from com.l2jfrozen.gameserver.model.quest import State
 from com.l2jfrozen.gameserver.model.quest import QuestState
 from com.l2jfrozen.gameserver.model.quest.jython import QuestJython as JQuest

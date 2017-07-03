@@ -5,7 +5,7 @@
 import sys
 from com.l2jfrozen.gameserver.ai import CtrlIntention
 from com.l2jfrozen.gameserver.model.quest.jython import QuestJython as JQuest
-from com.l2jfrozen.util.random import Rnd
+from com.l2jfrozen.common.util.random import Rnd
 
 SKILL_DELUXE_KEY = 2229
 
