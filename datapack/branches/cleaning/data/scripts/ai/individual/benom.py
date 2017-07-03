@@ -10,7 +10,7 @@ from com.l2jfrozen.gameserver.model.quest.jython import QuestJython as JQuest
 from com.l2jfrozen.gameserver.network.serverpackets import CreatureSay
 from com.l2jfrozen.gameserver.network.serverpackets import SocialAction
 from com.l2jfrozen.gameserver.network.serverpackets import SpecialCamera
-from com.l2jfrozen.util.random import Rnd
+from com.l2jfrozen.common.util.random import Rnd
 from java.lang import System
 
 Benom = 29054

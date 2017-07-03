@@ -4,7 +4,7 @@ from com.l2jfrozen.gameserver.model.quest import QuestState
 from com.l2jfrozen.gameserver.model.quest.jython import QuestJython as JQuest
 from com.l2jfrozen.gameserver.network.serverpackets import PledgeShowInfoUpdate
 from com.l2jfrozen.gameserver.network.serverpackets import SystemMessage
-from com.l2jfrozen.util.random import Rnd
+from com.l2jfrozen.common.util.random import Rnd
 
 qn="509_TheClansPrestige"
 

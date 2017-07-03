@@ -1,13 +1,13 @@
 #Made by Emperorc
 import sys
 from java.lang import System
-from com.l2jfrozen import Config
+from com.l2jfrozen.gameserver.config import Config
 from com.l2jfrozen.gameserver.datatables.sql import SpawnTable
 from com.l2jfrozen.gameserver.model.quest import State
 from com.l2jfrozen.gameserver.model.quest import QuestState
 from com.l2jfrozen.gameserver.model.quest.jython import QuestJython as JQuest
 from com.l2jfrozen.gameserver.network.serverpackets import CreatureSay
-from com.l2jfrozen.util.random import Rnd
+from com.l2jfrozen.common.util.random import Rnd
 
 qn = "616_MagicalPowerOfFirePart2"
 

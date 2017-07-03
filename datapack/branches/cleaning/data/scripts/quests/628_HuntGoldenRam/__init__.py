@@ -1,7 +1,7 @@
 #Hunt of the Golden Ram Mercenary Force
 # Made by Polo - Have fun!..... fix & addition by t0rm3nt0r and LEX
 import sys
-from com.l2jfrozen import Config 
+from com.l2jfrozen.gameserver.config import Config 
 from com.l2jfrozen.gameserver.datatables import SkillTable
 from com.l2jfrozen.gameserver.model.quest import State
 from com.l2jfrozen.gameserver.model.quest import QuestState
