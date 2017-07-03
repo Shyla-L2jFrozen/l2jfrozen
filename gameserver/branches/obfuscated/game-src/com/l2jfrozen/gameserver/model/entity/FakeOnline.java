@@ -26,6 +26,8 @@ import java.sql.ResultSet;
 
 import org.apache.log4j.Logger;
 
+import a.a.g;
+
 import com.l2jfrozen.common.util.CloseUtil;
 import com.l2jfrozen.common.util.database.L2DatabaseFactory;
 import com.l2jfrozen.gameserver.LoginServerThread;
@@ -34,7 +36,6 @@ import com.l2jfrozen.gameserver.model.ItemContainer;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.GameClientState;
 import com.l2jfrozen.gameserver.network.L2GameClient;
-import com.l2jfrozen.netcore.MMOClientsManager;
 
 /**
  * @author FOFAS
@@ -83,7 +84,7 @@ public class FakeOnline
 					LoginServerThread.getInstance().addGameServerLogin(player.getAccountName(), client);
 					
 					if (player.getClient() != null)
-						MMOClientsManager.getInstance().removeClient(player.getClient().getIdentifier());
+						g.a().b(player.getClient().getIdentifier());
 					
 					final ItemContainer items = player.getInventory();
 					items.restore();

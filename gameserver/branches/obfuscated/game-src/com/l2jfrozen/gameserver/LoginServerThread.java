@@ -42,6 +42,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.log4j.Logger;
 
+import a.a.L;
+import a.a.t;
+
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.common.crypt.NewCrypt;
 import com.l2jfrozen.common.util.random.Rnd;
@@ -54,23 +57,18 @@ import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.gameserver.network.gameserverpackets.AuthRequest;
 import com.l2jfrozen.gameserver.network.gameserverpackets.BlowFishKey;
 import com.l2jfrozen.gameserver.network.gameserverpackets.ChangeAccessLevel;
-//import com.l2jfrozen.gameserver.network.gameserverpackets.ChangePassword;
 import com.l2jfrozen.gameserver.network.gameserverpackets.PlayerAuthRequest;
 import com.l2jfrozen.gameserver.network.gameserverpackets.PlayerInGame;
 import com.l2jfrozen.gameserver.network.gameserverpackets.PlayerLogout;
 import com.l2jfrozen.gameserver.network.gameserverpackets.PlayerTracert;
-//import com.l2jfrozen.gameserver.network.gameserverpackets.ReplyCharacters;
 import com.l2jfrozen.gameserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.gameserver.network.loginserverpackets.AuthResponse;
-//import com.l2jfrozen.gameserver.network.loginserverpackets.ChangePasswordResponse;
 import com.l2jfrozen.gameserver.network.loginserverpackets.InitLS;
 import com.l2jfrozen.gameserver.network.loginserverpackets.KickPlayer;
 import com.l2jfrozen.gameserver.network.loginserverpackets.LoginServerFail;
 import com.l2jfrozen.gameserver.network.loginserverpackets.PlayerAuthResponse;
 import com.l2jfrozen.gameserver.network.serverpackets.AuthLoginFail;
 import com.l2jfrozen.gameserver.network.serverpackets.CharSelectInfo;
-import com.l2jfrozen.netcore.SessionKey;
-import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
 
 public class LoginServerThread extends Thread
 {
@@ -313,14 +311,14 @@ public class LoginServerThread extends Thread
 									sendPacket(pig);
 									wcToRemove.gameClient.setState(GameClientState.AUTHED);
 									wcToRemove.gameClient.setSessionId(wcToRemove.session);
-									final CharSelectInfo cl = new CharSelectInfo(wcToRemove.account, wcToRemove.gameClient.getSessionId().playOkID1);
-									wcToRemove.gameClient.getConnection().sendPacket(cl);
+									final CharSelectInfo cl = new CharSelectInfo(wcToRemove.account, wcToRemove.gameClient.getSessionId().a);
+									wcToRemove.gameClient.getConnection().a(cl);
 									wcToRemove.gameClient.setCharSelection(cl.getCharInfo());
 								}
 								else
 								{
 									LOGGER.warn("Session key is not correct. Closing connection for account {" + wcToRemove.account + "}.");
-									wcToRemove.gameClient.getConnection().sendPacket(new AuthLoginFail(1));
+									wcToRemove.gameClient.getConnection().a(new AuthLoginFail(1));
 									wcToRemove.gameClient.closeNow();
 									_accountsInGameServer.remove(wcToRemove.account);
 								}
@@ -331,13 +329,7 @@ public class LoginServerThread extends Thread
 							final KickPlayer kp = new KickPlayer(incoming);
 							doKickPlayer(kp.getAccount());
 							break;
-						// case 0x05:
-						// RequestCharacters rc = new RequestCharacters(incoming);
-						// getCharsOnServer(rc.getAccount());
-						// break;
-						// case 0x06:
-						// new ChangePasswordResponse(incoming);
-						// break;
+						
 					}
 				}
 			}
@@ -396,7 +388,7 @@ public class LoginServerThread extends Thread
 	 * @param client the game client
 	 * @param key the session key
 	 */
-	public void addWaitingClientAndSendRequest(final String acc, final L2GameClient client, final SessionKey key)
+	public void addWaitingClientAndSendRequest(final String acc, final L2GameClient client, final t key)
 	{
 		final WaitingClient wc = new WaitingClient(acc, client, key);
 		synchronized (_waitingClients)
@@ -538,7 +530,7 @@ public class LoginServerThread extends Thread
 	 * @param sl the sendable packet
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	private void sendPacket(final BaseSendablePacket sl) throws IOException
+	private void sendPacket(final L sl) throws IOException
 	{
 		final byte[] data = sl.getContent();
 		NewCrypt.appendChecksum(data);
@@ -607,25 +599,6 @@ public class LoginServerThread extends Thread
 		}
 	}
 	
-	// /**
-	// * Send change password.
-	// * @param accountName the account name
-	// * @param charName the char name
-	// * @param oldpass the old pass
-	// * @param newpass the new pass
-	// */
-	// public void sendChangePassword(String accountName, String charName, String oldpass, String newpass)
-	// {
-	// ChangePassword cp = new ChangePassword(accountName, charName, oldpass, newpass);
-	// try
-	// {
-	// sendPacket(cp);
-	// }
-	// catch (IOException e)
-	// {
-	// }
-	// }
-	
 	/**
 	 * Gets the status string.
 	 * @return the status string
@@ -690,7 +663,7 @@ public class LoginServerThread extends Thread
 	{
 		public String account;
 		public L2GameClient gameClient;
-		public SessionKey session;
+		public t session;
 		
 		/**
 		 * Instantiates a new waiting client.
@@ -698,7 +671,7 @@ public class LoginServerThread extends Thread
 		 * @param client the client
 		 * @param key the key
 		 */
-		public WaitingClient(final String acc, final L2GameClient client, final SessionKey key)
+		public WaitingClient(final String acc, final L2GameClient client, final t key)
 		{
 			account = acc;
 			gameClient = client;

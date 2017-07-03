@@ -21,16 +21,17 @@ import java.nio.BufferUnderflowException;
 
 import org.apache.log4j.Logger;
 
+import a.a.p;
+
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.gameserver.network.serverpackets.L2GameServerPacket;
-import com.l2jfrozen.netcore.ReceivablePacket;
 
 /**
  * Packets received by the game server from clients
  * @author KenM
  */
-public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
+public abstract class L2GameClientPacket extends p<L2GameClient>
 {
 	private static final Logger LOGGER = Logger.getLogger(L2GameClientPacket.class);
 	
