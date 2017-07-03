@@ -10,7 +10,7 @@
 	<property file="build.properties" />
 	<property name="game-src" location="game-src" />
 	<property name="login-src" location="login-src" />
-	<property name="netcore-src" location="netcore-src" />
+	<!-- property name="netcore-src" location="netcore-src" / -->
 	<property name="common-src" location="common-src" />
 	<property name="target" location="target" />
 	<property name="src-lib" location="lib" />
@@ -86,7 +86,7 @@
 
 		<javac destdir="${build.classes}" includeantruntime="false" optimize="on" debug="on" source="1.8" target="1.8" encoding="utf-8" nowarn="off">
 			<src path="common-src"/>
-			<src path="netcore-src"/>
+			<!-- src path="netcore-src"/ -->
 			<src path="login-src"/>
 			<src path="game-src" />
 
@@ -102,7 +102,7 @@
 
 		<javac destdir="${build.classes}" includeantruntime="false" optimize="on" debug="on" source="1.8" target="1.8" encoding="utf-8" nowarn="off">
 			<src path="common-src"/>
-			<src path="netcore-src"/>
+			<!-- src path="netcore-src"/ -->
 			<src path="login-src"/>
 
 			<classpath refid="classpath-login" />
@@ -119,7 +119,7 @@
 
 		<javac destdir="${build.classes}" includeantruntime="false" optimize="on" debug="on" source="1.8" target="1.8" encoding="utf-8" nowarn="off">
 			<src path="common-src"/>
-			<src path="netcore-src"/>
+			<!-- src path="netcore-src"/ -->
 			<src path="game-src"/>
 
 			<classpath refid="classpath-game" />
@@ -185,6 +185,7 @@
 					<include name="log4j*.jar" />
 					<include name="mchange*.jar" />
 					<include name="mysql*.jar" />
+					<include name="*netcore*.jar" />
 				</fileset>
 			</copy>
 
