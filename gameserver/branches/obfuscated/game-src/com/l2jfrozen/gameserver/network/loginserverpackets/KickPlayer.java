@@ -18,9 +18,9 @@
  */
 package com.l2jfrozen.gameserver.network.loginserverpackets;
 
-import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
+import a.a.K;
 
-public class KickPlayer extends BaseRecievePacket
+public class KickPlayer extends K 
 {
 	
 	private final String _account;

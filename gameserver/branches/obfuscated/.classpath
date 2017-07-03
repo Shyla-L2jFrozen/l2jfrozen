@@ -2,8 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="common-src"/>
 	<classpathentry kind="src" path="game-src"/>
-	<classpathentry kind="src" path="login-src"/>
-	<classpathentry kind="src" path="netcore-src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<accessrules>
 			<accessrule kind="accessible" pattern="com/sun/net/httpserver/**"/>
@@ -22,5 +20,6 @@
 	<classpathentry kind="lib" path="lib/xstream-1.4.9.jar"/>
 	<classpathentry kind="lib" path="lib/jython-2.7.0.jar"/>
 	<classpathentry kind="lib" path="lib/jython-engine-2.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/local/l2jfrozen-netcore-0.0.1-SNAPSHOT-obf.jar"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>

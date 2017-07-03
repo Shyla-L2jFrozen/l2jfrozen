@@ -21,15 +21,16 @@ package com.l2jfrozen.gameserver.network.serverpackets;
 
 import org.apache.log4j.Logger;
 
+import a.a.s;
+
 import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.network.L2GameClient;
-import com.l2jfrozen.netcore.SendablePacket;
 
 /**
  * The Class L2GameServerPacket.
  * @author ProGramMoS
  */
-public abstract class L2GameServerPacket extends SendablePacket<L2GameClient>
+public abstract class L2GameServerPacket extends s<L2GameClient>
 {
 	
 	/** The Constant LOGGER. */
