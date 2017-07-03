@@ -4,7 +4,7 @@ from com.l2jfrozen.gameserver.model.quest import QuestState
 from com.l2jfrozen.gameserver.model.quest.jython import QuestJython as JQuest
 from com.l2jfrozen.gameserver.datatables import SkillTable
 from com.l2jfrozen.gameserver.model import L2Effect
-from com.l2jfrozen.util.random import Rnd
+from com.l2jfrozen.common.util.random import Rnd
 	
 qn = "8009_HotSpringsBuffs"
 	

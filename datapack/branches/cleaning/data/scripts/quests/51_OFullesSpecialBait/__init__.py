@@ -2,7 +2,7 @@
 # with little cleanups by DrLecter.
 # Visit http://www.l2jdp.com/trac if you find a bug.
 import sys
-from com.l2jfrozen import Config
+from com.l2jfrozen.gameserver.config import Config
 from com.l2jfrozen.gameserver.model.quest import State
 from com.l2jfrozen.gameserver.model.quest import QuestState
 from com.l2jfrozen.gameserver.model.quest.jython import QuestJython as JQuest

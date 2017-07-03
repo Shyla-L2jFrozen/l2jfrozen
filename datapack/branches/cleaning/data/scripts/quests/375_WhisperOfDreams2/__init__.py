@@ -1,7 +1,7 @@
 # Whisper of Dreams, part 2 version 0.1 
 # by DrLecter
 import sys
-from com.l2jfrozen import Config
+from com.l2jfrozen.gameserver.config import Config
 from com.l2jfrozen.gameserver.model.quest import State
 from com.l2jfrozen.gameserver.model.quest import QuestState
 from com.l2jfrozen.gameserver.model.quest.jython import QuestJython as JQuest

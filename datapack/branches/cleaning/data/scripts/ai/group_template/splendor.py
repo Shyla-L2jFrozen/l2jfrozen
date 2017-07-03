@@ -1,10 +1,10 @@
 import sys
-from com.l2jfrozen import Config
+from com.l2jfrozen.gameserver.config import Config
 from com.l2jfrozen.gameserver.ai import CtrlIntention
 from com.l2jfrozen.gameserver.model.quest import State
 from com.l2jfrozen.gameserver.model.quest import QuestState
 from com.l2jfrozen.gameserver.model.quest.jython import QuestJython as JQuest
-from com.l2jfrozen.util.random import Rnd
+from com.l2jfrozen.common.util.random import Rnd
 
 SplendorId ={   # Npc:[NewNpc,% for chance by shot,ModeSpawn]
                 # Modespawn 1=> delete and spawn the news npc

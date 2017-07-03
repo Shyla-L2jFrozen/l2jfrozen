@@ -1,6 +1,6 @@
 # Made by Emperorc
 import sys
-from com.l2jfrozen.util.random import Rnd
+from com.l2jfrozen.common.util.random import Rnd
 from com.l2jfrozen.gameserver.model.quest import State
 from com.l2jfrozen.gameserver.model.quest import QuestState
 from com.l2jfrozen.gameserver.model.quest.jython import QuestJython as JQuest
@@ -250,7 +250,7 @@ class Quest (JQuest) :
              st.playSound("ItemSound.quest_itemget")
      return
 
-QUEST = Quest(384,qn,"Warehouse Keeper\’s Pastime")
+QUEST = Quest(384,qn,"Warehouse Keeper\ï¿½s Pastime")
 CREATED     = State('Start', QUEST)
 STARTED     = State('Started', QUEST)
 

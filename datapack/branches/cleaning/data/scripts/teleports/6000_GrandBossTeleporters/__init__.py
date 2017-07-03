@@ -1,12 +1,12 @@
 #Made by Emperorc
 import sys
-from com.l2jfrozen import Config
+from com.l2jfrozen.gameserver.config import Config
 from com.l2jfrozen.gameserver.datatables.csv import DoorTable
 from com.l2jfrozen.gameserver.model.quest import State
 from com.l2jfrozen.gameserver.model.quest import QuestState
 from com.l2jfrozen.gameserver.model.quest.jython import QuestJython as JQuest
 from com.l2jfrozen.gameserver.datatables.sql import SpawnTable
-from com.l2jfrozen.util.random import Rnd
+from com.l2jfrozen.common.util.random import Rnd
 from com.l2jfrozen.gameserver.managers import QuestManager
 from com.l2jfrozen.gameserver.managers import GrandBossManager
 
