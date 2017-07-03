@@ -7998,8 +7998,8 @@ public final class L2PcInstance extends L2PlayableInstance
 				
 				if (this.getClient() != null && targetPlayer.getClient() != null)
 				{
-					final String ip1 = this.getClient().getConnection().getInetAddress().getHostAddress();
-					final String ip2 = targetPlayer.getClient().getConnection().getInetAddress().getHostAddress();
+					final String ip1 = this.getClient().getConnection().c().getHostAddress();
+					final String ip2 = targetPlayer.getClient().getConnection().c().getHostAddress();
 					
 					if (ip1.equals(ip2))
 					{
@@ -8023,7 +8023,7 @@ public final class L2PcInstance extends L2PlayableInstance
 		// IP check
 		if (targetPlayer.getClient() != null && targetPlayer.getClient().getConnection() != null)
 		{
-			if (targetPlayer.getClient().getConnection().getInetAddress() != getClient().getConnection().getInetAddress())
+			if (targetPlayer.getClient().getConnection().c() != getClient().getConnection().c())
 			{
 				
 				if (targetPlayer.getKarma() > 0 || targetPlayer.getPvpFlag() > 0) // killing target pk or in pvp
@@ -16320,8 +16320,8 @@ public final class L2PcInstance extends L2PlayableInstance
 	{
 		if (Config.DEVELOPER)
 		{
-			if (getClient() != null && getClient().getConnection() != null && getClient().getConnection().getInetAddress().getHostAddress() != null)
-				LOGGER.info("Removing character: [" + getName() + "], account: [" + getAccountName() + "], ip: [" + getClient().getConnection().getInetAddress().getHostAddress() + "]");
+			if (getClient() != null && getClient().getConnection() != null && getClient().getConnection().c().getHostAddress() != null)
+				LOGGER.info("Removing character: [" + getName() + "], account: [" + getAccountName() + "], ip: [" + getClient().getConnection().c().getHostAddress() + "]");
 			else
 				LOGGER.info("Removing character: [" + getName() + "], account: [" + getAccountName() + "]");
 		}
@@ -18465,19 +18465,19 @@ public final class L2PcInstance extends L2PlayableInstance
 		int boxes_number = 0; // this one
 		final List<String> active_boxes = new ArrayList<>();
 		
-		if (getClient() != null && getClient().getConnection() != null && !getClient().getConnection().isClosed() && getClient().getConnection().getInetAddress() != null)
+		if (getClient() != null && getClient().getConnection() != null && !getClient().getConnection().i() && getClient().getConnection().c() != null)
 		{
 			
-			final String thisip = getClient().getConnection().getInetAddress().getHostAddress();
+			final String thisip = getClient().getConnection().c().getHostAddress();
 			final Collection<L2PcInstance> allPlayers = L2World.getInstance().getAllPlayers();
 			for (final L2PcInstance player : allPlayers)
 			{
 				if (player != null)
 				{
-					if (player.isOnline() == 1 && player.getClient() != null && player.getClient().getConnection() != null && !player.getClient().getConnection().isClosed() && player.getClient().getConnection().getInetAddress() != null && !player.getName().equals(this.getName()))
+					if (player.isOnline() == 1 && player.getClient() != null && player.getClient().getConnection() != null && !player.getClient().getConnection().i() && player.getClient().getConnection().c() != null && !player.getName().equals(this.getName()))
 					{
 						
-						final String ip = player.getClient().getConnection().getInetAddress().getHostAddress();
+						final String ip = player.getClient().getConnection().c().getHostAddress();
 						if (thisip.equals(ip) && this != player)
 						{
 							if (!Config.ALLOW_DUALBOX)
@@ -18524,10 +18524,10 @@ public final class L2PcInstance extends L2PlayableInstance
 	public void refreshOtherBoxes()
 	{
 		
-		if (getClient() != null && getClient().getConnection() != null && !getClient().getConnection().isClosed() && getClient().getConnection().getInetAddress() != null)
+		if (getClient() != null && getClient().getConnection() != null && !this.getClient().getConnection().i() && getClient().getConnection().c() != null)
 		{
 			
-			final String thisip = getClient().getConnection().getInetAddress().getHostAddress();
+			final String thisip = getClient().getConnection().c().getHostAddress();
 			final Collection<L2PcInstance> allPlayers = L2World.getInstance().getAllPlayers();
 			final L2PcInstance[] players = allPlayers.toArray(new L2PcInstance[allPlayers.size()]);
 			
@@ -18535,10 +18535,10 @@ public final class L2PcInstance extends L2PlayableInstance
 			{
 				if (player != null && player.isOnline() == 1)
 				{
-					if (player.getClient() != null && player.getClient().getConnection() != null && !player.getClient().getConnection().isClosed() && !player.getName().equals(this.getName()))
+					if (player.getClient() != null && player.getClient().getConnection() != null && !this.getClient().getConnection().i() && !player.getName().equals(this.getName()))
 					{
 						
-						final String ip = player.getClient().getConnection().getInetAddress().getHostAddress();
+						final String ip = player.getClient().getConnection().c().getHostAddress();
 						if (thisip.equals(ip) && this != player)
 						{
 							player._active_boxes = _active_boxes;

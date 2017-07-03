@@ -23,20 +23,22 @@ import java.nio.ByteBuffer;
 
 import org.apache.log4j.Logger;
 
+import a.a.c;
+import a.a.d;
+import a.a.e;
+import a.a.j;
+import a.a.k;
+import a.a.p;
+import a.a.w;
+import a.a.y;
+
 import com.l2jfrozen.common.logs.Log;
 import com.l2jfrozen.common.util.Util;
 import com.l2jfrozen.gameserver.Shutdown;
 import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.network.clientpackets.*;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
-import com.l2jfrozen.netcore.IClientFactory;
-import com.l2jfrozen.netcore.IMMOExecutor;
-import com.l2jfrozen.netcore.IPacketHandler;
-import com.l2jfrozen.netcore.MMOConnection;
-import com.l2jfrozen.netcore.NetcoreConfig;
-import com.l2jfrozen.netcore.ReceivablePacket;
-import com.l2jfrozen.netcore.util.PacketsFloodProtector;
-import com.l2jfrozen.netcore.util.PacketsLoggerManager;
+
 
 /**
  * Stateful Packet Handler<BR>
@@ -48,13 +50,16 @@ import com.l2jfrozen.netcore.util.PacketsLoggerManager;
  * @author L2JFrozen
  */
 
-public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, IClientFactory<L2GameClient>, IMMOExecutor<L2GameClient>
+public final class L2GamePacketHandler implements
+c<L2GameClient>,
+d<L2GameClient>,
+e<L2GameClient>
 {
 	private static final Logger LOGGER = Logger.getLogger(L2GamePacketHandler.class);
 	
 	// implementation
 	@Override
-	public ReceivablePacket<L2GameClient> handlePacket(final ByteBuffer buf, final L2GameClient client)
+	public p<L2GameClient> handlePacket(final ByteBuffer buf, final L2GameClient client)
 	{
 		
 		if (client.dropPacket())
@@ -87,27 +92,27 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 				packet = packet + "," + opcode2;
 			
 			// check if character has block on packet
-			if (PacketsLoggerManager.getInstance().isCharacterPacketBlocked(character, packet))
+			if (y.a().c(character, packet))
 			{
 				client.sendPacket(ActionFailed.STATIC_PACKET);
 				return null;
 			}
 			
 			// Before Anything, check if character is Monitored or has Block on received Packet
-			if (PacketsLoggerManager.getInstance().isCharacterMonitored(character))
-			{
-				PacketsLoggerManager.getInstance().logCharacterPacket(character, packet);
+			if (y.a().c(character)) {
+				y.a();
+				y.d(character, packet);
 			}
 			
 		}
 		
-		if (!PacketsFloodProtector.tryPerformAction(opcode, opcode2, client))
+		if (!w.a(opcode, opcode2, client))
 		{
 			client.sendPacket(ActionFailed.STATIC_PACKET);
 			return null;
 		}
 		
-		ReceivablePacket<L2GameClient> msg = null;
+		p<L2GameClient> msg = null;
 		GameClientState state = client.getState();
 		
 		if (Config.DEBUG_PACKETS)
@@ -165,7 +170,7 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 			case IN_GAME:
 			{
 				
-				if (!NetcoreConfig.getInstance().LIST_ALLOWED_OFFLINE_OPCODES.contains(opcode))
+				if (!k.a().y.contains(opcode))
 				{
 					
 					if (client.getActiveChar() == null || client.getActiveChar().isOnline() == 0)
@@ -733,7 +738,7 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 							break;
 						}
 						
-						if (!NetcoreConfig.getInstance().LIST_ALLOWED_OFFLINE_OPCODES2.contains(opcode2))
+						if (!k.a().z.contains(opcode2))
 						{
 							
 							if (client.getActiveChar() == null || client.getActiveChar().isOnline() == 0)
@@ -916,7 +921,7 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 			client.checkUnknownPackets();
 		}
 		
-		if (!NetcoreConfig.getInstance().PACKET_HANDLER_DEBUG)
+		if (!k.a().a)
 			return;
 		
 		// int size = buf.remaining();
@@ -947,7 +952,7 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 			client.checkUnknownPackets();
 		}
 		
-		if (!NetcoreConfig.getInstance().PACKET_HANDLER_DEBUG)
+		if (!k.a().a)
 			return;
 		
 		// int size = buf.remaining();
@@ -972,13 +977,13 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 	}
 	
 	@Override
-	public L2GameClient create(final MMOConnection<L2GameClient> con)
+	public L2GameClient create(final j<L2GameClient> con)
 	{
 		return new L2GameClient(con);
 	}
 	
 	@Override
-	public void execute(final ReceivablePacket<L2GameClient> rp)
+	public void execute(final p<L2GameClient> rp)
 	{
 		rp.getClient().execute(rp);
 	}
