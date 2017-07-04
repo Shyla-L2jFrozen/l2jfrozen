@@ -73,24 +73,6 @@ public final class LoginServer
 		_instance = this;
 		ServerType.serverMode = ServerType.MODE_LOGINSERVER;
 		// Create Loggers
-		final File log_conf_file = new File(CommonConfigFiles.LOG_CONF_FILE);
-		if (!log_conf_file.exists())
-		{
-			throw new IOException("Configuration file " + CommonConfigFiles.LOG_CONF_FILE + " is missing");
-		}
-		
-		// Local Constants
-		final String LOG_FOLDER = "log/login";
-		
-		// Create LOGGER folder
-		File logFolder = new File(LOG_FOLDER);
-		logFolder.mkdir();
-		
-		InputStream is = new FileInputStream(log_conf_file);
-		LogManager.getLogManager().readConfiguration(is);
-		is.close();
-		is = null;
-		logFolder = null;
 		
 		final File log4j_conf_file = new File(CommonConfigFiles.LOG4J_CONF_FILE);
 		if (!log4j_conf_file.exists())
