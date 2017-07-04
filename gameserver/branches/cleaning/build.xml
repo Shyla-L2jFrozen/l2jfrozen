@@ -129,7 +129,7 @@
 		<mkdir dir="${build.dist.login}" />
 		<mkdir dir="${build.dist.login.lib}" />
 
-		<copy todir="${build.dist.login}" file="${build}/l2jfrozen-login.jar" />
+		<copy todir="${build.dist.login.lib}" file="${build}/l2jfrozen-login.jar" />
 				
 		<copy todir="${build.dist.login.lib}">
 			<fileset dir="${src-lib}">
@@ -203,7 +203,7 @@
 		<mkdir dir="${build.dist.game}" />
 		<mkdir dir="${build.dist.game.lib}" />
 
-		<copy todir="${build.dist.game}" file="${build}/l2jfrozen-game.jar" />
+		<copy todir="${build.dist.game.lib}" file="${build}/l2jfrozen-game.jar" />
 				
 		<copy todir="${build.dist.game.lib}">
 			<fileset dir="${src-lib}">
