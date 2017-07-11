@@ -1,30 +1,28 @@
 /*
- * L2jFrozen Project - www.l2jfrozen.com 
+ * Copyright (C) 2004-2016 L2J Server
  * 
- * This program is free software; you can redistribute it and/or modify
+ * This file is part of L2J Server.
+ * 
+ * L2J Server is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * L2J Server is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * http://www.gnu.org/copyleft/gpl.html
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.l2jfrozen.loginserver.network.gameserverpackets;
 
 import java.util.Arrays;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.loginserver.GameServerTable;
 import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
 import com.l2jfrozen.loginserver.GameServerThread;
@@ -35,79 +33,77 @@ import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
 import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
 
 /**
- * Format: cccddb c desired ID c accept alternative ID c reserve Host s ExternalHostName s InetranlHostName d max players d hexid size b hexid
+ * <pre>
+ * Format: cccddb
+ * c desired ID
+ * c accept alternative ID
+ * c reserve Host
+ * s ExternalHostName
+ * s InetranlHostName
+ * d max players
+ * d hexid size
+ * b hexid
+ * </pre>
  * @author -Wooden-
  */
 public class GameServerAuth extends BaseRecievePacket
 {
-	protected static Logger LOGGER = Logger.getLogger(GameServerAuth.class);
+	protected static Logger _log = Logger.getLogger(GameServerAuth.class.getName());
+	private GameServerThread _server;
 	private final byte[] _hexId;
 	private final int _desiredId;
+	@SuppressWarnings("unused")
 	private final boolean _hostReserved;
 	private final boolean _acceptAlternativeId;
 	private final int _maxPlayers;
 	private final int _port;
-	// private final String _externalHost;
-	// private final String _internalHost;
-	private final GameServerThread _server;
 	private final String[] _hosts;
 	
 	/**
 	 * @param decrypt
 	 * @param server
 	 */
-	public GameServerAuth(final byte[] decrypt, final GameServerThread server)
+	public GameServerAuth(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
-		
 		_server = server;
 		_desiredId = readC();
-		_acceptAlternativeId = readC() == 0 ? false : true;
-		_hostReserved = readC() == 0 ? false : true;
-		
-		_hosts = new String[2];
-		for (int i = 0; i < 2; i++)
+		_acceptAlternativeId = (readC() == 0 ? false : true);
+		_hostReserved = (readC() == 0 ? false : true);
+		_port = readH();
+		_maxPlayers = readD();
+		int size = readD();
+		_hexId = readB(size);
+		size = 2 * readD();
+		_hosts = new String[size];
+		for (int i = 0; i < size; i++)
 		{
 			_hosts[i] = readS();
 		}
 		
-		// _externalHost = readS();
-		// _internalHost = readS();
-		_port = readH();
-		_maxPlayers = readD();
-		
-		final int size = readD();
-		
-		_hexId = readB(size);
-		
 		if (CommonConfig.DEBUG)
 		{
-			LOGGER.info("Auth request received");
+			_log.info("Auth request received");
 		}
 		
 		if (handleRegProcess())
 		{
-			final AuthResponse ar = new AuthResponse(server.getGameServerInfo().getId());
+			AuthResponse ar = new AuthResponse(server.getGameServerInfo().getId());
 			server.sendPacket(ar);
 			if (CommonConfig.DEBUG)
 			{
-				LOGGER.info("Authed: id: " + server.getGameServerInfo().getId());
+				_log.info("Authed: id: " + server.getGameServerInfo().getId());
 			}
 			server.setLoginConnectionState(GameServerState.AUTHED);
 		}
 	}
 	
-	/*
-	 * public byte[] getHexID() { return _hexId; } public boolean getHostReserved() { return _hostReserved; } public int getDesiredID() { return _desiredId; } public boolean acceptAlternateID() { return _acceptAlternativeId; } public int getMaxPlayers() { return _maxPlayers; } public String
-	 * getExternalHost() { return _externalHost; } public String getInternalHost() { return _internalHost; } public int getPort() { return _port; }
-	 */
-	
 	private boolean handleRegProcess()
 	{
-		final GameServerTable gameServerTable = GameServerTable.getInstance();
+		GameServerTable gameServerTable = GameServerTable.getInstance();
 		
-		final int id = _desiredId;
-		final byte[] hexId = _hexId;
+		int id = _desiredId;
+		byte[] hexId = _hexId;
 		
 		GameServerInfo gsi = gameServerTable.getRegisteredGameServerById(id);
 		// is there a gameserver registered with this id?
@@ -180,5 +176,4 @@ public class GameServerAuth extends BaseRecievePacket
 		
 		return true;
 	}
-	
 }

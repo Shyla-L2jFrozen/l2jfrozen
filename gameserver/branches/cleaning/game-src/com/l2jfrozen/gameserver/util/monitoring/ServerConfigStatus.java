@@ -36,7 +36,7 @@ public class ServerConfigStatus extends MonitoredStatus
 	private static final long serialVersionUID = -4059798755377928431L;
 	
 	private String ServerName;
-	private String GameServerIp;
+	private String GameServerIps;
 	private int GameServerPort;
 	private float GameServerRate;
 	private float GameServerAdenaRate;
@@ -60,7 +60,7 @@ public class ServerConfigStatus extends MonitoredStatus
 		final StringWriter sw = new StringWriter();
 		
 		sw.append("	ServerName: " + ServerName + " \n");
-		sw.append("	GameServerIp: " + GameServerIp + " \n");
+		sw.append("	GameServerIPs: " + GameServerIps + " \n");
 		sw.append("	GameServerPort: " + GameServerPort + " \n");
 		sw.append("	GameServerRate: " + GameServerRate + " \n");
 		sw.append("	GameServerAdenaRate: " + GameServerAdenaRate + " \n");
@@ -83,9 +83,9 @@ public class ServerConfigStatus extends MonitoredStatus
 		return ServerName;
 	}
 	
-	public String getGameServerIp()
+	public String getGameServerIPs()
 	{
-		return GameServerIp;
+		return GameServerIps;
 	}
 	
 	public int getGameServerPort()
@@ -138,7 +138,7 @@ public class ServerConfigStatus extends MonitoredStatus
 	@Override
 	public String toString()
 	{
-		return "ServerConfigStatus [ServerName=" + ServerName + ", GameServerIp=" + GameServerIp + ", GameServerPort=" + GameServerPort + ", GameServerRate=" + GameServerRate + ", GameServerAdenaRate=" + GameServerAdenaRate + ", GameServerLink=" + GameServerLink + ", GameServerHopzoneLink=" + GameServerHopzoneLink + ", GameServerTopzoneLink=" + GameServerTopzoneLink + ", GameServerL2NetworkLink=" + GameServerL2NetworkLink + "]";
+		return "ServerConfigStatus [ServerName=" + ServerName + ", GameServerIPs=" + GameServerIps + ", GameServerPort=" + GameServerPort + ", GameServerRate=" + GameServerRate + ", GameServerAdenaRate=" + GameServerAdenaRate + ", GameServerLink=" + GameServerLink + ", GameServerHopzoneLink=" + GameServerHopzoneLink + ", GameServerTopzoneLink=" + GameServerTopzoneLink + ", GameServerL2NetworkLink=" + GameServerL2NetworkLink + "]";
 	}
 	
 	/*
@@ -149,7 +149,14 @@ public class ServerConfigStatus extends MonitoredStatus
 	public void refreshStatus()
 	{
 		ServerName = Config.ALT_Server_Name;
-		GameServerIp = Config.EXTERNAL_HOSTNAME;
+		GameServerIps = "";
+		for(String host:Config.GAME_SERVER_HOSTS){
+			if(GameServerIps.isEmpty())
+				GameServerIps = host;
+			else
+				GameServerIps=GameServerIps+" "+host;
+		}
+		
 		GameServerPort = Config.PORT_GAME;
 		GameServerRate = Config.RATE_XP;
 		GameServerAdenaRate = Config.RATE_DROP_ADENA;

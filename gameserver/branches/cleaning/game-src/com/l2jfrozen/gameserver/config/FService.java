@@ -83,6 +83,7 @@ public class FService
 	
 	// network
 	public static final String CONFIGURATION_FILE = "./config/network/gameserver.properties";
+	public static final String IP_CONFIG = "./config/network/ipconfig.xml";
 	
 	// version
 	public static final String SERVER_VERSION_FILE = "./config/version/l2jfrozen-server.properties";
