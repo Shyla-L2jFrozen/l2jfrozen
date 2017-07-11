@@ -103,10 +103,11 @@ public class LoginServerThread extends Thread
 	private final Map<String, L2GameClient> _accountsInGameServer = new ConcurrentHashMap<>();
 	private int _status;
 	private String _serverName;
-	// private final List<String> _subnets;
-	// private final List<String> _hosts;
-	private final String _gameExternalHost;
-	private final String _gameInternalHost;
+	private final List<String> _subnets;
+	private final List<String> _hosts;
+//	private final String _gameExternalHost;
+//	private final String _gameInternalHost;
+	
 	
 	/**
 	 * Instantiates a new login server thread.
@@ -129,13 +130,13 @@ public class LoginServerThread extends Thread
 		}
 		_acceptAlternate = Config.ACCEPT_ALTERNATE_ID;
 		_reserveHost = Config.RESERVE_HOST_ON_LOGIN;
-		// _subnets = Config.GAME_SERVER_SUBNETS;
-		// _hosts = Config.GAME_SERVER_HOSTS;
+		 _subnets = Config.GAME_SERVER_SUBNETS;
+		 _hosts = Config.GAME_SERVER_HOSTS;
 		_waitingClients = new CopyOnWriteArrayList<>();
 		_maxPlayer = Config.MAXIMUM_ONLINE_USERS;
 		
-		_gameExternalHost = Config.EXTERNAL_HOSTNAME;
-		_gameInternalHost = Config.INTERNAL_HOSTNAME;
+//		_gameExternalHost = Config.EXTERNAL_HOSTNAME;
+//		_gameInternalHost = Config.INTERNAL_HOSTNAME;
 		
 	}
 	
@@ -235,9 +236,8 @@ public class LoginServerThread extends Thread
 							// now, only accept packet with the new encryption
 							_blowfish = new NewCrypt(blowfishKey);
 							
-							final AuthRequest ar = new AuthRequest(_requestID, _acceptAlternate, _hexID, _gameExternalHost, _gameInternalHost, _gamePort, _reserveHost, _maxPlayer);
+							final AuthRequest ar = new AuthRequest(_requestID, _acceptAlternate, _hexID, _gamePort, _reserveHost, _maxPlayer,_subnets, _hosts);
 							sendPacket(ar);
-							// sendPacket(new AuthRequest(_requestID, _acceptAlternate, _hexID, _gamePort, _reserveHost, _maxPlayer));
 							break;
 						case 0x01:
 							final LoginServerFail lsf = new LoginServerFail(incoming);
