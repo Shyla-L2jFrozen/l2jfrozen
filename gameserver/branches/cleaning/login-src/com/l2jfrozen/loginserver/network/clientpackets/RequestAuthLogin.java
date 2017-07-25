@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 import javax.crypto.Cipher;
 
 import com.l2jfrozen.loginserver.AuthLoginResult;
-import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
+import com.l2jfrozen.loginserver.GameServerInfo;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.model.data.AccountInfo;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
