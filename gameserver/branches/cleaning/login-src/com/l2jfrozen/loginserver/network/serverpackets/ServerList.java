@@ -25,8 +25,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import com.l2jfrozen.loginserver.GameServerInfo;
 import com.l2jfrozen.loginserver.GameServerTable;
-import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 
@@ -67,48 +67,7 @@ public final class ServerList extends L2LoginServerPacket
 	private final Map<Integer, Integer> _charsOnServers;
 	private final Map<Integer, long[]> _charsToDelete;
 	
-	class ServerData
-	{
-		protected byte[] _ip;
-		protected int _port;
-		protected int _ageLimit;
-		protected boolean _pvp;
-		protected int _currentPlayers;
-		protected int _maxPlayers;
-		protected boolean _brackets;
-		protected boolean _clock;
-		protected int _status;
-		protected int _serverId;
-		protected int _serverType;
-		
-		ServerData(final L2LoginClient client, final GameServerInfo gsi)
-		{
-			try
-			{
-				_ip = InetAddress.getByName(gsi.getServerAddress(client.getConnection().getInetAddress())).getAddress();
-			}
-			catch (final UnknownHostException e)
-			{
-				_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
-				_ip = new byte[4];
-				_ip[0] = 127;
-				_ip[1] = 0;
-				_ip[2] = 0;
-				_ip[3] = 1;
-			}
-			
-			_port = gsi.getPort();
-			_pvp = gsi.isPvp();
-			_serverType = gsi.getServerType();
-			_currentPlayers = gsi.getCurrentPlayerCount();
-			_maxPlayers = gsi.getMaxPlayers();
-			_ageLimit = 0;
-			_brackets = gsi.isShowingBrackets();
-			// If server GM-only - show status only to GMs
-			_status = gsi.getStatus() != ServerStatus.STATUS_GM_ONLY ? gsi.getStatus() : client.getAccessLevel() > 0 ? gsi.getStatus() : ServerStatus.STATUS_DOWN;
-			_serverId = gsi.getId();
-		}
-	}
+	
 	
 	public ServerList(final L2LoginClient client)
 	{
