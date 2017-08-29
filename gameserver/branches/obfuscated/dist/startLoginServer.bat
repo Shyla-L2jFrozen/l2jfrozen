@@ -2,7 +2,7 @@
 title L2J-Frozen: Login Server Console
 :start
 
-java -Dfile.encoding=UTF8 -Xms128m -Xmx128m -cp ./lib/*;l2jfrozen-login.jar com.l2jfrozen.loginserver.LoginServer
+java -Dfile.encoding=UTF8 -Xms128m -Xmx128m -cp lib/*;lib/l2jfrozen-login.jar com.l2jfrozen.loginserver.LoginServer
 
 if ERRORLEVEL 2 goto restart
 if ERRORLEVEL 1 goto error

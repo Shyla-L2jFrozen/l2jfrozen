@@ -22,12 +22,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.l2jfrozen.loginserver.network.L2LoginClient;
-import com.l2jfrozen.netcore.ReceivablePacket;
+import a.a.p;
 
 /**
  * @author KenM
  */
-public abstract class L2LoginClientPacket extends ReceivablePacket<L2LoginClient>
+public abstract class L2LoginClientPacket extends p<L2LoginClient>
 {
 	private static Logger _log = Logger.getLogger(L2LoginClientPacket.class.getName());
 	

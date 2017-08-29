@@ -37,7 +37,6 @@ import a.a.f;
 import a.a.j;
 import a.a.k;
 import a.a.p;
-import a.a.s;
 import a.a.t;
 
 import com.l2jfrozen.common.CommonConfig;
@@ -585,7 +584,7 @@ public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
 	public void close(final L2GameServerPacket gsp)
 	{
 		if (getConnection() != null)
-			getConnection().a(new s[]{gsp});
+			getConnection().b(gsp);
 		
 	}
 	

@@ -20,15 +20,15 @@ package com.l2jfrozen.loginserver.network.gameserverpackets;
 
 import java.util.logging.Logger;
 
+import com.l2jfrozen.loginserver.GameServerInfo;
 import com.l2jfrozen.loginserver.GameServerTable;
-import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
 import com.l2jfrozen.loginserver.GameServerThread;
-import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
+import a.a.K;
 
 /**
  * @author -Wooden-
  */
-public class ServerStatus extends BaseRecievePacket
+public class ServerStatus extends K
 {
 	protected static Logger _log = Logger.getLogger(ServerStatus.class.getName());
 	
