@@ -22,8 +22,8 @@ import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason;
 import com.l2jfrozen.loginserver.network.serverpackets.PlayOk;
-import com.l2jfrozen.netcore.NetcoreConfig;
-import com.l2jfrozen.netcore.SessionKey;
+import a.a.k;
+import a.a.t;
 
 /**
  * <pre>
@@ -79,10 +79,10 @@ public class RequestServerLogin extends L2LoginClientPacket
 	@Override
 	public void run()
 	{
-		final SessionKey sk = getClient().getSessionKey();
+		final t sk = getClient().getSessionKey();
 		
 		// if we didnt showed the license we cant check these values
-		if (!NetcoreConfig.getInstance().SHOW_LICENCE || sk.checkLoginPair(_skey1, _skey2))
+		if (!k.a().F || sk.a(_skey1, _skey2))
 		{
 			if (LoginController.getInstance().isLoginPossible(getClient(), _serverId))
 			{

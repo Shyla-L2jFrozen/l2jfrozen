@@ -27,36 +27,36 @@ import java.util.logging.Logger;
 
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.serverpackets.Init;
-import com.l2jfrozen.netcore.IAcceptFilter;
-import com.l2jfrozen.netcore.IClientFactory;
-import com.l2jfrozen.netcore.IMMOExecutor;
-import com.l2jfrozen.netcore.MMOConnection;
-import com.l2jfrozen.netcore.ReceivablePacket;
-import com.l2jfrozen.netcore.util.IPv4Filter;
+import a.a.b;
+import a.a.c;
+import a.a.d;
+import a.a.j;
+import a.a.p;
+import a.a.u;
 
 /**
  * @author KenM
  */
-public class SelectorHelper implements IMMOExecutor<L2LoginClient>, IClientFactory<L2LoginClient>, IAcceptFilter
+public class SelectorHelper implements b, c<L2LoginClient>, d<L2LoginClient>
 {
 	private static final Logger LOG = Logger.getLogger(LoginController.class.getName());
 	private final ThreadPoolExecutor _generalPacketsThreadPool;
-	private final IPv4Filter _ipv4filter;
+	private final u _ipv4filter;
 	
 	public SelectorHelper()
 	{
 		_generalPacketsThreadPool = new ThreadPoolExecutor(4, 6, 15L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
-		_ipv4filter = new IPv4Filter();
+		_ipv4filter = new u();
 	}
 	
 	@Override
-	public void execute(final ReceivablePacket<L2LoginClient> packet)
+	public void execute(final p<L2LoginClient> packet)
 	{
 		_generalPacketsThreadPool.execute(packet);
 	}
 	
 	@Override
-	public L2LoginClient create(final MMOConnection<L2LoginClient> con)
+	public L2LoginClient create(final j<L2LoginClient> con)
 	{
 		final L2LoginClient client = new L2LoginClient(con);
 		client.sendPacket(new Init(client));
@@ -64,11 +64,11 @@ public class SelectorHelper implements IMMOExecutor<L2LoginClient>, IClientFacto
 	}
 	
 	@Override
-	public boolean accept(final SocketChannel sc)
+	public boolean a(final SocketChannel sc)
 	{
 		try
 		{
-			return _ipv4filter.accept(sc) && !LoginController.getInstance().isBannedAddress(sc.socket().getInetAddress());
+			return _ipv4filter.a(sc) && !LoginController.getInstance().isBannedAddress(sc.socket().getInetAddress());
 		}
 		catch (final UnknownHostException e)
 		{

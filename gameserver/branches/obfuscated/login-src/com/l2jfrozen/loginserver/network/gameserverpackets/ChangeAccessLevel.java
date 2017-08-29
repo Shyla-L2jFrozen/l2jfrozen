@@ -22,12 +22,12 @@ import java.util.logging.Logger;
 
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.LoginController;
-import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
+import a.a.K;
 
 /**
  * @author -Wooden-
  */
-public class ChangeAccessLevel extends BaseRecievePacket
+public class ChangeAccessLevel extends K
 {
 	protected static Logger _log = Logger.getLogger(ChangeAccessLevel.class.getName());
 	

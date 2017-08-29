@@ -1,26 +1,26 @@
 /*
- * L2jFrozen Project - www.l2jfrozen.com 
+ * Copyright (C) 2004-2016 L2J Server
  * 
- * This program is free software; you can redistribute it and/or modify
+ * This file is part of L2J Server.
+ * 
+ * L2J Server is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * L2J Server is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * 
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * http://www.gnu.org/copyleft/gpl.html
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package com.l2jfrozen.gameserver.network.gameserverpackets;
 
 import a.a.L;
+import java.util.List;
+
 
 public class AuthRequest extends L
 {
@@ -29,24 +29,28 @@ public class AuthRequest extends L
 	 * @param id
 	 * @param acceptAlternate
 	 * @param hexid
-	 * @param externalHost
-	 * @param internalHost
 	 * @param port
 	 * @param reserveHost
 	 * @param maxplayer
+	 * @param subnets the subnets lists
+	 * @param hosts the hosts list
 	 */
-	public AuthRequest(final int id, final boolean acceptAlternate, final byte[] hexid, final String externalHost, final String internalHost, final int port, final boolean reserveHost, final int maxplayer)
+	public AuthRequest(int id, boolean acceptAlternate, byte[] hexid, int port, boolean reserveHost, int maxplayer, List<String> subnets, List<String> hosts)
 	{
 		writeC(0x01);
 		writeC(id);
 		writeC(acceptAlternate ? 0x01 : 0x00);
 		writeC(reserveHost ? 0x01 : 0x00);
-		writeS(externalHost);
-		writeS(internalHost);
 		writeH(port);
 		writeD(maxplayer);
 		writeD(hexid.length);
 		writeB(hexid);
+		writeD(subnets.size());
+		for (int i = 0; i < subnets.size(); i++)
+		{
+			writeS(subnets.get(i));
+			writeS(hosts.get(i));
+		}
 	}
 	
 	@Override
@@ -54,4 +58,5 @@ public class AuthRequest extends L
 	{
 		return getBytes();
 	}
+	
 }

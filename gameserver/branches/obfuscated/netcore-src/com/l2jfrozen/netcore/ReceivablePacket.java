@@ -102,7 +102,7 @@ public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractP
 		}
 		catch (final BufferUnderflowException e)
 		{
-			if (NamePacket != "ProtocolVersion")
+			if (!NamePacket.equals("ProtocolVersion"))
 				LOGGER.warn("", e);
 		}
 		

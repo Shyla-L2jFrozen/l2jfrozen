@@ -16,29 +16,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.l2jfrozen.loginserver.network.loginserverpackets;
+package com.l2jfrozen.gameserver.util.xml;
 
-import com.l2jfrozen.loginserver.GameServerTable;
-import a.a.L;
+import java.io.File;
+import java.io.FileFilter;
 
 /**
- * @author -Wooden-
+ * Specialized {@link FileFilter} class.<br>
+ * Accepts files ending with ".xml" only.
+ * @author mrTJO
  */
-public class AuthResponse extends L
+public class XMLFilter implements FileFilter
 {
-	/**
-	 * @param serverId
-	 */
-	public AuthResponse(final int serverId)
-	{
-		writeC(0x02);
-		writeC(serverId);
-		writeS(GameServerTable.getInstance().getServerNameById(serverId));
-	}
-	
 	@Override
-	public byte[] getContent()
+	public boolean accept(File f)
 	{
-		return getBytes();
+		if ((f == null) || !f.isFile())
+		{
+			return false;
+		}
+		return f.getName().toLowerCase().endsWith(".xml");
 	}
 }
