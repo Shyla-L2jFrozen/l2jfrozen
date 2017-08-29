@@ -341,13 +341,16 @@ public final class Config
 	public static int RWHO_ARRAY[] = new int[13];
 	public static File DATAPACK_ROOT;
 	
-	public static String INTERNAL_HOSTNAME;
-	public static String EXTERNAL_HOSTNAME;
+//	public static String INTERNAL_HOSTNAME;
+//	public static String EXTERNAL_HOSTNAME;
 	public static int GAME_SERVER_LOGIN_PORT;
 	public static String GAME_SERVER_LOGIN_HOST;
 	
 	public static int SERVER_LIST_TYPE;
 	public static int SERVER_LIST_AGE;
+
+	public static List<String> GAME_SERVER_SUBNETS;
+	public static List<String> GAME_SERVER_HOSTS;
 	
 	// ============================================================
 	public static void loadServerConfig()
@@ -363,9 +366,14 @@ public final class Config
 			GAMESERVER_HOSTNAME = serverSettings.getProperty("GameserverHostname");
 			PORT_GAME = Integer.parseInt(serverSettings.getProperty("GameserverPort", "7777"));
 			
-			EXTERNAL_HOSTNAME = serverSettings.getProperty("ExternalHostname", "*");
-			INTERNAL_HOSTNAME = serverSettings.getProperty("InternalHostname", "*");
-			
+			// Hosts and Subnets
+			IPConfigData ipcd = new IPConfigData(FService.IP_CONFIG);
+			GAME_SERVER_SUBNETS = ipcd.getSubnets();
+			GAME_SERVER_HOSTS = ipcd.getHosts();
+						
+//			EXTERNAL_HOSTNAME = serverSettings.getProperty("ExternalHostname", "*");
+//			INTERNAL_HOSTNAME = serverSettings.getProperty("InternalHostname", "*");
+//			
 			GAME_SERVER_LOGIN_PORT = Integer.parseInt(serverSettings.getProperty("LoginPort", "9014"));
 			GAME_SERVER_LOGIN_HOST = serverSettings.getProperty("LoginHost", "127.0.0.1");
 			

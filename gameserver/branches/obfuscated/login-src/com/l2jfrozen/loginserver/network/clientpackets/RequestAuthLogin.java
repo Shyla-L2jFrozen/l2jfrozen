@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 import javax.crypto.Cipher;
 
 import com.l2jfrozen.loginserver.AuthLoginResult;
-import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
+import com.l2jfrozen.loginserver.GameServerInfo;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.model.data.AccountInfo;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
@@ -36,7 +36,7 @@ import com.l2jfrozen.loginserver.network.serverpackets.AccountKickedReason;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginOk;
 import com.l2jfrozen.loginserver.network.serverpackets.ServerList;
-import com.l2jfrozen.netcore.NetcoreConfig;
+import a.a.k;
 
 /**
  * <pre>
@@ -118,7 +118,7 @@ public class RequestAuthLogin extends L2LoginClientPacket
 			return;
 		}
 		
-		final InetAddress clientAddr = getClient().getConnection().getInetAddress();
+		final InetAddress clientAddr = getClient().getConnection().c();
 		
 		final LoginController lc = LoginController.getInstance();
 		final AccountInfo info = lc.retriveAccountInfo(clientAddr, _user, _password);
@@ -136,7 +136,7 @@ public class RequestAuthLogin extends L2LoginClientPacket
 				client.setAccount(info.getLogin());
 				client.setState(LoginClientState.AUTHED_LOGIN);
 				client.setSessionKey(lc.assignSessionKeyToClient(info.getLogin(), client));
-				if (NetcoreConfig.getInstance().SHOW_LICENCE)
+				if (k.a().F)
 				{
 					client.sendPacket(new LoginOk(getClient().getSessionKey()));
 				}

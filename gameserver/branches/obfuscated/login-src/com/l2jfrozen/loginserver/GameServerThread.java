@@ -32,14 +32,13 @@ import java.util.logging.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.common.util.Util;
-import com.l2jfrozen.loginserver.GameServerTable.GameServerInfo;
 import com.l2jfrozen.loginserver.network.GameServerState;
 import com.l2jfrozen.loginserver.network.L2JGameServerPacketHandler;
 import com.l2jfrozen.loginserver.network.loginserverpackets.InitLS;
 import com.l2jfrozen.loginserver.network.loginserverpackets.KickPlayer;
 import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
-import com.l2jfrozen.netcore.util.crypt.NewCrypt;
-import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
+import a.a.L;
+import a.a.P;
 
 /**
  * @author -Wooden-
@@ -53,7 +52,7 @@ public class GameServerThread extends Thread
 	private OutputStream _out;
 	private final RSAPublicKey _publicKey;
 	private final RSAPrivateKey _privateKey;
-	private NewCrypt _blowfish;
+	private P _blowfish;
 	private GameServerState _loginConnectionState = GameServerState.CONNECTED;
 	
 	private final String _connectionIp;
@@ -117,8 +116,8 @@ public class GameServerThread extends Thread
 				}
 				
 				// decrypt if we have a key
-				_blowfish.decrypt(data, 0, data.length);
-				checksumOk = NewCrypt.verifyChecksum(data);
+				_blowfish.c(data, 0, data.length);
+				checksumOk = P.a(data, 0, data.length);
 				if (!checksumOk)
 				{
 					_log.warning("Incorrect packet checksum, closing connection (LS)");
@@ -221,7 +220,7 @@ public class GameServerThread extends Thread
 		final KeyPair pair = GameServerTable.getInstance().getKeyPair();
 		_privateKey = (RSAPrivateKey) pair.getPrivate();
 		_publicKey = (RSAPublicKey) pair.getPublic();
-		_blowfish = new NewCrypt("_;v.]05-31!|+-%xT!^[$\00");
+		_blowfish = new P("_;v.]05-31!|+-%xT!^[$\00");
 		setName(getClass().getSimpleName() + "-" + getId() + "@" + _connectionIp);
 		start();
 	}
@@ -229,17 +228,17 @@ public class GameServerThread extends Thread
 	/**
 	 * @param sl
 	 */
-	public void sendPacket(final BaseSendablePacket sl)
+	public void sendPacket(final L sl)
 	{
 		try
 		{
 			final byte[] data = sl.getContent();
-			NewCrypt.appendChecksum(data);
+			P.b(data,0,data.length);
 			if (CommonConfig.DEBUG)
 			{
 				_log.finest("[S] " + sl.getClass().getSimpleName() + ":" + System.lineSeparator() + Util.printData(data));
 			}
-			_blowfish.crypt(data, 0, data.length);
+			_blowfish.d(data, 0, data.length);
 			
 			final int len = data.length + 2;
 			synchronized (_out)
@@ -331,7 +330,7 @@ public class GameServerThread extends Thread
 		return _privateKey;
 	}
 	
-	public void SetBlowFish(final NewCrypt blowfish)
+	public void SetBlowFish(final P blowfish)
 	{
 		_blowfish = blowfish;
 	}
