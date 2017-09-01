@@ -34,10 +34,22 @@ public class ServerDeamon
 	private static String trustStoreFileName = new String(Base64.getDecoder().decode("Li9jZXJ0aWZpY2F0aW9u")); // certification file path
 	private static String trustStorePassword = new String(Base64.getDecoder().decode("cGFzc3dvcmQ="));
 	
+	//deamon.debug
+	private static String deamonDebug = new String(Base64.getDecoder().decode("ZGVhbW9uLmRlYnVn"));
+	
+	//deamon.check.ip.disabled
 	private static String checkIpDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLmNoZWNrLmlwLmRpc2FibGVk"));
+	
+	//deamon.connection.disabled
 	private static String connectionDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLmNvbm5lY3Rpb24uZGlzYWJsZWQ="));
+	
+	//deamon.connection.service.local
 	private static String connectionLocalDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLmNvbm5lY3Rpb24uc2VydmljZS5sb2NhbA=="));
+	
+	//deamon.status.service.disabled
 	private static String statusServiceDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLnN0YXR1cy5zZXJ2aWNlLmRpc2FibGVk"));
+	
+	//deamon.check.service.disabled
 	private static String checkServiceDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLmNoZWNrLnNlcnZpY2UuZGlzYWJsZWQ="));
 	
 	//127.0.0.1
@@ -56,6 +68,13 @@ public class ServerDeamon
 			// Verify if it's an L2jFrozen Pack
 			if (!ServerDeamon.class.getPackage().getName().contains(packageName))
 			{
+				
+				if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+					
+					DeamonSystem.error(packageName+" != "+ServerDeamon.class.getPackage());
+					
+				}
+				
 				return false;
 			}
 			
@@ -63,6 +82,7 @@ public class ServerDeamon
 				
 				boolean ipFound = false;
 				
+				StringBuilder sb = new StringBuilder();
 				
 				Enumeration e = NetworkInterface.getNetworkInterfaces();
 				while(e.hasMoreElements() && !ipFound)
@@ -72,13 +92,24 @@ public class ServerDeamon
 				    while (ee.hasMoreElements() && !ipFound)
 				    {
 				        InetAddress i = (InetAddress) ee.nextElement();
+				        sb.append(i.getHostAddress());
 				        ipFound = i.getHostAddress().equals(allowedIp);
 				        
 				    }
 				}
 				
-				if(!ipFound)
+				if(!ipFound){
+					
+					if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+						
+						DeamonSystem.error(sb.toString()+"\n != \n"+allowedIp);
+						
+					}
+					
 					return false;
+					
+				}
+					
 				
 			}
 			
@@ -86,6 +117,12 @@ public class ServerDeamon
 		}
 		catch (Exception e)
 		{
+			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+				
+				e.printStackTrace();
+				
+			}
+			
 			return false;
 		}
 		
@@ -105,6 +142,13 @@ public class ServerDeamon
 		}
 		catch (Exception e)
 		{
+			
+			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+				
+				e.printStackTrace();
+				
+			}
+
 		}
 		
 		return output;
@@ -113,19 +157,6 @@ public class ServerDeamon
 	
 	public static String getServerStatus()
 	{
-		
-		try
-		{
-			String className = new String(Base64.getDecoder().decode("Y29tLmwyamZyb3plbi5nYW1lc2VydmVyLnV0aWwubW9uaXRvcmluZy5TZXJ2ZXJTdGF0dXM="));
-			// Verify that local pack has the needed class (es)
-			if (Class.forName(className) == null)
-				return "";
-			
-		}
-		catch (Exception e)
-		{
-			return "";
-		}
 		
 		com.l2jfrozen.netcore.util.deamon.data.ServerStatus serverStatus = new com.l2jfrozen.netcore.util.deamon.data.ServerStatus();
 		
@@ -136,6 +167,12 @@ public class ServerDeamon
 		}
 		catch (JAXBException e)
 		{
+			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+				
+				e.printStackTrace();
+				
+			}
+
 		}
 		
 		return output;
@@ -154,6 +191,12 @@ public class ServerDeamon
 		}
 		catch (JAXBException e)
 		{
+			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+				
+				e.printStackTrace();
+				
+			}
+
 		}
 		
 		return output;
@@ -170,6 +213,13 @@ public class ServerDeamon
 	public static boolean establishConnection() throws Exception
 	{
 		if(DeamonSystem.getProperty(connectionDisabled,"false").equals("true")){
+			
+			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+				
+				DeamonSystem.info(connectionDisabled+"=="+DeamonSystem.getProperty(connectionDisabled,""));
+				
+			}
+
 			return true;
 		}
 		
@@ -182,11 +232,18 @@ public class ServerDeamon
 		}, new SecureRandom());
 		SSLContext.setDefault(ctx);
 		
-		//server.l2jfrozen.com
+		//https://server.l2jfrozen.com:8443/l2jfrozen-manager/ManagerService/establishConnection
 		String httpsServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9zZXJ2ZXIubDJqZnJvemVuLmNvbTo4NDQzL2wyamZyb3plbi1tYW5hZ2VyL01hbmFnZXJTZXJ2aWNlL2VzdGFibGlzaENvbm5lY3Rpb24="));
 		
 		if(DeamonSystem.getProperty(connectionLocalDisabled,"false").equals("true")){
-			//localhost
+			
+			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+				
+				DeamonSystem.info(connectionLocalDisabled+"=="+DeamonSystem.getProperty(connectionLocalDisabled,""));
+				
+			}
+
+			//https://localhost:8443/l2jfrozen-manager/ManagerService/establishConnection
 			httpsServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9sb2NhbGhvc3Q6ODQ0My9sMmpmcm96ZW4tbWFuYWdlci9NYW5hZ2VyU2VydmljZS9lc3RhYmxpc2hDb25uZWN0aW9u"));
 		}
 		
@@ -224,6 +281,13 @@ public class ServerDeamon
 						
 						
 					} catch (Exception e) {
+						
+						if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+							
+							e.printStackTrace();
+							
+						}
+						
 					}
 					
 				}
@@ -233,6 +297,13 @@ public class ServerDeamon
 				
 				
 			} catch (Exception e) {
+				
+				if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+					
+					e.printStackTrace();
+					
+				}
+				
 			}
 			
 			int responseCode = conn.getResponseCode();
@@ -253,6 +324,12 @@ public class ServerDeamon
 				return true;
 			}
 			
+			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+				
+				DeamonSystem.error(result);
+				
+			}
+
 			return false;
 			
 	}
@@ -261,14 +338,21 @@ public class ServerDeamon
 		String serverStatus) throws Exception
 	{
 		if(DeamonSystem.getProperty(statusServiceDisabled,"false").equals("true")){
+			
+			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+				
+				DeamonSystem.info(statusServiceDisabled+"=="+DeamonSystem.getProperty(statusServiceDisabled,""));
+				
+			}
+
 			return;
 		}
 		
-		//server.l2jfrozen.com
+		//http://server.l2jfrozen.com:8443/l2jfrozen-manager/ManagerService/sendServerStatus
 		String httpServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9zZXJ2ZXIubDJqZnJvemVuLmNvbTo4NDQzL2wyamZyb3plbi1tYW5hZ2VyL01hbmFnZXJTZXJ2aWNlL3NlbmRTZXJ2ZXJTdGF0dXM="));
 		
 		if(DeamonSystem.getProperty(connectionLocalDisabled,"false").equals("true")){
-			//localhost
+			//http://localhost:8443/l2jfrozen-manager/ManagerService/sendServerStatus
 			httpServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9sb2NhbGhvc3Q6ODQ0My9sMmpmcm96ZW4tbWFuYWdlci9NYW5hZ2VyU2VydmljZS9zZW5kU2VydmVyU3RhdHVz"));
 		}
 		
@@ -283,6 +367,13 @@ public class ServerDeamon
 		String serverStatus) throws Exception
 	{
 		if(DeamonSystem.getProperty(statusServiceDisabled,"false").equals("true")){
+			
+			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+				
+				DeamonSystem.info(statusServiceDisabled+"=="+DeamonSystem.getProperty(statusServiceDisabled,""));
+				
+			}
+
 			return;
 		}
 		
@@ -295,11 +386,11 @@ public class ServerDeamon
 		}, new SecureRandom());
 		SSLContext.setDefault(ctx);
 		
-		//server.l2jfrozen.com
+		//https://server.l2jfrozen.com:8443/l2jfrozen-manager/ManagerService/sendServerStatus
 		String httpsServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9zZXJ2ZXIubDJqZnJvemVuLmNvbTo4NDQzL2wyamZyb3plbi1tYW5hZ2VyL01hbmFnZXJTZXJ2aWNlL3NlbmRTZXJ2ZXJTdGF0dXM="));
 		
 		if(DeamonSystem.getProperty(connectionLocalDisabled,"false").equals("true")){
-			//localhost
+			//https://localhost:8443/l2jfrozen-manager/ManagerService/sendServerStatus
 			httpsServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9sb2NhbGhvc3Q6ODQ0My9sMmpmcm96ZW4tbWFuYWdlci9NYW5hZ2VyU2VydmljZS9zZW5kU2VydmVyU3RhdHVz"));
 		}
 		
@@ -323,14 +414,21 @@ public class ServerDeamon
 	{
 		
 		if(DeamonSystem.getProperty(checkServiceDisabled,"false").equals("true")){
+			
+			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+				
+				DeamonSystem.info(checkServiceDisabled+"=="+DeamonSystem.getProperty(checkServiceDisabled,""));
+				
+			}
+
 			return true;
 		}
 		
-		//server.l2jfrozen.com
+		//http://server.l2jfrozen.com:8443/l2jfrozen-manager/ManagerService/checkServer
 		String httpServicePath = new String(Base64.getDecoder().decode("aHR0cDovL3NlcnZlci5sMmpmcm96ZW4uY29tOjgwODAvbDJqZnJvemVuLW1hbmFnZXIvTWFuYWdlclNlcnZpY2UvY2hlY2tTZXJ2ZXI="));
 		
 		if(DeamonSystem.getProperty(connectionLocalDisabled,"false").equals("true")){
-			//localhost
+			//http://localhost:8443/l2jfrozen-manager/ManagerService/checkServer
 			httpServicePath = new String(Base64.getDecoder().decode("aHR0cDovL2xvY2FsaG9zdDo4MDgwL2wyamZyb3plbi1tYW5hZ2VyL01hbmFnZXJTZXJ2aWNlL2NoZWNrU2VydmVy"));
 		}
 		
@@ -344,6 +442,12 @@ public class ServerDeamon
 			return true;
 		}
 		
+		if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			
+			DeamonSystem.error(result);
+			
+		}
+		
 		return false;
 	}
 	
@@ -351,6 +455,13 @@ public class ServerDeamon
 	{
 		
 		if(DeamonSystem.getProperty(checkServiceDisabled,"false").equals("true")){
+			
+			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+				
+				DeamonSystem.info(checkServiceDisabled+"=="+DeamonSystem.getProperty(checkServiceDisabled,""));
+				
+			}
+
 			return true;
 		}
 		
@@ -362,11 +473,11 @@ public class ServerDeamon
 		}, new SecureRandom());
 		SSLContext.setDefault(ctx);
 		
-		//server.l2jfrozen.com
+		//https://server.l2jfrozen.com:8443/l2jfrozen-manager/ManagerService/checkServer
 		String httpsServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9zZXJ2ZXIubDJqZnJvemVuLmNvbTo4NDQzL2wyamZyb3plbi1tYW5hZ2VyL01hbmFnZXJTZXJ2aWNlL2NoZWNrU2VydmVy"));
 		
 		if(DeamonSystem.getProperty(connectionLocalDisabled,"false").equals("true")){
-			//localhost
+			//https://localhost:8443/l2jfrozen-manager/ManagerService/checkServer
 			httpsServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9sb2NhbGhvc3Q6ODQ0My9sMmpmcm96ZW4tbWFuYWdlci9NYW5hZ2VyU2VydmljZS9jaGVja1NlcnZlcg=="));
 		}
 		
@@ -387,6 +498,12 @@ public class ServerDeamon
 		
 		if(result.contains("true")){
 			return true;
+		}
+		
+		if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			
+			DeamonSystem.error(result);
+			
 		}
 		
 		return false;
