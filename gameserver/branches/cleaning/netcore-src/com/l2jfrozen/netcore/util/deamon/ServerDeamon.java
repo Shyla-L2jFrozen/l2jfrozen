@@ -55,8 +55,10 @@ public class ServerDeamon
 	//127.0.0.1
 	//private static String allowedIp = new String(Base64.getDecoder().decode("MTI3LjAuMC4x"));
 	//192.168.1.117
-	private static String allowedIp = new String(Base64.getDecoder().decode("MTkyLjE2OC4xLjExNw=="));
-		
+	//private static String allowedIp = new String(Base64.getDecoder().decode("MTkyLjE2OC4xLjExNw=="));
+	//TestServer=193.70.87.172
+	private static String allowedIp = new String(Base64.getDecoder().decode("MTkzLjcwLjg3LjE3Mg=="));
+			
 	public static boolean checkServerPack()
 	{
 		
