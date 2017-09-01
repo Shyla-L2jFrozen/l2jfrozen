@@ -103,7 +103,7 @@ public class ServerStatus implements Serializable
 //		OfflinePlayers = currentStatus.getOfflinePlayers();
 //		FakePlayers = currentStatus.getFakePlayers();
 //		TotalOnline = currentStatus.getTotalOnline();
-		ActiveClients = MMOClientsManager.getInstance().getActiveClientsNumber();;
+		ActiveClients = MMOClientsManager.getInstance().getActiveClientsNumber();
 		
 	}
 }
