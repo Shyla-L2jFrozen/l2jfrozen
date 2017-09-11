@@ -10,7 +10,6 @@
 	<property file="build.properties" />
 	<property name="game-src" location="game-src" />
 	<property name="login-src" location="login-src" />
-	<!-- property name="netcore-src" location="netcore-src" / -->
 	<property name="common-src" location="${basedir}/common-src" />
 	<property name="build" location="${basedir}/target" />
 	<property name="build.classes" location="${build}/classes" />
@@ -52,7 +51,7 @@
 			<include name="xmlpull*.jar" />
 			<include name="xpp3*.jar" />
 			<include name="xstream*.jar" />
-			<include name="local/l2jfrozen-*.jar" />
+			<include name="l2jfrozen-*.jar" />
 		</fileset>
 	</path>
 
@@ -141,7 +140,7 @@
 				<include name="xmlpull*.jar" />
 				<include name="xpp3*.jar" />
 				<include name="xstream*.jar" />
-				<include name="local/l2jfrozen-*.jar" />
+				<include name="l2jfrozen-*.jar" />
 			</fileset>
 		</copy>
 
