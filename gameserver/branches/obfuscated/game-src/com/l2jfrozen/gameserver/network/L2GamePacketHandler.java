@@ -100,8 +100,8 @@ e<L2GameClient>
 			
 			// Before Anything, check if character is Monitored or has Block on received Packet
 			if (y.a().c(character)) {
-				y.a();
-				y.d(character, packet);
+				y.a().d(character, packet);
+				
 			}
 			
 		}

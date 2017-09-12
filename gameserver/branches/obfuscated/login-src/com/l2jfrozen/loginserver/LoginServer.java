@@ -117,11 +117,12 @@ public final class LoginServer
 			}
 		}
 		
-		q arg1;
-		(arg1 = new q()).c(k.a().d);
+		q arg1 = new q();
+		arg1.c(k.a().d);
 		arg1.b(k.a().c);
 		arg1.d(k.a().b);
 		arg1.a(k.a().e);
+			
 		
 		final L2LoginPacketHandler lph = new L2LoginPacketHandler();
 		final SelectorHelper sh = new SelectorHelper();

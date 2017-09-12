@@ -97,7 +97,7 @@ public class GameServerThread extends Thread
 					break;
 				}
 				
-				final byte[] data = new byte[length - 2];
+				byte[] data = new byte[length - 2];
 				
 				int receivedBytes = 0;
 				int newBytes = 0;
@@ -117,7 +117,7 @@ public class GameServerThread extends Thread
 				
 				// decrypt if we have a key
 				_blowfish.c(data, 0, data.length);
-				checksumOk = P.a(data, 0, data.length);
+				checksumOk = P.a(data);
 				if (!checksumOk)
 				{
 					_log.warning("Incorrect packet checksum, closing connection (LS)");
@@ -232,8 +232,8 @@ public class GameServerThread extends Thread
 	{
 		try
 		{
-			final byte[] data = sl.getContent();
-			P.b(data,0,data.length);
+			byte[] data = sl.getContent();
+			P.b(data);
 			if (CommonConfig.DEBUG)
 			{
 				_log.finest("[S] " + sl.getClass().getSimpleName() + ":" + System.lineSeparator() + Util.printData(data));
