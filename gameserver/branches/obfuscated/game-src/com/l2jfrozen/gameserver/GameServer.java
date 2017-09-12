@@ -622,15 +622,16 @@ public class GameServer
 		_loginThread = LoginServerThread.getInstance();
 		_loginThread.start();
 		
-		q arg13;
-		(arg13 = new q()).c(k.a().d);
+		q arg13 = new q();
+		arg13.c(k.a().d);
 		arg13.b(k.a().c);
 		arg13.d(k.a().b);
 		arg13.a(k.a().e);
+			
 		_gamePacketHandler = new L2GamePacketHandler();
-		r arg14 = new r(arg13, _gamePacketHandler,
-				_gamePacketHandler,
-				_gamePacketHandler, new u());
+		r arg14 = new r(arg13, _gamePacketHandler, _gamePacketHandler, _gamePacketHandler,
+											new u());
+						
 		
 		InetAddress bindAddress = null;
 		if (!Config.GAMESERVER_HOSTNAME.equals("*"))

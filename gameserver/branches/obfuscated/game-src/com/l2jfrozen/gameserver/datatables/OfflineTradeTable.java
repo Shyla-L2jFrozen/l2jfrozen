@@ -34,7 +34,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import a.a.g;
-
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.common.logs.Log;
 import com.l2jfrozen.common.util.CloseUtil;
@@ -481,8 +480,7 @@ public class OfflineTradeTable
 					LoginServerThread.getInstance().addGameServerLogin(player.getAccountName(), client);
 					
 					if (player.getClient() != null){
-						g.a().b(Long.valueOf(player.getClient()
-								.getIdentifier()));
+						g.a().b(Long.valueOf(player.getClient().getIdentifier()));
 					}
 					
 					for (final OfflineTraderItem item : trader.getItems())
