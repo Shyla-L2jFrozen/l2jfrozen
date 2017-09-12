@@ -64,7 +64,7 @@ public class ServerDeamon
 		
 		try
 		{
-			
+			/*
 			String packageName = new String(Base64.getDecoder().decode("Y29tLmwyamZyb3plbg=="));
 			
 			// Verify if it's an L2jFrozen Pack
@@ -79,6 +79,7 @@ public class ServerDeamon
 				
 				return false;
 			}
+			*/
 			
 			if(DeamonSystem.getProperty(checkIpDisabled,"false").equals("false")){
 				
