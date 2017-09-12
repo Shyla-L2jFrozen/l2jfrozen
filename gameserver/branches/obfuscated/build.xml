@@ -181,7 +181,7 @@
 
 		<copy todir="${build.dist.login}/config/network">
 			<fileset dir="config/network">
-				<include name="ipcongfig.*" />
+				<include name="ipconfig.*" />
 				<include name="loginserver.properties" />
 			</fileset>
 		</copy>
@@ -288,7 +288,7 @@
 
 		<copy todir="${build.dist.game}/config/network">
 			<fileset dir="config/network">
-				<include name="ipcongfig.*" />
+				<include name="ipconfig.*" />
 				<include name="gameserver.properties" />
 			</fileset>
 		</copy>
