@@ -59,6 +59,8 @@ public class ServerConfigStatus implements Serializable
 	@XmlElement
 	private String GameServerL2NetworkLink;
 	
+	private Properties settings = new Properties();
+	
 	public ServerConfigStatus()
 	{
 		refreshStatus();
@@ -117,9 +119,8 @@ public class ServerConfigStatus implements Serializable
 		return serialVersionUID;
 	}
 	
-	public void refreshStatus()
-	{
-		final Properties settings = new Properties();
+	private void reloadSettings(){
+		
 		InputStream is = null;
 		
 		try
@@ -165,6 +166,12 @@ public class ServerConfigStatus implements Serializable
 		{
 			
 		}
+		
+	}
+	
+	public void refreshStatus()
+	{
+		reloadSettings();
 		
 		ServerName = settings.getProperty("ServerName", "");
 		GameServerIp = settings.getProperty("ExternalHostname", "*");
