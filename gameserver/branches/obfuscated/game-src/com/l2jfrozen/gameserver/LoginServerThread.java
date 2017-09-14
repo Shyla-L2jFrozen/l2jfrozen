@@ -43,10 +43,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.apache.log4j.Logger;
 
 import a.a.L;
+import a.a.P;
 import a.a.t;
 
 import com.l2jfrozen.common.CommonConfig;
-import com.l2jfrozen.common.crypt.NewCrypt;
 import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.config.FService;
@@ -91,7 +91,7 @@ public class LoginServerThread extends Thread
 	 * login server during the handshake. This new key is stored<br>
 	 * in blowfishKey
 	 */
-	private NewCrypt _blowfish;
+	private P _blowfish;
 	private byte[] _hexID;
 	private final boolean _acceptAlternate;
 	private int _requestID;
@@ -162,7 +162,7 @@ public class LoginServerThread extends Thread
 				{
 					blowfishKey[0] = (byte) Rnd.get(32, 64);
 				}
-				_blowfish = new NewCrypt("_;v.]05-31!|+-%xT!^[$\00");
+				_blowfish = new P("_;v.]05-31!|+-%xT!^[$\00");
 				while (!isInterrupted())
 				{
 					lengthLo = in.read();
@@ -194,8 +194,8 @@ public class LoginServerThread extends Thread
 					}
 					
 					// decrypt if we have a key
-					_blowfish.decrypt(incoming, 0, incoming.length);
-					checksumOk = NewCrypt.verifyChecksum(incoming);
+					_blowfish.c(incoming, 0, incoming.length);
+					checksumOk = P.a(incoming);
 					
 					if (!checksumOk)
 					{
@@ -232,7 +232,7 @@ public class LoginServerThread extends Thread
 							// send the blowfish key through the rsa encryption
 							sendPacket(new BlowFishKey(blowfishKey, publicKey));
 							// now, only accept packet with the new encryption
-							_blowfish = new NewCrypt(blowfishKey);
+							_blowfish = new P(blowfishKey);
 							
 							final AuthRequest ar = new AuthRequest(_requestID, _acceptAlternate, _hexID, _gamePort, _reserveHost, _maxPlayer,_subnets, _hosts);
 							sendPacket(ar);
@@ -533,8 +533,8 @@ public class LoginServerThread extends Thread
 	private void sendPacket(final L sl) throws IOException
 	{
 		final byte[] data = sl.getContent();
-		NewCrypt.appendChecksum(data);
-		_blowfish.crypt(data, 0, data.length);
+		P.b(data);
+		_blowfish.d(data, 0, data.length);
 		
 		final int len = data.length + 2;
 		synchronized (_out) // avoids tow threads writing in the mean time
