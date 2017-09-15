@@ -25,10 +25,10 @@ import java.util.logging.Logger;
 import javax.crypto.Cipher;
 
 import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.crypt.NewCrypt;
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.network.GameServerState;
 import a.a.K;
-import a.a.P;
 
 /**
  * @author -Wooden-
@@ -65,7 +65,7 @@ public class BlowFishKey extends K
 			final byte[] key = new byte[len - i];
 			System.arraycopy(tempDecryptKey, i, key, 0, len - i);
 			
-			server.SetBlowFish(new P(key));
+			server.SetBlowFish(new NewCrypt(key));
 			if (CommonConfig.DEBUG)
 			{
 				_log.info("New BlowFish key received, Blowfih Engine initialized:");
