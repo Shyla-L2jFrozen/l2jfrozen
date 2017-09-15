@@ -27,6 +27,8 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.crypt.LoginCrypt;
+import com.l2jfrozen.common.crypt.ScrambledKeyPair;
 import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.network.serverpackets.L2LoginServerPacket;
@@ -35,8 +37,6 @@ import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.loginserver.network.serverpackets.PlayFail;
 import com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason;
 
-import a.a.O;
-import a.a.Q;
 import a.a.f;
 import a.a.j;
 import a.a.s;
@@ -53,8 +53,8 @@ public final class L2LoginClient extends f<j<L2LoginClient>>
 	private LoginClientState _state;
 	
 	// Crypt
-	private final O _loginCrypt;
-	private final Q _scrambledPair;
+	private final LoginCrypt _loginCrypt;
+	private final ScrambledKeyPair _scrambledPair;
 	private final byte[] _blowfishKey;
 	
 	private String _account;
@@ -79,8 +79,8 @@ public final class L2LoginClient extends f<j<L2LoginClient>>
 		_blowfishKey = LoginController.getInstance().getBlowfishKey();
 		_sessionId = Rnd.nextInt();
 		_connectionStartTime = System.currentTimeMillis();
-		_loginCrypt = new O();
-		_loginCrypt.a(_blowfishKey);
+		_loginCrypt = new LoginCrypt();
+		_loginCrypt.setKey(_blowfishKey);
 	}
 	
 	@Override
@@ -89,7 +89,7 @@ public final class L2LoginClient extends f<j<L2LoginClient>>
 		boolean isChecksumValid = false;
 		try
 		{
-			isChecksumValid = _loginCrypt.a(buf.array(), buf.position(), size);
+			isChecksumValid = _loginCrypt.decrypt(buf.array(), buf.position(), size);
 			if (!isChecksumValid)
 			{
 				_log.warning("Wrong checksum from client: " + toString());
@@ -112,7 +112,7 @@ public final class L2LoginClient extends f<j<L2LoginClient>>
 		final int offset = buf.position();
 		try
 		{
-			size = _loginCrypt.b(buf.array(), offset, size);
+			size = _loginCrypt.encrypt(buf.array(), offset, size);
 		}
 		catch (final Exception e)
 		{
@@ -140,12 +140,12 @@ public final class L2LoginClient extends f<j<L2LoginClient>>
 	
 	public byte[] getScrambledModulus()
 	{
-		return _scrambledPair.b;
+		return _scrambledPair._scrambledModulus;
 	}
 	
 	public RSAPrivateKey getRSAPrivateKey()
 	{
-		return (RSAPrivateKey) _scrambledPair.a.getPrivate();
+		return (RSAPrivateKey) _scrambledPair._pair.getPrivate();
 	}
 	
 	public String getAccount()
