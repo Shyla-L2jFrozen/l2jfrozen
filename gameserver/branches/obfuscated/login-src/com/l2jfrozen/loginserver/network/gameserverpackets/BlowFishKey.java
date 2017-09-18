@@ -26,14 +26,14 @@ import javax.crypto.Cipher;
 
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.common.crypt.NewCrypt;
+import com.l2jfrozen.common.network.BaseRecievePacket;
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.network.GameServerState;
-import a.a.K;
 
 /**
  * @author -Wooden-
  */
-public class BlowFishKey extends K
+public class BlowFishKey extends BaseRecievePacket
 {
 	protected static final Logger _log = Logger.getLogger(BlowFishKey.class.getName());
 	

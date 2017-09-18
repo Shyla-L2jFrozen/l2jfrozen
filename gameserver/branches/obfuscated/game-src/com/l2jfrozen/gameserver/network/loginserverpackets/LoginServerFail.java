@@ -18,9 +18,9 @@
  */
 package com.l2jfrozen.gameserver.network.loginserverpackets;
 
-import a.a.K;
+import com.l2jfrozen.common.network.BaseRecievePacket;
 
-public class LoginServerFail extends K 
+public class LoginServerFail extends BaseRecievePacket 
 {
 	
 	private static final String[] REASONS =

@@ -18,12 +18,12 @@
  */
 package com.l2jfrozen.loginserver.network.loginserverpackets;
 
-import a.a.L;
+import com.l2jfrozen.common.network.BaseSendablePacket;
 
 /**
  * @author -Wooden-
  */
-public class PlayerAuthResponse extends L
+public class PlayerAuthResponse extends BaseSendablePacket
 {
 	public PlayerAuthResponse(final String account, final boolean response)
 	{

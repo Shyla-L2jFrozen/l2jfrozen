@@ -18,13 +18,14 @@
  */
 package com.l2jfrozen.gameserver.network.gameserverpackets;
 
-import a.a.L;
+import com.l2jfrozen.common.network.BaseSendablePacket;
+
 import a.a.t;
 
 /**
  * @author -Wooden-
  */
-public class PlayerAuthRequest extends L
+public class PlayerAuthRequest extends BaseSendablePacket
 {
 	public PlayerAuthRequest(final String account, final t key)
 	{

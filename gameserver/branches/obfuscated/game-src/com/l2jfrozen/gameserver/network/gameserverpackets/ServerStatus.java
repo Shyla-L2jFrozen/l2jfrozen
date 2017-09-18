@@ -20,12 +20,12 @@ package com.l2jfrozen.gameserver.network.gameserverpackets;
 
 import java.util.ArrayList;
 
-import a.a.L;
+import com.l2jfrozen.common.network.BaseSendablePacket;
 
 /**
  * @author -Wooden-
  */
-public class ServerStatus extends L
+public class ServerStatus extends BaseSendablePacket
 {
 	private final ArrayList<Attribute> _attributes;
 	

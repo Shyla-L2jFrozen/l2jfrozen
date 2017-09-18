@@ -20,14 +20,14 @@ package com.l2jfrozen.loginserver.network.gameserverpackets;
 
 import java.util.logging.Logger;
 
+import com.l2jfrozen.common.network.BaseRecievePacket;
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.LoginController;
-import a.a.K;
 
 /**
  * @author -Wooden-
  */
-public class ChangeAccessLevel extends K
+public class ChangeAccessLevel extends BaseRecievePacket
 {
 	protected static Logger _log = Logger.getLogger(ChangeAccessLevel.class.getName());
 	

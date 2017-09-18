@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="common-src"/>
-	<classpathentry kind="src" path="game-src"/>
 	<classpathentry kind="src" path="login-src"/>
+	<classpathentry kind="src" path="game-src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<accessrules>
 			<accessrule kind="accessible" pattern="com/sun/net/httpserver/**"/>
@@ -21,6 +21,6 @@
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.15.jar"/>
 	<classpathentry kind="lib" path="lib/bsh-engine-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jython-engine-2.2.1.jar"/>
-	<classpathentry kind="lib" path="lib/l2jfrozen-netcore-0.0.4-TestServer-SNAPSHOT-obf.jar"/>
+	<classpathentry kind="lib" path="lib/l2jfrozen-netcore-0.0.5-SNAPSHOT-obf.jar"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>

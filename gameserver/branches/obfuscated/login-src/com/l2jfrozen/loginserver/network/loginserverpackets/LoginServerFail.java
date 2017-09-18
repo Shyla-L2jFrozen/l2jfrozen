@@ -18,12 +18,12 @@
  */
 package com.l2jfrozen.loginserver.network.loginserverpackets;
 
-import a.a.L;
+import com.l2jfrozen.common.network.BaseSendablePacket;
 
 /**
  * @author -Wooden-
  */
-public class LoginServerFail extends L
+public class LoginServerFail extends BaseSendablePacket
 {
 	
 	/**

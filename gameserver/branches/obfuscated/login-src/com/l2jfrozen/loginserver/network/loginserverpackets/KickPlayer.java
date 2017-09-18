@@ -18,12 +18,12 @@
  */
 package com.l2jfrozen.loginserver.network.loginserverpackets;
 
-import a.a.L;
+import com.l2jfrozen.common.network.BaseSendablePacket;
 
 /**
  * @author -Wooden-
  */
-public class KickPlayer extends L
+public class KickPlayer extends BaseSendablePacket
 {
 	public KickPlayer(final String account)
 	{

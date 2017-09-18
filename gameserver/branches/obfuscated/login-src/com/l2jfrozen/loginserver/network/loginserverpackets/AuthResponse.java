@@ -18,13 +18,13 @@
  */
 package com.l2jfrozen.loginserver.network.loginserverpackets;
 
+import com.l2jfrozen.common.network.BaseSendablePacket;
 import com.l2jfrozen.loginserver.GameServerTable;
-import a.a.L;
 
 /**
  * @author -Wooden-
  */
-public class AuthResponse extends L
+public class AuthResponse extends BaseSendablePacket
 {
 	/**
 	 * @param serverId
