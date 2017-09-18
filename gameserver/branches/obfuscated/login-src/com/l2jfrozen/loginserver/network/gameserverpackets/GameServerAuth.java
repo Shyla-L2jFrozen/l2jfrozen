@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.logging.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.network.BaseRecievePacket;
 import com.l2jfrozen.loginserver.GameServerInfo;
 import com.l2jfrozen.loginserver.GameServerTable;
 import com.l2jfrozen.loginserver.GameServerThread;
@@ -29,7 +30,6 @@ import com.l2jfrozen.loginserver.LoginConfig;
 import com.l2jfrozen.loginserver.network.GameServerState;
 import com.l2jfrozen.loginserver.network.loginserverpackets.AuthResponse;
 import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
-import a.a.K;
 
 /**
  * <pre>
@@ -45,7 +45,7 @@ import a.a.K;
  * </pre>
  * @author -Wooden-
  */
-public class GameServerAuth extends K
+public class GameServerAuth extends BaseRecievePacket
 {
 	protected static Logger _log = Logger.getLogger(GameServerAuth.class.getName());
 	private GameServerThread _server;

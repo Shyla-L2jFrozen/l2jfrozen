@@ -42,11 +42,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.log4j.Logger;
 
-import a.a.L;
 import a.a.t;
 
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.common.crypt.NewCrypt;
+import com.l2jfrozen.common.network.BaseSendablePacket;
 import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.config.FService;
@@ -530,7 +530,7 @@ public class LoginServerThread extends Thread
 	 * @param sl the sendable packet
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	private void sendPacket(final L sl) throws IOException
+	private void sendPacket(final BaseSendablePacket sl) throws IOException
 	{
 		final byte[] data = sl.getContent();
 		NewCrypt.appendChecksum(data);

@@ -20,7 +20,7 @@ package com.l2jfrozen.loginserver.network;
 
 import java.util.logging.Logger;
 
-import a.a.K;
+import com.l2jfrozen.common.network.BaseRecievePacket;
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.network.gameserverpackets.BlowFishKey;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ChangeAccessLevel;
@@ -39,9 +39,9 @@ public class L2JGameServerPacketHandler
 {
 	protected static Logger _log = Logger.getLogger(L2JGameServerPacketHandler.class.getName());
 	
-	public static K handlePacket(final byte[] data, final GameServerThread server)
+	public static BaseRecievePacket handlePacket(final byte[] data, final GameServerThread server)
 	{
-		K msg = null;
+		BaseRecievePacket msg = null;
 		final int opcode = data[0] & 0xff;
 		final GameServerState state = server.getLoginConnectionState();
 		switch (state)

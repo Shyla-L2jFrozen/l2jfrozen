@@ -32,13 +32,13 @@ import java.util.logging.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.common.crypt.NewCrypt;
+import com.l2jfrozen.common.network.BaseSendablePacket;
 import com.l2jfrozen.common.util.Util;
 import com.l2jfrozen.loginserver.network.GameServerState;
 import com.l2jfrozen.loginserver.network.L2JGameServerPacketHandler;
 import com.l2jfrozen.loginserver.network.loginserverpackets.InitLS;
 import com.l2jfrozen.loginserver.network.loginserverpackets.KickPlayer;
 import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
-import a.a.L;
 
 /**
  * @author -Wooden-
@@ -228,7 +228,7 @@ public class GameServerThread extends Thread
 	/**
 	 * @param sl
 	 */
-	public void sendPacket(final L sl)
+	public void sendPacket(final BaseSendablePacket sl)
 	{
 		try
 		{
