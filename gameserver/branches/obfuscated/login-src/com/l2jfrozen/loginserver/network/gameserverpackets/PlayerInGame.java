@@ -21,14 +21,14 @@ package com.l2jfrozen.loginserver.network.gameserverpackets;
 import java.util.logging.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.network.BaseRecievePacket;
 import com.l2jfrozen.loginserver.GameServerTable;
 import com.l2jfrozen.loginserver.GameServerThread;
-import a.a.K;
 
 /**
  * @author -Wooden-
  */
-public class PlayerInGame extends K
+public class PlayerInGame extends BaseRecievePacket
 {
 	private static Logger _log = Logger.getLogger(PlayerInGame.class.getName());
 	

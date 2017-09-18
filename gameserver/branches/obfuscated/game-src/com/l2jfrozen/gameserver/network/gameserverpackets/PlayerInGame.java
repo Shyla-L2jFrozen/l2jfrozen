@@ -20,12 +20,13 @@ package com.l2jfrozen.gameserver.network.gameserverpackets;
 
 import java.util.List;
 
-import a.a.L;
+import com.l2jfrozen.common.network.BaseSendablePacket;
+
 
 /**
  * @author -Wooden-
  */
-public class PlayerInGame extends L
+public class PlayerInGame extends BaseSendablePacket
 {
 	public PlayerInGame(final String player)
 	{

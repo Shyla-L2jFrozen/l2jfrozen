@@ -24,12 +24,12 @@ import javax.crypto.Cipher;
 
 import org.apache.log4j.Logger;
 
-import a.a.L;
+import com.l2jfrozen.common.network.BaseSendablePacket;
 
 /**
  * @author -Wooden-
  */
-public class BlowFishKey extends L
+public class BlowFishKey extends BaseSendablePacket
 {
 	private static final Logger LOGGER = Logger.getLogger(BlowFishKey.class);
 	

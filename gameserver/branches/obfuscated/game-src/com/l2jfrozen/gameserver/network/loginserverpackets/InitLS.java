@@ -18,9 +18,9 @@
  */
 package com.l2jfrozen.gameserver.network.loginserverpackets;
 
-import a.a.K;
+import com.l2jfrozen.common.network.BaseRecievePacket;
 
-public class InitLS extends K 
+public class InitLS extends BaseRecievePacket 
 {
 	private final int _rev;
 	private final byte[] _key;
