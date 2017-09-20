@@ -43,7 +43,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
-import com.l2jfrozen.common.crypt.NewCrypt;
 import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.config.FService;
@@ -54,15 +53,12 @@ import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.gameserver.network.gameserverpackets.AuthRequest;
 import com.l2jfrozen.gameserver.network.gameserverpackets.BlowFishKey;
 import com.l2jfrozen.gameserver.network.gameserverpackets.ChangeAccessLevel;
-//import com.l2jfrozen.gameserver.network.gameserverpackets.ChangePassword;
 import com.l2jfrozen.gameserver.network.gameserverpackets.PlayerAuthRequest;
 import com.l2jfrozen.gameserver.network.gameserverpackets.PlayerInGame;
 import com.l2jfrozen.gameserver.network.gameserverpackets.PlayerLogout;
 import com.l2jfrozen.gameserver.network.gameserverpackets.PlayerTracert;
-//import com.l2jfrozen.gameserver.network.gameserverpackets.ReplyCharacters;
 import com.l2jfrozen.gameserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.gameserver.network.loginserverpackets.AuthResponse;
-//import com.l2jfrozen.gameserver.network.loginserverpackets.ChangePasswordResponse;
 import com.l2jfrozen.gameserver.network.loginserverpackets.InitLS;
 import com.l2jfrozen.gameserver.network.loginserverpackets.KickPlayer;
 import com.l2jfrozen.gameserver.network.loginserverpackets.LoginServerFail;
@@ -70,6 +66,7 @@ import com.l2jfrozen.gameserver.network.loginserverpackets.PlayerAuthResponse;
 import com.l2jfrozen.gameserver.network.serverpackets.AuthLoginFail;
 import com.l2jfrozen.gameserver.network.serverpackets.CharSelectInfo;
 import com.l2jfrozen.netcore.SessionKey;
+import com.l2jfrozen.netcore.util.crypt.NewCrypt;
 import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
 
 public class LoginServerThread extends Thread
@@ -105,8 +102,6 @@ public class LoginServerThread extends Thread
 	private String _serverName;
 	private final List<String> _subnets;
 	private final List<String> _hosts;
-//	private final String _gameExternalHost;
-//	private final String _gameInternalHost;
 	
 	
 	/**
@@ -135,8 +130,6 @@ public class LoginServerThread extends Thread
 		_waitingClients = new CopyOnWriteArrayList<>();
 		_maxPlayer = Config.MAXIMUM_ONLINE_USERS;
 		
-//		_gameExternalHost = Config.EXTERNAL_HOSTNAME;
-//		_gameInternalHost = Config.INTERNAL_HOSTNAME;
 		
 	}
 	
@@ -331,13 +324,7 @@ public class LoginServerThread extends Thread
 							final KickPlayer kp = new KickPlayer(incoming);
 							doKickPlayer(kp.getAccount());
 							break;
-						// case 0x05:
-						// RequestCharacters rc = new RequestCharacters(incoming);
-						// getCharsOnServer(rc.getAccount());
-						// break;
-						// case 0x06:
-						// new ChangePasswordResponse(incoming);
-						// break;
+						
 					}
 				}
 			}
@@ -607,24 +594,6 @@ public class LoginServerThread extends Thread
 		}
 	}
 	
-	// /**
-	// * Send change password.
-	// * @param accountName the account name
-	// * @param charName the char name
-	// * @param oldpass the old pass
-	// * @param newpass the new pass
-	// */
-	// public void sendChangePassword(String accountName, String charName, String oldpass, String newpass)
-	// {
-	// ChangePassword cp = new ChangePassword(accountName, charName, oldpass, newpass);
-	// try
-	// {
-	// sendPacket(cp);
-	// }
-	// catch (IOException e)
-	// {
-	// }
-	// }
 	
 	/**
 	 * Gets the status string.
