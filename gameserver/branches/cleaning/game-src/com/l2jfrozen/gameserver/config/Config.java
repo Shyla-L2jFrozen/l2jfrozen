@@ -38,7 +38,6 @@ import java.util.Random;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
-import com.l2jfrozen.common.FloodProtectorConfig;
 import com.l2jfrozen.common.L2Properties;
 import com.l2jfrozen.common.ServerType;
 import com.l2jfrozen.common.util.StringUtil;
