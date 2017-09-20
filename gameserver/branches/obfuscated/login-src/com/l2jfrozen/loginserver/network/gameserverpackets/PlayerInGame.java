@@ -21,9 +21,9 @@ package com.l2jfrozen.loginserver.network.gameserverpackets;
 import java.util.logging.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
-import com.l2jfrozen.common.network.BaseRecievePacket;
 import com.l2jfrozen.loginserver.GameServerTable;
 import com.l2jfrozen.loginserver.GameServerThread;
+import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
 
 /**
  * @author -Wooden-

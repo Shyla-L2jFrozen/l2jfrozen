@@ -33,7 +33,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import a.a.g;
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.common.logs.Log;
 import com.l2jfrozen.common.util.CloseUtil;
@@ -48,6 +47,7 @@ import com.l2jfrozen.gameserver.model.TradeList.TradeItem;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.GameClientState;
 import com.l2jfrozen.gameserver.network.L2GameClient;
+import com.l2jfrozen.netcore.MMOClientsManager;
 
 public class OfflineTradeTable
 {
@@ -479,9 +479,8 @@ public class OfflineTradeTable
 					player.spawnMe(player.getX(), player.getY(), player.getZ());
 					LoginServerThread.getInstance().addGameServerLogin(player.getAccountName(), client);
 					
-					if (player.getClient() != null){
-						g.a().b(Long.valueOf(player.getClient().getIdentifier()));
-					}
+					if (player.getClient() != null)
+						MMOClientsManager.getInstance().removeClient(player.getClient().getIdentifier());
 					
 					for (final OfflineTraderItem item : trader.getItems())
 					{

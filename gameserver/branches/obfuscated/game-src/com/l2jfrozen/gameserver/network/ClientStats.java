@@ -18,7 +18,7 @@
  */
 package com.l2jfrozen.gameserver.network;
 
-import a.a.k;
+import com.l2jfrozen.netcore.NetcoreConfig;
 
 public class ClientStats
 {
@@ -55,7 +55,7 @@ public class ClientStats
 	
 	public ClientStats()
 	{
-		BUFFER_SIZE = k.a().l;
+		BUFFER_SIZE = NetcoreConfig.getInstance().CLIENT_PACKET_QUEUE_MEASURE_INTERVAL;
 		_packetsInSecond = new int[BUFFER_SIZE];
 		_head = BUFFER_SIZE - 1;
 	}
@@ -110,7 +110,7 @@ public class ClientStats
 		}
 		
 		_unknownPacketsInMin++;
-		return _unknownPacketsInMin > k.a().q;
+		return _unknownPacketsInMin > NetcoreConfig.getInstance().CLIENT_PACKET_QUEUE_MAX_UNKNOWN_PER_MIN;
 	}
 	
 	/**
@@ -124,7 +124,7 @@ public class ClientStats
 			maxBurstSize = count;
 		}
 		
-		if (count < k.a().j)
+		if (count < NetcoreConfig.getInstance().CLIENT_PACKET_QUEUE_MAX_BURST_SIZE)
 		{
 			return false;
 		}
@@ -150,7 +150,7 @@ public class ClientStats
 		}
 		
 		_overflowsInMin++;
-		return _overflowsInMin > k.a().o;
+		return _overflowsInMin > NetcoreConfig.getInstance().CLIENT_PACKET_QUEUE_MAX_OVERFLOWS_PER_MIN;
 	}
 	
 	/**
@@ -169,7 +169,7 @@ public class ClientStats
 		}
 		
 		_underflowReadsInMin++;
-		return _underflowReadsInMin > k.a().p;
+		return _underflowReadsInMin > NetcoreConfig.getInstance().CLIENT_PACKET_QUEUE_MAX_UNDERFLOWS_PER_MIN;
 	}
 	
 	/**
@@ -177,12 +177,12 @@ public class ClientStats
 	 */
 	protected final boolean countFloods()
 	{
-		return _floodsInMin > k.a().n;
+		return _floodsInMin > NetcoreConfig.getInstance().CLIENT_PACKET_QUEUE_MAX_FLOODS_PER_MIN;
 	}
 	
 	private final boolean longFloodDetected()
 	{
-		return (_totalCount / BUFFER_SIZE) > k.a().m;
+		return (_totalCount / BUFFER_SIZE) > NetcoreConfig.getInstance().CLIENT_PACKET_QUEUE_MAX_AVERAGE_PACKETS_PER_SECOND;
 	}
 	
 	/**
@@ -198,7 +198,7 @@ public class ClientStats
 			_packetCountStartTick = tick;
 			
 			// clear flag if no more flooding during last seconds
-			if (_floodDetected && !longFloodDetected() && (_packetsInSecond[_head] < (k.a().k / 2)))
+			if (_floodDetected && !longFloodDetected() && (_packetsInSecond[_head] < (NetcoreConfig.getInstance().CLIENT_PACKET_QUEUE_MAX_PACKETS_PER_SECOND / 2)))
 			{
 				_floodDetected = false;
 			}
@@ -218,7 +218,7 @@ public class ClientStats
 		final int count = ++_packetsInSecond[_head];
 		if (!_floodDetected)
 		{
-			if (count > k.a().k)
+			if (count > NetcoreConfig.getInstance().CLIENT_PACKET_QUEUE_MAX_PACKETS_PER_SECOND)
 			{
 				shortFloods++;
 			}

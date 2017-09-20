@@ -36,7 +36,7 @@ import com.l2jfrozen.loginserver.network.serverpackets.AccountKickedReason;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginOk;
 import com.l2jfrozen.loginserver.network.serverpackets.ServerList;
-import a.a.k;
+import com.l2jfrozen.netcore.NetcoreConfig;
 
 /**
  * <pre>
@@ -118,7 +118,7 @@ public class RequestAuthLogin extends L2LoginClientPacket
 			return;
 		}
 		
-		final InetAddress clientAddr = getClient().getConnection().c();
+		final InetAddress clientAddr = getClient().getConnection().getInetAddress();
 		
 		final LoginController lc = LoginController.getInstance();
 		final AccountInfo info = lc.retriveAccountInfo(clientAddr, _user, _password);
@@ -136,7 +136,7 @@ public class RequestAuthLogin extends L2LoginClientPacket
 				client.setAccount(info.getLogin());
 				client.setState(LoginClientState.AUTHED_LOGIN);
 				client.setSessionKey(lc.assignSessionKeyToClient(info.getLogin(), client));
-				if (k.a().F)
+				if (NetcoreConfig.getInstance().SHOW_LICENCE)
 				{
 					client.sendPacket(new LoginOk(getClient().getSessionKey()));
 				}

@@ -46,13 +46,13 @@ public final class CharacterRestore extends L2GameClientPacket
 		}
 		
 		// Before the char selection, check shutdown status
-		if (getClient().getConnection().l().b())
+		if (getClient().getConnection().getSelectorThread().isShutdown())
 		{
 			getClient().closeNow();
 			return;
 		}
 		
-		final CharSelectInfo cl = new CharSelectInfo(getClient().getAccountName(), getClient().getSessionId().a, 0);
+		final CharSelectInfo cl = new CharSelectInfo(getClient().getAccountName(), getClient().getSessionId().playOkID1, 0);
 		sendPacket(cl);
 		getClient().setCharSelection(cl.getCharInfo());
 	}

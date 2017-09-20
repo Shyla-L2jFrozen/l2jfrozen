@@ -32,12 +32,6 @@ import java.util.logging.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import a.a.k;
-import a.a.q;
-import a.a.r;
-import a.a.u;
-import a.a.w;
-
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.common.CommonConfigFiles;
 import com.l2jfrozen.common.L2Frozen;
@@ -162,6 +156,11 @@ import com.l2jfrozen.gameserver.thread.daemons.PcPoint;
 import com.l2jfrozen.gameserver.util.GameServerFloodProtectorActions;
 import com.l2jfrozen.gameserver.util.monitoring.ServerStatus;
 import com.l2jfrozen.gameserver.util.sql.SQLQueue;
+import com.l2jfrozen.netcore.NetcoreConfig;
+import com.l2jfrozen.netcore.SelectorConfig;
+import com.l2jfrozen.netcore.SelectorThread;
+import com.l2jfrozen.netcore.util.IPv4Filter;
+import com.l2jfrozen.netcore.util.PacketsFloodProtector;
 
 public class GameServer
 {
@@ -214,12 +213,12 @@ public class GameServer
 		L2Frozen.info();
 		
 		// Load Configs
-		k.a();
+		NetcoreConfig.getInstance();
 		CommonConfig.load();
 		Config.load();
 		
 		// Packets Flood Instance
-		w.a(new GameServerFloodProtectorActions());
+		PacketsFloodProtector.setProtectedServer(new GameServerFloodProtectorActions());
 		
 		Util.printSection("Database");
 		L2DatabaseFactory.getInstance();
@@ -599,13 +598,11 @@ public class GameServer
 		if (Config.BOT_PROTECTOR)
 			LOGGER.info("Bot Protection actived.");
 		
-		if (!k.a().r) {
+		if (!NetcoreConfig.getInstance().DISABLE_FULL_PACKETS_FLOOD_PROTECTOR)
 			LOGGER.info("Full packets flood protector actived.");
-		}
-
-		if (k.a().h) {
+		
+		if (NetcoreConfig.getInstance().ENABLE_CLIENT_FLOOD_PROTECTION)
 			LOGGER.info("Client flood protection actived.");
-		}
 		
 		if (Config.BOT_PROTECTOR)
 			Config.loadQuestion();
@@ -622,16 +619,15 @@ public class GameServer
 		_loginThread = LoginServerThread.getInstance();
 		_loginThread.start();
 		
-		q arg13 = new q();
-		arg13.c(k.a().d);
-		arg13.b(k.a().c);
-		arg13.d(k.a().b);
-		arg13.a(k.a().e);
-			
+		final SelectorConfig sc = new SelectorConfig();
+		sc.setMaxReadPerPass(NetcoreConfig.getInstance().MMO_MAX_READ_PER_PASS);
+		sc.setMaxSendPerPass(NetcoreConfig.getInstance().MMO_MAX_SEND_PER_PASS);
+		sc.setSleepTime(NetcoreConfig.getInstance().MMO_SELECTOR_SLEEP_TIME);
+		sc.setHelperBufferCount(NetcoreConfig.getInstance().MMO_HELPER_BUFFER_COUNT);
+		
 		_gamePacketHandler = new L2GamePacketHandler();
-		r arg14 = new r(arg13, _gamePacketHandler, _gamePacketHandler, _gamePacketHandler,
-											new u());
-						
+		
+		final SelectorThread<L2GameClient> _selectorThread = new SelectorThread<>(sc, _gamePacketHandler, _gamePacketHandler, _gamePacketHandler, new IPv4Filter());
 		
 		InetAddress bindAddress = null;
 		if (!Config.GAMESERVER_HOSTNAME.equals("*"))
@@ -651,9 +647,9 @@ public class GameServer
 		
 		try
 		{
-			arg14.a(bindAddress, Config.PORT_GAME);
+			_selectorThread.openServerSocket(bindAddress, Config.PORT_GAME);
 		}
-		catch (final Exception e)
+		catch (final IOException e)
 		{
 			if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 				e.printStackTrace();
@@ -661,6 +657,6 @@ public class GameServer
 			LOGGER.fatal("Failed to open server socket. Reason: ", e);
 			System.exit(1);
 		}
-		arg14.start();
+		_selectorThread.start();
 	}
 }

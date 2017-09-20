@@ -31,14 +31,14 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
-import com.l2jfrozen.common.crypt.NewCrypt;
-import com.l2jfrozen.common.network.BaseSendablePacket;
 import com.l2jfrozen.common.util.Util;
 import com.l2jfrozen.loginserver.network.GameServerState;
 import com.l2jfrozen.loginserver.network.L2JGameServerPacketHandler;
 import com.l2jfrozen.loginserver.network.loginserverpackets.InitLS;
 import com.l2jfrozen.loginserver.network.loginserverpackets.KickPlayer;
 import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
+import com.l2jfrozen.netcore.util.crypt.NewCrypt;
+import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
 
 /**
  * @author -Wooden-
@@ -97,7 +97,7 @@ public class GameServerThread extends Thread
 					break;
 				}
 				
-				byte[] data = new byte[length - 2];
+				final byte[] data = new byte[length - 2];
 				
 				int receivedBytes = 0;
 				int newBytes = 0;

@@ -21,12 +21,11 @@ package com.l2jfrozen.loginserver.network.gameserverpackets;
 import java.util.logging.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
-import com.l2jfrozen.common.network.BaseRecievePacket;
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.network.loginserverpackets.PlayerAuthResponse;
-
-import a.a.t;
+import com.l2jfrozen.netcore.SessionKey;
+import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
 
 /**
  * @author -Wooden-
@@ -47,14 +46,14 @@ public class PlayerAuthRequest extends BaseRecievePacket
 		final int playKey2 = readD();
 		final int loginKey1 = readD();
 		final int loginKey2 = readD();
-		final t sessionKey = new t(loginKey1, loginKey2, playKey1, playKey2);
+		final SessionKey sessionKey = new SessionKey(loginKey1, loginKey2, playKey1, playKey2);
 		
 		PlayerAuthResponse authResponse;
 		if (CommonConfig.DEBUG)
 		{
 			_log.info("auth request received for Player " + account);
 		}
-		final t key = LoginController.getInstance().getKeyForAccount(account);
+		final SessionKey key = LoginController.getInstance().getKeyForAccount(account);
 		if ((key != null) && key.equals(sessionKey))
 		{
 			if (CommonConfig.DEBUG)

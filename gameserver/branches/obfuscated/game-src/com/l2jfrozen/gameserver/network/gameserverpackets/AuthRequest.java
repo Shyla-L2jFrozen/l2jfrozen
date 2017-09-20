@@ -20,8 +20,7 @@ package com.l2jfrozen.gameserver.network.gameserverpackets;
 
 import java.util.List;
 
-import com.l2jfrozen.common.network.BaseSendablePacket;
-
+import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
 
 public class AuthRequest extends BaseSendablePacket
 {
