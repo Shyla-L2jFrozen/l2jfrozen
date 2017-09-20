@@ -18,12 +18,12 @@
  */
 package com.l2jfrozen.gameserver.network.loginserverpackets;
 
-import com.l2jfrozen.common.network.BaseRecievePacket;
+import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
 
 /**
  * @author -Wooden-
  */
-public class AuthResponse extends BaseRecievePacket 
+public class AuthResponse extends BaseRecievePacket
 {
 	
 	private final int _serverId;

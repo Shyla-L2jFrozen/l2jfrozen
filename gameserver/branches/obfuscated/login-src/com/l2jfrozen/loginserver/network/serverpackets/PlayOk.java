@@ -18,8 +18,7 @@
  */
 package com.l2jfrozen.loginserver.network.serverpackets;
 
-import a.a.t;
-
+import com.l2jfrozen.netcore.SessionKey;
 
 /**
  *
@@ -28,10 +27,10 @@ public final class PlayOk extends L2LoginServerPacket
 {
 	private final int _playOk1, _playOk2;
 	
-	public PlayOk(final t sessionKey)
+	public PlayOk(final SessionKey sessionKey)
 	{
-		_playOk1 = sessionKey.a;
-		_playOk2 = sessionKey.b;
+		_playOk1 = sessionKey.playOkID1;
+		_playOk2 = sessionKey.playOkID2;
 	}
 	
 	@Override

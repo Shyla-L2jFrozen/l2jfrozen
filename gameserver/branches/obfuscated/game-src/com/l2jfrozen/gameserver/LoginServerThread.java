@@ -42,11 +42,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.log4j.Logger;
 
-import a.a.t;
-
 import com.l2jfrozen.common.CommonConfig;
-import com.l2jfrozen.common.crypt.NewCrypt;
-import com.l2jfrozen.common.network.BaseSendablePacket;
 import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.config.FService;
@@ -69,6 +65,9 @@ import com.l2jfrozen.gameserver.network.loginserverpackets.LoginServerFail;
 import com.l2jfrozen.gameserver.network.loginserverpackets.PlayerAuthResponse;
 import com.l2jfrozen.gameserver.network.serverpackets.AuthLoginFail;
 import com.l2jfrozen.gameserver.network.serverpackets.CharSelectInfo;
+import com.l2jfrozen.netcore.SessionKey;
+import com.l2jfrozen.netcore.util.crypt.NewCrypt;
+import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
 
 public class LoginServerThread extends Thread
 {
@@ -103,8 +102,6 @@ public class LoginServerThread extends Thread
 	private String _serverName;
 	private final List<String> _subnets;
 	private final List<String> _hosts;
-//	private final String _gameExternalHost;
-//	private final String _gameInternalHost;
 	
 	
 	/**
@@ -133,8 +130,6 @@ public class LoginServerThread extends Thread
 		_waitingClients = new CopyOnWriteArrayList<>();
 		_maxPlayer = Config.MAXIMUM_ONLINE_USERS;
 		
-//		_gameExternalHost = Config.EXTERNAL_HOSTNAME;
-//		_gameInternalHost = Config.INTERNAL_HOSTNAME;
 		
 	}
 	
@@ -311,14 +306,14 @@ public class LoginServerThread extends Thread
 									sendPacket(pig);
 									wcToRemove.gameClient.setState(GameClientState.AUTHED);
 									wcToRemove.gameClient.setSessionId(wcToRemove.session);
-									final CharSelectInfo cl = new CharSelectInfo(wcToRemove.account, wcToRemove.gameClient.getSessionId().a);
-									wcToRemove.gameClient.getConnection().a(cl);
+									final CharSelectInfo cl = new CharSelectInfo(wcToRemove.account, wcToRemove.gameClient.getSessionId().playOkID1);
+									wcToRemove.gameClient.getConnection().sendPacket(cl);
 									wcToRemove.gameClient.setCharSelection(cl.getCharInfo());
 								}
 								else
 								{
 									LOGGER.warn("Session key is not correct. Closing connection for account {" + wcToRemove.account + "}.");
-									wcToRemove.gameClient.getConnection().a(new AuthLoginFail(1));
+									wcToRemove.gameClient.getConnection().sendPacket(new AuthLoginFail(1));
 									wcToRemove.gameClient.closeNow();
 									_accountsInGameServer.remove(wcToRemove.account);
 								}
@@ -388,7 +383,7 @@ public class LoginServerThread extends Thread
 	 * @param client the game client
 	 * @param key the session key
 	 */
-	public void addWaitingClientAndSendRequest(final String acc, final L2GameClient client, final t key)
+	public void addWaitingClientAndSendRequest(final String acc, final L2GameClient client, final SessionKey key)
 	{
 		final WaitingClient wc = new WaitingClient(acc, client, key);
 		synchronized (_waitingClients)
@@ -599,6 +594,7 @@ public class LoginServerThread extends Thread
 		}
 	}
 	
+	
 	/**
 	 * Gets the status string.
 	 * @return the status string
@@ -663,7 +659,7 @@ public class LoginServerThread extends Thread
 	{
 		public String account;
 		public L2GameClient gameClient;
-		public t session;
+		public SessionKey session;
 		
 		/**
 		 * Instantiates a new waiting client.
@@ -671,7 +667,7 @@ public class LoginServerThread extends Thread
 		 * @param client the client
 		 * @param key the key
 		 */
-		public WaitingClient(final String acc, final L2GameClient client, final t key)
+		public WaitingClient(final String acc, final L2GameClient client, final SessionKey key)
 		{
 			account = acc;
 			gameClient = client;

@@ -19,6 +19,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
+import com.l2jfrozen.netcore.util.IPSubnet;
 
 /**
  * @author Shyla

@@ -22,8 +22,6 @@ package com.l2jfrozen.gameserver;
 
 import org.apache.log4j.Logger;
 
-import a.a.r;
-
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.common.thread.ThreadPoolManager;
 import com.l2jfrozen.common.util.database.L2DatabaseFactory;
@@ -52,6 +50,7 @@ import com.l2jfrozen.gameserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.gameserver.network.serverpackets.ServerClose;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
 import com.l2jfrozen.gameserver.util.sql.SQLQueue;
+import com.l2jfrozen.netcore.SelectorThread;
 
 /**
  * This class provides the functions for shutting down and restarting the server It closes all open client connections and saves all data.
@@ -390,7 +389,9 @@ public class Shutdown extends Thread
 		
 		try
 		{
-			r.c();
+			// GameServer.getSelectorThread().setDaemon(true);
+			// GameServer.getSelectorThread().shutdown();
+			SelectorThread.shutdownSelectorThreads();
 		}
 		catch (final Throwable t)
 		{

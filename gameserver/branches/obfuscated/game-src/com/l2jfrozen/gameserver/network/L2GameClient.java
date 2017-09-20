@@ -33,12 +33,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.log4j.Logger;
 
-import a.a.f;
-import a.a.j;
-import a.a.k;
-import a.a.p;
-import a.a.t;
-
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.common.logs.Log;
 import com.l2jfrozen.common.thread.ThreadPoolManager;
@@ -67,13 +61,18 @@ import com.l2jfrozen.gameserver.network.serverpackets.LeaveWorld;
 import com.l2jfrozen.gameserver.network.serverpackets.ServerClose;
 import com.l2jfrozen.gameserver.util.EventData;
 import com.l2jfrozen.gameserver.util.FloodProtectors;
+import com.l2jfrozen.netcore.MMOClient;
+import com.l2jfrozen.netcore.MMOConnection;
+import com.l2jfrozen.netcore.NetcoreConfig;
+import com.l2jfrozen.netcore.ReceivablePacket;
+import com.l2jfrozen.netcore.SessionKey;
 
 import javolution.util.FastList;
 
 /**
  * @author L2JFrozen dev
  */
-public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
+public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> implements Runnable
 {
 	protected static final Logger LOGGER = Logger.getLogger(L2GameClient.class);
 	
@@ -84,7 +83,7 @@ public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
 	
 	// Info
 	public String accountName;
-	public t sessionId;
+	public SessionKey sessionId;
 	public L2PcInstance activeChar;
 	private final ReentrantLock _activeCharLock = new ReentrantLock();
 	
@@ -110,19 +109,19 @@ public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
 	
 	protected boolean _forcedToClose = false;
 	
-	private final ArrayBlockingQueue<p<L2GameClient>> _packetQueue;
+	private final ArrayBlockingQueue<ReceivablePacket<L2GameClient>> _packetQueue;
 	private final ReentrantLock _queueLock = new ReentrantLock();
 	
 	private long _last_received_packet_action_time = 0;
 	
-	public L2GameClient(final j<L2GameClient> con)
+	public L2GameClient(final MMOConnection<L2GameClient> con)
 	{
 		super(con);
 		state = GameClientState.CONNECTED;
 		_connectionStartTime = System.currentTimeMillis();
 		crypt = new GameCrypt();
 		_stats = new ClientStats();
-		_packetQueue = new ArrayBlockingQueue<>(k.a().i);
+		_packetQueue = new ArrayBlockingQueue<>(NetcoreConfig.getInstance().CLIENT_PACKET_QUEUE_SIZE);
 		
 		ThreadPoolManager.getInstance().scheduleGeneral(new Runnable()
 		{
@@ -222,12 +221,12 @@ public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
 		return accountName;
 	}
 	
-	public void setSessionId(final t sk)
+	public void setSessionId(final SessionKey sk)
 	{
 		sessionId = sk;
 	}
 	
-	public t getSessionId()
+	public SessionKey getSessionId()
 	{
 		return sessionId;
 	}
@@ -247,7 +246,7 @@ public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
 				
 			}
 			
-			getConnection().a(gsp);
+			getConnection().sendPacket(gsp);
 			gsp.runImpl();
 		}
 	}
@@ -536,7 +535,7 @@ public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
 			if (character.getClient() != null)
 			{
 				if (character.getClient() != null && character.getClient().getConnection() != null)
-					LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "], ip: [" + character.getClient().getConnection().c().getHostAddress() + "]. Client closed.");
+					LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "], ip: [" + character.getClient().getConnection().getInetAddress().getHostAddress() + "]. Client closed.");
 				else
 					LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "]. Client closed.");
 				
@@ -584,7 +583,7 @@ public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
 	public void close(final L2GameServerPacket gsp)
 	{
 		if (getConnection() != null)
-			getConnection().b(gsp);
+			getConnection().close(gsp);
 		
 	}
 	
@@ -680,7 +679,7 @@ public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
 			InetAddress address;
 			
 			if (getConnection() != null)
-				address = getConnection().c();
+				address = getConnection().getInetAddress();
 			else
 				address = null;
 			
@@ -1031,7 +1030,7 @@ public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
 	 */
 	public boolean dropPacket()
 	{
-		if (k.a().h)
+		if (NetcoreConfig.getInstance().ENABLE_CLIENT_FLOOD_PROTECTION)
 		{
 			// detached clients can't receive any packets
 			if (_isDetached)
@@ -1079,7 +1078,7 @@ public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
 	 * Add packet to the queue and start worker thread if needed
 	 * @param packet
 	 */
-	public void execute(final p<L2GameClient> packet)
+	public void execute(final ReceivablePacket<L2GameClient> packet)
 	{
 		if (getStats().countFloods())
 		{
@@ -1146,7 +1145,7 @@ public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
 			int count = 0;
 			while (true)
 			{
-				final p<L2GameClient> packet = _packetQueue.poll();
+				final ReceivablePacket<L2GameClient> packet = _packetQueue.poll();
 				if (packet == null) // queue is empty
 					return;
 				
@@ -1192,7 +1191,7 @@ public final class L2GameClient extends f<j<L2GameClient>> implements Runnable
 			
 			_last_received_packet_action_time = System.currentTimeMillis();
 			
-			return this.getConnection().g() && !this.getConnection().i();
+			return getConnection().isConnected() && !getConnection().isClosed();
 			
 		}
 		

@@ -74,7 +74,7 @@ public class RequestServerList extends L2LoginClientPacket
 	@Override
 	public void run()
 	{
-		if (getClient().getSessionKey().a(_skey1, _skey2))
+		if (getClient().getSessionKey().checkLoginPair(_skey1, _skey2))
 		{
 			getClient().sendPacket(new ServerList(getClient()));
 		}

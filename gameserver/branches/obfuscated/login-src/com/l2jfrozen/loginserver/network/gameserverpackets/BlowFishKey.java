@@ -25,10 +25,10 @@ import java.util.logging.Logger;
 import javax.crypto.Cipher;
 
 import com.l2jfrozen.common.CommonConfig;
-import com.l2jfrozen.common.crypt.NewCrypt;
-import com.l2jfrozen.common.network.BaseRecievePacket;
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.network.GameServerState;
+import com.l2jfrozen.netcore.util.crypt.NewCrypt;
+import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
 
 /**
  * @author -Wooden-

@@ -27,8 +27,6 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
-import com.l2jfrozen.common.crypt.LoginCrypt;
-import com.l2jfrozen.common.crypt.ScrambledKeyPair;
 import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.network.serverpackets.L2LoginServerPacket;
@@ -36,17 +34,18 @@ import com.l2jfrozen.loginserver.network.serverpackets.LoginFail;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.loginserver.network.serverpackets.PlayFail;
 import com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason;
-
-import a.a.f;
-import a.a.j;
-import a.a.s;
-import a.a.t;
+import com.l2jfrozen.netcore.MMOClient;
+import com.l2jfrozen.netcore.MMOConnection;
+import com.l2jfrozen.netcore.SendablePacket;
+import com.l2jfrozen.netcore.SessionKey;
+import com.l2jfrozen.netcore.util.crypt.LoginCrypt;
+import com.l2jfrozen.netcore.util.crypt.ScrambledKeyPair;
 
 /**
  * Represents a client connected into the LoginServer
  * @author KenM
  */
-public final class L2LoginClient extends f<j<L2LoginClient>>
+public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 {
 	private static final Logger _log = Logger.getLogger(L2LoginClient.class.getName());
 	
@@ -60,7 +59,7 @@ public final class L2LoginClient extends f<j<L2LoginClient>>
 	private String _account;
 	private int _accessLevel;
 	private int _lastServer;
-	private t _sessionKey;
+	private SessionKey _sessionKey;
 	private final int _sessionId;
 	private boolean _joinedGS;
 	private Map<Integer, Integer> _charsOnServers;
@@ -71,7 +70,7 @@ public final class L2LoginClient extends f<j<L2LoginClient>>
 	/**
 	 * @param con
 	 */
-	public L2LoginClient(final j<L2LoginClient> con)
+	public L2LoginClient(final MMOConnection<L2LoginClient> con)
 	{
 		super(con);
 		_state = LoginClientState.CONNECTED;
@@ -93,15 +92,15 @@ public final class L2LoginClient extends f<j<L2LoginClient>>
 			if (!isChecksumValid)
 			{
 				_log.warning("Wrong checksum from client: " + toString());
-				super.getConnection().b((s<L2LoginClient>) null);
+				super.getConnection().close((SendablePacket<L2LoginClient>) null);
 				return false;
 			}
 			return true;
 		}
-		catch (final Exception e)
+		catch (final IOException e)
 		{
 			_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
-			super.getConnection().b((s<L2LoginClient>) null);
+			super.getConnection().close((SendablePacket<L2LoginClient>) null);
 			return false;
 		}
 	}
@@ -114,7 +113,7 @@ public final class L2LoginClient extends f<j<L2LoginClient>>
 		{
 			size = _loginCrypt.encrypt(buf.array(), offset, size);
 		}
-		catch (final Exception e)
+		catch (final IOException e)
 		{
 			_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
 			return false;
@@ -193,12 +192,12 @@ public final class L2LoginClient extends f<j<L2LoginClient>>
 		_joinedGS = val;
 	}
 	
-	public void setSessionKey(final t sessionKey)
+	public void setSessionKey(final SessionKey sessionKey)
 	{
 		_sessionKey = sessionKey;
 	}
 	
-	public t getSessionKey()
+	public SessionKey getSessionKey()
 	{
 		return _sessionKey;
 	}
@@ -210,22 +209,22 @@ public final class L2LoginClient extends f<j<L2LoginClient>>
 	
 	public void sendPacket(final L2LoginServerPacket lsp)
 	{
-		getConnection().a(lsp);
+		getConnection().sendPacket(lsp);
 	}
 	
 	public void close(final LoginFailReason reason)
 	{
-		getConnection().b(new LoginFail(reason));
+		getConnection().close(new LoginFail(reason));
 	}
 	
 	public void close(final PlayFailReason reason)
 	{
-		getConnection().b(new PlayFail(reason));
+		getConnection().close(new PlayFail(reason));
 	}
 	
 	public void close(final L2LoginServerPacket lsp)
 	{
-		getConnection().b(lsp);
+		getConnection().close(lsp);
 	}
 	
 	public void setCharsOnServ(final int servId, final int chars)
@@ -273,7 +272,7 @@ public final class L2LoginClient extends f<j<L2LoginClient>>
 	@Override
 	public String toString()
 	{
-		final InetAddress address = getConnection().c();
+		final InetAddress address = getConnection().getInetAddress();
 		if (getState() == LoginClientState.AUTHED_LOGIN)
 		{
 			return "[" + getAccount() + " (" + (address == null ? "disconnected" : address.getHostAddress()) + ")]";
