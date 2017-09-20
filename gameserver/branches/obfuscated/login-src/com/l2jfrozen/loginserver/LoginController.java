@@ -42,14 +42,14 @@ import javax.crypto.Cipher;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
-import com.l2jfrozen.common.crypt.ScrambledKeyPair;
 import com.l2jfrozen.common.util.database.L2DatabaseFactory;
 import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.loginserver.model.data.AccountInfo;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
-import a.a.t;
+import com.l2jfrozen.netcore.SessionKey;
+import com.l2jfrozen.netcore.util.crypt.ScrambledKeyPair;
 
 public class LoginController
 {
@@ -148,11 +148,11 @@ public class LoginController
 		return _blowfishKeys[(int) (Math.random() * BLOWFISH_KEYS)];
 	}
 	
-	public t assignSessionKeyToClient(final String account, final L2LoginClient client)
+	public SessionKey assignSessionKeyToClient(final String account, final L2LoginClient client)
 	{
-		t key;
+		SessionKey key;
 		
-		key = new t(Rnd.nextInt(), Rnd.nextInt(), Rnd.nextInt(), Rnd.nextInt());
+		key = new SessionKey(Rnd.nextInt(), Rnd.nextInt(), Rnd.nextInt(), Rnd.nextInt());
 		_loginServerClients.put(account, client);
 		return key;
 	}
@@ -395,7 +395,7 @@ public class LoginController
 		}
 	}
 	
-	public t getKeyForAccount(final String account)
+	public SessionKey getKeyForAccount(final String account)
 	{
 		final L2LoginClient client = _loginServerClients.get(account);
 		if (client != null)

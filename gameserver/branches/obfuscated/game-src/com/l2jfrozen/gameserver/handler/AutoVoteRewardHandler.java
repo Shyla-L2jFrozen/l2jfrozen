@@ -269,9 +269,9 @@ public class AutoVoteRewardHandler
 		if (player == null)
 			return false;
 		
-		if (player.getClient() != null && player.getClient().getConnection() != null && !player.getClient().getConnection().i() && player.isOnline() == 1 && !player.isInOfflineMode() && !player.isFakeOfflinePlayer())
+		if (player.getClient() != null && player.getClient().getConnection() != null && !player.getClient().getConnection().isClosed() && player.isOnline() == 1 && !player.isInOfflineMode() && !player.isFakeOfflinePlayer())
 		{
-			final String playerip = player.getClient().getConnection().c().getHostAddress();
+			final String playerip = player.getClient().getConnection().getInetAddress().getHostAddress();
 			
 			// this must never happend but in case dont give the reward
 			if (playerip == null)

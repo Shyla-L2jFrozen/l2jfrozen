@@ -40,10 +40,10 @@ import com.l2jfrozen.loginserver.gsregistering.GameServerRegister;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.L2LoginPacketHandler;
 import com.l2jfrozen.loginserver.util.LoginServerFloodProtectorActions;
-import a.a.k;
-import a.a.q;
-import a.a.r;
-import a.a.w;
+import com.l2jfrozen.netcore.NetcoreConfig;
+import com.l2jfrozen.netcore.SelectorConfig;
+import com.l2jfrozen.netcore.SelectorThread;
+import com.l2jfrozen.netcore.util.PacketsFloodProtector;
 
 /**
  * @author KenM
@@ -55,7 +55,7 @@ public final class LoginServer
 	public static final int PROTOCOL_REV = 0x0102;
 	private static LoginServer _instance;
 	private GameServerListener _gameServerListener;
-	private r<L2LoginClient> _selectorThread;
+	private SelectorThread<L2LoginClient> _selectorThread;
 	private Thread _restartLoginServer;
 	
 	public static void main(final String[] args) throws Exception
@@ -83,7 +83,7 @@ public final class LoginServer
 		PropertyConfigurator.configure(CommonConfigFiles.LOG4J_CONF_FILE);
 		
 		// Load Config
-		k.a();
+		NetcoreConfig.getInstance();
 		CommonConfig.load();
 		LoginConfig.load();
 		
@@ -117,27 +117,26 @@ public final class LoginServer
 			}
 		}
 		
-		q arg1 = new q();
-		arg1.c(k.a().d);
-		arg1.b(k.a().c);
-		arg1.d(k.a().b);
-		arg1.a(k.a().e);
-			
+		final SelectorConfig sc = new SelectorConfig();
+		sc.setMaxReadPerPass(NetcoreConfig.getInstance().MMO_MAX_READ_PER_PASS);
+		sc.setMaxSendPerPass(NetcoreConfig.getInstance().MMO_MAX_SEND_PER_PASS);
+		sc.setSleepTime(NetcoreConfig.getInstance().MMO_SELECTOR_SLEEP_TIME);
+		sc.setHelperBufferCount(NetcoreConfig.getInstance().MMO_HELPER_BUFFER_COUNT);
 		
 		final L2LoginPacketHandler lph = new L2LoginPacketHandler();
 		final SelectorHelper sh = new SelectorHelper();
 		try
 		{
-			_selectorThread = new r(arg1, sh, lph, sh, sh);
+			_selectorThread = new SelectorThread<>(sc, sh, lph, sh, sh);
 		}
-		catch (final Exception e)
+		catch (final IOException e)
 		{
 			LOGGER.error("FATAL: Failed to open Selector. Reason: " + e.getMessage(), e);
 			System.exit(1);
 		}
 		
 		// Packets flood instance
-		w.a(new LoginServerFloodProtectorActions());
+		PacketsFloodProtector.setProtectedServer(new LoginServerFloodProtectorActions());
 		
 		try
 		{
@@ -153,11 +152,11 @@ public final class LoginServer
 		
 		try
 		{
-			_selectorThread.a(bindAddress, LoginConfig.PORT_LOGIN);
+			_selectorThread.openServerSocket(bindAddress, LoginConfig.PORT_LOGIN);
 			_selectorThread.start();
 			LOGGER.info(getClass().getSimpleName() + ": is now listening on: " + LoginConfig.LOGIN_BIND_ADDRESS + ":" + LoginConfig.PORT_LOGIN);
 		}
-		catch (final Exception e)
+		catch (final IOException e)
 		{
 			LOGGER.error("FATAL: Failed to open server socket. Reason: " + e.getMessage(), e);
 			System.exit(1);

@@ -19,12 +19,12 @@
 package com.l2jfrozen.loginserver.network.serverpackets;
 
 import com.l2jfrozen.loginserver.network.L2LoginClient;
-import a.a.s;
+import com.l2jfrozen.netcore.SendablePacket;
 
 /**
  * @author KenM
  */
-public abstract class L2LoginServerPacket extends s<L2LoginClient>
+public abstract class L2LoginServerPacket extends SendablePacket<L2LoginClient>
 {
 	
 }

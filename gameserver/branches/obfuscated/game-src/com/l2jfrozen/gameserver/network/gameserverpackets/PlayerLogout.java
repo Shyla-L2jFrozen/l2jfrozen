@@ -18,7 +18,7 @@
  */
 package com.l2jfrozen.gameserver.network.gameserverpackets;
 
-import com.l2jfrozen.common.network.BaseSendablePacket;
+import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
 
 /**
  * @author -Wooden-

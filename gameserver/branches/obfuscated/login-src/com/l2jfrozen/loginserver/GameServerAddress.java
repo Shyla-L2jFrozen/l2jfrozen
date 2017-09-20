@@ -16,7 +16,7 @@ package com.l2jfrozen.loginserver;
 
 import java.net.UnknownHostException;
 
-import a.a.M;
+import com.l2jfrozen.netcore.util.IPSubnet;
 
 /**
  * @author Shyla
@@ -25,7 +25,7 @@ import a.a.M;
 /**
  * The Class GameServerAddress.
  */
-public class GameServerAddress extends M
+public class GameServerAddress extends IPSubnet
 {
 	private final String _serverAddress;
 	

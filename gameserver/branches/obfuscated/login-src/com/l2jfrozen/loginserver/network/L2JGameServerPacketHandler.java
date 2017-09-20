@@ -20,7 +20,6 @@ package com.l2jfrozen.loginserver.network;
 
 import java.util.logging.Logger;
 
-import com.l2jfrozen.common.network.BaseRecievePacket;
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.network.gameserverpackets.BlowFishKey;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ChangeAccessLevel;
@@ -31,6 +30,7 @@ import com.l2jfrozen.loginserver.network.gameserverpackets.PlayerLogout;
 import com.l2jfrozen.loginserver.network.gameserverpackets.PlayerTracert;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
+import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
 
 /**
  * @author mrTJO

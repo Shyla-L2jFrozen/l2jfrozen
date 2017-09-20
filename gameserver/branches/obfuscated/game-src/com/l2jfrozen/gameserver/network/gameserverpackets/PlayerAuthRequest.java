@@ -18,23 +18,22 @@
  */
 package com.l2jfrozen.gameserver.network.gameserverpackets;
 
-import com.l2jfrozen.common.network.BaseSendablePacket;
-
-import a.a.t;
+import com.l2jfrozen.netcore.SessionKey;
+import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
 
 /**
  * @author -Wooden-
  */
 public class PlayerAuthRequest extends BaseSendablePacket
 {
-	public PlayerAuthRequest(final String account, final t key)
+	public PlayerAuthRequest(final String account, final SessionKey key)
 	{
 		writeC(0x05);
 		writeS(account);
-		writeD(key.a);
-		writeD(key.b);
-		writeD(key.c);
-		writeD(key.d);
+		writeD(key.playOkID1);
+		writeD(key.playOkID2);
+		writeD(key.loginOkID1);
+		writeD(key.loginOkID2);
 	}
 	
 	@Override

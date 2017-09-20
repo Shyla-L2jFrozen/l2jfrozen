@@ -22,14 +22,14 @@ import org.apache.log4j.Logger;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
-import a.a.f;
-import a.a.k;
-import a.a.x;
+import com.l2jfrozen.netcore.MMOClient;
+import com.l2jfrozen.netcore.NetcoreConfig;
+import com.l2jfrozen.netcore.util.PacketsFloodServer;
 
 /**
  * @author Shyla
  */
-public class LoginServerFloodProtectorActions implements x
+public class LoginServerFloodProtectorActions implements PacketsFloodServer
 {
 	
 	private final Logger LOGGER = Logger.getLogger(LoginServerFloodProtectorActions.class);
@@ -47,7 +47,7 @@ public class LoginServerFloodProtectorActions implements x
 	 * @return true if action is allowed, otherwise false
 	 */
 	@Override
-	public boolean tryPerformAction(final int opcode, final int opcode2, final f<?> client)
+	public boolean tryPerformAction(final int opcode, final int opcode2, final MMOClient<?> client)
 	{
 		
 		String account = null;
@@ -68,7 +68,7 @@ public class LoginServerFloodProtectorActions implements x
 		{
 			final int actions = actions_per_account.incrementAndGet();
 			
-			if (k.a().f)
+			if (NetcoreConfig.getInstance().ENABLE_MMOCORE_DEBUG)
 			{
 				LOGGER.info(" -- account " + account + " has performed " + actions + " concurrent actions until now");
 			}
@@ -127,30 +127,30 @@ public class LoginServerFloodProtectorActions implements x
 			command_count.incrementAndGet();
 			clients_actions.get(account).put(opcode, command_count);
 			
-			if (k.a().f)
+			if (NetcoreConfig.getInstance().ENABLE_MMOCORE_DEBUG)
 			{
-				LOGGER.info("-- called OpCode " + Integer.toHexString(opcode) + " ~" + String.valueOf((k.a().s - (_nextGameTick - curTick)) * 1000) + " ms after first command...");
+				LOGGER.info("-- called OpCode " + Integer.toHexString(opcode) + " ~" + String.valueOf((NetcoreConfig.getInstance().FLOOD_PACKET_PROTECTION_INTERVAL - (_nextGameTick - curTick)) * 1000) + " ms after first command...");
 				LOGGER.info("   total received packets with OpCode " + Integer.toHexString(opcode) + " into the Interval: " + command_count.get());
 			}
 			
-			if (k.a().u > 0 && command_count.get() >= k.a().u && k.a().v != null)
+			if (NetcoreConfig.getInstance().PACKET_FLOODING_PUNISHMENT_LIMIT > 0 && command_count.get() >= NetcoreConfig.getInstance().PACKET_FLOODING_PUNISHMENT_LIMIT && NetcoreConfig.getInstance().PACKET_FLOODING_PUNISHMENT_TYPE != null)
 			{
 				punishes_in_progress.put(account, true);
 				
 				if (!isOpCodeToBeTested(opcode, opcode2))
 				{
-					if (k.a().t)
+					if (NetcoreConfig.getInstance().LOG_PACKET_FLOODING)
 						LOGGER.warn("ATTENTION: Account " + account + " is flooding the server...");
 					
-					if ("kick".equals(k.a().v))
+					if ("kick".equals(NetcoreConfig.getInstance().PACKET_FLOODING_PUNISHMENT_TYPE))
 					{
-						if (k.a().t)
+						if (NetcoreConfig.getInstance().LOG_PACKET_FLOODING)
 							LOGGER.warn(" ------- kicking account " + account);
 						kickPlayer(client, opcode);
 					}
-					else if ("ban".equals(k.a().v))
+					else if ("ban".equals(NetcoreConfig.getInstance().PACKET_FLOODING_PUNISHMENT_TYPE))
 					{
-						if (k.a().t)
+						if (NetcoreConfig.getInstance().LOG_PACKET_FLOODING)
 							LOGGER.warn(" ------- banning account " + account);
 						banAccount(client, opcode);
 					}
@@ -166,7 +166,7 @@ public class LoginServerFloodProtectorActions implements x
 			
 			if (curTick == _nextGameTick)
 			{ // if is the first time, just calculate the next game tick
-				_nextGameTick = curTick + k.a().s;
+				_nextGameTick = curTick + NetcoreConfig.getInstance().FLOOD_PACKET_PROTECTION_INTERVAL;
 				clients_nextGameTick.get(account).put(opcode, _nextGameTick);
 			}
 			
@@ -191,10 +191,10 @@ public class LoginServerFloodProtectorActions implements x
 	@Override
 	public boolean isOpCodeToBeTested(final int opcode, final int opcode2)
 	{
-		return !k.a().C.contains(opcode);
+		return !NetcoreConfig.getInstance().LS_LIST_PROTECTED_OPCODES.contains(opcode);
 	}
 	
-	private void kickPlayer(final f<?> _client, final int opcode)
+	private void kickPlayer(final MMOClient<?> _client, final int opcode)
 	{
 		final L2LoginClient login_cl = (L2LoginClient) _client;
 		login_cl.close(LoginFailReason.REASON_SYSTEM_ERROR);
@@ -203,7 +203,7 @@ public class LoginServerFloodProtectorActions implements x
 		
 	}
 	
-	private void banAccount(final f<?> _client, final int opcode)
+	private void banAccount(final MMOClient<?> _client, final int opcode)
 	{
 		
 		final L2LoginClient login_cl = (L2LoginClient) _client;
