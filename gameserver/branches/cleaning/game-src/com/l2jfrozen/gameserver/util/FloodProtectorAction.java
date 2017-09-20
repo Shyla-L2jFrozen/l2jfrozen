@@ -19,8 +19,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.common.FloodProtectorConfig;
 import com.l2jfrozen.common.util.StringUtil;
+import com.l2jfrozen.gameserver.config.FloodProtectorConfig;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.model.actor.instance.PunishLevel;
