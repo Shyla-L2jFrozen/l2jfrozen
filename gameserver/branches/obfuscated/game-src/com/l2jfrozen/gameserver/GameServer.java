@@ -649,7 +649,7 @@ public class GameServer
 		{
 			_selectorThread.openServerSocket(bindAddress, Config.PORT_GAME);
 		}
-		catch (final IOException e)
+		catch (final Exception e)
 		{
 			if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 				e.printStackTrace();
