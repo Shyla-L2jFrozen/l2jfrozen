@@ -129,7 +129,7 @@ public final class LoginServer
 		{
 			_selectorThread = new SelectorThread<>(sc, sh, lph, sh, sh);
 		}
-		catch (final IOException e)
+		catch (final Exception e)
 		{
 			LOGGER.error("FATAL: Failed to open Selector. Reason: " + e.getMessage(), e);
 			System.exit(1);
@@ -156,7 +156,7 @@ public final class LoginServer
 			_selectorThread.start();
 			LOGGER.info(getClass().getSimpleName() + ": is now listening on: " + LoginConfig.LOGIN_BIND_ADDRESS + ":" + LoginConfig.PORT_LOGIN);
 		}
-		catch (final IOException e)
+		catch (final Exception e)
 		{
 			LOGGER.error("FATAL: Failed to open server socket. Reason: " + e.getMessage(), e);
 			System.exit(1);

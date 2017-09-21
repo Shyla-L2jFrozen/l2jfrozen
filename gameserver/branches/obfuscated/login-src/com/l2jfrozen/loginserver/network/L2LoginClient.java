@@ -97,7 +97,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 			}
 			return true;
 		}
-		catch (final IOException e)
+		catch (final Exception e)
 		{
 			_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
 			super.getConnection().close((SendablePacket<L2LoginClient>) null);
@@ -113,7 +113,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		{
 			size = _loginCrypt.encrypt(buf.array(), offset, size);
 		}
-		catch (final IOException e)
+		catch (final Exception e)
 		{
 			_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
 			return false;
