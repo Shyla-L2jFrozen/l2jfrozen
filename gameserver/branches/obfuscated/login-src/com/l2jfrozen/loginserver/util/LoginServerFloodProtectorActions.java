@@ -24,12 +24,12 @@ import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.netcore.MMOClient;
 import com.l2jfrozen.netcore.NetcoreConfig;
-import com.l2jfrozen.netcore.util.PacketsFloodServer;
+import a.a.p;
 
 /**
  * @author Shyla
  */
-public class LoginServerFloodProtectorActions implements PacketsFloodServer
+public class LoginServerFloodProtectorActions implements p
 {
 	
 	private final Logger LOGGER = Logger.getLogger(LoginServerFloodProtectorActions.class);

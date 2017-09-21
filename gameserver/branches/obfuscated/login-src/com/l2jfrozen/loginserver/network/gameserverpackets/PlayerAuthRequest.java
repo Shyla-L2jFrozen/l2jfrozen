@@ -25,12 +25,12 @@ import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.network.loginserverpackets.PlayerAuthResponse;
 import com.l2jfrozen.netcore.SessionKey;
-import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
+import a.a.w;
 
 /**
  * @author -Wooden-
  */
-public class PlayerAuthRequest extends BaseRecievePacket
+public class PlayerAuthRequest extends w
 {
 	private static Logger _log = Logger.getLogger(PlayerAuthRequest.class.getName());
 	

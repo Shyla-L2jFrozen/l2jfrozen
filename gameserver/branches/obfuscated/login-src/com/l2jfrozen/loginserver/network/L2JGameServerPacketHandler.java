@@ -30,7 +30,7 @@ import com.l2jfrozen.loginserver.network.gameserverpackets.PlayerLogout;
 import com.l2jfrozen.loginserver.network.gameserverpackets.PlayerTracert;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
-import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
+import a.a.w;
 
 /**
  * @author mrTJO
@@ -39,9 +39,9 @@ public class L2JGameServerPacketHandler
 {
 	protected static Logger _log = Logger.getLogger(L2JGameServerPacketHandler.class.getName());
 	
-	public static BaseRecievePacket handlePacket(final byte[] data, final GameServerThread server)
+	public static w handlePacket(final byte[] data, final GameServerThread server)
 	{
-		BaseRecievePacket msg = null;
+		w msg = null;
 		final int opcode = data[0] & 0xff;
 		final GameServerState state = server.getLoginConnectionState();
 		switch (state)

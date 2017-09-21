@@ -66,8 +66,8 @@ import com.l2jfrozen.gameserver.network.loginserverpackets.PlayerAuthResponse;
 import com.l2jfrozen.gameserver.network.serverpackets.AuthLoginFail;
 import com.l2jfrozen.gameserver.network.serverpackets.CharSelectInfo;
 import com.l2jfrozen.netcore.SessionKey;
-import com.l2jfrozen.netcore.util.crypt.NewCrypt;
-import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
+import a.a.u;
+import a.a.x;
 
 public class LoginServerThread extends Thread
 {
@@ -90,7 +90,7 @@ public class LoginServerThread extends Thread
 	 * login server during the handshake. This new key is stored<br>
 	 * in blowfishKey
 	 */
-	private NewCrypt _blowfish;
+	private u _blowfish;
 	private byte[] _hexID;
 	private final boolean _acceptAlternate;
 	private int _requestID;
@@ -157,7 +157,7 @@ public class LoginServerThread extends Thread
 				{
 					blowfishKey[0] = (byte) Rnd.get(32, 64);
 				}
-				_blowfish = new NewCrypt("_;v.]05-31!|+-%xT!^[$\00");
+				_blowfish = new u("_;v.]05-31!|+-%xT!^[$\00");
 				while (!isInterrupted())
 				{
 					lengthLo = in.read();
@@ -190,7 +190,7 @@ public class LoginServerThread extends Thread
 					
 					// decrypt if we have a key
 					_blowfish.decrypt(incoming, 0, incoming.length);
-					checksumOk = NewCrypt.verifyChecksum(incoming);
+					checksumOk = u.b(incoming);
 					
 					if (!checksumOk)
 					{
@@ -227,7 +227,7 @@ public class LoginServerThread extends Thread
 							// send the blowfish key through the rsa encryption
 							sendPacket(new BlowFishKey(blowfishKey, publicKey));
 							// now, only accept packet with the new encryption
-							_blowfish = new NewCrypt(blowfishKey);
+							_blowfish = new u(blowfishKey);
 							
 							final AuthRequest ar = new AuthRequest(_requestID, _acceptAlternate, _hexID, _gamePort, _reserveHost, _maxPlayer,_subnets, _hosts);
 							sendPacket(ar);
@@ -525,11 +525,11 @@ public class LoginServerThread extends Thread
 	 * @param sl the sendable packet
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	private void sendPacket(final BaseSendablePacket sl) throws IOException
+	private void sendPacket(final x sl) throws IOException
 	{
 		final byte[] data = sl.getContent();
-		NewCrypt.appendChecksum(data);
-		_blowfish.crypt(data, 0, data.length);
+		u.c(data);
+		_blowfish.e(data, 0, data.length);
 		
 		final int len = data.length + 2;
 		synchronized (_out) // avoids tow threads writing in the mean time

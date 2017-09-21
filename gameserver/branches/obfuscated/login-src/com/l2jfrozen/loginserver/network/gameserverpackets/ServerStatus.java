@@ -23,12 +23,12 @@ import java.util.logging.Logger;
 import com.l2jfrozen.loginserver.GameServerInfo;
 import com.l2jfrozen.loginserver.GameServerTable;
 import com.l2jfrozen.loginserver.GameServerThread;
-import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
+import a.a.w;
 
 /**
  * @author -Wooden-
  */
-public class ServerStatus extends BaseRecievePacket
+public class ServerStatus extends w
 {
 	protected static Logger _log = Logger.getLogger(ServerStatus.class.getName());
 	

@@ -19,12 +19,12 @@
 package com.l2jfrozen.loginserver.network.loginserverpackets;
 
 import com.l2jfrozen.loginserver.LoginServer;
-import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
+import a.a.x;
 
 /**
  * @author -Wooden-
  */
-public class InitLS extends BaseSendablePacket
+public class InitLS extends x
 {
 	// ID 0x00
 	// format

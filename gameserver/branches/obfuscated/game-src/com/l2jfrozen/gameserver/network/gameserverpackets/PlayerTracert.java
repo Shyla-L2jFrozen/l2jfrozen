@@ -18,12 +18,12 @@
  */
 package com.l2jfrozen.gameserver.network.gameserverpackets;
 
-import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
+import a.a.x;
 
 /**
  * @author mrTJO
  */
-public class PlayerTracert extends BaseSendablePacket
+public class PlayerTracert extends x
 {
 	public PlayerTracert(final String account, final String pcIp, final String hop1, final String hop2, final String hop3, final String hop4)
 	{
