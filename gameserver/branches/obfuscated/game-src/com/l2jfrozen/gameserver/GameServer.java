@@ -159,8 +159,8 @@ import com.l2jfrozen.gameserver.util.sql.SQLQueue;
 import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.SelectorConfig;
 import com.l2jfrozen.netcore.SelectorThread;
-import com.l2jfrozen.netcore.util.IPv4Filter;
-import com.l2jfrozen.netcore.util.PacketsFloodProtector;
+import a.a.m;
+import a.a.o;
 
 public class GameServer
 {
@@ -218,7 +218,7 @@ public class GameServer
 		Config.load();
 		
 		// Packets Flood Instance
-		PacketsFloodProtector.setProtectedServer(new GameServerFloodProtectorActions());
+		o.a(new GameServerFloodProtectorActions());
 		
 		Util.printSection("Database");
 		L2DatabaseFactory.getInstance();
@@ -627,7 +627,7 @@ public class GameServer
 		
 		_gamePacketHandler = new L2GamePacketHandler();
 		
-		final SelectorThread<L2GameClient> _selectorThread = new SelectorThread<>(sc, _gamePacketHandler, _gamePacketHandler, _gamePacketHandler, new IPv4Filter());
+		final SelectorThread<L2GameClient> _selectorThread = new SelectorThread<>(sc, _gamePacketHandler, _gamePacketHandler, _gamePacketHandler, new m());
 		
 		InetAddress bindAddress = null;
 		if (!Config.GAMESERVER_HOSTNAME.equals("*"))

@@ -25,7 +25,7 @@ import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.SystemMessageId;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
-import com.l2jfrozen.netcore.util.PacketsLoggerManager;
+import a.a.q;
 
 public class AdminCharSupervision implements IAdminCommandHandler
 {
@@ -90,7 +90,7 @@ public class AdminCharSupervision implements IAdminCommandHandler
 				
 				if (target != null)
 				{
-					PacketsLoggerManager.getInstance().blockCharacterPacket(target.getName(), charName_packet[1]);
+					q.l().a(target.getName(), charName_packet[1]);
 					return true;
 				}
 				
@@ -136,7 +136,7 @@ public class AdminCharSupervision implements IAdminCommandHandler
 				
 				if (target != null)
 				{
-					PacketsLoggerManager.getInstance().restoreCharacterPacket(target.getName(), charName_packet[1]);
+					q.l().b(target.getName(), charName_packet[1]);
 					return true;
 				}
 				
@@ -174,7 +174,7 @@ public class AdminCharSupervision implements IAdminCommandHandler
 				
 				if (target != null)
 				{
-					PacketsLoggerManager.getInstance().startCharacterPacketsMonitoring(target.getName());
+					q.l().c(target.getName());
 					return true;
 				}
 				
@@ -212,7 +212,7 @@ public class AdminCharSupervision implements IAdminCommandHandler
 				
 				if (target != null)
 				{
-					PacketsLoggerManager.getInstance().stopCharacterPacketsMonitoring(target.getName());
+					q.l().d(target.getName());
 					return true;
 				}
 				

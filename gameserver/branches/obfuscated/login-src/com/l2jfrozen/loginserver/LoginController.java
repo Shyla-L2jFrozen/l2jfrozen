@@ -49,7 +49,7 @@ import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.netcore.SessionKey;
-import com.l2jfrozen.netcore.util.crypt.ScrambledKeyPair;
+import a.a.v;
 
 public class LoginController
 {
@@ -66,7 +66,7 @@ public class LoginController
 	private final Map<InetAddress, Integer> _failedLoginAttemps = new HashMap<>();
 	private final Map<InetAddress, Long> _bannedIps = new ConcurrentHashMap<>();
 	
-	protected ScrambledKeyPair[] _keyPairs;
+	protected v[] _keyPairs;
 	
 	protected byte[][] _blowfishKeys;
 	private static final int BLOWFISH_KEYS = 20;
@@ -84,7 +84,7 @@ public class LoginController
 	{
 		LOGGER.info("Loading LoginController...");
 		
-		_keyPairs = new ScrambledKeyPair[10];
+		_keyPairs = new v[10];
 		
 		KeyPairGenerator keygen = null;
 		
@@ -95,13 +95,13 @@ public class LoginController
 		// generate the initial set of keys
 		for (int i = 0; i < 10; i++)
 		{
-			_keyPairs[i] = new ScrambledKeyPair(keygen.generateKeyPair());
+			_keyPairs[i] = new v(keygen.generateKeyPair());
 		}
 		
 		if (CommonConfig.DEBUG)
 			LOGGER.info("Cached 10 KeyPairs for RSA communication");
 		
-		testCipher((RSAPrivateKey) _keyPairs[0]._pair.getPrivate());
+		testCipher((RSAPrivateKey) _keyPairs[0].ah.getPrivate());
 		
 		// Store keys for blowfish communication
 		generateBlowFishKeys();
@@ -524,11 +524,11 @@ public class LoginController
 	
 	/**
 	 * <p>
-	 * This method returns one of the cached {@link ScrambledKeyPair ScrambledKeyPairs} for communication with Login Clients.
+	 * This method returns one of the cached {@link v vs} for communication with Login Clients.
 	 * </p>
 	 * @return a scrambled keypair
 	 */
-	public ScrambledKeyPair getScrambledRSAKeyPair()
+	public v getScrambledRSAKeyPair()
 	{
 		return _keyPairs[Rnd.nextInt(10)];
 	}

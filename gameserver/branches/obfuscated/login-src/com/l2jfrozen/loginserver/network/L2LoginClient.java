@@ -38,8 +38,8 @@ import com.l2jfrozen.netcore.MMOClient;
 import com.l2jfrozen.netcore.MMOConnection;
 import com.l2jfrozen.netcore.SendablePacket;
 import com.l2jfrozen.netcore.SessionKey;
-import com.l2jfrozen.netcore.util.crypt.LoginCrypt;
-import com.l2jfrozen.netcore.util.crypt.ScrambledKeyPair;
+import a.a.t;
+import a.a.v;
 
 /**
  * Represents a client connected into the LoginServer
@@ -52,8 +52,8 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	private LoginClientState _state;
 	
 	// Crypt
-	private final LoginCrypt _loginCrypt;
-	private final ScrambledKeyPair _scrambledPair;
+	private final t _t;
+	private final v _scrambledPair;
 	private final byte[] _blowfishKey;
 	
 	private String _account;
@@ -78,8 +78,8 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		_blowfishKey = LoginController.getInstance().getBlowfishKey();
 		_sessionId = Rnd.nextInt();
 		_connectionStartTime = System.currentTimeMillis();
-		_loginCrypt = new LoginCrypt();
-		_loginCrypt.setKey(_blowfishKey);
+		_t = new t();
+		_t.setKey(_blowfishKey);
 	}
 	
 	@Override
@@ -88,7 +88,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		boolean isChecksumValid = false;
 		try
 		{
-			isChecksumValid = _loginCrypt.decrypt(buf.array(), buf.position(), size);
+			isChecksumValid = _t.a(buf.array(), buf.position(), size);
 			if (!isChecksumValid)
 			{
 				_log.warning("Wrong checksum from client: " + toString());
@@ -111,7 +111,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		final int offset = buf.position();
 		try
 		{
-			size = _loginCrypt.encrypt(buf.array(), offset, size);
+			size = _t.b(buf.array(), offset, size);
 		}
 		catch (final Exception e)
 		{
@@ -139,12 +139,12 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	
 	public byte[] getScrambledModulus()
 	{
-		return _scrambledPair._scrambledModulus;
+		return _scrambledPair.ai;
 	}
 	
 	public RSAPrivateKey getRSAPrivateKey()
 	{
-		return (RSAPrivateKey) _scrambledPair._pair.getPrivate();
+		return (RSAPrivateKey) _scrambledPair.ah.getPrivate();
 	}
 	
 	public String getAccount()

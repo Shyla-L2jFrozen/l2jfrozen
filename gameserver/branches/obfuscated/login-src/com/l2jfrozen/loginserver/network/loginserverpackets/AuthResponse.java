@@ -19,12 +19,12 @@
 package com.l2jfrozen.loginserver.network.loginserverpackets;
 
 import com.l2jfrozen.loginserver.GameServerTable;
-import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
+import a.a.x;
 
 /**
  * @author -Wooden-
  */
-public class AuthResponse extends BaseSendablePacket
+public class AuthResponse extends x
 {
 	/**
 	 * @param serverId

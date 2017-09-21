@@ -32,7 +32,7 @@ import com.l2jfrozen.netcore.IClientFactory;
 import com.l2jfrozen.netcore.IMMOExecutor;
 import com.l2jfrozen.netcore.MMOConnection;
 import com.l2jfrozen.netcore.ReceivablePacket;
-import com.l2jfrozen.netcore.util.IPv4Filter;
+import a.a.m;
 
 /**
  * @author KenM
@@ -41,12 +41,12 @@ public class SelectorHelper implements IMMOExecutor<L2LoginClient>, IClientFacto
 {
 	private static final Logger LOG = Logger.getLogger(LoginController.class.getName());
 	private final ThreadPoolExecutor _generalPacketsThreadPool;
-	private final IPv4Filter _ipv4filter;
+	private final m _m;
 	
 	public SelectorHelper()
 	{
 		_generalPacketsThreadPool = new ThreadPoolExecutor(4, 6, 15L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
-		_ipv4filter = new IPv4Filter();
+		_m = new m();
 	}
 	
 	@Override
@@ -68,7 +68,7 @@ public class SelectorHelper implements IMMOExecutor<L2LoginClient>, IClientFacto
 	{
 		try
 		{
-			return _ipv4filter.accept(sc) && !LoginController.getInstance().isBannedAddress(sc.socket().getInetAddress());
+			return _m.accept(sc) && !LoginController.getInstance().isBannedAddress(sc.socket().getInetAddress());
 		}
 		catch (final UnknownHostException e)
 		{

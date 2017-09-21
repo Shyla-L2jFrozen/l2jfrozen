@@ -29,7 +29,7 @@ import com.l2jfrozen.loginserver.LoginConfig;
 import com.l2jfrozen.loginserver.network.GameServerState;
 import com.l2jfrozen.loginserver.network.loginserverpackets.AuthResponse;
 import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
-import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
+import a.a.w;
 
 /**
  * <pre>
@@ -45,7 +45,7 @@ import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
  * </pre>
  * @author -Wooden-
  */
-public class GameServerAuth extends BaseRecievePacket
+public class GameServerAuth extends w
 {
 	protected static Logger _log = Logger.getLogger(GameServerAuth.class.getName());
 	private GameServerThread _server;

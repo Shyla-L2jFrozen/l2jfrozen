@@ -35,8 +35,8 @@ import com.l2jfrozen.netcore.IPacketHandler;
 import com.l2jfrozen.netcore.MMOConnection;
 import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.ReceivablePacket;
-import com.l2jfrozen.netcore.util.PacketsFloodProtector;
-import com.l2jfrozen.netcore.util.PacketsLoggerManager;
+import a.a.o;
+import a.a.q;
 
 /**
  * Stateful Packet Handler<BR>
@@ -87,21 +87,21 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 				packet = packet + "," + opcode2;
 			
 			// check if character has block on packet
-			if (PacketsLoggerManager.getInstance().isCharacterPacketBlocked(character, packet))
+			if (q.l().c(character, packet))
 			{
 				client.sendPacket(ActionFailed.STATIC_PACKET);
 				return null;
 			}
 			
 			// Before Anything, check if character is Monitored or has Block on received Packet
-			if (PacketsLoggerManager.getInstance().isCharacterMonitored(character))
+			if (q.l().e(character))
 			{
-				PacketsLoggerManager.getInstance().logCharacterPacket(character, packet);
+				q.l().d(character, packet);
 			}
 			
 		}
 		
-		if (!PacketsFloodProtector.tryPerformAction(opcode, opcode2, client))
+		if (!o.tryPerformAction(opcode, opcode2, client))
 		{
 			client.sendPacket(ActionFailed.STATIC_PACKET);
 			return null;

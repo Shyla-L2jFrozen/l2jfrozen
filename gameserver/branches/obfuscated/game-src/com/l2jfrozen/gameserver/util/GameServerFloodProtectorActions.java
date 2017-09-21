@@ -24,12 +24,12 @@ import com.l2jfrozen.gameserver.model.actor.instance.PunishLevel;
 import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.netcore.MMOClient;
 import com.l2jfrozen.netcore.NetcoreConfig;
-import com.l2jfrozen.netcore.util.PacketsFloodServer;
+import a.a.p;
 
 /**
  * @author Shyla
  */
-public class GameServerFloodProtectorActions implements PacketsFloodServer
+public class GameServerFloodProtectorActions implements p
 {
 	
 	private static final Logger LOGGER = Logger.getLogger(GameServerFloodProtectorActions.class);
