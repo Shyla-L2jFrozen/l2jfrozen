@@ -18,12 +18,12 @@
  */
 package com.l2jfrozen.gameserver.network.gameserverpackets;
 
-import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
+import a.a.x;
 
 /**
  * @author -Wooden-
  */
-public class PlayerLogout extends BaseSendablePacket
+public class PlayerLogout extends x
 {
 	public PlayerLogout(final String player)
 	{

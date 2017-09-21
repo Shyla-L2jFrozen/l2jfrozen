@@ -22,12 +22,12 @@ import java.util.logging.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.loginserver.LoginController;
-import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
+import a.a.w;
 
 /**
  * @author mrTJO
  */
-public class PlayerTracert extends BaseRecievePacket
+public class PlayerTracert extends w
 {
 	protected static Logger _log = Logger.getLogger(PlayerTracert.class.getName());
 	

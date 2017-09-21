@@ -19,12 +19,12 @@
 package com.l2jfrozen.gameserver.network.gameserverpackets;
 
 import com.l2jfrozen.netcore.SessionKey;
-import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
+import a.a.x;
 
 /**
  * @author -Wooden-
  */
-public class PlayerAuthRequest extends BaseSendablePacket
+public class PlayerAuthRequest extends x
 {
 	public PlayerAuthRequest(final String account, final SessionKey key)
 	{

@@ -43,7 +43,7 @@ import com.l2jfrozen.loginserver.util.LoginServerFloodProtectorActions;
 import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.SelectorConfig;
 import com.l2jfrozen.netcore.SelectorThread;
-import com.l2jfrozen.netcore.util.PacketsFloodProtector;
+import a.a.o;
 
 /**
  * @author KenM
@@ -136,7 +136,7 @@ public final class LoginServer
 		}
 		
 		// Packets flood instance
-		PacketsFloodProtector.setProtectedServer(new LoginServerFloodProtectorActions());
+		o.a(new LoginServerFloodProtectorActions());
 		
 		try
 		{

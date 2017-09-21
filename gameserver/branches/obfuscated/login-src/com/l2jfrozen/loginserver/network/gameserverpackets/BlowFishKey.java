@@ -27,13 +27,13 @@ import javax.crypto.Cipher;
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.network.GameServerState;
-import com.l2jfrozen.netcore.util.crypt.NewCrypt;
-import com.l2jfrozen.netcore.util.network.BaseRecievePacket;
+import a.a.u;
+import a.a.w;
 
 /**
  * @author -Wooden-
  */
-public class BlowFishKey extends BaseRecievePacket
+public class BlowFishKey extends w
 {
 	protected static final Logger _log = Logger.getLogger(BlowFishKey.class.getName());
 	
@@ -65,7 +65,7 @@ public class BlowFishKey extends BaseRecievePacket
 			final byte[] key = new byte[len - i];
 			System.arraycopy(tempDecryptKey, i, key, 0, len - i);
 			
-			server.SetBlowFish(new NewCrypt(key));
+			server.SetBlowFish(new u(key));
 			if (CommonConfig.DEBUG)
 			{
 				_log.info("New BlowFish key received, Blowfih Engine initialized:");

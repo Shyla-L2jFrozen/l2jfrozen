@@ -18,12 +18,12 @@
  */
 package com.l2jfrozen.gameserver.network.gameserverpackets;
 
-import com.l2jfrozen.netcore.util.network.BaseSendablePacket;
+import a.a.x;
 
 /**
  * @author -Wooden-
  */
-public class ChangeAccessLevel extends BaseSendablePacket
+public class ChangeAccessLevel extends x
 {
 	public ChangeAccessLevel(final String player, final int access)
 	{
