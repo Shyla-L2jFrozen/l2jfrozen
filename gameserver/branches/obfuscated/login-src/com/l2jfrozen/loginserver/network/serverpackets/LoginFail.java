@@ -31,7 +31,7 @@ public final class LoginFail extends L2LoginServerPacket
 	}
 	
 	@Override
-	protected void w()
+	public void w()
 	{
 		C(0x01);
 		C(_reason.getCode());
