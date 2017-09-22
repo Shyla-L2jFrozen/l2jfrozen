@@ -30,13 +30,13 @@ public class RequestSkillCoolTime extends L2GameClientPacket
 	@Override
 	public void readImpl()
 	{
-		// _client = getClient();
+		// _client = g();
 	}
 	
 	@Override
 	public void runImpl()
 	{
-		final L2PcInstance pl = getClient().getActiveChar();
+		final L2PcInstance pl = g().getActiveChar();
 		if (pl != null)
 			pl.sendPacket(new SkillCoolTime(pl));
 	}

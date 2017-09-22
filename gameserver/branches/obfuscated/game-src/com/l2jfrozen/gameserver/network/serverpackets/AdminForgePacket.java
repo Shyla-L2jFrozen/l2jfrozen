@@ -75,32 +75,32 @@ public class AdminForgePacket extends L2GameServerPacket
 		// TODO Auto-generated method stub
 		if (b == 'C' || b == 'c')
 		{
-			writeC(Integer.decode(string));
+			C(Integer.decode(string));
 			return true;
 		}
 		else if (b == 'D' || b == 'd')
 		{
-			writeD(Integer.decode(string));
+			D(Integer.decode(string));
 			return true;
 		}
 		else if (b == 'H' || b == 'h')
 		{
-			writeH(Integer.decode(string));
+			H(Integer.decode(string));
 			return true;
 		}
 		else if (b == 'F' || b == 'f')
 		{
-			writeF(Double.parseDouble(string));
+			F(Double.parseDouble(string));
 			return true;
 		}
 		else if (b == 'S' || b == 's')
 		{
-			writeS(string);
+			S(string);
 			return true;
 		}
 		else if (b == 'B' || b == 'b' || b == 'X' || b == 'x')
 		{
-			writeB(new BigInteger(string).toByteArray());
+			B(new BigInteger(string).toByteArray());
 			return true;
 		}
 		return false;

@@ -29,13 +29,13 @@ public class RequestTutorialQuestionMark extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_number = readD();
+		_number = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		
 		if (player == null)
 			return;

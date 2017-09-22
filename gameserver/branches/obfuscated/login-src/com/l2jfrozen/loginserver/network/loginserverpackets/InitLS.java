@@ -34,15 +34,15 @@ public class InitLS extends x
 	
 	public InitLS(final byte[] publickey)
 	{
-		writeC(0x00);
-		writeD(LoginServer.PROTOCOL_REV);
-		writeD(publickey.length);
-		writeB(publickey);
+		C(0x00);
+		D(LoginServer.PROTOCOL_REV);
+		D(publickey.length);
+		B(publickey);
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		return getBytes();
+		return gB();
 	}
 }

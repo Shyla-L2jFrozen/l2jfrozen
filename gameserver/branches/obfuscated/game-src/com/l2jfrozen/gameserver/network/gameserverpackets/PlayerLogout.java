@@ -27,13 +27,13 @@ public class PlayerLogout extends x
 {
 	public PlayerLogout(final String player)
 	{
-		writeC(0x03);
-		writeS(player);
+		C(0x03);
+		S(player);
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		return getBytes();
+		return gB();
 	}
 }

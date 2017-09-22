@@ -38,7 +38,7 @@ public class AllyInfo extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

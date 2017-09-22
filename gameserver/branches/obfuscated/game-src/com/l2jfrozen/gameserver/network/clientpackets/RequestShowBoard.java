@@ -34,13 +34,13 @@ public final class RequestShowBoard extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_unknown = readD();
+		_unknown = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		CommunityBoard.getInstance().handleCommands(getClient(), Config.BBS_DEFAULT);
+		CommunityBoard.getInstance().handleCommands(g(), Config.BBS_DEFAULT);
 	}
 	
 	@Override

@@ -30,19 +30,19 @@ public final class ChangeWaitType2 extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_typeStand = readD() == 1;
+		_typeStand = D() == 1;
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		
 		final L2Object target = player.getTarget();
 		
-		if (getClient() != null)
+		if (g() != null)
 		{
 			if (player.isOutOfControl())
 			{

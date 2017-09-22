@@ -45,18 +45,18 @@ public class RequestPartyMatchList extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_roomid = readD();
-		_membersmax = readD();
-		_lvlmin = readD();
-		_lvlmax = readD();
-		_loot = readD();
-		_roomtitle = readS();
+		_roomid = D();
+		_membersmax = D();
+		_lvlmin = D();
+		_lvlmax = D();
+		_loot = D();
+		_roomtitle = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance _activeChar = getClient().getActiveChar();
+		final L2PcInstance _activeChar = g().getActiveChar();
 		if (_activeChar == null)
 			return;
 		

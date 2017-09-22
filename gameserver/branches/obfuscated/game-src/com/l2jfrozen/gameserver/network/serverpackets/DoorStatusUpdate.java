@@ -39,14 +39,14 @@ public class DoorStatusUpdate extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x4d);
-		writeD(_door.getObjectId());
-		writeD(_door.getOpen() ? 0 : 1);
-		writeD(_door.getDamage());
-		writeD(_door.isEnemyOf(getClient().getActiveChar()) ? 1 : 0);
-		writeD(_door.getDoorId());
-		writeD(_door.getMaxHp());
-		writeD((int) _door.getCurrentHp());
+		C(0x4d);
+		D(_door.getObjectId());
+		D(_door.getOpen() ? 0 : 1);
+		D(_door.getDamage());
+		D(_door.isEnemyOf(g().getActiveChar()) ? 1 : 0);
+		D(_door.getDoorId());
+		D(_door.getMaxHp());
+		D((int) _door.getCurrentHp());
 	}
 	
 	/*

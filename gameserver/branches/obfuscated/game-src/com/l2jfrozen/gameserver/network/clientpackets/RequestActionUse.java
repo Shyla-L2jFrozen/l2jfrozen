@@ -76,15 +76,15 @@ public final class RequestActionUse extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_actionId = readD();
-		_ctrlPressed = readD() == 1;
-		_shiftPressed = readC() == 1;
+		_actionId = D();
+		_ctrlPressed = D() == 1;
+		_shiftPressed = C() == 1;
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;
@@ -97,14 +97,14 @@ public final class RequestActionUse extends L2GameClientPacket
 		// dont do anything if player is dead
 		if (_actionId != 0 && activeChar.isAlikeDead())
 		{
-			getClient().sendPacket(ActionFailed.STATIC_PACKET);
+			g().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		// don't do anything if player is confused
 		if (activeChar.isOutOfControl())
 		{
-			getClient().sendPacket(ActionFailed.STATIC_PACKET);
+			g().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
@@ -118,7 +118,7 @@ public final class RequestActionUse extends L2GameClientPacket
 		}
 		else if (activeChar.isCastingNow())
 		{
-			getClient().sendPacket(ActionFailed.STATIC_PACKET);
+			g().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
@@ -393,21 +393,21 @@ public final class RequestActionUse extends L2GameClientPacket
 				
 				if (activeChar.isAlikeDead())
 				{
-					getClient().sendPacket(ActionFailed.STATIC_PACKET);
+					g().sendPacket(ActionFailed.STATIC_PACKET);
 					return;
 				}
 				
 				// Like L2OFF - You can't open Manufacture when you are in private store
 				if (activeChar.getPrivateStoreType() == L2PcInstance.STORE_PRIVATE_BUY || activeChar.getPrivateStoreType() == L2PcInstance.STORE_PRIVATE_SELL)
 				{
-					getClient().sendPacket(ActionFailed.STATIC_PACKET);
+					g().sendPacket(ActionFailed.STATIC_PACKET);
 					return;
 				}
 				
 				// Like L2OFF - You can't open Manufacture when you are sitting
 				if (activeChar.isSitting() && activeChar.getPrivateStoreType() != L2PcInstance.STORE_PRIVATE_MANUFACTURE)
 				{
-					getClient().sendPacket(ActionFailed.STATIC_PACKET);
+					g().sendPacket(ActionFailed.STATIC_PACKET);
 					return;
 				}
 				
@@ -465,21 +465,21 @@ public final class RequestActionUse extends L2GameClientPacket
 				// Player shouldn't be able to set stores if he/she is alike dead (dead or fake death)
 				if (activeChar.isAlikeDead())
 				{
-					getClient().sendPacket(ActionFailed.STATIC_PACKET);
+					g().sendPacket(ActionFailed.STATIC_PACKET);
 					return;
 				}
 				
 				// Like L2OFF - You can't open Manufacture when you are in private store
 				if (activeChar.getPrivateStoreType() == L2PcInstance.STORE_PRIVATE_BUY || activeChar.getPrivateStoreType() == L2PcInstance.STORE_PRIVATE_SELL)
 				{
-					getClient().sendPacket(ActionFailed.STATIC_PACKET);
+					g().sendPacket(ActionFailed.STATIC_PACKET);
 					return;
 				}
 				
 				// Like L2OFF - You can't open Manufacture when you are sitting
 				if (activeChar.isSitting() && activeChar.getPrivateStoreType() != L2PcInstance.STORE_PRIVATE_MANUFACTURE)
 				{
-					getClient().sendPacket(ActionFailed.STATIC_PACKET);
+					g().sendPacket(ActionFailed.STATIC_PACKET);
 					return;
 				}
 				
@@ -642,7 +642,7 @@ public final class RequestActionUse extends L2GameClientPacket
 	 */
 	private void useSkill(final int skillId, final L2Object target)
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		
@@ -696,7 +696,7 @@ public final class RequestActionUse extends L2GameClientPacket
 	 */
 	private void useSkill(final int skillId)
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

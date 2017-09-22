@@ -29,24 +29,24 @@ public class PlayerInGame extends x
 {
 	public PlayerInGame(final String player)
 	{
-		writeC(0x02);
-		writeH(1);
-		writeS(player);
+		C(0x02);
+		H(1);
+		S(player);
 	}
 	
 	public PlayerInGame(final List<String> players)
 	{
-		writeC(0x02);
-		writeH(players.size());
+		C(0x02);
+		H(players.size());
 		for (final String pc : players)
 		{
-			writeS(pc);
+			S(pc);
 		}
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		return getBytes();
+		return gB();
 	}
 }

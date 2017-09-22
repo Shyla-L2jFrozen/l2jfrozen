@@ -41,9 +41,9 @@ public class InitLS extends w
 	public InitLS(final byte[] decrypt)
 	{
 		super(decrypt);
-		_rev = readD();
-		final int size = readD();
-		_key = readB(size);
+		_rev = D();
+		final int size = D();
+		_key = B(size);
 	}
 	
 }

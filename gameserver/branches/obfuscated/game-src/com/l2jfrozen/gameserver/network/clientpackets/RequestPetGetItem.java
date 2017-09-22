@@ -34,7 +34,7 @@ public final class RequestPetGetItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectId = readD();
+		_objectId = D();
 	}
 	
 	@Override
@@ -43,16 +43,16 @@ public final class RequestPetGetItem extends L2GameClientPacket
 		final L2World world = L2World.getInstance();
 		final L2ItemInstance item = (L2ItemInstance) world.findObject(_objectId);
 		
-		if (item == null || getClient().getActiveChar() == null)
+		if (item == null || g().getActiveChar() == null)
 			return;
 		
-		if (getClient().getActiveChar().getPet() instanceof L2SummonInstance)
+		if (g().getActiveChar().getPet() instanceof L2SummonInstance)
 		{
 			sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
-		final L2PetInstance pet = (L2PetInstance) getClient().getActiveChar().getPet();
+		final L2PetInstance pet = (L2PetInstance) g().getActiveChar().getPet();
 		
 		if (pet == null || pet.isDead() || pet.isOutOfControl())
 		{

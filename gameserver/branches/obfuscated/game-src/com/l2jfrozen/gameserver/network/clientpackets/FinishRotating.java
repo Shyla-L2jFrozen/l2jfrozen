@@ -29,20 +29,20 @@ public final class FinishRotating extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_degree = readD();
-		_unknown = readD();
+		_degree = D();
+		_unknown = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		
 		if (!Config.ALLOW_USE_CURSOR_FOR_WALK)
 		{
-			getClient().getActiveChar().sendPacket(ActionFailed.STATIC_PACKET);
+			g().getActiveChar().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		

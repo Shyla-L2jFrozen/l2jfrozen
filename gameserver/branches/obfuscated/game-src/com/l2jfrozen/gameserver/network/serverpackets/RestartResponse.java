@@ -46,9 +46,9 @@ public class RestartResponse extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x5f);
-		writeD(_result ? 1 : 0);
-		writeS(_message);
+		C(0x5f);
+		D(_result ? 1 : 0);
+		S(_message);
 	}
 	
 	/*

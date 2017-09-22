@@ -44,8 +44,8 @@ public class BlowFishKey extends w
 	public BlowFishKey(final byte[] decrypt, final GameServerThread server)
 	{
 		super(decrypt);
-		final int size = readD();
-		final byte[] tempKey = readB(size);
+		final int size = D();
+		final byte[] tempKey = B(size);
 		try
 		{
 			byte[] tempDecryptKey;

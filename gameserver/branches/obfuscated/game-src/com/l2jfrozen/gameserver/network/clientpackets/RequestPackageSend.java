@@ -53,8 +53,8 @@ public final class RequestPackageSend extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectID = readD();
-		_count = readD();
+		_objectID = D();
+		_count = D();
 		
 		if (_count < 0 || _count > 500)
 		{
@@ -64,8 +64,8 @@ public final class RequestPackageSend extends L2GameClientPacket
 		
 		for (int i = 0; i < _count; i++)
 		{
-			final int id = readD(); // this is some id sent in PackageSendableList
-			final int count = readD();
+			final int id = D(); // this is some id sent in PackageSendableList
+			final int count = D();
 			_items.add(new Item(id, count));
 		}
 	}
@@ -76,7 +76,7 @@ public final class RequestPackageSend extends L2GameClientPacket
 		if (_count == -1 || _items == null)
 			return;
 		
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		
 		if (player == null)
 			return;
@@ -96,7 +96,7 @@ public final class RequestPackageSend extends L2GameClientPacket
 		if (L2World.getInstance().getPlayer(_objectID) != null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("deposit"))
+		if (!g().getFloodProtectors().getTransaction().tryPerformAction("deposit"))
 		{
 			player.sendMessage("You depositing items too fast.");
 			return;

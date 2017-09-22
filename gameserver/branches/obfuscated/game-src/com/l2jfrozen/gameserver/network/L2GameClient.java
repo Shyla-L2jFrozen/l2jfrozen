@@ -64,8 +64,8 @@ import com.l2jfrozen.gameserver.util.FloodProtectors;
 import com.l2jfrozen.netcore.MMOClient;
 import com.l2jfrozen.netcore.MMOConnection;
 import com.l2jfrozen.netcore.NetcoreConfig;
-import com.l2jfrozen.netcore.ReceivablePacket;
 import com.l2jfrozen.netcore.SessionKey;
+import a.a.z;
 
 import javolution.util.FastList;
 
@@ -109,7 +109,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	
 	protected boolean _forcedToClose = false;
 	
-	private final ArrayBlockingQueue<ReceivablePacket<L2GameClient>> _packetQueue;
+	private final ArrayBlockingQueue<z<L2GameClient>> _packetQueue;
 	private final ReentrantLock _queueLock = new ReentrantLock();
 	
 	private long _last_received_packet_action_time = 0;
@@ -1078,7 +1078,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	 * Add packet to the queue and start worker thread if needed
 	 * @param packet
 	 */
-	public void execute(final ReceivablePacket<L2GameClient> packet)
+	public void execute(final z<L2GameClient> packet)
 	{
 		if (getStats().countFloods())
 		{
@@ -1145,7 +1145,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 			int count = 0;
 			while (true)
 			{
-				final ReceivablePacket<L2GameClient> packet = _packetQueue.poll();
+				final z<L2GameClient> packet = _packetQueue.poll();
 				if (packet == null) // queue is empty
 					return;
 				

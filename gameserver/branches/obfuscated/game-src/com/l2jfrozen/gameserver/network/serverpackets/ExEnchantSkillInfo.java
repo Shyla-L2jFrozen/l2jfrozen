@@ -70,23 +70,23 @@ public class ExEnchantSkillInfo extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x18);
+		C(0xfe);
+		H(0x18);
 		
-		writeD(_id);
-		writeD(_level);
-		writeD(_spCost);
-		writeQ(_xpCost);
-		writeD(_rate);
+		D(_id);
+		D(_level);
+		D(_spCost);
+		Q(_xpCost);
+		D(_rate);
 		
-		writeD(_reqs.size());
+		D(_reqs.size());
 		
 		for (final Req temp : _reqs)
 		{
-			writeD(temp.type);
-			writeD(temp.id);
-			writeD(temp.count);
-			writeD(temp.unk);
+			D(temp.type);
+			D(temp.id);
+			D(temp.count);
+			D(temp.unk);
 		}
 		
 	}

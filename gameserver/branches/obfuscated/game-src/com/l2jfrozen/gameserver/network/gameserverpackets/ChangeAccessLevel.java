@@ -27,14 +27,14 @@ public class ChangeAccessLevel extends x
 {
 	public ChangeAccessLevel(final String player, final int access)
 	{
-		writeC(0x04);
-		writeD(access);
-		writeS(player);
+		C(0x04);
+		D(access);
+		S(player);
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		return getBytes();
+		return gB();
 	}
 }

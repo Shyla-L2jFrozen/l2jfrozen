@@ -32,31 +32,31 @@ public final class StartRotating extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_degree = readD();
-		_side = readD();
+		_degree = D();
+		_side = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		if (getClient().getActiveChar() == null)
+		if (g().getActiveChar() == null)
 			return;
 		
 		// Move flood protection
-		if (!getClient().getFloodProtectors().getMoveAction().tryPerformAction("StartRotating"))
+		if (!g().getFloodProtectors().getMoveAction().tryPerformAction("StartRotating"))
 		{
-			getClient().getActiveChar().sendPacket(ActionFailed.STATIC_PACKET);
+			g().getActiveChar().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		if (!Config.ALLOW_USE_CURSOR_FOR_WALK)
 		{
-			getClient().getActiveChar().sendPacket(ActionFailed.STATIC_PACKET);
+			g().getActiveChar().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
-		final BeginRotation br = new BeginRotation(getClient().getActiveChar(), _degree, _side, 0);
-		getClient().getActiveChar().broadcastPacket(br);
+		final BeginRotation br = new BeginRotation(g().getActiveChar(), _degree, _side, 0);
+		g().getActiveChar().broadcastPacket(br);
 	}
 	
 	@Override

@@ -58,23 +58,23 @@ public class PetStatusUpdate extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xb5);
-		writeD(_summon.getSummonType());
-		writeD(_summon.getObjectId());
-		writeD(_summon.getX());
-		writeD(_summon.getY());
-		writeD(_summon.getZ());
-		writeS(_summon.getOwner().getName());
-		writeD(_curFed);
-		writeD(_maxFed);
-		writeD((int) _summon.getCurrentHp());
-		writeD(_maxHp);
-		writeD((int) _summon.getCurrentMp());
-		writeD(_maxMp);
-		writeD(_summon.getLevel());
-		writeQ(_summon.getStat().getExp());
-		writeQ(_summon.getExpForThisLevel());// 0% absolute value
-		writeQ(_summon.getExpForNextLevel());// 100% absolute value
+		C(0xb5);
+		D(_summon.getSummonType());
+		D(_summon.getObjectId());
+		D(_summon.getX());
+		D(_summon.getY());
+		D(_summon.getZ());
+		S(_summon.getOwner().getName());
+		D(_curFed);
+		D(_maxFed);
+		D((int) _summon.getCurrentHp());
+		D(_maxHp);
+		D((int) _summon.getCurrentMp());
+		D(_maxMp);
+		D(_summon.getLevel());
+		Q(_summon.getStat().getExp());
+		Q(_summon.getExpForThisLevel());// 0% absolute value
+		Q(_summon.getExpForNextLevel());// 100% absolute value
 	}
 	
 	@Override

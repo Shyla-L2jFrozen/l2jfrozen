@@ -30,7 +30,7 @@ public final class AllyDismiss extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_clanName = readS();
+		_clanName = S();
 	}
 	
 	@Override
@@ -39,7 +39,7 @@ public final class AllyDismiss extends L2GameClientPacket
 		if (_clanName == null)
 			return;
 		
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		
 		if (player == null)
 			return;

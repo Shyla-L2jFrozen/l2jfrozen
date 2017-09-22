@@ -39,14 +39,14 @@ public final class RequestPetition extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_content = readS();
-		_type = readD();
+		_content = S();
+		_type = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

@@ -39,9 +39,9 @@ public class DeleteObject extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x12);
-		writeD(_objectId);
-		writeD(0x00); // c2
+		C(0x12);
+		D(_objectId);
+		D(0x00); // c2
 	}
 	
 	/*

@@ -27,17 +27,17 @@ import java.util.logging.Logger;
 
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.serverpackets.Init;
-import com.l2jfrozen.netcore.IAcceptFilter;
-import com.l2jfrozen.netcore.IClientFactory;
-import com.l2jfrozen.netcore.IMMOExecutor;
 import com.l2jfrozen.netcore.MMOConnection;
-import com.l2jfrozen.netcore.ReceivablePacket;
+import a.a.af;
+import a.a.am;
+import a.a.cf;
 import a.a.m;
+import a.a.z;
 
 /**
  * @author KenM
  */
-public class SelectorHelper implements IMMOExecutor<L2LoginClient>, IClientFactory<L2LoginClient>, IAcceptFilter
+public class SelectorHelper implements af, am<L2LoginClient>, cf<L2LoginClient>
 {
 	private static final Logger LOG = Logger.getLogger(LoginController.class.getName());
 	private final ThreadPoolExecutor _generalPacketsThreadPool;
@@ -50,13 +50,13 @@ public class SelectorHelper implements IMMOExecutor<L2LoginClient>, IClientFacto
 	}
 	
 	@Override
-	public void execute(final ReceivablePacket<L2LoginClient> packet)
+	public void e(final z<L2LoginClient> packet)
 	{
 		_generalPacketsThreadPool.execute(packet);
 	}
 	
 	@Override
-	public L2LoginClient create(final MMOConnection<L2LoginClient> con)
+	public L2LoginClient c(final MMOConnection<L2LoginClient> con)
 	{
 		final L2LoginClient client = new L2LoginClient(con);
 		client.sendPacket(new Init(client));
@@ -64,11 +64,11 @@ public class SelectorHelper implements IMMOExecutor<L2LoginClient>, IClientFacto
 	}
 	
 	@Override
-	public boolean accept(final SocketChannel sc)
+	public boolean a(final SocketChannel sc)
 	{
 		try
 		{
-			return _m.accept(sc) && !LoginController.getInstance().isBannedAddress(sc.socket().getInetAddress());
+			return _m.a(sc) && !LoginController.getInstance().isBannedAddress(sc.socket().getInetAddress());
 		}
 		catch (final UnknownHostException e)
 		{

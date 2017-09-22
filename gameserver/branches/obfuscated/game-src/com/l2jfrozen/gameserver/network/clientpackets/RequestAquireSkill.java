@@ -59,16 +59,16 @@ public class RequestAquireSkill extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_id = readD();
-		_level = readD();
-		_skillType = readD();
+		_id = D();
+		_level = D();
+		_skillType = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
 		
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		
 		if (player == null)
 			return;

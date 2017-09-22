@@ -26,18 +26,18 @@ public final class CharacterRestore extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_charSlot = readD();
+		_charSlot = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		if (!getClient().getFloodProtectors().getCharacterSelect().tryPerformAction("CharacterRestore"))
+		if (!g().getFloodProtectors().getCharacterSelect().tryPerformAction("CharacterRestore"))
 			return;
 		
 		try
 		{
-			getClient().markRestoredChar(_charSlot);
+			g().markRestoredChar(_charSlot);
 		}
 		catch (final Exception e)
 		{
@@ -46,15 +46,15 @@ public final class CharacterRestore extends L2GameClientPacket
 		}
 		
 		// Before the char selection, check shutdown status
-		if (getClient().getConnection().getSelectorThread().isShutdown())
+		if (g().getConnection().getSelectorThread().isShutdown())
 		{
-			getClient().closeNow();
+			g().closeNow();
 			return;
 		}
 		
-		final CharSelectInfo cl = new CharSelectInfo(getClient().getAccountName(), getClient().getSessionId().playOkID1, 0);
+		final CharSelectInfo cl = new CharSelectInfo(g().getAccountName(), g().getSessionId().playOkID1, 0);
 		sendPacket(cl);
-		getClient().setCharSelection(cl.getCharInfo());
+		g().setCharSelection(cl.getCharInfo());
 	}
 	
 	@Override

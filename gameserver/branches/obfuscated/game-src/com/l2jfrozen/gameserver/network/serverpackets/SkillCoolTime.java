@@ -21,18 +21,18 @@ public class SkillCoolTime extends L2GameServerPacket
 	protected final void writeImpl()
 	{
 		@SuppressWarnings("cast")
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
-		writeC(193);
-		writeD(_reuseTimeStamps.size());
+		C(193);
+		D(_reuseTimeStamps.size());
 		L2PcInstance.TimeStamp ts;
-		for (final Iterator i$ = _reuseTimeStamps.iterator(); i$.hasNext(); writeD((int) ts.getRemaining() / 1000))
+		for (final Iterator i$ = _reuseTimeStamps.iterator(); i$.hasNext(); D((int) ts.getRemaining() / 1000))
 		{
 			ts = (L2PcInstance.TimeStamp) i$.next();
-			writeD(ts.getSkill().getId());
-			writeD(0);
-			writeD((int) ts.getReuse() / 1000);
+			D(ts.getSkill().getId());
+			D(0);
+			D((int) ts.getReuse() / 1000);
 		}
 		
 	}

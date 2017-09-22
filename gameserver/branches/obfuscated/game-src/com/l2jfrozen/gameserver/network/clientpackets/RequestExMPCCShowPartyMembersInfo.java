@@ -34,13 +34,13 @@ public final class RequestExMPCCShowPartyMembersInfo extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_partyLeaderId = readD();
+		_partyLeaderId = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

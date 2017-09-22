@@ -49,9 +49,9 @@ public final class SendWareHouseWithDrawList extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_count = readD();
+		_count = D();
 		
-		if (_count < 0 || _count * 8 > _buf.remaining() || _count > Config.MAX_ITEM_IN_PACKET)
+		if (_count < 0 || _count * 8 > _b.remaining() || _count > Config.MAX_ITEM_IN_PACKET)
 		{
 			_count = 0;
 			_items = null;
@@ -62,9 +62,9 @@ public final class SendWareHouseWithDrawList extends L2GameClientPacket
 		
 		for (int i = 0; i < _count; i++)
 		{
-			final int objectId = readD();
+			final int objectId = D();
 			_items[i * 2 + 0] = objectId;
-			final long cnt = readD();
+			final long cnt = D();
 			
 			if (cnt > Integer.MAX_VALUE || cnt < 0)
 			{
@@ -80,11 +80,11 @@ public final class SendWareHouseWithDrawList extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("withdraw"))
+		if (!g().getFloodProtectors().getTransaction().tryPerformAction("withdraw"))
 		{
 			player.sendMessage("You withdrawing items too fast.");
 			return;

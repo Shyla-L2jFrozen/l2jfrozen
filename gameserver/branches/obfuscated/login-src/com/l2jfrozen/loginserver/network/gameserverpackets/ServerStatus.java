@@ -85,11 +85,11 @@ public class ServerStatus extends w
 		final GameServerInfo gsi = GameServerTable.getInstance().getRegisteredGameServerById(server.getServerId());
 		if (gsi != null)
 		{
-			final int size = readD();
+			final int size = D();
 			for (int i = 0; i < size; i++)
 			{
-				final int type = readD();
-				final int value = readD();
+				final int type = D();
+				final int value = D();
 				switch (type)
 				{
 					case SERVER_LIST_STATUS:

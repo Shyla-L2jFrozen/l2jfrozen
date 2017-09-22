@@ -28,8 +28,8 @@ public class ExCloseMPCC extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x26);
+		C(0xfe);
+		H(0x26);
 	}
 	
 	@Override

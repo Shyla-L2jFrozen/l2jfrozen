@@ -35,10 +35,10 @@ public final class RequestShortCutReg extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_type = readD();
-		final int slot = readD();
-		_id = readD();
-		_unk = readD();
+		_type = D();
+		final int slot = D();
+		_id = D();
+		_unk = D();
 		
 		_slot = slot % 12;
 		_page = slot / 12;
@@ -47,7 +47,7 @@ public final class RequestShortCutReg extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

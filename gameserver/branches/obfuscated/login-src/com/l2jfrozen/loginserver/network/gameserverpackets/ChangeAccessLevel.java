@@ -38,8 +38,8 @@ public class ChangeAccessLevel extends w
 	public ChangeAccessLevel(final byte[] decrypt, final GameServerThread server)
 	{
 		super(decrypt);
-		final int level = readD();
-		final String account = readS();
+		final int level = D();
+		final String account = S();
 		
 		LoginController.getInstance().setAccountAccessLevel(account, level);
 		_log.info("Changed " + account + " access level to " + level);

@@ -38,14 +38,14 @@ public class RequestGiveNickName extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_target = readS();
-		_title = readS();
+		_target = S();
+		_title = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null || _title == null)
 			return;
 		

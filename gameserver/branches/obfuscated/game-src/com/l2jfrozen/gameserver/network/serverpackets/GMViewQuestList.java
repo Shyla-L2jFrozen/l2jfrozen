@@ -42,34 +42,34 @@ public class GMViewQuestList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x93);
-		writeS(_activeChar.getName());
+		C(0x93);
+		S(_activeChar.getName());
 		
 		final Quest[] questList = _activeChar.getAllActiveQuests();
 		
 		if (questList.length == 0)
 		{
-			writeC(0);
-			writeH(0);
-			writeH(0);
+			C(0);
+			H(0);
+			H(0);
 			return;
 		}
 		
-		writeH(questList.length); // quest count
+		H(questList.length); // quest count
 		
 		for (final Quest q : questList)
 		{
-			writeD(q.getQuestIntId());
+			D(q.getQuestIntId());
 			
 			final QuestState qs = _activeChar.getQuestState(q.getName());
 			
 			if (qs == null)
 			{
-				writeD(0);
+				D(0);
 				continue;
 			}
 			
-			writeD(qs.getInt("cond")); // stage of quest progress
+			D(qs.getInt("cond")); // stage of quest progress
 		}
 	}
 	

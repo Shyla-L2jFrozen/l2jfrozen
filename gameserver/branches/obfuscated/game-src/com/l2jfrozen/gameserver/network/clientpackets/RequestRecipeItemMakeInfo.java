@@ -31,8 +31,8 @@ public final class RequestRecipeItemMakeInfo extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_id = readD();
-		_activeChar = getClient().getActiveChar();
+		_id = D();
+		_activeChar = g().getActiveChar();
 	}
 	
 	@Override

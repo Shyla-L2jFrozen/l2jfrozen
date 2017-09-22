@@ -42,12 +42,12 @@ public final class RequestMakeMacro extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		final int _id = readD();
-		final String _name = readS();
-		final String _desc = readS();
-		final String _acronym = readS();
-		final int _icon = readC();
-		int _count = readC();
+		final int _id = D();
+		final String _name = S();
+		final String _desc = S();
+		final String _acronym = S();
+		final int _icon = C();
+		int _count = C();
 		if (_count < 0)
 		{
 			_count = 0;
@@ -65,11 +65,11 @@ public final class RequestMakeMacro extends L2GameClientPacket
 		}
 		for (int i = 0; i < _count; i++)
 		{
-			final int entry = readC();
-			final int type = readC(); // 1 = skill, 3 = action, 4 = shortcut
-			final int d1 = readD(); // skill or page number for shortcuts
-			final int d2 = readC();
-			final String command = readS();
+			final int entry = C();
+			final int type = C(); // 1 = skill, 3 = action, 4 = shortcut
+			final int d1 = D(); // skill or page number for shortcuts
+			final int d2 = C();
+			final String command = S();
 			_commandsLenght += command.length() + 1;
 			commands[i] = new L2MacroCmd(entry, type, d1, d2, command);
 			if (CommonConfig.DEBUG)
@@ -83,13 +83,13 @@ public final class RequestMakeMacro extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		
 		if (player == null)
 			return;
 		
 		// Macro exploit fix
-		if (!getClient().getFloodProtectors().getMacro().tryPerformAction("make macro"))
+		if (!g().getFloodProtectors().getMacro().tryPerformAction("make macro"))
 			return;
 		
 		if (_commandsLenght > 255)

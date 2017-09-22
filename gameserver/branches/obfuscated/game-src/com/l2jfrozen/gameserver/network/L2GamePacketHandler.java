@@ -29,14 +29,14 @@ import com.l2jfrozen.gameserver.Shutdown;
 import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.network.clientpackets.*;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
-import com.l2jfrozen.netcore.IClientFactory;
-import com.l2jfrozen.netcore.IMMOExecutor;
-import com.l2jfrozen.netcore.IPacketHandler;
 import com.l2jfrozen.netcore.MMOConnection;
 import com.l2jfrozen.netcore.NetcoreConfig;
-import com.l2jfrozen.netcore.ReceivablePacket;
+import a.a.am;
+import a.a.cf;
 import a.a.o;
+import a.a.ph;
 import a.a.q;
+import a.a.z;
 
 /**
  * Stateful Packet Handler<BR>
@@ -48,13 +48,13 @@ import a.a.q;
  * @author L2JFrozen
  */
 
-public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, IClientFactory<L2GameClient>, IMMOExecutor<L2GameClient>
+public final class L2GamePacketHandler implements am<L2GameClient>, cf<L2GameClient>, ph<L2GameClient>
 {
 	private static final Logger LOGGER = Logger.getLogger(L2GamePacketHandler.class);
 	
 	// implementation
 	@Override
-	public ReceivablePacket<L2GameClient> handlePacket(final ByteBuffer buf, final L2GameClient client)
+	public z<L2GameClient> h(final ByteBuffer buf, final L2GameClient client)
 	{
 		
 		if (client.dropPacket())
@@ -101,13 +101,13 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 			
 		}
 		
-		if (!o.tryPerformAction(opcode, opcode2, client))
+		if (!o.t(opcode, opcode2, client))
 		{
 			client.sendPacket(ActionFailed.STATIC_PACKET);
 			return null;
 		}
 		
-		ReceivablePacket<L2GameClient> msg = null;
+		z<L2GameClient> msg = null;
 		GameClientState state = client.getState();
 		
 		if (Config.DEBUG_PACKETS)
@@ -972,15 +972,15 @@ public final class L2GamePacketHandler implements IPacketHandler<L2GameClient>, 
 	}
 	
 	@Override
-	public L2GameClient create(final MMOConnection<L2GameClient> con)
+	public L2GameClient c(final MMOConnection<L2GameClient> con)
 	{
 		return new L2GameClient(con);
 	}
 	
 	@Override
-	public void execute(final ReceivablePacket<L2GameClient> rp)
+	public void e(final z<L2GameClient> rp)
 	{
-		rp.getClient().execute(rp);
+		rp.g().execute(rp);
 	}
 	
 	/*

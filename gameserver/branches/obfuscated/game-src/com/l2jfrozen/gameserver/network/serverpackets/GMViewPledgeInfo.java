@@ -45,38 +45,38 @@ public class GMViewPledgeInfo extends L2GameServerPacket
 	protected final void writeImpl()
 	{
 		final int TOP = ClanTable.getInstance().getTopRate(_clan.getClanId());
-		writeC(0x90);
-		writeS(_activeChar.getName());
-		writeD(_clan.getClanId());
-		writeD(0x00);
-		writeS(_clan.getName());
-		writeS(_clan.getLeaderName());
-		writeD(_clan.getCrestId()); // -> no, it's no longer used (nuocnam) fix by game
-		writeD(_clan.getLevel());
-		writeD(_clan.getHasCastle());
-		writeD(_clan.getHasHideout());
-		writeD(TOP);
-		writeD(_clan.getReputationScore());
-		writeD(0);
-		writeD(0);
+		C(0x90);
+		S(_activeChar.getName());
+		D(_clan.getClanId());
+		D(0x00);
+		S(_clan.getName());
+		S(_clan.getLeaderName());
+		D(_clan.getCrestId()); // -> no, it's no longer used (nuocnam) fix by game
+		D(_clan.getLevel());
+		D(_clan.getHasCastle());
+		D(_clan.getHasHideout());
+		D(TOP);
+		D(_clan.getReputationScore());
+		D(0);
+		D(0);
 		
-		writeD(_clan.getAllyId()); // c2
-		writeS(_clan.getAllyName()); // c2
-		writeD(_clan.getAllyCrestId()); // c2
-		writeD(_clan.isAtWar()); // c3
+		D(_clan.getAllyId()); // c2
+		S(_clan.getAllyName()); // c2
+		D(_clan.getAllyCrestId()); // c2
+		D(_clan.isAtWar()); // c3
 		
 		final L2ClanMember[] members = _clan.getMembers();
-		writeD(members.length);
+		D(members.length);
 		
 		for (final L2ClanMember member : members)
 		{
-			writeS(member.getName());
-			writeD(member.getLevel());
-			writeD(member.getClassId());
-			writeD(0);
-			writeD(1);
-			writeD(member.isOnline() ? member.getObjectId() : 0);
-			writeD(0);
+			S(member.getName());
+			D(member.getLevel());
+			D(member.getClassId());
+			D(0);
+			D(1);
+			D(member.isOnline() ? member.getObjectId() : 0);
+			D(0);
 		}
 	}
 	

@@ -40,10 +40,10 @@ public class SetPrivateStoreListSell extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_packageSale = readD() == 1;
-		_count = readD();
+		_packageSale = D() == 1;
+		_count = D();
 		
-		if (_count <= 0 || _count * 12 > _buf.remaining() || _count > Config.MAX_ITEM_IN_PACKET)
+		if (_count <= 0 || _count * 12 > _b.remaining() || _count > Config.MAX_ITEM_IN_PACKET)
 		{
 			_count = 0;
 			_items = null;
@@ -54,9 +54,9 @@ public class SetPrivateStoreListSell extends L2GameClientPacket
 		
 		for (int x = 0; x < _count; x++)
 		{
-			final int objectId = readD();
+			final int objectId = D();
 			_items[x * 3 + 0] = objectId;
-			final long cnt = readD();
+			final long cnt = D();
 			
 			if (cnt > Integer.MAX_VALUE || cnt < 0)
 			{
@@ -66,7 +66,7 @@ public class SetPrivateStoreListSell extends L2GameClientPacket
 			}
 			
 			_items[x * 3 + 1] = (int) cnt;
-			final int price = readD();
+			final int price = D();
 			_items[x * 3 + 2] = price;
 		}
 	}
@@ -74,7 +74,7 @@ public class SetPrivateStoreListSell extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		
@@ -122,8 +122,8 @@ public class SetPrivateStoreListSell extends L2GameClientPacket
 			
 			if (price <= 0)
 			{
-				final String msgErr = "[SetPrivateStoreListSell] player " + getClient().getActiveChar().getName() + " tried an overflow exploit (use PHX), ban this player!";
-				Util.handleIllegalPlayerAction(getClient().getActiveChar(), msgErr, Config.DEFAULT_PUNISH);
+				final String msgErr = "[SetPrivateStoreListSell] player " + g().getActiveChar().getName() + " tried an overflow exploit (use PHX), ban this player!";
+				Util.handleIllegalPlayerAction(g().getActiveChar(), msgErr, Config.DEFAULT_PUNISH);
 				_count = 0;
 				_items = null;
 				return;

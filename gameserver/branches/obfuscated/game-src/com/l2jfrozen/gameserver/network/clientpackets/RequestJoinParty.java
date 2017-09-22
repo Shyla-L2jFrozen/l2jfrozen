@@ -43,20 +43,20 @@ public final class RequestJoinParty extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_name = readS();
-		_itemDistribution = readD();
+		_name = S();
+		_itemDistribution = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance requestor = getClient().getActiveChar();
+		final L2PcInstance requestor = g().getActiveChar();
 		final L2PcInstance target = L2World.getInstance().getPlayer(_name);
 		
 		if (requestor == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getPartyInvitation().tryPerformAction("PartyInvitation"))
+		if (!g().getFloodProtectors().getPartyInvitation().tryPerformAction("PartyInvitation"))
 		{
 			requestor.sendMessage("You Cannot Invite into Party So Fast!");
 			return;

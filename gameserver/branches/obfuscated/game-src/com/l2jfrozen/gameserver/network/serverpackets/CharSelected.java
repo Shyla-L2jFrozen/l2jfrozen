@@ -47,66 +47,66 @@ public class CharSelected extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x15);
+		C(0x15);
 		
-		writeS(_activeChar.getName());
-		writeD(_activeChar.getCharId()); // ??
-		writeS(_activeChar.getTitle());
-		writeD(_sessionId);
-		writeD(_activeChar.getClanId());
-		writeD(0x00); // ??
-		writeD(_activeChar.getAppearance().getSex() ? 1 : 0);
-		writeD(_activeChar.getRace().ordinal());
-		writeD(_activeChar.getClassId().getId());
-		writeD(0x01); // active ??
-		writeD(_activeChar.getX());
-		writeD(_activeChar.getY());
-		writeD(_activeChar.getZ());
+		S(_activeChar.getName());
+		D(_activeChar.getCharId()); // ??
+		S(_activeChar.getTitle());
+		D(_sessionId);
+		D(_activeChar.getClanId());
+		D(0x00); // ??
+		D(_activeChar.getAppearance().getSex() ? 1 : 0);
+		D(_activeChar.getRace().ordinal());
+		D(_activeChar.getClassId().getId());
+		D(0x01); // active ??
+		D(_activeChar.getX());
+		D(_activeChar.getY());
+		D(_activeChar.getZ());
 		
-		writeF(_activeChar.getCurrentHp());
-		writeF(_activeChar.getCurrentMp());
-		writeD(_activeChar.getSp());
-		writeQ(_activeChar.getExp());
-		writeD(_activeChar.getLevel());
-		writeD(_activeChar.getKarma()); // thx evill33t
-		writeD(0x0); // ?
-		writeD(_activeChar.getINT());
-		writeD(_activeChar.getSTR());
-		writeD(_activeChar.getCON());
-		writeD(_activeChar.getMEN());
-		writeD(_activeChar.getDEX());
-		writeD(_activeChar.getWIT());
+		F(_activeChar.getCurrentHp());
+		F(_activeChar.getCurrentMp());
+		D(_activeChar.getSp());
+		Q(_activeChar.getExp());
+		D(_activeChar.getLevel());
+		D(_activeChar.getKarma()); // thx evill33t
+		D(0x0); // ?
+		D(_activeChar.getINT());
+		D(_activeChar.getSTR());
+		D(_activeChar.getCON());
+		D(_activeChar.getMEN());
+		D(_activeChar.getDEX());
+		D(_activeChar.getWIT());
 		for (int i = 0; i < 30; i++)
 		{
-			writeD(0x00);
+			D(0x00);
 		}
-		// writeD(0); //c3
-		// writeD(0); //c3
-		// writeD(0); //c3
+		// D(0); //c3
+		// D(0); //c3
+		// D(0); //c3
 		
-		writeD(0x00); // c3 work
-		writeD(0x00); // c3 work
+		D(0x00); // c3 work
+		D(0x00); // c3 work
 		
 		// extra info
-		writeD(GameTimeController.getInstance().getGameTime()); // in-game time
+		D(GameTimeController.getInstance().getGameTime()); // in-game time
 		
-		writeD(0x00); //
+		D(0x00); //
 		
-		writeD(0x00); // c3
+		D(0x00); // c3
 		
-		writeD(0x00); // c3 InspectorBin
-		writeD(0x00); // c3
-		writeD(0x00); // c3
-		writeD(0x00); // c3
+		D(0x00); // c3 InspectorBin
+		D(0x00); // c3
+		D(0x00); // c3
+		D(0x00); // c3
 		
-		writeD(0x00); // c3 InspectorBin for 528 client
-		writeD(0x00); // c3
-		writeD(0x00); // c3
-		writeD(0x00); // c3
-		writeD(0x00); // c3
-		writeD(0x00); // c3
-		writeD(0x00); // c3
-		writeD(0x00); // c3
+		D(0x00); // c3 InspectorBin for 528 client
+		D(0x00); // c3
+		D(0x00); // c3
+		D(0x00); // c3
+		D(0x00); // c3
+		D(0x00); // c3
+		D(0x00); // c3
+		D(0x00); // c3
 	}
 	
 	/*

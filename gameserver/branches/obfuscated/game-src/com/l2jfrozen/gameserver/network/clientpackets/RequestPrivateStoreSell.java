@@ -45,10 +45,10 @@ public final class RequestPrivateStoreSell extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_storePlayerId = readD();
-		_count = readD();
+		_storePlayerId = D();
+		_count = D();
 		// count*20 is the size of a for iteration of each item
-		if (_count < 0 || _count * 20 > _buf.remaining() || _count > Config.MAX_ITEM_IN_PACKET)
+		if (_count < 0 || _count * 20 > _b.remaining() || _count > Config.MAX_ITEM_IN_PACKET)
 		{
 			_count = 0;
 		}
@@ -57,17 +57,17 @@ public final class RequestPrivateStoreSell extends L2GameClientPacket
 		long priceTotal = 0;
 		for (int i = 0; i < _count; i++)
 		{
-			final int objectId = readD();
-			final int itemId = readD();
-			final int enchant = readH(this.getClass().getSimpleName());
-			readH(this.getClass().getSimpleName()); // TODO analyse this
-			final long count = readD();
-			final int price = readD();
+			final int objectId = D();
+			final int itemId = D();
+			final int enchant = H(this.getClass().getSimpleName());
+			H(this.getClass().getSimpleName()); // TODO analyse this
+			final long count = D();
+			final int price = D();
 			
 			if (count > Integer.MAX_VALUE || count < 0)
 			{
-				final String msgErr = "[RequestPrivateStoreSell] player " + getClient().getActiveChar().getName() + " tried an overflow exploit, ban this player!";
-				Util.handleIllegalPlayerAction(getClient().getActiveChar(), msgErr, Config.DEFAULT_PUNISH);
+				final String msgErr = "[RequestPrivateStoreSell] player " + g().getActiveChar().getName() + " tried an overflow exploit, ban this player!";
+				Util.handleIllegalPlayerAction(g().getActiveChar(), msgErr, Config.DEFAULT_PUNISH);
 				_count = 0;
 				_items = null;
 				return;
@@ -78,8 +78,8 @@ public final class RequestPrivateStoreSell extends L2GameClientPacket
 		
 		if (priceTotal < 0 || priceTotal > Integer.MAX_VALUE)
 		{
-			final String msgErr = "[RequestPrivateStoreSell] player " + getClient().getActiveChar().getName() + " tried an overflow exploit, ban this player!";
-			Util.handleIllegalPlayerAction(getClient().getActiveChar(), msgErr, Config.DEFAULT_PUNISH);
+			final String msgErr = "[RequestPrivateStoreSell] player " + g().getActiveChar().getName() + " tried an overflow exploit, ban this player!";
+			Util.handleIllegalPlayerAction(g().getActiveChar(), msgErr, Config.DEFAULT_PUNISH);
 			_count = 0;
 			_items = null;
 			return;
@@ -88,7 +88,7 @@ public final class RequestPrivateStoreSell extends L2GameClientPacket
 		if (CommonConfig.DEBUG)
 		{
 			
-			LOGGER.info("Player " + getClient().getActiveChar().getName() + " requested to sell to storeId " + _storePlayerId + " Items Number: " + _count);
+			LOGGER.info("Player " + g().getActiveChar().getName() + " requested to sell to storeId " + _storePlayerId + " Items Number: " + _count);
 			
 			for (int i = 0; i < _count; i++)
 			{
@@ -107,11 +107,11 @@ public final class RequestPrivateStoreSell extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("privatestoresell"))
+		if (!g().getFloodProtectors().getTransaction().tryPerformAction("privatestoresell"))
 		{
 			player.sendMessage("You selling items too fast");
 			return;
@@ -177,7 +177,7 @@ public final class RequestPrivateStoreSell extends L2GameClientPacket
 		if (!storeList.PrivateStoreSell(player, _items, _price))
 		{
 			sendPacket(ActionFailed.STATIC_PACKET);
-			Util.handleIllegalPlayerAction(getClient().getActiveChar(), "Player " + getClient().getActiveChar().getName() + " provided invalid list or request! ", Config.DEFAULT_PUNISH);
+			Util.handleIllegalPlayerAction(g().getActiveChar(), "Player " + g().getActiveChar().getName() + " provided invalid list or request! ", Config.DEFAULT_PUNISH);
 			LOGGER.warn("PrivateStore sell has failed due to invalid list or request. Player: " + player.getName() + ", Private store of: " + storePlayer.getName());
 			return;
 		}

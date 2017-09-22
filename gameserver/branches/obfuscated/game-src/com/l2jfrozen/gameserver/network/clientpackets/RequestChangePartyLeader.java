@@ -33,13 +33,13 @@ public final class RequestChangePartyLeader extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_name = readS();
+		_name = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

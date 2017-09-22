@@ -50,8 +50,8 @@ public class RequestBuyProcure extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_listId = readD();
-		_count = readD();
+		_listId = D();
+		_count = D();
 		
 		if (_count > 500) // protect server
 		{
@@ -68,10 +68,10 @@ public class RequestBuyProcure extends L2GameClientPacket
 		_items = new int[_count * 2];
 		for (int i = 0; i < _count; i++)
 		{
-			readD();
-			final int itemId = readD();
+			D();
+			final int itemId = D();
 			_items[i * 2 + 0] = itemId;
-			final long cnt = readD();
+			final long cnt = D();
 			
 			if (cnt > Integer.MAX_VALUE || cnt < 1)
 			{
@@ -87,11 +87,11 @@ public class RequestBuyProcure extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getManor().tryPerformAction("BuyProcure"))
+		if (!g().getFloodProtectors().getManor().tryPerformAction("BuyProcure"))
 			return;
 		
 		// Alt game - Karma punishment

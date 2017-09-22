@@ -43,9 +43,9 @@ public class QuestList extends L2GameServerPacket
 	@Override
 	public void runImpl()
 	{
-		if (getClient() != null && getClient().getActiveChar() != null)
+		if (g() != null && g().getActiveChar() != null)
 		{
-			_activeChar = getClient().getActiveChar();
+			_activeChar = g().getActiveChar();
 			_quests = _activeChar.getAllActiveQuests();
 		}
 	}
@@ -63,32 +63,32 @@ public class QuestList extends L2GameServerPacket
 		 */
 		if (_quests == null || _quests.length == 0)
 		{
-			writeC(0x80);
-			writeH(0);
-			writeH(0);
+			C(0x80);
+			H(0);
+			H(0);
 			return;
 		}
 		
-		writeC(0x80);
-		writeH(_quests.length);
+		C(0x80);
+		H(_quests.length);
 		for (final Quest q : _quests)
 		{
-			writeD(q.getQuestIntId());
+			D(q.getQuestIntId());
 			final QuestState qs = _activeChar.getQuestState(q.getName());
 			if (qs == null)
 			{
-				writeD(0);
+				D(0);
 				continue;
 			}
 			
 			final int states = qs.getInt("__compltdStateFlags");
 			if (states != 0)
 			{
-				writeD(states);
+				D(states);
 			}
 			else
 			{
-				writeD(qs.getInt("cond"));
+				D(qs.getInt("cond"));
 			}
 		}
 	}

@@ -100,10 +100,10 @@ public final class Say2 extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_text = readS();
+		_text = S();
 		try
 		{
-			_type = readD();
+			_type = D();
 			_type2Check = SystemChatChannelId.getChatType(_type);
 			
 		}
@@ -115,7 +115,7 @@ public final class Say2 extends L2GameClientPacket
 			_type = CHAT_NAMES.length;
 			_type2Check = SystemChatChannelId.CHAT_NONE;
 		}
-		_target = _type == TELL ? readS() : null;
+		_target = _type == TELL ? S() : null;
 	}
 	
 	@Override
@@ -132,7 +132,7 @@ public final class Say2 extends L2GameClientPacket
 			return;
 		}
 		
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		// Anti-PHX Announce
 		if (_type2Check == SystemChatChannelId.CHAT_NONE || _type2Check == SystemChatChannelId.CHAT_ANNOUNCE || _type2Check == SystemChatChannelId.CHAT_CRITICAL_ANNOUNCE || _type2Check == SystemChatChannelId.CHAT_SYSTEM || _type2Check == SystemChatChannelId.CHAT_CUSTOM || (_type2Check == SystemChatChannelId.CHAT_GM_PET && !activeChar.isGM()))
@@ -162,7 +162,7 @@ public final class Say2 extends L2GameClientPacket
 			}
 		}
 		
-		if (!getClient().getFloodProtectors().getSayAction().tryPerformAction("Say2"))
+		if (!g().getFloodProtectors().getSayAction().tryPerformAction("Say2"))
 		{
 			activeChar.sendMessage("You cannot speak too fast.");
 			return;
@@ -332,7 +332,7 @@ public final class Say2 extends L2GameClientPacket
 			case SHOUT:
 				
 				// Flood protect Say
-				if (!getClient().getFloodProtectors().getGlobalChat().tryPerformAction("global chat"))
+				if (!g().getFloodProtectors().getGlobalChat().tryPerformAction("global chat"))
 					return;
 				
 				if (Config.DEFAULT_GLOBAL_CHAT.equalsIgnoreCase("on") || Config.DEFAULT_GLOBAL_CHAT.equalsIgnoreCase("gm") && activeChar.isGM())
@@ -583,7 +583,7 @@ public final class Say2 extends L2GameClientPacket
 				else if (activeChar.isHero())
 				{
 					// Flood protect Hero Voice
-					if (!getClient().getFloodProtectors().getHeroVoice().tryPerformAction("hero voice"))
+					if (!g().getFloodProtectors().getHeroVoice().tryPerformAction("hero voice"))
 						return;
 					
 					for (final L2PcInstance player : L2World.getInstance().getAllPlayers())

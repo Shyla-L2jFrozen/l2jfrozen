@@ -54,22 +54,22 @@ public final class HennaInfo extends L2GameServerPacket
 	protected final void writeImpl()
 	{
 		
-		writeC(0xe4);
+		C(0xe4);
 		
-		writeC(_activeChar.getHennaStatINT()); // equip INT
-		writeC(_activeChar.getHennaStatSTR()); // equip STR
-		writeC(_activeChar.getHennaStatCON()); // equip CON
-		writeC(_activeChar.getHennaStatMEN()); // equip MEM
-		writeC(_activeChar.getHennaStatDEX()); // equip DEX
-		writeC(_activeChar.getHennaStatWIT()); // equip WIT
+		C(_activeChar.getHennaStatINT()); // equip INT
+		C(_activeChar.getHennaStatSTR()); // equip STR
+		C(_activeChar.getHennaStatCON()); // equip CON
+		C(_activeChar.getHennaStatMEN()); // equip MEM
+		C(_activeChar.getHennaStatDEX()); // equip DEX
+		C(_activeChar.getHennaStatWIT()); // equip WIT
 		
-		writeD(3); // slots?
+		D(3); // slots?
 		
-		writeD(_count); // size
+		D(_count); // size
 		for (int i = 0; i < _count; i++)
 		{
-			writeD(_hennas[i].getSymbolId());
-			writeD(0x01);
+			D(_hennas[i].getSymbolId());
+			D(0x01);
 		}
 	}
 	

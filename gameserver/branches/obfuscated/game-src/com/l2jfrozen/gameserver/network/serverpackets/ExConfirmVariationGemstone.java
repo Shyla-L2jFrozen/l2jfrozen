@@ -44,13 +44,13 @@ public class ExConfirmVariationGemstone extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x54);
-		writeD(_gemstoneObjId);
-		writeD(_unk1);
-		writeD(_gemstoneCount);
-		writeD(_unk2);
-		writeD(_unk3);
+		C(0xfe);
+		H(0x54);
+		D(_gemstoneObjId);
+		D(_unk1);
+		D(_gemstoneCount);
+		D(_unk2);
+		D(_unk3);
 	}
 	
 	@Override

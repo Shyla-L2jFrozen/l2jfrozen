@@ -33,13 +33,13 @@ public final class RequestHennaItemInfo extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_symbolId = readD();
+		_symbolId = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;

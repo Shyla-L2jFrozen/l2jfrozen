@@ -58,23 +58,23 @@ public class FortressSiegeInfo extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		
-		writeC(0xc9);
-		writeD(_fort.getFortId());
-		writeD(_fort.getOwnerId() == activeChar.getClanId() && activeChar.isClanLeader() ? 0x01 : 0x00);
-		writeD(_fort.getOwnerId());
+		C(0xc9);
+		D(_fort.getFortId());
+		D(_fort.getOwnerId() == activeChar.getClanId() && activeChar.isClanLeader() ? 0x01 : 0x00);
+		D(_fort.getOwnerId());
 		if (_fort.getOwnerId() > 0)
 		{
 			final L2Clan owner = ClanTable.getInstance().getClan(_fort.getOwnerId());
 			if (owner != null)
 			{
-				writeS(owner.getName()); // Clan Name
-				writeS(owner.getLeaderName()); // Clan Leader Name
-				writeD(owner.getAllyId()); // Ally ID
-				writeS(owner.getAllyName()); // Ally Name
+				S(owner.getName()); // Clan Name
+				S(owner.getLeaderName()); // Clan Leader Name
+				D(owner.getAllyId()); // Ally ID
+				S(owner.getAllyName()); // Ally Name
 			}
 			else
 			{
@@ -83,15 +83,15 @@ public class FortressSiegeInfo extends L2GameServerPacket
 		}
 		else
 		{
-			writeS("NPC"); // Clan Name
-			writeS(""); // Clan Leader Name
-			writeD(0); // Ally ID
-			writeS(""); // Ally Name
+			S("NPC"); // Clan Name
+			S(""); // Clan Leader Name
+			D(0); // Ally ID
+			S(""); // Ally Name
 		}
 		
-		writeD((int) (Calendar.getInstance().getTimeInMillis() / 1000));
-		writeD((int) (_fort.getSiege().getSiegeDate().getTimeInMillis() / 1000));
-		writeD(0x00); // number of choices?
+		D((int) (Calendar.getInstance().getTimeInMillis() / 1000));
+		D((int) (_fort.getSiege().getSiegeDate().getTimeInMillis() / 1000));
+		D(0x00); // number of choices?
 	}
 	
 	/*

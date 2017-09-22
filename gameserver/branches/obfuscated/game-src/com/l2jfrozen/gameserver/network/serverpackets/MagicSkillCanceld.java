@@ -38,8 +38,8 @@ public class MagicSkillCanceld extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x49);
-		writeD(_objectId);
+		C(0x49);
+		D(_objectId);
 	}
 	
 	@Override

@@ -44,13 +44,13 @@ public class ExConfirmVariationRefiner extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x53);
-		writeD(_refinerItemObjId);
-		writeD(_lifestoneItemId);
-		writeD(_gemstoneItemId);
-		writeD(_gemstoneCount);
-		writeD(_unk2);
+		C(0xfe);
+		H(0x53);
+		D(_refinerItemObjId);
+		D(_lifestoneItemId);
+		D(_gemstoneItemId);
+		D(_gemstoneCount);
+		D(_unk2);
 	}
 	
 	@Override

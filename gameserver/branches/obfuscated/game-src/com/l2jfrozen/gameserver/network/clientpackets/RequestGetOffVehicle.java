@@ -35,16 +35,16 @@ public final class RequestGetOffVehicle extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_id = readD();
-		_x = readD();
-		_y = readD();
-		_z = readD();
+		_id = D();
+		_x = D();
+		_y = D();
+		_z = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;

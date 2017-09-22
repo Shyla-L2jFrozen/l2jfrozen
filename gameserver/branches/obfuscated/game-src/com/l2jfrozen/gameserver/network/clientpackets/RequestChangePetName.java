@@ -38,13 +38,13 @@ public final class RequestChangePetName extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_name = readS();
+		_name = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2Character activeChar = getClient().getActiveChar();
+		final L2Character activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

@@ -31,7 +31,7 @@ public class KickPlayer extends w
 	public KickPlayer(final byte[] decrypt)
 	{
 		super(decrypt);
-		_account = readS();
+		_account = S();
 	}
 	
 	/**

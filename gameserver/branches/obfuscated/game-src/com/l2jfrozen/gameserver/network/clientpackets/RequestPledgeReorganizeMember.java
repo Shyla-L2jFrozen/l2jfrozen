@@ -41,16 +41,16 @@ public final class RequestPledgeReorganizeMember extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_unk1 = readD();
-		_memberName = readS();
-		_newPledgeType = readD();
-		_unk2 = readS();
+		_unk1 = D();
+		_memberName = S();
+		_newPledgeType = D();
+		_unk2 = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

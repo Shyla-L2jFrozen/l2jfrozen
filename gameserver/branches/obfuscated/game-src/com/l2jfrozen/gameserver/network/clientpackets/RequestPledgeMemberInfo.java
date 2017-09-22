@@ -38,8 +38,8 @@ public final class RequestPledgeMemberInfo extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_unk1 = readD();
-		_player = readS();
+		_unk1 = D();
+		_player = S();
 	}
 	
 	@Override
@@ -47,7 +47,7 @@ public final class RequestPledgeMemberInfo extends L2GameClientPacket
 	{
 		// LOGGER.info("C5: RequestPledgeMemberInfo d:"+_unk1);
 		// LOGGER.info("C5: RequestPledgeMemberInfo S:"+_player);
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		// do we need powers to do that??

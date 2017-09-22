@@ -45,23 +45,23 @@ public final class PartySmallWindowAdd extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x4f);
-		writeD(_leaderId); // c3
-		writeD(_distribution); // c3
-		writeD(_member.getObjectId());
-		writeS(_member.getName());
+		C(0x4f);
+		D(_leaderId); // c3
+		D(_distribution); // c3
+		D(_member.getObjectId());
+		S(_member.getName());
 		
-		writeD((int) _member.getCurrentCp()); // c4
-		writeD(_member.getMaxCp()); // c4
+		D((int) _member.getCurrentCp()); // c4
+		D(_member.getMaxCp()); // c4
 		
-		writeD((int) _member.getCurrentHp());
-		writeD(_member.getMaxHp());
-		writeD((int) _member.getCurrentMp());
-		writeD(_member.getMaxMp());
-		writeD(_member.getLevel());
-		writeD(_member.getClassId().getId());
-		writeD(0);// writeD(0x01); ??
-		writeD(0);
+		D((int) _member.getCurrentHp());
+		D(_member.getMaxHp());
+		D((int) _member.getCurrentMp());
+		D(_member.getMaxMp());
+		D(_member.getLevel());
+		D(_member.getClassId().getId());
+		D(0);// D(0x01); ??
+		D(0);
 	}
 	
 	/*

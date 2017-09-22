@@ -49,12 +49,12 @@ public class RadarControl extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xEB);
-		writeD(_showRadar);
-		writeD(_type); // maybe type
-		writeD(_x); // x
-		writeD(_y); // y
-		writeD(_z); // z
+		C(0xEB);
+		D(_showRadar);
+		D(_type); // maybe type
+		D(_x); // x
+		D(_y); // y
+		D(_z); // z
 	}
 	
 	/*

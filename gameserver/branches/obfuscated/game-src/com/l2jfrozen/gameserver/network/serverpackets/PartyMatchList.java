@@ -44,7 +44,7 @@ public class PartyMatchList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		if (getClient().getActiveChar() == null)
+		if (g().getActiveChar() == null)
 			return;
 		
 		for (final PartyMatchRoom room : PartyMatchRoomList.getInstance().getRooms())
@@ -67,23 +67,23 @@ public class PartyMatchList extends L2GameServerPacket
 		int count = 0;
 		final int size = _rooms.size();
 		
-		writeC(0x96);
+		C(0x96);
 		if (size > 0)
-			writeD(1);
+			D(1);
 		else
-			writeD(0);
+			D(0);
 		
-		writeD(_rooms.size());
+		D(_rooms.size());
 		while (size > count)
 		{
-			writeD(_rooms.get(count).getId());
-			writeS(_rooms.get(count).getTitle());
-			writeD(_rooms.get(count).getLocation());
-			writeD(_rooms.get(count).getMinLvl());
-			writeD(_rooms.get(count).getMaxLvl());
-			writeD(_rooms.get(count).getMembers());
-			writeD(_rooms.get(count).getMaxMembers());
-			writeS(_rooms.get(count).getOwner().getName());
+			D(_rooms.get(count).getId());
+			S(_rooms.get(count).getTitle());
+			D(_rooms.get(count).getLocation());
+			D(_rooms.get(count).getMinLvl());
+			D(_rooms.get(count).getMaxLvl());
+			D(_rooms.get(count).getMembers());
+			D(_rooms.get(count).getMaxMembers());
+			S(_rooms.get(count).getOwner().getName());
 			count++;
 		}
 	}

@@ -37,7 +37,7 @@ public final class RequestOlympiadObserverEnd extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;

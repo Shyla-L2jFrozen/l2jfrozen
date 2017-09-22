@@ -39,22 +39,22 @@ public class ExManagePartyRoomMember extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x10);
-		writeD(_mode);
-		writeD(_activeChar.getObjectId());
-		writeS(_activeChar.getName());
-		writeD(_activeChar.getActiveClass());
-		writeD(_activeChar.getLevel());
-		writeD(TownManager.getClosestLocation(_activeChar));
+		C(0xfe);
+		H(0x10);
+		D(_mode);
+		D(_activeChar.getObjectId());
+		S(_activeChar.getName());
+		D(_activeChar.getActiveClass());
+		D(_activeChar.getLevel());
+		D(TownManager.getClosestLocation(_activeChar));
 		if (_room.getOwner().equals(_activeChar))
-			writeD(1);
+			D(1);
 		else
 		{
 			if ((_room.getOwner().isInParty() && _activeChar.isInParty()) && (_room.getOwner().getParty().getPartyLeaderOID() == _activeChar.getParty().getPartyLeaderOID()))
-				writeD(2);
+				D(2);
 			else
-				writeD(0);
+				D(0);
 		}
 	}
 	

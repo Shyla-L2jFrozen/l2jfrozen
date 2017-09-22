@@ -46,8 +46,8 @@ public class ExListPartyMatchingWaitingRoom extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x35);
+		C(0xfe);
+		H(0x35);
 		
 		// If the mode is 0 and the activeChar isn't the PartyRoom leader, return an empty list.
 		if (_mode == 0)
@@ -56,8 +56,8 @@ public class ExListPartyMatchingWaitingRoom extends L2GameServerPacket
 			final PartyMatchRoom _room = PartyMatchRoomList.getInstance().getRoom(_activeChar.getPartyRoom());
 			if (_room != null && _room.getOwner() != null && !_room.getOwner().equals(_activeChar))
 			{
-				writeD(0);
-				writeD(0);
+				D(0);
+				D(0);
 				return;
 			}
 		}
@@ -83,13 +83,13 @@ public class ExListPartyMatchingWaitingRoom extends L2GameServerPacket
 		int _count = 0;
 		final int _size = _members.size();
 		
-		writeD(1);
-		writeD(_size);
+		D(1);
+		D(_size);
 		while (_size > _count)
 		{
-			writeS(_members.get(_count).getName());
-			writeD(_members.get(_count).getActiveClass());
-			writeD(_members.get(_count).getLevel());
+			S(_members.get(_count).getName());
+			D(_members.get(_count).getActiveClass());
+			D(_members.get(_count).getLevel());
 			_count++;
 		}
 	}

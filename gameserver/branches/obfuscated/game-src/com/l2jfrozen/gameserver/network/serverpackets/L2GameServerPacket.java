@@ -23,20 +23,20 @@ import org.apache.log4j.Logger;
 
 import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.network.L2GameClient;
-import com.l2jfrozen.netcore.SendablePacket;
+import a.a.y;
 
 /**
  * The Class L2GameServerPacket.
  * @author ProGramMoS
  */
-public abstract class L2GameServerPacket extends SendablePacket<L2GameClient>
+public abstract class L2GameServerPacket extends y<L2GameClient>
 {
 	
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = Logger.getLogger(L2GameServerPacket.class);
 	
 	@Override
-	protected void write()
+	protected void w()
 	{
 		try
 		{
@@ -44,7 +44,7 @@ public abstract class L2GameServerPacket extends SendablePacket<L2GameClient>
 		}
 		catch (final Throwable t)
 		{
-			LOGGER.error("Client: " + getClient().toString() + " - Failed writing: " + getType() + " - L2J Server Version: " + Config.SERVER_VERSION + " - DP Revision: " + Config.DATAPACK_VERSION, t);
+			LOGGER.error("Client: " + g().toString() + " - Failed writing: " + getType() + " - L2J Server Version: " + Config.SERVER_VERSION + " - DP Revision: " + Config.DATAPACK_VERSION, t);
 			t.printStackTrace();
 		}
 	}

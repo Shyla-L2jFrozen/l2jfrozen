@@ -42,21 +42,21 @@ public class PledgeShowInfoUpdate extends L2GameServerPacket
 	{
 		final int TOP = ClanTable.getInstance().getTopRate(_clan.getClanId());
 		// ddddddddddSdd
-		writeC(0x88);
+		C(0x88);
 		// sending empty data so client will ask all the info in response ;)
-		writeD(_clan.getClanId());
-		writeD(_clan.getCrestId());
-		writeD(_clan.getLevel()); // clan level
-		writeD(_clan.getHasFort() != 0 ? _clan.getHasFort() : _clan.getHasCastle());
-		writeD(_clan.getHasHideout());
-		writeD(TOP);
-		writeD(_clan.getReputationScore()); // clan reputation score
-		writeD(0);
-		writeD(0);
-		writeD(_clan.getAllyId());
-		writeS(_clan.getAllyName());
-		writeD(_clan.getAllyCrestId());
-		writeD(_clan.isAtWar());
+		D(_clan.getClanId());
+		D(_clan.getCrestId());
+		D(_clan.getLevel()); // clan level
+		D(_clan.getHasFort() != 0 ? _clan.getHasFort() : _clan.getHasCastle());
+		D(_clan.getHasHideout());
+		D(TOP);
+		D(_clan.getReputationScore()); // clan reputation score
+		D(0);
+		D(0);
+		D(_clan.getAllyId());
+		S(_clan.getAllyName());
+		D(_clan.getAllyCrestId());
+		D(_clan.isAtWar());
 	}
 	
 	/*

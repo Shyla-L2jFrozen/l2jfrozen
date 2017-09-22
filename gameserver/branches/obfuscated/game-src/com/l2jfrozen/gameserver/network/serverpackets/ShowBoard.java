@@ -84,16 +84,16 @@ public class ShowBoard extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x6e);
-		writeC(0x01); // c4 1 to show community 00 to hide
-		writeS("bypass _bbshome"); // top
-		writeS("bypass _bbsgetfav"); // favorite
-		writeS("bypass _bbsloc"); // region
-		writeS("bypass _bbsclan"); // clan
-		writeS("bypass _bbsmemo"); // memo
-		writeS("bypass _bbsmail"); // mail
-		writeS("bypass _bbsfriends"); // friends
-		writeS("bypass bbs_add_fav"); // add fav.
+		C(0x6e);
+		C(0x01); // c4 1 to show community 00 to hide
+		S("bypass _bbshome"); // top
+		S("bypass _bbsgetfav"); // favorite
+		S("bypass _bbsloc"); // region
+		S("bypass _bbsclan"); // clan
+		S("bypass _bbsmemo"); // memo
+		S("bypass _bbsmail"); // mail
+		S("bypass _bbsfriends"); // friends
+		S("bypass bbs_add_fav"); // add fav.
 		if (!_id.equals("1002"))
 		{
 			// getBytes is a very costy operation, and should only be called once
@@ -124,12 +124,12 @@ public class ShowBoard extends L2GameServerPacket
 			data[i] = 0;
 			i++;
 			data[i] = 0;
-			// writeS(_htmlCode); // current page
-			writeB(data);
+			// S(_htmlCode); // current page
+			B(data);
 		}
 		else
 		{
-			writeB(get1002());
+			B(get1002());
 		}
 	}
 	

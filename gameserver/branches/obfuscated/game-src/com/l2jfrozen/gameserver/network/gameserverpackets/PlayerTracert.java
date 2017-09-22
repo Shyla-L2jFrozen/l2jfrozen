@@ -27,18 +27,18 @@ public class PlayerTracert extends x
 {
 	public PlayerTracert(final String account, final String pcIp, final String hop1, final String hop2, final String hop3, final String hop4)
 	{
-		writeC(0x07);
-		writeS(account);
-		writeS(pcIp);
-		writeS(hop1);
-		writeS(hop2);
-		writeS(hop3);
-		writeS(hop4);
+		C(0x07);
+		S(account);
+		S(pcIp);
+		S(hop1);
+		S(hop2);
+		S(hop3);
+		S(hop4);
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		return getBytes();
+		return gB();
 	}
 }

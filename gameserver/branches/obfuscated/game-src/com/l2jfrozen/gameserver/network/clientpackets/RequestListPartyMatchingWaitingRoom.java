@@ -32,17 +32,17 @@ public class RequestListPartyMatchingWaitingRoom extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_page = readD();
-		_minlvl = readD();
-		_maxlvl = readD();
-		_mode = readD();
+		_page = D();
+		_minlvl = D();
+		_maxlvl = D();
+		_mode = D();
 		
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance _activeChar = getClient().getActiveChar();
+		final L2PcInstance _activeChar = g().getActiveChar();
 		if (_activeChar == null)
 			return;
 		

@@ -34,14 +34,14 @@ public final class RequestPackageSendableItemList extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectID = readD();
+		_objectID = D();
 	}
 	
 	@Override
 	public void runImpl()
 	{
 		
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		
 		if (player == null)
 			return;
@@ -49,7 +49,7 @@ public final class RequestPackageSendableItemList extends L2GameClientPacket
 		if (player.getObjectId() == _objectID)
 			return;
 		
-		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("deposit"))
+		if (!g().getFloodProtectors().getTransaction().tryPerformAction("deposit"))
 		{
 			player.sendMessage("You depositing items too fast.");
 			return;
@@ -58,7 +58,7 @@ public final class RequestPackageSendableItemList extends L2GameClientPacket
 		/*
 		 * L2PcInstance target = (L2PcInstance) L2World.getInstance().findObject(_objectID); if(target == null) return;
 		 */
-		final L2ItemInstance[] items = getClient().getActiveChar().getInventory().getAvailableItems(true);
+		final L2ItemInstance[] items = g().getActiveChar().getInventory().getAvailableItems(true);
 		// build list...
 		sendPacket(new PackageSendableList(items, _objectID));
 	}

@@ -31,14 +31,14 @@ public class LoginServerFail extends x
 	 */
 	public LoginServerFail(final int reason)
 	{
-		writeC(0x01);
-		writeC(reason);
+		C(0x01);
+		C(reason);
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		return getBytes();
+		return gB();
 	}
 	
 	public static final int REASON_IP_BANNED = 1;

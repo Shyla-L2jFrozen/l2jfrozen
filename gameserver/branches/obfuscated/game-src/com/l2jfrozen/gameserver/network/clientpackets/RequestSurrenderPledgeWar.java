@@ -39,13 +39,13 @@ public final class RequestSurrenderPledgeWar extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_pledgeName = readS();
+		_pledgeName = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		_activeChar = getClient().getActiveChar();
+		_activeChar = g().getActiveChar();
 		if (_activeChar == null)
 			return;
 		
@@ -61,7 +61,7 @@ public final class RequestSurrenderPledgeWar extends L2GameClientPacket
 			return;
 		}
 		
-		LOGGER.info("RequestSurrenderPledgeWar by " + getClient().getActiveChar().getClan().getName() + " with " + _pledgeName);
+		LOGGER.info("RequestSurrenderPledgeWar by " + g().getActiveChar().getClan().getName() + " with " + _pledgeName);
 		
 		if (!_clan.isAtWarWith(clan.getClanId()))
 		{

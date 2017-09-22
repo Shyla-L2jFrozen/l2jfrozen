@@ -31,14 +31,14 @@ public class AuthResponse extends x
 	 */
 	public AuthResponse(final int serverId)
 	{
-		writeC(0x02);
-		writeC(serverId);
-		writeS(GameServerTable.getInstance().getServerNameById(serverId));
+		C(0x02);
+		C(serverId);
+		S(GameServerTable.getInstance().getServerNameById(serverId));
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		return getBytes();
+		return gB();
 	}
 }

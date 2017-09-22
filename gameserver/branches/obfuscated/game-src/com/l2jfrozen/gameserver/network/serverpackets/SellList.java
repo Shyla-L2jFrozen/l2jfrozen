@@ -87,28 +87,28 @@ public class SellList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x10);
-		writeD(_money);
-		writeD(_lease == null ? 0x00 : 1000000 + _lease.getTemplate().npcId);
+		C(0x10);
+		D(_money);
+		D(_lease == null ? 0x00 : 1000000 + _lease.getTemplate().npcId);
 		
-		writeH(_selllist.size());
+		H(_selllist.size());
 		
 		for (final L2ItemInstance item : _selllist)
 		{
-			writeH(item.getItem().getType1());
-			writeD(item.getObjectId());
-			writeD(item.getItemId());
-			writeD(item.getCount());
-			writeH(item.getItem().getType2());
-			writeH(0x00);
-			writeD(item.getItem().getBodyPart());
-			writeH(item.getEnchantLevel());
-			writeH(0x00);
-			writeH(0x00);
+			H(item.getItem().getType1());
+			D(item.getObjectId());
+			D(item.getItemId());
+			D(item.getCount());
+			H(item.getItem().getType2());
+			H(0x00);
+			D(item.getItem().getBodyPart());
+			H(item.getEnchantLevel());
+			H(0x00);
+			H(0x00);
 			
 			if (_lease == null)
 			{
-				writeD(item.getItem().getReferencePrice() / 2); // wtf??? there is no conditional part in SellList!! this d should allways be here 0.o! fortunately the lease stuff are never ever use so the if allways exectues
+				D(item.getItem().getReferencePrice() / 2); // wtf??? there is no conditional part in SellList!! this d should allways be here 0.o! fortunately the lease stuff are never ever use so the if allways exectues
 			}
 		}
 	}

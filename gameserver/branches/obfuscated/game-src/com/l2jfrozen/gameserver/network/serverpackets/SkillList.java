@@ -95,15 +95,15 @@ public class SkillList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x58);
-		writeD(_skills.length);
+		C(0x58);
+		D(_skills.length);
 		
 		for (final Skill temp : _skills)
 		{
-			writeD(temp.passive ? 1 : 0);
-			writeD(temp.level);
-			writeD(temp.id);
-			writeC(0x00); // c5
+			D(temp.passive ? 1 : 0);
+			D(temp.level);
+			D(temp.id);
+			C(0x00); // c5
 		}
 	}
 	

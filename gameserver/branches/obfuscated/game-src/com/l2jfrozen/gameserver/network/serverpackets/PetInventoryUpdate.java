@@ -97,23 +97,23 @@ public class PetInventoryUpdate extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xb3);
+		C(0xb3);
 		final int count = _items.size();
-		writeH(count);
+		H(count);
 		for (final ItemInfo item : _items)
 		{
-			writeH(item.getChange());
-			writeH(item.getItem().getType1()); // item type1
-			writeD(item.getObjectId());
-			writeD(item.getItem().getItemId());
-			writeD(item.getCount());
-			writeH(item.getItem().getType2()); // item type2
-			writeH(0x00); // ?
-			writeH(item.getEquipped());
-			// writeH(temp.getItem().getBodyPart()); // rev 377 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
-			writeD(item.getItem().getBodyPart()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
-			writeH(item.getEnchant()); // enchant level
-			writeH(0x00); // ?
+			H(item.getChange());
+			H(item.getItem().getType1()); // item type1
+			D(item.getObjectId());
+			D(item.getItem().getItemId());
+			D(item.getCount());
+			H(item.getItem().getType2()); // item type2
+			H(0x00); // ?
+			H(item.getEquipped());
+			// H(temp.getItem().getBodyPart()); // rev 377 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+			D(item.getItem().getBodyPart()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+			H(item.getEnchant()); // enchant level
+			H(0x00); // ?
 		}
 	}
 	

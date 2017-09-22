@@ -35,9 +35,9 @@ public class ShowXMasSeal extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xF2);
+		C(0xF2);
 		
-		writeD(_item);
+		D(_item);
 	}
 	
 	/**

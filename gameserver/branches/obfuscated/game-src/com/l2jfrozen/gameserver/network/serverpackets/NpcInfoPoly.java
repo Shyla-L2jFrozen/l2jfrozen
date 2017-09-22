@@ -155,50 +155,50 @@ public class NpcInfoPoly extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x16);
-		writeD(_obj.getObjectId());
-		writeD(_npcId + 1000000); // npctype id
-		writeD(_isAttackable ? 1 : 0);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeD(_heading);
-		writeD(0x00);
-		writeD(_mAtkSpd);
-		writeD(_pAtkSpd);
-		writeD(_runSpd);
-		writeD(_walkSpd);
-		writeD(_swimRunSpd/* 0x32 */); // swimspeed
-		writeD(_swimWalkSpd/* 0x32 */); // swimspeed
-		writeD(_flRunSpd);
-		writeD(_flWalkSpd);
-		writeD(_flyRunSpd);
-		writeD(_flyWalkSpd);
-		writeF(1/* _activeChar.getProperMultiplier() */);
-		writeF(1/* _activeChar.getAttackSpeedMultiplier() */);
-		writeF(_collisionRadius);
-		writeF(_collisionHeight);
-		writeD(_rhand); // right hand weapon
-		writeD(0);
-		writeD(_lhand); // left hand weapon
-		writeC(1); // name above char 1=true ... ??
-		writeC(_isRunning ? 1 : 0);
-		writeC(_isInCombat ? 1 : 0);
-		writeC(_isAlikeDead ? 1 : 0);
-		writeC(_isSummoned ? 2 : 0); // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
-		writeS(_name);
-		writeS(_title);
-		writeD(0);
-		writeD(0);
-		writeD(0000); // hmm karma ??
+		C(0x16);
+		D(_obj.getObjectId());
+		D(_npcId + 1000000); // npctype id
+		D(_isAttackable ? 1 : 0);
+		D(_x);
+		D(_y);
+		D(_z);
+		D(_heading);
+		D(0x00);
+		D(_mAtkSpd);
+		D(_pAtkSpd);
+		D(_runSpd);
+		D(_walkSpd);
+		D(_swimRunSpd/* 0x32 */); // swimspeed
+		D(_swimWalkSpd/* 0x32 */); // swimspeed
+		D(_flRunSpd);
+		D(_flWalkSpd);
+		D(_flyRunSpd);
+		D(_flyWalkSpd);
+		F(1/* _activeChar.getProperMultiplier() */);
+		F(1/* _activeChar.getAttackSpeedMultiplier() */);
+		F(_collisionRadius);
+		F(_collisionHeight);
+		D(_rhand); // right hand weapon
+		D(0);
+		D(_lhand); // left hand weapon
+		C(1); // name above char 1=true ... ??
+		C(_isRunning ? 1 : 0);
+		C(_isInCombat ? 1 : 0);
+		C(_isAlikeDead ? 1 : 0);
+		C(_isSummoned ? 2 : 0); // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
+		S(_name);
+		S(_title);
+		D(0);
+		D(0);
+		D(0000); // hmm karma ??
 		
-		writeH(_abnormalEffect); // C2
-		writeH(0x00); // C2
-		writeD(0000); // C2
-		writeD(0000); // C2
-		writeD(0000); // C2
-		writeD(0000); // C2
-		writeC(0000); // C2
+		H(_abnormalEffect); // C2
+		H(0x00); // C2
+		D(0000); // C2
+		D(0000); // C2
+		D(0000); // C2
+		D(0000); // C2
+		C(0000); // C2
 	}
 	
 	/*

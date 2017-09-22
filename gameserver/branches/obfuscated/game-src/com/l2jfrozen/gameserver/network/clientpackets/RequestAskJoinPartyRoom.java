@@ -37,13 +37,13 @@ public class RequestAskJoinPartyRoom extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_name = readS();
+		_name = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance _activeChar = getClient().getActiveChar();
+		final L2PcInstance _activeChar = g().getActiveChar();
 		if (_activeChar == null)
 			return;
 		

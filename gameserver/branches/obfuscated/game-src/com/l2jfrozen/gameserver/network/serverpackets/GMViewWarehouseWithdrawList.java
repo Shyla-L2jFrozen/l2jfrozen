@@ -48,29 +48,29 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x95);
-		writeS(_playerName);
-		writeD(_money);
-		writeH(_items.length);
+		C(0x95);
+		S(_playerName);
+		D(_money);
+		H(_items.length);
 		
 		for (final L2ItemInstance item : _items)
 		{
-			writeH(item.getItem().getType1());
+			H(item.getItem().getType1());
 			
-			writeD(item.getObjectId());
-			writeD(item.getItemId());
-			writeD(item.getCount());
-			writeH(item.getItem().getType2());
-			writeH(item.getCustomType1());
+			D(item.getObjectId());
+			D(item.getItemId());
+			D(item.getCount());
+			H(item.getItem().getType2());
+			H(item.getCustomType1());
 			
 			switch (item.getItem().getType2())
 			{
 				case L2Item.TYPE2_WEAPON:
 				{
-					writeD(item.getItem().getBodyPart());
-					writeH(item.getEnchantLevel());
-					writeH(((L2Weapon) item.getItem()).getSoulShotCount());
-					writeH(((L2Weapon) item.getItem()).getSpiritShotCount());
+					D(item.getItem().getBodyPart());
+					H(item.getEnchantLevel());
+					H(((L2Weapon) item.getItem()).getSoulShotCount());
+					H(((L2Weapon) item.getItem()).getSpiritShotCount());
 					break;
 				}
 				
@@ -81,15 +81,15 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 				case L2Item.TYPE2_PET_STRIDER:
 				case L2Item.TYPE2_PET_BABY:
 				{
-					writeD(item.getItem().getBodyPart());
-					writeH(item.getEnchantLevel());
-					writeH(0x00);
-					writeH(0x00);
+					D(item.getItem().getBodyPart());
+					H(item.getEnchantLevel());
+					H(0x00);
+					H(0x00);
 					break;
 				}
 			}
 			
-			writeD(item.getObjectId());
+			D(item.getObjectId());
 			
 			switch (item.getItem().getType2())
 			{
@@ -97,13 +97,13 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 				{
 					if (item.isAugmented())
 					{
-						writeD(0x0000FFFF & item.getAugmentation().getAugmentationId());
-						writeD(item.getAugmentation().getAugmentationId() >> 16);
+						D(0x0000FFFF & item.getAugmentation().getAugmentationId());
+						D(item.getAugmentation().getAugmentationId() >> 16);
 					}
 					else
 					{
-						writeD(0);
-						writeD(0);
+						D(0);
+						D(0);
 					}
 					
 					break;
@@ -116,8 +116,8 @@ public class GMViewWarehouseWithdrawList extends L2GameServerPacket
 				case L2Item.TYPE2_PET_STRIDER:
 				case L2Item.TYPE2_PET_BABY:
 				{
-					writeD(0);
-					writeD(0);
+					D(0);
+					D(0);
 				}
 			}
 		}

@@ -42,14 +42,14 @@ public class RequestConfirmRefinerItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_targetItemObjId = readD();
-		_refinerItemObjId = readD();
+		_targetItemObjId = D();
+		_refinerItemObjId = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		final L2ItemInstance targetItem = (L2ItemInstance) L2World.getInstance().findObject(_targetItemObjId);
 		final L2ItemInstance refinerItem = (L2ItemInstance) L2World.getInstance().findObject(_refinerItemObjId);
 		

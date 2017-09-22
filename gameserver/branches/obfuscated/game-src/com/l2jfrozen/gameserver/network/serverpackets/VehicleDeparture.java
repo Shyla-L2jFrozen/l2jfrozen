@@ -56,13 +56,13 @@ public class VehicleDeparture extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0x5a);
-		writeD(_boat.getObjectId());
-		writeD(_speed1);
-		writeD(_speed2);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
+		C(0x5a);
+		D(_boat.getObjectId());
+		D(_speed1);
+		D(_speed2);
+		D(_x);
+		D(_y);
+		D(_z);
 		
 	}
 	

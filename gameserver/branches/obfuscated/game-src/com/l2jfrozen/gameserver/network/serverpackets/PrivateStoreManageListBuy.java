@@ -57,37 +57,37 @@ public class PrivateStoreManageListBuy extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xb7);
+		C(0xb7);
 		// section 1
-		writeD(_activeChar.getObjectId());
-		writeD(_playerAdena);
+		D(_activeChar.getObjectId());
+		D(_playerAdena);
 		
 		// section2
-		writeD(_itemList.length); // inventory items for potential buy
+		D(_itemList.length); // inventory items for potential buy
 		for (final L2ItemInstance item : _itemList)
 		{
-			writeD(item.getItemId());
-			writeH(item.getEnchantLevel()); // show enchant lvl, but you can't buy enchanted weapons because of L2 Interlude Client bug
-			writeD(item.getCount());
-			writeD(item.getReferencePrice());
-			writeH(0x00);
-			writeD(item.getItem().getBodyPart());
-			writeH(item.getItem().getType2());
+			D(item.getItemId());
+			H(item.getEnchantLevel()); // show enchant lvl, but you can't buy enchanted weapons because of L2 Interlude Client bug
+			D(item.getCount());
+			D(item.getReferencePrice());
+			H(0x00);
+			D(item.getItem().getBodyPart());
+			H(item.getItem().getType2());
 		}
 		
 		// section 3
-		writeD(_buyList.length); // count for all items already added for buy
+		D(_buyList.length); // count for all items already added for buy
 		for (final TradeList.TradeItem item : _buyList)
 		{
-			writeD(item.getItem().getItemId());
-			writeH(item.getEnchant());
-			writeD(item.getCount());
-			writeD(item.getItem().getReferencePrice());
-			writeH(0x00);
-			writeD(item.getItem().getBodyPart());
-			writeH(item.getItem().getType2());
-			writeD(item.getPrice());// your price
-			writeD(item.getItem().getReferencePrice());// fixed store price
+			D(item.getItem().getItemId());
+			H(item.getEnchant());
+			D(item.getCount());
+			D(item.getItem().getReferencePrice());
+			H(0x00);
+			D(item.getItem().getBodyPart());
+			H(item.getItem().getType2());
+			D(item.getPrice());// your price
+			D(item.getItem().getReferencePrice());// fixed store price
 		}
 	}
 	

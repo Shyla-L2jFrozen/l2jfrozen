@@ -39,10 +39,10 @@ public class PlayerInGame extends w
 	public PlayerInGame(final byte[] decrypt, final GameServerThread server)
 	{
 		super(decrypt);
-		final int size = readH();
+		final int size = H();
 		for (int i = 0; i < size; i++)
 		{
-			final String account = readS();
+			final String account = S();
 			server.addAccountOnGameServer(account);
 			if (CommonConfig.DEBUG)
 			{

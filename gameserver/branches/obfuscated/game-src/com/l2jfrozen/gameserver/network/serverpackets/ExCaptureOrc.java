@@ -104,9 +104,9 @@ public class ExCaptureOrc extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xFE);
-		writeH(0x44);
-		writeB(_test);
+		C(0xFE);
+		H(0x44);
+		B(_test);
 	}
 	
 	/**
