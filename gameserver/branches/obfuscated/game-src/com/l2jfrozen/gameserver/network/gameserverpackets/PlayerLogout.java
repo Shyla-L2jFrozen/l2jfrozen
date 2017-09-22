@@ -34,6 +34,6 @@ public class PlayerLogout extends x
 	@Override
 	public byte[] gC()
 	{
-		return gB();
+		return getBytes();
 	}
 }
