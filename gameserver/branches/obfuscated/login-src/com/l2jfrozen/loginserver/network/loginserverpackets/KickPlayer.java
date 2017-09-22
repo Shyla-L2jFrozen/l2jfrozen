@@ -27,13 +27,13 @@ public class KickPlayer extends x
 {
 	public KickPlayer(final String account)
 	{
-		writeC(0x04);
-		writeS(account);
+		C(0x04);
+		S(account);
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		return getBytes();
+		return gB();
 	}
 }

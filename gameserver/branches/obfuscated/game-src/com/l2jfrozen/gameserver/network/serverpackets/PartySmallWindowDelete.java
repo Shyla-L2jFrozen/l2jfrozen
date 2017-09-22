@@ -39,9 +39,9 @@ public class PartySmallWindowDelete extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x51);
-		writeD(_member.getObjectId());
-		writeS(_member.getName());
+		C(0x51);
+		D(_member.getObjectId());
+		S(_member.getName());
 	}
 	
 	/*

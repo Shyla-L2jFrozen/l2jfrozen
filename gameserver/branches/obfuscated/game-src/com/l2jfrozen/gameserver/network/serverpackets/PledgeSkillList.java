@@ -49,13 +49,13 @@ public class PledgeSkillList extends L2GameServerPacket
 	{
 		final L2Skill[] skills = _clan.getAllSkills();
 		
-		writeC(0xfe);
-		writeH(0x39);
-		writeD(skills.length);
+		C(0xfe);
+		H(0x39);
+		D(skills.length);
 		for (final L2Skill sk : skills)
 		{
-			writeD(sk.getId());
-			writeD(sk.getLevel());
+			D(sk.getId());
+			D(sk.getLevel());
 		}
 	}
 	

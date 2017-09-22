@@ -111,20 +111,20 @@ public class ConfirmDlg extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xed);
-		writeD(_messageId);
+		C(0xed);
+		D(_messageId);
 		if (_types != null && _types.size() > 0)
 		{
-			writeD(_types.size());
+			D(_types.size());
 			for (int i = 0; i < _types.size(); i++)
 			{
 				final int t = _types.get(i).intValue();
-				writeD(t);
+				D(t);
 				switch (t)
 				{
 					case TYPE_TEXT:
 					{
-						writeS((String) _values.get(i));
+						S((String) _values.get(i));
 						break;
 					}
 					case TYPE_NUMBER:
@@ -132,14 +132,14 @@ public class ConfirmDlg extends L2GameServerPacket
 					case TYPE_ITEM_NAME:
 					{
 						final int t1 = ((Integer) _values.get(i)).intValue();
-						writeD(t1);
+						D(t1);
 						break;
 					}
 					case TYPE_SKILL_NAME:
 					{
 						final int t1 = ((Integer) _values.get(i)).intValue();
-						writeD(t1); // Skill Id
-						writeD(_skillLvL); // Skill lvl
+						D(t1); // Skill Id
+						D(_skillLvL); // Skill lvl
 						break;
 					}
 					case TYPE_ZONE_NAME:
@@ -147,27 +147,27 @@ public class ConfirmDlg extends L2GameServerPacket
 						final int t1 = ((int[]) _values.get(i))[0];
 						final int t2 = ((int[]) _values.get(i))[1];
 						final int t3 = ((int[]) _values.get(i))[2];
-						writeD(t1);
-						writeD(t2);
-						writeD(t3);
+						D(t1);
+						D(t2);
+						D(t3);
 						break;
 					}
 				}
 			}
 			// timed dialog (Summon Friend skill request)
 			if (_time != 0)
-				writeD(_time);
+				D(_time);
 			if (_requesterId != 0)
-				writeD(_requesterId);
+				D(_requesterId);
 			
 			if (_time > 0)
-				getClient().getActiveChar().addConfirmDlgRequestTime(_requesterId, _time);
+				g().getActiveChar().addConfirmDlgRequestTime(_requesterId, _time);
 		}
 		else
 		{
-			writeD(0x00);
-			writeD(0x00);
-			writeD(0x00);
+			D(0x00);
+			D(0x00);
+			D(0x00);
 		}
 	}
 	

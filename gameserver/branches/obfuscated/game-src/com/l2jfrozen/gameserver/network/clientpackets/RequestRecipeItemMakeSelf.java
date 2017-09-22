@@ -33,17 +33,17 @@ public final class RequestRecipeItemMakeSelf extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_id = readD();
+		_id = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getManufacture().tryPerformAction("RecipeMakeSelf"))
+		if (!g().getFloodProtectors().getManufacture().tryPerformAction("RecipeMakeSelf"))
 			return;
 		
 		if (activeChar.getPrivateStoreType() != 0)

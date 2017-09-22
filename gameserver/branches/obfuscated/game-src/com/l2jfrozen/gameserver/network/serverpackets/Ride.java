@@ -63,11 +63,11 @@ public class Ride extends L2GameServerPacket
 	protected final void writeImpl()
 	{
 		
-		writeC(0x86);
-		writeD(_id);
-		writeD(_bRide);
-		writeD(_rideType);
-		writeD(_rideClassID);
+		C(0x86);
+		D(_id);
+		D(_bRide);
+		D(_rideType);
+		D(_rideClassID);
 	}
 	
 	/*

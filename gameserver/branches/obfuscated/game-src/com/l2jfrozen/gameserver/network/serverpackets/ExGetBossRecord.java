@@ -57,25 +57,25 @@ public class ExGetBossRecord extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xFE);
-		writeH(0x33);
-		writeD(_ranking);
-		writeD(_totalPoints);
+		C(0xFE);
+		H(0x33);
+		D(_ranking);
+		D(_totalPoints);
 		if (_bossRecordInfo == null)
 		{
-			writeD(0x00);
-			writeD(0x00);
-			writeD(0x00);
-			writeD(0x00);
+			D(0x00);
+			D(0x00);
+			D(0x00);
+			D(0x00);
 		}
 		else
 		{
-			writeD(_bossRecordInfo.size());
+			D(_bossRecordInfo.size());
 			for (final int bossId : _bossRecordInfo.keySet())
 			{
-				writeD(bossId);
-				writeD(_bossRecordInfo.get(bossId));
-				writeD(0x00); // ??
+				D(bossId);
+				D(_bossRecordInfo.get(bossId));
+				D(0x00); // ??
 			}
 		}
 	}

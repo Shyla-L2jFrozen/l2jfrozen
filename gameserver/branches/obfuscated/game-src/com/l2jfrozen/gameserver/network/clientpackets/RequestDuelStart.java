@@ -41,14 +41,14 @@ public final class RequestDuelStart extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_player = readS();
-		_partyDuel = readD();
+		_player = S();
+		_partyDuel = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		final L2PcInstance targetChar = L2World.getInstance().getPlayer(_player);
 		if (activeChar == null)
 			return;

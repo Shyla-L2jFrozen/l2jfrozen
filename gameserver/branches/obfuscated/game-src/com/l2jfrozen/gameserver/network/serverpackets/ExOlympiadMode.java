@@ -52,9 +52,9 @@ public class ExOlympiadMode extends L2GameServerPacket
 		if (_mode == 3)
 			_activeChar.setObserverMode(true);
 		
-		writeC(0xfe);
-		writeH(0x2b);
-		writeC(_mode);
+		C(0xfe);
+		H(0x2b);
+		C(_mode);
 	}
 	
 	@Override

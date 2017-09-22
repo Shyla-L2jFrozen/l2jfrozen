@@ -45,19 +45,19 @@ public final class RequestPartyMatchDetail extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_roomid = readD();
+		_roomid = D();
 		/*
 		 * IF player click on Room all unk are 0 IF player click AutoJoin values are -1 1 1
 		 */
-		_unk1 = readD();
-		_unk2 = readD();
-		_unk3 = readD();
+		_unk1 = D();
+		_unk2 = D();
+		_unk3 = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance _activeChar = getClient().getActiveChar();
+		final L2PcInstance _activeChar = g().getActiveChar();
 		if (_activeChar == null)
 			return;
 		

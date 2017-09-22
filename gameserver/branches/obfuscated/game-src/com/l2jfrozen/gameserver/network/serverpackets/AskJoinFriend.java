@@ -46,9 +46,9 @@ public class AskJoinFriend extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x7d);
-		writeS(_requestorName);
-		writeD(0);
+		C(0x7d);
+		S(_requestorName);
+		D(0);
 	}
 	
 	/*

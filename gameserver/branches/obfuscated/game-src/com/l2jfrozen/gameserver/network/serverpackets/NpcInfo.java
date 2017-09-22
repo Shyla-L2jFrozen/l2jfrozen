@@ -181,66 +181,66 @@ public class NpcInfo extends L2GameServerPacket
 		if (_activeChar instanceof L2Summon)
 			if (((L2Summon) _activeChar).getOwner() != null && ((L2Summon) _activeChar).getOwner().getAppearance().getInvisible())
 				return;
-		writeC(0x16);
-		writeD(_activeChar.getObjectId());
-		writeD(_idTemplate + 1000000); // npctype id
-		writeD(_isAttackable ? 1 : 0);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeD(_heading);
-		writeD(0x00);
-		writeD(_mAtkSpd);
-		writeD(_pAtkSpd);
-		writeD(_runSpd);
-		writeD(_walkSpd);
-		writeD(_swimRunSpd/* 0x32 */); // swimspeed
-		writeD(_swimWalkSpd/* 0x32 */); // swimspeed
-		writeD(_flRunSpd);
-		writeD(_flWalkSpd);
-		writeD(_flyRunSpd);
-		writeD(_flyWalkSpd);
-		writeF(1.1/* _activeChar.getProperMultiplier() */);
-		// writeF(1/*_activeChar.getAttackSpeedMultiplier()*/);
-		writeF(_pAtkSpd / 277.478340719);
-		writeF(_collisionRadius);
-		writeF(_collisionHeight);
-		writeD(_rhand); // right hand weapon
-		writeD(0);
-		writeD(_lhand); // left hand weapon
-		writeC(1); // name above char 1=true ... ??
-		writeC(_activeChar.isRunning() ? 1 : 0);
-		writeC(_activeChar.isInCombat() ? 1 : 0);
-		writeC(_activeChar.isAlikeDead() ? 1 : 0);
-		writeC(_isSummoned ? 2 : 0); // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
-		writeS(_name);
-		writeS(_title);
+		C(0x16);
+		D(_activeChar.getObjectId());
+		D(_idTemplate + 1000000); // npctype id
+		D(_isAttackable ? 1 : 0);
+		D(_x);
+		D(_y);
+		D(_z);
+		D(_heading);
+		D(0x00);
+		D(_mAtkSpd);
+		D(_pAtkSpd);
+		D(_runSpd);
+		D(_walkSpd);
+		D(_swimRunSpd/* 0x32 */); // swimspeed
+		D(_swimWalkSpd/* 0x32 */); // swimspeed
+		D(_flRunSpd);
+		D(_flWalkSpd);
+		D(_flyRunSpd);
+		D(_flyWalkSpd);
+		F(1.1/* _activeChar.getProperMultiplier() */);
+		// F(1/*_activeChar.getAttackSpeedMultiplier()*/);
+		F(_pAtkSpd / 277.478340719);
+		F(_collisionRadius);
+		F(_collisionHeight);
+		D(_rhand); // right hand weapon
+		D(0);
+		D(_lhand); // left hand weapon
+		C(1); // name above char 1=true ... ??
+		C(_activeChar.isRunning() ? 1 : 0);
+		C(_activeChar.isInCombat() ? 1 : 0);
+		C(_activeChar.isAlikeDead() ? 1 : 0);
+		C(_isSummoned ? 2 : 0); // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
+		S(_name);
+		S(_title);
 		
 		if (_activeChar instanceof L2Summon)
 		{
-			writeD(0x01);// Title color 0=client default
-			writeD(((L2Summon) _activeChar).getPvpFlag());
-			writeD(((L2Summon) _activeChar).getKarma());
+			D(0x01);// Title color 0=client default
+			D(((L2Summon) _activeChar).getPvpFlag());
+			D(((L2Summon) _activeChar).getKarma());
 		}
 		else
 		{
-			writeD(0);
-			writeD(0);
-			writeD(0);
+			D(0);
+			D(0);
+			D(0);
 		}
 		
-		writeD(_activeChar.getAbnormalEffect()); // C2
-		writeD(0000); // C2
-		writeD(0000); // C2
-		writeD(0000); // C2
-		writeD(0000); // C2
-		writeC(0000); // C2
+		D(_activeChar.getAbnormalEffect()); // C2
+		D(0000); // C2
+		D(0000); // C2
+		D(0000); // C2
+		D(0000); // C2
+		C(0000); // C2
 		
-		writeC(0x00); // C3 team circle 1-blue, 2-red
-		writeF(_collisionRadius);
-		writeF(_collisionHeight);
-		writeD(0x00); // C4
-		writeD(0x00); // C6
+		C(0x00); // C3 team circle 1-blue, 2-red
+		F(_collisionRadius);
+		F(_collisionHeight);
+		D(0x00); // C4
+		D(0x00); // C6
 	}
 	
 	/*

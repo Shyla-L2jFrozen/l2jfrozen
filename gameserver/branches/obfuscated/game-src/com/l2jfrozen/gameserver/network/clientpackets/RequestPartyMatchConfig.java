@@ -35,15 +35,15 @@ public final class RequestPartyMatchConfig extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_auto = readD();
-		_loc = readD();
-		_lvl = readD();
+		_auto = D();
+		_loc = D();
+		_lvl = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance _activeChar = getClient().getActiveChar();
+		final L2PcInstance _activeChar = g().getActiveChar();
 		if (_activeChar == null)
 			return;
 		

@@ -31,16 +31,16 @@ public final class CannotMoveAnymore extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_x = readD();
-		_y = readD();
-		_z = readD();
-		_heading = readD();
+		_x = D();
+		_y = D();
+		_z = D();
+		_heading = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2Character player = getClient().getActiveChar();
+		final L2Character player = g().getActiveChar();
 		
 		if (player == null)
 			return;

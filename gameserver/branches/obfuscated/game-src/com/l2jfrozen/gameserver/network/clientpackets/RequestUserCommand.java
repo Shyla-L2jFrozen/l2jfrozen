@@ -37,13 +37,13 @@ public class RequestUserCommand extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_command = readD();
+		_command = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		
@@ -58,7 +58,7 @@ public class RequestUserCommand extends L2GameClientPacket
 		}
 		else
 		{
-			handler.useUserCommand(_command, getClient().getActiveChar());
+			handler.useUserCommand(_command, g().getActiveChar());
 		}
 	}
 	

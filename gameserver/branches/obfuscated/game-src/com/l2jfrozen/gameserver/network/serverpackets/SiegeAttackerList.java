@@ -64,18 +64,18 @@ public class SiegeAttackerList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xca);
-		writeD(_castle.getCastleId());
-		writeD(0x00); // 0
-		writeD(0x01); // 1
-		writeD(0x00); // 0
+		C(0xca);
+		D(_castle.getCastleId());
+		D(0x00); // 0
+		D(0x01); // 1
+		D(0x00); // 0
 		final int size = _castle.getSiege().getAttackerClans().size();
 		if (size > 0)
 		{
 			L2Clan clan;
 			
-			writeD(size);
-			writeD(size);
+			D(size);
+			D(size);
 			for (final L2SiegeClan siegeclan : _castle.getSiege().getAttackerClans())
 			{
 				clan = ClanTable.getInstance().getClan(siegeclan.getClanId());
@@ -84,21 +84,21 @@ public class SiegeAttackerList extends L2GameServerPacket
 					continue;
 				}
 				
-				writeD(clan.getClanId());
-				writeS(clan.getName());
-				writeS(clan.getLeaderName());
-				writeD(clan.getCrestId());
-				writeD(0x00); // signed time (seconds) (not storated by L2J)
-				writeD(clan.getAllyId());
-				writeS(clan.getAllyName());
-				writeS(""); // AllyLeaderName
-				writeD(clan.getAllyCrestId());
+				D(clan.getClanId());
+				S(clan.getName());
+				S(clan.getLeaderName());
+				D(clan.getCrestId());
+				D(0x00); // signed time (seconds) (not storated by L2J)
+				D(clan.getAllyId());
+				S(clan.getAllyName());
+				S(""); // AllyLeaderName
+				D(clan.getAllyCrestId());
 			}
 		}
 		else
 		{
-			writeD(0x00);
-			writeD(0x00);
+			D(0x00);
+			D(0x00);
 		}
 	}
 	

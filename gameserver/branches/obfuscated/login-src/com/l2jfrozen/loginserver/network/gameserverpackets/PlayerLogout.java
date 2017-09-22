@@ -39,7 +39,7 @@ public class PlayerLogout extends w
 	public PlayerLogout(final byte[] decrypt, final GameServerThread server)
 	{
 		super(decrypt);
-		final String account = readS();
+		final String account = S();
 		
 		server.removeAccountOnGameServer(account);
 		if (CommonConfig.DEBUG)

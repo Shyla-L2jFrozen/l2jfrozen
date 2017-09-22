@@ -49,16 +49,16 @@ public class ExOlympiadUserInfo extends L2GameServerPacket
 	{
 		if (_activeChar == null)
 			return;
-		writeC(0xfe);
-		writeH(0x29);
-		writeC(_side);
-		writeD(_activeChar.getObjectId());
-		writeS(_activeChar.getName());
-		writeD(_activeChar.getClassId().getId());
-		writeD((int) _activeChar.getCurrentHp());
-		writeD(_activeChar.getMaxHp());
-		writeD((int) _activeChar.getCurrentCp());
-		writeD(_activeChar.getMaxCp());
+		C(0xfe);
+		H(0x29);
+		C(_side);
+		D(_activeChar.getObjectId());
+		S(_activeChar.getName());
+		D(_activeChar.getClassId().getId());
+		D((int) _activeChar.getCurrentHp());
+		D(_activeChar.getMaxHp());
+		D((int) _activeChar.getCurrentCp());
+		D(_activeChar.getMaxCp());
 	}
 	
 	@Override

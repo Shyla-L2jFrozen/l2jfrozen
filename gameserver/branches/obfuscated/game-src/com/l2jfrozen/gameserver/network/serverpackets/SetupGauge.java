@@ -43,11 +43,11 @@ public class SetupGauge extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x6d);
-		writeD(_dat1);
-		writeD(_time);
+		C(0x6d);
+		D(_dat1);
+		D(_time);
 		
-		writeD(_time); // c2
+		D(_time); // c2
 	}
 	
 	/*

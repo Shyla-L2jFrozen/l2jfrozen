@@ -32,14 +32,14 @@ public final class RequestReplyStopPledgeWar extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		readS();
-		_answer = readD();
+		S();
+		_answer = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

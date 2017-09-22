@@ -40,13 +40,13 @@ public class PledgeReceiveSubPledgeCreated extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x3f);
+		C(0xfe);
+		H(0x3f);
 		
-		writeD(0x01);
-		writeD(_subPledge.getId());
-		writeS(_subPledge.getName());
-		writeS(_subPledge.getLeaderName());
+		D(0x01);
+		D(_subPledge.getId());
+		S(_subPledge.getName());
+		S(_subPledge.getLeaderName());
 	}
 	
 	@Override

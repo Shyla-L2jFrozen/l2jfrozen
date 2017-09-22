@@ -40,19 +40,19 @@ public final class RequestRecipeShopMakeItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_id = readD();
-		_recipeId = readD();
-		_unknow = readD();
+		_id = D();
+		_recipeId = D();
+		_unknow = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getManufacture().tryPerformAction("RecipeShopMake"))
+		if (!g().getFloodProtectors().getManufacture().tryPerformAction("RecipeShopMake"))
 			return;
 		
 		final L2PcInstance manufacturer = (L2PcInstance) L2World.getInstance().findObject(_id);

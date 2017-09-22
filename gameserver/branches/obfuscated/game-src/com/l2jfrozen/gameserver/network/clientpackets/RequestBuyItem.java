@@ -61,10 +61,10 @@ public final class RequestBuyItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_listId = readD();
-		_count = readD();
+		_listId = D();
+		_count = D();
 		// count*8 is the size of a for iteration of each item
-		if (_count * 2 < 0 || _count > Config.MAX_ITEM_IN_PACKET || _count * 8 > _buf.remaining())
+		if (_count * 2 < 0 || _count > Config.MAX_ITEM_IN_PACKET || _count * 8 > _b.remaining())
 		{
 			_count = 0;
 		}
@@ -72,9 +72,9 @@ public final class RequestBuyItem extends L2GameClientPacket
 		_items = new int[_count * 2];
 		for (int i = 0; i < _count; i++)
 		{
-			final int itemId = readD();
+			final int itemId = D();
 			_items[i * 2 + 0] = itemId;
-			final long cnt = readD();
+			final long cnt = D();
 			
 			if (cnt > Integer.MAX_VALUE || cnt < 0)
 			{
@@ -90,11 +90,11 @@ public final class RequestBuyItem extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("buy"))
+		if (!g().getFloodProtectors().getTransaction().tryPerformAction("buy"))
 		{
 			player.sendMessage("You buying too fast.");
 			return;

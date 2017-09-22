@@ -39,15 +39,15 @@ public final class RequestPledgeSetAcademyMaster extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_set = readD();
-		_currPlayerName = readS();
-		_targetPlayerName = readS();
+		_set = D();
+		_currPlayerName = S();
+		_targetPlayerName = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		final L2Clan clan = activeChar.getClan();
 		
 		if (clan == null)

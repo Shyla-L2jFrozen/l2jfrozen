@@ -44,17 +44,17 @@ public final class ValidatePosition extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_x = readD();
-		_y = readD();
-		_z = readD();
-		_heading = readD();
-		_data = readD();
+		_x = D();
+		_y = D();
+		_z = D();
+		_heading = D();
+		_data = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null || activeChar.isTeleporting() || activeChar.inObserverMode())
 			return;

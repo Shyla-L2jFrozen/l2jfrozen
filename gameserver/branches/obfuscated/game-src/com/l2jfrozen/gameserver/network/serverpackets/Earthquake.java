@@ -51,13 +51,13 @@ public class Earthquake extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xc4);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeD(_intensity);
-		writeD(_duration);
-		writeD(0x00); // Unknown
+		C(0xc4);
+		D(_x);
+		D(_y);
+		D(_z);
+		D(_intensity);
+		D(_duration);
+		D(0x00); // Unknown
 	}
 	
 	/*

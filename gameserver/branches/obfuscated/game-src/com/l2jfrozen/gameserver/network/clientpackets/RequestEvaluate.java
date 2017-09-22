@@ -34,14 +34,14 @@ public final class RequestEvaluate extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_targetId = readD();
+		_targetId = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
 		SystemMessage sm;
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

@@ -37,13 +37,13 @@ public class RequestGetBossRecord extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_bossId = readD();
+		_bossId = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

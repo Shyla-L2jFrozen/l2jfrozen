@@ -27,14 +27,14 @@ public class PlayerAuthResponse extends x
 {
 	public PlayerAuthResponse(final String account, final boolean response)
 	{
-		writeC(0x03);
-		writeS(account);
-		writeC(response ? 1 : 0);
+		C(0x03);
+		S(account);
+		C(response ? 1 : 0);
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		return getBytes();
+		return gB();
 	}
 }

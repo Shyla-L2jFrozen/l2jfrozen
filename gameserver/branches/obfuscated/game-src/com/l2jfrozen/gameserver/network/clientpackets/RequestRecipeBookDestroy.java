@@ -34,16 +34,16 @@ public final class RequestRecipeBookDestroy extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_recipeID = readD();
+		_recipeID = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar != null)
 		{
-			if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("RecipeDestroy"))
+			if (!g().getFloodProtectors().getTransaction().tryPerformAction("RecipeDestroy"))
 				return;
 			
 			final L2RecipeList rp = RecipeTable.getInstance().getRecipeList(_recipeID - 1);

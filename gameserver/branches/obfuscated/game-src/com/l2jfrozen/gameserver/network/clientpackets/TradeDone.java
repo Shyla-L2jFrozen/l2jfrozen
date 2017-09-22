@@ -34,17 +34,17 @@ public final class TradeDone extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_response = readD();
+		_response = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("trade"))
+		if (!g().getFloodProtectors().getTransaction().tryPerformAction("trade"))
 		{
 			player.sendMessage("You trading too fast.");
 			return;

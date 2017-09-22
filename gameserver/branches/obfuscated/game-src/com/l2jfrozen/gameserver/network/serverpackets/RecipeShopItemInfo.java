@@ -47,12 +47,12 @@ public class RecipeShopItemInfo extends L2GameServerPacket
 			return;
 		
 		final L2PcInstance manufacturer = (L2PcInstance) L2World.getInstance().findObject(_shopId);
-		writeC(0xda);
-		writeD(_shopId);
-		writeD(_recipeId);
-		writeD(manufacturer != null ? (int) manufacturer.getCurrentMp() : 0);
-		writeD(manufacturer != null ? manufacturer.getMaxMp() : 0);
-		writeD(0xffffffff);
+		C(0xda);
+		D(_shopId);
+		D(_recipeId);
+		D(manufacturer != null ? (int) manufacturer.getCurrentMp() : 0);
+		D(manufacturer != null ? manufacturer.getMaxMp() : 0);
+		D(0xffffffff);
 	}
 	
 	@Override

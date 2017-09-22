@@ -40,15 +40,15 @@ public final class RequestJoinSiege extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_castleId = readD();
-		_isAttacker = readD();
-		_isJoining = readD();
+		_castleId = D();
+		_isAttacker = D();
+		_isJoining = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		
 		if (player == null)
 			return;

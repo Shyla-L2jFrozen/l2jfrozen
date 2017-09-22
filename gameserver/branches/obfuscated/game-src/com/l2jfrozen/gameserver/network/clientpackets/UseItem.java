@@ -58,13 +58,13 @@ public final class UseItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectId = readD();
+		_objectId = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		
@@ -108,12 +108,12 @@ public final class UseItem extends L2GameClientPacket
 		// Flood protect UseItem
 		if (item.isPotion())
 		{
-			if (!getClient().getFloodProtectors().getUsePotion().tryPerformAction("use potion"))
+			if (!g().getFloodProtectors().getUsePotion().tryPerformAction("use potion"))
 				return;
 		}
 		else
 		{
-			if (!getClient().getFloodProtectors().getUseItem().tryPerformAction("use item"))
+			if (!g().getFloodProtectors().getUseItem().tryPerformAction("use item"))
 				return;
 		}
 		if (activeChar.isStunned() || activeChar.isConfused() || activeChar.isAway() || activeChar.isParalyzed() || activeChar.isSleeping())
@@ -177,7 +177,7 @@ public final class UseItem extends L2GameClientPacket
 		{
 			// You cannot do anything else while fishing
 			SystemMessage sm = new SystemMessage(SystemMessageId.CANNOT_DO_WHILE_FISHING_3);
-			getClient().getActiveChar().sendPacket(sm);
+			g().getActiveChar().sendPacket(sm);
 			sm = null;
 			return;
 		}
@@ -252,7 +252,7 @@ public final class UseItem extends L2GameClientPacket
 		{
 			SystemMessage sm = new SystemMessage(SystemMessageId.S1_CANNOT_BE_USED);
 			sm.addItemName(itemId);
-			getClient().getActiveChar().sendPacket(sm);
+			g().getActiveChar().sendPacket(sm);
 			sm = null;
 			return;
 		}
@@ -262,7 +262,7 @@ public final class UseItem extends L2GameClientPacket
 		{
 			SystemMessage sm = new SystemMessage(SystemMessageId.CANNOT_EQUIP_PET_ITEM); // You cannot equip a pet item.
 			sm.addItemName(itemId);
-			getClient().getActiveChar().sendPacket(sm);
+			g().getActiveChar().sendPacket(sm);
 			sm = null;
 			return;
 		}

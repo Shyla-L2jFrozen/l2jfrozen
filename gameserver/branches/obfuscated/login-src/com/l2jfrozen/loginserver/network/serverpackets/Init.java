@@ -54,22 +54,22 @@ public final class Init extends L2LoginServerPacket
 	}
 	
 	@Override
-	protected void write()
+	protected void w()
 	{
-		writeC(0x00); // init packet id
+		C(0x00); // init packet id
 		
-		writeD(_sessionId); // session id
-		writeD(0x0000c621); // protocol revision
+		D(_sessionId); // session id
+		D(0x0000c621); // protocol revision
 		
-		writeB(_publicKey); // RSA Public Key
+		B(_publicKey); // RSA Public Key
 		
 		// unk GG related?
-		writeD(0x29DD954E);
-		writeD(0x77C39CFC);
-		writeD(0x97ADB620);
-		writeD(0x07BDE0F7);
+		D(0x29DD954E);
+		D(0x77C39CFC);
+		D(0x97ADB620);
+		D(0x07BDE0F7);
 		
-		writeB(_blowfishKey); // BlowFish key
-		writeC(0x00); // null termination ;)
+		B(_blowfishKey); // BlowFish key
+		C(0x00); // null termination ;)
 	}
 }

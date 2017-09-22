@@ -46,13 +46,13 @@ public class ValidateLocationInVehicle extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x73);
-		writeD(_playerObj);
-		writeD(_boat);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeD(_heading);
+		C(0x73);
+		D(_playerObj);
+		D(_boat);
+		D(_x);
+		D(_y);
+		D(_z);
+		D(_heading);
 	}
 	
 	@Override

@@ -47,23 +47,23 @@ public class ExShowSeedInfo extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xFE); // Id
-		writeH(0x1C); // SubId
-		writeC(0);
-		writeD(_manorId); // Manor ID
-		writeD(0);
-		writeD(_seeds.size());
+		C(0xFE); // Id
+		H(0x1C); // SubId
+		C(0);
+		D(_manorId); // Manor ID
+		D(0);
+		D(_seeds.size());
 		for (final SeedProduction seed : _seeds)
 		{
-			writeD(seed.getId()); // Seed id
-			writeD(seed.getCanProduce()); // Left to buy
-			writeD(seed.getStartProduce()); // Started amount
-			writeD(seed.getPrice()); // Sell Price
-			writeD(L2Manor.getInstance().getSeedLevel(seed.getId())); // Seed Level
-			writeC(1); // reward 1 Type
-			writeD(L2Manor.getInstance().getRewardItemBySeed(seed.getId(), 1)); // Reward 1 Type Item Id
-			writeC(1); // reward 2 Type
-			writeD(L2Manor.getInstance().getRewardItemBySeed(seed.getId(), 2)); // Reward 2 Type Item Id
+			D(seed.getId()); // Seed id
+			D(seed.getCanProduce()); // Left to buy
+			D(seed.getStartProduce()); // Started amount
+			D(seed.getPrice()); // Sell Price
+			D(L2Manor.getInstance().getSeedLevel(seed.getId())); // Seed Level
+			C(1); // reward 1 Type
+			D(L2Manor.getInstance().getRewardItemBySeed(seed.getId(), 1)); // Reward 1 Type Item Id
+			C(1); // reward 2 Type
+			D(L2Manor.getInstance().getRewardItemBySeed(seed.getId(), 2)); // Reward 2 Type Item Id
 		}
 	}
 	

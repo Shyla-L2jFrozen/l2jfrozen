@@ -91,30 +91,30 @@ public class ExShowSeedSetting extends L2GameServerPacket
 	@Override
 	public void writeImpl()
 	{
-		writeC(0xFE); // Id
-		writeH(0x1F); // SubId
+		C(0xFE); // Id
+		H(0x1F); // SubId
 		
-		writeD(_manorId); // manor id
-		writeD(_count); // size
+		D(_manorId); // manor id
+		D(_count); // size
 		
 		for (int i = 0; i < _count; i++)
 		{
-			writeD(_seedData[i * 12 + 0]); // seed id
-			writeD(_seedData[i * 12 + 1]); // level
-			writeC(1);
-			writeD(_seedData[i * 12 + 2]); // reward 1 id
-			writeC(1);
-			writeD(_seedData[i * 12 + 3]); // reward 2 id
+			D(_seedData[i * 12 + 0]); // seed id
+			D(_seedData[i * 12 + 1]); // level
+			C(1);
+			D(_seedData[i * 12 + 2]); // reward 1 id
+			C(1);
+			D(_seedData[i * 12 + 3]); // reward 2 id
 			
-			writeD(_seedData[i * 12 + 4]); // next sale limit
-			writeD(_seedData[i * 12 + 5]); // price for castle to produce 1
-			writeD(_seedData[i * 12 + 6]); // min seed price
-			writeD(_seedData[i * 12 + 7]); // max seed price
+			D(_seedData[i * 12 + 4]); // next sale limit
+			D(_seedData[i * 12 + 5]); // price for castle to produce 1
+			D(_seedData[i * 12 + 6]); // min seed price
+			D(_seedData[i * 12 + 7]); // max seed price
 			
-			writeD(_seedData[i * 12 + 8]); // today sales
-			writeD(_seedData[i * 12 + 9]); // today price
-			writeD(_seedData[i * 12 + 10]); // next sales
-			writeD(_seedData[i * 12 + 11]); // next price
+			D(_seedData[i * 12 + 8]); // today sales
+			D(_seedData[i * 12 + 9]); // today price
+			D(_seedData[i * 12 + 10]); // next sales
+			D(_seedData[i * 12 + 11]); // next price
 		}
 	}
 	

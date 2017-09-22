@@ -53,7 +53,7 @@ public final class RequestRestart extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		
 		// Check if player is == null
 		if (player == null)
@@ -178,7 +178,7 @@ public final class RequestRestart extends L2GameClientPacket
 		if (player._active_boxes >= 1)
 			player.decreaseBoxes();
 		
-		final L2GameClient client = getClient();
+		final L2GameClient client = g();
 		
 		// detach the client from the char so that the connection isnt closed in the deleteMe
 		player.setClient(null);
@@ -189,15 +189,15 @@ public final class RequestRestart extends L2GameClientPacket
 		player.deleteMe(true);
 		player.store();
 		
-		getClient().setActiveChar(null);
+		g().setActiveChar(null);
 		
 		// return the client to the authed status
 		client.setState(GameClientState.AUTHED);
 		
 		// before the char selection, check shutdown status
-		if (getClient().getConnection().getSelectorThread().isShutdown())
+		if (g().getConnection().getSelectorThread().isShutdown())
 		{
-			getClient().closeNow();
+			g().closeNow();
 			return;
 		}
 		

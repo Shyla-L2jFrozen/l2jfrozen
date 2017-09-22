@@ -36,10 +36,10 @@ public final class RequestGmList extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		if (getClient().getActiveChar() == null)
+		if (g().getActiveChar() == null)
 			return;
 		
-		GmListTable.getInstance().sendListToPlayer(getClient().getActiveChar());
+		GmListTable.getInstance().sendListToPlayer(g().getActiveChar());
 	}
 	
 	@Override

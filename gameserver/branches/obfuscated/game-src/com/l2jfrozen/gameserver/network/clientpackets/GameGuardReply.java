@@ -31,10 +31,10 @@ public class GameGuardReply extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_reply[0] = readD();
-		_reply[1] = readD();
-		_reply[2] = readD();
-		_reply[3] = readD();
+		_reply[0] = D();
+		_reply[1] = D();
+		_reply[2] = D();
+		_reply[3] = D();
 	}
 	
 	@Override
@@ -44,12 +44,12 @@ public class GameGuardReply extends L2GameClientPacket
 		// L2jFrozen cannot be reached with GameGuard: L2Net notification --> Close Client connection
 		if (Config.GAMEGUARD_L2NET_CHECK)
 		{
-			getClient().closeNow();
-			LOGGER.warn("Player with account name " + getClient().accountName + " kicked to use L2Net ");
+			g().closeNow();
+			LOGGER.warn("Player with account name " + g().accountName + " kicked to use L2Net ");
 			return;
 		}
 		
-		getClient().setGameGuardOk(true);
+		g().setGameGuardOk(true);
 	}
 	
 	@Override

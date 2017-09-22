@@ -40,11 +40,11 @@ public final class Action extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectId = readD(); // Target object Identifier
-		_originX = readD();
-		_originY = readD();
-		_originZ = readD();
-		_actionId = readC(); // Action identifier : 0-Simple click, 1-Shift click
+		_objectId = D(); // Target object Identifier
+		_originX = D();
+		_originY = D();
+		_originZ = D();
+		_actionId = C(); // Action identifier : 0-Simple click, 1-Shift click
 	}
 	
 	@Override
@@ -54,15 +54,15 @@ public final class Action extends L2GameClientPacket
 			LOGGER.debug("DEBUG " + getType() + ": ActionId: " + _actionId + " , ObjectID: " + _objectId);
 		
 		// Get the current L2PcInstance of the player
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;
 		
 		if (activeChar.inObserverMode())
 		{
-			getClient().sendPacket(new SystemMessage(SystemMessageId.OBSERVERS_CANNOT_PARTICIPATE));
-			getClient().sendPacket(ActionFailed.STATIC_PACKET);
+			g().sendPacket(new SystemMessage(SystemMessageId.OBSERVERS_CANNOT_PARTICIPATE));
+			g().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
@@ -77,21 +77,21 @@ public final class Action extends L2GameClientPacket
 		// pressing e.g. pickup many times quickly would get you here
 		if (obj == null)
 		{
-			getClient().sendPacket(ActionFailed.STATIC_PACKET);
+			g().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		// Players can't interact with objects in the other instances except from multiverse
 		if (obj.getInstanceId() != activeChar.getInstanceId() && activeChar.getInstanceId() != -1)
 		{
-			getClient().sendPacket(ActionFailed.STATIC_PACKET);
+			g().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
 		// Only GMs can directly interact with invisible characters
 		if (obj instanceof L2PcInstance && (((L2PcInstance) obj).getAppearance().getInvisible()) && !activeChar.isGM())
 		{
-			getClient().sendPacket(ActionFailed.STATIC_PACKET);
+			g().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
@@ -111,17 +111,17 @@ public final class Action extends L2GameClientPacket
 					if (obj instanceof L2Character && ((L2Character) obj).isAlikeDead())
 						obj.onAction(activeChar);
 					else
-						obj.onActionShift(getClient());
+						obj.onActionShift(g());
 					break;
 				default:
 					// Invalid action detected (probably client cheating), LOGGER this
 					LOGGER.warn("Character: " + activeChar.getName() + " requested invalid action: " + _actionId);
-					getClient().sendPacket(ActionFailed.STATIC_PACKET);
+					g().sendPacket(ActionFailed.STATIC_PACKET);
 					break;
 			}
 		}
 		else
-			getClient().sendPacket(ActionFailed.STATIC_PACKET); // Actions prohibited when in trade
+			g().sendPacket(ActionFailed.STATIC_PACKET); // Actions prohibited when in trade
 	}
 	
 	@Override

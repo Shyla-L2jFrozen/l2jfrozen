@@ -51,10 +51,10 @@ public class RequestBuySeed extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_manorId = readD();
-		_count = readD();
+		_manorId = D();
+		_count = D();
 		
-		if (_count > 500 || _count * 8 < _buf.remaining() || _count < 1) // check values
+		if (_count > 500 || _count * 8 < _b.remaining() || _count < 1) // check values
 		{
 			_count = 0;
 			return;
@@ -64,9 +64,9 @@ public class RequestBuySeed extends L2GameClientPacket
 		
 		for (int i = 0; i < _count; i++)
 		{
-			final int itemId = readD();
+			final int itemId = D();
 			_items[i * 2 + 0] = itemId;
-			final long cnt = readD();
+			final long cnt = D();
 			
 			if (cnt > Integer.MAX_VALUE || cnt < 1)
 			{
@@ -86,11 +86,11 @@ public class RequestBuySeed extends L2GameClientPacket
 		int slots = 0;
 		int totalWeight = 0;
 		
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getManor().tryPerformAction("BuySeed"))
+		if (!g().getFloodProtectors().getManor().tryPerformAction("BuySeed"))
 			return;
 		
 		if (_count < 1)

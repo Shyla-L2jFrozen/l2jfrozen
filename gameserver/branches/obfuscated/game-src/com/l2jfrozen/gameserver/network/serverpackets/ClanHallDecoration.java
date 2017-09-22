@@ -37,155 +37,155 @@ public class ClanHallDecoration extends L2GameServerPacket
 	}
 	
 	/*
-	 * Packet send, must be confirmed writeC(0xf7); writeD(0); // clanhall id writeC(0); // FUNC_RESTORE_HP (Fireplace) writeC(0); // FUNC_RESTORE_MP (Carpet) writeC(0); // FUNC_RESTORE_MP (Statue) writeC(0); // FUNC_RESTORE_EXP (Chandelier) writeC(0); // FUNC_TELEPORT (Mirror) writeC(0); // Crytal
-	 * writeC(0); // Curtain writeC(0); // FUNC_ITEM_CREATE (Magic Curtain) writeC(0); // FUNC_SUPPORT writeC(0); // FUNC_SUPPORT (Flag) writeC(0); // Front Platform writeC(0); // FUNC_ITEM_CREATE writeD(0); writeD(0);
+	 * Packet send, must be confirmed C(0xf7); D(0); // clanhall id C(0); // FUNC_RESTORE_HP (Fireplace) C(0); // FUNC_RESTORE_MP (Carpet) C(0); // FUNC_RESTORE_MP (Statue) C(0); // FUNC_RESTORE_EXP (Chandelier) C(0); // FUNC_TELEPORT (Mirror) C(0); // Crytal
+	 * C(0); // Curtain C(0); // FUNC_ITEM_CREATE (Magic Curtain) C(0); // FUNC_SUPPORT C(0); // FUNC_SUPPORT (Flag) C(0); // Front Platform C(0); // FUNC_ITEM_CREATE D(0); D(0);
 	 */
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xf7);
-		writeD(_clanHall.getId()); // clanhall id
+		C(0xf7);
+		D(_clanHall.getId()); // clanhall id
 		// FUNC_RESTORE_HP
 		_function = _clanHall.getFunction(ClanHall.FUNC_RESTORE_HP);
 		if (_function == null || _function.getLvl() == 0)
 		{
-			writeC(0);
+			C(0);
 		}
 		else if (_clanHall.getGrade() == 0 && _function.getLvl() < 220 || _clanHall.getGrade() == 1 && _function.getLvl() < 160 || _clanHall.getGrade() == 2 && _function.getLvl() < 260 || _clanHall.getGrade() == 3 && _function.getLvl() < 300)
 		{
-			writeC(1);
+			C(1);
 		}
 		else
 		{
-			writeC(2);
+			C(2);
 		}
 		
 		// FUNC_RESTORE_MP
 		_function = _clanHall.getFunction(ClanHall.FUNC_RESTORE_MP);
 		if (_function == null || _function.getLvl() == 0)
 		{
-			writeC(0);
-			writeC(0);
+			C(0);
+			C(0);
 		}
 		else if ((_clanHall.getGrade() == 0 || _clanHall.getGrade() == 1) && _function.getLvl() < 25 || _clanHall.getGrade() == 2 && _function.getLvl() < 30 || _clanHall.getGrade() == 3 && _function.getLvl() < 40)
 		{
-			writeC(1);
-			writeC(1);
+			C(1);
+			C(1);
 		}
 		else
 		{
-			writeC(2);
-			writeC(2);
+			C(2);
+			C(2);
 		}
 		
 		// FUNC_RESTORE_EXP
 		_function = _clanHall.getFunction(ClanHall.FUNC_RESTORE_EXP);
 		if (_function == null || _function.getLvl() == 0)
 		{
-			writeC(0);
+			C(0);
 		}
 		else if (_clanHall.getGrade() == 0 && _function.getLvl() < 25 || _clanHall.getGrade() == 1 && _function.getLvl() < 30 || _clanHall.getGrade() == 2 && _function.getLvl() < 40 || _clanHall.getGrade() == 3 && _function.getLvl() < 50)
 		{
-			writeC(1);
+			C(1);
 		}
 		else
 		{
-			writeC(2);
+			C(2);
 		}
 		// FUNC_TELEPORT
 		_function = _clanHall.getFunction(ClanHall.FUNC_TELEPORT);
 		if (_function == null || _function.getLvl() == 0)
 		{
-			writeC(0);
+			C(0);
 		}
 		else if (_function.getLvl() < 2)
 		{
-			writeC(1);
+			C(1);
 		}
 		else
 		{
-			writeC(2);
+			C(2);
 		}
-		writeC(0);
+		C(0);
 		
 		// CURTAINS
 		_function = _clanHall.getFunction(ClanHall.FUNC_DECO_CURTAINS);
 		if (_function == null || _function.getLvl() == 0)
 		{
-			writeC(0);
+			C(0);
 		}
 		else if (_function.getLvl() <= 1)
 		{
-			writeC(1);
+			C(1);
 		}
 		else
 		{
-			writeC(2);
+			C(2);
 		}
 		
 		// FUNC_ITEM_CREATE
 		_function = _clanHall.getFunction(ClanHall.FUNC_ITEM_CREATE);
 		if (_function == null || _function.getLvl() == 0)
 		{
-			writeC(0);
+			C(0);
 		}
 		else if (_clanHall.getGrade() == 0 && _function.getLvl() < 2 || _function.getLvl() < 3)
 		{
-			writeC(1);
+			C(1);
 		}
 		else
 		{
-			writeC(2);
+			C(2);
 		}
 		
 		// FUNC_SUPPORT
 		_function = _clanHall.getFunction(ClanHall.FUNC_SUPPORT);
 		if (_function == null || _function.getLvl() == 0)
 		{
-			writeC(0);
-			writeC(0);
+			C(0);
+			C(0);
 		}
 		else if (_clanHall.getGrade() == 0 && _function.getLvl() < 2 || _clanHall.getGrade() == 1 && _function.getLvl() < 4 || _clanHall.getGrade() == 2 && _function.getLvl() < 5 || _clanHall.getGrade() == 3 && _function.getLvl() < 8)
 		{
-			writeC(1);
-			writeC(1);
+			C(1);
+			C(1);
 		}
 		else
 		{
-			writeC(2);
-			writeC(2);
+			C(2);
+			C(2);
 		}
 		// Front Plateform
 		_function = _clanHall.getFunction(ClanHall.FUNC_DECO_FRONTPLATEFORM);
 		if (_function == null || _function.getLvl() == 0)
 		{
-			writeC(0);
+			C(0);
 		}
 		else if (_function.getLvl() <= 1)
 		{
-			writeC(1);
+			C(1);
 		}
 		else
 		{
-			writeC(2);
+			C(2);
 		}
 		
 		// FUNC_ITEM_CREATE
 		_function = _clanHall.getFunction(ClanHall.FUNC_ITEM_CREATE);
 		if (_function == null || _function.getLvl() == 0)
 		{
-			writeC(0);
+			C(0);
 		}
 		else if (_clanHall.getGrade() == 0 && _function.getLvl() < 2 || _function.getLvl() < 3)
 		{
-			writeC(1);
+			C(1);
 		}
 		else
 		{
-			writeC(2);
+			C(2);
 		}
-		writeD(0);
-		writeD(0);
+		D(0);
+		D(0);
 	}
 	
 	@Override

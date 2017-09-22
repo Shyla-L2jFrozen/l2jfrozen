@@ -36,8 +36,8 @@ public class PlayerAuthResponse extends w
 	{
 		super(decrypt);
 		
-		_account = readS();
-		_authed = (readC() == 0 ? false : true);
+		_account = S();
+		_authed = (C() == 0 ? false : true);
 	}
 	
 	/**

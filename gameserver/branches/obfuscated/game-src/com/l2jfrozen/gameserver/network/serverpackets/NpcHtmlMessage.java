@@ -177,8 +177,8 @@ public class NpcHtmlMessage extends L2GameServerPacket
 	{
 		if (Config.BYPASS_VALIDATION && _validate)
 		{
-			buildBypassCache(getClient().getActiveChar());
-			buildLinksCache(getClient().getActiveChar());
+			buildBypassCache(g().getActiveChar());
+			buildLinksCache(g().getActiveChar());
 		}
 	}
 	
@@ -322,11 +322,11 @@ public class NpcHtmlMessage extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x0f);
+		C(0x0f);
 		
-		writeD(_npcObjId);
-		writeS(_html);
-		writeD(0x00);
+		D(_npcObjId);
+		S(_html);
+		D(0x00);
 	}
 	
 	/*

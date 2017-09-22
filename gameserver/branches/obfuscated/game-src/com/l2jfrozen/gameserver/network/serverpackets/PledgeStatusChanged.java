@@ -39,14 +39,14 @@ public class PledgeStatusChanged extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xcd);
-		writeD(_clan.getLeaderId());
-		writeD(_clan.getClanId());
-		writeD(0);
-		writeD(_clan.getLevel());
-		writeD(0);
-		writeD(0);
-		writeD(0);
+		C(0xcd);
+		D(_clan.getLeaderId());
+		D(_clan.getClanId());
+		D(0);
+		D(_clan.getLevel());
+		D(0);
+		D(0);
+		D(0);
 	}
 	
 	/*

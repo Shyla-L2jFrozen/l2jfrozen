@@ -85,13 +85,13 @@ public class ExPCCafePointInfo extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xFE);
-		writeH(0x31);
-		writeD(_character.getPcBangScore());
-		writeD(m_AddPoint);
-		writeC(m_PeriodType);
-		writeD(RemainTime);
-		writeC(PointType);
+		C(0xFE);
+		H(0x31);
+		D(_character.getPcBangScore());
+		D(m_AddPoint);
+		C(m_PeriodType);
+		D(RemainTime);
+		C(PointType);
 	}
 	
 	/**

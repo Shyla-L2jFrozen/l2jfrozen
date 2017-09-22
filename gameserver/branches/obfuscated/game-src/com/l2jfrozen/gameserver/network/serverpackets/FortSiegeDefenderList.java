@@ -64,18 +64,18 @@ public final class FortSiegeDefenderList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xcb);
-		writeD(_fort.getFortId());
-		writeD(0x00); // 0
-		writeD(0x01); // 1
-		writeD(0x00); // 0
+		C(0xcb);
+		D(_fort.getFortId());
+		D(0x00); // 0
+		D(0x01); // 1
+		D(0x00); // 0
 		final int size = _fort.getSiege().getDefenderClans().size() + _fort.getSiege().getDefenderWaitingClans().size();
 		if (size > 0)
 		{
 			L2Clan clan;
 			
-			writeD(size);
-			writeD(size);
+			D(size);
+			D(size);
 			// Listing the Lord and the approved clans
 			for (final L2SiegeClan siegeclan : _fort.getSiege().getDefenderClans())
 			{
@@ -85,50 +85,50 @@ public final class FortSiegeDefenderList extends L2GameServerPacket
 					continue;
 				}
 				
-				writeD(clan.getClanId());
-				writeS(clan.getName());
-				writeS(clan.getLeaderName());
-				writeD(clan.getCrestId());
-				writeD(0x00); // signed time (seconds) (not storated by L2J)
+				D(clan.getClanId());
+				S(clan.getName());
+				S(clan.getLeaderName());
+				D(clan.getCrestId());
+				D(0x00); // signed time (seconds) (not storated by L2J)
 				switch (siegeclan.getType())
 				{
 					case OWNER:
-						writeD(0x01); // owner
+						D(0x01); // owner
 						break;
 					case DEFENDER_PENDING:
-						writeD(0x02); // approved
+						D(0x02); // approved
 						break;
 					case DEFENDER:
-						writeD(0x03); // waiting approved
+						D(0x03); // waiting approved
 						break;
 					default:
-						writeD(0x00);
+						D(0x00);
 						break;
 				}
-				writeD(clan.getAllyId());
-				writeS(clan.getAllyName());
-				writeS(""); // AllyLeaderName
-				writeD(clan.getAllyCrestId());
+				D(clan.getAllyId());
+				S(clan.getAllyName());
+				S(""); // AllyLeaderName
+				D(clan.getAllyCrestId());
 			}
 			for (final L2SiegeClan siegeclan : _fort.getSiege().getDefenderWaitingClans())
 			{
 				clan = ClanTable.getInstance().getClan(siegeclan.getClanId());
-				writeD(clan.getClanId());
-				writeS(clan.getName());
-				writeS(clan.getLeaderName());
-				writeD(clan.getCrestId());
-				writeD(0x00); // signed time (seconds) (not storated by L2J)
-				writeD(0x02); // waiting approval
-				writeD(clan.getAllyId());
-				writeS(clan.getAllyName());
-				writeS(""); // AllyLeaderName
-				writeD(clan.getAllyCrestId());
+				D(clan.getClanId());
+				S(clan.getName());
+				S(clan.getLeaderName());
+				D(clan.getCrestId());
+				D(0x00); // signed time (seconds) (not storated by L2J)
+				D(0x02); // waiting approval
+				D(clan.getAllyId());
+				S(clan.getAllyName());
+				S(""); // AllyLeaderName
+				D(clan.getAllyCrestId());
 			}
 		}
 		else
 		{
-			writeD(0x00);
-			writeD(0x00);
+			D(0x00);
+			D(0x00);
 		}
 	}
 	

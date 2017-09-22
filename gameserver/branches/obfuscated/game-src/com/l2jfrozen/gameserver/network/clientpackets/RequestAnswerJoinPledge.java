@@ -36,13 +36,13 @@ public final class RequestAnswerJoinPledge extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_answer = readD();
+		_answer = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;

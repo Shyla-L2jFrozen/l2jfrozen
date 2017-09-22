@@ -123,12 +123,12 @@ public class EnterWorld extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 		{
 			LOGGER.warn("EnterWorld failed! activeChar is null...");
-			getClient().closeNow();
+			g().closeNow();
 			return;
 		}
 		
@@ -143,7 +143,7 @@ public class EnterWorld extends L2GameClientPacket
 			if (activeChar.getName().length() < 3 || activeChar.getName().length() > 16 || !Util.isAlphaNumeric(activeChar.getName()) || !isValidName(activeChar.getName()))
 			{
 				LOGGER.warn("Charname: " + activeChar.getName() + " is invalid. EnterWorld failed.");
-				getClient().closeNow();
+				g().closeNow();
 				return;
 			}
 		}

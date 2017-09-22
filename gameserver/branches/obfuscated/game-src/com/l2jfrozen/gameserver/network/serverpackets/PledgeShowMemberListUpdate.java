@@ -101,15 +101,15 @@ public class PledgeShowMemberListUpdate extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x54);
-		writeS(_name);
-		writeD(_level);
-		writeD(_classId);
-		writeD(0);
-		writeD(_objectId);
-		writeD(_isOnline); // 1=online 0=offline
-		writeD(_pledgeType);
-		writeD(_hasSponsor);
+		C(0x54);
+		S(_name);
+		D(_level);
+		D(_classId);
+		D(0);
+		D(_objectId);
+		D(_isOnline); // 1=online 0=offline
+		D(_pledgeType);
+		D(_hasSponsor);
 	}
 	
 	/*

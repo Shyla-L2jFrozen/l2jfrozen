@@ -117,18 +117,18 @@ public final class RequestEnchantItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectId = readD();
+		_objectId = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null || _objectId == 0)
 			return;
 		
 		// Flood protect to enchant script
-		if (!getClient().getFloodProtectors().getEnchantItem().tryPerformAction("enchant"))
+		if (!g().getFloodProtectors().getEnchantItem().tryPerformAction("enchant"))
 			return;
 		
 		if (activeChar.getActiveTradeList() != null)

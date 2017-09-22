@@ -41,18 +41,18 @@ public final class RequestExMagicSkillUseGround extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_x = readD();
-		_y = readD();
-		_z = readD();
-		_skillId = readD();
-		_ctrlPressed = readD() != 0;
-		_shiftPressed = readC() != 0;
+		_x = D();
+		_y = D();
+		_z = D();
+		_skillId = D();
+		_ctrlPressed = D() != 0;
+		_shiftPressed = C() != 0;
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

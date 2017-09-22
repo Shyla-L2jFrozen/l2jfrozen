@@ -37,17 +37,17 @@ public final class RequestStartPledgeWar extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_pledgeName = readS();
+		_pledgeName = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		player = getClient().getActiveChar();
+		player = g().getActiveChar();
 		if (player == null)
 			return;
 		
-		_clan = getClient().getActiveChar().getClan();
+		_clan = g().getActiveChar().getClan();
 		if (_clan == null)
 			return;
 		

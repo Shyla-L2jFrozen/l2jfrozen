@@ -60,19 +60,19 @@ public final class CharacterCreate extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_name = readS();
-		_race = readD();
-		_sex = (byte) readD();
-		_classId = readD();
-		_int = readD();
-		_str = readD();
-		_con = readD();
-		_men = readD();
-		_dex = readD();
-		_wit = readD();
-		_hairStyle = (byte) readD();
-		_hairColor = (byte) readD();
-		_face = (byte) readD();
+		_name = S();
+		_race = D();
+		_sex = (byte) D();
+		_classId = D();
+		_int = D();
+		_str = D();
+		_con = D();
+		_men = D();
+		_dex = D();
+		_wit = D();
+		_hairStyle = (byte) D();
+		_hairColor = (byte) D();
+		_face = (byte) D();
 	}
 	
 	@Override
@@ -97,7 +97,7 @@ public final class CharacterCreate extends L2GameClientPacket
 		// Since checks for duplicate names are done using SQL, lock must be held until data is written to DB as well.
 		synchronized (CharNameTable.getInstance())
 		{
-			if (CharNameTable.getInstance().accountCharNumber(getClient().getAccountName()) >= Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT && Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT != 0)
+			if (CharNameTable.getInstance().accountCharNumber(g().getAccountName()) >= Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT && Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT != 0)
 			{
 				if (CommonConfig.DEBUG)
 					LOGGER.debug("DEBUG " + getType() + ": Max number of characters reached. Creation failed.");
@@ -113,7 +113,7 @@ public final class CharacterCreate extends L2GameClientPacket
 				sendPacket(new CharCreateFail(CharCreateFail.REASON_NAME_ALREADY_EXISTS));
 				return;
 			}
-			// else if (CharNameTable.getInstance().ipCharNumber(getClient().getConnection().getInetAddress().getHostName()) >= Config.MAX_CHARACTERS_NUMBER_PER_IP && Config.MAX_CHARACTERS_NUMBER_PER_IP != 0)
+			// else if (CharNameTable.getInstance().ipCharNumber(g().getConnection().getInetAddress().getHostName()) >= Config.MAX_CHARACTERS_NUMBER_PER_IP && Config.MAX_CHARACTERS_NUMBER_PER_IP != 0)
 			// {
 			// if (CommonConfig.DEBUG)
 			// LOGGER.debug("DEBUG " + getType() + ": Max number of characters reached for IP. Creation failed.");
@@ -134,7 +134,7 @@ public final class CharacterCreate extends L2GameClientPacket
 			}
 			
 			final int objectId = IdFactory.getInstance().getNextId();
-			newChar = L2PcInstance.create(objectId, template, getClient().getAccountName(), _name, _hairStyle, _hairColor, _face, _sex != 0);
+			newChar = L2PcInstance.create(objectId, template, g().getAccountName(), _name, _hairStyle, _hairColor, _face, _sex != 0);
 			
 			newChar.setCurrentHp(newChar.getMaxHp());// L2Off like
 			// newChar.setCurrentCp(template.baseCpMax);
@@ -144,7 +144,7 @@ public final class CharacterCreate extends L2GameClientPacket
 			
 			// send acknowledgement
 			sendPacket(new CharCreateOk()); // Success
-			initNewChar(getClient(), newChar);
+			initNewChar(g(), newChar);
 		}
 	}
 	

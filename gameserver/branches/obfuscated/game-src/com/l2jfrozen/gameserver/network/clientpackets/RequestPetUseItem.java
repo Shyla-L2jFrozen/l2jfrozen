@@ -41,18 +41,18 @@ public final class RequestPetUseItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectId = readD();
+		_objectId = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getUseItem().tryPerformAction("pet use item"))
+		if (!g().getFloodProtectors().getUseItem().tryPerformAction("pet use item"))
 			return;
 		
 		final L2PetInstance pet = (L2PetInstance) activeChar.getPet();

@@ -45,16 +45,16 @@ public class MoveBackwardToLocation extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_targetX = readD();
-		_targetY = readD();
-		_targetZ = readD();
-		_originX = readD();
-		_originY = readD();
-		_originZ = readD();
+		_targetX = D();
+		_targetY = D();
+		_targetZ = D();
+		_originX = D();
+		_originY = D();
+		_originZ = D();
 		
 		try
 		{
-			_moveMovement = readD(); // is 0 if cursor keys are used 1 if mouse is used
+			_moveMovement = D(); // is 0 if cursor keys are used 1 if mouse is used
 		}
 		catch (final BufferUnderflowException e)
 		{
@@ -64,7 +64,7 @@ public class MoveBackwardToLocation extends L2GameClientPacket
 			// Ignore for now
 			if (Config.L2WALKER_PROTEC)
 			{
-				final L2PcInstance activeChar = getClient().getActiveChar();
+				final L2PcInstance activeChar = g().getActiveChar();
 				activeChar.sendPacket(SystemMessageId.HACKING_TOOL);
 				Util.handleIllegalPlayerAction(activeChar, "Player " + activeChar.getName() + " trying to use L2Walker!", IllegalPlayerAction.PUNISH_KICK);
 			}
@@ -74,13 +74,13 @@ public class MoveBackwardToLocation extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;
 		
 		// Move flood protection
-		if (!getClient().getFloodProtectors().getMoveAction().tryPerformAction("MoveBackwardToLocation"))
+		if (!g().getFloodProtectors().getMoveAction().tryPerformAction("MoveBackwardToLocation"))
 		{
 			activeChar.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
@@ -89,7 +89,7 @@ public class MoveBackwardToLocation extends L2GameClientPacket
 		// Like L2OFF movements prohibited when char is sitting
 		if (activeChar.isSitting())
 		{
-			getClient().sendPacket(ActionFailed.STATIC_PACKET);
+			g().sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		

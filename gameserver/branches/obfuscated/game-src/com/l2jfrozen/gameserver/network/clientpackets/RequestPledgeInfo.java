@@ -37,7 +37,7 @@ public final class RequestPledgeInfo extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		clanId = readD();
+		clanId = D();
 	}
 	
 	@Override
@@ -48,7 +48,7 @@ public final class RequestPledgeInfo extends L2GameClientPacket
 			LOGGER.debug("infos for clan " + clanId + " requested");
 		}
 		
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		final L2Clan clan = ClanTable.getInstance().getClan(clanId);
 		
 		if (activeChar == null)

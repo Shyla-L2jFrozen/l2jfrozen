@@ -40,6 +40,6 @@ public final class TradePressOwnOk extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0x75);
+		C(0x75);
 	}
 }

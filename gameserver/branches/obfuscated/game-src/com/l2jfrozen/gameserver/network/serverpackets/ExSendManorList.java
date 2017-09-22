@@ -40,14 +40,14 @@ public class ExSendManorList extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xFE);
-		writeH(0x1B);
-		writeD(_manors.size());
+		C(0xFE);
+		H(0x1B);
+		D(_manors.size());
 		for (int i = 0; i < _manors.size(); i++)
 		{
 			final int j = i + 1;
-			writeD(j);
-			writeS(_manors.get(i));
+			D(j);
+			S(_manors.get(i));
 		}
 		
 	}

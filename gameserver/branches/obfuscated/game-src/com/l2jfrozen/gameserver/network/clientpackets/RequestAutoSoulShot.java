@@ -42,14 +42,14 @@ public final class RequestAutoSoulShot extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_itemId = readD();
-		_type = readD();
+		_itemId = D();
+		_type = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;

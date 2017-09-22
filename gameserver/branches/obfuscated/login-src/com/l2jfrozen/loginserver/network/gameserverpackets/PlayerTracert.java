@@ -37,12 +37,12 @@ public class PlayerTracert extends w
 	public PlayerTracert(final byte[] decrypt)
 	{
 		super(decrypt);
-		final String account = readS();
-		final String pcIp = readS();
-		final String hop1 = readS();
-		final String hop2 = readS();
-		final String hop3 = readS();
-		final String hop4 = readS();
+		final String account = S();
+		final String pcIp = S();
+		final String hop1 = S();
+		final String hop2 = S();
+		final String hop3 = S();
+		final String hop4 = S();
 		
 		LoginController.getInstance().setAccountLastTracert(account, pcIp, hop1, hop2, hop3, hop4);
 		if (CommonConfig.DEBUG)

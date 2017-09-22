@@ -47,7 +47,7 @@ public class LoginServerFloodProtectorActions implements p
 	 * @return true if action is allowed, otherwise false
 	 */
 	@Override
-	public boolean tryPerformAction(final int opcode, final int opcode2, final MMOClient<?> client)
+	public boolean t(final int opcode, final int opcode2, final MMOClient<?> client)
 	{
 		
 		String account = null;
@@ -137,7 +137,7 @@ public class LoginServerFloodProtectorActions implements p
 			{
 				punishes_in_progress.put(account, true);
 				
-				if (!isOpCodeToBeTested(opcode, opcode2))
+				if (!i(opcode, opcode2))
 				{
 					if (NetcoreConfig.getInstance().LOG_PACKET_FLOODING)
 						LOGGER.warn("ATTENTION: Account " + account + " is flooding the server...");
@@ -189,7 +189,7 @@ public class LoginServerFloodProtectorActions implements p
 	}
 	
 	@Override
-	public boolean isOpCodeToBeTested(final int opcode, final int opcode2)
+	public boolean i(final int opcode, final int opcode2)
 	{
 		return !NetcoreConfig.getInstance().LS_LIST_PROTECTED_OPCODES.contains(opcode);
 	}

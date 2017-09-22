@@ -74,14 +74,14 @@ public class MagicSkillLaunched extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x76);
-		writeD(_charObjId);
-		writeD(_skillId);
-		writeD(_skillLevel);
-		writeD(_numberOfTargets); // also failed or not?
+		C(0x76);
+		D(_charObjId);
+		D(_skillId);
+		D(_skillLevel);
+		D(_numberOfTargets); // also failed or not?
 		if (_singleTargetId != 0 || _numberOfTargets == 0)
 		{
-			writeD(_singleTargetId);
+			D(_singleTargetId);
 		}
 		else
 		{
@@ -89,14 +89,14 @@ public class MagicSkillLaunched extends L2GameServerPacket
 			{
 				try
 				{
-					writeD(target.getObjectId());
+					D(target.getObjectId());
 				}
 				catch (final NullPointerException e)
 				{
 					if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 						e.printStackTrace();
 					
-					writeD(0); // untested
+					D(0); // untested
 				}
 			}
 		}

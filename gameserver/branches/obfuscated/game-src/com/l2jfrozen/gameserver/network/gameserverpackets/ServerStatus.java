@@ -93,16 +93,16 @@ public class ServerStatus extends x
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		writeC(0x06);
-		writeD(_attributes.size());
+		C(0x06);
+		D(_attributes.size());
 		for (final Attribute temp : _attributes)
 		{
-			writeD(temp.id);
-			writeD(temp.value);
+			D(temp.id);
+			D(temp.value);
 		}
 		
-		return getBytes();
+		return gB();
 	}
 }

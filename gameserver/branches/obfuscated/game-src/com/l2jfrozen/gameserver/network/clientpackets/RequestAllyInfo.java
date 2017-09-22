@@ -32,7 +32,7 @@ public final class RequestAllyInfo extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final AllyInfo ai = new AllyInfo(getClient().getActiveChar());
+		final AllyInfo ai = new AllyInfo(g().getActiveChar());
 		sendPacket(ai);
 	}
 	

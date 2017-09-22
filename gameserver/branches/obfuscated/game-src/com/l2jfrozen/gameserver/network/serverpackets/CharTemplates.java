@@ -44,31 +44,31 @@ public class CharTemplates extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x17);
-		writeD(_chars.size());
+		C(0x17);
+		D(_chars.size());
 		
 		for (final L2PcTemplate temp : _chars)
 		{
-			writeD(temp.race.ordinal());
-			writeD(temp.classId.getId());
-			writeD(0x46);
-			writeD(temp.baseSTR);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseDEX);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseCON);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseINT);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseWIT);
-			writeD(0x0a);
-			writeD(0x46);
-			writeD(temp.baseMEN);
-			writeD(0x0a);
+			D(temp.race.ordinal());
+			D(temp.classId.getId());
+			D(0x46);
+			D(temp.baseSTR);
+			D(0x0a);
+			D(0x46);
+			D(temp.baseDEX);
+			D(0x0a);
+			D(0x46);
+			D(temp.baseCON);
+			D(0x0a);
+			D(0x46);
+			D(temp.baseINT);
+			D(0x0a);
+			D(0x46);
+			D(temp.baseWIT);
+			D(0x0a);
+			D(0x46);
+			D(temp.baseMEN);
+			D(0x0a);
 		}
 	}
 	
