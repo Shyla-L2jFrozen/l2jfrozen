@@ -56,7 +56,7 @@ public class AuthRequest extends x
 	@Override
 	public byte[] gC()
 	{
-		return gB();
+		return getBytes();
 	}
 	
 }

@@ -38,7 +38,7 @@ public class LoginServerFail extends x
 	@Override
 	public byte[] gC()
 	{
-		return gB();
+		return getBytes();
 	}
 	
 	public static final int REASON_IP_BANNED = 1;
