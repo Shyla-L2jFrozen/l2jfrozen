@@ -103,6 +103,6 @@ public class ServerStatus extends x
 			D(temp.value);
 		}
 		
-		return gB();
+		return getBytes();
 	}
 }
