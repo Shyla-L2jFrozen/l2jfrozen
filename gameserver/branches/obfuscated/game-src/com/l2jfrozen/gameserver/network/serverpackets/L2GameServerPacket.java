@@ -36,7 +36,7 @@ public abstract class L2GameServerPacket extends y<L2GameClient>
 	private static final Logger LOGGER = Logger.getLogger(L2GameServerPacket.class);
 	
 	@Override
-	protected void w()
+	public void w()
 	{
 		try
 		{

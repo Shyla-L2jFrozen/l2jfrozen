@@ -34,7 +34,7 @@ public final class AccountKicked extends L2LoginServerPacket
 	}
 	
 	@Override
-	protected void w()
+	public void w()
 	{
 		C(0x02);
 		D(_reason.getCode());
