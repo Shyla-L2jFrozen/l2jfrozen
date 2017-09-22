@@ -35,9 +35,9 @@ public class StartPledgeWar extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x65);
-		writeS(_playerName);
-		writeS(_pledgeName);
+		C(0x65);
+		S(_playerName);
+		S(_pledgeName);
 	}
 	
 	@Override

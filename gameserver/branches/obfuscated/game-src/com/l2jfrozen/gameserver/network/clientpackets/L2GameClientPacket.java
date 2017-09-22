@@ -24,18 +24,18 @@ import org.apache.log4j.Logger;
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.network.L2GameClient;
 import com.l2jfrozen.gameserver.network.serverpackets.L2GameServerPacket;
-import com.l2jfrozen.netcore.ReceivablePacket;
+import a.a.z;
 
 /**
  * Packets received by the game server from clients
  * @author KenM
  */
-public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
+public abstract class L2GameClientPacket extends z<L2GameClient>
 {
 	private static final Logger LOGGER = Logger.getLogger(L2GameClientPacket.class);
 	
 	@Override
-	protected boolean read()
+	protected boolean r()
 	{
 		try
 		{
@@ -47,21 +47,21 @@ public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
 			if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 				e.printStackTrace();
 			
-			if (getClient() != null)
-				getClient().closeNow();
+			if (g() != null)
+				g().closeNow();
 			
-			LOGGER.warn("Client: " + getClient().toString() + " - Buffer overflow and has been kicked");
+			LOGGER.warn("Client: " + g().toString() + " - Buffer overflow and has been kicked");
 		}
 		catch (final BufferUnderflowException e)
 		{
 			if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 				e.printStackTrace();
 			
-			getClient().onBufferUnderflow();
+			g().onBufferUnderflow();
 		}
 		catch (final Throwable t)
 		{
-			LOGGER.error("Client: " + getClient().toString() + " - Failed reading: " + getType() + " ; " + t.getMessage(), t);
+			LOGGER.error("Client: " + g().toString() + " - Failed reading: " + getType() + " ; " + t.getMessage(), t);
 			t.printStackTrace();
 		}
 		return false;
@@ -76,16 +76,16 @@ public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
 		{
 			runImpl();
 			if (this instanceof MoveBackwardToLocation || this instanceof AttackRequest || this instanceof RequestMagicSkillUse)
-				if (getClient().getActiveChar() != null)
-					getClient().getActiveChar().onActionRequest(); // Removes onSpawn Protection
+				if (g().getActiveChar() != null)
+					g().getActiveChar().onActionRequest(); // Removes onSpawn Protection
 		}
 		catch (final Throwable t)
 		{
-			LOGGER.error("Client: " + getClient().toString() + " - Failed reading: " + getType() + " ; " + t.getMessage(), t);
+			LOGGER.error("Client: " + g().toString() + " - Failed reading: " + getType() + " ; " + t.getMessage(), t);
 			t.printStackTrace();
 			
 			if (this instanceof EnterWorld)
-				getClient().closeNow();
+				g().closeNow();
 		}
 	}
 	
@@ -93,7 +93,7 @@ public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
 	
 	protected final void sendPacket(final L2GameServerPacket gsp)
 	{
-		getClient().sendPacket(gsp);
+		g().sendPacket(gsp);
 	}
 	
 	/**

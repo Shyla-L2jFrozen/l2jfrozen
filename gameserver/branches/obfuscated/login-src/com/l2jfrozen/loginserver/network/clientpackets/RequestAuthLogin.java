@@ -78,9 +78,9 @@ public class RequestAuthLogin extends L2LoginClientPacket
 	@Override
 	public boolean readImpl()
 	{
-		if (super._buf.remaining() >= 128)
+		if (super._b.remaining() >= 128)
 		{
-			readB(_raw);
+			B(_raw);
 			return true;
 		}
 		return false;
@@ -90,7 +90,7 @@ public class RequestAuthLogin extends L2LoginClientPacket
 	public void run()
 	{
 		byte[] decrypted = null;
-		final L2LoginClient client = getClient();
+		final L2LoginClient client = g();
 		try
 		{
 			final Cipher rsaCipher = Cipher.getInstance("RSA/ECB/nopadding");
@@ -118,7 +118,7 @@ public class RequestAuthLogin extends L2LoginClientPacket
 			return;
 		}
 		
-		final InetAddress clientAddr = getClient().getConnection().getInetAddress();
+		final InetAddress clientAddr = g().getConnection().getInetAddress();
 		
 		final LoginController lc = LoginController.getInstance();
 		final AccountInfo info = lc.retriveAccountInfo(clientAddr, _user, _password);
@@ -138,11 +138,11 @@ public class RequestAuthLogin extends L2LoginClientPacket
 				client.setSessionKey(lc.assignSessionKeyToClient(info.getLogin(), client));
 				if (NetcoreConfig.getInstance().SHOW_LICENCE)
 				{
-					client.sendPacket(new LoginOk(getClient().getSessionKey()));
+					client.sendPacket(new LoginOk(g().getSessionKey()));
 				}
 				else
 				{
-					getClient().sendPacket(new ServerList(getClient()));
+					g().sendPacket(new ServerList(g()));
 				}
 				break;
 			case INVALID_PASSWORD:

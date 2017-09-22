@@ -40,10 +40,10 @@ public class RequestSetCrop extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_manorId = readD();
-		_size = readD();
+		_manorId = D();
+		_size = D();
 		
-		if (_size * 13 > _buf.remaining() || _size > 500 || _size < 1)
+		if (_size * 13 > _b.remaining() || _size > 500 || _size < 1)
 		{
 			_size = 0;
 			return;
@@ -53,13 +53,13 @@ public class RequestSetCrop extends L2GameClientPacket
 		
 		for (int i = 0; i < _size; i++)
 		{
-			final int itemId = readD();
+			final int itemId = D();
 			_items[i * 4 + 0] = itemId;
-			final int sales = readD();
+			final int sales = D();
 			_items[i * 4 + 1] = sales;
-			final int price = readD();
+			final int price = D();
 			_items[i * 4 + 2] = price;
-			final int type = readC();
+			final int type = C();
 			_items[i * 4 + 3] = type;
 		}
 	}

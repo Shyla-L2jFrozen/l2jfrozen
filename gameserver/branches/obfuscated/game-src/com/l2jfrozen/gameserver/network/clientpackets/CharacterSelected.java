@@ -34,11 +34,11 @@ public class CharacterSelected extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_charSlot = readD();
-		_unk1 = readH(this.getClass().getSimpleName());
-		_unk2 = readD();
-		_unk3 = readD();
-		_unk4 = readD();
+		_charSlot = D();
+		_unk1 = H(this.getClass().getSimpleName());
+		_unk2 = D();
+		_unk3 = D();
+		_unk4 = D();
 	}
 	
 	@Override
@@ -49,23 +49,23 @@ public class CharacterSelected extends L2GameClientPacket
 		// after playback is done, the client will not work correct and need to exit
 		// playLogFile(getConnection()); // try to play LOGGER file
 		
-		if (!getClient().getFloodProtectors().getCharacterSelect().tryPerformAction("CharacterSelect"))
+		if (!g().getFloodProtectors().getCharacterSelect().tryPerformAction("CharacterSelect"))
 			return;
 		
 		// we should always be abble to acquire the lock but if we cant lock then nothing should be done (ie repeated packet)
-		if (getClient().getActiveCharLock().tryLock())
+		if (g().getActiveCharLock().tryLock())
 		{
 			try
 			{
 				// should always be null but if not then this is repeated packet and nothing should be done here
-				if (getClient().getActiveChar() == null)
+				if (g().getActiveChar() == null)
 				{
 					// The L2PcInstance must be created here, so that it can be attached to the L2GameClient
 					if (CommonConfig.DEBUG)
 						LOGGER.debug("DEBUG " + getType() + ": selected slot:" + _charSlot);
 					
 					// Load up character from disk
-					final L2PcInstance cha = getClient().loadCharFromDisk(_charSlot);
+					final L2PcInstance cha = g().loadCharFromDisk(_charSlot);
 					
 					if (cha == null)
 					{
@@ -80,10 +80,10 @@ public class CharacterSelected extends L2GameClientPacket
 						return;
 					}
 					
-					cha.setClient(getClient());
-					getClient().setActiveChar(cha);
-					getClient().setState(GameClientState.IN_GAME);
-					sendPacket(new CharSelected(cha, getClient().getSessionId().playOkID1));
+					cha.setClient(g());
+					g().setActiveChar(cha);
+					g().setState(GameClientState.IN_GAME);
+					sendPacket(new CharSelected(cha, g().getSessionId().playOkID1));
 				}
 			}
 			catch (final Exception e)
@@ -92,7 +92,7 @@ public class CharacterSelected extends L2GameClientPacket
 			}
 			finally
 			{
-				getClient().getActiveCharLock().unlock();
+				g().getActiveCharLock().unlock();
 			}
 		}
 	}

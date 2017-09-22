@@ -39,13 +39,13 @@ public final class RequestOustPledgeMember extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_target = readS();
+		_target = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

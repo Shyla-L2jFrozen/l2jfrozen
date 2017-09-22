@@ -49,11 +49,11 @@ public class ExDuelAskStart extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x4b);
+		C(0xfe);
+		H(0x4b);
 		
-		writeS(_requestorName);
-		writeD(_partyDuel);
+		S(_requestorName);
+		D(_partyDuel);
 	}
 	
 	/**

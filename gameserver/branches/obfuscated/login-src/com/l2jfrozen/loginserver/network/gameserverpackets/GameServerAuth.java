@@ -66,18 +66,18 @@ public class GameServerAuth extends w
 	{
 		super(decrypt);
 		_server = server;
-		_desiredId = readC();
-		_acceptAlternativeId = (readC() == 0 ? false : true);
-		_hostReserved = (readC() == 0 ? false : true);
-		_port = readH();
-		_maxPlayers = readD();
-		int size = readD();
-		_hexId = readB(size);
-		size = 2 * readD();
+		_desiredId = C();
+		_acceptAlternativeId = (C() == 0 ? false : true);
+		_hostReserved = (C() == 0 ? false : true);
+		_port = H();
+		_maxPlayers = D();
+		int size = D();
+		_hexId = B(size);
+		size = 2 * D();
 		_hosts = new String[size];
 		for (int i = 0; i < size; i++)
 		{
-			_hosts[i] = readS();
+			_hosts[i] = S();
 		}
 		
 		if (CommonConfig.DEBUG)

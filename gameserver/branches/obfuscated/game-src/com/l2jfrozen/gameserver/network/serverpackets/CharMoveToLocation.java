@@ -46,23 +46,23 @@ public class CharMoveToLocation extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		// reset old Moving task
 		if (activeChar != null && activeChar.isMovingTaskDefined())
 			activeChar.setMovingTaskDefined(false);
 		
-		writeC(0x01);
+		C(0x01);
 		
-		writeD(_charObjId);
+		D(_charObjId);
 		
-		writeD(_xDst);
-		writeD(_yDst);
-		writeD(_zDst);
+		D(_xDst);
+		D(_yDst);
+		D(_zDst);
 		
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
+		D(_x);
+		D(_y);
+		D(_z);
 	}
 	
 	/*

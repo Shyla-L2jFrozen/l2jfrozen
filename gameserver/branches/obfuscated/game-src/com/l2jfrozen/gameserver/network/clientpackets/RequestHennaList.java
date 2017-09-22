@@ -38,13 +38,13 @@ public final class RequestHennaList extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_unknown = readD(); // ??
+		_unknown = D(); // ??
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;

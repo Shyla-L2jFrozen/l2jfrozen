@@ -38,13 +38,13 @@ public final class RequestConfirmTargetItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_itemObjId = readD();
+		_itemObjId = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		final L2ItemInstance item = (L2ItemInstance) L2World.getInstance().findObject(_itemObjId);
 		
 		if (item == null)

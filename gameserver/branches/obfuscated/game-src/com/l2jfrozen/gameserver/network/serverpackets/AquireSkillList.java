@@ -69,17 +69,17 @@ public class AquireSkillList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x8a);
-		writeD(_fishingSkills.ordinal()); // c4 : C5 : 0: usuall 1: fishing 2: clans
-		writeD(_skills.size());
+		C(0x8a);
+		D(_fishingSkills.ordinal()); // c4 : C5 : 0: usuall 1: fishing 2: clans
+		D(_skills.size());
 		
 		for (final Skill temp : _skills)
 		{
-			writeD(temp.id);
-			writeD(temp.nextLevel);
-			writeD(temp.maxLevel);
-			writeD(temp.spCost);
-			writeD(temp.requirements);
+			D(temp.id);
+			D(temp.nextLevel);
+			D(temp.maxLevel);
+			D(temp.spCost);
+			D(temp.requirements);
 		}
 	}
 	

@@ -46,9 +46,9 @@ public class ChairSit extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xe1);
-		writeD(_activeChar.getObjectId());
-		writeD(_staticObjectId);
+		C(0xe1);
+		D(_activeChar.getObjectId());
+		D(_staticObjectId);
 	}
 	
 	@Override

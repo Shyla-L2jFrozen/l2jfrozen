@@ -44,11 +44,11 @@ public class GMViewItemList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x94);
-		writeS(_playerName);
-		writeD(_cha.getInventoryLimit()); // inventory limit
-		writeH(0x01); // show window ??
-		writeH(_items.length);
+		C(0x94);
+		S(_playerName);
+		D(_cha.getInventoryLimit()); // inventory limit
+		H(0x01); // show window ??
+		H(_items.length);
 		
 		for (final L2ItemInstance temp : _items)
 		{
@@ -57,26 +57,26 @@ public class GMViewItemList extends L2GameServerPacket
 				continue;
 			}
 			
-			writeH(temp.getItem().getType1());
+			H(temp.getItem().getType1());
 			
-			writeD(temp.getObjectId());
-			writeD(temp.getItemId());
-			writeD(temp.getCount());
-			writeH(temp.getItem().getType2());
-			writeH(temp.getCustomType1());
-			writeH(temp.isEquipped() ? 0x01 : 0x00);
-			writeD(temp.getItem().getBodyPart());
-			writeH(temp.getEnchantLevel());
-			writeH(temp.getCustomType2());
+			D(temp.getObjectId());
+			D(temp.getItemId());
+			D(temp.getCount());
+			H(temp.getItem().getType2());
+			H(temp.getCustomType1());
+			H(temp.isEquipped() ? 0x01 : 0x00);
+			D(temp.getItem().getBodyPart());
+			H(temp.getEnchantLevel());
+			H(temp.getCustomType2());
 			if (temp.isAugmented())
 			{
-				writeD(temp.getAugmentation().getAugmentationId());
+				D(temp.getAugmentation().getAugmentationId());
 			}
 			else
 			{
-				writeD(0x00);
+				D(0x00);
 			}
-			writeD(-1); // C6
+			D(-1); // C6
 		}
 	}
 	

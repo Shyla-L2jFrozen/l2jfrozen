@@ -53,15 +53,15 @@ public class MoveToPawn extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x60);
+		C(0x60);
 		
-		writeD(_charObjId);
-		writeD(_targetId);
-		writeD(_distance);
+		D(_charObjId);
+		D(_targetId);
+		D(_distance);
 		
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
+		D(_x);
+		D(_y);
+		D(_z);
 	}
 	
 	/*

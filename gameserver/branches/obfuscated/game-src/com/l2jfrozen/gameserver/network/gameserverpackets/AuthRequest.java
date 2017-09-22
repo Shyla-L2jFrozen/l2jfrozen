@@ -37,26 +37,26 @@ public class AuthRequest extends x
 	 */
 	public AuthRequest(int id, boolean acceptAlternate, byte[] hexid, int port, boolean reserveHost, int maxplayer, List<String> subnets, List<String> hosts)
 	{
-		writeC(0x01);
-		writeC(id);
-		writeC(acceptAlternate ? 0x01 : 0x00);
-		writeC(reserveHost ? 0x01 : 0x00);
-		writeH(port);
-		writeD(maxplayer);
-		writeD(hexid.length);
-		writeB(hexid);
-		writeD(subnets.size());
+		C(0x01);
+		C(id);
+		C(acceptAlternate ? 0x01 : 0x00);
+		C(reserveHost ? 0x01 : 0x00);
+		H(port);
+		D(maxplayer);
+		D(hexid.length);
+		B(hexid);
+		D(subnets.size());
 		for (int i = 0; i < subnets.size(); i++)
 		{
-			writeS(subnets.get(i));
-			writeS(hosts.get(i));
+			S(subnets.get(i));
+			S(hosts.get(i));
 		}
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		return getBytes();
+		return gB();
 	}
 	
 }

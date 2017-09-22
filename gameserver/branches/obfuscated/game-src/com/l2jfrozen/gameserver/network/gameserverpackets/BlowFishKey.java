@@ -39,14 +39,14 @@ public class BlowFishKey extends x
 	 */
 	public BlowFishKey(final byte[] blowfishKey, final RSAPublicKey publicKey)
 	{
-		writeC(0x00);
+		C(0x00);
 		try
 		{
 			final Cipher rsaCipher = Cipher.getInstance("RSA/ECB/nopadding");
 			rsaCipher.init(Cipher.ENCRYPT_MODE, publicKey);
 			final byte[] encrypted = rsaCipher.doFinal(blowfishKey);
-			writeD(encrypted.length);
-			writeB(encrypted);
+			D(encrypted.length);
+			B(encrypted);
 		}
 		catch (final Exception e)
 		{
@@ -55,8 +55,8 @@ public class BlowFishKey extends x
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		return getBytes();
+		return gB();
 	}
 }

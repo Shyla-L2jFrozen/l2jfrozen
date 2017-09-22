@@ -44,10 +44,10 @@ public class ChangeMoveType extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x2e);
-		writeD(_charObjId);
-		writeD(_running ? RUN : WALK);
-		writeD(0); // c2
+		C(0x2e);
+		D(_charObjId);
+		D(_running ? RUN : WALK);
+		D(0); // c2
 	}
 	
 	/*

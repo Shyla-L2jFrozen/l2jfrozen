@@ -45,29 +45,29 @@ public final class PartySmallWindowAll extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x4e);
-		writeD(_LeaderOID);
-		writeD(_dist);
-		writeD(_party.getMemberCount() - 1);
+		C(0x4e);
+		D(_LeaderOID);
+		D(_dist);
+		D(_party.getMemberCount() - 1);
 		
 		for (final L2PcInstance member : _party.getPartyMembers())
 		{
 			if ((member != null) && (member != _exclude))
 			{
-				writeD(member.getObjectId());
-				writeS(member.getName());
+				D(member.getObjectId());
+				S(member.getName());
 				
-				writeD((int) member.getCurrentCp()); // c4
-				writeD(member.getMaxCp()); // c4
+				D((int) member.getCurrentCp()); // c4
+				D(member.getMaxCp()); // c4
 				
-				writeD((int) member.getCurrentHp());
-				writeD(member.getMaxHp());
-				writeD((int) member.getCurrentMp());
-				writeD(member.getMaxMp());
-				writeD(member.getLevel());
-				writeD(member.getClassId().getId());
-				writeD(0);// writeD(0x01); ??
-				writeD(member.getRace().ordinal());
+				D((int) member.getCurrentHp());
+				D(member.getMaxHp());
+				D((int) member.getCurrentMp());
+				D(member.getMaxMp());
+				D(member.getLevel());
+				D(member.getClassId().getId());
+				D(0);// D(0x01); ??
+				D(member.getRace().ordinal());
 			}
 		}
 	}

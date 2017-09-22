@@ -28,7 +28,7 @@ public final class RequestAllyCrest extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_crestId = readD();
+		_crestId = D();
 	}
 	
 	@Override

@@ -232,7 +232,7 @@ public class GameServerThread extends Thread
 	{
 		try
 		{
-			final byte[] data = sl.getContent();
+			final byte[] data = sl.gC();
 			u.c(data);
 			if (CommonConfig.DEBUG)
 			{

@@ -41,11 +41,11 @@ public class PlayerAuthRequest extends w
 	public PlayerAuthRequest(final byte[] decrypt, final GameServerThread server)
 	{
 		super(decrypt);
-		final String account = readS();
-		final int playKey1 = readD();
-		final int playKey2 = readD();
-		final int loginKey1 = readD();
-		final int loginKey2 = readD();
+		final String account = S();
+		final int playKey1 = D();
+		final int playKey2 = D();
+		final int loginKey1 = D();
+		final int loginKey2 = D();
 		final SessionKey sessionKey = new SessionKey(loginKey1, loginKey2, playKey1, playKey2);
 		
 		PlayerAuthResponse authResponse;

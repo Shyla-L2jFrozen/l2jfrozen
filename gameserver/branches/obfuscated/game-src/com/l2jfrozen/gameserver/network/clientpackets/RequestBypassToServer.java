@@ -56,18 +56,18 @@ public final class RequestBypassToServer extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_command = readS();
+		_command = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getServerBypass().tryPerformAction(_command))
+		if (!g().getFloodProtectors().getServerBypass().tryPerformAction(_command))
 			return;
 		
 		try
@@ -264,18 +264,18 @@ public final class RequestBypassToServer extends L2GameClientPacket
 			}
 			else if (_command.startsWith("bbs_"))
 			{
-				CommunityBoard.getInstance().handleCommands(getClient(), _command);
+				CommunityBoard.getInstance().handleCommands(g(), _command);
 			}
 			else if (_command.startsWith("_bbs"))
 			{
-				CommunityBoard.getInstance().handleCommands(getClient(), _command);
+				CommunityBoard.getInstance().handleCommands(g(), _command);
 			}
 			else if (_command.startsWith("Quest "))
 			{
 				if (!activeChar.validateBypass(_command))
 					return;
 				
-				final L2PcInstance player = getClient().getActiveChar();
+				final L2PcInstance player = g().getActiveChar();
 				if (player == null)
 					return;
 				
@@ -295,7 +295,7 @@ public final class RequestBypassToServer extends L2GameClientPacket
 			// Jstar's Custom Bypass Caller!
 			else if (_command.startsWith("custom_"))
 			{
-				final L2PcInstance player = getClient().getActiveChar();
+				final L2PcInstance player = g().getActiveChar();
 				CustomBypassHandler.getInstance().handleBypass(player, _command);
 			}
 			else if (_command.startsWith("OlympiadArenaChange"))

@@ -34,7 +34,7 @@ public final class RequestPCCafeCouponUse extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_str = readS();
+		_str = S();
 	}
 	
 	@Override

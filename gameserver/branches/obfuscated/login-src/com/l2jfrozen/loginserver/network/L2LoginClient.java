@@ -36,11 +36,10 @@ import com.l2jfrozen.loginserver.network.serverpackets.PlayFail;
 import com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason;
 import com.l2jfrozen.netcore.MMOClient;
 import com.l2jfrozen.netcore.MMOConnection;
-import com.l2jfrozen.netcore.SendablePacket;
 import com.l2jfrozen.netcore.SessionKey;
 import a.a.t;
 import a.a.v;
-
+import a.a.y;
 /**
  * Represents a client connected into the LoginServer
  * @author KenM
@@ -92,7 +91,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 			if (!isChecksumValid)
 			{
 				_log.warning("Wrong checksum from client: " + toString());
-				super.getConnection().close((SendablePacket<L2LoginClient>) null);
+				super.getConnection().close((y<L2LoginClient>) null);
 				return false;
 			}
 			return true;
@@ -100,7 +99,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		catch (final Exception e)
 		{
 			_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
-			super.getConnection().close((SendablePacket<L2LoginClient>) null);
+			super.getConnection().close((y<L2LoginClient>) null);
 			return false;
 		}
 	}

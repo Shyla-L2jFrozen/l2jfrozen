@@ -41,18 +41,18 @@ public final class RequestGiveItemToPet extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectId = readD();
-		_amount = readD();
+		_objectId = D();
+		_amount = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null || !(player.getPet() instanceof L2PetInstance))
 			return;
 		
-		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("giveitemtopet"))
+		if (!g().getFloodProtectors().getTransaction().tryPerformAction("giveitemtopet"))
 		{
 			player.sendMessage("You give items to pet too fast.");
 			return;

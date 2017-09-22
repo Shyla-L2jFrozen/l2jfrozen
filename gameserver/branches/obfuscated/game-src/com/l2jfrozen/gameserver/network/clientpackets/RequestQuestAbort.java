@@ -41,13 +41,13 @@ public final class RequestQuestAbort extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_questId = readD();
+		_questId = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

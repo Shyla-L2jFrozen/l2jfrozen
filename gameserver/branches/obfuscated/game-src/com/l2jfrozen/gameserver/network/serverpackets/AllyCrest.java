@@ -45,15 +45,15 @@ public class AllyCrest extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xae);
-		writeD(_crestId);
+		C(0xae);
+		D(_crestId);
 		if (_data != null)
 		{
-			writeD(_data.length);
-			writeB(_data);
+			D(_data.length);
+			B(_data);
 		}
 		else
-			writeD(0);
+			D(0);
 	}
 	
 	/*

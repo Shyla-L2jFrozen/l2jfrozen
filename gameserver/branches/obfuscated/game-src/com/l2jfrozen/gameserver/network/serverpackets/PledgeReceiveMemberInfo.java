@@ -40,25 +40,25 @@ public class PledgeReceiveMemberInfo extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x3d);
+		C(0xfe);
+		H(0x3d);
 		
-		writeD(_member.getPledgeType());
-		writeS(_member.getName());
-		writeS(_member.getTitle()); // title
-		writeD(_member.getPowerGrade()); // power
+		D(_member.getPledgeType());
+		S(_member.getName());
+		S(_member.getTitle()); // title
+		D(_member.getPowerGrade()); // power
 		
 		// clan or subpledge name
 		if (_member.getPledgeType() != 0)
 		{
-			writeS(_member.getClan().getSubPledge(_member.getPledgeType()).getName());
+			S(_member.getClan().getSubPledge(_member.getPledgeType()).getName());
 		}
 		else
 		{
-			writeS(_member.getClan().getName());
+			S(_member.getClan().getName());
 		}
 		
-		writeS(_member.getApprenticeOrSponsorName()); // name of this member's apprentice/sponsor
+		S(_member.getApprenticeOrSponsorName()); // name of this member's apprentice/sponsor
 	}
 	
 	@Override

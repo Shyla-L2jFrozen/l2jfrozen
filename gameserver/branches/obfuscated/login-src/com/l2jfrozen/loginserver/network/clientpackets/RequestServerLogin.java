@@ -66,11 +66,11 @@ public class RequestServerLogin extends L2LoginClientPacket
 	@Override
 	public boolean readImpl()
 	{
-		if (super._buf.remaining() >= 9)
+		if (super._b.remaining() >= 9)
 		{
-			_skey1 = readD();
-			_skey2 = readD();
-			_serverId = readC();
+			_skey1 = D();
+			_skey2 = D();
+			_serverId = C();
 			return true;
 		}
 		return false;
@@ -79,24 +79,24 @@ public class RequestServerLogin extends L2LoginClientPacket
 	@Override
 	public void run()
 	{
-		final SessionKey sk = getClient().getSessionKey();
+		final SessionKey sk = g().getSessionKey();
 		
 		// if we didnt showed the license we cant check these values
 		if (!NetcoreConfig.getInstance().SHOW_LICENCE || sk.checkLoginPair(_skey1, _skey2))
 		{
-			if (LoginController.getInstance().isLoginPossible(getClient(), _serverId))
+			if (LoginController.getInstance().isLoginPossible(g(), _serverId))
 			{
-				getClient().setJoinedGS(true);
-				getClient().sendPacket(new PlayOk(sk));
+				g().setJoinedGS(true);
+				g().sendPacket(new PlayOk(sk));
 			}
 			else
 			{
-				getClient().close(PlayFailReason.REASON_SERVER_OVERLOADED);
+				g().close(PlayFailReason.REASON_SERVER_OVERLOADED);
 			}
 		}
 		else
 		{
-			getClient().close(LoginFailReason.REASON_ACCESS_FAILED);
+			g().close(LoginFailReason.REASON_ACCESS_FAILED);
 		}
 	}
 }

@@ -39,14 +39,14 @@ public final class RequestOustFromPartyRoom extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_charid = readD();
+		_charid = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
 		
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

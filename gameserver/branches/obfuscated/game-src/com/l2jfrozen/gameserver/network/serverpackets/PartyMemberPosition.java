@@ -54,16 +54,16 @@ public class PartyMemberPosition extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xa7);
-		writeD(locations.size());
+		C(0xa7);
+		D(locations.size());
 		
 		for (final Map.Entry<Integer, Location> entry : locations.entrySet())
 		{
 			final Location loc = entry.getValue();
-			writeD(entry.getKey());
-			writeD(loc.getX());
-			writeD(loc.getY());
-			writeD(loc.getZ());
+			D(entry.getKey());
+			D(loc.getX());
+			D(loc.getY());
+			D(loc.getZ());
 		}
 	}
 	

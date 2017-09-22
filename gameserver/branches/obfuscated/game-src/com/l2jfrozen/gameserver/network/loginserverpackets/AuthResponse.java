@@ -35,8 +35,8 @@ public class AuthResponse extends w
 	public AuthResponse(final byte[] decrypt)
 	{
 		super(decrypt);
-		_serverId = readC();
-		_serverName = readS();
+		_serverId = C();
+		_serverName = S();
 	}
 	
 	/**

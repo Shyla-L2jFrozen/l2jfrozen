@@ -48,24 +48,24 @@ public class ExShowCropInfo extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xFE); // Id
-		writeH(0x1D); // SubId
-		writeC(0);
-		writeD(_manorId); // Manor ID
-		writeD(0);
-		writeD(_crops.size());
+		C(0xFE); // Id
+		H(0x1D); // SubId
+		C(0);
+		D(_manorId); // Manor ID
+		D(0);
+		D(_crops.size());
 		for (final CropProcure crop : _crops)
 		{
-			writeD(crop.getId()); // Crop id
-			writeD(crop.getAmount()); // Buy residual
-			writeD(crop.getStartAmount()); // Buy
-			writeD(crop.getPrice()); // Buy price
-			writeC(crop.getReward()); // Reward
-			writeD(L2Manor.getInstance().getSeedLevelByCrop(crop.getId())); // Seed Level
-			writeC(1); // rewrad 1 Type
-			writeD(L2Manor.getInstance().getRewardItem(crop.getId(), 1)); // Rewrad 1 Type Item Id
-			writeC(1); // rewrad 2 Type
-			writeD(L2Manor.getInstance().getRewardItem(crop.getId(), 2)); // Rewrad 2 Type Item Id
+			D(crop.getId()); // Crop id
+			D(crop.getAmount()); // Buy residual
+			D(crop.getStartAmount()); // Buy
+			D(crop.getPrice()); // Buy price
+			C(crop.getReward()); // Reward
+			D(L2Manor.getInstance().getSeedLevelByCrop(crop.getId())); // Seed Level
+			C(1); // rewrad 1 Type
+			D(L2Manor.getInstance().getRewardItem(crop.getId(), 1)); // Rewrad 1 Type Item Id
+			C(1); // rewrad 2 Type
+			D(L2Manor.getInstance().getRewardItem(crop.getId(), 2)); // Rewrad 2 Type Item Id
 		}
 	}
 	

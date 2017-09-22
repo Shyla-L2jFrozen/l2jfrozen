@@ -82,54 +82,54 @@ public final class ServerList extends L2LoginServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void w()
 	{
-		writeC(0x04);
-		writeC(_servers.size());
-		writeC(_lastServer);
+		C(0x04);
+		C(_servers.size());
+		C(_lastServer);
 		for (final ServerData server : _servers)
 		{
-			writeC(server._serverId); // server id
+			C(server._serverId); // server id
 			
-			writeC(server._ip[0] & 0xff);
-			writeC(server._ip[1] & 0xff);
-			writeC(server._ip[2] & 0xff);
-			writeC(server._ip[3] & 0xff);
+			C(server._ip[0] & 0xff);
+			C(server._ip[1] & 0xff);
+			C(server._ip[2] & 0xff);
+			C(server._ip[3] & 0xff);
 			
-			writeD(server._port);
-			writeC(server._ageLimit); // Age Limit 0, 15, 18
-			writeC(server._pvp ? 0x01 : 0x00);
-			writeH(server._currentPlayers);
-			writeH(server._maxPlayers);
-			writeC(server._status == ServerStatus.STATUS_DOWN ? 0x00 : 0x01);
-			writeD(server._serverType); // 1: Normal, 2: Relax, 4: Public Test, 8: No Label, 16: Character Creation Restricted, 32: Event, 64: Free
-			writeC(server._brackets ? 0x01 : 0x00);
+			D(server._port);
+			C(server._ageLimit); // Age Limit 0, 15, 18
+			C(server._pvp ? 0x01 : 0x00);
+			H(server._currentPlayers);
+			H(server._maxPlayers);
+			C(server._status == ServerStatus.STATUS_DOWN ? 0x00 : 0x01);
+			D(server._serverType); // 1: Normal, 2: Relax, 4: Public Test, 8: No Label, 16: Character Creation Restricted, 32: Event, 64: Free
+			C(server._brackets ? 0x01 : 0x00);
 		}
-		writeH(0x00); // unknown
+		H(0x00); // unknown
 		if (_charsOnServers != null)
 		{
-			writeC(_charsOnServers.size());
+			C(_charsOnServers.size());
 			for (final int servId : _charsOnServers.keySet())
 			{
-				writeC(servId);
-				writeC(_charsOnServers.get(servId));
+				C(servId);
+				C(_charsOnServers.get(servId));
 				if ((_charsToDelete == null) || !_charsToDelete.containsKey(servId))
 				{
-					writeC(0x00);
+					C(0x00);
 				}
 				else
 				{
-					writeC(_charsToDelete.get(servId).length);
+					C(_charsToDelete.get(servId).length);
 					for (final long deleteTime : _charsToDelete.get(servId))
 					{
-						writeD((int) ((deleteTime - System.currentTimeMillis()) / 1000));
+						D((int) ((deleteTime - System.currentTimeMillis()) / 1000));
 					}
 				}
 			}
 		}
 		else
 		{
-			writeC(0x00);
+			C(0x00);
 		}
 	}
 }

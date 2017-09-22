@@ -40,7 +40,7 @@ public final class RequestPledgePowerGradeList extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		final L2Clan clan = player.getClan();
 		
 		if (clan != null)

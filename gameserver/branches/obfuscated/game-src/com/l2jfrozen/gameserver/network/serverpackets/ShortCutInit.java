@@ -47,46 +47,46 @@ public class ShortCutInit extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x45);
-		writeD(_shortCuts.length);
+		C(0x45);
+		D(_shortCuts.length);
 		
 		for (final L2ShortCut sc : _shortCuts)
 		{
-			writeD(sc.getType());
-			writeD(sc.getSlot() + sc.getPage() * 12);
+			D(sc.getType());
+			D(sc.getSlot() + sc.getPage() * 12);
 			
 			switch (sc.getType())
 			{
 				case L2ShortCut.TYPE_ITEM: // 1
-					writeD(sc.getId());
-					writeD(0x01);
-					writeD(-1);
-					writeD(0x00);
-					writeD(0x00);
-					writeH(0x00);
-					writeH(0x00);
+					D(sc.getId());
+					D(0x01);
+					D(-1);
+					D(0x00);
+					D(0x00);
+					H(0x00);
+					H(0x00);
 					break;
 				case L2ShortCut.TYPE_SKILL: // 2
-					writeD(sc.getId());
-					writeD(sc.getLevel());
-					writeC(0x00); // C5
-					writeD(0x01); // C6
+					D(sc.getId());
+					D(sc.getLevel());
+					C(0x00); // C5
+					D(0x01); // C6
 					break;
 				case L2ShortCut.TYPE_ACTION: // 3
-					writeD(sc.getId());
-					writeD(0x01); // C6
+					D(sc.getId());
+					D(0x01); // C6
 					break;
 				case L2ShortCut.TYPE_MACRO: // 4
-					writeD(sc.getId());
-					writeD(0x01); // C6
+					D(sc.getId());
+					D(0x01); // C6
 					break;
 				case L2ShortCut.TYPE_RECIPE: // 5
-					writeD(sc.getId());
-					writeD(0x01); // C6
+					D(sc.getId());
+					D(0x01); // C6
 					break;
 				default:
-					writeD(sc.getId());
-					writeD(0x01); // C6
+					D(sc.getId());
+					D(0x01); // C6
 			}
 		}
 	}

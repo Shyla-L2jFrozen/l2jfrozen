@@ -39,18 +39,18 @@ public final class RequestSurrenderPersonally extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_pledgeName = readS();
+		_pledgeName = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		_activeChar = getClient().getActiveChar();
+		_activeChar = g().getActiveChar();
 		if (_activeChar == null)
 			return;
 		
-		LOGGER.info("RequestSurrenderPersonally by " + getClient().getActiveChar().getName() + " with " + _pledgeName);
-		_clan = getClient().getActiveChar().getClan();
+		LOGGER.info("RequestSurrenderPersonally by " + g().getActiveChar().getName() + " with " + _pledgeName);
+		_clan = g().getActiveChar().getClan();
 		final L2Clan clan = ClanTable.getInstance().getClanByName(_pledgeName);
 		if (_clan == null)
 			return;

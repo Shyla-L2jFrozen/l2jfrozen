@@ -42,9 +42,9 @@ public class TitleUpdate extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xcc);
-		writeD(_objectId);
-		writeS(_title);
+		C(0xcc);
+		D(_objectId);
+		S(_title);
 	}
 	
 	/**

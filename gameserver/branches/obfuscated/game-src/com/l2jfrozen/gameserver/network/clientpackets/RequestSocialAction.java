@@ -39,13 +39,13 @@ public class RequestSocialAction extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_actionId = readD();
+		_actionId = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		
@@ -81,7 +81,7 @@ public class RequestSocialAction extends L2GameClientPacket
 	}
 	
 	/*
-	 * class SocialTask implements Runnable { L2PcInstance _player; SocialTask(RequestSocialAction action) { _player = getClient().getActiveChar(); } public void run() { _player.setIsParalyzed(false); } }
+	 * class SocialTask implements Runnable { L2PcInstance _player; SocialTask(RequestSocialAction action) { _player = g().getActiveChar(); } public void run() { _player.setIsParalyzed(false); } }
 	 */
 	
 	@Override

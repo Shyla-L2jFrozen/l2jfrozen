@@ -527,7 +527,7 @@ public class LoginServerThread extends Thread
 	 */
 	private void sendPacket(final x sl) throws IOException
 	{
-		final byte[] data = sl.getContent();
+		final byte[] data = sl.gC();
 		u.c(data);
 		_blowfish.e(data, 0, data.length);
 		

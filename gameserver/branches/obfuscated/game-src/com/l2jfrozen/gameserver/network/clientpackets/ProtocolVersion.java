@@ -31,7 +31,7 @@ public final class ProtocolVersion extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_version = readH(this.getClass().getSimpleName());
+		_version = H(this.getClass().getSimpleName());
 	}
 	
 	@Override
@@ -41,30 +41,30 @@ public final class ProtocolVersion extends L2GameClientPacket
 		if (_version == -1) // Possible bot/ddos ignore it
 		{
 			if (Config.DEVELOPER)
-				LOGGER.info("Client: " + getClient().toString() + " -> Protocol Revision: " + _version + " is invalid. Possible bot or ddos. Ignore it.");
+				LOGGER.info("Client: " + g().toString() + " -> Protocol Revision: " + _version + " is invalid. Possible bot or ddos. Ignore it.");
 			
-			getClient().close((L2GameServerPacket) null);
+			g().close((L2GameServerPacket) null);
 		}
 		else if (_version == 65534 || _version == -2) // Ping
 		{
 			if (CommonConfig.DEBUG)
 				LOGGER.info("DEBUG " + getType() + ": Ping received");
 			
-			getClient().close((L2GameServerPacket) null);
+			g().close((L2GameServerPacket) null);
 		}
 		else if (_version < Config.MIN_PROTOCOL_REVISION || _version > Config.MAX_PROTOCOL_REVISION)
 		{
-			LOGGER.info("Client: " + getClient().toString() + " -> Protocol Revision: " + _version + " is invalid. Minimum is " + Config.MIN_PROTOCOL_REVISION + " and Maximum is " + Config.MAX_PROTOCOL_REVISION + " are supported. Closing connection.");
+			LOGGER.info("Client: " + g().toString() + " -> Protocol Revision: " + _version + " is invalid. Minimum is " + Config.MIN_PROTOCOL_REVISION + " and Maximum is " + Config.MAX_PROTOCOL_REVISION + " are supported. Closing connection.");
 			LOGGER.warn("Wrong Protocol Version " + _version);
-			getClient().close((L2GameServerPacket) null);
+			g().close((L2GameServerPacket) null);
 		}
 		else
 		{
 			if (CommonConfig.DEBUG)
 				LOGGER.debug(getType() + ": Client Protocol Revision is ok: " + _version);
 			
-			final KeyPacket pk = new KeyPacket(getClient().enableCrypt());
-			getClient().sendPacket(pk);
+			final KeyPacket pk = new KeyPacket(g().enableCrypt());
+			g().sendPacket(pk);
 		}
 	}
 	

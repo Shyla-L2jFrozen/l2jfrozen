@@ -33,7 +33,7 @@ public final class SnoopQuit extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_snoopID = readD();
+		_snoopID = D();
 	}
 	
 	@Override
@@ -43,7 +43,7 @@ public final class SnoopQuit extends L2GameClientPacket
 		if (player == null)
 			return;
 		
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

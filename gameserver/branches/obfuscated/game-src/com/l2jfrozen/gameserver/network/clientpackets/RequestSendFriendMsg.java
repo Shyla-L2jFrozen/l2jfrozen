@@ -44,14 +44,14 @@ public final class RequestSendFriendMsg extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_message = readS();
-		_reciever = readS();
+		_message = S();
+		_reciever = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

@@ -45,7 +45,7 @@ public class RequestUnEquipItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_slot = readD();
+		_slot = D();
 	}
 	
 	@Override
@@ -56,7 +56,7 @@ public class RequestUnEquipItem extends L2GameClientPacket
 			LOGGER.debug("request unequip slot " + _slot);
 		}
 		
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

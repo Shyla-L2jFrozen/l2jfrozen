@@ -46,18 +46,18 @@ public class ExDuelUpdateUserInfo extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x4f);
-		writeS(_activeChar.getName());
-		writeD(_activeChar.getObjectId());
-		writeD(_activeChar.getClassId().getId());
-		writeD(_activeChar.getLevel());
-		writeD((int) _activeChar.getCurrentHp());
-		writeD(_activeChar.getMaxHp());
-		writeD((int) _activeChar.getCurrentMp());
-		writeD(_activeChar.getMaxMp());
-		writeD((int) _activeChar.getCurrentCp());
-		writeD(_activeChar.getMaxCp());
+		C(0xfe);
+		H(0x4f);
+		S(_activeChar.getName());
+		D(_activeChar.getObjectId());
+		D(_activeChar.getClassId().getId());
+		D(_activeChar.getLevel());
+		D((int) _activeChar.getCurrentHp());
+		D(_activeChar.getMaxHp());
+		D((int) _activeChar.getCurrentMp());
+		D(_activeChar.getMaxMp());
+		D((int) _activeChar.getCurrentCp());
+		D(_activeChar.getMaxCp());
 	}
 	
 	/**

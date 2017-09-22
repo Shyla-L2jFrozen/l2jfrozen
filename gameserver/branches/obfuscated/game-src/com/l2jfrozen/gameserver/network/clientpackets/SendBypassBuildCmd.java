@@ -43,13 +43,13 @@ public final class SendBypassBuildCmd extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_command = "admin_" + readS().trim();
+		_command = "admin_" + S().trim();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

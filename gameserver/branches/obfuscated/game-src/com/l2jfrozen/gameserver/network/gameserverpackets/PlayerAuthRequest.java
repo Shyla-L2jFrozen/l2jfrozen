@@ -28,17 +28,17 @@ public class PlayerAuthRequest extends x
 {
 	public PlayerAuthRequest(final String account, final SessionKey key)
 	{
-		writeC(0x05);
-		writeS(account);
-		writeD(key.playOkID1);
-		writeD(key.playOkID2);
-		writeD(key.loginOkID1);
-		writeD(key.loginOkID2);
+		C(0x05);
+		S(account);
+		D(key.playOkID1);
+		D(key.playOkID2);
+		D(key.loginOkID1);
+		D(key.loginOkID2);
 	}
 	
 	@Override
-	public byte[] getContent()
+	public byte[] gC()
 	{
-		return getBytes();
+		return gB();
 	}
 }

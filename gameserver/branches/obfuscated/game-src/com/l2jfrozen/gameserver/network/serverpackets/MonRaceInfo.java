@@ -50,42 +50,42 @@ public class MonRaceInfo extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xdd);
+		C(0xdd);
 		
-		writeD(_unknown1);
-		writeD(_unknown2);
-		writeD(8);
+		D(_unknown1);
+		D(_unknown2);
+		D(8);
 		
 		for (int i = 0; i < 8; i++)
 		{
 			// LOGGER.info("MOnster "+(i+1)+" npcid "+_monsters[i].getNpcTemplate().getNpcId());
-			writeD(_monsters[i].getObjectId()); // npcObjectID
-			writeD(_monsters[i].getTemplate().npcId + 1000000); // npcID
-			writeD(14107); // origin X
-			writeD(181875 + 58 * (7 - i)); // origin Y
-			writeD(-3566); // origin Z
-			writeD(12080); // end X
-			writeD(181875 + 58 * (7 - i)); // end Y
-			writeD(-3566); // end Z
-			writeF(_monsters[i].getTemplate().collisionHeight); // coll. height
-			writeF(_monsters[i].getTemplate().collisionRadius); // coll. radius
-			writeD(120); // ?? unknown
+			D(_monsters[i].getObjectId()); // npcObjectID
+			D(_monsters[i].getTemplate().npcId + 1000000); // npcID
+			D(14107); // origin X
+			D(181875 + 58 * (7 - i)); // origin Y
+			D(-3566); // origin Z
+			D(12080); // end X
+			D(181875 + 58 * (7 - i)); // end Y
+			D(-3566); // end Z
+			F(_monsters[i].getTemplate().collisionHeight); // coll. height
+			F(_monsters[i].getTemplate().collisionRadius); // coll. radius
+			D(120); // ?? unknown
 			// *
 			for (int j = 0; j < 20; j++)
 			{
 				if (_unknown1 == 0)
 				{
-					writeC(_speeds[i][j]);
+					C(_speeds[i][j]);
 				}
 				else
 				{
-					writeC(0);
+					C(0);
 				}
 			} // */
 			/*
-			 * writeD(0x77776666); writeD(0x99998888); writeD(0xBBBBAAAA); writeD(0xDDDDCCCC); writeD(0xFFFFEEEE); //
+			 * D(0x77776666); D(0x99998888); D(0xBBBBAAAA); D(0xDDDDCCCC); D(0xFFFFEEEE); //
 			 */
-			writeD(0);
+			D(0);
 		}
 	}
 	

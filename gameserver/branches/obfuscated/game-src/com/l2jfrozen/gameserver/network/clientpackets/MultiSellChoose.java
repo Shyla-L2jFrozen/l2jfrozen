@@ -56,10 +56,10 @@ public class MultiSellChoose extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_listId = readD();
-		_entryId = readD();
-		_amount = readD();
-		// _enchantment = readH(this.getClass().getSimpleName()); // Commented this line because it did NOT work!
+		_listId = D();
+		_entryId = D();
+		_amount = D();
+		// _enchantment = H(this.getClass().getSimpleName()); // Commented this line because it did NOT work!
 		_enchantment = _entryId % 100000;
 		_entryId = _entryId / 100000;
 		_transactionTax = 0; // Initialize tax amount to 0...
@@ -68,11 +68,11 @@ public class MultiSellChoose extends L2GameClientPacket
 	@Override
 	public void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getMultiSell().tryPerformAction("multisell choose"))
+		if (!g().getFloodProtectors().getMultiSell().tryPerformAction("multisell choose"))
 		{
 			player.setMultiSellId(-1);
 			return;

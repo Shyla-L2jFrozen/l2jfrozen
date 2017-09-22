@@ -82,88 +82,88 @@ public class PetInfo extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xb1);
-		writeD(_summon.getSummonType());
-		writeD(_summon.getObjectId());
-		writeD(_summon.getTemplate().idTemplate + 1000000);
-		writeD(0); // 1=attackable
+		C(0xb1);
+		D(_summon.getSummonType());
+		D(_summon.getObjectId());
+		D(_summon.getTemplate().idTemplate + 1000000);
+		D(0); // 1=attackable
 		
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeD(_heading);
-		writeD(0);
-		writeD(_mAtkSpd);
-		writeD(_pAtkSpd);
-		writeD(_runSpd);
-		writeD(_walkSpd);
-		writeD(_swimRunSpd);
-		writeD(_swimWalkSpd);
-		writeD(_flRunSpd);
-		writeD(_flWalkSpd);
-		writeD(_flyRunSpd);
-		writeD(_flyWalkSpd);
+		D(_x);
+		D(_y);
+		D(_z);
+		D(_heading);
+		D(0);
+		D(_mAtkSpd);
+		D(_pAtkSpd);
+		D(_runSpd);
+		D(_walkSpd);
+		D(_swimRunSpd);
+		D(_swimWalkSpd);
+		D(_flRunSpd);
+		D(_flWalkSpd);
+		D(_flyRunSpd);
+		D(_flyWalkSpd);
 		
-		writeF(1/* _cha.getProperMultiplier() */);
-		writeF(1/* _cha.getAttackSpeedMultiplier() */);
-		writeF(_summon.getTemplate().collisionRadius);
-		writeF(_summon.getTemplate().collisionHeight);
-		writeD(0); // right hand weapon
-		writeD(0);
-		writeD(0); // left hand weapon
-		writeC(1); // name above char 1=true ... ??
-		writeC(_summon.isRunning() ? 1 : 0); // running=1
-		writeC(_summon.isInCombat() ? 1 : 0); // attacking 1=true
-		writeC(_summon.isAlikeDead() ? 1 : 0); // dead 1=true
-		writeC(_isSummoned ? 2 : 0); // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
-		writeS(_summon.getName());
-		writeS(_summon.getTitle());
-		writeD(1);
-		writeD(_summon.getOwner() != null ? _summon.getOwner().getPvpFlag() : 0); // 0 = white,2= purpleblink, if its greater then karma = purple
-		writeD(_summon.getOwner() != null ? _summon.getOwner().getKarma() : 0); // karma
-		writeD(_curFed); // how fed it is
-		writeD(_maxFed); // max fed it can be
-		writeD((int) _summon.getCurrentHp());// current hp
-		writeD(_maxHp);// max hp
-		writeD((int) _summon.getCurrentMp());// current mp
-		writeD(_maxMp);// max mp
-		writeD(_summon.getStat().getSp()); // sp
-		writeD(_summon.getLevel());// lvl
-		writeQ(_summon.getStat().getExp());
-		writeQ(_summon.getExpForThisLevel());// 0% absolute value
-		writeQ(_summon.getExpForNextLevel());// 100% absoulte value
-		writeD(_summon instanceof L2PetInstance ? _summon.getInventory().getTotalWeight() : 0);// weight
-		writeD(_summon.getMaxLoad());// max weight it can carry
-		writeD(_summon.getPAtk(null));// patk
-		writeD(_summon.getPDef(null));// pdef
-		writeD(_summon.getMAtk(null, null));// matk
-		writeD(_summon.getMDef(null, null));// mdef
-		writeD(_summon.getAccuracy());// accuracy
-		writeD(_summon.getEvasionRate(null));// evasion
-		writeD(_summon.getCriticalHit(null, null));// critical
-		writeD(_runSpd);// speed
-		writeD(_summon.getPAtkSpd());// atkspeed
-		writeD(_summon.getMAtkSpd());// casting speed
+		F(1/* _cha.getProperMultiplier() */);
+		F(1/* _cha.getAttackSpeedMultiplier() */);
+		F(_summon.getTemplate().collisionRadius);
+		F(_summon.getTemplate().collisionHeight);
+		D(0); // right hand weapon
+		D(0);
+		D(0); // left hand weapon
+		C(1); // name above char 1=true ... ??
+		C(_summon.isRunning() ? 1 : 0); // running=1
+		C(_summon.isInCombat() ? 1 : 0); // attacking 1=true
+		C(_summon.isAlikeDead() ? 1 : 0); // dead 1=true
+		C(_isSummoned ? 2 : 0); // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
+		S(_summon.getName());
+		S(_summon.getTitle());
+		D(1);
+		D(_summon.getOwner() != null ? _summon.getOwner().getPvpFlag() : 0); // 0 = white,2= purpleblink, if its greater then karma = purple
+		D(_summon.getOwner() != null ? _summon.getOwner().getKarma() : 0); // karma
+		D(_curFed); // how fed it is
+		D(_maxFed); // max fed it can be
+		D((int) _summon.getCurrentHp());// current hp
+		D(_maxHp);// max hp
+		D((int) _summon.getCurrentMp());// current mp
+		D(_maxMp);// max mp
+		D(_summon.getStat().getSp()); // sp
+		D(_summon.getLevel());// lvl
+		Q(_summon.getStat().getExp());
+		Q(_summon.getExpForThisLevel());// 0% absolute value
+		Q(_summon.getExpForNextLevel());// 100% absoulte value
+		D(_summon instanceof L2PetInstance ? _summon.getInventory().getTotalWeight() : 0);// weight
+		D(_summon.getMaxLoad());// max weight it can carry
+		D(_summon.getPAtk(null));// patk
+		D(_summon.getPDef(null));// pdef
+		D(_summon.getMAtk(null, null));// matk
+		D(_summon.getMDef(null, null));// mdef
+		D(_summon.getAccuracy());// accuracy
+		D(_summon.getEvasionRate(null));// evasion
+		D(_summon.getCriticalHit(null, null));// critical
+		D(_runSpd);// speed
+		D(_summon.getPAtkSpd());// atkspeed
+		D(_summon.getMAtkSpd());// casting speed
 		
-		writeD(0);// c2 abnormal visual effect... bleed=1; poison=2; poison & bleed=3; flame=4;
+		D(0);// c2 abnormal visual effect... bleed=1; poison=2; poison & bleed=3; flame=4;
 		final int npcId = _summon.getTemplate().npcId;
 		
 		if (npcId >= 12526 && npcId <= 12528)
 		{
-			writeH(1);// c2 ride button
+			H(1);// c2 ride button
 		}
 		else
 		{
-			writeH(0);
+			H(0);
 		}
 		
-		writeC(0); // c2
+		C(0); // c2
 		
 		// Following all added in C4.
-		writeH(0); // ??
-		writeC(0); // team aura (1 = blue, 2 = red)
-		writeD(_summon.getSoulShotsPerHit()); // How many soulshots this servitor uses per hit
-		writeD(_summon.getSpiritShotsPerHit()); // How many spiritshots this servitor uses per hit
+		H(0); // ??
+		C(0); // team aura (1 = blue, 2 = red)
+		D(_summon.getSoulShotsPerHit()); // How many soulshots this servitor uses per hit
+		D(_summon.getSpiritShotsPerHit()); // How many spiritshots this servitor uses per hit
 	}
 	
 	/*

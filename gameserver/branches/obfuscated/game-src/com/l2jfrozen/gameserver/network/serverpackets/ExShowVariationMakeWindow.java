@@ -31,8 +31,8 @@ public class ExShowVariationMakeWindow extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x50);
+		C(0xfe);
+		H(0x50);
 	}
 	
 	/**

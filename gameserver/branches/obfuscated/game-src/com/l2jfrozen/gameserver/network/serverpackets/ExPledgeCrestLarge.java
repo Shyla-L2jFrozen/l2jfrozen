@@ -43,14 +43,14 @@ public class ExPledgeCrestLarge extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x28);
+		C(0xfe);
+		H(0x28);
 		
-		writeD(0x00); // ???
-		writeD(_crestId);
-		writeD(_data.length);
+		D(0x00); // ???
+		D(_crestId);
+		D(_data.length);
 		
-		writeB(_data);
+		B(_data);
 		
 	}
 	

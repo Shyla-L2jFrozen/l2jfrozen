@@ -42,20 +42,20 @@ public class ExShowManorDefaultInfo extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xFE);
-		writeH(0x1E);
-		writeC(0);
-		writeD(_crops.size());
+		C(0xFE);
+		H(0x1E);
+		C(0);
+		D(_crops.size());
 		for (final int cropId : _crops)
 		{
-			writeD(cropId); // crop Id
-			writeD(L2Manor.getInstance().getSeedLevelByCrop(cropId)); // level
-			writeD(L2Manor.getInstance().getSeedBasicPriceByCrop(cropId)); // seed price
-			writeD(L2Manor.getInstance().getCropBasicPrice(cropId)); // crop price
-			writeC(1); // rewrad 1 Type
-			writeD(L2Manor.getInstance().getRewardItem(cropId, 1)); // Rewrad 1 Type Item Id
-			writeC(1); // rewrad 2 Type
-			writeD(L2Manor.getInstance().getRewardItem(cropId, 2)); // Rewrad 2 Type Item Id
+			D(cropId); // crop Id
+			D(L2Manor.getInstance().getSeedLevelByCrop(cropId)); // level
+			D(L2Manor.getInstance().getSeedBasicPriceByCrop(cropId)); // seed price
+			D(L2Manor.getInstance().getCropBasicPrice(cropId)); // crop price
+			C(1); // rewrad 1 Type
+			D(L2Manor.getInstance().getRewardItem(cropId, 1)); // Rewrad 1 Type Item Id
+			C(1); // rewrad 2 Type
+			D(L2Manor.getInstance().getRewardItem(cropId, 2)); // Rewrad 2 Type Item Id
 		}
 	}
 	

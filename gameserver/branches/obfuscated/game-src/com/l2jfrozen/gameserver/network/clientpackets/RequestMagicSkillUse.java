@@ -44,16 +44,16 @@ public final class RequestMagicSkillUse extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_magicId = readD(); // Identifier of the used skill
-		_ctrlPressed = readD() != 0; // True if it's a ForceAttack : Ctrl pressed
-		_shiftPressed = readC() != 0; // True if Shift pressed
+		_magicId = D(); // Identifier of the used skill
+		_ctrlPressed = D() != 0; // True if it's a ForceAttack : Ctrl pressed
+		_shiftPressed = C() != 0; // True if Shift pressed
 	}
 	
 	@Override
 	protected void runImpl()
 	{
 		// Get the current L2PcInstance of the player
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;

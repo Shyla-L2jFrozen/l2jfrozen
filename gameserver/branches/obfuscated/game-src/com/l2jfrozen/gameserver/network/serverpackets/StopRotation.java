@@ -43,11 +43,11 @@ public class StopRotation extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x63);
-		writeD(_charObjId);
-		writeD(_degree);
-		writeD(_speed);
-		writeC(0); // ?
+		C(0x63);
+		D(_charObjId);
+		D(_degree);
+		D(_speed);
+		C(0); // ?
 	}
 	
 	/*

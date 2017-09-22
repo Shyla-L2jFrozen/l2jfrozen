@@ -42,8 +42,8 @@ public final class RequestExEnchantSkillInfo extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_skillId = readD();
-		_skillLvl = readD();
+		_skillId = D();
+		_skillLvl = D();
 	}
 	
 	@Override
@@ -52,7 +52,7 @@ public final class RequestExEnchantSkillInfo extends L2GameClientPacket
 		if (_skillId <= 0 || _skillLvl <= 0) // minimal sanity check
 			return;
 		
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

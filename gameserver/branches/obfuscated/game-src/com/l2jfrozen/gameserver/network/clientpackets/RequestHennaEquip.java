@@ -43,18 +43,18 @@ public final class RequestHennaEquip extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_symbolId = readD();
+		_symbolId = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;
 		
-		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("HennaEquip"))
+		if (!g().getFloodProtectors().getTransaction().tryPerformAction("HennaEquip"))
 			return;
 		
 		final L2Henna template = HennaTable.getInstance().getTemplate(_symbolId);
@@ -104,7 +104,7 @@ public final class RequestHennaEquip extends L2GameClientPacket
 			iu.addModifiedItem(dyeToUpdate);
 			activeChar.sendPacket(iu);
 			
-			final ItemList il = new ItemList(getClient().getActiveChar(), true);
+			final ItemList il = new ItemList(g().getActiveChar(), true);
 			sendPacket(il);
 			
 		}

@@ -62,20 +62,20 @@ public class SellListProcure extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xE9);
-		writeD(_money); // money
-		writeD(0x00); // lease ?
-		writeH(_sellList.size()); // list size
+		C(0xE9);
+		D(_money); // money
+		D(0x00); // lease ?
+		H(_sellList.size()); // list size
 		
 		for (final L2ItemInstance item : _sellList.keySet())
 		{
-			writeH(item.getItem().getType1());
-			writeD(item.getObjectId());
-			writeD(item.getItemId());
-			writeD(_sellList.get(item)); // count
-			writeH(item.getItem().getType2());
-			writeH(0); // unknown
-			writeD(0); // price, u shouldnt get any adena for crops, only raw materials
+			H(item.getItem().getType1());
+			D(item.getObjectId());
+			D(item.getItemId());
+			D(_sellList.get(item)); // count
+			H(item.getItem().getType2());
+			H(0); // unknown
+			D(0); // price, u shouldnt get any adena for crops, only raw materials
 		}
 	}
 	

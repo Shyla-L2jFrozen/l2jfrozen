@@ -40,82 +40,82 @@ public class CustomNpcInfo extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x03);
-		writeD(_activeChar.getX());
-		writeD(_activeChar.getY());
-		writeD(_activeChar.getZ());
-		writeD(_activeChar.getHeading());
-		writeD(_activeChar.getObjectId());
-		writeS(_activeChar.getCustomNpcInstance().getName());
-		writeD(_activeChar.getCustomNpcInstance().getRace());
-		writeD(_activeChar.getCustomNpcInstance().isFemaleSex() ? 1 : 0);
-		writeD(_activeChar.getCustomNpcInstance().getClassId());
-		writeD(_activeChar.getCustomNpcInstance().PAPERDOLL_HAIR());
-		writeD(0);
-		writeD(_activeChar.getCustomNpcInstance().PAPERDOLL_RHAND());
-		writeD(_activeChar.getCustomNpcInstance().PAPERDOLL_LHAND());
-		writeD(_activeChar.getCustomNpcInstance().PAPERDOLL_GLOVES());
-		writeD(_activeChar.getCustomNpcInstance().PAPERDOLL_CHEST());
-		writeD(_activeChar.getCustomNpcInstance().PAPERDOLL_LEGS());
-		writeD(_activeChar.getCustomNpcInstance().PAPERDOLL_FEET());
-		writeD(_activeChar.getCustomNpcInstance().PAPERDOLL_HAIR());
-		writeD(_activeChar.getCustomNpcInstance().PAPERDOLL_RHAND());
-		writeD(_activeChar.getCustomNpcInstance().PAPERDOLL_HAIR());
-		writeD(_activeChar.getCustomNpcInstance().PAPERDOLL_HAIR2());
+		C(0x03);
+		D(_activeChar.getX());
+		D(_activeChar.getY());
+		D(_activeChar.getZ());
+		D(_activeChar.getHeading());
+		D(_activeChar.getObjectId());
+		S(_activeChar.getCustomNpcInstance().getName());
+		D(_activeChar.getCustomNpcInstance().getRace());
+		D(_activeChar.getCustomNpcInstance().isFemaleSex() ? 1 : 0);
+		D(_activeChar.getCustomNpcInstance().getClassId());
+		D(_activeChar.getCustomNpcInstance().PAPERDOLL_HAIR());
+		D(0);
+		D(_activeChar.getCustomNpcInstance().PAPERDOLL_RHAND());
+		D(_activeChar.getCustomNpcInstance().PAPERDOLL_LHAND());
+		D(_activeChar.getCustomNpcInstance().PAPERDOLL_GLOVES());
+		D(_activeChar.getCustomNpcInstance().PAPERDOLL_CHEST());
+		D(_activeChar.getCustomNpcInstance().PAPERDOLL_LEGS());
+		D(_activeChar.getCustomNpcInstance().PAPERDOLL_FEET());
+		D(_activeChar.getCustomNpcInstance().PAPERDOLL_HAIR());
+		D(_activeChar.getCustomNpcInstance().PAPERDOLL_RHAND());
+		D(_activeChar.getCustomNpcInstance().PAPERDOLL_HAIR());
+		D(_activeChar.getCustomNpcInstance().PAPERDOLL_HAIR2());
 		write('H', 0, 24);
-		writeD(_activeChar.getCustomNpcInstance().getPvpFlag() ? 1 : 0);
-		writeD(_activeChar.getCustomNpcInstance().getKarma());
-		writeD(_activeChar.getMAtkSpd());
-		writeD(_activeChar.getPAtkSpd());
-		writeD(_activeChar.getCustomNpcInstance().getPvpFlag() ? 1 : 0);
-		writeD(_activeChar.getCustomNpcInstance().getKarma());
-		writeD(_activeChar.getRunSpeed());
-		writeD(_activeChar.getRunSpeed() / 2);
-		writeD(_activeChar.getRunSpeed() / 3);
-		writeD(_activeChar.getRunSpeed() / 3);
-		writeD(_activeChar.getRunSpeed());
-		writeD(_activeChar.getRunSpeed());
-		writeD(_activeChar.getRunSpeed());
-		writeD(_activeChar.getRunSpeed());
-		writeF(_activeChar.getStat().getMovementSpeedMultiplier());
-		writeF(_activeChar.getStat().getAttackSpeedMultiplier());
-		writeF(CharTemplateTable.getInstance().getTemplate(_activeChar.getCustomNpcInstance().getClassId()).getCollisionRadius());
-		writeF(CharTemplateTable.getInstance().getTemplate(_activeChar.getCustomNpcInstance().getClassId()).getCollisionHeight());
-		writeD(_activeChar.getCustomNpcInstance().getHairStyle());
-		writeD(_activeChar.getCustomNpcInstance().getHairColor());
-		writeD(_activeChar.getCustomNpcInstance().getFace());
-		writeS(_activeChar.getCustomNpcInstance().getTitle());
-		writeD(_activeChar.getCustomNpcInstance().getClanId());
-		writeD(_activeChar.getCustomNpcInstance().getClanCrestId());
-		writeD(_activeChar.getCustomNpcInstance().getAllyId());
-		writeD(_activeChar.getCustomNpcInstance().getAllyCrestId());
-		writeD(0);
-		writeC(1);
-		writeC(_activeChar.isRunning() ? 1 : 0);
-		writeC(_activeChar.isInCombat() ? 1 : 0);
-		writeC(_activeChar.isAlikeDead() ? 1 : 0);
+		D(_activeChar.getCustomNpcInstance().getPvpFlag() ? 1 : 0);
+		D(_activeChar.getCustomNpcInstance().getKarma());
+		D(_activeChar.getMAtkSpd());
+		D(_activeChar.getPAtkSpd());
+		D(_activeChar.getCustomNpcInstance().getPvpFlag() ? 1 : 0);
+		D(_activeChar.getCustomNpcInstance().getKarma());
+		D(_activeChar.getRunSpeed());
+		D(_activeChar.getRunSpeed() / 2);
+		D(_activeChar.getRunSpeed() / 3);
+		D(_activeChar.getRunSpeed() / 3);
+		D(_activeChar.getRunSpeed());
+		D(_activeChar.getRunSpeed());
+		D(_activeChar.getRunSpeed());
+		D(_activeChar.getRunSpeed());
+		F(_activeChar.getStat().getMovementSpeedMultiplier());
+		F(_activeChar.getStat().getAttackSpeedMultiplier());
+		F(CharTemplateTable.getInstance().getTemplate(_activeChar.getCustomNpcInstance().getClassId()).getCollisionRadius());
+		F(CharTemplateTable.getInstance().getTemplate(_activeChar.getCustomNpcInstance().getClassId()).getCollisionHeight());
+		D(_activeChar.getCustomNpcInstance().getHairStyle());
+		D(_activeChar.getCustomNpcInstance().getHairColor());
+		D(_activeChar.getCustomNpcInstance().getFace());
+		S(_activeChar.getCustomNpcInstance().getTitle());
+		D(_activeChar.getCustomNpcInstance().getClanId());
+		D(_activeChar.getCustomNpcInstance().getClanCrestId());
+		D(_activeChar.getCustomNpcInstance().getAllyId());
+		D(_activeChar.getCustomNpcInstance().getAllyCrestId());
+		D(0);
+		C(1);
+		C(_activeChar.isRunning() ? 1 : 0);
+		C(_activeChar.isInCombat() ? 1 : 0);
+		C(_activeChar.isAlikeDead() ? 1 : 0);
 		write('C', 0, 3);
-		writeH(0);
-		writeC(0x00);
-		writeD(_activeChar.getAbnormalEffect());
-		writeC(0);
-		writeH(0);
-		writeD(_activeChar.getCustomNpcInstance().getClassId());
-		writeD(_activeChar.getMaxCp());
-		writeD((int) _activeChar.getStatus().getCurrentCp());
-		writeC(_activeChar.getCustomNpcInstance().getEnchantWeapon());
-		writeC(0x00);
-		writeD(0);// clan crest
-		writeC(_activeChar.getCustomNpcInstance().isNoble() ? 1 : 0);
-		writeC(_activeChar.getCustomNpcInstance().isHero() ? 1 : 0);
-		writeC(0);
+		H(0);
+		C(0x00);
+		D(_activeChar.getAbnormalEffect());
+		C(0);
+		H(0);
+		D(_activeChar.getCustomNpcInstance().getClassId());
+		D(_activeChar.getMaxCp());
+		D((int) _activeChar.getStatus().getCurrentCp());
+		C(_activeChar.getCustomNpcInstance().getEnchantWeapon());
+		C(0x00);
+		D(0);// clan crest
+		C(_activeChar.getCustomNpcInstance().isNoble() ? 1 : 0);
+		C(_activeChar.getCustomNpcInstance().isHero() ? 1 : 0);
+		C(0);
 		write('D', 0, 3);
-		writeD(_activeChar.getCustomNpcInstance().nameColor());
-		writeD(0);
-		writeD(_activeChar.getCustomNpcInstance().getPledgeClass());
-		writeD(0);
-		writeD(_activeChar.getCustomNpcInstance().titleColor());
-		writeD(0x00);
+		D(_activeChar.getCustomNpcInstance().nameColor());
+		D(0);
+		D(_activeChar.getCustomNpcInstance().getPledgeClass());
+		D(0);
+		D(_activeChar.getCustomNpcInstance().titleColor());
+		D(0x00);
 	}
 	
 	/*
@@ -135,16 +135,16 @@ public class CustomNpcInfo extends L2GameServerPacket
 			switch (type)
 			{
 				case 'C':
-					writeC(value);
+					C(value);
 					break;
 				case 'D':
-					writeD(value);
+					D(value);
 					break;
 				case 'F':
-					writeF(value);
+					F(value);
 					break;
 				case 'H':
-					writeH(value);
+					H(value);
 					break;
 			}
 		}

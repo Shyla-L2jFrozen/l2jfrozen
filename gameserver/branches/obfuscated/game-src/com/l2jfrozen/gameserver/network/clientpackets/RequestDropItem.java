@@ -51,21 +51,21 @@ public final class RequestDropItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectId = readD();
-		_count = readD();
-		_x = readD();
-		_y = readD();
-		_z = readD();
+		_objectId = D();
+		_count = D();
+		_x = D();
+		_y = D();
+		_z = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
 		// Flood protect drop to avoid packet lag
-		if (!getClient().getFloodProtectors().getDropItem().tryPerformAction("drop item"))
+		if (!g().getFloodProtectors().getDropItem().tryPerformAction("drop item"))
 			return;
 		
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null || activeChar.isDead())
 			return;

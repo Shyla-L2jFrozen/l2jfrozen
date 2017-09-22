@@ -42,7 +42,7 @@ public class LoginServerFail extends w
 	public LoginServerFail(final byte[] decrypt)
 	{
 		super(decrypt);
-		_reason = readC();
+		_reason = C();
 	}
 	
 	public String getReasonString()

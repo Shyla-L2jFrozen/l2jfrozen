@@ -74,20 +74,20 @@ public class AquireSkillInfo extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x8b);
-		writeD(_id);
-		writeD(_level);
-		writeD(_spCost);
-		writeD(_mode); // c4
+		C(0x8b);
+		D(_id);
+		D(_level);
+		D(_spCost);
+		D(_mode); // c4
 		
-		writeD(_reqs.size());
+		D(_reqs.size());
 		
 		for (final Req temp : _reqs)
 		{
-			writeD(temp.type);
-			writeD(temp.itemId);
-			writeD(temp.count);
-			writeD(temp.unk);
+			D(temp.type);
+			D(temp.itemId);
+			D(temp.count);
+			D(temp.unk);
 		}
 	}
 	

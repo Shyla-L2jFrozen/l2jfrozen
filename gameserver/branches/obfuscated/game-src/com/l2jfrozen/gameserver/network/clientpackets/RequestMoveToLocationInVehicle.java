@@ -45,21 +45,21 @@ public final class RequestMoveToLocationInVehicle extends L2GameClientPacket
 	protected void readImpl()
 	{
 		int _x, _y, _z;
-		_boatId = readD(); // objectId of boat
-		_x = readD();
-		_y = readD();
-		_z = readD();
+		_boatId = D(); // objectId of boat
+		_x = D();
+		_y = D();
+		_z = D();
 		_pos.setXYZ(_x, _y, _z);
-		_x = readD();
-		_y = readD();
-		_z = readD();
+		_x = D();
+		_y = D();
+		_z = D();
 		_origin_pos.setXYZ(_x, _y, _z);
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;

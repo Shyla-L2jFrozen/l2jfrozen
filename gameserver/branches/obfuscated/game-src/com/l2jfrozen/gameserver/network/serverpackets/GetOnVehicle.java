@@ -60,12 +60,12 @@ public class GetOnVehicle extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0x5c);
-		writeD(_activeChar.getObjectId());
-		writeD(_boat.getObjectId());
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
+		C(0x5c);
+		D(_activeChar.getObjectId());
+		D(_boat.getObjectId());
+		D(_x);
+		D(_y);
+		D(_z);
 		
 	}
 	

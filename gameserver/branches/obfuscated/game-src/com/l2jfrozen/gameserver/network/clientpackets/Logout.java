@@ -45,7 +45,7 @@ public final class Logout extends L2GameClientPacket
 	protected void runImpl()
 	{
 		// Dont allow leaving if player is fighting
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		
 		if (player == null)
 			return;

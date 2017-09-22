@@ -52,11 +52,11 @@ public class ExVariationResult extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xfe);
-		writeH(0x55);
-		writeD(_stat12);
-		writeD(_stat34);
-		writeD(_unk3);
+		C(0xfe);
+		H(0x55);
+		D(_stat12);
+		D(_stat34);
+		D(_unk3);
 	}
 	
 	/**

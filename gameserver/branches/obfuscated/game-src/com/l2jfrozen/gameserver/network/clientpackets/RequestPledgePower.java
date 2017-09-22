@@ -36,11 +36,11 @@ public final class RequestPledgePower extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_rank = readD();
-		_action = readD();
+		_rank = D();
+		_action = D();
 		if (_action == 2)
 		{
-			_privs = readD();
+			_privs = D();
 		}
 		else
 		{
@@ -51,7 +51,7 @@ public final class RequestPledgePower extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		
@@ -75,7 +75,7 @@ public final class RequestPledgePower extends L2GameClientPacket
 		}
 		else
 		{
-			final ManagePledgePower mpp = new ManagePledgePower(getClient().getActiveChar().getClan(), _action, _rank);
+			final ManagePledgePower mpp = new ManagePledgePower(g().getActiveChar().getClan(), _action, _rank);
 			player.sendPacket(mpp);
 		}
 	}

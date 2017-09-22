@@ -37,8 +37,8 @@ public class SendTradeRequest extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x5e);
-		writeD(_senderID);
+		C(0x5e);
+		D(_senderID);
 	}
 	
 	/*

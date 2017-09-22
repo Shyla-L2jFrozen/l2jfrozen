@@ -47,7 +47,7 @@ public final class RequestFriendDel extends L2GameClientPacket
 	{
 		try
 		{
-			_name = readS();
+			_name = S();
 		}
 		catch (final Exception e)
 		{
@@ -66,7 +66,7 @@ public final class RequestFriendDel extends L2GameClientPacket
 		
 		SystemMessage sm;
 		Connection con = null;
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

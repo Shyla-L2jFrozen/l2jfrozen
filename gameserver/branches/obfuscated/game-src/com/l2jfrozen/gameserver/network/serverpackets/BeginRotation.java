@@ -41,12 +41,12 @@ public class BeginRotation extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x62);
-		writeD(_charObjId);
-		writeD(_degree);
-		writeD(_side);
+		C(0x62);
+		D(_charObjId);
+		D(_degree);
+		D(_side);
 		if (_speed != 0)
-			writeD(_speed);
+			D(_speed);
 	}
 	
 	/*

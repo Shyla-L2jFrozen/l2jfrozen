@@ -48,14 +48,14 @@ public final class RequestCrystallizeItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectId = readD();
-		_count = readD();
+		_objectId = D();
+		_count = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 		{
@@ -63,7 +63,7 @@ public final class RequestCrystallizeItem extends L2GameClientPacket
 			return;
 		}
 		
-		if (!getClient().getFloodProtectors().getTransaction().tryPerformAction("crystallize"))
+		if (!g().getFloodProtectors().getTransaction().tryPerformAction("crystallize"))
 		{
 			activeChar.sendMessage("You crystallizing too fast.");
 			return;

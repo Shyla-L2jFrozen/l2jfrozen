@@ -46,16 +46,16 @@ public final class RequestRefine extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_targetItemObjId = readD();
-		_refinerItemObjId = readD();
-		_gemstoneItemObjId = readD();
-		_gemstoneCount = readD();
+		_targetItemObjId = D();
+		_refinerItemObjId = D();
+		_gemstoneItemObjId = D();
+		_gemstoneCount = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		
@@ -93,7 +93,7 @@ public final class RequestRefine extends L2GameClientPacket
 	boolean TryAugmentItem(final L2PcInstance player, final L2ItemInstance targetItem, final L2ItemInstance refinerItem, final L2ItemInstance gemstoneItem)
 	{
 		// Flood protect to augment script
-		if (!getClient().getFloodProtectors().getAugmentItem().tryPerformAction("augment"))
+		if (!g().getFloodProtectors().getAugmentItem().tryPerformAction("augment"))
 			return false;
 		
 		if (targetItem.isAugmented() || targetItem.isWear())

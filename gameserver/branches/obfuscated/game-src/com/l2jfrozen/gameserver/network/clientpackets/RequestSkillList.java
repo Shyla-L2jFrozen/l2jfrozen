@@ -33,7 +33,7 @@ public final class RequestSkillList extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance cha = getClient().getActiveChar();
+		final L2PcInstance cha = g().getActiveChar();
 		
 		if (cha == null)
 			return;

@@ -40,15 +40,15 @@ public final class AddTradeItem extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_tradeId = readD();
-		_objectId = readD();
-		_count = readD();
+		_tradeId = D();
+		_objectId = D();
+		_count = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null) // Player null
 			return;
 		

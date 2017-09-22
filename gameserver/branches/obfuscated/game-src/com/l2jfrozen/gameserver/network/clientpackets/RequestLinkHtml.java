@@ -36,13 +36,13 @@ public final class RequestLinkHtml extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_link = readS();
+		_link = S();
 	}
 	
 	@Override
 	public void runImpl()
 	{
-		final L2PcInstance actor = getClient().getActiveChar();
+		final L2PcInstance actor = g().getActiveChar();
 		if (actor == null)
 			return;
 		

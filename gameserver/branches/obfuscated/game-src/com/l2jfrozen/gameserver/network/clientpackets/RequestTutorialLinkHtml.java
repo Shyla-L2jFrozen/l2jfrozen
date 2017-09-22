@@ -33,7 +33,7 @@ public class RequestTutorialLinkHtml extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_bypass = readS();
+		_bypass = S();
 		
 		if (_bypass != null)
 		{
@@ -55,7 +55,7 @@ public class RequestTutorialLinkHtml extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		

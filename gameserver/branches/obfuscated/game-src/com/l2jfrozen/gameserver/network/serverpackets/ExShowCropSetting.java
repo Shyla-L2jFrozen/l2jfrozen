@@ -96,33 +96,33 @@ public class ExShowCropSetting extends L2GameServerPacket
 	@Override
 	public void writeImpl()
 	{
-		writeC(0xFE); // Id
-		writeH(0x20); // SubId
+		C(0xFE); // Id
+		H(0x20); // SubId
 		
-		writeD(_manorId); // manor id
-		writeD(_count); // size
+		D(_manorId); // manor id
+		D(_count); // size
 		
 		for (int i = 0; i < _count; i++)
 		{
-			writeD(_cropData[i * 14 + 0]); // crop id
-			writeD(_cropData[i * 14 + 1]); // seed level
-			writeC(1);
-			writeD(_cropData[i * 14 + 2]); // reward 1 id
-			writeC(1);
-			writeD(_cropData[i * 14 + 3]); // reward 2 id
+			D(_cropData[i * 14 + 0]); // crop id
+			D(_cropData[i * 14 + 1]); // seed level
+			C(1);
+			D(_cropData[i * 14 + 2]); // reward 1 id
+			C(1);
+			D(_cropData[i * 14 + 3]); // reward 2 id
 			
-			writeD(_cropData[i * 14 + 4]); // next sale limit
-			writeD(_cropData[i * 14 + 5]); // ???
-			writeD(_cropData[i * 14 + 6]); // min crop price
-			writeD(_cropData[i * 14 + 7]); // max crop price
+			D(_cropData[i * 14 + 4]); // next sale limit
+			D(_cropData[i * 14 + 5]); // ???
+			D(_cropData[i * 14 + 6]); // min crop price
+			D(_cropData[i * 14 + 7]); // max crop price
 			
-			writeD(_cropData[i * 14 + 8]); // today buy
-			writeD(_cropData[i * 14 + 9]); // today price
-			writeC(_cropData[i * 14 + 10]); // today reward
+			D(_cropData[i * 14 + 8]); // today buy
+			D(_cropData[i * 14 + 9]); // today price
+			C(_cropData[i * 14 + 10]); // today reward
 			
-			writeD(_cropData[i * 14 + 11]); // next buy
-			writeD(_cropData[i * 14 + 12]); // next price
-			writeC(_cropData[i * 14 + 13]); // next reward
+			D(_cropData[i * 14 + 11]); // next buy
+			D(_cropData[i * 14 + 12]); // next price
+			C(_cropData[i * 14 + 13]); // next reward
 		}
 	}
 	

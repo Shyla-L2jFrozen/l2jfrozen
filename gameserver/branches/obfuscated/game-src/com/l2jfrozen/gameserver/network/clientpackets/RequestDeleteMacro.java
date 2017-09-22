@@ -29,20 +29,20 @@ public final class RequestDeleteMacro extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_id = readD();
+		_id = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		if (getClient().getActiveChar() == null)
+		if (g().getActiveChar() == null)
 			return;
 		
 		// Macro exploit fix
-		if (!getClient().getFloodProtectors().getMacro().tryPerformAction("delete macro"))
+		if (!g().getFloodProtectors().getMacro().tryPerformAction("delete macro"))
 			return;
 		
-		getClient().getActiveChar().deleteMacro(_id);
+		g().getActiveChar().deleteMacro(_id);
 		SystemMessage sm = new SystemMessage(SystemMessageId.S1_S2);
 		sm.addString("Delete macro id=" + _id);
 		sendPacket(sm);

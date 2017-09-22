@@ -50,22 +50,22 @@ public final class BuyListSeed extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0xE8);
+		C(0xE8);
 		
-		writeD(_money); // current money
-		writeD(_manorId); // manor id
+		D(_money); // current money
+		D(_manorId); // manor id
 		
-		writeH(_list.size()); // list length
+		H(_list.size()); // list length
 		
 		for (final L2ItemInstance item : _list)
 		{
-			writeH(0x04); // item->type1
-			writeD(0x00); // objectId
-			writeD(item.getItemId()); // item id
-			writeD(item.getCount()); // item count
-			writeH(0x04); // item->type2
-			writeH(0x00); // unknown :)
-			writeD(item.getPriceToSell()); // price
+			H(0x04); // item->type1
+			D(0x00); // objectId
+			D(item.getItemId()); // item id
+			D(item.getCount()); // item count
+			H(0x04); // item->type2
+			H(0x00); // unknown :)
+			D(item.getPriceToSell()); // price
 		}
 	}
 	

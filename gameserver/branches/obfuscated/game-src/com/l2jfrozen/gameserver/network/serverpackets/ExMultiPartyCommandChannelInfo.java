@@ -37,19 +37,19 @@ public class ExMultiPartyCommandChannelInfo extends L2GameServerPacket
 		if (_channel == null)
 			return;
 		
-		writeC(0xfe);
-		writeH(0x30);
+		C(0xfe);
+		H(0x30);
 		
-		writeS(_channel.getChannelLeader().getName());
-		writeD(0); // Channel loot
-		writeD(_channel.getMemberCount());
+		S(_channel.getChannelLeader().getName());
+		D(0); // Channel loot
+		D(_channel.getMemberCount());
 		
-		writeD(_channel.getPartys().size());
+		D(_channel.getPartys().size());
 		for (final L2Party p : _channel.getPartys())
 		{
-			writeS(p.getLeader().getName());
-			writeD(p.getPartyLeaderOID());
-			writeD(p.getMemberCount());
+			S(p.getLeader().getName());
+			D(p.getPartyLeaderOID());
+			D(p.getMemberCount());
 		}
 	}
 	

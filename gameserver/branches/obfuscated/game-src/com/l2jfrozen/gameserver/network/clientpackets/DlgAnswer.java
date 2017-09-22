@@ -34,27 +34,27 @@ public final class DlgAnswer extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_messageId = readD();
-		_answer = readD();
-		_requestId = readD();
+		_messageId = D();
+		_answer = D();
+		_requestId = D();
 	}
 	
 	@Override
 	public void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		
 		if (CommonConfig.DEBUG)
 			LOGGER.debug(getType() + ": Answer acepted. Message ID " + _messageId + ", asnwer " + _answer + ", unknown field " + _requestId);
 		
-		final Long answerTime = getClient().getActiveChar().getConfirmDlgRequestTime(_requestId);
+		final Long answerTime = g().getActiveChar().getConfirmDlgRequestTime(_requestId);
 		if (_answer == 1 && answerTime != null && System.currentTimeMillis() > answerTime)
 		{
 			_answer = 0;
 		}
-		getClient().getActiveChar().removeConfirmDlgRequestTime(_requestId);
+		g().getActiveChar().removeConfirmDlgRequestTime(_requestId);
 		
 		if (_messageId == SystemMessageId.RESSURECTION_REQUEST.getId())
 			activeChar.reviveAnswer(_answer);

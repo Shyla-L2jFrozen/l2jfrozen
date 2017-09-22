@@ -69,35 +69,35 @@ public class WareHouseWithdrawalList extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x42);
+		C(0x42);
 		/*
 		 * 0x01-Private Warehouse 0x02-Clan Warehouse 0x03-Castle Warehouse 0x04-Warehouse
 		 */
-		writeH(_whType);
-		writeD(_playerAdena);
-		writeH(_items.length);
+		H(_whType);
+		D(_playerAdena);
+		H(_items.length);
 		
 		for (final L2ItemInstance item : _items)
 		{
-			writeH(item.getItem().getType1()); // item type1 //unconfirmed, works
-			writeD(0x00); // unconfirmed, works
-			writeD(item.getItemId()); // unconfirmed, works
-			writeD(item.getCount()); // unconfirmed, works
-			writeH(item.getItem().getType2()); // item type2 //unconfirmed, works
-			writeH(0x00); // ?
-			writeD(item.getItem().getBodyPart()); // ?
-			writeH(item.getEnchantLevel()); // enchant level -confirmed
-			writeH(0x00); // ?
-			writeH(0x00); // ?
-			writeD(item.getObjectId()); // item id - confimed
+			H(item.getItem().getType1()); // item type1 //unconfirmed, works
+			D(0x00); // unconfirmed, works
+			D(item.getItemId()); // unconfirmed, works
+			D(item.getCount()); // unconfirmed, works
+			H(item.getItem().getType2()); // item type2 //unconfirmed, works
+			H(0x00); // ?
+			D(item.getItem().getBodyPart()); // ?
+			H(item.getEnchantLevel()); // enchant level -confirmed
+			H(0x00); // ?
+			H(0x00); // ?
+			D(item.getObjectId()); // item id - confimed
 			if (item.isAugmented())
 			{
-				writeD(0x0000FFFF & item.getAugmentation().getAugmentationId());
-				writeD(item.getAugmentation().getAugmentationId() >> 16);
+				D(0x0000FFFF & item.getAugmentation().getAugmentationId());
+				D(item.getAugmentation().getAugmentationId() >> 16);
 			}
 			else
 			{
-				writeQ(0x00);
+				Q(0x00);
 			}
 		}
 	}

@@ -25,23 +25,23 @@ import com.l2jfrozen.loginserver.network.clientpackets.AuthGameGuard;
 import com.l2jfrozen.loginserver.network.clientpackets.RequestAuthLogin;
 import com.l2jfrozen.loginserver.network.clientpackets.RequestServerList;
 import com.l2jfrozen.loginserver.network.clientpackets.RequestServerLogin;
-import com.l2jfrozen.netcore.IPacketHandler;
-import com.l2jfrozen.netcore.ReceivablePacket;
+import a.a.ph;
+import a.a.z;
 
 /**
  * Handler for packets received by Login Server
  * @author KenM
  */
-public final class L2LoginPacketHandler implements IPacketHandler<L2LoginClient>
+public final class L2LoginPacketHandler implements ph<L2LoginClient>
 {
 	protected static final Logger _log = Logger.getLogger(L2LoginPacketHandler.class.getName());
 	
 	@Override
-	public ReceivablePacket<L2LoginClient> handlePacket(final ByteBuffer buf, final L2LoginClient client)
+	public z<L2LoginClient> h(final ByteBuffer buf, final L2LoginClient client)
 	{
 		final int opcode = buf.get() & 0xFF;
 		
-		ReceivablePacket<L2LoginClient> packet = null;
+		z<L2LoginClient> packet = null;
 		final LoginClientState state = client.getState();
 		
 		switch (state)

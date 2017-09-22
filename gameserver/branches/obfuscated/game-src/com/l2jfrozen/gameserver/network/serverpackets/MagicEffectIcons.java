@@ -66,37 +66,37 @@ public class MagicEffectIcons extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x7f);
+		C(0x7f);
 		
-		writeH(_effects.size() + _debuffs.size());
+		H(_effects.size() + _debuffs.size());
 		
 		for (final Effect temp : _effects)
 		{
-			writeD(temp._skillId);
-			writeH(temp._level);
+			D(temp._skillId);
+			H(temp._level);
 			
 			if (temp._duration == -1)
 			{
-				writeD(-1);
+				D(-1);
 			}
 			else
 			{
-				writeD(temp._duration / 1000);
+				D(temp._duration / 1000);
 			}
 		}
 		
 		for (final Effect temp : _debuffs)
 		{
-			writeD(temp._skillId);
-			writeH(temp._level);
+			D(temp._skillId);
+			H(temp._level);
 			
 			if (temp._duration == -1)
 			{
-				writeD(-1);
+				D(-1);
 			}
 			else
 			{
-				writeD(temp._duration / 1000);
+				D(temp._duration / 1000);
 			}
 		}
 	}

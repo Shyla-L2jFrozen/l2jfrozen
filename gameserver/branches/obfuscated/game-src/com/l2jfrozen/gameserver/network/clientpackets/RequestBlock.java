@@ -52,11 +52,11 @@ public final class RequestBlock extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_type = readD(); // 0x00 - block, 0x01 - unblock, 0x03 - allblock, 0x04 - allunblock
+		_type = D(); // 0x00 - block, 0x01 - unblock, 0x03 - allblock, 0x04 - allunblock
 		
 		if (_type == BLOCK || _type == UNBLOCK)
 		{
-			_name = readS();
+			_name = S();
 			// _target = L2World.getInstance().getPlayer(_name);
 		}
 	}
@@ -65,7 +65,7 @@ public final class RequestBlock extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		
 		if (activeChar == null)
 			return;

@@ -35,13 +35,13 @@ public final class RequestSSQStatus extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_page = readC();
+		_page = C();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

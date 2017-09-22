@@ -31,8 +31,8 @@ public class ExShowAdventurerGuideBook extends L2GameServerPacket
 	@Override
 	protected void writeImpl()
 	{
-		writeC(0xFE);
-		writeH(0x37);
+		C(0xFE);
+		H(0x37);
 	}
 	
 	/**

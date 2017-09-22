@@ -81,28 +81,28 @@ public class PledgeShowMemberListAll extends L2GameServerPacket
 	{
 		final int TOP = ClanTable.getInstance().getTopRate(_clan.getClanId());
 		
-		writeC(0x53);
+		C(0x53);
 		
-		writeD(mainOrSubpledge); // c5 main clan 0 or any subpledge 1?
-		writeD(_clan.getClanId());
-		writeD(_pledgeType); // c5 - possibly pledge type?
-		writeS(_clan.getName());
-		writeS(_clan.getLeaderName());
+		D(mainOrSubpledge); // c5 main clan 0 or any subpledge 1?
+		D(_clan.getClanId());
+		D(_pledgeType); // c5 - possibly pledge type?
+		S(_clan.getName());
+		S(_clan.getLeaderName());
 		
-		writeD(_clan.getCrestId()); // crest id .. is used again
-		writeD(_clan.getLevel());
-		writeD(_clan.getHasCastle());
-		writeD(_clan.getHasHideout());
-		writeD(TOP);
-		writeD(_clan.getReputationScore()); // was activechar lvl
-		writeD(0); // 0
-		writeD(0); // 0
+		D(_clan.getCrestId()); // crest id .. is used again
+		D(_clan.getLevel());
+		D(_clan.getHasCastle());
+		D(_clan.getHasHideout());
+		D(TOP);
+		D(_clan.getReputationScore()); // was activechar lvl
+		D(0); // 0
+		D(0); // 0
 		
-		writeD(_clan.getAllyId());
-		writeS(_clan.getAllyName());
-		writeD(_clan.getAllyCrestId());
-		writeD(_clan.isAtWar());
-		writeD(_clan.getSubPledgeMembersCount(_pledgeType));
+		D(_clan.getAllyId());
+		S(_clan.getAllyName());
+		D(_clan.getAllyCrestId());
+		D(_clan.isAtWar());
+		D(_clan.getSubPledgeMembersCount(_pledgeType));
 		
 		int yellow;
 		for (final L2ClanMember m : _members)
@@ -117,13 +117,13 @@ public class PledgeShowMemberListAll extends L2GameServerPacket
 				yellow = m.getPlayerInstance().isClanLeader() ? 1 : 0;
 			else
 				yellow = 0;
-			writeS(m.getName());
-			writeD(m.getLevel());
-			writeD(m.getClassId());
-			writeD(0);
-			writeD(m.getObjectId());
-			writeD(m.isOnline() ? 1 : 0);
-			writeD(yellow);
+			S(m.getName());
+			D(m.getLevel());
+			D(m.getClassId());
+			D(0);
+			D(m.getObjectId());
+			D(m.isOnline() ? 1 : 0);
+			D(yellow);
 		}
 	}
 	

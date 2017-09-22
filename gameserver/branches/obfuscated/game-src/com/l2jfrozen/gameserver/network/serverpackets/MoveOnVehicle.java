@@ -51,16 +51,16 @@ public class MoveOnVehicle extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x71);
+		C(0x71);
 		
-		writeD(_activeChar.getObjectId());
-		writeD(_id);
-		writeD(_x);
-		writeD(_y);
-		writeD(_z);
-		writeD(_activeChar.getX());
-		writeD(_activeChar.getY());
-		writeD(_activeChar.getZ());
+		D(_activeChar.getObjectId());
+		D(_id);
+		D(_x);
+		D(_y);
+		D(_z);
+		D(_activeChar.getX());
+		D(_activeChar.getY());
+		D(_activeChar.getZ());
 	}
 	
 	/*

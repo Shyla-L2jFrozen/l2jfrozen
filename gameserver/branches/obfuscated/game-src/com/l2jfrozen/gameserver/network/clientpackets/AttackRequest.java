@@ -37,17 +37,17 @@ public final class AttackRequest extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_objectId = readD();
-		_originX = readD();
-		_originY = readD();
-		_originZ = readD();
-		_attackId = readC(); // 0 for simple click - 1 for shift-click
+		_objectId = D();
+		_originX = D();
+		_originY = D();
+		_originZ = D();
+		_attackId = C(); // 0 for simple click - 1 for shift-click
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance activeChar = getClient().getActiveChar();
+		final L2PcInstance activeChar = g().getActiveChar();
 		if (activeChar == null)
 			return;
 		

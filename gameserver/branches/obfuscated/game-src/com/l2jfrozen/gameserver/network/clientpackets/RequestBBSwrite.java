@@ -38,18 +38,18 @@ public class RequestBBSwrite extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_url = readS();
-		_arg1 = readS();
-		_arg2 = readS();
-		_arg3 = readS();
-		_arg4 = readS();
-		_arg5 = readS();
+		_url = S();
+		_arg1 = S();
+		_arg2 = S();
+		_arg3 = S();
+		_arg4 = S();
+		_arg5 = S();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		CommunityBoard.getInstance().handleWriteCommands(getClient(), _url, _arg1, _arg2, _arg3, _arg4, _arg5);
+		CommunityBoard.getInstance().handleWriteCommands(g(), _url, _arg1, _arg2, _arg3, _arg4, _arg5);
 	}
 	
 	@Override

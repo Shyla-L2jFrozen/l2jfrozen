@@ -67,40 +67,40 @@ public class PrivateStoreManageListSell extends L2GameServerPacket
 	@Override
 	protected final void writeImpl()
 	{
-		writeC(0x9a);
-		writeD(_objId);
-		writeD(_packageSale ? 1 : 0); // Package sell
-		writeD(_playerAdena);
+		C(0x9a);
+		D(_objId);
+		D(_packageSale ? 1 : 0); // Package sell
+		D(_playerAdena);
 		
-		writeD(_itemList.length /*- _sellList.length*/); // for potential sells
+		D(_itemList.length /*- _sellList.length*/); // for potential sells
 		for (final TradeList.TradeItem item : _itemList)
 		{
 			if (isItemInSelling(item) == false)
 			{
-				writeD(item.getItem().getType2());
-				writeD(item.getObjectId());
-				writeD(item.getItem().getItemId());
-				writeD(item.getCount());
-				writeH(0x00);
-				writeH(item.getEnchant());// enchant lvl
-				writeH(0x00);
-				writeD(item.getItem().getBodyPart());
-				writeD(item.getPrice()); // store price
+				D(item.getItem().getType2());
+				D(item.getObjectId());
+				D(item.getItem().getItemId());
+				D(item.getCount());
+				H(0x00);
+				H(item.getEnchant());// enchant lvl
+				H(0x00);
+				D(item.getItem().getBodyPart());
+				D(item.getPrice()); // store price
 			}
 		}
-		writeD(_sellList.length); // count for any items already added for sell
+		D(_sellList.length); // count for any items already added for sell
 		for (final TradeList.TradeItem item : _sellList)
 		{
-			writeD(item.getItem().getType2());
-			writeD(item.getObjectId());
-			writeD(item.getItem().getItemId());
-			writeD(item.getCount());
-			writeH(0x00);
-			writeH(item.getEnchant());// enchant lvl
-			writeH(0x00);
-			writeD(item.getItem().getBodyPart());
-			writeD(item.getPrice());// your price
-			writeD(item.getItem().getReferencePrice()); // store price
+			D(item.getItem().getType2());
+			D(item.getObjectId());
+			D(item.getItem().getItemId());
+			D(item.getCount());
+			H(0x00);
+			H(item.getEnchant());// enchant lvl
+			H(0x00);
+			D(item.getItem().getBodyPart());
+			D(item.getPrice());// your price
+			D(item.getItem().getReferencePrice()); // store price
 		}
 	}
 	

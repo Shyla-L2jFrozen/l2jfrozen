@@ -38,9 +38,9 @@ public final class SetPrivateStoreListBuy extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_count = readD();
+		_count = D();
 		
-		if (_count <= 0 || _count * 12 > _buf.remaining() || _count > Config.MAX_ITEM_IN_PACKET)
+		if (_count <= 0 || _count * 12 > _b.remaining() || _count > Config.MAX_ITEM_IN_PACKET)
 		{
 			_count = 0;
 			_items = null;
@@ -51,12 +51,12 @@ public final class SetPrivateStoreListBuy extends L2GameClientPacket
 		
 		for (int x = 0; x < _count; x++)
 		{
-			final int itemId = readD();
+			final int itemId = D();
 			_items[x * 4 + 0] = itemId;
-			_items[(x * 4 + 3)] = readH(this.getClass().getSimpleName());
-			// readH();//it's the enchant value, but the interlude client has a bug, so it dnt send back the correct enchant value
-			readH(this.getClass().getSimpleName());// TODO analyse this
-			final long cnt = readD();
+			_items[(x * 4 + 3)] = H(this.getClass().getSimpleName());
+			// H();//it's the enchant value, but the interlude client has a bug, so it dnt send back the correct enchant value
+			H(this.getClass().getSimpleName());// TODO analyse this
+			final long cnt = D();
 			
 			if (cnt > Integer.MAX_VALUE || cnt < 0)
 			{
@@ -66,7 +66,7 @@ public final class SetPrivateStoreListBuy extends L2GameClientPacket
 			}
 			
 			_items[x * 4 + 1] = (int) cnt;
-			final int price = readD();
+			final int price = D();
 			_items[x * 4 + 2] = price;
 		}
 	}
@@ -74,7 +74,7 @@ public final class SetPrivateStoreListBuy extends L2GameClientPacket
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance player = getClient().getActiveChar();
+		final L2PcInstance player = g().getActiveChar();
 		if (player == null)
 			return;
 		

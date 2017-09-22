@@ -41,9 +41,9 @@ public final class RequestGMCommand extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_targetName = readS();
-		_command = readD();
-		// _unknown = readD();
+		_targetName = S();
+		_command = D();
+		// _unknown = D();
 	}
 	
 	@Override
@@ -53,7 +53,7 @@ public final class RequestGMCommand extends L2GameClientPacket
 		final L2PcInstance player = L2World.getInstance().getPlayer(_targetName);
 		
 		// prevent non gm or low level GMs from vieweing player stuff
-		if (player == null || !getClient().getActiveChar().getAccessLevel().allowAltG())
+		if (player == null || !g().getActiveChar().getAccessLevel().allowAltG())
 			return;
 		
 		switch (_command)

@@ -37,14 +37,14 @@ public class RequestDismissPartyRoom extends L2GameClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_roomid = readD();
-		_data2 = readD();
+		_roomid = D();
+		_data2 = D();
 	}
 	
 	@Override
 	protected void runImpl()
 	{
-		final L2PcInstance _activeChar = getClient().getActiveChar();
+		final L2PcInstance _activeChar = g().getActiveChar();
 		if (_activeChar == null)
 			return;
 		
