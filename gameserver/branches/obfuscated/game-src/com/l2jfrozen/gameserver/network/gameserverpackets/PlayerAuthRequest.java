@@ -18,7 +18,7 @@
  */
 package com.l2jfrozen.gameserver.network.gameserverpackets;
 
-import com.l2jfrozen.netcore.SessionKey;
+import a.a.aa;
 import a.a.x;
 
 /**
@@ -26,14 +26,14 @@ import a.a.x;
  */
 public class PlayerAuthRequest extends x
 {
-	public PlayerAuthRequest(final String account, final SessionKey key)
+	public PlayerAuthRequest(final String account, final aa key)
 	{
 		C(0x05);
 		S(account);
-		D(key.playOkID1);
-		D(key.playOkID2);
-		D(key.loginOkID1);
-		D(key.loginOkID2);
+		D(key.a);
+		D(key.b);
+		D(key.c);
+		D(key.d);
 	}
 	
 	@Override

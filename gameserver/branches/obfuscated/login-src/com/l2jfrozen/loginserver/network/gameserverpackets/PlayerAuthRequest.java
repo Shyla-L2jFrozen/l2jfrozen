@@ -24,7 +24,8 @@ import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.loginserver.GameServerThread;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.network.loginserverpackets.PlayerAuthResponse;
-import com.l2jfrozen.netcore.SessionKey;
+
+import a.a.aa;
 import a.a.w;
 
 /**
@@ -46,14 +47,14 @@ public class PlayerAuthRequest extends w
 		final int playKey2 = D();
 		final int loginKey1 = D();
 		final int loginKey2 = D();
-		final SessionKey sessionKey = new SessionKey(loginKey1, loginKey2, playKey1, playKey2);
+		final aa sessionKey = new aa(loginKey1, loginKey2, playKey1, playKey2);
 		
 		PlayerAuthResponse authResponse;
 		if (CommonConfig.DEBUG)
 		{
 			_log.info("auth request received for Player " + account);
 		}
-		final SessionKey key = LoginController.getInstance().getKeyForAccount(account);
+		final aa key = LoginController.getInstance().getKeyForAccount(account);
 		if ((key != null) && key.equals(sessionKey))
 		{
 			if (CommonConfig.DEBUG)

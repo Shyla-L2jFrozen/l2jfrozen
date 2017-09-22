@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.serverpackets.Init;
-import com.l2jfrozen.netcore.MMOConnection;
+import a.a.E;
 import a.a.af;
 import a.a.am;
 import a.a.cf;
@@ -56,7 +56,7 @@ public class SelectorHelper implements af, am<L2LoginClient>, cf<L2LoginClient>
 	}
 	
 	@Override
-	public L2LoginClient c(final MMOConnection<L2LoginClient> con)
+	public L2LoginClient c(final E<L2LoginClient> con)
 	{
 		final L2LoginClient client = new L2LoginClient(con);
 		client.sendPacket(new Init(client));

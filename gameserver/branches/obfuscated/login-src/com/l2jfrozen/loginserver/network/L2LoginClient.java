@@ -34,9 +34,9 @@ import com.l2jfrozen.loginserver.network.serverpackets.LoginFail;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
 import com.l2jfrozen.loginserver.network.serverpackets.PlayFail;
 import com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason;
-import com.l2jfrozen.netcore.MMOClient;
-import com.l2jfrozen.netcore.MMOConnection;
-import com.l2jfrozen.netcore.SessionKey;
+import a.a.A;
+import a.a.E;
+import a.a.aa;
 import a.a.t;
 import a.a.v;
 import a.a.y;
@@ -44,7 +44,7 @@ import a.a.y;
  * Represents a client connected into the LoginServer
  * @author KenM
  */
-public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
+public final class L2LoginClient extends A<E<L2LoginClient>>
 {
 	private static final Logger _log = Logger.getLogger(L2LoginClient.class.getName());
 	
@@ -58,7 +58,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	private String _account;
 	private int _accessLevel;
 	private int _lastServer;
-	private SessionKey _sessionKey;
+	private aa _sessionKey;
 	private final int _sessionId;
 	private boolean _joinedGS;
 	private Map<Integer, Integer> _charsOnServers;
@@ -69,7 +69,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	/**
 	 * @param con
 	 */
-	public L2LoginClient(final MMOConnection<L2LoginClient> con)
+	public L2LoginClient(final E<L2LoginClient> con)
 	{
 		super(con);
 		_state = LoginClientState.CONNECTED;
@@ -78,11 +78,11 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		_sessionId = Rnd.nextInt();
 		_connectionStartTime = System.currentTimeMillis();
 		_t = new t();
-		_t.setKey(_blowfishKey);
+		_t.sk(_blowfishKey);
 	}
 	
 	@Override
-	public boolean decrypt(final ByteBuffer buf, final int size)
+	public boolean d(final ByteBuffer buf, final int size)
 	{
 		boolean isChecksumValid = false;
 		try
@@ -91,7 +91,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 			if (!isChecksumValid)
 			{
 				_log.warning("Wrong checksum from client: " + toString());
-				super.getConnection().close((y<L2LoginClient>) null);
+				super.gco().b((y<L2LoginClient>) null);
 				return false;
 			}
 			return true;
@@ -99,13 +99,13 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		catch (final Exception e)
 		{
 			_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
-			super.getConnection().close((y<L2LoginClient>) null);
+			super.gco().b((y<L2LoginClient>) null);
 			return false;
 		}
 	}
 	
 	@Override
-	public boolean encrypt(final ByteBuffer buf, int size)
+	public boolean e(final ByteBuffer buf, int size)
 	{
 		final int offset = buf.position();
 		try
@@ -191,12 +191,12 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 		_joinedGS = val;
 	}
 	
-	public void setSessionKey(final SessionKey sessionKey)
+	public void setSessionKey(final aa sessionKey)
 	{
 		_sessionKey = sessionKey;
 	}
 	
-	public SessionKey getSessionKey()
+	public aa getSessionKey()
 	{
 		return _sessionKey;
 	}
@@ -208,22 +208,22 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	
 	public void sendPacket(final L2LoginServerPacket lsp)
 	{
-		getConnection().sendPacket(lsp);
+		gco().a(lsp);
 	}
 	
 	public void close(final LoginFailReason reason)
 	{
-		getConnection().close(new LoginFail(reason));
+		gco().b(new LoginFail(reason));
 	}
 	
 	public void close(final PlayFailReason reason)
 	{
-		getConnection().close(new PlayFail(reason));
+		gco().b(new PlayFail(reason));
 	}
 	
 	public void close(final L2LoginServerPacket lsp)
 	{
-		getConnection().close(lsp);
+		gco().b(lsp);
 	}
 	
 	public void setCharsOnServ(final int servId, final int chars)
@@ -255,7 +255,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	}
 	
 	@Override
-	public void onDisconnection()
+	public void od()
 	{
 		if (CommonConfig.DEBUG)
 		{
@@ -271,7 +271,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	@Override
 	public String toString()
 	{
-		final InetAddress address = getConnection().getInetAddress();
+		final InetAddress address = gco().gi();
 		if (getState() == LoginClientState.AUTHED_LOGIN)
 		{
 			return "[" + getAccount() + " (" + (address == null ? "disconnected" : address.getHostAddress()) + ")]";
@@ -280,7 +280,7 @@ public final class L2LoginClient extends MMOClient<MMOConnection<L2LoginClient>>
 	}
 	
 	@Override
-	protected void onForcedDisconnection(final boolean critical)
+	protected void of(final boolean critical)
 	{
 		// empty
 	}

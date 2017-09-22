@@ -29,7 +29,7 @@ import com.l2jfrozen.common.util.database.L2DatabaseFactory_c3p0;
 import com.l2jfrozen.common.util.monitoring.data.MonitoredStatus;
 import com.l2jfrozen.gameserver.model.L2World;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
-import com.l2jfrozen.netcore.MMOClientsManager;
+import a.a.B;
 
 /**
  * Server status
@@ -163,6 +163,6 @@ public class ServerStatus extends MonitoredStatus
 		}
 		
 		TotalOnline = ActivePlayers + OfflinePlayers + FakePlayers;
-		ActiveClients = MMOClientsManager.getInstance().getActiveClientsNumber();
+		ActiveClients = B.n().p();
 	}
 }

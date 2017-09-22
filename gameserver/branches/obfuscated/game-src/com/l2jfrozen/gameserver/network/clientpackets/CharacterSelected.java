@@ -83,7 +83,7 @@ public class CharacterSelected extends L2GameClientPacket
 					cha.setClient(g());
 					g().setActiveChar(cha);
 					g().setState(GameClientState.IN_GAME);
-					sendPacket(new CharSelected(cha, g().getSessionId().playOkID1));
+					sendPacket(new CharSelected(cha, g().getSessionId().a));
 				}
 			}
 			catch (final Exception e)

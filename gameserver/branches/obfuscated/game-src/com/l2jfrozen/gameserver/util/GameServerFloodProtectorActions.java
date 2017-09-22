@@ -22,9 +22,9 @@ import org.apache.log4j.Logger;
 import com.l2jfrozen.gameserver.controllers.GameTimeController;
 import com.l2jfrozen.gameserver.model.actor.instance.PunishLevel;
 import com.l2jfrozen.gameserver.network.L2GameClient;
-import com.l2jfrozen.netcore.MMOClient;
 import com.l2jfrozen.netcore.NetcoreConfig;
 import a.a.p;
+import a.a.A;
 
 /**
  * @author Shyla
@@ -52,7 +52,7 @@ public class GameServerFloodProtectorActions implements p
 	 * @return true if action is allowed, otherwise false
 	 */
 	@Override
-	public boolean t(final int opcode, final int opcode2, final MMOClient<?> client)
+	public boolean t(final int opcode, final int opcode2, final A<?> client)
 	{
 		
 		String account = null;
@@ -212,7 +212,7 @@ public class GameServerFloodProtectorActions implements p
 		
 	}
 	
-	private static void kickPlayer(final MMOClient<?> _client, final int opcode)
+	private static void kickPlayer(final A<?> _client, final int opcode)
 	{
 		final L2GameClient game_cl = (L2GameClient) _client;
 		game_cl.closeNow();
@@ -221,7 +221,7 @@ public class GameServerFloodProtectorActions implements p
 		
 	}
 	
-	private static void banAccount(final MMOClient<?> _client, final int opcode)
+	private static void banAccount(final A<?> _client, final int opcode)
 	{
 		
 		final L2GameClient game_cl = (L2GameClient) _client;

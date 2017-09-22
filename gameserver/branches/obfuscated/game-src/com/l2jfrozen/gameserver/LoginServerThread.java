@@ -65,7 +65,7 @@ import com.l2jfrozen.gameserver.network.loginserverpackets.LoginServerFail;
 import com.l2jfrozen.gameserver.network.loginserverpackets.PlayerAuthResponse;
 import com.l2jfrozen.gameserver.network.serverpackets.AuthLoginFail;
 import com.l2jfrozen.gameserver.network.serverpackets.CharSelectInfo;
-import com.l2jfrozen.netcore.SessionKey;
+import a.a.aa;
 import a.a.u;
 import a.a.x;
 
@@ -189,7 +189,7 @@ public class LoginServerThread extends Thread
 					}
 					
 					// decrypt if we have a key
-					_blowfish.decrypt(incoming, 0, incoming.length);
+					_blowfish.de(incoming, 0, incoming.length);
 					checksumOk = u.b(incoming);
 					
 					if (!checksumOk)
@@ -306,14 +306,14 @@ public class LoginServerThread extends Thread
 									sendPacket(pig);
 									wcToRemove.gameClient.setState(GameClientState.AUTHED);
 									wcToRemove.gameClient.setSessionId(wcToRemove.session);
-									final CharSelectInfo cl = new CharSelectInfo(wcToRemove.account, wcToRemove.gameClient.getSessionId().playOkID1);
-									wcToRemove.gameClient.getConnection().sendPacket(cl);
+									final CharSelectInfo cl = new CharSelectInfo(wcToRemove.account, wcToRemove.gameClient.getSessionId().a);
+									wcToRemove.gameClient.gco().a(cl);
 									wcToRemove.gameClient.setCharSelection(cl.getCharInfo());
 								}
 								else
 								{
 									LOGGER.warn("Session key is not correct. Closing connection for account {" + wcToRemove.account + "}.");
-									wcToRemove.gameClient.getConnection().sendPacket(new AuthLoginFail(1));
+									wcToRemove.gameClient.gco().a(new AuthLoginFail(1));
 									wcToRemove.gameClient.closeNow();
 									_accountsInGameServer.remove(wcToRemove.account);
 								}
@@ -383,7 +383,7 @@ public class LoginServerThread extends Thread
 	 * @param client the game client
 	 * @param key the session key
 	 */
-	public void addWaitingClientAndSendRequest(final String acc, final L2GameClient client, final SessionKey key)
+	public void addWaitingClientAndSendRequest(final String acc, final L2GameClient client, final aa key)
 	{
 		final WaitingClient wc = new WaitingClient(acc, client, key);
 		synchronized (_waitingClients)
@@ -659,7 +659,7 @@ public class LoginServerThread extends Thread
 	{
 		public String account;
 		public L2GameClient gameClient;
-		public SessionKey session;
+		public aa session;
 		
 		/**
 		 * Instantiates a new waiting client.
@@ -667,7 +667,7 @@ public class LoginServerThread extends Thread
 		 * @param client the client
 		 * @param key the key
 		 */
-		public WaitingClient(final String acc, final L2GameClient client, final SessionKey key)
+		public WaitingClient(final String acc, final L2GameClient client, final aa key)
 		{
 			account = acc;
 			gameClient = client;

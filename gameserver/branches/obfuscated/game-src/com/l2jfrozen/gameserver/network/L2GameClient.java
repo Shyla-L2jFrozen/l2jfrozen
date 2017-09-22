@@ -61,10 +61,10 @@ import com.l2jfrozen.gameserver.network.serverpackets.LeaveWorld;
 import com.l2jfrozen.gameserver.network.serverpackets.ServerClose;
 import com.l2jfrozen.gameserver.util.EventData;
 import com.l2jfrozen.gameserver.util.FloodProtectors;
-import com.l2jfrozen.netcore.MMOClient;
-import com.l2jfrozen.netcore.MMOConnection;
 import com.l2jfrozen.netcore.NetcoreConfig;
-import com.l2jfrozen.netcore.SessionKey;
+import a.a.A;
+import a.a.E;
+import a.a.aa;
 import a.a.z;
 
 import javolution.util.FastList;
@@ -72,7 +72,7 @@ import javolution.util.FastList;
 /**
  * @author L2JFrozen dev
  */
-public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> implements Runnable
+public final class L2GameClient extends A<E<L2GameClient>> implements Runnable
 {
 	protected static final Logger LOGGER = Logger.getLogger(L2GameClient.class);
 	
@@ -83,7 +83,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	
 	// Info
 	public String accountName;
-	public SessionKey sessionId;
+	public aa sessionId;
 	public L2PcInstance activeChar;
 	private final ReentrantLock _activeCharLock = new ReentrantLock();
 	
@@ -114,7 +114,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	
 	private long _last_received_packet_action_time = 0;
 	
-	public L2GameClient(final MMOConnection<L2GameClient> con)
+	public L2GameClient(final E<L2GameClient> con)
 	{
 		super(con);
 		state = GameClientState.CONNECTED;
@@ -167,7 +167,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	}
 	
 	@Override
-	public boolean decrypt(final ByteBuffer buf, final int size)
+	public boolean d(final ByteBuffer buf, final int size)
 	{
 		_closenow = false;
 		crypt.decrypt(buf.array(), buf.position(), size);
@@ -175,7 +175,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	}
 	
 	@Override
-	public boolean encrypt(final ByteBuffer buf, final int size)
+	public boolean e(final ByteBuffer buf, final int size)
 	{
 		crypt.encrypt(buf.array(), buf.position(), size);
 		buf.position(buf.position() + size);
@@ -221,12 +221,12 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 		return accountName;
 	}
 	
-	public void setSessionId(final SessionKey sk)
+	public void setSessionId(final aa sk)
 	{
 		sessionId = sk;
 	}
 	
-	public SessionKey getSessionId()
+	public aa getSessionId()
 	{
 		return sessionId;
 	}
@@ -236,7 +236,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 		if (_isDetached)
 			return;
 		
-		if (getConnection() != null)
+		if (gco() != null)
 		{
 			
 			if (Config.DEBUG_PACKETS)
@@ -246,7 +246,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 				
 			}
 			
-			getConnection().sendPacket(gsp);
+			gco().a(gsp);
 			gsp.runImpl();
 		}
 	}
@@ -534,8 +534,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 		{
 			if (character.getClient() != null)
 			{
-				if (character.getClient() != null && character.getClient().getConnection() != null)
-					LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "], ip: [" + character.getClient().getConnection().getInetAddress().getHostAddress() + "]. Client closed.");
+				if (character.getClient() != null && character.getClient().gco() != null)
+					LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "], ip: [" + character.getClient().gco().gi().getHostAddress() + "]. Client closed.");
 				else
 					LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "]. Client closed.");
 				
@@ -582,8 +582,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	
 	public void close(final L2GameServerPacket gsp)
 	{
-		if (getConnection() != null)
-			getConnection().close(gsp);
+		if (gco() != null)
+			gco().b(gsp);
 		
 	}
 	
@@ -605,7 +605,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	}
 	
 	@Override
-	public void onForcedDisconnection(final boolean critical)
+	public void of(final boolean critical)
 	{
 		_forcedToClose = true;
 		
@@ -628,7 +628,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 	}
 	
 	@Override
-	public void onDisconnection()
+	public void od()
 	{
 		// no long running tasks here, do it async
 		try
@@ -678,8 +678,8 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 		{
 			InetAddress address;
 			
-			if (getConnection() != null)
-				address = getConnection().getInetAddress();
+			if (gco() != null)
+				address = gco().gi();
 			else
 				address = null;
 			
@@ -1191,7 +1191,7 @@ public final class L2GameClient extends MMOClient<MMOConnection<L2GameClient>> i
 			
 			_last_received_packet_action_time = System.currentTimeMillis();
 			
-			return getConnection().isConnected() && !getConnection().isClosed();
+			return gco().ico() && !gco().icl();
 			
 		}
 		

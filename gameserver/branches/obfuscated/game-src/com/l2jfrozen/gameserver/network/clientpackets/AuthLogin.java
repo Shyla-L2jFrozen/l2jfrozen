@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.gameserver.LoginServerThread;
 import com.l2jfrozen.gameserver.network.L2GameClient;
-import com.l2jfrozen.netcore.SessionKey;
+import a.a.aa;
 
 public final class AuthLogin extends L2GameClientPacket
 {
@@ -54,7 +54,7 @@ public final class AuthLogin extends L2GameClientPacket
 			return;
 		}
 		
-		final SessionKey key = new SessionKey(_loginKey1, _loginKey2, _playKey1, _playKey2);
+		final aa key = new aa(_loginKey1, _loginKey2, _playKey1, _playKey2);
 		if (CommonConfig.DEBUG)
 		{
 			LOGGER.info("user:" + _loginName);

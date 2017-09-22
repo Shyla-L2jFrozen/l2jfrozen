@@ -47,7 +47,8 @@ import com.l2jfrozen.gameserver.model.TradeList.TradeItem;
 import com.l2jfrozen.gameserver.model.actor.instance.L2PcInstance;
 import com.l2jfrozen.gameserver.network.GameClientState;
 import com.l2jfrozen.gameserver.network.L2GameClient;
-import com.l2jfrozen.netcore.MMOClientsManager;
+import a.a.B;
+import a.a.E;
 
 public class OfflineTradeTable
 {
@@ -464,7 +465,7 @@ public class OfflineTradeTable
 				
 				try
 				{
-					final L2GameClient client = new L2GameClient(null);
+					final L2GameClient client = new L2GameClient((E) null);
 					player = L2PcInstance.load(trader.getCharId(), true);
 					client.setActiveChar(player);
 					client.setAccountName(player.getAccountName());
@@ -480,7 +481,7 @@ public class OfflineTradeTable
 					LoginServerThread.getInstance().addGameServerLogin(player.getAccountName(), client);
 					
 					if (player.getClient() != null)
-						MMOClientsManager.getInstance().removeClient(player.getClient().getIdentifier());
+						B.n().b(player.getClient().gi());
 					
 					for (final OfflineTraderItem item : trader.getItems())
 					{

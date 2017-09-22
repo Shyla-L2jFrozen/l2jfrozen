@@ -272,15 +272,15 @@ public final class CharacterCreate extends L2GameClientPacket
 		newChar.deleteMe(true); // Release the world of this character and it's inventory
 		
 		// Before the char selection, check shutdown status
-		if (client.getConnection().getSelectorThread().isShutdown())
+		if (client.gco().x().isShutdown())
 		{
 			client.closeNow();
 			return;
 		}
 		
 		// Send char list
-		final CharSelectInfo cl = new CharSelectInfo(client.getAccountName(), client.getSessionId().playOkID1);
-		client.getConnection().sendPacket(cl);
+		final CharSelectInfo cl = new CharSelectInfo(client.getAccountName(), client.getSessionId().a);
+		client.gco().a(cl);
 		client.setCharSelection(cl.getCharInfo());
 		
 		if (CommonConfig.DEBUG)

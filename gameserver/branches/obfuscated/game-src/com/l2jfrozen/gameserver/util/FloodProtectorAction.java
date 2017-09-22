@@ -308,7 +308,7 @@ public final class FloodProtectorAction
 		try
 		{
 			if (!client.isDetached())
-				address = client.getConnection().getInetAddress().getHostAddress();
+				address = client.gco().gi().getHostAddress();
 		}
 		catch (final Exception e)
 		{

@@ -91,7 +91,7 @@ public class L2BugReportInstance extends L2FolkInstance
 	private void sendReport(final L2PcInstance player, final String command, final String msg)
 	{
 		final String type = command;
-		final L2GameClient info = player.getClient().getConnection().g();
+		final L2GameClient info = player.getClient().gco().g();
 		
 		if (type.equals("General"))
 			_type = "General";
