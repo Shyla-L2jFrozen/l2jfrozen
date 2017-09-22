@@ -1392,14 +1392,14 @@ public class AdminEditChar implements IAdminCommandHandler
 		
 		for (final L2PcInstance player : players)
 		{
-			if (player.getClient() == null || player.getClient().getConnection() == null || player.getClient().getConnection().getInetAddress() == null || player.getClient().getConnection().getInetAddress().getHostAddress() == null)
+			if (player.getClient() == null || player.getClient().gco() == null || player.getClient().gco().gi() == null || player.getClient().gco().gi().getHostAddress() == null)
 			{
 				
 				continue;
 				
 			}
 			
-			ip = player.getClient().getConnection().getInetAddress().getHostAddress();
+			ip = player.getClient().gco().gi().getHostAddress();
 			
 			if (ipMap.get(ip) == null)
 			{
@@ -1471,14 +1471,14 @@ public class AdminEditChar implements IAdminCommandHandler
 		
 		for (final L2PcInstance player : players)
 		{
-			if (player.getClient() == null || player.getClient().getConnection() == null || player.getClient().getConnection().getInetAddress() == null || player.getClient().getConnection().getInetAddress().getHostAddress() == null)
+			if (player.getClient() == null || player.getClient().gco() == null || player.getClient().gco().gi() == null || player.getClient().gco().gi().getHostAddress() == null)
 			{
 				
 				continue;
 				
 			}
 			
-			ip = player.getClient().getConnection().getInetAddress().getHostAddress();
+			ip = player.getClient().gco().gi().getHostAddress();
 			
 			if (ip.equals(IpAdress))
 			{

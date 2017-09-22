@@ -29,8 +29,8 @@ import com.l2jfrozen.gameserver.Shutdown;
 import com.l2jfrozen.gameserver.config.Config;
 import com.l2jfrozen.gameserver.network.clientpackets.*;
 import com.l2jfrozen.gameserver.network.serverpackets.ActionFailed;
-import com.l2jfrozen.netcore.MMOConnection;
 import com.l2jfrozen.netcore.NetcoreConfig;
+import a.a.E;
 import a.a.am;
 import a.a.cf;
 import a.a.o;
@@ -972,7 +972,7 @@ public final class L2GamePacketHandler implements am<L2GameClient>, cf<L2GameCli
 	}
 	
 	@Override
-	public L2GameClient c(final MMOConnection<L2GameClient> con)
+	public L2GameClient c(final E<L2GameClient> con)
 	{
 		return new L2GameClient(con);
 	}

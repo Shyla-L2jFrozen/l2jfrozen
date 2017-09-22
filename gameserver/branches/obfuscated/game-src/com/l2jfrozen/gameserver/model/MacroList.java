@@ -202,7 +202,7 @@ public class MacroList
 		}
 		catch (final Exception e)
 		{
-			LOGGER.info("Player: " + _owner.getName() + " IP:" + _owner.getClient().getConnection().getInetAddress().getHostAddress() + " try to use bug with macros");
+			LOGGER.info("Player: " + _owner.getName() + " IP:" + _owner.getClient().gco().gi().getHostAddress() + " try to use bug with macros");
 			LOGGER.warn("could not store macro:", e);
 		}
 		finally

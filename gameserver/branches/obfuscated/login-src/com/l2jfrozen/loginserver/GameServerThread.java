@@ -116,7 +116,7 @@ public class GameServerThread extends Thread
 				}
 				
 				// decrypt if we have a key
-				_blowfish.decrypt(data, 0, data.length);
+				_blowfish.de(data, 0, data.length);
 				checksumOk = u.b(data);
 				if (!checksumOk)
 				{

@@ -22,8 +22,10 @@ import org.apache.log4j.Logger;
 import com.l2jfrozen.loginserver.LoginController;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
-import com.l2jfrozen.netcore.MMOClient;
+
 import com.l2jfrozen.netcore.NetcoreConfig;
+
+import a.a.A;
 import a.a.p;
 
 /**
@@ -47,7 +49,7 @@ public class LoginServerFloodProtectorActions implements p
 	 * @return true if action is allowed, otherwise false
 	 */
 	@Override
-	public boolean t(final int opcode, final int opcode2, final MMOClient<?> client)
+	public boolean t(final int opcode, final int opcode2, final A<?> client)
 	{
 		
 		String account = null;
@@ -194,7 +196,7 @@ public class LoginServerFloodProtectorActions implements p
 		return !NetcoreConfig.getInstance().LS_LIST_PROTECTED_OPCODES.contains(opcode);
 	}
 	
-	private void kickPlayer(final MMOClient<?> _client, final int opcode)
+	private void kickPlayer(final A<?> _client, final int opcode)
 	{
 		final L2LoginClient login_cl = (L2LoginClient) _client;
 		login_cl.close(LoginFailReason.REASON_SYSTEM_ERROR);
@@ -203,7 +205,7 @@ public class LoginServerFloodProtectorActions implements p
 		
 	}
 	
-	private void banAccount(final MMOClient<?> _client, final int opcode)
+	private void banAccount(final A<?> _client, final int opcode)
 	{
 		
 		final L2LoginClient login_cl = (L2LoginClient) _client;
