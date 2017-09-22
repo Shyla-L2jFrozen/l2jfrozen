@@ -48,7 +48,7 @@ import com.l2jfrozen.loginserver.model.data.AccountInfo;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
-import com.l2jfrozen.netcore.SessionKey;
+import a.a.aa;
 import a.a.v;
 
 public class LoginController
@@ -148,11 +148,11 @@ public class LoginController
 		return _blowfishKeys[(int) (Math.random() * BLOWFISH_KEYS)];
 	}
 	
-	public SessionKey assignSessionKeyToClient(final String account, final L2LoginClient client)
+	public aa assignSessionKeyToClient(final String account, final L2LoginClient client)
 	{
-		SessionKey key;
+		aa key;
 		
-		key = new SessionKey(Rnd.nextInt(), Rnd.nextInt(), Rnd.nextInt(), Rnd.nextInt());
+		key = new aa(Rnd.nextInt(), Rnd.nextInt(), Rnd.nextInt(), Rnd.nextInt());
 		_loginServerClients.put(account, client);
 		return key;
 	}
@@ -395,7 +395,7 @@ public class LoginController
 		}
 	}
 	
-	public SessionKey getKeyForAccount(final String account)
+	public aa getKeyForAccount(final String account)
 	{
 		final L2LoginClient client = _loginServerClients.get(account);
 		if (client != null)

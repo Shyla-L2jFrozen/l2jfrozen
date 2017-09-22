@@ -195,7 +195,7 @@ public final class RequestRestart extends L2GameClientPacket
 		client.setState(GameClientState.AUTHED);
 		
 		// before the char selection, check shutdown status
-		if (g().getConnection().getSelectorThread().isShutdown())
+		if (g().gco().x().isShutdown())
 		{
 			g().closeNow();
 			return;
@@ -205,7 +205,7 @@ public final class RequestRestart extends L2GameClientPacket
 		sendPacket(RestartResponse.valueOf(true));
 		
 		// send char list
-		final CharSelectInfo cl = new CharSelectInfo(client.getAccountName(), client.getSessionId().playOkID1);
+		final CharSelectInfo cl = new CharSelectInfo(client.getAccountName(), client.getSessionId().a);
 		sendPacket(cl);
 		client.setCharSelection(cl.getCharInfo());
 	}
