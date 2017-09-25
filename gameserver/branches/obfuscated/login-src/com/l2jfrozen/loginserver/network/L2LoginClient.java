@@ -271,7 +271,7 @@ public final class L2LoginClient extends A<E<L2LoginClient>>
 	@Override
 	public String toString()
 	{
-		final InetAddress address = gco().gi();
+		final InetAddress address = gco().getInetAddress();
 		if (getState() == LoginClientState.AUTHED_LOGIN)
 		{
 			return "[" + getAccount() + " (" + (address == null ? "disconnected" : address.getHostAddress()) + ")]";

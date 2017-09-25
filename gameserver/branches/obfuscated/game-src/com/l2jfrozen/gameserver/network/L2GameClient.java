@@ -535,7 +535,7 @@ public final class L2GameClient extends A<E<L2GameClient>> implements Runnable
 			if (character.getClient() != null)
 			{
 				if (character.getClient() != null && character.getClient().gco() != null)
-					LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "], ip: [" + character.getClient().gco().gi().getHostAddress() + "]. Client closed.");
+					LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "], ip: [" + character.getClient().gco().getInetAddress().getHostAddress() + "]. Client closed.");
 				else
 					LOGGER.warn("Possible double session login exploit character: [" + character.getName() + "], account: [" + character.getAccountName() + "]. Client closed.");
 				
@@ -679,7 +679,7 @@ public final class L2GameClient extends A<E<L2GameClient>> implements Runnable
 			InetAddress address;
 			
 			if (gco() != null)
-				address = gco().gi();
+				address = gco().getInetAddress();
 			else
 				address = null;
 			
@@ -1191,7 +1191,7 @@ public final class L2GameClient extends A<E<L2GameClient>> implements Runnable
 			
 			_last_received_packet_action_time = System.currentTimeMillis();
 			
-			return gco().ico() && !gco().icl();
+			return gco().isConnected() && !gco().isClosed();
 			
 		}
 		

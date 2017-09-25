@@ -46,7 +46,7 @@ public class ServerData
 	{
 		try
 		{
-			_ip = InetAddress.getByName(gsi.getServerAddress(client.gco().gi())).getAddress();
+			_ip = InetAddress.getByName(gsi.getServerAddress(client.gco().getInetAddress())).getAddress();
 		}
 		catch (final UnknownHostException e)
 		{
