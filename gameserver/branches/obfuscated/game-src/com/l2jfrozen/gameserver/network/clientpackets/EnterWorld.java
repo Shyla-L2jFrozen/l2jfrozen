@@ -500,7 +500,7 @@ public class EnterWorld extends L2GameClientPacket
 		activeChar.setLocked(false);
 		
 		if (Config.DEVELOPER)
-			LOGGER.info("Restoring character: [" + activeChar.getName() + "], account: [" + activeChar.getAccountName() + "], ip: [" + activeChar.getClient().gco().gi().getHostAddress() + "]");
+			LOGGER.info("Restoring character: [" + activeChar.getName() + "], account: [" + activeChar.getAccountName() + "], ip: [" + activeChar.getClient().gco().getInetAddress().getHostAddress() + "]");
 		
 		// send an action failed packet to avoid problem with char stuck
 		activeChar.sendPacket(ActionFailed.STATIC_PACKET);
