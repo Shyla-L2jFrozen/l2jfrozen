@@ -84,7 +84,7 @@ public class LoginController
 	
 	private LoginController() throws GeneralSecurityException
 	{
-		LOGGER.info("Loading LoginController...");
+		// LOGGER.info("Loading LoginController...");
 		
 		_keyPairs = new v[10];
 		

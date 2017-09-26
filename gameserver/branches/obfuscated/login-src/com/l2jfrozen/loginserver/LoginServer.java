@@ -82,6 +82,7 @@ public final class LoginServer
 		}
 		
 		PropertyConfigurator.configure(CommonConfigFiles.LOG4J_CONF_FILE);
+		Logger.getLogger("com.mchange.v2.log.MLog").setLevel(org.apache.log4j.Level.WARN);
 		
 		Util.printSection("Team");
 		
