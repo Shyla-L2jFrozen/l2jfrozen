@@ -44,7 +44,7 @@ public final class LoginOk extends L2LoginServerPacket
 	}
 	
 	@Override
-	public void w()
+	public void write()
 	{
 		C(0x03);
 		D(_loginOk1);

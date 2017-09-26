@@ -32,7 +32,7 @@ public final class PlayFail extends L2LoginServerPacket
 	}
 	
 	@Override
-	public void w()
+	public void write()
 	{
 		C(0x06);
 		C(_reason.getCode());

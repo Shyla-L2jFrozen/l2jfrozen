@@ -35,7 +35,7 @@ public abstract class L2GameClientPacket extends z<L2GameClient>
 	private static final Logger LOGGER = Logger.getLogger(L2GameClientPacket.class);
 	
 	@Override
-	public boolean r()
+	public boolean read()
 	{
 		try
 		{
