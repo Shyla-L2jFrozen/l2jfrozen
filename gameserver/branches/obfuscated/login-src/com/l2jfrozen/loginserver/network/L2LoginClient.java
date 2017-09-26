@@ -255,7 +255,7 @@ public final class L2LoginClient extends A<E<L2LoginClient>>
 	}
 	
 	@Override
-	public void od()
+	public void onDisconnection()
 	{
 		if (CommonConfig.DEBUG)
 		{
@@ -280,7 +280,7 @@ public final class L2LoginClient extends A<E<L2LoginClient>>
 	}
 	
 	@Override
-	protected void of(final boolean critical)
+	protected void onForcedDisconnection(final boolean critical)
 	{
 		// empty
 	}
