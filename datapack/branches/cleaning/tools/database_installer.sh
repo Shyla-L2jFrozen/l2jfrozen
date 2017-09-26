@@ -184,8 +184,10 @@ $MYSQLDUMPPATH --add-drop-table -h $LSDBHOST -u $LSUSER --password=$LSPASS $LSDB
 loginupgrade(){
 echo "Installling new loginserver content."
 $MYL < ../sql/accounts.sql &> /dev/null
+$MYL < ../sql/account_data.sql &> /dev/null
 $MYL < ../sql/gameservers.sql &> /dev/null
 $MYL < ../sql/account_data.sql &> /dev/null
+$MYL < ../sql/accounts_ipauth.sql &> /dev/null
 }
 
 gsbackup(){
@@ -380,6 +382,7 @@ $MYG < ../sql/four_sepulchers_spawnlist.sql &> /dev/null
 $MYG < ../sql/vanhalter_spawnlist.sql &> /dev/null
 $MYG < ../sql/clanhall_siege.sql &> /dev/null
 $MYG < ../sql/npc_to_pc_polymorph.sql &> /dev/null
+$MYG < ../sql/vip.sql &> /dev/null
 $MYG < ../sql/ctf.sql &> /dev/null
 $MYG < ../sql/ctf_teams.sql &> /dev/null
 $MYG < ../sql/dm.sql &> /dev/null
