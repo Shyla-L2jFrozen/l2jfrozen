@@ -42,12 +42,14 @@ import javax.crypto.Cipher;
 import org.apache.log4j.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
+import com.l2jfrozen.common.logs.Log;
 import com.l2jfrozen.common.util.database.L2DatabaseFactory;
 import com.l2jfrozen.common.util.random.Rnd;
 import com.l2jfrozen.loginserver.model.data.AccountInfo;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
 import com.l2jfrozen.loginserver.network.gameserverpackets.ServerStatus;
 import com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason;
+
 import a.a.aa;
 import a.a.v;
 
@@ -276,7 +278,12 @@ public class LoginController
 				return null;
 			}
 			
-			LOGGER.info("Auto created account '" + login + "'.");
+			if (login != null)
+			{
+				final String text = "Auto created account '" + login + "' from ip '" + addr + "'.";
+				Log.add(text, "New_Accounts");
+			}
+			
 			return retriveAccountInfo(addr, login, password, false);
 		}
 		catch (final Exception e)
