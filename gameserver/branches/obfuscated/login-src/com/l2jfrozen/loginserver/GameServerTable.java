@@ -77,10 +77,10 @@ public final class GameServerTable
 		}
 		
 		loadRegisteredGameServers();
-		LOGGER.info("{" + getClass().getSimpleName() + "}: Loaded {" + GAME_SERVER_TABLE.size() + "} registered Game Servers.");
+		LOGGER.info(getClass().getSimpleName() + ": Loaded " + GAME_SERVER_TABLE.size() + " registered Game Servers.");
 		
 		initRSAKeys();
-		LOGGER.info("{" + getClass().getSimpleName() + "}: Cached {" + _keyPairs.length + "} RSA keys for Game Server communication.");
+		LOGGER.info(getClass().getSimpleName() + ": Cached " + _keyPairs.length + " RSA keys for Game Server communication.");
 	}
 	
 	private void loadServerNames() throws IOException
@@ -367,7 +367,6 @@ public final class GameServerTable
 		}
 		return new BigInteger(hex).toString(16);
 	}
-	
 	
 	/**
 	 * Gets the single instance of GameServerTable.
