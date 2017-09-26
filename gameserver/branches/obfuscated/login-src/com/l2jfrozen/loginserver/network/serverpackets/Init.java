@@ -54,7 +54,7 @@ public final class Init extends L2LoginServerPacket
 	}
 	
 	@Override
-	public void w()
+	public void write()
 	{
 		C(0x00); // init packet id
 		

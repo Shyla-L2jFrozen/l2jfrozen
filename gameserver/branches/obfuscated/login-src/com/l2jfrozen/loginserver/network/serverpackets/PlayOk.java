@@ -34,7 +34,7 @@ public final class PlayOk extends L2LoginServerPacket
 	}
 	
 	@Override
-	public void w()
+	public void write()
 	{
 		C(0x07);
 		D(_playOk1);
