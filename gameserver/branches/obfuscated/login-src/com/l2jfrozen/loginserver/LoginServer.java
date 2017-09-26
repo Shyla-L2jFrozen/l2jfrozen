@@ -21,20 +21,20 @@ package com.l2jfrozen.loginserver;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.GeneralSecurityException;
-import java.util.logging.LogManager;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.common.CommonConfigFiles;
+import com.l2jfrozen.common.L2Frozen;
 import com.l2jfrozen.common.ServerType;
+import com.l2jfrozen.common.util.Util;
 import com.l2jfrozen.common.util.database.L2DatabaseFactory;
 import com.l2jfrozen.loginserver.gsregistering.GameServerRegister;
 import com.l2jfrozen.loginserver.network.L2LoginClient;
@@ -43,6 +43,7 @@ import com.l2jfrozen.loginserver.util.LoginServerFloodProtectorActions;
 import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.SelectorConfig;
 import com.l2jfrozen.netcore.SelectorThread;
+
 import a.a.o;
 
 /**
@@ -81,6 +82,13 @@ public final class LoginServer
 		}
 		
 		PropertyConfigurator.configure(CommonConfigFiles.LOG4J_CONF_FILE);
+		
+		Util.printSection("Team");
+		
+		// Print L2jfrozen's Logo
+		L2Frozen.info();
+		
+		Util.printSection("Login Server");
 		
 		// Load Config
 		NetcoreConfig.getInstance();

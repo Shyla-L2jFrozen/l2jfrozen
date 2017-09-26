@@ -159,6 +159,7 @@ import com.l2jfrozen.gameserver.util.sql.SQLQueue;
 import com.l2jfrozen.netcore.NetcoreConfig;
 import com.l2jfrozen.netcore.SelectorConfig;
 import com.l2jfrozen.netcore.SelectorThread;
+
 import a.a.m;
 import a.a.o;
 
@@ -211,6 +212,8 @@ public class GameServer
 		
 		// Print L2jfrozen's Logo
 		L2Frozen.info();
+		
+		Util.printSection("Game Server");
 		
 		// Load Configs
 		NetcoreConfig.getInstance();
