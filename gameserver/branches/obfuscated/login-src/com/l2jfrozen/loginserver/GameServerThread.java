@@ -28,7 +28,8 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 import com.l2jfrozen.common.CommonConfig;
 import com.l2jfrozen.common.util.Util;
@@ -37,6 +38,7 @@ import com.l2jfrozen.loginserver.network.L2JGameServerPacketHandler;
 import com.l2jfrozen.loginserver.network.loginserverpackets.InitLS;
 import com.l2jfrozen.loginserver.network.loginserverpackets.KickPlayer;
 import com.l2jfrozen.loginserver.network.loginserverpackets.LoginServerFail;
+
 import a.a.u;
 import a.a.x;
 
@@ -93,7 +95,7 @@ public class GameServerThread extends Thread
 				
 				if ((lengthHi < 0) || _connection.isClosed())
 				{
-					_log.finer("LoginServerThread: Login terminated the connection.");
+					_log.info("LoginServerThread: Login terminated the connection.");
 					break;
 				}
 				
@@ -111,7 +113,7 @@ public class GameServerThread extends Thread
 				
 				if (receivedBytes != (length - 2))
 				{
-					_log.warning("Incomplete Packet is sent to the server, closing connection.(LS)");
+					_log.warn("Incomplete Packet is sent to the server, closing connection.(LS)");
 					break;
 				}
 				
@@ -120,13 +122,13 @@ public class GameServerThread extends Thread
 				checksumOk = u.b(data);
 				if (!checksumOk)
 				{
-					_log.warning("Incorrect packet checksum, closing connection (LS)");
+					_log.warn("Incorrect packet checksum, closing connection (LS)");
 					return;
 				}
 				
 				if (CommonConfig.DEBUG)
 				{
-					_log.warning("[C]" + System.lineSeparator() + Util.printData(data));
+					_log.warn("[C]" + System.lineSeparator() + Util.printData(data));
 				}
 				
 				L2JGameServerPacketHandler.handlePacket(data, this);
@@ -191,7 +193,7 @@ public class GameServerThread extends Thread
 		}
 		catch (final IOException e)
 		{
-			_log.finer("GameServerThread: Failed disconnecting banned server, server already disconnected.");
+			_log.info("GameServerThread: Failed disconnecting banned server, server already disconnected.");
 		}
 	}
 	
@@ -215,7 +217,7 @@ public class GameServerThread extends Thread
 		}
 		catch (final IOException e)
 		{
-			_log.warning(getClass().getSimpleName() + ": " + e.getMessage());
+			_log.warn(getClass().getSimpleName() + ": " + e.getMessage());
 		}
 		final KeyPair pair = GameServerTable.getInstance().getKeyPair();
 		_privateKey = (RSAPrivateKey) pair.getPrivate();
@@ -236,7 +238,7 @@ public class GameServerThread extends Thread
 			u.c(data);
 			if (CommonConfig.DEBUG)
 			{
-				_log.finest("[S] " + sl.getClass().getSimpleName() + ":" + System.lineSeparator() + Util.printData(data));
+				_log.info("[S] " + sl.getClass().getSimpleName() + ":" + System.lineSeparator() + Util.printData(data));
 			}
 			_blowfish.e(data, 0, data.length);
 			
@@ -251,7 +253,7 @@ public class GameServerThread extends Thread
 		}
 		catch (final IOException e)
 		{
-			_log.severe("IOException while sending packet " + sl.getClass().getSimpleName());
+			_log.error("IOException while sending packet " + sl.getClass().getSimpleName());
 		}
 	}
 	
@@ -276,7 +278,7 @@ public class GameServerThread extends Thread
 			}
 			catch (final Exception e)
 			{
-				_log.warning("Couldn't resolve hostname \"" + e + "\"");
+				_log.warn("Couldn't resolve hostname \"" + e + "\"");
 			}
 		}
 		
