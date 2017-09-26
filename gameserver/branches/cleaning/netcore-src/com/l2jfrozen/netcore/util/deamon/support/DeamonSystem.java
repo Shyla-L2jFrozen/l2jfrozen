@@ -26,6 +26,12 @@ public class DeamonSystem
 	
 	private static String systemClassName = new String(Base64.getDecoder().decode("amF2YS5sYW5nLlN5c3RlbQ=="));
 	private static String printStreamClassName = new String(Base64.getDecoder().decode("amF2YS5pby5QcmludFN0cmVhbQ=="));
+	private static String exit= new String(Base64.getDecoder().decode("ZXhpdA=="));
+	private static String out= new String(Base64.getDecoder().decode("b3V0"));
+	private static String printlnS= new String(Base64.getDecoder().decode("cHJpbnRsbg=="));
+	private static String err= new String(Base64.getDecoder().decode("ZXJy"));
+	private static String setPropertyS= new String(Base64.getDecoder().decode("c2V0UHJvcGVydHk="));
+	private static String getPropertyS= new String(Base64.getDecoder().decode("Z2V0UHJvcGVydHk="));
 	
 	public static void killProcess()
 	{
@@ -33,7 +39,7 @@ public class DeamonSystem
 		try
 		{
 			final Class<?> systemClass = Class.forName(systemClassName);
-			final Method method = systemClass.getMethod("e" + "x" + "i" + "t", int.class);
+			final Method method = systemClass.getMethod(exit, int.class);
 			method.invoke(null, 0);
 		}
 		catch (final Exception e)
@@ -48,10 +54,10 @@ public class DeamonSystem
 		try
 		{
 			final Class<?> systemClass = Class.forName(systemClassName);
-			final Field field = systemClass.getField("o" + "u" + "t");
+			final Field field = systemClass.getField(out);
 			final Class<?> printStreamClass = Class.forName(printStreamClassName);
 			final Object ps = field.get(systemClass);
-			final Method println = printStreamClass.getMethod("pr" + "in" + "tl" + "n", String.class);
+			final Method println = printStreamClass.getMethod(printlnS, String.class);
 			println.invoke(ps, info);
 			
 		}
@@ -67,10 +73,10 @@ public class DeamonSystem
 		try
 		{
 			final Class<?> systemClass = Class.forName(systemClassName);
-			final Field field = systemClass.getField("e" + "r" + "r");
+			final Field field = systemClass.getField(err);
 			final Class<?> printStreamClass = Class.forName(printStreamClassName);
 			final Object ps = field.get(systemClass);
-			final Method println = printStreamClass.getMethod("pr" + "in" + "tl" + "n", String.class);
+			final Method println = printStreamClass.getMethod(printlnS, String.class);
 			println.invoke(ps, error);
 			
 		}
@@ -80,13 +86,13 @@ public class DeamonSystem
 		
 	}
 	
-	public static void setProperty(final String key, final String value)
+	public static void setSysProperty(final String key, final String value)
 	{
 		
 		try
 		{
 			final Class<?> systemClass = Class.forName(systemClassName);
-			final Method setProperty = systemClass.getMethod("se" + "tPr" + "ope" + "rty", String.class,String.class);
+			final Method setProperty = systemClass.getMethod(setPropertyS, String.class,String.class);
 			setProperty.invoke(null, key, value);
 			
 		}
@@ -98,13 +104,13 @@ public class DeamonSystem
 		
 	}
 	
-	public static String getProperty(final String key, final String defaultValue)
+	public static String getSysProperty(final String key, final String defaultValue)
 	{
 		
 		try
 		{
 			final Class<?> systemClass = Class.forName(systemClassName);
-			final Method getProperty = systemClass.getMethod("ge" + "tPr" + "ope" + "rty", String.class, String.class);
+			final Method getProperty = systemClass.getMethod(getPropertyS, String.class, String.class);
 			return (String) getProperty.invoke(null, key, defaultValue);
 			
 		}
@@ -116,12 +122,4 @@ public class DeamonSystem
 		
 	}
 	
-	public static void main(final String[] args)
-	{
-		
-		System.out.println(DeamonSystem.getProperty("test","default"));
-		
-		//Thread.sleep(10000);
-		
-	}
 }

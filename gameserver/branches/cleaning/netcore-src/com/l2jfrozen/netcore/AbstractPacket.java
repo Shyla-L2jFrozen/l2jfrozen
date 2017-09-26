@@ -27,10 +27,8 @@ import java.nio.ByteBuffer;
  */
 public abstract class AbstractPacket<T extends MMOClient<?>>
 {
-	protected ByteBuffer _buf;
-	
-	// protected T _client;
-	protected Long _clientIdentifier;
+	public ByteBuffer _buf;
+	public Long _clientIdentifier;
 	
 	public final T getClient()
 	{

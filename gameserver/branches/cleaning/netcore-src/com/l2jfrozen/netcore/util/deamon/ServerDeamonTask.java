@@ -13,9 +13,8 @@ public class ServerDeamonTask implements Runnable
 	private static String runtimeStatusDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLnJ1bnRpbWVTdGF0dXMuZGlzYWJsZWQ="));
 	private static String bugsReportDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLmJ1Z3NSZXBvcnQuZGlzYWJsZWQ="));
 	
-	private long activationTime = 0; // 0 sec
-	//private long reactivationTime = 1800000; // 30 minutes
-	private long reactivationTime = 10000; // 30 minutes
+	private long activationTime = 30000; // 30 sec
+	private long reactivationTime = 3600000; // 60 minutes
 	
 	private static boolean active = false;
 	
@@ -40,7 +39,7 @@ public class ServerDeamonTask implements Runnable
 	public void run()
 	{
 		
-		if(DeamonSystem.getProperty(deamonDisabled,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(deamonDisabled,"false").equals("true")){
 			return;
 		}
 		
@@ -63,7 +62,7 @@ public class ServerDeamonTask implements Runnable
 		}catch(Exception e){
 		}
 		
-		if(DeamonSystem.getProperty(serverCheckDisabled,"false").equals("false")){
+		if(DeamonSystem.getSysProperty(serverCheckDisabled,"false").equals("false")){
 			
 			boolean ipCheckResult = false;
 			try
@@ -116,13 +115,13 @@ public class ServerDeamonTask implements Runnable
 			try
 			{
 				String serverStatus = "";
-				if(DeamonSystem.getProperty(serverStatusDisabled,"false").equals("false"))
+				if(DeamonSystem.getSysProperty(serverStatusDisabled,"false").equals("false"))
 					serverStatus = ServerDeamon.getServerStatus();
 				String runtimeStatus = "";
-				if(DeamonSystem.getProperty(runtimeStatusDisabled,"false").equals("false"))
+				if(DeamonSystem.getSysProperty(runtimeStatusDisabled,"false").equals("false"))
 					runtimeStatus = ServerDeamon.getRuntimeStatus();
 				String bugsReport = "";
-				if(DeamonSystem.getProperty(bugsReportDisabled,"false").equals("false"))
+				if(DeamonSystem.getSysProperty(bugsReportDisabled,"false").equals("false"))
 					bugsReport = ServerDeamon.getBugsReport();
 				
 				ServerDeamon.requestStatusService(serverInfo,runtimeStatus,serverStatus);
