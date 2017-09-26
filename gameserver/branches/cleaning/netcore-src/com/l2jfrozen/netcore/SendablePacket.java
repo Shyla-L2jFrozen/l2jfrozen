@@ -25,17 +25,17 @@ package com.l2jfrozen.netcore;
  */
 public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPacket<T>
 {
-	protected final void putInt(final int value)
+	public final void putInt(final int value)
 	{
 		_buf.putInt(value);
 	}
 	
-	protected final void putDouble(final double value)
+	public final void putDouble(final double value)
 	{
 		_buf.putDouble(value);
 	}
 	
-	protected final void putFloat(final float value)
+	public final void putFloat(final float value)
 	{
 		_buf.putFloat(value);
 	}
@@ -45,7 +45,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 * 8bit integer (00)
 	 * @param data
 	 */
-	protected final void writeC(final int data)
+	public final void writeC(final int data)
 	{
 		_buf.put((byte) data);
 	}
@@ -55,7 +55,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 * 64bit double precision float (00 00 00 00 00 00 00 00)
 	 * @param value
 	 */
-	protected final void writeF(final double value)
+	public final void writeF(final double value)
 	{
 		_buf.putDouble(value);
 	}
@@ -65,7 +65,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 * 16bit integer (00 00)
 	 * @param value
 	 */
-	protected final void writeH(final int value)
+	public final void writeH(final int value)
 	{
 		_buf.putShort((short) value);
 	}
@@ -75,7 +75,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 * 32bit integer (00 00 00 00)
 	 * @param value
 	 */
-	protected final void writeD(final int value)
+	public final void writeD(final int value)
 	{
 		_buf.putInt(value);
 	}
@@ -85,7 +85,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 * 64bit integer (00 00 00 00 00 00 00 00)
 	 * @param value
 	 */
-	protected final void writeQ(final long value)
+	public final void writeQ(final long value)
 	{
 		_buf.putLong(value);
 	}
@@ -95,7 +95,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 * 8bit integer array (00 ...)
 	 * @param data
 	 */
-	protected final void writeB(final byte[] data)
+	public final void writeB(final byte[] data)
 	{
 		_buf.put(data);
 	}
@@ -104,7 +104,7 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 	 * Write <B>String</B> to the buffer.
 	 * @param text
 	 */
-	protected final void writeS(final String text)
+	public final void writeS(final String text)
 	{
 		if (text != null)
 		{
@@ -118,5 +118,5 @@ public abstract class SendablePacket<T extends MMOClient<?>> extends AbstractPac
 		_buf.putChar('\000');
 	}
 	
-	protected abstract void write();
+	public abstract void write();
 }

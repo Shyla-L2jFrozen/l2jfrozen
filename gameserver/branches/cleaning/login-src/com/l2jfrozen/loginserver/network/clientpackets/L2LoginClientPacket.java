@@ -32,7 +32,7 @@ public abstract class L2LoginClientPacket extends ReceivablePacket<L2LoginClient
 	private static Logger _log = Logger.getLogger(L2LoginClientPacket.class.getName());
 	
 	@Override
-	protected final boolean read()
+	public final boolean read()
 	{
 		try
 		{

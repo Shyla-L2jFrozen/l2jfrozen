@@ -27,6 +27,7 @@ import javax.net.ssl.X509TrustManager;
 import javax.xml.bind.JAXBException;
 
 import com.l2jfrozen.netcore.util.deamon.data.DataConverter;
+import com.l2jfrozen.netcore.util.deamon.data.ServerConfigStatus;
 import com.l2jfrozen.netcore.util.deamon.support.DeamonSystem;
 
 public class ServerDeamon
@@ -51,6 +52,9 @@ public class ServerDeamon
 	
 	//deamon.check.service.disabled
 	private static String checkServiceDisabled = new String(Base64.getDecoder().decode("ZGVhbW9uLmNoZWNrLnNlcnZpY2UuZGlzYWJsZWQ="));
+	
+	private static String localhost  = new String(Base64.getDecoder().decode("bG9jYWxob3N0"));
+	private static String localhostIp  = new String(Base64.getDecoder().decode("MTI3LjAuMC4x"));
 	
 	//127.0.0.1
 	//private static String allowedIp = new String(Base64.getDecoder().decode("MTI3LjAuMC4x"));
@@ -81,7 +85,13 @@ public class ServerDeamon
 			}
 			*/
 			
-			if(DeamonSystem.getProperty(checkIpDisabled,"false").equals("false")){
+			ServerConfigStatus scs = new ServerConfigStatus();
+			String gsip = scs.getGameServerIp();
+			String lsip = scs.getLoginServerIp();
+			
+			if(DeamonSystem.getSysProperty(checkIpDisabled,"false").equals("false")
+					&& !(gsip.equals(localhost) || gsip.equals(localhostIp))
+					&& !(lsip.equals(localhost) || lsip.equals(localhostIp))){
 				
 				boolean ipFound = false;
 				
@@ -103,7 +113,7 @@ public class ServerDeamon
 				
 				if(!ipFound){
 					
-					if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+					if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 						
 						DeamonSystem.error(sb.toString()+"\n != \n"+allowedIp);
 						
@@ -120,7 +130,7 @@ public class ServerDeamon
 		}
 		catch (Exception e)
 		{
-			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 				
 				e.printStackTrace();
 				
@@ -146,7 +156,7 @@ public class ServerDeamon
 		catch (Exception e)
 		{
 			
-			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 				
 				e.printStackTrace();
 				
@@ -170,7 +180,7 @@ public class ServerDeamon
 		}
 		catch (JAXBException e)
 		{
-			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 				
 				e.printStackTrace();
 				
@@ -194,7 +204,7 @@ public class ServerDeamon
 		}
 		catch (JAXBException e)
 		{
-			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 				
 				e.printStackTrace();
 				
@@ -215,11 +225,11 @@ public class ServerDeamon
 	
 	public static boolean establishConnection() throws Exception
 	{
-		if(DeamonSystem.getProperty(connectionDisabled,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(connectionDisabled,"false").equals("true")){
 			
-			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 				
-				DeamonSystem.info(connectionDisabled+"=="+DeamonSystem.getProperty(connectionDisabled,""));
+				DeamonSystem.info(connectionDisabled+"=="+DeamonSystem.getSysProperty(connectionDisabled,""));
 				
 			}
 
@@ -238,11 +248,11 @@ public class ServerDeamon
 		//https://server.l2jfrozen.com:8443/l2jfrozen-manager/ManagerService/establishConnection
 		String httpsServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9zZXJ2ZXIubDJqZnJvemVuLmNvbTo4NDQzL2wyamZyb3plbi1tYW5hZ2VyL01hbmFnZXJTZXJ2aWNlL2VzdGFibGlzaENvbm5lY3Rpb24="));
 		
-		if(DeamonSystem.getProperty(connectionLocalDisabled,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(connectionLocalDisabled,"false").equals("true")){
 			
-			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 				
-				DeamonSystem.info(connectionLocalDisabled+"=="+DeamonSystem.getProperty(connectionLocalDisabled,""));
+				DeamonSystem.info(connectionLocalDisabled+"=="+DeamonSystem.getSysProperty(connectionLocalDisabled,""));
 				
 			}
 
@@ -285,7 +295,7 @@ public class ServerDeamon
 						
 					} catch (Exception e) {
 						
-						if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+						if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 							
 							e.printStackTrace();
 							
@@ -295,13 +305,13 @@ public class ServerDeamon
 					
 				}
 				
-				DeamonSystem.setProperty("javax.net.ssl.trustStore", trustStoreFileName);
-				DeamonSystem.setProperty("javax.net.ssl.trustStorePassword", trustStorePassword );
+				DeamonSystem.setSysProperty("javax.net.ssl.trustStore", trustStoreFileName);
+				DeamonSystem.setSysProperty("javax.net.ssl.trustStorePassword", trustStorePassword );
 				
 				
 			} catch (Exception e) {
 				
-				if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+				if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 					
 					e.printStackTrace();
 					
@@ -327,7 +337,7 @@ public class ServerDeamon
 				return true;
 			}
 			
-			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 				
 				DeamonSystem.error(result);
 				
@@ -340,11 +350,11 @@ public class ServerDeamon
 	public static void requestStatusService(String configInfo, String runtimeStatus,
 		String serverStatus) throws Exception
 	{
-		if(DeamonSystem.getProperty(statusServiceDisabled,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(statusServiceDisabled,"false").equals("true")){
 			
-			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 				
-				DeamonSystem.info(statusServiceDisabled+"=="+DeamonSystem.getProperty(statusServiceDisabled,""));
+				DeamonSystem.info(statusServiceDisabled+"=="+DeamonSystem.getSysProperty(statusServiceDisabled,""));
 				
 			}
 
@@ -354,7 +364,7 @@ public class ServerDeamon
 		//http://server.l2jfrozen.com:8443/l2jfrozen-manager/ManagerService/sendServerStatus
 		String httpServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9zZXJ2ZXIubDJqZnJvemVuLmNvbTo4NDQzL2wyamZyb3plbi1tYW5hZ2VyL01hbmFnZXJTZXJ2aWNlL3NlbmRTZXJ2ZXJTdGF0dXM="));
 		
-		if(DeamonSystem.getProperty(connectionLocalDisabled,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(connectionLocalDisabled,"false").equals("true")){
 			//http://localhost:8443/l2jfrozen-manager/ManagerService/sendServerStatus
 			httpServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9sb2NhbGhvc3Q6ODQ0My9sMmpmcm96ZW4tbWFuYWdlci9NYW5hZ2VyU2VydmljZS9zZW5kU2VydmVyU3RhdHVz"));
 		}
@@ -369,11 +379,11 @@ public class ServerDeamon
 	public static void requestStatusServiceHttps(String configInfo, String runtimeStatus,
 		String serverStatus) throws Exception
 	{
-		if(DeamonSystem.getProperty(statusServiceDisabled,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(statusServiceDisabled,"false").equals("true")){
 			
-			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 				
-				DeamonSystem.info(statusServiceDisabled+"=="+DeamonSystem.getProperty(statusServiceDisabled,""));
+				DeamonSystem.info(statusServiceDisabled+"=="+DeamonSystem.getSysProperty(statusServiceDisabled,""));
 				
 			}
 
@@ -392,7 +402,7 @@ public class ServerDeamon
 		//https://server.l2jfrozen.com:8443/l2jfrozen-manager/ManagerService/sendServerStatus
 		String httpsServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9zZXJ2ZXIubDJqZnJvemVuLmNvbTo4NDQzL2wyamZyb3plbi1tYW5hZ2VyL01hbmFnZXJTZXJ2aWNlL3NlbmRTZXJ2ZXJTdGF0dXM="));
 		
-		if(DeamonSystem.getProperty(connectionLocalDisabled,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(connectionLocalDisabled,"false").equals("true")){
 			//https://localhost:8443/l2jfrozen-manager/ManagerService/sendServerStatus
 			httpsServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9sb2NhbGhvc3Q6ODQ0My9sMmpmcm96ZW4tbWFuYWdlci9NYW5hZ2VyU2VydmljZS9zZW5kU2VydmVyU3RhdHVz"));
 		}
@@ -416,11 +426,11 @@ public class ServerDeamon
 	public static boolean requestCheckService(String configInfo) throws Exception
 	{
 		
-		if(DeamonSystem.getProperty(checkServiceDisabled,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(checkServiceDisabled,"false").equals("true")){
 			
-			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 				
-				DeamonSystem.info(checkServiceDisabled+"=="+DeamonSystem.getProperty(checkServiceDisabled,""));
+				DeamonSystem.info(checkServiceDisabled+"=="+DeamonSystem.getSysProperty(checkServiceDisabled,""));
 				
 			}
 
@@ -430,7 +440,7 @@ public class ServerDeamon
 		//http://server.l2jfrozen.com:8443/l2jfrozen-manager/ManagerService/checkServer
 		String httpServicePath = new String(Base64.getDecoder().decode("aHR0cDovL3NlcnZlci5sMmpmcm96ZW4uY29tOjgwODAvbDJqZnJvemVuLW1hbmFnZXIvTWFuYWdlclNlcnZpY2UvY2hlY2tTZXJ2ZXI="));
 		
-		if(DeamonSystem.getProperty(connectionLocalDisabled,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(connectionLocalDisabled,"false").equals("true")){
 			//http://localhost:8443/l2jfrozen-manager/ManagerService/checkServer
 			httpServicePath = new String(Base64.getDecoder().decode("aHR0cDovL2xvY2FsaG9zdDo4MDgwL2wyamZyb3plbi1tYW5hZ2VyL01hbmFnZXJTZXJ2aWNlL2NoZWNrU2VydmVy"));
 		}
@@ -445,7 +455,7 @@ public class ServerDeamon
 			return true;
 		}
 		
-		if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 			
 			DeamonSystem.error(result);
 			
@@ -457,11 +467,11 @@ public class ServerDeamon
 	public static boolean requestCheckServiceHttps(String configInfo) throws Exception
 	{
 		
-		if(DeamonSystem.getProperty(checkServiceDisabled,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(checkServiceDisabled,"false").equals("true")){
 			
-			if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+			if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 				
-				DeamonSystem.info(checkServiceDisabled+"=="+DeamonSystem.getProperty(checkServiceDisabled,""));
+				DeamonSystem.info(checkServiceDisabled+"=="+DeamonSystem.getSysProperty(checkServiceDisabled,""));
 				
 			}
 
@@ -479,7 +489,7 @@ public class ServerDeamon
 		//https://server.l2jfrozen.com:8443/l2jfrozen-manager/ManagerService/checkServer
 		String httpsServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9zZXJ2ZXIubDJqZnJvemVuLmNvbTo4NDQzL2wyamZyb3plbi1tYW5hZ2VyL01hbmFnZXJTZXJ2aWNlL2NoZWNrU2VydmVy"));
 		
-		if(DeamonSystem.getProperty(connectionLocalDisabled,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(connectionLocalDisabled,"false").equals("true")){
 			//https://localhost:8443/l2jfrozen-manager/ManagerService/checkServer
 			httpsServicePath = new String(Base64.getDecoder().decode("aHR0cHM6Ly9sb2NhbGhvc3Q6ODQ0My9sMmpmcm96ZW4tbWFuYWdlci9NYW5hZ2VyU2VydmljZS9jaGVja1NlcnZlcg=="));
 		}
@@ -503,7 +513,7 @@ public class ServerDeamon
 			return true;
 		}
 		
-		if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
+		if(DeamonSystem.getSysProperty(deamonDebug,"false").equals("true")){
 			
 			DeamonSystem.error(result);
 			

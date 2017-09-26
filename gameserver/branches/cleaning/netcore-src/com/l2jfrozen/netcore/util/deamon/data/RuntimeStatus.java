@@ -21,6 +21,8 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.l2jfrozen.netcore.util.deamon.support.DeamonSystem;
+
 /**
  * @author Shyla
  */
@@ -228,14 +230,14 @@ public class RuntimeStatus implements Serializable
 		avaibleCPUs = Runtime.getRuntime().availableProcessors();
 		processorIdentifier = System.getenv("PROCESSOR_IDENTIFIER");
 		
-		os = System.getProperty("os.name");
-		osBuild = System.getProperty("os.version");
-		osArch = System.getProperty("os.arch");
+		os = DeamonSystem.getSysProperty("os.name","");
+		osBuild = DeamonSystem.getSysProperty("os.version","");
+		osArch = DeamonSystem.getSysProperty("os.arch","");
 		
 		// Java Platform Information;
-		javaRuntimeName = System.getProperty("java.runtime.name");
-		javaVersion = System.getProperty("java.version");
-		javaClassVersion = System.getProperty("java.class.version");
+		javaRuntimeName = DeamonSystem.getSysProperty("java.runtime.name","");
+		javaVersion = DeamonSystem.getSysProperty("java.version","");
+		javaClassVersion = DeamonSystem.getSysProperty("java.class.version","");
 		
 		// Runtime Information";
 		currentFreeHeapSize = Runtime.getRuntime().freeMemory() / 1024 / 1024;
@@ -252,11 +254,11 @@ public class RuntimeStatus implements Serializable
 		systemTime = df.format(dateInfo);
 		
 		// Virtual Machine Information (JVM)
-		jvmName = System.getProperty("java.vm.name");
-		jvmInstallationDirectory = System.getProperty("java.home");
-		jvmVersion = System.getProperty("java.vm.version");
-		jvmVendor = System.getProperty("java.vm.vendor");
-		jvmExtraInfo = System.getProperty("java.vm.info");
+		jvmName = DeamonSystem.getSysProperty("java.vm.name","");
+		jvmInstallationDirectory = DeamonSystem.getSysProperty("java.home","");
+		jvmVersion = DeamonSystem.getSysProperty("java.vm.version","");
+		jvmVendor = DeamonSystem.getSysProperty("java.vm.vendor","");
+		jvmExtraInfo = DeamonSystem.getSysProperty("java.vm.info","");
 		
 	}
 }

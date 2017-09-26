@@ -86,7 +86,7 @@ public class MMOConnection<T extends MMOClient<?>>
 		_sendQueue = new NioNetStackList<>();
 	}
 	
-	final void setClient(final T client)
+	public final void setClient(final T client)
 	{
 		// _client = client;
 		_clientIdentifier = client.getIdentifier();
@@ -127,7 +127,7 @@ public class MMOConnection<T extends MMOClient<?>>
 		}
 	}
 	
-	final SelectionKey getSelectionKey()
+	public final SelectionKey getSelectionKey()
 	{
 		return _selectionKey;
 	}
@@ -142,12 +142,12 @@ public class MMOConnection<T extends MMOClient<?>>
 		return _port;
 	}
 	
-	final void close() throws IOException
+	public final void close() throws IOException
 	{
 		_socket.close();
 	}
 	
-	final int read(final ByteBuffer buf) throws IOException
+	public final int read(final ByteBuffer buf) throws IOException
 	{
 		if (/*
 			 * !isClosed() &&
@@ -159,7 +159,7 @@ public class MMOConnection<T extends MMOClient<?>>
 		return -1;
 	}
 	
-	final int write(final ByteBuffer buf) throws IOException
+	public final int write(final ByteBuffer buf) throws IOException
 	{
 		if (_writableByteChannel != null && _writableByteChannel.isOpen() && !_socket.isOutputShutdown())
 		{
@@ -168,7 +168,7 @@ public class MMOConnection<T extends MMOClient<?>>
 		return -1;
 	}
 	
-	final void createWriteBuffer(final ByteBuffer buf)
+	public final void createWriteBuffer(final ByteBuffer buf)
 	{
 		if (_primaryWriteBuffer == null)
 		{
@@ -202,12 +202,12 @@ public class MMOConnection<T extends MMOClient<?>>
 		}
 	}
 	
-	final boolean hasPendingWriteBuffer()
+	public final boolean hasPendingWriteBuffer()
 	{
 		return _primaryWriteBuffer != null;
 	}
 	
-	final void movePendingWriteBufferTo(final ByteBuffer dest)
+	public final void movePendingWriteBufferTo(final ByteBuffer dest)
 	{
 		_primaryWriteBuffer.flip();
 		dest.put(_primaryWriteBuffer);
@@ -216,12 +216,12 @@ public class MMOConnection<T extends MMOClient<?>>
 		_secondaryWriteBuffer = null;
 	}
 	
-	final void setReadBuffer(final ByteBuffer buf)
+	public final void setReadBuffer(final ByteBuffer buf)
 	{
 		_readBuffer = buf;
 	}
 	
-	final ByteBuffer getReadBuffer()
+	public final ByteBuffer getReadBuffer()
 	{
 		return _readBuffer;
 	}
@@ -259,7 +259,7 @@ public class MMOConnection<T extends MMOClient<?>>
 		return _pendingClose;
 	}
 	
-	final NioNetStackList<SendablePacket<T>> getSendQueue()
+	public final NioNetStackList<SendablePacket<T>> getSendQueue()
 	{
 		return _sendQueue;
 	}
@@ -319,7 +319,7 @@ public class MMOConnection<T extends MMOClient<?>>
 		SelectorThread.getSelectorThread(_selectorThreadName).closeConnection(this);
 	}
 	
-	final void releaseBuffers()
+	public final void releaseBuffers()
 	{
 		if (_primaryWriteBuffer != null)
 		{

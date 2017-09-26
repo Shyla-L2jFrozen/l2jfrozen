@@ -47,6 +47,10 @@ public class ServerConfigStatus implements Serializable
 	@XmlElement
 	private int GameServerPort;
 	@XmlElement
+	private String LoginServerIp;
+	@XmlElement
+	private int LoginServerPort;
+	@XmlElement
 	private float GameServerRate;
 	@XmlElement
 	private float GameServerAdenaRate;
@@ -111,6 +115,14 @@ public class ServerConfigStatus implements Serializable
 		return GameServerL2NetworkLink;
 	}
 	
+	public String getLoginServerIp() {
+		return LoginServerIp;
+	}
+
+	public int getLoginServerPort() {
+		return LoginServerPort;
+	}
+
 	/**
 	 * @return the serialversionuid
 	 */
@@ -137,6 +149,17 @@ public class ServerConfigStatus implements Serializable
 		try
 		{
 			is = new FileInputStream(new File("./config/network/gameserver.properties"));
+			settings.load(is);
+			is.close();
+		}
+		catch (final Exception e)
+		{
+			
+		}
+		
+		try
+		{
+			is = new FileInputStream(new File("./config/network/loginserver.properties"));
 			settings.load(is);
 			is.close();
 		}
@@ -174,8 +197,10 @@ public class ServerConfigStatus implements Serializable
 		reloadSettings();
 		
 		ServerName = settings.getProperty("ServerName", "");
-		GameServerIp = settings.getProperty("ExternalHostname", "*");
+		GameServerIp = settings.getProperty("GameserverHostname", "127.0.0.1");
 		GameServerPort = Integer.parseInt(settings.getProperty("GameserverPort", "7777"));
+		LoginServerIp = settings.getProperty("LoginserverHostname", "127.0.0.1");
+		LoginServerPort = Integer.parseInt(settings.getProperty("LoginserverPort", "2106"));
 		GameServerRate = Float.parseFloat(settings.getProperty("RateXp", "1.00"));
 		GameServerAdenaRate = Float.parseFloat(settings.getProperty("RateDropAdena", "1.00"));
 		GameServerLink = settings.getProperty("ServerWebSite", "");
