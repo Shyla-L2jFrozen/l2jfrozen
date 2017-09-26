@@ -141,7 +141,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		selectable.register(_selector, SelectionKey.OP_ACCEPT);
 	}
 	
-	final ByteBuffer getPooledBuffer()
+	public final ByteBuffer getPooledBuffer()
 	{
 		if (_bufferPool.isEmpty())
 		{
@@ -151,7 +151,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		return _bufferPool.removeFirst();
 	}
 	
-	final void recycleBuffer(final ByteBuffer buf)
+	public final void recycleBuffer(final ByteBuffer buf)
 	{
 		if (_bufferPool.size() < HELPER_BUFFER_COUNT)
 		{
@@ -688,7 +688,7 @@ public final class SelectorThread<T extends MMOClient<?>> extends Thread
 		WRITE_BUFFER.position(dataPos + dataSize);
 	}
 	
-	final void closeConnection(final MMOConnection<T> con)
+	public final void closeConnection(final MMOConnection<T> con)
 	{
 		synchronized (_pendingClose)
 		{

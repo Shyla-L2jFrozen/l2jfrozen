@@ -30,20 +30,20 @@ import org.apache.log4j.Logger;
  */
 public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractPacket<T> implements Runnable
 {
-	NioNetStringBuffer _sbuf;
-	protected static final Logger LOGGER = Logger.getLogger(ReceivablePacket.class);
+	public NioNetStringBuffer _sbuf;
+	public static final Logger LOGGER = Logger.getLogger(ReceivablePacket.class);
 	
-	protected ReceivablePacket()
+	public ReceivablePacket()
 	{
 		
 	}
 	
-	protected abstract boolean read();
+	public abstract boolean read();
 	
 	@Override
 	public abstract void run();
 	
-	protected final void readB(final byte[] dst)
+	public final void readB(final byte[] dst)
 	{
 		try
 		{
@@ -60,7 +60,7 @@ public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractP
 		
 	}
 	
-	protected final void readB(final byte[] dst, final int offset, final int len)
+	public final void readB(final byte[] dst, final int offset, final int len)
 	{
 		try
 		{
@@ -76,7 +76,7 @@ public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractP
 		
 	}
 	
-	protected final int readC()
+	public final int readC()
 	{
 		try
 		{
@@ -94,7 +94,7 @@ public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractP
 		
 	}
 	
-	protected final int readH(final String NamePacket)
+	public final int readH(final String NamePacket)
 	{
 		try
 		{
@@ -109,7 +109,7 @@ public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractP
 		return -1;
 	}
 	
-	protected final int readD()
+	public final int readD()
 	{
 		
 		try
@@ -127,7 +127,7 @@ public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractP
 		return -1;
 	}
 	
-	protected final long readQ()
+	public final long readQ()
 	{
 		
 		try
@@ -145,7 +145,7 @@ public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractP
 		return -1;
 	}
 	
-	protected final double readF()
+	public final double readF()
 	{
 		try
 		{
@@ -162,7 +162,7 @@ public abstract class ReceivablePacket<T extends MMOClient<?>> extends AbstractP
 		return -1;
 	}
 	
-	protected final String readS()
+	public final String readS()
 	{
 		_sbuf.clear();
 		
