@@ -605,7 +605,7 @@ public final class L2GameClient extends A<E<L2GameClient>> implements Runnable
 	}
 	
 	@Override
-	public void of(final boolean critical)
+	public void onForcedDisconnection(final boolean critical)
 	{
 		_forcedToClose = true;
 		
@@ -628,7 +628,7 @@ public final class L2GameClient extends A<E<L2GameClient>> implements Runnable
 	}
 	
 	@Override
-	public void od()
+	public void onDisconnection()
 	{
 		// no long running tasks here, do it async
 		try
