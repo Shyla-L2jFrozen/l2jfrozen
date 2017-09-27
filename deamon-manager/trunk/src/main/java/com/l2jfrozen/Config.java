@@ -44,7 +44,7 @@ public class Config {
 				is.close();
 			}else{
 				
-				InputStream is = Config.class.getClassLoader().getResourceAsStream("manager.properties");
+				InputStream is = Config.class.getResourceAsStream("manager.properties");
 				serverSettings.load(is);
 				is.close();
 				
@@ -53,7 +53,7 @@ public class Config {
 			DATABASE_DRIVER = serverSettings.getProperty("Driver", "com.mysql.jdbc.Driver");
 			DATABASE_URL = serverSettings.getProperty("URL", "jdbc:mysql://localhost/managerdb");
 			DATABASE_LOGIN = serverSettings.getProperty("Login", "root");
-			DATABASE_PASSWORD = serverSettings.getProperty("Password", "");
+			DATABASE_PASSWORD = serverSettings.getProperty("Password", "dsadj32rWRwwrwq");
 			DATABASE_MAX_CONNECTIONS = Integer.parseInt(serverSettings.getProperty("MaximumDbConnections", "10"));
 			DATABASE_MAX_IDLE_TIME = Integer.parseInt(serverSettings.getProperty("MaximumDbIdleTime", "0"));
 			DATABASE_CONNECTION_TIMEOUT = Integer.parseInt(serverSettings.getProperty("SingleConnectionTimeOutDb", "120000"));
