@@ -47,7 +47,6 @@ public class Server
 		String Date = DateFormat.getDateTimeInstance().format(GregorianCalendar.getInstance().getTime());
 		System.out.println("	Date: "+Date);
 		
-		/*
 		Connection con = null;
 		PreparedStatement statement = null;
 		try
@@ -74,7 +73,6 @@ public class Server
 		{
 			CloseUtil.close(con);
 		}
-		*/
 		
 		return 0;
 	}
