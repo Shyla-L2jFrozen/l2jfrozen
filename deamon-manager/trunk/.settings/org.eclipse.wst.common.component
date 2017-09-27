@@ -4,6 +4,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/lib" source-path="/lib"/>
         <property name="context-root" value="l2jfrozen-manager"/>
         <property name="java-output-path" value="/l2jfrozen-manager/target/classes"/>
     </wb-module>

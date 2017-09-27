@@ -23,8 +23,8 @@ import a.a.i;
 @Path("/ManagerService")
 public class ManagerServiceImpl implements ManagerService {
 
-	//private static Logger serviceLogger = LogManager.getLogManager().getLogger("org.apache.tomcat");
-	private static Logger serviceLogger = LogManager.getLogManager().getLogger("global");
+	private static Logger serviceLogger = LogManager.getLogManager().getLogger("org.apache.tomcat");
+//	private static Logger serviceLogger = LogManager.getLogManager().getLogger("global");
 	private static Server server = new Server();
 	
 	
