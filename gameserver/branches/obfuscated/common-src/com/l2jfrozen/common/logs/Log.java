@@ -72,10 +72,11 @@ public class Log
 				}
 		}
 		
-		if (cat != null)
-		{
-			add(text, null);
-		}
+		// We dont need to store all logs also on _all.txt file
+		// if (cat != null)
+		// {
+		// add(text, null);
+		// }
 		
 		date = null;
 	}
@@ -113,10 +114,11 @@ public class Log
 				}
 		}
 		
-		if (cat != null)
-		{
-			add(text, null);
-		}
+		// We dont need to store all logs also on _all.txt file
+		// if (cat != null)
+		// {
+		// add(text, null);
+		// }
 		
 		date = null;
 	}
@@ -154,10 +156,11 @@ public class Log
 				}
 		}
 		
-		if (cat != null)
-		{
-			add(text, null);
-		}
+		// We dont need to store all logs also on _all.txt file
+		// if (cat != null)
+		// {
+		// add(text, null);
+		// }
 		
 		date = null;
 	}
