@@ -15,12 +15,18 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.xml.ws.Response;
 
 import com.l2jfrozen.manager.api.ManagerService;
+import com.l2jfrozen.manager.core.Server;
+
+import a.a.g;
+import a.a.i;
 
 @Path("/ManagerService")
 public class ManagerServiceImpl implements ManagerService {
 
 	//private static Logger serviceLogger = LogManager.getLogManager().getLogger("org.apache.tomcat");
 	private static Logger serviceLogger = LogManager.getLogManager().getLogger("global");
+	private static Server server = new Server();
+	
 	
 	@POST
 	@Consumes(MediaType.TEXT_XML)
@@ -39,6 +45,11 @@ public class ManagerServiceImpl implements ManagerService {
 		serviceLogger.info(configInfo);
 		serviceLogger.info(runtimeStatus);
 		serviceLogger.info(serverStatus);
+		
+		//DataConverter.getInstance().getObject(configInfo)
+		a.a.i serverConfigInfo = (i) a.a.g.g().f(configInfo);
+		server.sendInfo(serverConfigInfo.ggsn(), serverConfigInfo.glsi(), serverConfigInfo.glsp(), serverConfigInfo.ggsi(), serverConfigInfo.ggsp());
+		
 	}
 
 	@POST
