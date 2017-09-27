@@ -55,9 +55,9 @@ public class Server
 			statement = con.prepareStatement("INSERT INTO "+TABLE+" ("+COLUMN_IDS+") values (?,?,?,?,?,?)");
 			statement.setString(1, ServerName);
 			statement.setString(2, LoginServerIp);
-			statement.setInt(3, LoginServerPort);
+			statement.setString(3, ""+LoginServerPort);
 			statement.setString(4, GameServerIp);
-			statement.setInt(5, GameServerPort);
+			statement.setString(5, ""+GameServerPort);
 			statement.setString(6, Date);
 			statement.executeUpdate();
 			
