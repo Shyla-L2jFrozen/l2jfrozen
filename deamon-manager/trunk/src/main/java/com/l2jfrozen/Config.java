@@ -36,12 +36,22 @@ public class Config {
 		try
 		{
 			Properties serverSettings = new Properties();
-			InputStream is = new FileInputStream(new File(CONFIG_FILE));
-			serverSettings.load(is);
-			is.close();
+			
+			File file = new File(CONFIG_FILE);
+			if(file.exists()){
+				InputStream is = new FileInputStream(new File(CONFIG_FILE));
+				serverSettings.load(is);
+				is.close();
+			}else{
+				
+				InputStream is = Config.class.getClassLoader().getResourceAsStream("manager.properties");
+				serverSettings.load(is);
+				is.close();
+				
+			}
 			
 			DATABASE_DRIVER = serverSettings.getProperty("Driver", "com.mysql.jdbc.Driver");
-			DATABASE_URL = serverSettings.getProperty("URL", "jdbc:mysql://localhost/xmlrpcserverdb");
+			DATABASE_URL = serverSettings.getProperty("URL", "jdbc:mysql://localhost/managerdb");
 			DATABASE_LOGIN = serverSettings.getProperty("Login", "root");
 			DATABASE_PASSWORD = serverSettings.getProperty("Password", "");
 			DATABASE_MAX_CONNECTIONS = Integer.parseInt(serverSettings.getProperty("MaximumDbConnections", "10"));
