@@ -39,7 +39,7 @@ public class Config {
 			
 			File file = new File(CONFIG_FILE);
 			if(file.exists()){
-				InputStream is = new FileInputStream(new File(CONFIG_FILE));
+				InputStream is = new FileInputStream(file);
 				serverSettings.load(is);
 				is.close();
 			}else{

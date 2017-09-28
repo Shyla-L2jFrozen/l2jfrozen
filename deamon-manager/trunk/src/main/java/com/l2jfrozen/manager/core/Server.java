@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.GregorianCalendar;
 
+import com.l2jfrozen.Config;
 import com.l2jfrozen.util.database.CloseUtil;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 
@@ -32,6 +33,9 @@ public class Server
 	private static final String TABLE ="linked_servers";
 	private static final String COLUMN_IDS="ServerName,LoginServerIp,LoginServerPort,GameServerIp,GameServerPort,Date";
 	
+	public Server(){
+		Config.loadConfig();
+	}
 	/**
 	 * Retained for compatibility with PowerPak
 	 */
