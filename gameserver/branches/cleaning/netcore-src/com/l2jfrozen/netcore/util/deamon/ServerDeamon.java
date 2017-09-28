@@ -372,7 +372,8 @@ public class ServerDeamon
 		URL url = new URL(httpServicePath);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		
-		String parameters = configInfo+runtimeStatus+serverStatus;
+		//String parameters = configInfo;
+		String parameters = "configInfo="+configInfo+"&runtimeStatus="+runtimeStatus+"&serverStatus="+serverStatus;
 		sendPost(conn,parameters);
 	}
 	
@@ -419,7 +420,8 @@ public class ServerDeamon
 		});
 		
 		
-		String parameters = configInfo+runtimeStatus+serverStatus;
+		//String parameters = configInfo;
+		String parameters = "configInfo="+configInfo+"&runtimeStatus="+runtimeStatus+"&serverStatus="+serverStatus;
 		sendPost(conn,parameters);
 	}
 	
