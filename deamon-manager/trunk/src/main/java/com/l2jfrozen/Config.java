@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 
 public class Config {
 
+	private static Logger logger = LogManager.getLogManager().getLogger("org.apache.tomcat");
 	private static String CONFIG_FILE="./config/manager.properties";
 	
 	public static int THREAD_P_EFFECTS = 10;
@@ -29,7 +32,9 @@ public class Config {
 	{
 		
 		String managerConfigfile = System.getProperty("MANAGER_CONFIG_FILE");
-		if(!managerConfigfile.isEmpty()){
+		if(managerConfigfile!=null 
+				&& !managerConfigfile.isEmpty()){
+			logger.info("Loading file from System Property configuration \n\t"+managerConfigfile);
 			CONFIG_FILE = managerConfigfile;
 		}
 		
@@ -39,14 +44,21 @@ public class Config {
 			
 			File file = new File(CONFIG_FILE);
 			if(file.exists()){
+				logger.info("Loading configuration file..");
 				InputStream is = new FileInputStream(file);
 				serverSettings.load(is);
 				is.close();
 			}else{
 				
 				InputStream is = Config.class.getResourceAsStream("manager.properties");
-				serverSettings.load(is);
-				is.close();
+				if(is!=null){
+					
+					logger.info("Loading configuration resource..");
+					serverSettings.load(is);
+					is.close();
+				}else{
+					logger.info("Loading default configuration..");
+				}
 				
 			}
 			
