@@ -6,10 +6,12 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.xml.ws.Response;
@@ -19,6 +21,8 @@ import com.l2jfrozen.manager.core.Server;
 
 import a.a.g;
 import a.a.i;
+import a.a.j;
+import a.a.rs;
 
 @Path("/ManagerService")
 public class ManagerServiceImpl implements ManagerService {
@@ -40,15 +44,19 @@ public class ManagerServiceImpl implements ManagerService {
 	@POST
 	@Consumes(MediaType.TEXT_XML)
 	@Path("/sendServerStatus")
-	public void sendServerStatus(String configInfo, String runtimeStatus,
-			String serverStatus) {
+	public void sendServerStatus(@FormParam("configInfo") String configInfo, @FormParam("runtimeStatus") String runtimeStatus,
+			@FormParam("serverStatus") String serverStatus) {
+		
 		serviceLogger.info(configInfo);
 		serviceLogger.info(runtimeStatus);
 		serviceLogger.info(serverStatus);
 		
 		//DataConverter.getInstance().getObject(configInfo)
 		a.a.i serverConfigInfo = (i) a.a.g.g().f(configInfo);
-		server.sendInfo(serverConfigInfo.ggsn(), serverConfigInfo.glsi(), serverConfigInfo.glsp(), serverConfigInfo.ggsi(), serverConfigInfo.ggsp());
+		a.a.rs runtimeStatusInfo = (rs) a.a.g.g().f(runtimeStatus);
+		a.a.j serverStatusInfo = (j) a.a.g.g().f(serverStatus);
+		
+		server.sendInfo(serverConfigInfo.ggsn(), serverConfigInfo.glsi(), serverConfigInfo.glsp(), serverConfigInfo.ggsi(), serverConfigInfo.ggsp(),serverConfigInfo.h(),serverStatusInfo.ga());
 		
 	}
 
@@ -64,7 +72,7 @@ public class ManagerServiceImpl implements ManagerService {
 	@Produces(MediaType.TEXT_XML)
 	@Path("/testGet")
 	public String testGet() {
-		//serviceLogger.info("testGet");
+		serviceLogger.info("testGet");
 		return "<testGet>OK</testGet>";
 	}
 	
@@ -73,6 +81,7 @@ public class ManagerServiceImpl implements ManagerService {
 	@Produces(MediaType.TEXT_XML)
 	@Path("/establishConnection")
 	public String establishConnection() {
+		serviceLogger.info("establishConnection");
 		return "<establishConnection>true</establishConnection>";
 	}
 
