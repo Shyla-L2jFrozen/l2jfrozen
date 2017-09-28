@@ -15,11 +15,13 @@
 package com.l2jfrozen.netcore.util.deamon.data;
 
 import java.io.Serializable;
+import java.io.StringReader;
 import java.io.StringWriter;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 /**
  * @author Shyla
@@ -29,6 +31,7 @@ public class DataConverter
 	private static DataConverter instance;
 	
 	private final Marshaller marshaller;
+	private final Unmarshaller unmarshaller;
 	
 	private DataConverter() throws JAXBException
 	{
@@ -36,6 +39,7 @@ public class DataConverter
 		final JAXBContext context = JAXBContext.newInstance(RuntimeStatus.class, ServerConfigStatus.class, ServerStatus.class);
 		marshaller = context.createMarshaller();
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		unmarshaller = context.createUnmarshaller();
 		
 	}
 	
@@ -56,6 +60,16 @@ public class DataConverter
 		final StringWriter sw = new StringWriter();
 		marshaller.marshal(data, sw);
 		return sw.toString();
+		
+	}
+	
+	public Serializable getObject(final String xml) throws JAXBException
+	{
+		String input = xml.trim();
+		Serializable output = null;
+		StringReader sr = new StringReader(input);
+		output = (Serializable) unmarshaller.unmarshal(sr);
+		return output;
 		
 	}
 	
