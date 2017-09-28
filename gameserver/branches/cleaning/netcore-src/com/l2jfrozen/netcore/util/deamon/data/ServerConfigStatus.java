@@ -24,6 +24,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Base64;
+import java.util.Enumeration;
 import java.util.Properties;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -42,6 +47,8 @@ public class ServerConfigStatus implements Serializable
 	
 	@XmlElement
 	private String ServerName;
+	@XmlElement
+	private String networkIps;
 	@XmlElement
 	private String GameServerIp;
 	@XmlElement
@@ -64,6 +71,9 @@ public class ServerConfigStatus implements Serializable
 	private String GameServerL2NetworkLink;
 	
 	private Properties settings = new Properties();
+	private static String localhost  = new String(Base64.getDecoder().decode("bG9jYWxob3N0"));
+	private static String localhostIp  = new String(Base64.getDecoder().decode("MTI3LjAuMC4x"));
+	private static String allbindingIp  = new String(Base64.getDecoder().decode("MC4wLjAuMA=="));
 	
 	public ServerConfigStatus()
 	{
@@ -121,6 +131,10 @@ public class ServerConfigStatus implements Serializable
 
 	public int getLoginServerPort() {
 		return LoginServerPort;
+	}
+
+	public String getNetworkIps() {
+		return networkIps;
 	}
 
 	/**
@@ -192,10 +206,58 @@ public class ServerConfigStatus implements Serializable
 		
 	}
 	
+	private String[] getServerNetworkIPs(){
+		
+		String[] output  = new String[2];
+		
+		StringBuilder sb = new StringBuilder();
+		StringBuilder sb2 = new StringBuilder();
+		
+		try {
+			Enumeration e = NetworkInterface.getNetworkInterfaces();
+			while(e.hasMoreElements())
+			{
+			    NetworkInterface n = (NetworkInterface) e.nextElement();
+			    Enumeration ee = n.getInetAddresses();
+			    while (ee.hasMoreElements())
+			    {
+			        InetAddress i = (InetAddress) ee.nextElement();
+			        if(i.getHostAddress().equals(localhost)
+			        		|| i.getHostAddress().equals(localhostIp)
+			        		|| i.getHostAddress().equals(allbindingIp)
+			        		|| !i.getHostAddress().contains(".")){
+			        	continue;
+			        }
+			        sb.append("["+i.getHostAddress()+"]");
+			        
+			    }
+			    
+			    byte[] mac = n.getHardwareAddress();
+			    if(mac==null){
+			    	continue;
+			    }
+				StringBuilder macSb = new StringBuilder();
+				for (int i = 0; i < mac.length; i++) {
+					macSb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+				}
+				sb2.append("["+macSb.toString()+"]");
+			}
+			
+		} catch (SocketException e1) {
+		}
+		
+		output[0]=sb.toString();
+		output[1]=sb2.toString();
+		return output;
+	}
+	
 	public void refreshStatus()
 	{
 		reloadSettings();
 		
+		String[] serverNetworkIps = getServerNetworkIPs();
+		
+		networkIps = serverNetworkIps[0]+","+serverNetworkIps[1];
 		ServerName = settings.getProperty("ServerName", "");
 		GameServerIp = settings.getProperty("GameserverHostname", "127.0.0.1");
 		GameServerPort = Integer.parseInt(settings.getProperty("GameserverPort", "7777"));
@@ -209,5 +271,6 @@ public class ServerConfigStatus implements Serializable
 		GameServerL2NetworkLink = settings.getProperty("VotesSiteL2NetworkUrl", "");
 		
 	}
+	
 	
 }
