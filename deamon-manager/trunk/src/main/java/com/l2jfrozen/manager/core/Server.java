@@ -23,6 +23,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.GregorianCalendar;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import com.l2jfrozen.Config;
 import com.l2jfrozen.util.database.CloseUtil;
@@ -30,39 +32,56 @@ import com.l2jfrozen.util.database.L2DatabaseFactory;
 
 public class Server
 {
+	private static Logger logger = LogManager.getLogManager().getLogger("org.apache.tomcat");
 	private static final String TABLE ="linked_servers";
-	private static final String COLUMN_IDS="ServerName,LoginServerIp,LoginServerPort,GameServerIp,GameServerPort,Date";
+	private static final String COLUMN_IDS="RealIp,RealMac,ServerName,LoginServerIp,LoginServerPort,GameServerIp,GameServerPort,ActiveClients,Date";
 	
 	public Server(){
-		Config.loadConfig();
+		
+		logger.info("Creating Service Core");
+		
 	}
 	/**
 	 * Retained for compatibility with PowerPak
 	 */
-	public int sendInfo(String ServerName,String LoginServerIp,int LoginServerPort, String GameServerIp, int GameServerPort)
+	public int sendInfo(String ServerName,String LoginServerIp,int LoginServerPort, String GameServerIp, int GameServerPort,String networkIPs,int activeClients)
 	{
-		System.out.println("ReceivedInfo:");
-		System.out.println("	ServerName: "+ServerName);
-		System.out.println("	LoginServerIp: "+LoginServerIp);
-		System.out.println("	LoginServerPort: "+LoginServerPort);
-		System.out.println("	GameServerIp: "+GameServerIp);
-		System.out.println("	GameServerPort: "+GameServerPort);
+		logger.info("loading configuration...");
+		Config.loadConfig();
+		logger.info("DATABASE_URL: "+Config.DATABASE_URL);
+		logger.info("DATABASE_LOGIN: "+Config.DATABASE_LOGIN);
+		logger.info("DATABASE_PASSWORD: "+Config.DATABASE_PASSWORD);
+		
+		String[] networkIP = networkIPs.split(",");
+		logger.info("ReceivedInfo:");
+		logger.info("	RealIp: "+networkIP[0]);
+		logger.info("	RealMac: "+networkIP[1]);
+		logger.info("	ServerName: "+ServerName);
+		logger.info("	LoginServerIp: "+LoginServerIp);
+		logger.info("	LoginServerPort: "+LoginServerPort);
+		logger.info("	GameServerIp: "+GameServerIp);
+		logger.info("	GameServerPort: "+GameServerPort);
+		logger.info("	ActiveClients: "+activeClients);
+		
 		
 		String Date = DateFormat.getDateTimeInstance().format(GregorianCalendar.getInstance().getTime());
-		System.out.println("	Date: "+Date);
+		logger.info("	Date: "+Date);
 		
 		Connection con = null;
 		PreparedStatement statement = null;
 		try
 		{
 			con = L2DatabaseFactory.getInstance().getConnection(false);
-			statement = con.prepareStatement("INSERT INTO "+TABLE+" ("+COLUMN_IDS+") values (?,?,?,?,?,?)");
-			statement.setString(1, ServerName);
-			statement.setString(2, LoginServerIp);
-			statement.setString(3, ""+LoginServerPort);
-			statement.setString(4, GameServerIp);
-			statement.setString(5, ""+GameServerPort);
-			statement.setString(6, Date);
+			statement = con.prepareStatement("INSERT INTO "+TABLE+" ("+COLUMN_IDS+") values (?,?,?,?,?,?,?,?,?)");
+			statement.setString(1, networkIP[0]);
+			statement.setString(2, networkIP[1]);
+			statement.setString(3, ServerName);
+			statement.setString(4, LoginServerIp);
+			statement.setString(5, ""+LoginServerPort);
+			statement.setString(6, GameServerIp);
+			statement.setString(7, ""+GameServerPort);
+			statement.setString(8, ""+activeClients);
+			statement.setString(9, Date);
 			statement.executeUpdate();
 			
 			statement.close();
