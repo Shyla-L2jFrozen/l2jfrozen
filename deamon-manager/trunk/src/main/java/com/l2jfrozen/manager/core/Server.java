@@ -78,19 +78,19 @@ public class Server {
 
 			// execute select SQL stetement
 			ResultSet rs = statement2.executeQuery();
-			int OldActiveClients = 0;
+			int OldMaxOnline = 0;
 			while (rs.next()) {
 
-				OldActiveClients = rs.getInt("ActiveClients");
+				OldMaxOnline = rs.getInt("MaxOnline");
 				System.out.println("ActiveClients : " + activeClients);
-				System.out.println("ActiveClients2 : " + OldActiveClients);
+				System.out.println("OldMaxOnline : " + OldMaxOnline);
 			}
 
 			int MaxOnline = 0;
-			if (activeClients > OldActiveClients)
+			if (activeClients > OldMaxOnline)
 				MaxOnline = activeClients;
 			else
-				MaxOnline = OldActiveClients;
+				MaxOnline = OldMaxOnline;
 
 			statement = con
 					.prepareStatement("REPLACE INTO " + TABLE + " (" + COLUMN_IDS + ") values (?,?,?,?,?,?,?,?,?,?)");
