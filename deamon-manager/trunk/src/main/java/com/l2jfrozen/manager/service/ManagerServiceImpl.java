@@ -1,8 +1,6 @@
 package com.l2jfrozen.manager.service;
 
 import java.io.File;
-import java.util.Enumeration;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
@@ -11,26 +9,26 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response.ResponseBuilder;
-import javax.xml.ws.Response;
+import javax.ws.rs.core.Response;
 
-import com.l2jfrozen.manager.api.ManagerService;
-import com.l2jfrozen.manager.core.Server;
-
-import a.a.g;
 import a.a.i;
 import a.a.j;
 import a.a.rs;
 
+import com.l2jfrozen.Config;
+import com.l2jfrozen.manager.api.ManagerService;
+import com.l2jfrozen.manager.core.Server;
+
 @Path("/ManagerService")
 public class ManagerServiceImpl implements ManagerService {
 
-	private static Logger serviceLogger = LogManager.getLogManager().getLogger("org.apache.tomcat");
-//	private static Logger serviceLogger = LogManager.getLogManager().getLogger("global");
+	private static Logger serviceLogger = Logger.getGlobal();
 	private static Server server = new Server();
-	
+
+	static{
+		Config.loadConfig();
+	}
 	
 	@POST
 	@Consumes(MediaType.TEXT_XML)
@@ -85,20 +83,18 @@ public class ManagerServiceImpl implements ManagerService {
 		return "<establishConnection>true</establishConnection>";
 	}
 
-	@Override
+	@GET
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
+	@Path("/updateNetcore")
 	public Response updateNetcore() {
+		serviceLogger.info("updateNetcore");
 		
-		/*
-		File file = new File(FILE_PATH);  
-		   
-        ResponseBuilder response = Response.ok((Object) file);  
-        response.header("Content-Disposition","attachment; filename=\"javatpoint_file.txt\"");  
-        return response.build(); 
-        */
-		
-		return null;
+		File file = new File(Config.NETCORE_FILE); // Initialize this to the File path you want to serve.
+		return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
+	      .header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"" ) //optional
+	      .header("Version", Config.NETCORE_VERSION ) //optional
+	      .build();
 	}
-
 
 
 }
