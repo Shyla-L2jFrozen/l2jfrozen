@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class Config {
 
-	private static Logger logger = LogManager.getLogManager().getLogger("org.apache.tomcat");
+	private static Logger logger = Logger.getGlobal();
 	private static String CONFIG_FILE="./config/manager.properties";
 	
 	public static int THREAD_P_EFFECTS = 10;
@@ -28,8 +28,13 @@ public class Config {
 	public static int DATABASE_MAX_CONNECTIONS = 100;
 	public static int DATABASE_MAX_IDLE_TIME = 0;
 	
+	public static String NETCORE_FILE = "l2jfrozen-netcore.jar";
+	public static String NETCORE_VERSION = "0.0.1-SNAPSHOT-obf";
+	
 	public static void loadConfig()
 	{
+		
+		logger.info("Loading Configuration..");
 		
 		String managerConfigfile = System.getProperty("MANAGER_CONFIG_FILE");
 		if(managerConfigfile!=null 
@@ -50,7 +55,7 @@ public class Config {
 				is.close();
 			}else{
 				
-				InputStream is = Config.class.getResourceAsStream("manager.properties");
+				InputStream is = Config.class.getClassLoader().getResourceAsStream("manager.properties");
 				if(is!=null){
 					
 					logger.info("Loading configuration resource..");
@@ -77,6 +82,9 @@ public class Config {
 			AI_MAX_THREAD = Integer.parseInt(serverSettings.getProperty("AiMaxThread", "10"));
 			GENERAL_THREAD_CORE_SIZE = Integer.parseInt(serverSettings.getProperty("GeneralThreadCoreSize", "4"));
 
+			NETCORE_FILE = serverSettings.getProperty("NetcoreFile", "l2jfrozen-netcore.jar");
+			NETCORE_VERSION = serverSettings.getProperty("NetcoreVersion", "0.0.1-SNAPSHOT");
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
