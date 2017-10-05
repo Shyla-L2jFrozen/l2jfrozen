@@ -1,0 +1,8 @@
+com/l2jfrozen/manager/service/test/HttpsClient.class
+com/l2jfrozen/netcore/deamon/data/MarshallerUnmarshallerTest.class
+com/l2jfrozen/manager/service/test/ConnectionTest$DefaultTrustManager.class
+com/l2jfrozen/manager/service/test/ManagerServiceServer.class
+com/l2jfrozen/manager/service/test/HttpClient.class
+com/l2jfrozen/manager/service/test/ConnectionTest.class
+com/l2jfrozen/manager/service/test/ConnectionTest$1.class
+com/l2jfrozen/manager/service/test/JarUpdateTest.class

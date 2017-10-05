@@ -1,6 +1,6 @@
 package com.l2jfrozen.manager.api;
 
-import javax.xml.ws.Response;
+import javax.ws.rs.core.Response;
 
 public interface ManagerService {
 

@@ -24,7 +24,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.GregorianCalendar;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import com.l2jfrozen.Config;
@@ -32,13 +31,13 @@ import com.l2jfrozen.util.database.CloseUtil;
 import com.l2jfrozen.util.database.L2DatabaseFactory;
 
 public class Server {
-	private static Logger logger = LogManager.getLogManager().getLogger("org.apache.tomcat");
+	private static Logger logger = Logger.getGlobal();
 	private static final String TABLE = "linked_servers";
 	private static final String COLUMN_IDS = "RealIp,RealMac,ServerName,LoginServerIp,LoginServerPort,GameServerIp,GameServerPort,ActiveClients,Date,MaxOnline";
 
 	public Server() {
 
-		logger.info("Creating Service Core");
+		this.logger.info("Creating Service Core");
 
 	}
 
@@ -47,8 +46,6 @@ public class Server {
 	 */
 	public int sendInfo(String ServerName, String LoginServerIp, int LoginServerPort, String GameServerIp,
 			int GameServerPort, String networkIPs, int activeClients) {
-		logger.info("loading configuration...");
-		Config.loadConfig();
 		logger.info("DATABASE_URL: " + Config.DATABASE_URL);
 		logger.info("DATABASE_LOGIN: " + Config.DATABASE_LOGIN);
 		logger.info("DATABASE_PASSWORD: " + Config.DATABASE_PASSWORD);

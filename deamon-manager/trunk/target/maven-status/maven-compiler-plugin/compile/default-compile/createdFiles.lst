@@ -1,0 +1,17 @@
+com/l2jfrozen/thread/ThreadPoolManager$SingletonHolder.class
+com/l2jfrozen/util/database/ConnectionCloser.class
+com/l2jfrozen/util/database/CloseUtil.class
+com/l2jfrozen/thread/ThreadPoolManager$PriorityThreadFactory.class
+com/l2jfrozen/util/database/L2DatabaseFactory.class
+com/l2jfrozen/util/database/L2DatabaseFactory_c3p0.class
+com/l2jfrozen/thread/ThreadPoolManager.class
+com/l2jfrozen/manager/api/ManagerService.class
+com/l2jfrozen/thread/ThreadPoolManager$1.class
+com/l2jfrozen/util/database/L2DatabaseFactory$ProviderType.class
+com/l2jfrozen/manager/service/ManagerServiceImpl.class
+com/l2jfrozen/thread/ThreadPoolManager$RunnableWrapper.class
+com/l2jfrozen/util/StringUtil.class
+com/l2jfrozen/manager/service/ManagerServiceApplication.class
+com/l2jfrozen/manager/core/Server.class
+com/l2jfrozen/thread/ThreadPoolManager$PurgeTask.class
+com/l2jfrozen/Config.class
