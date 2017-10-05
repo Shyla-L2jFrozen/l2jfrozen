@@ -1,6 +1,10 @@
 package com.l2jfrozen.manager.service;
 
 import java.io.File;
+import java.io.InputStream;
+import java.util.Properties;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
@@ -89,10 +93,24 @@ public class ManagerServiceImpl implements ManagerService {
 	public Response updateNetcore() {
 		serviceLogger.info("updateNetcore");
 		
+		String version = Config.NETCORE_VERSION;
+		
+		try{
+			String jarFilePath = Config.NETCORE_FILE;
+			JarFile jarFile = new JarFile(jarFilePath);
+			JarEntry pomPropertiesEntry = jarFile.getJarEntry("META-INF/maven/com.l2jfrozen/l2jfrozen-netcore/pom.properties");
+			InputStream pomPropertiesIs = jarFile.getInputStream( pomPropertiesEntry );
+			Properties pomProperties = new Properties();
+			pomProperties.load(pomPropertiesIs);
+			version = pomProperties.getProperty("version");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		File file = new File(Config.NETCORE_FILE); // Initialize this to the File path you want to serve.
 		return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
 	      .header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"" ) //optional
-	      .header("Version", Config.NETCORE_VERSION ) //optional
+	      .header("Version", version ) //optional
 	      .build();
 	}
 

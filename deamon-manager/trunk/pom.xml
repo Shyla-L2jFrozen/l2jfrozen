@@ -57,9 +57,9 @@
 		<dependency>
 			<groupId>com.l2jfrozen</groupId>
 			<artifactId>l2jfrozen-netcore-obf</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/lib/l2jfrozen-netcore-0.0.1-SNAPSHOT-obf.jar</systemPath>
+			<systemPath>${basedir}/lib/l2jfrozen-netcore-0.0.2-SNAPSHOT-obf.jar</systemPath>
 		</dependency>
 	</dependencies>
 
