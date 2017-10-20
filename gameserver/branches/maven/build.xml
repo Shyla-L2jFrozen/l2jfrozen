@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="L2jFrozen_GameServer" default="dist-local" basedir=".">
+<project name="L2jFrozen_GameServer" default="dist-local" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
 	<description>
         This script will build the L2J-Frozen server. Thanks for Using our Pack.
         
@@ -7,16 +7,53 @@
         
     </description>
 
+	<path id="maven-ant-tasks.classpath" path="maven/maven-ant-tasks-2.1.3.jar" />
+	<typedef resource="org/apache/maven/artifact/ant/antlib.xml"
+	           uri="antlib:org.apache.maven.artifact.ant"
+	           classpathref="maven-ant-tasks.classpath" />
+
 	<property file="build.properties" />
-	<property name="game-src" location="${basedir}/game-src" />
+	<!-- property name="game-src" location="${basedir}/game-src" />
 	<property name="login-src" location="${basedir}/login-src" />
 	<property name="netcore-src" location="${basedir}/netcore-src" />
-	<property name="common-src" location="${basedir}/common-src" />
+	<property name="common-src" location="${basedir}/common-src" / -->
 	<property name="build" location="${basedir}/target" />
-	<property name="build.classes" location="${build}/classes" />
-	<property name="src-lib" location="lib" />
+	<!-- property name="build.classes" location="${build}/classes" / -->
+	
+	<property name="maven.home" location="${basedir}/maven/apache-maven-3.2.5" />
+	<property name="server" location="${basedir}/l2jfrozen-server" />
+	<property name="netcore" location="${basedir}/l2jfrozen-netcore" />
+	<property name="common" location="${basedir}/l2jfrozen-common" />
 
-	<target name="prepare-test" description="Prepare the test folder property">
+	<property name="login-lib" location="${server}/target/login/dependencies" />
+	<property name="game-lib" location="${server}/target/game/dependencies" />
+
+	<artifact:pom id="l2jfrozen.main.pom" file="${basedir}/pom.xml" />
+	<artifact:pom id="l2jfrozen.common.pom" file="${common}/pom.xml" />
+	<artifact:pom id="l2jfrozen.netcore.pom" file="${netcore}/pom.xml" />
+	<artifact:pom id="l2jfrozen.server.pom" file="${server}/pom.xml" />
+
+	<target name="mvn-login-jar">
+
+		<artifact:mvn pom="${l2jfrozen.server.pom}" mavenhome="${maven.home}" fork="true">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="-P login" />
+		</artifact:mvn>
+
+	</target>
+
+	<target name="mvn-game-jar">
+
+		<artifact:mvn pom="${l2jfrozen.server.pom}" mavenhome="${maven.home}" fork="true">
+			<arg value="clean" />
+			<arg value="install" />
+			<arg value="-P game" />
+		</artifact:mvn>
+
+	</target>
+
+	<!-- target name="prepare-test" description="Prepare the test folder property">
 
 		<property name="build" location="${test_destination_folder}" />
 		<property name="build.classes" location="${build}/classes" />
@@ -28,7 +65,7 @@
 		<property name="build" location="${compiled_rev_destination_folder}" />
 		<property name="build.classes" location="${build}/classes" />
 
-	</target>
+	</target -->
 
 	<target name="prepare-dist" description="Prepare the final folders properties">
 
@@ -130,7 +167,7 @@
 		<mkdir dir="${build.dist.login.lib}" />
 
 		<copy todir="${build.dist.login.lib}" file="${build}/l2jfrozen-login.jar" />
-				
+
 		<copy todir="${build.dist.login.lib}">
 			<fileset dir="${src-lib}">
 				<include name="c3p0*.jar" />
@@ -205,7 +242,7 @@
 		<mkdir dir="${build.dist.game.lib}" />
 
 		<copy todir="${build.dist.game.lib}" file="${build}/l2jfrozen-game.jar" />
-				
+
 		<copy todir="${build.dist.game.lib}">
 			<fileset dir="${src-lib}">
 				<include name="**/*.jar" />
@@ -319,15 +356,15 @@
 		<zip destfile="${build}/L2JFrozen_All.zip" basedir="${build.dist}" update="true" />
 	</target>
 
-	<target name="dist-test" depends="prepare-test,export" description="Create distribution files into 'local_test_folder' folder: change it into build.properties">
+	<!-- target name="dist-test" depends="prepare-test,export" description="Create distribution files into 'local_test_folder' folder: change it into build.properties">
 	</target>
 
 	<target name="dist-compiledRev" depends="prepare-compiledRev,export" description="Create distribution files into 'compiledRev_folder' folder: change it into build.properties">
-	</target>
+	</target -->
 
 	<target name="clean" description="Delete the build folder">
 		<delete dir="${build}" />
 	</target>
 
-	
+
 </project>
