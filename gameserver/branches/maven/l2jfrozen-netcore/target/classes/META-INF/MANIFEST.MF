@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: l2jfrozen-netcore
+Implementation-Version: 0.0.3-SNAPSHOT
+Built-By: navis
+Specification-Title: l2jfrozen-netcore
+Implementation-Vendor-Id: com.l2jfrozen
+Build-Jdk: 1.8.0_131
+Specification-Version: 0.0.3-SNAPSHOT
+Created-By: Maven Integration for Eclipse
+

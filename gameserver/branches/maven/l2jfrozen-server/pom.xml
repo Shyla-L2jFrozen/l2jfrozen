@@ -1,0 +1,507 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.l2jfrozen</groupId>
+		<artifactId>l2jfrozen-main</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>l2jfrozen-server</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+
+		<local.lib.dir>${basedir}/lib</local.lib.dir>
+		<netcore.version>0.0.1-SNAPSHOT</netcore.version>
+		<common.version>0.0.1-SNAPSHOT</common.version>
+
+		<src.dir>${basedir}/src/${server.type}/main/java</src.dir>
+		<resources.dir>${basedir}/src/${server.type}/main/resources</resources.dir>
+		<test.src.dir>${basedir}/src/${server.type}/test/java</test.src.dir>
+		<test.resources.dir>${basedir}/src/${server.type}/test/resources</test.resources.dir>
+		<output.dir>${basedir}/target/${server.type}</output.dir>
+		
+	</properties>
+
+	<build>
+
+		<finalName>l2jfrozen-${server.type}-${project.version}</finalName>
+		<sourceDirectory>${src.dir}</sourceDirectory>
+		<testSourceDirectory>${test.src.dir}</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>${resources.dir}</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>${test.resources.dir}</directory>
+			</testResource>
+		</testResources>
+		<directory>${output.dir}</directory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/dependencies</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+
+		<profile>
+			<id>login</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<server.type>login</server.type>
+			</properties>
+
+		</profile>
+
+		<profile>
+			<id>game</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<server.type>game</server.type>
+			</properties>
+
+			<dependencies>
+				<dependency>
+					<groupId>org.python</groupId>
+					<artifactId>jython</artifactId>
+					<version>2.2.1</version>
+				</dependency>
+				<dependency>
+					<groupId>com.l2jserver</groupId>
+					<artifactId>jython-engine</artifactId>
+					<version>2.2.1</version>
+					<scope>system</scope>
+					<systemPath>${local.lib.dir}/local/jython-engine-2.2.1.jar</systemPath>
+				</dependency>
+				<dependency>
+					<groupId>org.beanshell</groupId>
+					<artifactId>bsh</artifactId>
+					<version>2.0b5</version>
+				</dependency>
+				<dependency>
+					<groupId>com.l2jserver</groupId>
+					<artifactId>bsh-engine</artifactId>
+					<version>1.0</version>
+					<scope>system</scope>
+					<systemPath>${local.lib.dir}/local/bsh-engine-1.0.jar</systemPath>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>login-obf</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<server.type>login</server.type>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.wvengen</groupId>
+						<artifactId>proguard-maven-plugin</artifactId>
+						<version>2.0.14</version>
+						<dependencies>
+							<dependency>
+								<groupId>net.sf.proguard</groupId>
+								<artifactId>proguard-base</artifactId>
+								<version>5.3.3</version>
+							</dependency>
+						</dependencies>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>proguard</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<proguardVersion>5.3.3</proguardVersion>
+							<injar>l2jfrozen-server-${project.version}.jar</injar>
+							<outjar>l2jfrozen-login-${project.version}-obf.jar</outjar>
+							<options>
+								<option>-injars
+									${output.dir}/dependencies/l2jfrozen-common-${common.version}.jar</option>
+								<option>-outjars
+									${output.dir}/dependencies/l2jfrozen-common-${common.version}-obf.jar</option>
+								<option>-injars
+									${output.dir}/dependencies/l2jfrozen-netcore-${netcore.version}.jar</option>
+								<option>-outjars
+									${output.dir}/dependencies/l2jfrozen-netcore-${netcore.version}-obf.jar</option>
+
+								<!-- common -->
+								<!-- public -->
+								<option>-keep public class com.l2jfrozen.common.**$*
+									{*;}</option>
+								<option>-keep public interface com.l2jfrozen.common.**$*
+									{*;}</option>
+								<option>-keep public class com.l2jfrozen.common.**
+									{*;}</option>
+								<option>-keep public interface com.l2jfrozen.common.**
+									{*;}</option>
+								<option>-keep public enum com.l2jfrozen.common.**
+									{*;}</option>
+								<!---->
+								<option>-keep class com.l2jfrozen.common.**$*
+									{*;}</option>
+								<option>-keep interface com.l2jfrozen.common.**$*
+									{*;}</option>
+								<option>-keep class com.l2jfrozen.common.**
+									{*;}</option>
+								<option>-keep interface com.l2jfrozen.common.**
+									{*;}</option>
+								<option>-keep enum com.l2jfrozen.common.**
+									{*;}</option>
+
+								<!-- loginserver -->
+								<!-- public -->
+								<option>-keep public class com.l2jfrozen.loginserver.**$*
+									{*;}</option>
+								<option>-keep public interface com.l2jfrozen.loginserver.**$*
+									{*;}</option>
+								<option>-keep public class com.l2jfrozen.loginserver.**
+									{*;}</option>
+								<option>-keep public interface com.l2jfrozen.loginserver.**
+									{*;}</option>
+								<option>-keep public enum com.l2jfrozen.loginserver.**
+									{*;}</option>
+								<!-- -->
+								<option>-keep class com.l2jfrozen.loginserver.**$*
+									{*;}</option>
+								<option>-keep interface com.l2jfrozen.loginserver.**$*
+									{*;}</option>
+								<option>-keep class com.l2jfrozen.loginserver.**
+									{*;}</option>
+								<option>-keep interface com.l2jfrozen.loginserver.**
+									{*;}</option>
+								<option>-keep enum com.l2jfrozen.loginserver.**
+									{*;}</option>
+
+								<!-- netcore -->
+								<!-- public -->
+								<option>-keep public class com.l2jfrozen.netcore.Netcore*$*
+									{*;}</option>
+								<option>-keep public class com.l2jfrozen.netcore.Selector*$*
+									{*;}</option>
+								<!-- <option>-keep public interface com.l2jfrozen.netcore.*$* -->
+								<!-- {*;}</option> -->
+								<option>-keep public class com.l2jfrozen.netcore.Netcore*
+									{*;}</option>
+								<option>-keep public class com.l2jfrozen.netcore.Selector*
+									{*;}</option>
+								<!-- <option>-keep public interface com.l2jfrozen.netcore.* -->
+								<!-- {*;}</option> -->
+								<option>-keep public enum com.l2jfrozen.netcore.Netcore*
+									{*;}</option>
+								<option>-keep public enum com.l2jfrozen.netcore.Selector*
+									{*;}</option>
+
+								<!-- -->
+								<option>-keep class com.l2jfrozen.netcore.Netcore*$*
+									{*;}</option>
+								<option>-keep class com.l2jfrozen.netcore.Selector*$*
+									{*;}</option>
+								<!-- <option>-keep interface com.l2jfrozen.netcore.*$* -->
+								<!-- {*;}</option> -->
+								<option>-keep class com.l2jfrozen.netcore.Netcore*
+									{*;}</option>
+								<option>-keep class com.l2jfrozen.netcore.Selector*
+									{*;}</option>
+								<!-- <option>-keep interface com.l2jfrozen.netcore.* -->
+								<!-- {*;}</option> -->
+								<option>-keep enum com.l2jfrozen.netcore.Netcore*
+									{*;}</option>
+								<option>-keep enum com.l2jfrozen.netcore.Selector*
+									{*;}</option>
+								<!-- -->
+								<!-- <option>-keep abstract class com.l2jfrozen.netcore.*$* -->
+								<!-- {*;}</option> -->
+								<!-- <option>-keep abstract class com.l2jfrozen.netcore.* -->
+								<!-- {*;}</option> -->
+
+
+								<!-- Other options <option>-keepdirectories</option> <option>-keepclassmembers,allowshrinking,allowobfuscation 
+									class * { synthetic &lt;methods&gt;; }</option> <option>-useuniqueclassmembernames</option> -->
+
+								<option>-dontshrink</option>
+								<option>-dontoptimize</option>
+
+								<option>-keepattributes Signature,*Annotation*</option>
+								<option>-repackageclasses a/a</option>
+								<option>-ignorewarnings</option>
+								<option>-useuniqueclassmembernames</option>
+								<option>-applymapping proguard_map.txt</option>
+							</options>
+							<libs>
+								<lib>${java.home}/lib/rt.jar</lib>
+								<lib>${java.home}/lib/jce.jar</lib>
+							</libs>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+
+		<profile>
+			<id>game-obf</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<server.type>game</server.type>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.wvengen</groupId>
+						<artifactId>proguard-maven-plugin</artifactId>
+						<version>2.0.14</version>
+						<dependencies>
+							<dependency>
+								<groupId>net.sf.proguard</groupId>
+								<artifactId>proguard-base</artifactId>
+								<version>5.3.3</version>
+							</dependency>
+						</dependencies>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>proguard</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<proguardVersion>5.3.3</proguardVersion>
+							<injar>l2jfrozen-server-${project.version}.jar</injar>
+							<outjar>l2jfrozen-game-${project.version}-obf.jar</outjar>
+							<options>
+								<option>-injars
+									${output.dir}/dependencies/l2jfrozen-common-${common.version}.jar</option>
+								<option>-outjars
+									${output.dir}/dependencies/l2jfrozen-common-${common.version}-obf.jar</option>
+								<option>-injars
+									${output.dir}/dependencies/l2jfrozen-netcore-${netcore.version}.jar</option>
+								<option>-outjars
+									${output.dir}/dependencies/l2jfrozen-netcore-${netcore.version}-obf.jar</option>
+
+								<!-- gameserver -->
+								<!-- public -->
+								<option>-keep public class com.l2jfrozen.gameserver.**$*
+									{*;}</option>
+								<option>-keep public interface com.l2jfrozen.gameserver.**$*
+									{*;}</option>
+								<option>-keep public class com.l2jfrozen.gameserver.**
+									{*;}</option>
+								<option>-keep public interface com.l2jfrozen.gameserver.**
+									{*;}</option>
+								<option>-keep public enum com.l2jfrozen.gameserver.**
+									{*;}</option>
+								<!-- -->
+								<option>-keep class com.l2jfrozen.gameserver.**$*
+									{*;}</option>
+								<option>-keep interface com.l2jfrozen.gameserver.**$*
+									{*;}</option>
+								<option>-keep class com.l2jfrozen.gameserver.**
+									{*;}</option>
+								<option>-keep interface com.l2jfrozen.gameserver.**
+									{*;}</option>
+								<option>-keep enum com.l2jfrozen.gameserver.**
+									{*;}</option>
+
+								<!-- common -->
+								<!-- public -->
+								<option>-keep public class com.l2jfrozen.common.**$*
+									{*;}</option>
+								<option>-keep public interface com.l2jfrozen.common.**$*
+									{*;}</option>
+								<option>-keep public class com.l2jfrozen.common.**
+									{*;}</option>
+								<option>-keep public interface com.l2jfrozen.common.**
+									{*;}</option>
+								<option>-keep public enum com.l2jfrozen.common.**
+									{*;}</option>
+								<!---->
+								<option>-keep class com.l2jfrozen.common.**$*
+									{*;}</option>
+								<option>-keep interface com.l2jfrozen.common.**$*
+									{*;}</option>
+								<option>-keep class com.l2jfrozen.common.**
+									{*;}</option>
+								<option>-keep interface com.l2jfrozen.common.**
+									{*;}</option>
+								<option>-keep enum com.l2jfrozen.common.**
+									{*;}</option>
+
+								<!-- netcore -->
+								<!-- public -->
+								<option>-keep public class com.l2jfrozen.netcore.Netcore*$*
+									{*;}</option>
+								<option>-keep public class com.l2jfrozen.netcore.Selector*$*
+									{*;}</option>
+								<!-- <option>-keep public interface com.l2jfrozen.netcore.*$* -->
+								<!-- {*;}</option> -->
+								<option>-keep public class com.l2jfrozen.netcore.Netcore*
+									{*;}</option>
+								<option>-keep public class com.l2jfrozen.netcore.Selector*
+									{*;}</option>
+								<!-- <option>-keep public interface com.l2jfrozen.netcore.* -->
+								<!-- {*;}</option> -->
+								<option>-keep public enum com.l2jfrozen.netcore.Netcore*
+									{*;}</option>
+								<option>-keep public enum com.l2jfrozen.netcore.Selector*
+									{*;}</option>
+
+								<!-- -->
+								<option>-keep class com.l2jfrozen.netcore.Netcore*$*
+									{*;}</option>
+								<option>-keep class com.l2jfrozen.netcore.Selector*$*
+									{*;}</option>
+								<!-- <option>-keep interface com.l2jfrozen.netcore.*$* -->
+								<!-- {*;}</option> -->
+								<option>-keep class com.l2jfrozen.netcore.Netcore*
+									{*;}</option>
+								<option>-keep class com.l2jfrozen.netcore.Selector*
+									{*;}</option>
+								<!-- <option>-keep interface com.l2jfrozen.netcore.* -->
+								<!-- {*;}</option> -->
+								<option>-keep enum com.l2jfrozen.netcore.Netcore*
+									{*;}</option>
+								<option>-keep enum com.l2jfrozen.netcore.Selector*
+									{*;}</option>
+								<!-- -->
+								<!-- <option>-keep abstract class com.l2jfrozen.netcore.*$* -->
+								<!-- {*;}</option> -->
+								<!-- <option>-keep abstract class com.l2jfrozen.netcore.* -->
+								<!-- {*;}</option> -->
+
+
+								<!-- Other options <option>-keepdirectories</option> <option>-keepclassmembers,allowshrinking,allowobfuscation 
+									class * { synthetic &lt;methods&gt;; }</option> <option>-useuniqueclassmembernames</option> -->
+
+								<option>-dontshrink</option>
+								<option>-dontoptimize</option>
+
+								<option>-keepattributes Signature,*Annotation*</option>
+								<option>-repackageclasses a/a</option>
+								<option>-ignorewarnings</option>
+								<option>-useuniqueclassmembernames</option>
+								<option>-applymapping proguard_map.txt</option>
+							</options>
+							<libs>
+								<lib>${java.home}/lib/rt.jar</lib>
+								<lib>${java.home}/lib/jce.jar</lib>
+							</libs>
+						</configuration>
+					</plugin>
+				</plugins>
+
+
+			</build>
+			<dependencies>
+				<dependency>
+					<groupId>org.python</groupId>
+					<artifactId>jython</artifactId>
+					<version>2.2.1</version>
+				</dependency>
+				<dependency>
+					<groupId>com.l2jserver</groupId>
+					<artifactId>jython-engine</artifactId>
+					<version>2.2.1</version>
+					<scope>system</scope>
+					<systemPath>${local.lib.dir}/local/jython-engine-2.2.1.jar</systemPath>
+				</dependency>
+				<dependency>
+					<groupId>org.beanshell</groupId>
+					<artifactId>bsh</artifactId>
+					<version>2.0b5</version>
+				</dependency>
+				<dependency>
+					<groupId>com.l2jserver</groupId>
+					<artifactId>bsh-engine</artifactId>
+					<version>1.0</version>
+					<scope>system</scope>
+					<systemPath>${local.lib.dir}/local/bsh-engine-1.0.jar</systemPath>
+				</dependency>
+			</dependencies>
+		</profile>
+
+	</profiles>
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.15</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javolution</groupId>
+			<artifactId>javolution</artifactId>
+			<version>5.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.l2jfrozen</groupId>
+			<artifactId>l2jfrozen-netcore</artifactId>
+			<version>${netcore.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.l2jfrozen</groupId>
+			<artifactId>l2jfrozen-common</artifactId>
+			<version>${common.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.9</version>
+		</dependency>
+	</dependencies>
+
+</project>
