@@ -72,7 +72,8 @@ public class Server {
 		try {
 			con = L2DatabaseFactory.getInstance().getConnection(false);
 
-			statement2 = con.prepareStatement("SELECT * FROM " + LINKED_SERVERS_TABLE + " WHERE RealMac='" + networkIP[1] + "'");
+			statement2 = con.prepareStatement(
+					"SELECT * FROM " + LINKED_SERVERS_TABLE + " WHERE RealMac='" + networkIP[1] + "'");
 
 			// execute select SQL stetement
 			ResultSet rs = statement2.executeQuery();
@@ -90,8 +91,8 @@ public class Server {
 			else
 				MaxOnline = OldMaxOnline;
 
-			statement = con
-					.prepareStatement("REPLACE INTO " + LINKED_SERVERS_TABLE + " (" + COLUMN_IDS + ") values (?,?,?,?,?,?,?,?,?,?)");
+			statement = con.prepareStatement(
+					"REPLACE INTO " + LINKED_SERVERS_TABLE + " (" + COLUMN_IDS + ") values (?,?,?,?,?,?,?,?,?,?)");
 			statement.setString(1, networkIP[0]);
 			statement.setString(2, networkIP[1]);
 			statement.setString(3, ServerName);
@@ -116,34 +117,38 @@ public class Server {
 		return 0;
 	}
 
-	public boolean checkServer(String networkIPs){
-		
+	public boolean checkServer(String networkIPs) {
+
 		String[] networkIP = networkIPs.split(",");
-		
+
 		Connection con = null;
 		PreparedStatement statement = null;
-		
+
 		boolean result = true;
-		
+
 		try {
 			con = L2DatabaseFactory.getInstance().getConnection(false);
 
-			statement = con.prepareStatement("SELECT * FROM " + REGISTERED_SERVERS_TABLE + " WHERE serverMAC='" + networkIP[1] + "'");
+			statement = con.prepareStatement(
+					"SELECT * FROM " + REGISTERED_SERVERS_TABLE + " WHERE serverMAC='" + networkIP[1] + "'");
 
 			// execute select SQL stetement
 			ResultSet rs = statement.executeQuery();
-			if(rs.getRow()==0)
-				result=false;
-			
-			while(rs.next()){
-				
-				long expirationTime = rs.getLong(2);
-				if (expirationTime>0
-						&& expirationTime<System.currentTimeMillis())
-					result=false;
-				
+
+			if (!rs.next()) {
+				System.out.println("DEBUG: No match found! MAC addr: " + networkIP[1]);
+				result = false;
+
+			} else {
+				while (rs.next()) {
+
+					long expirationTime = rs.getLong(3);
+					if (expirationTime > 0 && expirationTime < System.currentTimeMillis()) {
+						result = false;
+						System.out.println("DEBUG: Server licence expired!");
+					}
+				}
 			}
-			
 			statement.close();
 			statement = null;
 
@@ -152,9 +157,9 @@ public class Server {
 		} finally {
 			CloseUtil.close(con);
 		}
-		
+
 		return result;
-		
+
 	}
-	
+
 }
