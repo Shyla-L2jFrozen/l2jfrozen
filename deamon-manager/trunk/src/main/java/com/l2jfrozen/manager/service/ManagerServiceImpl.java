@@ -40,7 +40,10 @@ public class ManagerServiceImpl implements ManagerService {
 	@Path("/checkServer")
 	public String checkServer(String configInfo) {
 		serviceLogger.info(configInfo);
-		return "<result>true</result>";
+		a.a.i serverConfigInfo = (i) a.a.g.g().f(configInfo);
+		boolean checkResult = server.checkServer(serverConfigInfo.h());
+		serviceLogger.info("Server "+serverConfigInfo.ggsn()+" check result: "+checkResult);
+		return "<result>"+checkResult+"</result>";
 	}
 
 	@POST
@@ -58,7 +61,7 @@ public class ManagerServiceImpl implements ManagerService {
 		a.a.rs runtimeStatusInfo = (rs) a.a.g.g().f(runtimeStatus);
 		a.a.j serverStatusInfo = (j) a.a.g.g().f(serverStatus);
 		
-		server.sendInfo(serverConfigInfo.ggsn(), serverConfigInfo.glsi(), serverConfigInfo.glsp(), serverConfigInfo.ggsi(), serverConfigInfo.ggsp(),serverConfigInfo.h(),serverStatusInfo.ga());
+		server.store(serverConfigInfo.ggsn(), serverConfigInfo.glsi(), serverConfigInfo.glsp(), serverConfigInfo.ggsi(), serverConfigInfo.ggsp(),serverConfigInfo.h(),serverStatusInfo.ga());
 		
 	}
 
