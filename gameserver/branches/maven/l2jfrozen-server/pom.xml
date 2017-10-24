@@ -144,7 +144,7 @@
 						</executions>
 						<configuration>
 							<proguardVersion>5.3.3</proguardVersion>
-							<injar>l2jfrozen-server-${project.version}.jar</injar>
+							<injar>l2jfrozen-login-${project.version}.jar</injar>
 							<outjar>l2jfrozen-login-${project.version}-obf.jar</outjar>
 							<options>
 								<option>-injars
@@ -301,7 +301,7 @@
 						</executions>
 						<configuration>
 							<proguardVersion>5.3.3</proguardVersion>
-							<injar>l2jfrozen-server-${project.version}.jar</injar>
+							<injar>l2jfrozen-game-${project.version}.jar</injar>
 							<outjar>l2jfrozen-game-${project.version}-obf.jar</outjar>
 							<options>
 								<option>-injars
