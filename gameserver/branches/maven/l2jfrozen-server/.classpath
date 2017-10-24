@@ -10,27 +10,27 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="target/login/classes" path="src/login/main/java">
+	<classpathentry kind="src" output="target/game/classes" path="src/game/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="target/login/test-classes" path="src/login/test/java">
+	<classpathentry excluding="**" kind="src" output="target/game/classes" path="src/game/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/game/test-classes" path="src/game/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/login/classes" path="src/login/main/resources">
+	<classpathentry excluding="**" kind="src" output="target/game/test-classes" path="src/game/test/resources">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="**" kind="src" output="target/login/test-classes" path="src/login/test/resources">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="output" path="target/login/classes"/>
+	<classpathentry kind="output" path="target/game/classes"/>
 </classpath>
