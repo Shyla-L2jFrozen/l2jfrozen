@@ -32,23 +32,43 @@
 
 	<target name="mvn-login-jar">
 
-		<artifact:mvn pom="${server}/pom.xml" mavenhome="${maven.home}" fork="true">
+		<artifact:mvn pom="${basedir}/pom.xml" mavenhome="${maven.home}" fork="true">
 			<arg value="clean" />
 			<arg value="install" />
 			<arg value="-P login" />
 		</artifact:mvn>
 
 	</target>
+	
+	<target name="mvn-login-obf-jar">
+
+			<artifact:mvn pom="${basedir}/pom.xml" mavenhome="${maven.home}" fork="true">
+				<arg value="clean" />
+				<arg value="install" />
+				<arg value="-P login-obf" />
+			</artifact:mvn>
+
+		</target>
 
 	<target name="mvn-game-jar">
 
-		<artifact:mvn pom="${server}/pom.xml" mavenhome="${maven.home}" fork="true">
+		<artifact:mvn pom="${basedir}/pom.xml" mavenhome="${maven.home}" fork="true">
 			<arg value="clean" />
 			<arg value="install" />
 			<arg value="-P game" />
 		</artifact:mvn>
 
 	</target>
+	
+	<target name="mvn-game-obf-jar">
+
+			<artifact:mvn pom="${basedir}/pom.xml" mavenhome="${maven.home}" fork="true">
+				<arg value="clean" />
+				<arg value="install" />
+				<arg value="-P game-obf" />
+			</artifact:mvn>
+
+		</target>
 
 	<target name="mvn-clean">
 
