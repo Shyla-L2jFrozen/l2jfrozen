@@ -12,7 +12,7 @@
 	<properties>
 
 		<local.lib.dir>${basedir}/lib</local.lib.dir>
-		<netcore.version>0.0.1-SNAPSHOT</netcore.version>
+		<netcore.version>0.0.3-SNAPSHOT</netcore.version>
 		<common.version>0.0.1-SNAPSHOT</common.version>
 
 		<src.dir>${basedir}/src/${server.type}/main/java</src.dir>
