@@ -636,145 +636,6 @@ com.l2jfrozen.common.util.taskmanager.TaskTypes -> com.l2jfrozen.common.util.tas
     com.l2jfrozen.common.util.taskmanager.TaskTypes valueOf(java.lang.String) -> valueOf
     void <init>(java.lang.String,int) -> <init>
     void <clinit>() -> <clinit>
-com.l2jfrozen.deamon.ServerDeamon -> a.a.a:
-    java.lang.String trustStoreFileName -> a
-    java.lang.String trustStorePassword -> d
-    java.lang.String deamonDebug -> e
-    java.lang.String checkIpDisabled -> f
-    java.lang.String connectionDisabled -> g
-    java.lang.String connectionLocalDisabled -> h
-    java.lang.String statusServiceDisabled -> i
-    java.lang.String checkServiceDisabled -> j
-    java.lang.String allowedIp -> k
-    void <init>() -> <init>
-    boolean checkServerPack() -> a
-    java.lang.String getServerInfo() -> getServerInfo
-    java.lang.String getServerStatus() -> b
-    java.lang.String getRuntimeStatus() -> c
-    java.lang.String getBugsReport() -> d
-    boolean establishConnection() -> e
-    void requestStatusService(java.lang.String,java.lang.String,java.lang.String) -> a
-    void requestStatusServiceHttps(java.lang.String,java.lang.String,java.lang.String) -> b
-    boolean requestCheckService(java.lang.String) -> a
-    boolean requestCheckServiceHttps(java.lang.String) -> b
-    java.lang.String sendPost(java.net.HttpURLConnection,java.lang.String) -> a
-    void <clinit>() -> <clinit>
-com.l2jfrozen.deamon.ServerDeamon$1 -> a.a.b:
-    void <init>() -> <init>
-    boolean verify(java.lang.String,javax.net.ssl.SSLSession) -> verify
-com.l2jfrozen.deamon.ServerDeamon$2 -> a.a.c:
-    void <init>() -> <init>
-    boolean verify(java.lang.String,javax.net.ssl.SSLSession) -> verify
-com.l2jfrozen.deamon.ServerDeamon$3 -> a.a.d:
-    void <init>() -> <init>
-    boolean verify(java.lang.String,javax.net.ssl.SSLSession) -> verify
-com.l2jfrozen.deamon.ServerDeamon$DefaultTrustManager -> a.a.e:
-    void <init>() -> <init>
-    void checkClientTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkClientTrusted
-    void checkServerTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkServerTrusted
-    java.security.cert.X509Certificate[] getAcceptedIssuers() -> getAcceptedIssuers
-    void <init>(com.l2jfrozen.deamon.ServerDeamon$1) -> <init>
-com.l2jfrozen.deamon.ServerDeamonTask -> a.a.f:
-    java.lang.String deamonDisabled -> l
-    java.lang.String serverCheckDisabled -> m
-    java.lang.String serverStatusDisabled -> n
-    java.lang.String runtimeStatusDisabled -> o
-    java.lang.String bugsReportDisabled -> p
-    long activationTime -> q
-    long reactivationTime -> r
-    boolean active -> active
-    java.lang.Thread instance -> s
-    void start() -> start
-    void <init>() -> <init>
-    void run() -> run
-    void deactivateTask() -> f
-    void <clinit>() -> <clinit>
-com.l2jfrozen.deamon.data.DataConverter -> a.a.g:
-    com.l2jfrozen.deamon.data.DataConverter instance -> t
-    javax.xml.bind.Marshaller marshaller -> u
-    void <init>() -> <init>
-    com.l2jfrozen.deamon.data.DataConverter getInstance() -> g
-    java.lang.String getXML(java.io.Serializable) -> a
-com.l2jfrozen.deamon.data.RuntimeStatus -> a.a.h:
-    long serialVersionUID -> serialVersionUID
-    java.lang.String systemTime -> systemTime
-    int avaibleCPUs -> avaibleCPUs
-    java.lang.String processorIdentifier -> processorIdentifier
-    java.lang.String os -> os
-    java.lang.String osBuild -> osBuild
-    java.lang.String osArch -> osArch
-    java.lang.String javaRuntimeName -> javaRuntimeName
-    java.lang.String javaVersion -> javaVersion
-    java.lang.String javaClassVersion -> javaClassVersion
-    long currentFreeHeapSize -> currentFreeHeapSize
-    long currentHeapSize -> currentHeapSize
-    long maximumHeapSize -> maximumHeapSize
-    java.lang.String jvmName -> jvmName
-    java.lang.String jvmInstallationDirectory -> jvmInstallationDirectory
-    java.lang.String jvmVersion -> jvmVersion
-    java.lang.String jvmVendor -> jvmVendor
-    java.lang.String jvmExtraInfo -> jvmExtraInfo
-    void <init>() -> <init>
-    java.lang.String getSystemTime() -> getSystemTime
-    int getAvaibleCPUs() -> getAvaibleCPUs
-    java.lang.String getProcessorIdentifier() -> getProcessorIdentifier
-    java.lang.String getOs() -> getOs
-    java.lang.String getOsArch() -> getOsArch
-    java.lang.String getJavaRuntimeName() -> getJavaRuntimeName
-    java.lang.String getJavaVersion() -> getJavaVersion
-    java.lang.String getJavaClassVersion() -> getJavaClassVersion
-    long getCurrentFreeHeapSize() -> getCurrentFreeHeapSize
-    long getCurrentHeapSize() -> getCurrentHeapSize
-    long getMaximumHeapSize() -> getMaximumHeapSize
-    java.lang.String getJvmName() -> getJvmName
-    java.lang.String getJvmInstallationDirectory() -> getJvmInstallationDirectory
-    java.lang.String getJvmVersion() -> getJvmVersion
-    java.lang.String getJvmVendor() -> getJvmVendor
-    java.lang.String getJvmExtraInfo() -> getJvmExtraInfo
-    java.lang.String getOsBuild() -> h
-    void refreshStatus() -> refreshStatus
-com.l2jfrozen.deamon.data.ServerConfigStatus -> a.a.i:
-    long serialVersionUID -> serialVersionUID
-    java.lang.String ServerName -> ServerName
-    java.lang.String GameServerIp -> v
-    int GameServerPort -> GameServerPort
-    float GameServerRate -> GameServerRate
-    float GameServerAdenaRate -> GameServerAdenaRate
-    java.lang.String GameServerLink -> GameServerLink
-    java.lang.String GameServerHopzoneLink -> GameServerHopzoneLink
-    java.lang.String GameServerTopzoneLink -> GameServerTopzoneLink
-    java.lang.String GameServerL2NetworkLink -> GameServerL2NetworkLink
-    java.util.Properties settings -> w
-    void <init>() -> <init>
-    java.lang.String getServerName() -> getServerName
-    java.lang.String getGameServerIp() -> i
-    int getGameServerPort() -> getGameServerPort
-    float getGameServerRate() -> getGameServerRate
-    float getGameServerAdenaRate() -> getGameServerAdenaRate
-    java.lang.String getGameServerLink() -> getGameServerLink
-    java.lang.String getGameServerHopzoneLink() -> getGameServerHopzoneLink
-    java.lang.String getGameServerTopzoneLink() -> getGameServerTopzoneLink
-    java.lang.String getGameServerL2NetworkLink() -> getGameServerL2NetworkLink
-    long getSerialversionuid() -> getSerialversionuid
-    void reloadSettings() -> j
-    void refreshStatus() -> refreshStatus
-com.l2jfrozen.deamon.data.ServerStatus -> a.a.j:
-    long serialVersionUID -> serialVersionUID
-    int ActiveClients -> ActiveClients
-    void <init>() -> <init>
-    int getActiveClients() -> getActiveClients
-    void refreshStatus() -> refreshStatus
-com.l2jfrozen.deamon.support.DeamonSystem -> a.a.k:
-    java.lang.String systemClassName -> A
-    java.lang.String printStreamClassName -> B
-    void <init>() -> <init>
-    void killProcess() -> k
-    void info(java.lang.String) -> info
-    void error(java.lang.String) -> error
-    void setProperty(java.lang.String,java.lang.String) -> setProperty
-    java.lang.String getProperty(java.lang.String,java.lang.String) -> getProperty
-    void main(java.lang.String[]) -> main
-    void <clinit>() -> <clinit>
 com.l2jfrozen.gameserver.GameServer -> com.l2jfrozen.gameserver.GameServer:
     org.apache.log4j.Logger LOGGER -> LOGGER
     com.l2jfrozen.gameserver.LoginServerThread _loginThread -> _loginThread
@@ -19472,7 +19333,7 @@ com.l2jfrozen.gameserver.network.clientpackets.GameGuardReply -> com.l2jfrozen.g
 com.l2jfrozen.gameserver.network.clientpackets.L2GameClientPacket -> com.l2jfrozen.gameserver.network.clientpackets.L2GameClientPacket:
     org.apache.log4j.Logger LOGGER -> LOGGER
     void <init>() -> <init>
-    boolean read() -> r
+    boolean read() -> read
     void readImpl() -> readImpl
     void run() -> run
     void runImpl() -> runImpl
@@ -22093,7 +21954,7 @@ com.l2jfrozen.gameserver.network.serverpackets.KeyPacket -> com.l2jfrozen.gamese
 com.l2jfrozen.gameserver.network.serverpackets.L2GameServerPacket -> com.l2jfrozen.gameserver.network.serverpackets.L2GameServerPacket:
     org.apache.log4j.Logger LOGGER -> LOGGER
     void <init>() -> <init>
-    void write() -> w
+    void write() -> write
     void runImpl() -> runImpl
     void writeImpl() -> writeImpl
     java.lang.String getType() -> getType
@@ -26577,7 +26438,7 @@ com.l2jfrozen.loginserver.network.clientpackets.AuthGameGuard -> com.l2jfrozen.l
 com.l2jfrozen.loginserver.network.clientpackets.L2LoginClientPacket -> com.l2jfrozen.loginserver.network.clientpackets.L2LoginClientPacket:
     java.util.logging.Logger _log -> _log
     void <init>() -> <init>
-    boolean read() -> r
+    boolean read() -> read
     boolean readImpl() -> readImpl
     void <clinit>() -> <clinit>
 com.l2jfrozen.loginserver.network.clientpackets.RequestAuthLogin -> com.l2jfrozen.loginserver.network.clientpackets.RequestAuthLogin:
@@ -26707,7 +26568,7 @@ com.l2jfrozen.loginserver.network.loginserverpackets.PlayerAuthResponse -> com.l
 com.l2jfrozen.loginserver.network.serverpackets.AccountKicked -> com.l2jfrozen.loginserver.network.serverpackets.AccountKicked:
     com.l2jfrozen.loginserver.network.serverpackets.AccountKickedReason _reason -> _reason
     void <init>(com.l2jfrozen.loginserver.network.serverpackets.AccountKickedReason) -> <init>
-    void write() -> w
+    void write() -> write
 com.l2jfrozen.loginserver.network.serverpackets.AccountKickedReason -> com.l2jfrozen.loginserver.network.serverpackets.AccountKickedReason:
     com.l2jfrozen.loginserver.network.serverpackets.AccountKickedReason REASON_DATA_STEALER -> REASON_DATA_STEALER
     com.l2jfrozen.loginserver.network.serverpackets.AccountKickedReason REASON_GENERIC_VIOLATION -> REASON_GENERIC_VIOLATION
@@ -26725,7 +26586,7 @@ com.l2jfrozen.loginserver.network.serverpackets.GGAuth -> com.l2jfrozen.loginser
     int SKIP_GG_AUTH_REQUEST -> SKIP_GG_AUTH_REQUEST
     int _response -> _response
     void <init>(int) -> <init>
-    void write() -> w
+    void write() -> write
     void <clinit>() -> <clinit>
 com.l2jfrozen.loginserver.network.serverpackets.Init -> com.l2jfrozen.loginserver.network.serverpackets.Init:
     int _sessionId -> _sessionId
@@ -26733,13 +26594,13 @@ com.l2jfrozen.loginserver.network.serverpackets.Init -> com.l2jfrozen.loginserve
     byte[] _blowfishKey -> _blowfishKey
     void <init>(com.l2jfrozen.loginserver.network.L2LoginClient) -> <init>
     void <init>(byte[],byte[],int) -> <init>
-    void write() -> w
+    void write() -> write
 com.l2jfrozen.loginserver.network.serverpackets.L2LoginServerPacket -> com.l2jfrozen.loginserver.network.serverpackets.L2LoginServerPacket:
     void <init>() -> <init>
 com.l2jfrozen.loginserver.network.serverpackets.LoginFail -> com.l2jfrozen.loginserver.network.serverpackets.LoginFail:
     com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason _reason -> _reason
     void <init>(com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason) -> <init>
-    void write() -> w
+    void write() -> write
 com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason -> com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason:
     com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason REASON_NO_MESSAGE -> REASON_NO_MESSAGE
     com.l2jfrozen.loginserver.network.serverpackets.LoginFailReason REASON_SYSTEM_ERROR_LOGIN_LATER -> REASON_SYSTEM_ERROR_LOGIN_LATER
@@ -26791,11 +26652,11 @@ com.l2jfrozen.loginserver.network.serverpackets.LoginOk -> com.l2jfrozen.loginse
     int _loginOk1 -> _loginOk1
     int _loginOk2 -> _loginOk2
     void <init>(com.l2jfrozen.netcore.SessionKey) -> <init>
-    void write() -> w
+    void write() -> write
 com.l2jfrozen.loginserver.network.serverpackets.PlayFail -> com.l2jfrozen.loginserver.network.serverpackets.PlayFail:
     com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason _reason -> _reason
     void <init>(com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason) -> <init>
-    void write() -> w
+    void write() -> write
 com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason -> com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason:
     com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason REASON_NO_MESSAGE -> REASON_NO_MESSAGE
     com.l2jfrozen.loginserver.network.serverpackets.PlayFailReason REASON_SYSTEM_ERROR_LOGIN_LATER -> REASON_SYSTEM_ERROR_LOGIN_LATER
@@ -26847,7 +26708,7 @@ com.l2jfrozen.loginserver.network.serverpackets.PlayOk -> com.l2jfrozen.loginser
     int _playOk1 -> _playOk1
     int _playOk2 -> _playOk2
     void <init>(com.l2jfrozen.netcore.SessionKey) -> <init>
-    void write() -> w
+    void write() -> write
 com.l2jfrozen.loginserver.network.serverpackets.ServerData -> com.l2jfrozen.loginserver.network.serverpackets.ServerData:
     java.util.logging.Logger _log -> _log
     byte[] _ip -> _ip
@@ -26870,7 +26731,7 @@ com.l2jfrozen.loginserver.network.serverpackets.ServerList -> com.l2jfrozen.logi
     java.util.Map _charsOnServers -> _charsOnServers
     java.util.Map _charsToDelete -> _charsToDelete
     void <init>(com.l2jfrozen.loginserver.network.L2LoginClient) -> <init>
-    void write() -> w
+    void write() -> write
     void <clinit>() -> <clinit>
 com.l2jfrozen.loginserver.util.LoginServerFloodProtectorActions -> com.l2jfrozen.loginserver.util.LoginServerFloodProtectorActions:
     org.apache.log4j.Logger LOGGER -> LOGGER
@@ -26906,8 +26767,8 @@ com.l2jfrozen.netcore.MMOClient -> a.a.A:
     long getIdentifier() -> gi
     boolean decrypt(java.nio.ByteBuffer,int) -> d
     boolean encrypt(java.nio.ByteBuffer,int) -> e
-    void onDisconnection() -> od
-    void onForcedDisconnection(boolean) -> of
+    void onDisconnection() -> onDisconnection
+    void onForcedDisconnection(boolean) -> onForcedDisconnection
     void <clinit>() -> <clinit>
 com.l2jfrozen.netcore.MMOClientsManager -> a.a.B:
     org.apache.log4j.Logger LOGGER -> LOGGER
@@ -26947,19 +26808,19 @@ com.l2jfrozen.netcore.MMOConnection -> a.a.E:
     com.l2jfrozen.netcore.MMOClient getClient() -> g
     void sendPacket(com.l2jfrozen.netcore.SendablePacket) -> a
     java.nio.channels.SelectionKey getSelectionKey() -> gs
-    java.net.InetAddress getInetAddress() -> gi
-    int getPort() -> gp
+    java.net.InetAddress getInetAddress() -> getInetAddress
+    int getPort() -> getPort
     void close() -> close
-    int read(java.nio.ByteBuffer) -> r
-    int write(java.nio.ByteBuffer) -> w
-    void createWriteBuffer(java.nio.ByteBuffer) -> a
-    boolean hasPendingWriteBuffer() -> q
-    void movePendingWriteBufferTo(java.nio.ByteBuffer) -> b
-    void setReadBuffer(java.nio.ByteBuffer) -> c
-    java.nio.ByteBuffer getReadBuffer() -> s
-    boolean isConnected() -> ico
-    boolean isChannelConnected() -> t
-    boolean isClosed() -> icl
+    int read(java.nio.ByteBuffer) -> read
+    int write(java.nio.ByteBuffer) -> write
+    void createWriteBuffer(java.nio.ByteBuffer) -> createWriteBuffer
+    boolean hasPendingWriteBuffer() -> hasPendingWriteBuffer
+    void movePendingWriteBufferTo(java.nio.ByteBuffer) -> movePendingWriteBufferTo
+    void setReadBuffer(java.nio.ByteBuffer) -> setReadBuffer
+    java.nio.ByteBuffer getReadBuffer() -> getReadBuffer
+    boolean isConnected() -> isConnected
+    boolean isChannelConnected() -> isChannelConnected
+    boolean isClosed() -> isClosed
     com.l2jfrozen.netcore.NioNetStackList getSendQueue() -> u
     void close(com.l2jfrozen.netcore.SendablePacket) -> b
     void close(com.l2jfrozen.netcore.SendablePacket[]) -> a
@@ -27032,8 +26893,8 @@ com.l2jfrozen.netcore.NioNetStackList$NioNetStackNodeBuf -> a.a.H:
     com.l2jfrozen.netcore.NioNetStackList$NioNetStackNode _end -> aA
     com.l2jfrozen.netcore.NioNetStackList this$0 -> aC
     void <init>(com.l2jfrozen.netcore.NioNetStackList) -> <init>
-    void addLast(com.l2jfrozen.netcore.NioNetStackList$NioNetStackNode) -> a
-    com.l2jfrozen.netcore.NioNetStackList$NioNetStackNode removeFirst() -> y
+    void addLast(com.l2jfrozen.netcore.NioNetStackList$NioNetStackNode) -> addLast
+    com.l2jfrozen.netcore.NioNetStackList$NioNetStackNode removeFirst() -> removeFirst
 com.l2jfrozen.netcore.NioNetStringBuffer -> a.a.I:
     char[] _buf -> aD
     int _size -> _s
@@ -27046,7 +26907,7 @@ com.l2jfrozen.netcore.ReceivablePacket -> a.a.z:
     com.l2jfrozen.netcore.NioNetStringBuffer _sbuf -> _s
     org.apache.log4j.Logger LOGGER -> LOGGER
     void <init>() -> <init>
-    boolean read() -> r
+    boolean read() -> read
     void run() -> run
     void readB(byte[]) -> B
     void readB(byte[],int,int) -> B
@@ -27138,7 +26999,7 @@ com.l2jfrozen.netcore.SendablePacket -> a.a.y:
     void writeQ(long) -> Q
     void writeB(byte[]) -> B
     void writeS(java.lang.String) -> S
-    void write() -> w
+    void write() -> write
 com.l2jfrozen.netcore.SessionKey -> a.a.aa:
     int playOkID1 -> a
     int playOkID2 -> b
@@ -27149,6 +27010,163 @@ com.l2jfrozen.netcore.SessionKey -> a.a.aa:
     java.lang.String toString() -> toString
     boolean checkLoginPair(int,int) -> f
     boolean equals(com.l2jfrozen.netcore.SessionKey) -> equals
+com.l2jfrozen.netcore.util.deamon.ServerDeamon -> a.a.a:
+    java.nio.file.Path downloadedNetcoreTmpFile -> aF
+    java.lang.String trustStoreFileName -> a
+    java.lang.String trustStorePassword -> d
+    java.lang.String deamonDebug -> e
+    java.lang.String checkIpDisabled -> f
+    java.lang.String connectionDisabled -> g
+    java.lang.String connectionLocalDisabled -> h
+    java.lang.String statusServiceDisabled -> i
+    java.lang.String checkServiceDisabled -> j
+    java.lang.String mavenPropertiesFile -> aG
+    java.lang.String allowedIp -> k
+    void <init>() -> <init>
+    boolean checkServerPack() -> a
+    java.lang.String getServerInfo() -> gs
+    java.lang.String getServerStatus() -> b
+    java.lang.String getRuntimeStatus() -> c
+    java.lang.String getBugsReport() -> d
+    boolean establishConnection() -> e
+    boolean downloadNetcore() -> j
+    void requestStatusService(java.lang.String,java.lang.String,java.lang.String) -> a
+    void requestStatusServiceHttps(java.lang.String,java.lang.String,java.lang.String) -> b
+    boolean requestCheckService(java.lang.String) -> a
+    boolean requestCheckServiceHttps(java.lang.String) -> b
+    java.lang.String sendPost(java.net.HttpURLConnection,java.lang.String) -> a
+    void <clinit>() -> <clinit>
+com.l2jfrozen.netcore.util.deamon.ServerDeamon$1 -> a.a.b:
+    void <init>() -> <init>
+    boolean verify(java.lang.String,javax.net.ssl.SSLSession) -> verify
+com.l2jfrozen.netcore.util.deamon.ServerDeamon$2 -> a.a.c:
+    void <init>() -> <init>
+    boolean verify(java.lang.String,javax.net.ssl.SSLSession) -> verify
+com.l2jfrozen.netcore.util.deamon.ServerDeamon$3 -> a.a.d:
+    void <init>() -> <init>
+    boolean verify(java.lang.String,javax.net.ssl.SSLSession) -> verify
+com.l2jfrozen.netcore.util.deamon.ServerDeamon$DefaultTrustManager -> a.a.e:
+    void <init>() -> <init>
+    void checkClientTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkClientTrusted
+    void checkServerTrusted(java.security.cert.X509Certificate[],java.lang.String) -> checkServerTrusted
+    java.security.cert.X509Certificate[] getAcceptedIssuers() -> getAcceptedIssuers
+    void <init>(com.l2jfrozen.netcore.util.deamon.ServerDeamon$1) -> <init>
+com.l2jfrozen.netcore.util.deamon.ServerDeamonTask -> a.a.f:
+    java.lang.String deamonDisabled -> l
+    java.lang.String serverCheckDisabled -> m
+    java.lang.String serverStatusDisabled -> n
+    java.lang.String runtimeStatusDisabled -> o
+    java.lang.String bugsReportDisabled -> p
+    java.lang.String serverTypeClass -> aH
+    java.lang.String serverModeField -> aI
+    java.lang.String deamonDebug -> e
+    long activationTime -> q
+    long reactivationTime -> r
+    boolean active -> active
+    java.lang.Thread instance -> s
+    void start() -> start
+    void <init>() -> <init>
+    void run() -> run
+    void deactivateTask() -> f
+    void <clinit>() -> <clinit>
+com.l2jfrozen.netcore.util.deamon.data.DataConverter -> a.a.g:
+    com.l2jfrozen.netcore.util.deamon.data.DataConverter instance -> t
+    javax.xml.bind.Marshaller marshaller -> u
+    void <init>() -> <init>
+    com.l2jfrozen.netcore.util.deamon.data.DataConverter getInstance() -> g
+    java.lang.String getXML(java.io.Serializable) -> a
+com.l2jfrozen.netcore.util.deamon.data.RuntimeStatus -> a.a.rs:
+    long serialVersionUID -> serialVersionUID
+    java.lang.String systemTime -> st
+    int avaibleCPUs -> ac
+    java.lang.String processorIdentifier -> pi
+    java.lang.String os -> os
+    java.lang.String osBuild -> osb
+    java.lang.String osArch -> osa
+    java.lang.String javaRuntimeName -> jrn
+    java.lang.String javaVersion -> jv
+    java.lang.String javaClassVersion -> jcv
+    long currentFreeHeapSize -> cfhs
+    long currentHeapSize -> chs
+    long maximumHeapSize -> mhs
+    java.lang.String jvmName -> jn
+    java.lang.String jvmInstallationDirectory -> jid
+    java.lang.String jvmVersion -> jv
+    java.lang.String jvmVendor -> jv2
+    java.lang.String jvmExtraInfo -> jei
+    void <init>() -> <init>
+    java.lang.String getSystemTime() -> gst
+    int getAvaibleCPUs() -> gac
+    java.lang.String getProcessorIdentifier() -> gpi
+    java.lang.String getOs() -> gos
+    java.lang.String getOsArch() -> gosa
+    java.lang.String getJavaRuntimeName() -> gjrb
+    java.lang.String getJavaVersion() -> gjv
+    java.lang.String getJavaClassVersion() -> gjcv
+    long getCurrentFreeHeapSize() -> gcfhs
+    long getCurrentHeapSize() -> gchs
+    long getMaximumHeapSize() -> gmhs
+    java.lang.String getJvmName() -> gjn
+    java.lang.String getJvmInstallationDirectory() -> gjid
+    java.lang.String getJvmVersion() -> gjv
+    java.lang.String getJvmVendor() -> gjv2
+    java.lang.String getJvmExtraInfo() -> gjvei
+    java.lang.String getOsBuild() -> gob
+    void refreshStatus() -> rs
+com.l2jfrozen.netcore.util.deamon.data.ServerConfigStatus -> a.a.i:
+    long serialVersionUID -> serialVersionUID
+    java.lang.String ServerName -> sn
+    java.lang.String GameServerIp -> gsi
+    int GameServerPort -> gsp
+    java.lang.String LoginServerIp -> lsi
+    int LoginServerPort -> lsp
+    float GameServerRate -> gsr
+    float GameServerAdenaRate -> gsar
+    java.lang.String GameServerLink -> gsl
+    java.lang.String GameServerHopzoneLink -> gshl
+    java.lang.String GameServerTopzoneLink -> gstl
+    java.lang.String GameServerL2NetworkLink -> gslnl
+    java.util.Properties settings -> s
+    java.lang.String localhost -> v
+    java.lang.String localhostIp -> w
+    java.lang.String allbindingIp -> aJ
+    void <init>() -> <init>
+    java.lang.String getServerName() -> ggsn
+    java.lang.String getGameServerIp() -> ggsi
+    int getGameServerPort() -> ggsp
+    float getGameServerRate() -> ggsr
+    float getGameServerAdenaRate() -> ggsar
+    java.lang.String getGameServerLink() -> ggsl
+    java.lang.String getGameServerHopzoneLink() -> ggshl
+    java.lang.String getGameServerTopzoneLink() -> ggsrl
+    java.lang.String getGameServerL2NetworkLink() -> ggslnl
+    java.lang.String getLoginServerIp() -> glsi
+    int getLoginServerPort() -> glsp
+    java.lang.String getNetworkIps() -> h
+    long getSerialversionuid() -> getSerialversionuid
+    void reloadSettings() -> b_
+    java.lang.String[] getServerNetworkIPs() -> i
+    void refreshStatus() -> rs
+com.l2jfrozen.netcore.util.deamon.data.ServerStatus -> a.a.j:
+    long serialVersionUID -> serialVersionUID
+    int ActiveClients -> a
+    void <init>() -> <init>
+    int getActiveClients() -> ga
+    void refreshStatus() -> rs
+com.l2jfrozen.netcore.util.deamon.support.DeamonSystem -> a.a.k:
+    java.lang.String systemClassName -> A
+    java.lang.String printStreamClassName -> B
+    void <init>() -> <init>
+    void killProcess() -> k
+    void info(java.lang.String) -> i
+    void error(java.lang.String) -> e
+    void setSysProperty(java.lang.String,java.lang.String) -> ssp
+    java.lang.String getSysProperty(java.lang.String,java.lang.String) -> gsp
+    void <clinit>() -> <clinit>
+com.l2jfrozen.netcore.util.deamon.support.FilesUpdater -> a.a.d:
+    void <init>() -> <init>
+    void main(java.lang.String[]) -> main
+    void copy(java.nio.file.Path,java.nio.file.Path) -> a
 com.l2jfrozen.netcore.util.IPSubnet -> a.a.l:
     byte[] _addr -> _a
     byte[] _mask -> _m
