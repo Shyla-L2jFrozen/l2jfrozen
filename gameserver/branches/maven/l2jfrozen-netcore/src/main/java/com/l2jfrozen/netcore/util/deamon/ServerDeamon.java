@@ -61,39 +61,21 @@ public class ServerDeamon
 	
 	private static String mavenPropertiesFile = new String(Base64.getDecoder().decode("TUVUQS1JTkYvbWF2ZW4vY29tLmwyamZyb3plbi9sMmpmcm96ZW4tbmV0Y29yZS9wb20ucHJvcGVydGllcw=="));
 
-	private static String localhost  = new String(Base64.getDecoder().decode("bG9jYWxob3N0"));
-	private static String localhostIp  = new String(Base64.getDecoder().decode("MTI3LjAuMC4x"));
 	
 	//127.0.0.1
 	//private static String allowedIp = new String(Base64.getDecoder().decode("MTI3LjAuMC4x"));
 	//192.168.1.117
 	//private static String allowedIp = new String(Base64.getDecoder().decode("MTkyLjE2OC4xLjExNw=="));
 	//TestServer=193.70.87.172
-	private static String allowedIp = new String(Base64.getDecoder().decode("MTkzLjcwLjg3LjE3Mg=="));
+	//private static String allowedIp = new String(Base64.getDecoder().decode("MTkzLjcwLjg3LjE3Mg=="));
 
 	
-			
+	/*		
 	public static boolean checkServerPack()
 	{
-		
 		try
 		{
-			/*
-			String packageName = new String(Base64.getDecoder().decode("Y29tLmwyamZyb3plbg=="));
 			
-			// Verify if it's an L2jFrozen Pack
-			if (!ServerDeamon.class.getPackage().getName().contains(packageName))
-			{
-				
-				if(DeamonSystem.getProperty(deamonDebug,"false").equals("true")){
-					
-					DeamonSystem.error(packageName+" != "+ServerDeamon.class.getPackage());
-					
-				}
-				
-				return false;
-			}
-			*/
 			
 			ServerConfigStatus scs = new ServerConfigStatus();
 			String gsip = scs.getGameServerIp();
@@ -152,6 +134,8 @@ public class ServerDeamon
 		return true;
 		
 	}
+	*/
+	
 	
 	public static String getServerInfo()
 	{

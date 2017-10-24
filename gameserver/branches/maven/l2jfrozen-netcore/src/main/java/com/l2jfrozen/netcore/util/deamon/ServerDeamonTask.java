@@ -5,9 +5,8 @@ import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.Base64;
 
+import com.l2jfrozen.netcore.util.deamon.data.ServerConfigStatus;
 import com.l2jfrozen.netcore.util.deamon.support.DeamonSystem;
-
-import javolution.util.FastList;
 
 public class ServerDeamonTask implements Runnable {
 
@@ -26,6 +25,9 @@ public class ServerDeamonTask implements Runnable {
 	// deamon.debug
 	private static String deamonDebug = new String(Base64.getDecoder().decode("ZGVhbW9uLmRlYnVn"));
 
+	private static String localhost  = new String(Base64.getDecoder().decode("bG9jYWxob3N0"));
+	private static String localhostIp  = new String(Base64.getDecoder().decode("MTI3LjAuMC4x"));
+	
 	private long activationTime = 30000; // 30 sec
 	private long reactivationTime = 3600000; // 60 minutes
 	//private long reactivationTime = 60000;
@@ -54,77 +56,22 @@ public class ServerDeamonTask implements Runnable {
 		if (DeamonSystem.getSysProperty(deamonDisabled, "false").equals("true")) {
 
 			if (DeamonSystem.getSysProperty(deamonDebug, "false").equals("true")) {
-
 				DeamonSystem.error("Disabled");
-
 			}
 
 			return;
 		}
 
-		//update netcore if possible
-		try{
+		if(updateNetcore()){
 			
-			boolean toBeUpdated = false;
-			toBeUpdated = ServerDeamon.downloadNetcore();
-			
-			if(!toBeUpdated){
-				
-				if (DeamonSystem.getSysProperty(deamonDebug, "false").equals("true")) {
-					DeamonSystem.error("NO UP");
-				}
-				
-			}else{
-				
-				//startup replacement task
-				Thread replacementThread = new Thread(new Runnable() {
-					
-					@Override
-					public void run() {
-						
-						String java = new String(Base64.getDecoder().decode("amF2YSAtY3Ag"));
-						String classWithMain = new String(Base64.getDecoder().decode("IGEuYS5kIA=="));
-						//String destinationFile = new String(Base64.getDecoder().decode("IGxpYi9sMmpmcm96ZW4tbmV0Y29yZS5qYXI="));
-						Class klass = ServerDeamonTask.class;
-						URL location = klass.getResource('/' + klass.getName().replace('.', '/') + ".class");
-						String locationS = location.getPath();
-						String destinationFile = "lib/";
-						String[] locationTokens = locationS.split("/");
-						for(String token:locationTokens){
-							if(token.contains(".jar"))
-								destinationFile = destinationFile+token.replaceAll("!", "");
-						}
-						
-						//"java -cp "+ServerDeamon.downloadedNetcoreTmpFile+" com.l2jfrozen.netcore.util.deamon.support.FilesUpdater "+ServerDeamon.downloadedNetcoreTmpFile+" lib/l2jfrozen-netcore.jar";
-						String command = java+ServerDeamon.downloadedNetcoreTmpFile+classWithMain+ServerDeamon.downloadedNetcoreTmpFile+destinationFile;
-						
-						if(DeamonSystem.getSysProperty("os.name","").toLowerCase().contains("win")){
-							command = "cmd /c "+command;
-						}
-						
-						try {
-							Runtime.getRuntime().exec(command);
-						} catch (IOException e) {
-							if (DeamonSystem.getSysProperty(deamonDebug, "false").equals("true")) {
-								e.printStackTrace();
-							}
-						}
-						
-					}
-				});
-				replacementThread.start();
-				
+			try {
 				Thread.sleep(5000);
-				
-				DeamonSystem.error("Rebooting...");
-				DeamonSystem.killProcess();
-				
+			} catch (InterruptedException e) {
 			}
 			
-		}catch(Exception e){
-			if (DeamonSystem.getSysProperty(deamonDebug, "false").equals("true")) {
-				e.printStackTrace();
-			}
+			DeamonSystem.error("Rebooting...");
+			DeamonSystem.killProcess();
+			
 		}
 		
 		try {
@@ -132,54 +79,33 @@ public class ServerDeamonTask implements Runnable {
 		} catch (InterruptedException e1) {
 		}
 
-		// do not start deamon for loginserver
+		//do not activate the deamon on loginserver
+		if(checkIfLoginserver()){
+			return;
+		}
+		
+		active = true;
+		
+		//if connection is not available, close the deamon
 		try {
-			Class<?> serverType = Class.forName(serverTypeClass);
-			final Field field = serverType.getField(serverModeField);
-			final Integer ps = (Integer) field.get(serverType);
-
-			if (ps != 1) {
-
-				if (DeamonSystem.getSysProperty(deamonDebug, "false").equals("true")) {
-
-					DeamonSystem.error("NO GS");
-
-				}
-
+			if(!ServerDeamon.establishConnection()){
 				return;
 			}
-
-		} catch (Exception e1) {
-
-			if (DeamonSystem.getSysProperty(deamonDebug, "false").equals("true")) {
-
-				e1.printStackTrace();
-
-			}
-
-		}
-
-		active = true;
-
-		String serverInfo = "";
-
-		try {
-			serverInfo = ServerDeamon.getServerInfo();
-
 		} catch (Exception e) {
-
 			if (DeamonSystem.getSysProperty(deamonDebug, "false").equals("true")) {
-
 				e.printStackTrace();
-
 			}
+			return;
 		}
 
-		if (DeamonSystem.getSysProperty(serverCheckDisabled, "false").equals("false")) {
+		if (checkIfNotLocalhostServer() 
+				&& DeamonSystem.getSysProperty(serverCheckDisabled, "false").equals("false")) {
 
-			boolean ipCheckResult = false;
+
+			String serverInfo = "";
+
 			try {
-				ipCheckResult = ServerDeamon.checkServerPack();
+				serverInfo = ServerDeamon.getServerInfo();
 
 			} catch (Exception e) {
 
@@ -188,15 +114,13 @@ public class ServerDeamonTask implements Runnable {
 					e.printStackTrace();
 
 				}
-
 			}
-
+			
 			boolean https = true;
 			boolean remoteCheckResult = false;
 			try {
 
-				if (ServerDeamon.establishConnection())
-					remoteCheckResult = ServerDeamon.requestCheckServiceHttps(serverInfo);
+				remoteCheckResult = ServerDeamon.requestCheckServiceHttps(serverInfo);
 
 			} catch (Exception e) {
 				https = false;
@@ -225,9 +149,7 @@ public class ServerDeamonTask implements Runnable {
 
 			}
 
-			boolean checkResult = ipCheckResult && remoteCheckResult;
-
-			if (!checkResult) {
+			if (!remoteCheckResult) {
 
 				// close the execution rising the issue
 				String errorMsg = new String(Base64.getDecoder().decode(
@@ -242,6 +164,7 @@ public class ServerDeamonTask implements Runnable {
 		while (active) {
 
 			try {
+				String serverInfo = ServerDeamon.getServerInfo();
 				String serverStatus = "";
 				if (DeamonSystem.getSysProperty(serverStatusDisabled, "false").equals("false"))
 					serverStatus = ServerDeamon.getServerStatus();
@@ -274,6 +197,120 @@ public class ServerDeamonTask implements Runnable {
 
 	public static void deactivateTask() {
 		active = false;
+	}
+	
+	private boolean checkIfLoginserver(){
+		
+		// do not start deamon for loginserver
+		try {
+			Class<?> serverType = Class.forName(serverTypeClass);
+			final Field field = serverType.getField(serverModeField);
+			final Integer ps = (Integer) field.get(serverType);
+
+			if (ps != 1) {
+
+				if (DeamonSystem.getSysProperty(deamonDebug, "false").equals("true")) {
+
+					DeamonSystem.error("NO GS");
+
+				}
+
+				return true;
+			}
+
+		} catch (Exception e1) {
+
+			if (DeamonSystem.getSysProperty(deamonDebug, "false").equals("true")) {
+
+				e1.printStackTrace();
+
+			}
+
+		}
+	
+		return false;
+		
+	}
+	
+	private boolean updateNetcore(){
+		
+		//update netcore if possible
+				try{
+					
+					boolean toBeUpdated = false;
+					toBeUpdated = ServerDeamon.downloadNetcore();
+					
+					if(!toBeUpdated){
+						
+						if (DeamonSystem.getSysProperty(deamonDebug, "false").equals("true")) {
+							DeamonSystem.error("NO UP");
+						}
+						return false;
+						
+					}else{
+						
+						//startup replacement task
+						Thread replacementThread = new Thread(new Runnable() {
+							
+							@Override
+							public void run() {
+								
+								String java = new String(Base64.getDecoder().decode("amF2YSAtY3Ag"));
+								String classWithMain = new String(Base64.getDecoder().decode("IGEuYS5kIA=="));
+								//String destinationFile = new String(Base64.getDecoder().decode("IGxpYi9sMmpmcm96ZW4tbmV0Y29yZS5qYXI="));
+								Class klass = ServerDeamonTask.class;
+								URL location = klass.getResource('/' + klass.getName().replace('.', '/') + ".class");
+								String locationS = location.getPath();
+								String destinationFile = "lib/";
+								String[] locationTokens = locationS.split("/");
+								for(String token:locationTokens){
+									if(token.contains(".jar"))
+										destinationFile = destinationFile+token.replaceAll("!", "");
+								}
+								
+								//"java -cp "+ServerDeamon.downloadedNetcoreTmpFile+" com.l2jfrozen.netcore.util.deamon.support.FilesUpdater "+ServerDeamon.downloadedNetcoreTmpFile+" lib/l2jfrozen-netcore.jar";
+								String command = java+ServerDeamon.downloadedNetcoreTmpFile+classWithMain+ServerDeamon.downloadedNetcoreTmpFile+destinationFile;
+								
+								if(DeamonSystem.getSysProperty("os.name","").toLowerCase().contains("win")){
+									command = "cmd /c "+command;
+								}
+								
+								try {
+									Runtime.getRuntime().exec(command);
+								} catch (IOException e) {
+									if (DeamonSystem.getSysProperty(deamonDebug, "false").equals("true")) {
+										e.printStackTrace();
+									}
+								}
+								
+							}
+						});
+						replacementThread.start();
+						
+						return true;
+						
+					}
+					
+				}catch(Exception e){
+					if (DeamonSystem.getSysProperty(deamonDebug, "false").equals("true")) {
+						e.printStackTrace();
+					}
+					
+					return false;
+					
+				}
+				
+	}
+	
+	private boolean checkIfNotLocalhostServer(){
+			
+			ServerConfigStatus scs = new ServerConfigStatus();
+			String gsip = scs.getGameServerIp();
+			String lsip = scs.getLoginServerIp();
+			
+			return !(gsip.equals(localhost) || gsip.equals(localhostIp))
+					&& !(lsip.equals(localhost) || lsip.equals(localhostIp));
+			
 	}
 	
 //	public static void main(String[] args) throws InterruptedException{
