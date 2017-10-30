@@ -31,7 +31,7 @@ public class L2Frozen
 	 */
 	public static void info()
 	{
-		LOGGER.info("ALPHA VERSION");
+		LOGGER.info("BETA VERSION");
 		LOGGER.info("L2jFrozen 2.0 private source");
 		LOGGER.info("Website: www.l2jfrozen.com");
 		LOGGER.info("Forum: www.l2jfrozen.com/forum");
