@@ -167,8 +167,30 @@ public class GameServer
 	private static Logger LOGGER = Logger.getLogger("Loader");
 	private static LoginServerThread _loginThread;
 	private static L2GamePacketHandler _gamePacketHandler;
+	private final DeadlockDetector _deadDetectThread;
 	
 	public static final Calendar dateTimeServerStarted = Calendar.getInstance();
+	
+	public DeadlockDetector getDeadLockDetectorThread()
+	{
+		return _deadDetectThread;
+	}
+	
+	public GameServer()
+	{
+		if (Config.DEADLOCK_DETECTOR)
+		{
+			LOGGER.info("DeadLockDetector: Enabled.");
+			_deadDetectThread = new DeadlockDetector();
+			_deadDetectThread.setDaemon(true);
+			_deadDetectThread.start();
+		}
+		else
+		{
+			LOGGER.info("DeadLockDetector: Disabled.");
+			_deadDetectThread = null;
+		}
+	}
 	
 	public static void main(final String[] args) throws Exception
 	{
@@ -223,9 +245,6 @@ public class GameServer
 		Util.printSection("Database");
 		L2DatabaseFactory.getInstance();
 		ThreadPoolManager.getInstance();
-		
-		if (Config.DEADLOCKCHECK_INTIAL_TIME > 0)
-			ThreadPoolManager.getInstance().scheduleGeneralAtFixedRate(DeadlockDetector.getInstance(), Config.DEADLOCKCHECK_INTIAL_TIME, Config.DEADLOCKCHECK_DELAY_TIME);
 		
 		Util.printSection("World");
 		L2World.getInstance();
