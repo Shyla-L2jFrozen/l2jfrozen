@@ -3391,32 +3391,6 @@ public final class Config
 	}
 	
 	// ============================================================
-	public static String USER;
-	public static int KEY;
-	
-	// ============================================================
-	public static void loadKeyOptions()
-	{
-		final String KEYF = FService.PROTECT_KEY_FILE;
-		
-		try
-		{
-			final Properties keySetting = new Properties();
-			final InputStream is = new FileInputStream(new File(KEYF));
-			keySetting.load(is);
-			is.close();
-			
-			USER = keySetting.getProperty("User", "test");
-			KEY = Integer.parseInt(keySetting.getProperty("Key", "123456789"));
-		}
-		catch (final Exception e)
-		{
-			e.printStackTrace();
-			throw new Error("Failed to Load " + KEYF + " File.");
-		}
-	}
-	
-	// ============================================================
 	public static int BLOW_ATTACK_FRONT;
 	public static int BLOW_ATTACK_SIDE;
 	public static int BLOW_ATTACK_BEHIND;
