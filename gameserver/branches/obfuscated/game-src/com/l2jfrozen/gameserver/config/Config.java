@@ -33,7 +33,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Random;
 
 import org.apache.log4j.Logger;
 
@@ -50,6 +49,8 @@ import javolution.util.FastMap;
 public final class Config
 {
 	private static final Logger LOGGER = Logger.getLogger(Config.class);
+	
+	public static final String EOL = System.lineSeparator();
 	
 	// ============================================================
 	public static boolean EVERYBODY_HAS_ADMIN_RIGHTS;
@@ -330,24 +331,16 @@ public final class Config
 	// public static int DATABASE_CONNECTION_TIMEOUT;
 	// public static int DATABASE_PARTITION_COUNT;
 	public static boolean RESERVE_HOST_ON_LOGIN = false;
-	public static boolean RWHO_LOG;
-	public static int RWHO_FORCE_INC;
-	public static int RWHO_KEEP_STAT;
-	public static int RWHO_MAX_ONLINE;
-	public static boolean RWHO_SEND_TRASH;
-	public static int RWHO_ONLINE_INCREMENT;
-	public static float RWHO_PRIV_STORE_FACTOR;
-	public static int RWHO_ARRAY[] = new int[13];
 	public static File DATAPACK_ROOT;
 	
-//	public static String INTERNAL_HOSTNAME;
-//	public static String EXTERNAL_HOSTNAME;
+	// public static String INTERNAL_HOSTNAME;
+	// public static String EXTERNAL_HOSTNAME;
 	public static int GAME_SERVER_LOGIN_PORT;
 	public static String GAME_SERVER_LOGIN_HOST;
 	
 	public static int SERVER_LIST_TYPE;
 	public static int SERVER_LIST_AGE;
-
+	
 	public static List<String> GAME_SERVER_SUBNETS;
 	public static List<String> GAME_SERVER_HOSTS;
 	
@@ -369,10 +362,10 @@ public final class Config
 			IPConfigData ipcd = new IPConfigData(FService.IP_CONFIG);
 			GAME_SERVER_SUBNETS = ipcd.getSubnets();
 			GAME_SERVER_HOSTS = ipcd.getHosts();
-						
-//			EXTERNAL_HOSTNAME = serverSettings.getProperty("ExternalHostname", "*");
-//			INTERNAL_HOSTNAME = serverSettings.getProperty("InternalHostname", "*");
-//			
+			
+			// EXTERNAL_HOSTNAME = serverSettings.getProperty("ExternalHostname", "*");
+			// INTERNAL_HOSTNAME = serverSettings.getProperty("InternalHostname", "*");
+			//
 			GAME_SERVER_LOGIN_PORT = Integer.parseInt(serverSettings.getProperty("LoginPort", "9014"));
 			GAME_SERVER_LOGIN_HOST = serverSettings.getProperty("LoginHost", "127.0.0.1");
 			
@@ -398,37 +391,6 @@ public final class Config
 			
 			SERVER_LIST_TYPE = getServerTypeId(serverSettings.getProperty("ServerListType", "Normal").split(","));
 			SERVER_LIST_AGE = Integer.parseInt(serverSettings.getProperty("ServerListAge", "0"));
-			
-			final Random ppc = new Random();
-			int z = ppc.nextInt(6);
-			if (z == 0)
-			{
-				z += 2;
-			}
-			for (int x = 0; x < 8; x++)
-			{
-				if (x == 4)
-				{
-					RWHO_ARRAY[x] = 44;
-				}
-				else
-				{
-					RWHO_ARRAY[x] = 51 + ppc.nextInt(z);
-				}
-			}
-			RWHO_ARRAY[11] = 37265 + ppc.nextInt(z * 2 + 3);
-			RWHO_ARRAY[8] = 51 + ppc.nextInt(z);
-			z = 36224 + ppc.nextInt(z * 2);
-			RWHO_ARRAY[9] = z;
-			RWHO_ARRAY[10] = z;
-			RWHO_ARRAY[12] = 1;
-			RWHO_LOG = Boolean.parseBoolean(serverSettings.getProperty("RemoteWhoLog", "False"));
-			RWHO_SEND_TRASH = Boolean.parseBoolean(serverSettings.getProperty("RemoteWhoSendTrash", "False"));
-			RWHO_MAX_ONLINE = Integer.parseInt(serverSettings.getProperty("RemoteWhoMaxOnline", "0"));
-			RWHO_KEEP_STAT = Integer.parseInt(serverSettings.getProperty("RemoteOnlineKeepStat", "5"));
-			RWHO_ONLINE_INCREMENT = Integer.parseInt(serverSettings.getProperty("RemoteOnlineIncrement", "0"));
-			RWHO_PRIV_STORE_FACTOR = Float.parseFloat(serverSettings.getProperty("RemotePrivStoreFactor", "0"));
-			RWHO_FORCE_INC = Integer.parseInt(serverSettings.getProperty("RemoteWhoForceInc", "0"));
 		}
 		catch (final Exception e)
 		{
@@ -3429,32 +3391,6 @@ public final class Config
 	}
 	
 	// ============================================================
-	public static String USER;
-	public static int KEY;
-	
-	// ============================================================
-	public static void loadKeyOptions()
-	{
-		final String KEYF = FService.PROTECT_KEY_FILE;
-		
-		try
-		{
-			final Properties keySetting = new Properties();
-			final InputStream is = new FileInputStream(new File(KEYF));
-			keySetting.load(is);
-			is.close();
-			
-			USER = keySetting.getProperty("User", "test");
-			KEY = Integer.parseInt(keySetting.getProperty("Key", "123456789"));
-		}
-		catch (final Exception e)
-		{
-			e.printStackTrace();
-			throw new Error("Failed to Load " + KEYF + " File.");
-		}
-	}
-	
-	// ============================================================
 	public static int BLOW_ATTACK_FRONT;
 	public static int BLOW_ATTACK_SIDE;
 	public static int BLOW_ATTACK_BEHIND;
@@ -4037,8 +3973,8 @@ public final class Config
 	public static long CLEANDB_INITIAL_TIME;
 	public static long CLEANDB_DELAY_TIME;
 	public static long CHECK_TELEPORT_ZOMBIE_DELAY_TIME;
-	public static long DEADLOCKCHECK_INTIAL_TIME;
-	public static long DEADLOCKCHECK_DELAY_TIME;
+	public static boolean DEADLOCK_DETECTOR;
+	public static long DEADLOCK_CHECK_INTERVAL;
 	public static boolean AUTOSAVEMANAGER_LOG;
 	
 	// ============================================================
@@ -4059,8 +3995,8 @@ public final class Config
 			CLEANDB_INITIAL_TIME = Long.parseLong(p.getProperty("CleanDBInitial", "300000"));
 			CLEANDB_DELAY_TIME = Long.parseLong(p.getProperty("CleanDBDelay", "900000"));
 			CHECK_TELEPORT_ZOMBIE_DELAY_TIME = Long.parseLong(p.getProperty("CheckTeleportZombiesDelay", "90000"));
-			DEADLOCKCHECK_INTIAL_TIME = Long.parseLong(p.getProperty("DeadLockCheck", "0"));
-			DEADLOCKCHECK_DELAY_TIME = Long.parseLong(p.getProperty("DeadLockDelay", "0"));
+			DEADLOCK_DETECTOR = Boolean.parseBoolean(p.getProperty("DeadLockDetector", "True"));
+			DEADLOCK_CHECK_INTERVAL = Long.parseLong(p.getProperty("DeadlockCheckInterval", "20"));
 		}
 		catch (final Exception e)
 		{
@@ -4355,7 +4291,6 @@ public final class Config
 			loadPowerPak();
 			
 			// Other
-			loadKeyOptions();
 			loadDPVersionConfig();
 			loadServerVersionConfig();
 			// loadExtendersConfig();
