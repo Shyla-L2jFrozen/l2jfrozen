@@ -4291,7 +4291,6 @@ public final class Config
 			loadPowerPak();
 			
 			// Other
-			loadKeyOptions();
 			loadDPVersionConfig();
 			loadServerVersionConfig();
 			// loadExtendersConfig();
