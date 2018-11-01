@@ -201,13 +201,14 @@ public class L2DoorAI extends L2CharacterAI
 		{
 			_door.getKnownList().updateKnownObjects();
 			
-			for (final L2SiegeGuardInstance guard : _door.getKnownSiegeGuards())
-			{
-				if (guard != null && guard.getAI() != null && _actor.isInsideRadius(guard, guard.getFactionRange(), false, true) && Math.abs(_attacker.getZ() - guard.getZ()) < 200)
+			if (_door.getKnownSiegeGuards() != null && _door != null)
+				for (final L2SiegeGuardInstance guard : _door.getKnownSiegeGuards())
 				{
-					guard.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, _attacker, 15);
+					if (guard != null && guard.getAI() != null && _actor.isInsideRadius(guard, guard.getFactionRange(), false, true) && Math.abs(_attacker.getZ() - guard.getZ()) < 200)
+					{
+						guard.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, _attacker, 15);
+					}
 				}
-			}
 			for (final L2FortSiegeGuardInstance guard : _door.getKnownFortSiegeGuards())
 			{
 				if (guard != null && guard.getAI() != null && _actor.isInsideRadius(guard, guard.getFactionRange(), false, true) && Math.abs(_attacker.getZ() - guard.getZ()) < 200)
