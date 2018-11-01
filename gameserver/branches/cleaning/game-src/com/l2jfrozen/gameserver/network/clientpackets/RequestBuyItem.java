@@ -54,6 +54,8 @@ public final class RequestBuyItem extends L2GameClientPacket
 {
 	private static Logger LOGGER = Logger.getLogger(RequestBuyItem.class);
 	
+	private static final int BATCH_LENGTH = 8; // length of the one item
+	
 	private int _listId;
 	private int _count;
 	private int[] _items; // count*2
@@ -63,6 +65,15 @@ public final class RequestBuyItem extends L2GameClientPacket
 	{
 		_listId = readD();
 		_count = readD();
+		
+		if (_count <= 0 || _count > Config.MAX_ITEM_IN_PACKET || _count * BATCH_LENGTH != _buf.remaining())
+		{
+			if (Config.DEVELOPER)
+				LOGGER.warn("Problem with packet RequestBuyItem.");
+			
+			return;
+		}
+		
 		// count*8 is the size of a for iteration of each item
 		if (_count * 2 < 0 || _count > Config.MAX_ITEM_IN_PACKET || _count * 8 > _buf.remaining())
 		{
@@ -76,9 +87,9 @@ public final class RequestBuyItem extends L2GameClientPacket
 			_items[i * 2 + 0] = itemId;
 			final long cnt = readD();
 			
-			if (cnt > Integer.MAX_VALUE || cnt < 0)
+			if (itemId < 1 || cnt > Integer.MAX_VALUE || cnt < 0)
 			{
-				_count = 0;
+				// _count = 0; not like l2off
 				_items = null;
 				return;
 			}
@@ -334,6 +345,9 @@ public final class RequestBuyItem extends L2GameClientPacket
 		// Proceed the purchase
 		for (int i = 0; i < _count; i++)
 		{
+			if (_items == null)
+				continue;
+			
 			final int itemId = _items[i * 2 + 0];
 			int count = _items[i * 2 + 1];
 			
