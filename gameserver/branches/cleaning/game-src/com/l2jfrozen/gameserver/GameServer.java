@@ -167,29 +167,13 @@ public class GameServer
 	private static Logger LOGGER = Logger.getLogger("Loader");
 	private static LoginServerThread _loginThread;
 	private static L2GamePacketHandler _gamePacketHandler;
-	private final DeadlockDetector _deadDetectThread;
+	private static DeadlockDetector _deadDetectThread;
 	
 	public static final Calendar dateTimeServerStarted = Calendar.getInstance();
 	
 	public DeadlockDetector getDeadLockDetectorThread()
 	{
 		return _deadDetectThread;
-	}
-	
-	public GameServer()
-	{
-		if (CommonConfig.DEADLOCK_DETECTOR)
-		{
-			LOGGER.info("DeadLockDetector: Enabled.");
-			_deadDetectThread = new DeadlockDetector();
-			_deadDetectThread.setDaemon(true);
-			_deadDetectThread.start();
-		}
-		else
-		{
-			LOGGER.info("DeadLockDetector: Disabled.");
-			_deadDetectThread = null;
-		}
 	}
 	
 	public static void main(final String[] args) throws Exception
@@ -238,6 +222,19 @@ public class GameServer
 		NetcoreConfig.getInstance();
 		CommonConfig.load();
 		Config.load();
+		
+		if (CommonConfig.DEADLOCK_DETECTOR)
+		{
+			LOGGER.info("DeadLockDetector: Enabled.");
+			_deadDetectThread = new DeadlockDetector();
+			_deadDetectThread.setDaemon(true);
+			_deadDetectThread.start();
+		}
+		else
+		{
+			LOGGER.info("DeadLockDetector: Disabled.");
+			_deadDetectThread = null;
+		}
 		
 		// Packets Flood Instance
 		PacketsFloodProtector.setProtectedServer(new GameServerFloodProtectorActions());
