@@ -28,6 +28,7 @@ public class CommonConfig
 {
 	
 	private static final Logger LOGGER = Logger.getLogger(CommonConfig.class);
+	public static final String EOL = System.lineSeparator();
 	
 	public static boolean ENABLE_ALL_EXCEPTIONS;
 	public static boolean ASSERT;
@@ -52,6 +53,10 @@ public class CommonConfig
 	public static long DATABASE_CONNECTION_TIMEOUT;
 	public static long DATABASE_TIMEOUT;
 	public static int DATABASE_MAX_IDLE_TIME;
+	
+	// deadlock
+	public static boolean DEADLOCK_DETECTOR;
+	public static long DEADLOCK_CHECK_INTERVAL;
 	
 	// load statically the configuration files
 	static
@@ -96,6 +101,9 @@ public class CommonConfig
 			IO_PACKET_THREAD_CORE_SIZE = Integer.parseInt(serverSettings.getProperty("UrgentPacketThreadCoreSize", "2"));
 			AI_MAX_THREAD = Integer.parseInt(serverSettings.getProperty("AiMaxThread", "10"));
 			GENERAL_THREAD_CORE_SIZE = Integer.parseInt(serverSettings.getProperty("GeneralThreadCoreSize", "4"));
+			
+			DEADLOCK_DETECTOR = Boolean.parseBoolean(serverSettings.getProperty("DeadLockDetector", "True"));
+			DEADLOCK_CHECK_INTERVAL = Long.parseLong(serverSettings.getProperty("DeadlockCheckInterval", "20"));
 			
 		}
 		catch (final Exception e)

@@ -3973,8 +3973,6 @@ public final class Config
 	public static long CLEANDB_INITIAL_TIME;
 	public static long CLEANDB_DELAY_TIME;
 	public static long CHECK_TELEPORT_ZOMBIE_DELAY_TIME;
-	public static boolean DEADLOCK_DETECTOR;
-	public static long DEADLOCK_CHECK_INTERVAL;
 	public static boolean AUTOSAVEMANAGER_LOG;
 	
 	// ============================================================
@@ -3995,8 +3993,6 @@ public final class Config
 			CLEANDB_INITIAL_TIME = Long.parseLong(p.getProperty("CleanDBInitial", "300000"));
 			CLEANDB_DELAY_TIME = Long.parseLong(p.getProperty("CleanDBDelay", "900000"));
 			CHECK_TELEPORT_ZOMBIE_DELAY_TIME = Long.parseLong(p.getProperty("CheckTeleportZombiesDelay", "90000"));
-			DEADLOCK_DETECTOR = Boolean.parseBoolean(p.getProperty("DeadLockDetector", "True"));
-			DEADLOCK_CHECK_INTERVAL = Long.parseLong(p.getProperty("DeadlockCheckInterval", "20"));
 		}
 		catch (final Exception e)
 		{
