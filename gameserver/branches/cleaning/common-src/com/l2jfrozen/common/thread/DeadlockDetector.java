@@ -26,7 +26,7 @@ import java.lang.management.ThreadMXBean;
 
 import org.apache.log4j.Logger;
 
-import com.l2jfrozen.gameserver.config.Config;
+import com.l2jfrozen.common.CommonConfig;
 
 /**
  * Thread to check for deadlocked threads.
@@ -37,7 +37,7 @@ public final class DeadlockDetector extends Thread
 	protected static final Logger _log = Logger.getLogger(DeadlockDetector.class);
 	
 	/** Interval to check for deadlocked threads */
-	private static final int _sleepTime = (int) (Config.DEADLOCK_CHECK_INTERVAL * 1000);
+	private static final int _sleepTime = (int) (CommonConfig.DEADLOCK_CHECK_INTERVAL * 1000);
 	
 	private final ThreadMXBean tmx;
 	
@@ -62,7 +62,7 @@ public final class DeadlockDetector extends Thread
 					ThreadInfo[] tis = tmx.getThreadInfo(ids, true, true);
 					StringBuilder info = new StringBuilder();
 					info.append("DeadLock Found!");
-					info.append(Config.EOL);
+					info.append(CommonConfig.EOL);
 					for (ThreadInfo ti : tis)
 					{
 						info.append(ti.toString());
@@ -79,14 +79,14 @@ public final class DeadlockDetector extends Thread
 						
 						ThreadInfo dl = ti;
 						info.append("Java-level deadlock:");
-						info.append(Config.EOL);
+						info.append(CommonConfig.EOL);
 						info.append('\t');
 						info.append(dl.getThreadName());
 						info.append(" is waiting to lock ");
 						info.append(dl.getLockInfo().toString());
 						info.append(" which is held by ");
 						info.append(dl.getLockOwnerName());
-						info.append(Config.EOL);
+						info.append(CommonConfig.EOL);
 						while ((dl = tmx.getThreadInfo(new long[]
 						{
 							dl.getLockOwnerId()
@@ -98,7 +98,7 @@ public final class DeadlockDetector extends Thread
 							info.append(dl.getLockInfo().toString());
 							info.append(" which is held by ");
 							info.append(dl.getLockOwnerName());
-							info.append(Config.EOL);
+							info.append(CommonConfig.EOL);
 						}
 					}
 					_log.warn(info.toString());

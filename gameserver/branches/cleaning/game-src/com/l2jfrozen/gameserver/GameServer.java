@@ -178,7 +178,7 @@ public class GameServer
 	
 	public GameServer()
 	{
-		if (Config.DEADLOCK_DETECTOR)
+		if (CommonConfig.DEADLOCK_DETECTOR)
 		{
 			LOGGER.info("DeadLockDetector: Enabled.");
 			_deadDetectThread = new DeadlockDetector();
