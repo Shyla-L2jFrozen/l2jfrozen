@@ -81,7 +81,10 @@ public abstract class L2GameClientPacket extends ReceivablePacket<L2GameClient>
 		}
 		catch (final Throwable t)
 		{
-			LOGGER.error("Client: " + getClient().toString() + " - Failed reading: " + getType() + " ; " + t.getMessage(), t);
+			String client = getClient() != null? getClient().toString() : "null";
+			String getType = getType() != null? getType() : "null";
+
+			LOGGER.error("Client: " + client + " - Failed reading: " + getType + " ; " + t.getMessage(), t);
 			t.printStackTrace();
 			
 			if (this instanceof EnterWorld)

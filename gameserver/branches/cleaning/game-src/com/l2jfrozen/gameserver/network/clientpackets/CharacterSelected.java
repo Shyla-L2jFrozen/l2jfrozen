@@ -81,9 +81,16 @@ public class CharacterSelected extends L2GameClientPacket
 					}
 					
 					cha.setClient(getClient());
-					getClient().setActiveChar(cha);
-					getClient().setState(GameClientState.IN_GAME);
-					sendPacket(new CharSelected(cha, getClient().getSessionId().playOkID1));
+					
+					if(getClient() != null) 
+					{		
+						String Char = cha != null ? cha.getName() : "";
+						LOGGER.warn("Char: "+Char+" on CharacterSelected trying to log in with client offline!");
+						getClient().setActiveChar(cha);
+						getClient().setState(GameClientState.IN_GAME);
+						sendPacket(new CharSelected(cha, getClient().getSessionId().playOkID1));				
+					}
+
 				}
 			}
 			catch (final Exception e)
