@@ -161,6 +161,7 @@ public class AdminSpawn implements IAdminCommandHandler
 			{
 				String cmd = st.nextToken();
 				String id = st.nextToken();
+				
 				int mobCount = 1;
 				int respawnTime = 10;
 				if (st.hasMoreTokens())
@@ -180,6 +181,11 @@ public class AdminSpawn implements IAdminCommandHandler
 			{ // Case of wrong or missing monster data
 				if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 					e.printStackTrace();
+				
+				activeChar.sendMessage("Attention, wrong Command");
+				activeChar.sendMessage("//spawn name numberSpawn respawnTime");
+				activeChar.sendMessage("//spawn name - the respawnTime will be 10 seconds");
+
 				
 				AdminHelpPage.showHelpPage(activeChar, "spawns.htm");
 			}
