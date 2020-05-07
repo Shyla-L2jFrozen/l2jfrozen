@@ -33,6 +33,7 @@ import com.l2jfrozen.gameserver.model.entity.sevensigns.SevenSigns;
 import com.l2jfrozen.gameserver.model.spawn.AutoSpawn;
 import com.l2jfrozen.gameserver.model.spawn.AutoSpawn.AutoSpawnInstance;
 import com.l2jfrozen.gameserver.network.serverpackets.SystemMessage;
+import com.l2jfrozen.gameserver.templates.L2NpcTemplate;
 
 /**
  * Admin Command Handler for Mammon NPCs
@@ -172,6 +173,12 @@ public class AdminMammon implements IAdminCommandHandler
 				Pattern pattern = Pattern.compile("[0-9]*");
 				Matcher regexp = pattern.matcher(params[1]);
 				
+				if(params[1] == null) {
+					activeChar.sendPacket(SystemMessage.sendString("Command format is //list_spawns <npcId|npc_name> [tele_index]"));
+					activeChar.sendPacket(SystemMessage.sendString("Npc id must be a valid Id."));
+					return false;				
+				}
+				
 				if (regexp.matches())
 				{
 					npcId = Integer.parseInt(params[1]);
@@ -179,7 +186,16 @@ public class AdminMammon implements IAdminCommandHandler
 				else
 				{
 					params[1] = params[1].replace('_', ' ');
-					npcId = NpcTable.getInstance().getTemplateByName(params[1]).npcId;
+					
+					L2NpcTemplate npc = NpcTable.getInstance().getTemplateByName(params[1]);
+					
+					if(npc == null) {
+						activeChar.sendPacket(SystemMessage.sendString("Command format is //list_spawns <npcId|npc_name> [tele_index]"));
+						activeChar.sendPacket(SystemMessage.sendString("Npc id must be a valid Id."));
+						return false;				
+					}
+					
+					npcId = npc.npcId;
 				}
 				
 				if (params.length > 2)
