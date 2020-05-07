@@ -196,6 +196,13 @@ public class AdminMenu implements IAdminCommandHandler
 			try
 			{
 				String targetName = command.substring(21);
+				
+				if(targetName == null || targetName == "") {
+					activeChar.sendMessage("Attention, wrong commnad");
+					activeChar.sendMessage("//admin_goto_char_menu name");
+					return false;
+				}
+					
 				L2PcInstance player = L2World.getInstance().getPlayer(targetName);
 				teleportToCharacter(activeChar, player);
 				targetName = null;
@@ -205,6 +212,9 @@ public class AdminMenu implements IAdminCommandHandler
 			{
 				if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
 					e.printStackTrace();
+				
+				activeChar.sendMessage("Attention, wrong commnad");
+				activeChar.sendMessage("//admin_goto_char_menu name");
 			}
 		}
 		else if (command.equals("admin_kill_menu"))
