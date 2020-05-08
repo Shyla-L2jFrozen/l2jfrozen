@@ -84,12 +84,14 @@ public class CharacterSelected extends L2GameClientPacket
 					
 					if(getClient() != null) 
 					{		
-						String Char = cha != null ? cha.getName() : "";
-						LOGGER.warn("Char: "+Char+" on CharacterSelected trying to log in with client offline!");
 						getClient().setActiveChar(cha);
 						getClient().setState(GameClientState.IN_GAME);
 						sendPacket(new CharSelected(cha, getClient().getSessionId().playOkID1));				
+					}else {		
+						String Char = cha != null ? cha.getName() : "";
+						LOGGER.warn("Char: "+Char+" on CharacterSelected trying to log in with client offline!");
 					}
+					
 
 				}
 			}
