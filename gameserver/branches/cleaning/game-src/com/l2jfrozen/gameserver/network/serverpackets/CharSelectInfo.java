@@ -377,10 +377,8 @@ public class CharSelectInfo extends L2GameServerPacket
 			}
 			catch (final Exception e)
 			{
-				if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
-					e.printStackTrace();
-				
-				LOGGER.warn("Could not restore augmentation info: " + e);
+				LOGGER.error("Could not restore augmentation info: " + e);
+				LOGGER.error(e.getMessage(), e);
 			}
 			finally
 			{
