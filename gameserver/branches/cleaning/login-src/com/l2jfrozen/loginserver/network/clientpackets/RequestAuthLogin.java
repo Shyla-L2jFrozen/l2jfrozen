@@ -138,7 +138,11 @@ public class RequestAuthLogin extends L2LoginClientPacket
 				client.setSessionKey(lc.assignSessionKeyToClient(info.getLogin(), client));
 				if (NetcoreConfig.getInstance().SHOW_LICENCE)
 				{
-					client.sendPacket(new LoginOk(getClient().getSessionKey()));
+					if(client == null || getClient() == null) {			
+						LOGGER.warn("RequestAuthLogin trying to log in with client offline!");
+					}else {
+						client.sendPacket(new LoginOk(getClient().getSessionKey()));			
+					}
 				}
 				else
 				{

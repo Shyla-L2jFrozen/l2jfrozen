@@ -9197,7 +9197,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 										minion = null;
 									}
 								}
-								else
+								else if (player instanceof L2Attackable)
 								{
 									((L2Attackable) player).stopHating(this);
 									List<L2MinionInstance> spawnedMinions = ((L2MonsterInstance) player).getSpawnedMinions();
@@ -9227,6 +9227,37 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 										spawnedMinions = null;
 										minion = null;
 									}
+								}else {
+									
+									((L2MonsterInstance) player).stopHating(this);
+									List<L2MinionInstance> spawnedMinions = ((L2MonsterInstance) player).getSpawnedMinions();
+									if (spawnedMinions != null && spawnedMinions.size() > 0)
+									{
+										Iterator<L2MinionInstance> itr = spawnedMinions.iterator();
+										L2MinionInstance minion;
+										while (itr.hasNext())
+										{
+											minion = itr.next();
+											if (((L2MonsterInstance) player).getMostHated() == null)
+											{
+												((L2AttackableAI) minion.getAI()).setGlobalAggro(-25);
+												minion.clearAggroList();
+												minion.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+												minion.setWalking();
+											}
+											if (minion != null && !minion.isDead())
+											{
+												((L2AttackableAI) minion.getAI()).setGlobalAggro(-25);
+												minion.clearAggroList();
+												minion.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+												minion.addDamage(((L2MonsterInstance) player).getMostHated(), 100);
+											}
+										}
+										itr = null;
+										spawnedMinions = null;
+										minion = null;
+									}
+									
 								}
 							}
 							return;
