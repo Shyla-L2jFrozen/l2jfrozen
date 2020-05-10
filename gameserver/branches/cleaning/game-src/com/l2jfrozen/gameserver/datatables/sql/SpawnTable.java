@@ -290,7 +290,7 @@ public class SpawnTable
 	
 	public void addNewSpawn(final L2Spawn spawn, final boolean storeInDb)
 	{
-		_highestId++;
+		_highestId = _highestId + 1;
 		spawn.setId(_highestId);
 		spawntable.put(_highestId, spawn);
 		
