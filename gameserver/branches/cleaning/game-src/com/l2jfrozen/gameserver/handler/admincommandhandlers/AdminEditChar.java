@@ -1086,9 +1086,9 @@ public class AdminEditChar implements IAdminCommandHandler
 		for (int x = 0; x < MaxPages; x++)
 		{
 			final int pagenr = x + 1;
-			replyMSG.append("<center><a action=\"bypass -h admin_show_characters " + x + "\">Page " + pagenr + "</a></center>");
+			replyMSG.append("<a action=\"bypass -h admin_show_characters " + x + "\">Page " + pagenr + "</a>,");
 		}
-		
+
 		adminReply.replace("%pages%", replyMSG.toString());
 		replyMSG.clear();
 		

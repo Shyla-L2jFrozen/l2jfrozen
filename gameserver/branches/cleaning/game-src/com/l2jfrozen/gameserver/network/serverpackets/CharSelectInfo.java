@@ -358,7 +358,7 @@ public class CharSelectInfo extends L2GameServerPacket
 		}
 		
 		if (weaponObjId > 0)
-		{
+		{		
 			Connection con = null;
 			try
 			{
@@ -369,7 +369,8 @@ public class CharSelectInfo extends L2GameServerPacket
 				
 				if (result.next())
 				{
-					charInfopackage.setAugmentationId(result.getInt("attributes"));
+					int augment = result.getInt("attributes");
+					charInfopackage.setAugmentationId(augment == -1 ? 0 : augment);
 				}
 				
 				result.close();
