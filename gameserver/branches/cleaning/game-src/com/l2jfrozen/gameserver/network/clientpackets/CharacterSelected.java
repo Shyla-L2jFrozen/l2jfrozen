@@ -77,6 +77,7 @@ public class CharacterSelected extends L2GameClientPacket
 					if (cha.getAccessLevel().getLevel() < 0)
 					{
 						cha.deleteMe(true);
+						sendPacket(ActionFailed.STATIC_PACKET);
 						return;
 					}
 					
@@ -90,6 +91,7 @@ public class CharacterSelected extends L2GameClientPacket
 					}else {		
 						String Char = cha != null ? cha.getName() : "";
 						LOGGER.warn("Char: "+Char+" on CharacterSelected trying to log in with client offline!");
+						sendPacket(ActionFailed.STATIC_PACKET);
 					}
 					
 
@@ -101,7 +103,8 @@ public class CharacterSelected extends L2GameClientPacket
 			}
 			finally
 			{
-				getClient().getActiveCharLock().unlock();
+				if(getClient() != null) 
+					getClient().getActiveCharLock().unlock();
 			}
 		}
 	}

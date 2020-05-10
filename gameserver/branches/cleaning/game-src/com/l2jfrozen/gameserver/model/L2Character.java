@@ -8561,6 +8561,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 		catch (final Exception e)
 		{
 			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		
 		try
@@ -8630,6 +8631,7 @@ public abstract class L2Character extends L2Object implements ISkillsHolder
 		catch (final Exception e)
 		{
 			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		
 		if (instant || coolTime == 0)

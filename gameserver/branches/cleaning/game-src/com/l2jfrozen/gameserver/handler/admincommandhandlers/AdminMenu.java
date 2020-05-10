@@ -110,8 +110,12 @@ public class AdminMenu implements IAdminCommandHandler
 			}
 			catch (final StringIndexOutOfBoundsException e)
 			{
+				activeChar.sendMessage("Action failed.");
+				activeChar.sendMessage("Use //admin_recall_char_menu playerName");
+			}
+			catch(final Exception e) {
 				if (CommonConfig.ENABLE_ALL_EXCEPTIONS)
-					e.printStackTrace();
+					e.printStackTrace();				
 			}
 		}
 		else if (command.startsWith("admin_recall_party_menu"))

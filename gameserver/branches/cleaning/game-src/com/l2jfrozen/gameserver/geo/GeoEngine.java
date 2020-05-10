@@ -649,8 +649,7 @@ public final class GeoEngine extends GeoData
 		}
 		catch (final Exception e)
 		{
-			e.printStackTrace();
-			
+			LOGGER.error("", e);			
 		}
 		
 	}
